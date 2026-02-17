@@ -31,9 +31,12 @@ void Game :: init(){
 	t_explode[2] = loadTexture("assets/img/explode_2.png");
 	t_explode[3] = loadTexture("assets/img/explode_3.png");
 
+	
 	t_grass = loadTexture("assets/img/grass.png");
 	t_mountain = loadTexture("assets/img/mountain.png");
 	t_floor = loadTexture("assets/img/floor.png");
+
+	t_press_x = loadTexture("assets/img/press x.png");
 
 	w_bullet = loadWav("assets/sound/tankfire.wav");
 	w_explode = loadWav("assets/sound/explode.wav");

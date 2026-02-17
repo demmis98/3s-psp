@@ -113,7 +113,8 @@ void Level :: draw(){
     drawTextureH(game->t_grass, grassX, grassY, 0xFFFFFFFF);
     //drawBg(game->t_floor, 0, LEVEL_GROUND_Y);
     drawTextureH(game->t_floor, 0, LEVEL_GROUND_Y, 0xFFFFFFFF);
-
+    if(state == LEVEL_STATE_DIED)
+        drawTextureF(game->t_press_x, SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
     for(auto &i : entities)
         i->draw();
 }

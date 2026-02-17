@@ -42,6 +42,8 @@ class Game{
 		Texture *t_mountain;
 		Texture *t_floor;
 
+		Texture *t_press_x;
+
 		Wav *w_bullet;
 		Wav *w_explode;
 		Wav *w_hit;
