@@ -1,0 +1,502 @@
+The target system is: Generic - 1 - mips
+The host system is: Linux - 6.1.0-42-amd64 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /home/demma/.local/bin/pspdev/bin/psp-gcc 
+Build flags: -I/home/demma/.local/bin/pspdev/psp/include;-I/home/demma/.local/bin/pspdev/psp/sdk/include;-DPSP
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/home/demma/Documents/code/psp/260201tank-fun/build/CMakeFiles/3.25.1/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /home/demma/.local/bin/pspdev/bin/psp-g++ 
+Build flags: -I/home/demma/.local/bin/pspdev/psp/include;-I/home/demma/.local/bin/pspdev/psp/sdk/include;-DPSP
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/home/demma/Documents/code/psp/260201tank-fun/build/CMakeFiles/3.25.1/CompilerIdCXX/a.out"
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/demma/Documents/code/psp/260201tank-fun/build/CMakeFiles/CMakeScratch/TryCompile-abSnCw
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_c65be/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_c65be.dir/build.make CMakeFiles/cmTC_c65be.dir/build
+gmake[1]: Entering directory '/home/demma/Documents/code/psp/260201tank-fun/build/CMakeFiles/CMakeScratch/TryCompile-abSnCw'
+Building C object CMakeFiles/cmTC_c65be.dir/CMakeCCompilerABI.c.obj
+/home/demma/.local/bin/pspdev/bin/psp-gcc -DPSP -D_PSP_FW_VERSION=600 -D__PSP__  -I/home/demma/.local/bin/pspdev/psp/include -I/home/demma/.local/bin/pspdev/psp/sdk/include -DPSP    -v -o CMakeFiles/cmTC_c65be.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake-3.25/Modules/CMakeCCompilerABI.c
+Using built-in specs.
+COLLECT_GCC=/home/demma/.local/bin/pspdev/bin/psp-gcc
+Target: psp
+Configured with: ../configure --quiet --prefix=/home/demma/.local/bin/pspdev --target=psp --with-sysroot=/home/demma/.local/bin/pspdev/psp --with-native-system-header-dir=/include --enable-languages=c,c++ --with-float=hard --with-newlib --disable-libssp --disable-multilib --enable-threads=posix --disable-tls --disable-nls --silent
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 15.2.0 (GCC) 
+COLLECT_GCC_OPTIONS='-D' 'PSP' '-D' '_PSP_FW_VERSION=600' '-D' '__PSP__' '-I' '/home/demma/.local/bin/pspdev/psp/include' '-I' '/home/demma/.local/bin/pspdev/psp/sdk/include' '-D' 'PSP' '-v' '-o' 'CMakeFiles/cmTC_c65be.dir/CMakeCCompilerABI.c.obj' '-c' '-mhard-float' '-msingle-float' '-dumpdir' 'CMakeFiles/cmTC_c65be.dir/'
+ /home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/cc1 -quiet -v -I /home/demma/.local/bin/pspdev/psp/include -I /home/demma/.local/bin/pspdev/psp/sdk/include -DPSP=1 -D__PSP__=1 -D_PSP=1 -D__psp__=1 -D PSP -D _PSP_FW_VERSION=600 -D __PSP__ -D PSP /usr/share/cmake-3.25/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_c65be.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mhard-float -msingle-float -version -o /tmp/ccfRBOPk.s
+GNU C23 (GCC) version 15.2.0 (psp)
+	compiled by GNU C version 12.2.0, GMP version 6.2.1, MPFR version 4.2.0, MPC version 1.3.1, isl version none
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/home/demma/.local/bin/pspdev/psp/usr/local/include"
+ignoring duplicate directory "/home/demma/.local/bin/pspdev/psp/include"
+ignoring duplicate directory "/home/demma/.local/bin/pspdev/psp/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /home/demma/.local/bin/pspdev/psp/sdk/include
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include-fixed
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/include
+End of search list.
+Compiler executable checksum: b83bae0405466d7e11a256ae6fee5cd8
+COLLECT_GCC_OPTIONS='-D' 'PSP' '-D' '_PSP_FW_VERSION=600' '-D' '__PSP__' '-I' '/home/demma/.local/bin/pspdev/psp/include' '-I' '/home/demma/.local/bin/pspdev/psp/sdk/include' '-D' 'PSP' '-v' '-o' 'CMakeFiles/cmTC_c65be.dir/CMakeCCompilerABI.c.obj' '-c' '-mhard-float' '-msingle-float' '-dumpdir' 'CMakeFiles/cmTC_c65be.dir/'
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/as -EL -O1 -mabi=eabi -mhard-float -msingle-float -o CMakeFiles/cmTC_c65be.dir/CMakeCCompilerABI.c.obj /tmp/ccfRBOPk.s
+COMPILER_PATH=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/
+LIBRARY_PATH=/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/:/home/demma/.local/bin/pspdev/psp/lib/
+COLLECT_GCC_OPTIONS='-D' 'PSP' '-D' '_PSP_FW_VERSION=600' '-D' '__PSP__' '-I' '/home/demma/.local/bin/pspdev/psp/include' '-I' '/home/demma/.local/bin/pspdev/psp/sdk/include' '-D' 'PSP' '-v' '-o' 'CMakeFiles/cmTC_c65be.dir/CMakeCCompilerABI.c.obj' '-c' '-mhard-float' '-msingle-float' '-dumpdir' 'CMakeFiles/cmTC_c65be.dir/CMakeCCompilerABI.c.'
+Linking C executable cmTC_c65be
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c65be.dir/link.txt --verbose=1
+/home/demma/.local/bin/pspdev/bin/psp-gcc -I/home/demma/.local/bin/pspdev/psp/include -I/home/demma/.local/bin/pspdev/psp/sdk/include -DPSP  -L/home/demma/.local/bin/pspdev/lib -L/home/demma/.local/bin/pspdev/psp/lib -L/home/demma/.local/bin/pspdev/psp/sdk/lib -Wl,-zmax-page-size=128 -v CMakeFiles/cmTC_c65be.dir/CMakeCCompilerABI.c.obj -o cmTC_c65be   -L/home/demma/.local/bin/pspdev/lib  -L/home/demma/.local/bin/pspdev/psp/lib  -L/home/demma/.local/bin/pspdev/psp/sdk/lib 
+Using built-in specs.
+COLLECT_GCC=/home/demma/.local/bin/pspdev/bin/psp-gcc
+COLLECT_LTO_WRAPPER=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/lto-wrapper
+Target: psp
+Configured with: ../configure --quiet --prefix=/home/demma/.local/bin/pspdev --target=psp --with-sysroot=/home/demma/.local/bin/pspdev/psp --with-native-system-header-dir=/include --enable-languages=c,c++ --with-float=hard --with-newlib --disable-libssp --disable-multilib --enable-threads=posix --disable-tls --disable-nls --silent
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 15.2.0 (GCC) 
+COMPILER_PATH=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/
+LIBRARY_PATH=/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/:/home/demma/.local/bin/pspdev/psp/lib/
+COLLECT_GCC_OPTIONS='-I' '/home/demma/.local/bin/pspdev/psp/include' '-I' '/home/demma/.local/bin/pspdev/psp/sdk/include' '-D' 'PSP' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-v' '-o' 'cmTC_c65be' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-mhard-float' '-msingle-float' '-dumpdir' 'cmTC_c65be.'
+ /home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/collect2 -plugin /home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/liblto_plugin.so -plugin-opt=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccKdCarG.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lm -plugin-opt=-pass-through=-lpthreadglue -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-lcglue -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lpsputility -plugin-opt=-pass-through=-lpsprtc -plugin-opt=-pass-through=-lpspnet_inet -plugin-opt=-pass-through=-lpspnet_resolver -plugin-opt=-pass-through=-lpspsdk -plugin-opt=-pass-through=-lpspmodinfo -plugin-opt=-pass-through=-lpspuser -plugin-opt=-pass-through=-lgcc --sysroot=/home/demma/.local/bin/pspdev/psp -EL -o cmTC_c65be /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/crt0.o /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crti.o /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtbegin.o -L/home/demma/.local/bin/pspdev/lib -L/home/demma/.local/bin/pspdev/psp/lib -L/home/demma/.local/bin/pspdev/psp/sdk/lib -L/home/demma/.local/bin/pspdev/lib -L/home/demma/.local/bin/pspdev/psp/lib -L/home/demma/.local/bin/pspdev/psp/sdk/lib -L/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0 -L/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib -L/home/demma/.local/bin/pspdev/psp/lib -zmax-page-size=128 CMakeFiles/cmTC_c65be.dir/CMakeCCompilerABI.c.obj -lgcc -lm --start-group -lpthreadglue -lpthread -lcglue -lc --end-group -lpsputility -lpsprtc -lpspnet_inet -lpspnet_resolver -lpspsdk -lpspmodinfo -lpspuser -lgcc /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtend.o /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtn.o
+/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/lto-wrapper -fresolution=/tmp/ccKdCarG.res -flinker-output=exec /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x614ca /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x63572 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x6588a /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x67356 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x1aae /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x5136 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x71fa /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0xb786 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x1a63a /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x1c536 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x273ae /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x5513a /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x59c46 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x5d76a /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x5f2b6 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x69682 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x6ab9e /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x6d122 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x3676 
+/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/lto-wrapper -fresolution=/tmp/ccKdCarG.res -flinker-output=exec /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x614ca /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x63572 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x6588a /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x67356 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x1aae /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x5136 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x71fa /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0xb786 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x1a63a /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x1c536 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x273ae /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x5513a /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x59c46 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x5d76a /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x5f2b6 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x69682 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x6ab9e /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x6d122 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x3676 
+/home/demma/.local/bin/pspdev/bin/psp-gcc @/tmp/ccKj2AZO
+Using built-in specs.
+COLLECT_GCC=/home/demma/.local/bin/pspdev/bin/psp-gcc
+Target: psp
+Configured with: ../configure --quiet --prefix=/home/demma/.local/bin/pspdev --target=psp --with-sysroot=/home/demma/.local/bin/pspdev/psp --with-native-system-header-dir=/include --enable-languages=c,c++ --with-float=hard --with-newlib --disable-libssp --disable-multilib --enable-threads=posix --disable-tls --disable-nls --silent
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 15.2.0 (GCC) 
+COLLECT_GCC_OPTIONS='-c' '-fno-openmp' '-fno-openacc' '-fno-pie' '-fcf-protection=none' '-mno-gpopt' '-mhard-float' '-msingle-float' '-O3' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-v' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-mhard-float' '-msingle-float'   '-fltrans-output-list=/tmp/ccAl26S8.ltrans.out' '-fwpa' '-fresolution=/tmp/ccKdCarG.res' '-flinker-output=exec'
+ /home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/lto1 -quiet -dumpbase ./cmTC_c65be.wpa -mno-gpopt -mhard-float -msingle-float -mhard-float -msingle-float -O3 -version -fno-openmp -fno-openacc -fno-pie -fcf-protection=none -fltrans-output-list=/tmp/ccAl26S8.ltrans.out -fwpa -fresolution=/tmp/ccKdCarG.res -flinker-output=exec @/tmp/ccIzyt76
+GNU GIMPLE (GCC) version 15.2.0 (psp)
+	compiled by GNU C version 12.2.0, GMP version 6.2.1, MPFR version 4.2.0, MPC version 1.3.1, isl version none
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+COMPILER_PATH=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/
+LIBRARY_PATH=/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/:/home/demma/.local/bin/pspdev/psp/lib/
+COLLECT_GCC_OPTIONS='-c' '-fno-openmp' '-fno-openacc' '-fno-pie' '-fcf-protection=none' '-mno-gpopt' '-mhard-float' '-msingle-float' '-O3' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-v' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-mhard-float' '-msingle-float'   '-fltrans-output-list=/tmp/ccAl26S8.ltrans.out' '-fwpa' '-fresolution=/tmp/ccKdCarG.res' '-flinker-output=exec' '-dumpdir' './cmTC_c65be.wpa.'
+/home/demma/.local/bin/pspdev/bin/psp-gcc @/tmp/ccHpyei4
+Using built-in specs.
+COLLECT_GCC=/home/demma/.local/bin/pspdev/bin/psp-gcc
+Target: psp
+Configured with: ../configure --quiet --prefix=/home/demma/.local/bin/pspdev --target=psp --with-sysroot=/home/demma/.local/bin/pspdev/psp --with-native-system-header-dir=/include --enable-languages=c,c++ --with-float=hard --with-newlib --disable-libssp --disable-multilib --enable-threads=posix --disable-tls --disable-nls --silent
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 15.2.0 (GCC) 
+COLLECT_GCC_OPTIONS='-c' '-fno-openmp' '-fno-openacc' '-fno-pie' '-fcf-protection=none' '-mno-gpopt' '-mhard-float' '-msingle-float' '-O3' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-v' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-mhard-float' '-msingle-float'   '-fltrans' '-o' '/tmp/ccAl26S8.ltrans0.ltrans.o'
+ /home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/lto1 -quiet -dumpbase ./cmTC_c65be.ltrans0.ltrans -mno-gpopt -mhard-float -msingle-float -mhard-float -msingle-float -O3 -version -fno-openmp -fno-openacc -fno-pie -fcf-protection=none -fltrans @/tmp/ccRogeXU -o /tmp/ccO7OdGi.s
+GNU GIMPLE (GCC) version 15.2.0 (psp)
+	compiled by GNU C version 12.2.0, GMP version 6.2.1, MPFR version 4.2.0, MPC version 1.3.1, isl version none
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+COLLECT_GCC_OPTIONS='-c' '-fno-openmp' '-fno-openacc' '-fno-pie' '-fcf-protection=none' '-mno-gpopt' '-mhard-float' '-msingle-float' '-O3' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-v' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-mhard-float' '-msingle-float'   '-fltrans' '-o' '/tmp/ccAl26S8.ltrans0.ltrans.o'
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/as -EL -O2 -mabi=eabi -mhard-float -mhard-float -msingle-float -msingle-float -o /tmp/ccAl26S8.ltrans0.ltrans.o /tmp/ccO7OdGi.s
+COMPILER_PATH=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/
+LIBRARY_PATH=/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/:/home/demma/.local/bin/pspdev/psp/lib/
+COLLECT_GCC_OPTIONS='-c' '-fno-openmp' '-fno-openacc' '-fno-pie' '-fcf-protection=none' '-mno-gpopt' '-mhard-float' '-msingle-float' '-O3' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-v' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-mhard-float' '-msingle-float'   '-fltrans' '-o' '/tmp/ccAl26S8.ltrans0.ltrans.o' '-dumpdir' './cmTC_c65be.ltrans0.ltrans.'
+COLLECT_GCC_OPTIONS='-I' '/home/demma/.local/bin/pspdev/psp/include' '-I' '/home/demma/.local/bin/pspdev/psp/sdk/include' '-D' 'PSP' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-v' '-o' 'cmTC_c65be' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-mhard-float' '-msingle-float' '-dumpdir' 'cmTC_c65be.'
+gmake[1]: Leaving directory '/home/demma/Documents/code/psp/260201tank-fun/build/CMakeFiles/CMakeScratch/TryCompile-abSnCw'
+
+
+
+Parsed C implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/home/demma/.local/bin/pspdev/psp/sdk/include]
+    add: [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include]
+    add: [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include-fixed]
+    add: [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/include]
+  end of search list found
+  collapse include dir [/home/demma/.local/bin/pspdev/psp/sdk/include] ==> [/home/demma/.local/bin/pspdev/psp/sdk/include]
+  collapse include dir [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include] ==> [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include]
+  collapse include dir [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include-fixed] ==> [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include-fixed]
+  collapse include dir [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/include] ==> [/home/demma/.local/bin/pspdev/psp/include]
+  implicit include dirs: [/home/demma/.local/bin/pspdev/psp/sdk/include;/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include;/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include-fixed;/home/demma/.local/bin/pspdev/psp/include]
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(psp-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/demma/Documents/code/psp/260201tank-fun/build/CMakeFiles/CMakeScratch/TryCompile-abSnCw]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_c65be/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_c65be.dir/build.make CMakeFiles/cmTC_c65be.dir/build]
+  ignore line: [gmake[1]: Entering directory '/home/demma/Documents/code/psp/260201tank-fun/build/CMakeFiles/CMakeScratch/TryCompile-abSnCw']
+  ignore line: [Building C object CMakeFiles/cmTC_c65be.dir/CMakeCCompilerABI.c.obj]
+  ignore line: [/home/demma/.local/bin/pspdev/bin/psp-gcc -DPSP -D_PSP_FW_VERSION=600 -D__PSP__  -I/home/demma/.local/bin/pspdev/psp/include -I/home/demma/.local/bin/pspdev/psp/sdk/include -DPSP    -v -o CMakeFiles/cmTC_c65be.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake-3.25/Modules/CMakeCCompilerABI.c]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/home/demma/.local/bin/pspdev/bin/psp-gcc]
+  ignore line: [Target: psp]
+  ignore line: [Configured with: ../configure --quiet --prefix=/home/demma/.local/bin/pspdev --target=psp --with-sysroot=/home/demma/.local/bin/pspdev/psp --with-native-system-header-dir=/include --enable-languages=c c++ --with-float=hard --with-newlib --disable-libssp --disable-multilib --enable-threads=posix --disable-tls --disable-nls --silent]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib zstd]
+  ignore line: [gcc version 15.2.0 (GCC) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-D' 'PSP' '-D' '_PSP_FW_VERSION=600' '-D' '__PSP__' '-I' '/home/demma/.local/bin/pspdev/psp/include' '-I' '/home/demma/.local/bin/pspdev/psp/sdk/include' '-D' 'PSP' '-v' '-o' 'CMakeFiles/cmTC_c65be.dir/CMakeCCompilerABI.c.obj' '-c' '-mhard-float' '-msingle-float' '-dumpdir' 'CMakeFiles/cmTC_c65be.dir/']
+  ignore line: [ /home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/cc1 -quiet -v -I /home/demma/.local/bin/pspdev/psp/include -I /home/demma/.local/bin/pspdev/psp/sdk/include -DPSP=1 -D__PSP__=1 -D_PSP=1 -D__psp__=1 -D PSP -D _PSP_FW_VERSION=600 -D __PSP__ -D PSP /usr/share/cmake-3.25/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_c65be.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mhard-float -msingle-float -version -o /tmp/ccfRBOPk.s]
+  ignore line: [GNU C23 (GCC) version 15.2.0 (psp)]
+  ignore line: [	compiled by GNU C version 12.2.0  GMP version 6.2.1  MPFR version 4.2.0  MPC version 1.3.1  isl version none]
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring nonexistent directory "/home/demma/.local/bin/pspdev/psp/usr/local/include"]
+  ignore line: [ignoring duplicate directory "/home/demma/.local/bin/pspdev/psp/include"]
+  ignore line: [ignoring duplicate directory "/home/demma/.local/bin/pspdev/psp/include"]
+  ignore line: [  as it is a non-system directory that duplicates a system directory]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /home/demma/.local/bin/pspdev/psp/sdk/include]
+  ignore line: [ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include]
+  ignore line: [ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include-fixed]
+  ignore line: [ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/include]
+  ignore line: [End of search list.]
+  ignore line: [Compiler executable checksum: b83bae0405466d7e11a256ae6fee5cd8]
+  ignore line: [COLLECT_GCC_OPTIONS='-D' 'PSP' '-D' '_PSP_FW_VERSION=600' '-D' '__PSP__' '-I' '/home/demma/.local/bin/pspdev/psp/include' '-I' '/home/demma/.local/bin/pspdev/psp/sdk/include' '-D' 'PSP' '-v' '-o' 'CMakeFiles/cmTC_c65be.dir/CMakeCCompilerABI.c.obj' '-c' '-mhard-float' '-msingle-float' '-dumpdir' 'CMakeFiles/cmTC_c65be.dir/']
+  ignore line: [ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/as -EL -O1 -mabi=eabi -mhard-float -msingle-float -o CMakeFiles/cmTC_c65be.dir/CMakeCCompilerABI.c.obj /tmp/ccfRBOPk.s]
+  ignore line: [COMPILER_PATH=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/]
+  ignore line: [LIBRARY_PATH=/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/:/home/demma/.local/bin/pspdev/psp/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-D' 'PSP' '-D' '_PSP_FW_VERSION=600' '-D' '__PSP__' '-I' '/home/demma/.local/bin/pspdev/psp/include' '-I' '/home/demma/.local/bin/pspdev/psp/sdk/include' '-D' 'PSP' '-v' '-o' 'CMakeFiles/cmTC_c65be.dir/CMakeCCompilerABI.c.obj' '-c' '-mhard-float' '-msingle-float' '-dumpdir' 'CMakeFiles/cmTC_c65be.dir/CMakeCCompilerABI.c.']
+  ignore line: [Linking C executable cmTC_c65be]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c65be.dir/link.txt --verbose=1]
+  ignore line: [/home/demma/.local/bin/pspdev/bin/psp-gcc -I/home/demma/.local/bin/pspdev/psp/include -I/home/demma/.local/bin/pspdev/psp/sdk/include -DPSP  -L/home/demma/.local/bin/pspdev/lib -L/home/demma/.local/bin/pspdev/psp/lib -L/home/demma/.local/bin/pspdev/psp/sdk/lib -Wl -zmax-page-size=128 -v CMakeFiles/cmTC_c65be.dir/CMakeCCompilerABI.c.obj -o cmTC_c65be   -L/home/demma/.local/bin/pspdev/lib  -L/home/demma/.local/bin/pspdev/psp/lib  -L/home/demma/.local/bin/pspdev/psp/sdk/lib ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/home/demma/.local/bin/pspdev/bin/psp-gcc]
+  ignore line: [COLLECT_LTO_WRAPPER=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/lto-wrapper]
+  ignore line: [Target: psp]
+  ignore line: [Configured with: ../configure --quiet --prefix=/home/demma/.local/bin/pspdev --target=psp --with-sysroot=/home/demma/.local/bin/pspdev/psp --with-native-system-header-dir=/include --enable-languages=c c++ --with-float=hard --with-newlib --disable-libssp --disable-multilib --enable-threads=posix --disable-tls --disable-nls --silent]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib zstd]
+  ignore line: [gcc version 15.2.0 (GCC) ]
+  ignore line: [COMPILER_PATH=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/]
+  ignore line: [LIBRARY_PATH=/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/:/home/demma/.local/bin/pspdev/psp/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-I' '/home/demma/.local/bin/pspdev/psp/include' '-I' '/home/demma/.local/bin/pspdev/psp/sdk/include' '-D' 'PSP' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-v' '-o' 'cmTC_c65be' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-mhard-float' '-msingle-float' '-dumpdir' 'cmTC_c65be.']
+  link line: [ /home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/collect2 -plugin /home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/liblto_plugin.so -plugin-opt=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccKdCarG.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lm -plugin-opt=-pass-through=-lpthreadglue -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-lcglue -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lpsputility -plugin-opt=-pass-through=-lpsprtc -plugin-opt=-pass-through=-lpspnet_inet -plugin-opt=-pass-through=-lpspnet_resolver -plugin-opt=-pass-through=-lpspsdk -plugin-opt=-pass-through=-lpspmodinfo -plugin-opt=-pass-through=-lpspuser -plugin-opt=-pass-through=-lgcc --sysroot=/home/demma/.local/bin/pspdev/psp -EL -o cmTC_c65be /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/crt0.o /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crti.o /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtbegin.o -L/home/demma/.local/bin/pspdev/lib -L/home/demma/.local/bin/pspdev/psp/lib -L/home/demma/.local/bin/pspdev/psp/sdk/lib -L/home/demma/.local/bin/pspdev/lib -L/home/demma/.local/bin/pspdev/psp/lib -L/home/demma/.local/bin/pspdev/psp/sdk/lib -L/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0 -L/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib -L/home/demma/.local/bin/pspdev/psp/lib -zmax-page-size=128 CMakeFiles/cmTC_c65be.dir/CMakeCCompilerABI.c.obj -lgcc -lm --start-group -lpthreadglue -lpthread -lcglue -lc --end-group -lpsputility -lpsprtc -lpspnet_inet -lpspnet_resolver -lpspsdk -lpspmodinfo -lpspuser -lgcc /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtend.o /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtn.o]
+    arg [/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccKdCarG.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lm] ==> ignore
+    arg [-plugin-opt=-pass-through=-lpthreadglue] ==> ignore
+    arg [-plugin-opt=-pass-through=-lpthread] ==> ignore
+    arg [-plugin-opt=-pass-through=-lcglue] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lpsputility] ==> ignore
+    arg [-plugin-opt=-pass-through=-lpsprtc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lpspnet_inet] ==> ignore
+    arg [-plugin-opt=-pass-through=-lpspnet_resolver] ==> ignore
+    arg [-plugin-opt=-pass-through=-lpspsdk] ==> ignore
+    arg [-plugin-opt=-pass-through=-lpspmodinfo] ==> ignore
+    arg [-plugin-opt=-pass-through=-lpspuser] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [--sysroot=/home/demma/.local/bin/pspdev/psp] ==> ignore
+    arg [-EL] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_c65be] ==> ignore
+    arg [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/crt0.o] ==> obj [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/crt0.o]
+    arg [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crti.o] ==> obj [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crti.o]
+    arg [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtbegin.o] ==> obj [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtbegin.o]
+    arg [-L/home/demma/.local/bin/pspdev/lib] ==> dir [/home/demma/.local/bin/pspdev/lib]
+    arg [-L/home/demma/.local/bin/pspdev/psp/lib] ==> dir [/home/demma/.local/bin/pspdev/psp/lib]
+    arg [-L/home/demma/.local/bin/pspdev/psp/sdk/lib] ==> dir [/home/demma/.local/bin/pspdev/psp/sdk/lib]
+    arg [-L/home/demma/.local/bin/pspdev/lib] ==> dir [/home/demma/.local/bin/pspdev/lib]
+    arg [-L/home/demma/.local/bin/pspdev/psp/lib] ==> dir [/home/demma/.local/bin/pspdev/psp/lib]
+    arg [-L/home/demma/.local/bin/pspdev/psp/sdk/lib] ==> dir [/home/demma/.local/bin/pspdev/psp/sdk/lib]
+    arg [-L/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0] ==> dir [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0]
+    arg [-L/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib] ==> dir [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib]
+    arg [-L/home/demma/.local/bin/pspdev/psp/lib] ==> dir [/home/demma/.local/bin/pspdev/psp/lib]
+    arg [-zmax-page-size=128] ==> ignore
+    arg [CMakeFiles/cmTC_c65be.dir/CMakeCCompilerABI.c.obj] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lm] ==> lib [m]
+    arg [--start-group] ==> ignore
+    arg [-lpthreadglue] ==> lib [pthreadglue]
+    arg [-lpthread] ==> lib [pthread]
+    arg [-lcglue] ==> lib [cglue]
+    arg [-lc] ==> lib [c]
+    arg [--end-group] ==> ignore
+    arg [-lpsputility] ==> lib [psputility]
+    arg [-lpsprtc] ==> lib [psprtc]
+    arg [-lpspnet_inet] ==> lib [pspnet_inet]
+    arg [-lpspnet_resolver] ==> lib [pspnet_resolver]
+    arg [-lpspsdk] ==> lib [pspsdk]
+    arg [-lpspmodinfo] ==> lib [pspmodinfo]
+    arg [-lpspuser] ==> lib [pspuser]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtend.o] ==> obj [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtend.o]
+    arg [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtn.o] ==> obj [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtn.o]
+  collapse obj [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/crt0.o] ==> [/home/demma/.local/bin/pspdev/psp/lib/crt0.o]
+  collapse library dir [/home/demma/.local/bin/pspdev/lib] ==> [/home/demma/.local/bin/pspdev/lib]
+  collapse library dir [/home/demma/.local/bin/pspdev/psp/lib] ==> [/home/demma/.local/bin/pspdev/psp/lib]
+  collapse library dir [/home/demma/.local/bin/pspdev/psp/sdk/lib] ==> [/home/demma/.local/bin/pspdev/psp/sdk/lib]
+  collapse library dir [/home/demma/.local/bin/pspdev/lib] ==> [/home/demma/.local/bin/pspdev/lib]
+  collapse library dir [/home/demma/.local/bin/pspdev/psp/lib] ==> [/home/demma/.local/bin/pspdev/psp/lib]
+  collapse library dir [/home/demma/.local/bin/pspdev/psp/sdk/lib] ==> [/home/demma/.local/bin/pspdev/psp/sdk/lib]
+  collapse library dir [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0] ==> [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0]
+  collapse library dir [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib] ==> [/home/demma/.local/bin/pspdev/psp/lib]
+  collapse library dir [/home/demma/.local/bin/pspdev/psp/lib] ==> [/home/demma/.local/bin/pspdev/psp/lib]
+  implicit libs: [gcc;m;pthreadglue;pthread;cglue;c;psputility;psprtc;pspnet_inet;pspnet_resolver;pspsdk;pspmodinfo;pspuser;gcc]
+  implicit objs: [/home/demma/.local/bin/pspdev/psp/lib/crt0.o;/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crti.o;/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtbegin.o;/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtend.o;/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtn.o]
+  implicit dirs: [/home/demma/.local/bin/pspdev/lib;/home/demma/.local/bin/pspdev/psp/lib;/home/demma/.local/bin/pspdev/psp/sdk/lib;/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0]
+  implicit fwks: []
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /home/demma/Documents/code/psp/260201tank-fun/build/CMakeFiles/CMakeScratch/TryCompile-QVo15Q
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_9262b/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_9262b.dir/build.make CMakeFiles/cmTC_9262b.dir/build
+gmake[1]: Entering directory '/home/demma/Documents/code/psp/260201tank-fun/build/CMakeFiles/CMakeScratch/TryCompile-QVo15Q'
+Building CXX object CMakeFiles/cmTC_9262b.dir/CMakeCXXCompilerABI.cpp.obj
+/home/demma/.local/bin/pspdev/bin/psp-g++ -DPSP -D_PSP_FW_VERSION=600 -D__PSP__  -I/home/demma/.local/bin/pspdev/psp/include -I/home/demma/.local/bin/pspdev/psp/sdk/include -DPSP    -v -o CMakeFiles/cmTC_9262b.dir/CMakeCXXCompilerABI.cpp.obj -c /usr/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp
+Using built-in specs.
+COLLECT_GCC=/home/demma/.local/bin/pspdev/bin/psp-g++
+Target: psp
+Configured with: ../configure --quiet --prefix=/home/demma/.local/bin/pspdev --target=psp --with-sysroot=/home/demma/.local/bin/pspdev/psp --with-native-system-header-dir=/include --enable-languages=c,c++ --with-float=hard --with-newlib --disable-libssp --disable-multilib --enable-threads=posix --disable-tls --disable-nls --silent
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 15.2.0 (GCC) 
+COLLECT_GCC_OPTIONS='-D' 'PSP' '-D' '_PSP_FW_VERSION=600' '-D' '__PSP__' '-I' '/home/demma/.local/bin/pspdev/psp/include' '-I' '/home/demma/.local/bin/pspdev/psp/sdk/include' '-D' 'PSP' '-v' '-o' 'CMakeFiles/cmTC_9262b.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mhard-float' '-msingle-float' '-dumpdir' 'CMakeFiles/cmTC_9262b.dir/'
+ /home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/cc1plus -quiet -v -I /home/demma/.local/bin/pspdev/psp/include -I /home/demma/.local/bin/pspdev/psp/sdk/include -DPSP=1 -D__PSP__=1 -D_PSP=1 -D__psp__=1 -D PSP -D _PSP_FW_VERSION=600 -D __PSP__ -D PSP /usr/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_9262b.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mhard-float -msingle-float -version -o /tmp/cctUU3Y2.s
+GNU C++17 (GCC) version 15.2.0 (psp)
+	compiled by GNU C version 12.2.0, GMP version 6.2.1, MPFR version 4.2.0, MPC version 1.3.1, isl version none
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/home/demma/.local/bin/pspdev/psp/usr/local/include"
+ignoring duplicate directory "/home/demma/.local/bin/pspdev/psp/include"
+ignoring duplicate directory "/home/demma/.local/bin/pspdev/psp/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /home/demma/.local/bin/pspdev/psp/sdk/include
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/include/c++/15.2.0
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/include/c++/15.2.0/psp
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/include/c++/15.2.0/backward
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include-fixed
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/include
+End of search list.
+Compiler executable checksum: 2c959032abf7faa2e6b66296a7866947
+COLLECT_GCC_OPTIONS='-D' 'PSP' '-D' '_PSP_FW_VERSION=600' '-D' '__PSP__' '-I' '/home/demma/.local/bin/pspdev/psp/include' '-I' '/home/demma/.local/bin/pspdev/psp/sdk/include' '-D' 'PSP' '-v' '-o' 'CMakeFiles/cmTC_9262b.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mhard-float' '-msingle-float' '-dumpdir' 'CMakeFiles/cmTC_9262b.dir/'
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/as -EL -O1 -mabi=eabi -mhard-float -msingle-float -o CMakeFiles/cmTC_9262b.dir/CMakeCXXCompilerABI.cpp.obj /tmp/cctUU3Y2.s
+COMPILER_PATH=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/
+LIBRARY_PATH=/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/:/home/demma/.local/bin/pspdev/psp/lib/
+COLLECT_GCC_OPTIONS='-D' 'PSP' '-D' '_PSP_FW_VERSION=600' '-D' '__PSP__' '-I' '/home/demma/.local/bin/pspdev/psp/include' '-I' '/home/demma/.local/bin/pspdev/psp/sdk/include' '-D' 'PSP' '-v' '-o' 'CMakeFiles/cmTC_9262b.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mhard-float' '-msingle-float' '-dumpdir' 'CMakeFiles/cmTC_9262b.dir/CMakeCXXCompilerABI.cpp.'
+Linking CXX executable cmTC_9262b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9262b.dir/link.txt --verbose=1
+/home/demma/.local/bin/pspdev/bin/psp-g++ -I/home/demma/.local/bin/pspdev/psp/include -I/home/demma/.local/bin/pspdev/psp/sdk/include -DPSP  -L/home/demma/.local/bin/pspdev/lib -L/home/demma/.local/bin/pspdev/psp/lib -L/home/demma/.local/bin/pspdev/psp/sdk/lib -Wl,-zmax-page-size=128 -v CMakeFiles/cmTC_9262b.dir/CMakeCXXCompilerABI.cpp.obj -o cmTC_9262b   -L/home/demma/.local/bin/pspdev/lib  -L/home/demma/.local/bin/pspdev/psp/lib  -L/home/demma/.local/bin/pspdev/psp/sdk/lib 
+Using built-in specs.
+COLLECT_GCC=/home/demma/.local/bin/pspdev/bin/psp-g++
+COLLECT_LTO_WRAPPER=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/lto-wrapper
+Target: psp
+Configured with: ../configure --quiet --prefix=/home/demma/.local/bin/pspdev --target=psp --with-sysroot=/home/demma/.local/bin/pspdev/psp --with-native-system-header-dir=/include --enable-languages=c,c++ --with-float=hard --with-newlib --disable-libssp --disable-multilib --enable-threads=posix --disable-tls --disable-nls --silent
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 15.2.0 (GCC) 
+COMPILER_PATH=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/
+LIBRARY_PATH=/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/:/home/demma/.local/bin/pspdev/psp/lib/
+COLLECT_GCC_OPTIONS='-I' '/home/demma/.local/bin/pspdev/psp/include' '-I' '/home/demma/.local/bin/pspdev/psp/sdk/include' '-D' 'PSP' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-v' '-o' 'cmTC_9262b' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-mhard-float' '-msingle-float' '-dumpdir' 'cmTC_9262b.'
+ /home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/collect2 -plugin /home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/liblto_plugin.so -plugin-opt=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cczu5IQr.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lm -plugin-opt=-pass-through=-lpthreadglue -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-lcglue -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lpsputility -plugin-opt=-pass-through=-lpsprtc -plugin-opt=-pass-through=-lpspnet_inet -plugin-opt=-pass-through=-lpspnet_resolver -plugin-opt=-pass-through=-lpspsdk -plugin-opt=-pass-through=-lpspmodinfo -plugin-opt=-pass-through=-lpspuser -plugin-opt=-pass-through=-lgcc --sysroot=/home/demma/.local/bin/pspdev/psp -EL -o cmTC_9262b /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/crt0.o /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crti.o /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtbegin.o -L/home/demma/.local/bin/pspdev/lib -L/home/demma/.local/bin/pspdev/psp/lib -L/home/demma/.local/bin/pspdev/psp/sdk/lib -L/home/demma/.local/bin/pspdev/lib -L/home/demma/.local/bin/pspdev/psp/lib -L/home/demma/.local/bin/pspdev/psp/sdk/lib -L/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0 -L/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib -L/home/demma/.local/bin/pspdev/psp/lib -zmax-page-size=128 CMakeFiles/cmTC_9262b.dir/CMakeCXXCompilerABI.cpp.obj -lstdc++ -lm -lgcc -lm --start-group -lpthreadglue -lpthread -lcglue -lc --end-group -lpsputility -lpsprtc -lpspnet_inet -lpspnet_resolver -lpspsdk -lpspmodinfo -lpspuser -lgcc /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtend.o /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtn.o
+/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/lto-wrapper -fresolution=/tmp/cczu5IQr.res -flinker-output=exec /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x614ca /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x63572 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x6588a /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x67356 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x1aae /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x5136 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x71fa /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0xb786 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x1a63a /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x1c536 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x273ae /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x5513a /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x59c46 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x5d76a /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x5f2b6 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x69682 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x6ab9e /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x6d122 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x3676 
+/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/lto-wrapper -fresolution=/tmp/cczu5IQr.res -flinker-output=exec /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x614ca /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x63572 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x6588a /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x67356 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x1aae /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x5136 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x71fa /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0xb786 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x1a63a /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x1c536 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x273ae /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x5513a /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x59c46 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x5d76a /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x5f2b6 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x69682 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x6ab9e /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x6d122 /home/demma/.local/bin/pspdev/psp/lib/libpthread.a@0x3676 
+/home/demma/.local/bin/pspdev/bin/psp-g++ @/tmp/cc8PyfAY
+Using built-in specs.
+COLLECT_GCC=/home/demma/.local/bin/pspdev/bin/psp-g++
+Target: psp
+Configured with: ../configure --quiet --prefix=/home/demma/.local/bin/pspdev --target=psp --with-sysroot=/home/demma/.local/bin/pspdev/psp --with-native-system-header-dir=/include --enable-languages=c,c++ --with-float=hard --with-newlib --disable-libssp --disable-multilib --enable-threads=posix --disable-tls --disable-nls --silent
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 15.2.0 (GCC) 
+COLLECT_GCC_OPTIONS='-c' '-fno-openmp' '-fno-openacc' '-fno-pie' '-fcf-protection=none' '-mno-gpopt' '-mhard-float' '-msingle-float' '-O3' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-v' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-mhard-float' '-msingle-float'   '-fltrans-output-list=/tmp/ccIqKRAd.ltrans.out' '-fwpa' '-fresolution=/tmp/cczu5IQr.res' '-flinker-output=exec'
+ /home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/lto1 -quiet -dumpbase ./cmTC_9262b.wpa -mno-gpopt -mhard-float -msingle-float -mhard-float -msingle-float -O3 -version -fno-openmp -fno-openacc -fno-pie -fcf-protection=none -fltrans-output-list=/tmp/ccIqKRAd.ltrans.out -fwpa -fresolution=/tmp/cczu5IQr.res -flinker-output=exec @/tmp/ccBJ6cQl
+GNU GIMPLE (GCC) version 15.2.0 (psp)
+	compiled by GNU C version 12.2.0, GMP version 6.2.1, MPFR version 4.2.0, MPC version 1.3.1, isl version none
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+COMPILER_PATH=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/
+LIBRARY_PATH=/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/:/home/demma/.local/bin/pspdev/psp/lib/
+COLLECT_GCC_OPTIONS='-c' '-fno-openmp' '-fno-openacc' '-fno-pie' '-fcf-protection=none' '-mno-gpopt' '-mhard-float' '-msingle-float' '-O3' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-v' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-mhard-float' '-msingle-float'   '-fltrans-output-list=/tmp/ccIqKRAd.ltrans.out' '-fwpa' '-fresolution=/tmp/cczu5IQr.res' '-flinker-output=exec' '-dumpdir' './cmTC_9262b.wpa.'
+/home/demma/.local/bin/pspdev/bin/psp-g++ @/tmp/cccGVQIU
+Using built-in specs.
+COLLECT_GCC=/home/demma/.local/bin/pspdev/bin/psp-g++
+Target: psp
+Configured with: ../configure --quiet --prefix=/home/demma/.local/bin/pspdev --target=psp --with-sysroot=/home/demma/.local/bin/pspdev/psp --with-native-system-header-dir=/include --enable-languages=c,c++ --with-float=hard --with-newlib --disable-libssp --disable-multilib --enable-threads=posix --disable-tls --disable-nls --silent
+Thread model: posix
+Supported LTO compression algorithms: zlib zstd
+gcc version 15.2.0 (GCC) 
+COLLECT_GCC_OPTIONS='-c' '-fno-openmp' '-fno-openacc' '-fno-pie' '-fcf-protection=none' '-mno-gpopt' '-mhard-float' '-msingle-float' '-O3' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-v' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-mhard-float' '-msingle-float'   '-fltrans' '-o' '/tmp/ccIqKRAd.ltrans0.ltrans.o'
+ /home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/lto1 -quiet -dumpbase ./cmTC_9262b.ltrans0.ltrans -mno-gpopt -mhard-float -msingle-float -mhard-float -msingle-float -O3 -version -fno-openmp -fno-openacc -fno-pie -fcf-protection=none -fltrans @/tmp/ccc1ctRt -o /tmp/cceqWh0n.s
+GNU GIMPLE (GCC) version 15.2.0 (psp)
+	compiled by GNU C version 12.2.0, GMP version 6.2.1, MPFR version 4.2.0, MPC version 1.3.1, isl version none
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+COLLECT_GCC_OPTIONS='-c' '-fno-openmp' '-fno-openacc' '-fno-pie' '-fcf-protection=none' '-mno-gpopt' '-mhard-float' '-msingle-float' '-O3' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-v' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-mhard-float' '-msingle-float'   '-fltrans' '-o' '/tmp/ccIqKRAd.ltrans0.ltrans.o'
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/as -EL -O2 -mabi=eabi -mhard-float -mhard-float -msingle-float -msingle-float -o /tmp/ccIqKRAd.ltrans0.ltrans.o /tmp/cceqWh0n.s
+COMPILER_PATH=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/
+LIBRARY_PATH=/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/:/home/demma/.local/bin/pspdev/psp/lib/
+COLLECT_GCC_OPTIONS='-c' '-fno-openmp' '-fno-openacc' '-fno-pie' '-fcf-protection=none' '-mno-gpopt' '-mhard-float' '-msingle-float' '-O3' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-v' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-mhard-float' '-msingle-float'   '-fltrans' '-o' '/tmp/ccIqKRAd.ltrans0.ltrans.o' '-dumpdir' './cmTC_9262b.ltrans0.ltrans.'
+COLLECT_GCC_OPTIONS='-I' '/home/demma/.local/bin/pspdev/psp/include' '-I' '/home/demma/.local/bin/pspdev/psp/sdk/include' '-D' 'PSP' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-v' '-o' 'cmTC_9262b' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-mhard-float' '-msingle-float' '-dumpdir' 'cmTC_9262b.'
+gmake[1]: Leaving directory '/home/demma/Documents/code/psp/260201tank-fun/build/CMakeFiles/CMakeScratch/TryCompile-QVo15Q'
+
+
+
+Parsed CXX implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/home/demma/.local/bin/pspdev/psp/sdk/include]
+    add: [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/include/c++/15.2.0]
+    add: [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/include/c++/15.2.0/psp]
+    add: [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/include/c++/15.2.0/backward]
+    add: [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include]
+    add: [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include-fixed]
+    add: [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/include]
+  end of search list found
+  collapse include dir [/home/demma/.local/bin/pspdev/psp/sdk/include] ==> [/home/demma/.local/bin/pspdev/psp/sdk/include]
+  collapse include dir [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/include/c++/15.2.0] ==> [/home/demma/.local/bin/pspdev/psp/include/c++/15.2.0]
+  collapse include dir [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/include/c++/15.2.0/psp] ==> [/home/demma/.local/bin/pspdev/psp/include/c++/15.2.0/psp]
+  collapse include dir [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/include/c++/15.2.0/backward] ==> [/home/demma/.local/bin/pspdev/psp/include/c++/15.2.0/backward]
+  collapse include dir [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include] ==> [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include]
+  collapse include dir [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include-fixed] ==> [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include-fixed]
+  collapse include dir [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/include] ==> [/home/demma/.local/bin/pspdev/psp/include]
+  implicit include dirs: [/home/demma/.local/bin/pspdev/psp/sdk/include;/home/demma/.local/bin/pspdev/psp/include/c++/15.2.0;/home/demma/.local/bin/pspdev/psp/include/c++/15.2.0/psp;/home/demma/.local/bin/pspdev/psp/include/c++/15.2.0/backward;/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include;/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include-fixed;/home/demma/.local/bin/pspdev/psp/include]
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(psp-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/demma/Documents/code/psp/260201tank-fun/build/CMakeFiles/CMakeScratch/TryCompile-QVo15Q]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_9262b/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_9262b.dir/build.make CMakeFiles/cmTC_9262b.dir/build]
+  ignore line: [gmake[1]: Entering directory '/home/demma/Documents/code/psp/260201tank-fun/build/CMakeFiles/CMakeScratch/TryCompile-QVo15Q']
+  ignore line: [Building CXX object CMakeFiles/cmTC_9262b.dir/CMakeCXXCompilerABI.cpp.obj]
+  ignore line: [/home/demma/.local/bin/pspdev/bin/psp-g++ -DPSP -D_PSP_FW_VERSION=600 -D__PSP__  -I/home/demma/.local/bin/pspdev/psp/include -I/home/demma/.local/bin/pspdev/psp/sdk/include -DPSP    -v -o CMakeFiles/cmTC_9262b.dir/CMakeCXXCompilerABI.cpp.obj -c /usr/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/home/demma/.local/bin/pspdev/bin/psp-g++]
+  ignore line: [Target: psp]
+  ignore line: [Configured with: ../configure --quiet --prefix=/home/demma/.local/bin/pspdev --target=psp --with-sysroot=/home/demma/.local/bin/pspdev/psp --with-native-system-header-dir=/include --enable-languages=c c++ --with-float=hard --with-newlib --disable-libssp --disable-multilib --enable-threads=posix --disable-tls --disable-nls --silent]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib zstd]
+  ignore line: [gcc version 15.2.0 (GCC) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-D' 'PSP' '-D' '_PSP_FW_VERSION=600' '-D' '__PSP__' '-I' '/home/demma/.local/bin/pspdev/psp/include' '-I' '/home/demma/.local/bin/pspdev/psp/sdk/include' '-D' 'PSP' '-v' '-o' 'CMakeFiles/cmTC_9262b.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mhard-float' '-msingle-float' '-dumpdir' 'CMakeFiles/cmTC_9262b.dir/']
+  ignore line: [ /home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/cc1plus -quiet -v -I /home/demma/.local/bin/pspdev/psp/include -I /home/demma/.local/bin/pspdev/psp/sdk/include -DPSP=1 -D__PSP__=1 -D_PSP=1 -D__psp__=1 -D PSP -D _PSP_FW_VERSION=600 -D __PSP__ -D PSP /usr/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_9262b.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mhard-float -msingle-float -version -o /tmp/cctUU3Y2.s]
+  ignore line: [GNU C++17 (GCC) version 15.2.0 (psp)]
+  ignore line: [	compiled by GNU C version 12.2.0  GMP version 6.2.1  MPFR version 4.2.0  MPC version 1.3.1  isl version none]
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring nonexistent directory "/home/demma/.local/bin/pspdev/psp/usr/local/include"]
+  ignore line: [ignoring duplicate directory "/home/demma/.local/bin/pspdev/psp/include"]
+  ignore line: [ignoring duplicate directory "/home/demma/.local/bin/pspdev/psp/include"]
+  ignore line: [  as it is a non-system directory that duplicates a system directory]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /home/demma/.local/bin/pspdev/psp/sdk/include]
+  ignore line: [ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/include/c++/15.2.0]
+  ignore line: [ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/include/c++/15.2.0/psp]
+  ignore line: [ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/include/c++/15.2.0/backward]
+  ignore line: [ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include]
+  ignore line: [ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include-fixed]
+  ignore line: [ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/include]
+  ignore line: [End of search list.]
+  ignore line: [Compiler executable checksum: 2c959032abf7faa2e6b66296a7866947]
+  ignore line: [COLLECT_GCC_OPTIONS='-D' 'PSP' '-D' '_PSP_FW_VERSION=600' '-D' '__PSP__' '-I' '/home/demma/.local/bin/pspdev/psp/include' '-I' '/home/demma/.local/bin/pspdev/psp/sdk/include' '-D' 'PSP' '-v' '-o' 'CMakeFiles/cmTC_9262b.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mhard-float' '-msingle-float' '-dumpdir' 'CMakeFiles/cmTC_9262b.dir/']
+  ignore line: [ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/as -EL -O1 -mabi=eabi -mhard-float -msingle-float -o CMakeFiles/cmTC_9262b.dir/CMakeCXXCompilerABI.cpp.obj /tmp/cctUU3Y2.s]
+  ignore line: [COMPILER_PATH=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/]
+  ignore line: [LIBRARY_PATH=/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/:/home/demma/.local/bin/pspdev/psp/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-D' 'PSP' '-D' '_PSP_FW_VERSION=600' '-D' '__PSP__' '-I' '/home/demma/.local/bin/pspdev/psp/include' '-I' '/home/demma/.local/bin/pspdev/psp/sdk/include' '-D' 'PSP' '-v' '-o' 'CMakeFiles/cmTC_9262b.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mhard-float' '-msingle-float' '-dumpdir' 'CMakeFiles/cmTC_9262b.dir/CMakeCXXCompilerABI.cpp.']
+  ignore line: [Linking CXX executable cmTC_9262b]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9262b.dir/link.txt --verbose=1]
+  ignore line: [/home/demma/.local/bin/pspdev/bin/psp-g++ -I/home/demma/.local/bin/pspdev/psp/include -I/home/demma/.local/bin/pspdev/psp/sdk/include -DPSP  -L/home/demma/.local/bin/pspdev/lib -L/home/demma/.local/bin/pspdev/psp/lib -L/home/demma/.local/bin/pspdev/psp/sdk/lib -Wl -zmax-page-size=128 -v CMakeFiles/cmTC_9262b.dir/CMakeCXXCompilerABI.cpp.obj -o cmTC_9262b   -L/home/demma/.local/bin/pspdev/lib  -L/home/demma/.local/bin/pspdev/psp/lib  -L/home/demma/.local/bin/pspdev/psp/sdk/lib ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/home/demma/.local/bin/pspdev/bin/psp-g++]
+  ignore line: [COLLECT_LTO_WRAPPER=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/lto-wrapper]
+  ignore line: [Target: psp]
+  ignore line: [Configured with: ../configure --quiet --prefix=/home/demma/.local/bin/pspdev --target=psp --with-sysroot=/home/demma/.local/bin/pspdev/psp --with-native-system-header-dir=/include --enable-languages=c c++ --with-float=hard --with-newlib --disable-libssp --disable-multilib --enable-threads=posix --disable-tls --disable-nls --silent]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib zstd]
+  ignore line: [gcc version 15.2.0 (GCC) ]
+  ignore line: [COMPILER_PATH=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/libexec/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/bin/]
+  ignore line: [LIBRARY_PATH=/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/:/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/:/home/demma/.local/bin/pspdev/psp/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-I' '/home/demma/.local/bin/pspdev/psp/include' '-I' '/home/demma/.local/bin/pspdev/psp/sdk/include' '-D' 'PSP' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-v' '-o' 'cmTC_9262b' '-L/home/demma/.local/bin/pspdev/lib' '-L/home/demma/.local/bin/pspdev/psp/lib' '-L/home/demma/.local/bin/pspdev/psp/sdk/lib' '-mhard-float' '-msingle-float' '-dumpdir' 'cmTC_9262b.']
+  link line: [ /home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/collect2 -plugin /home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/liblto_plugin.so -plugin-opt=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cczu5IQr.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lm -plugin-opt=-pass-through=-lpthreadglue -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-lcglue -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lpsputility -plugin-opt=-pass-through=-lpsprtc -plugin-opt=-pass-through=-lpspnet_inet -plugin-opt=-pass-through=-lpspnet_resolver -plugin-opt=-pass-through=-lpspsdk -plugin-opt=-pass-through=-lpspmodinfo -plugin-opt=-pass-through=-lpspuser -plugin-opt=-pass-through=-lgcc --sysroot=/home/demma/.local/bin/pspdev/psp -EL -o cmTC_9262b /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/crt0.o /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crti.o /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtbegin.o -L/home/demma/.local/bin/pspdev/lib -L/home/demma/.local/bin/pspdev/psp/lib -L/home/demma/.local/bin/pspdev/psp/sdk/lib -L/home/demma/.local/bin/pspdev/lib -L/home/demma/.local/bin/pspdev/psp/lib -L/home/demma/.local/bin/pspdev/psp/sdk/lib -L/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0 -L/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib -L/home/demma/.local/bin/pspdev/psp/lib -zmax-page-size=128 CMakeFiles/cmTC_9262b.dir/CMakeCXXCompilerABI.cpp.obj -lstdc++ -lm -lgcc -lm --start-group -lpthreadglue -lpthread -lcglue -lc --end-group -lpsputility -lpsprtc -lpspnet_inet -lpspnet_resolver -lpspsdk -lpspmodinfo -lpspuser -lgcc /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtend.o /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtn.o]
+    arg [/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/home/demma/.local/bin/pspdev/libexec/gcc/psp/15.2.0/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/cczu5IQr.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lm] ==> ignore
+    arg [-plugin-opt=-pass-through=-lpthreadglue] ==> ignore
+    arg [-plugin-opt=-pass-through=-lpthread] ==> ignore
+    arg [-plugin-opt=-pass-through=-lcglue] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lpsputility] ==> ignore
+    arg [-plugin-opt=-pass-through=-lpsprtc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lpspnet_inet] ==> ignore
+    arg [-plugin-opt=-pass-through=-lpspnet_resolver] ==> ignore
+    arg [-plugin-opt=-pass-through=-lpspsdk] ==> ignore
+    arg [-plugin-opt=-pass-through=-lpspmodinfo] ==> ignore
+    arg [-plugin-opt=-pass-through=-lpspuser] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [--sysroot=/home/demma/.local/bin/pspdev/psp] ==> ignore
+    arg [-EL] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_9262b] ==> ignore
+    arg [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/crt0.o] ==> obj [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/crt0.o]
+    arg [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crti.o] ==> obj [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crti.o]
+    arg [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtbegin.o] ==> obj [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtbegin.o]
+    arg [-L/home/demma/.local/bin/pspdev/lib] ==> dir [/home/demma/.local/bin/pspdev/lib]
+    arg [-L/home/demma/.local/bin/pspdev/psp/lib] ==> dir [/home/demma/.local/bin/pspdev/psp/lib]
+    arg [-L/home/demma/.local/bin/pspdev/psp/sdk/lib] ==> dir [/home/demma/.local/bin/pspdev/psp/sdk/lib]
+    arg [-L/home/demma/.local/bin/pspdev/lib] ==> dir [/home/demma/.local/bin/pspdev/lib]
+    arg [-L/home/demma/.local/bin/pspdev/psp/lib] ==> dir [/home/demma/.local/bin/pspdev/psp/lib]
+    arg [-L/home/demma/.local/bin/pspdev/psp/sdk/lib] ==> dir [/home/demma/.local/bin/pspdev/psp/sdk/lib]
+    arg [-L/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0] ==> dir [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0]
+    arg [-L/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib] ==> dir [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib]
+    arg [-L/home/demma/.local/bin/pspdev/psp/lib] ==> dir [/home/demma/.local/bin/pspdev/psp/lib]
+    arg [-zmax-page-size=128] ==> ignore
+    arg [CMakeFiles/cmTC_9262b.dir/CMakeCXXCompilerABI.cpp.obj] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lm] ==> lib [m]
+    arg [--start-group] ==> ignore
+    arg [-lpthreadglue] ==> lib [pthreadglue]
+    arg [-lpthread] ==> lib [pthread]
+    arg [-lcglue] ==> lib [cglue]
+    arg [-lc] ==> lib [c]
+    arg [--end-group] ==> ignore
+    arg [-lpsputility] ==> lib [psputility]
+    arg [-lpsprtc] ==> lib [psprtc]
+    arg [-lpspnet_inet] ==> lib [pspnet_inet]
+    arg [-lpspnet_resolver] ==> lib [pspnet_resolver]
+    arg [-lpspsdk] ==> lib [pspsdk]
+    arg [-lpspmodinfo] ==> lib [pspmodinfo]
+    arg [-lpspuser] ==> lib [pspuser]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtend.o] ==> obj [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtend.o]
+    arg [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtn.o] ==> obj [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtn.o]
+  collapse obj [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib/crt0.o] ==> [/home/demma/.local/bin/pspdev/psp/lib/crt0.o]
+  collapse library dir [/home/demma/.local/bin/pspdev/lib] ==> [/home/demma/.local/bin/pspdev/lib]
+  collapse library dir [/home/demma/.local/bin/pspdev/psp/lib] ==> [/home/demma/.local/bin/pspdev/psp/lib]
+  collapse library dir [/home/demma/.local/bin/pspdev/psp/sdk/lib] ==> [/home/demma/.local/bin/pspdev/psp/sdk/lib]
+  collapse library dir [/home/demma/.local/bin/pspdev/lib] ==> [/home/demma/.local/bin/pspdev/lib]
+  collapse library dir [/home/demma/.local/bin/pspdev/psp/lib] ==> [/home/demma/.local/bin/pspdev/psp/lib]
+  collapse library dir [/home/demma/.local/bin/pspdev/psp/sdk/lib] ==> [/home/demma/.local/bin/pspdev/psp/sdk/lib]
+  collapse library dir [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0] ==> [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0]
+  collapse library dir [/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/../../../../psp/lib] ==> [/home/demma/.local/bin/pspdev/psp/lib]
+  collapse library dir [/home/demma/.local/bin/pspdev/psp/lib] ==> [/home/demma/.local/bin/pspdev/psp/lib]
+  implicit libs: [stdc++;m;gcc;m;pthreadglue;pthread;cglue;c;psputility;psprtc;pspnet_inet;pspnet_resolver;pspsdk;pspmodinfo;pspuser;gcc]
+  implicit objs: [/home/demma/.local/bin/pspdev/psp/lib/crt0.o;/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crti.o;/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtbegin.o;/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtend.o;/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/crtn.o]
+  implicit dirs: [/home/demma/.local/bin/pspdev/lib;/home/demma/.local/bin/pspdev/psp/lib;/home/demma/.local/bin/pspdev/psp/sdk/lib;/home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0]
+  implicit fwks: []
+
+
