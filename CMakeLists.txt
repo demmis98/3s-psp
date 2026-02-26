@@ -1,16 +1,22 @@
 cmake_minimum_required(VERSION 3.11)
 
-project(tank-fun)
+project(3rd-strike)
 
-file(GLOB incC inc/*.c)
-file(GLOB gameCpp game/*.cpp)
-file(GLOB entityCpp entity/*.cpp)
+file(GLOB pspC src/psp/*.c)
+file(GLOB commonC src/inc/*.c)
+file(GLOB gameC src/Game/*.c)
+file(GLOB bin2obj src/bin2obj/.*c)
 
 add_executable(${PROJECT_NAME}
-	main.cpp
-	${incC}
-	${gameCpp}
-	${entityCpp}
+	${pspC}
+	${common}
+    ${gameC}
+    ${bin2obj}
+)
+
+target_include_directories(
+    ${PROJECT_NAME} PRIVATE src
+    ${PROJECT_NAME} PRIVATE include
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE

@@ -1,0 +1,28 @@
+CMakeFiles/3rd-strike.dir/src/Game/CHARSET.c.obj: \
+ /home/demma/Documents/code/psp/3rd-strike/src/Game/CHARSET.c \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/CHARSET.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/types.h \
+ /home/demma/.local/bin/pspdev/psp/sdk/include/psptypes.h \
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdint.h \
+ /home/demma/.local/bin/pspdev/psp/include/stdint.h \
+ /home/demma/.local/bin/pspdev/psp/include/machine/_default_types.h \
+ /home/demma/.local/bin/pspdev/psp/include/sys/features.h \
+ /home/demma/.local/bin/pspdev/psp/include/_newlib_version.h \
+ /home/demma/.local/bin/pspdev/psp/include/sys/_intsup.h \
+ /home/demma/.local/bin/pspdev/psp/include/sys/_stdint.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/common.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/CMD_MAIN.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/types.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFECT.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFXX.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/Grade.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/HITCHECK.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/PLCNT.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/PLS02.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/PLS03.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/PulPul.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/Se_Data.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/bg.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/workuser.h

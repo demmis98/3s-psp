@@ -10,7 +10,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/demma/.local/bin/pspdev/psp/share/AddPrxModule.cmake"
   "/home/demma/.local/bin/pspdev/psp/share/CreatePBP.cmake"
   "/home/demma/.local/bin/pspdev/psp/share/pspdev.cmake"
-  "/home/demma/Documents/code/psp/260201tank-fun/CMakeLists.txt"
+  "/home/demma/Documents/code/psp/3rd-strike/CMakeLists.txt"
   "CMakeFiles/3.25.1/CMakeCCompiler.cmake"
   "CMakeFiles/3.25.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.25.1/CMakeSystem.cmake"
@@ -42,5 +42,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/tank-fun.dir/DependInfo.cmake"
+  "CMakeFiles/3rd-strike.dir/DependInfo.cmake"
   )

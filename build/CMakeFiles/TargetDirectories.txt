@@ -1,3 +1,3 @@
-/home/demma/Documents/code/psp/260201tank-fun/build/CMakeFiles/tank-fun.dir
-/home/demma/Documents/code/psp/260201tank-fun/build/CMakeFiles/edit_cache.dir
-/home/demma/Documents/code/psp/260201tank-fun/build/CMakeFiles/rebuild_cache.dir
+/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles/3rd-strike.dir
+/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles/edit_cache.dir
+/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles/rebuild_cache.dir

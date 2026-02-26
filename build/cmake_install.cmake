@@ -1,4 +1,4 @@
-# Install script for directory: /home/demma/Documents/code/psp/260201tank-fun
+# Install script for directory: /home/demma/Documents/code/psp/3rd-strike
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/demma/Documents/code/psp/260201tank-fun/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/demma/Documents/code/psp/3rd-strike/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

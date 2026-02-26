@@ -54,16 +54,16 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/demma/Documents/code/psp/260201tank-fun
+CMAKE_SOURCE_DIR = /home/demma/Documents/code/psp/3rd-strike
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/demma/Documents/code/psp/260201tank-fun/build
+CMAKE_BINARY_DIR = /home/demma/Documents/code/psp/3rd-strike/build
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/tank-fun.dir/all
+all: CMakeFiles/3rd-strike.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/tank-fun.dir/clean
+clean: CMakeFiles/3rd-strike.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/tank-fun.dir
+# Target rules for target CMakeFiles/3rd-strike.dir
 
 # All Build rule for target.
-CMakeFiles/tank-fun.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tank-fun.dir/build.make CMakeFiles/tank-fun.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tank-fun.dir/build.make CMakeFiles/tank-fun.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/demma/Documents/code/psp/260201tank-fun/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14 "Built target tank-fun"
-.PHONY : CMakeFiles/tank-fun.dir/all
+CMakeFiles/3rd-strike.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100 "Built target 3rd-strike"
+.PHONY : CMakeFiles/3rd-strike.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/tank-fun.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/demma/Documents/code/psp/260201tank-fun/build/CMakeFiles 14
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/tank-fun.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/demma/Documents/code/psp/260201tank-fun/build/CMakeFiles 0
-.PHONY : CMakeFiles/tank-fun.dir/rule
+CMakeFiles/3rd-strike.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles 100
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/3rd-strike.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles 0
+.PHONY : CMakeFiles/3rd-strike.dir/rule
 
 # Convenience name for target.
-tank-fun: CMakeFiles/tank-fun.dir/rule
-.PHONY : tank-fun
+3rd-strike: CMakeFiles/3rd-strike.dir/rule
+.PHONY : 3rd-strike
 
 # clean rule for target.
-CMakeFiles/tank-fun.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tank-fun.dir/build.make CMakeFiles/tank-fun.dir/clean
-.PHONY : CMakeFiles/tank-fun.dir/clean
+CMakeFiles/3rd-strike.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/clean
+.PHONY : CMakeFiles/3rd-strike.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
