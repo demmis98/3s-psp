@@ -1,13 +1,13 @@
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/OPENING.h"
-#include "sf33rd/Source/Game/SE.h"
-#include "sf33rd/Source/Game/color3rd.h"
-#include "sf33rd/Source/Game/debug/Debug.h"
-#include "sf33rd/Source/Game/ta_sub.h"
-#include "sf33rd/Source/Game/texcash.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/OPENING.h"
+#include "Game/SE.h"
+#include "Game/color3rd.h"
+#include "Game/debug/Debug.h"
+#include "Game/ta_sub.h"
+#include "Game/texcash.h"
 
 // forward decls
 void eff36_move00(WORK_Other* ewk);

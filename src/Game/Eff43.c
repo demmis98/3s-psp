@@ -1,11 +1,11 @@
-#include "sf33rd/Source/Game/Eff43.h"
+#include "Game/Eff43.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/texcash.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/texcash.h"
 
 void effect_43_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)

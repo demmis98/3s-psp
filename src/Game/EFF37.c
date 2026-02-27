@@ -1,11 +1,11 @@
-#include "sf33rd/Source/Game/EFF37.h"
+#include "Game/EFF37.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/EFFH2.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/aboutspr.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/EFFH2.h"
+#include "Game/PLCNT.h"
+#include "Game/aboutspr.h"
 
 const s16 panel_pos_hosei[8][4][2] = {
     { { 25, 99 }, { 25, 100 }, { 0, 0 }, { 25, 100 } }, { { 43, 103 }, { 42, 106 }, { 0, 0 }, { 42, 106 } },

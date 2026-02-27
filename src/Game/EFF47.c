@@ -1,13 +1,13 @@
-#include "sf33rd/Source/Game/EFF47.h"
+#include "Game/EFF47.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/ta_sub.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/SLOWF.h"
+#include "Game/aboutspr.h"
+#include "Game/ta_sub.h"
+#include "Game/texcash.h"
+#include "Game/workuser.h"
 
 const s32 eff47_sp_tbl[4][4] = { { 0x40000, -0x1000, 0x30000, -0x4000 },
                                  { -0x20000, 0x800, 0x30000, -0x4000 },

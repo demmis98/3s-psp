@@ -1,14 +1,14 @@
-#include "sf33rd/Source/Game/EFF42.h"
+#include "Game/EFF42.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/Sel_Data.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/bg_sub.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/Sel_Data.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/bg_sub.h"
+#include "Game/texcash.h"
+#include "Game/workuser.h"
 
 void EFF42_SUDDENLY(WORK_Other* ewk);
 void EFF42_SLIDE_IN(WORK_Other* ewk);
@@ -17,7 +17,7 @@ void EFF42_KILL(WORK_Other* ewk);
 void EFF42_MOVE(WORK_Other* ewk);
 void Setup_Char_Index(WORK_Other* ewk);
 
-void (*const EFF42_Jmp_Tbl[5])();
+void (*const EFF42_Jmp_Tbl[5])(WORK_Other *);
 
 void effect_42_move(WORK_Other* ewk) {
     EFF42_Jmp_Tbl[Order[ewk->wu.dir_old]](ewk);
@@ -296,4 +296,4 @@ s32 effect_42_init(s16 type) {
     return 0;
 }
 
-void (*const EFF42_Jmp_Tbl[5])() = { EFF42_SUDDENLY, EFF42_SLIDE_IN, EFF42_SLIDE_OUT, EFF42_MOVE, EFF42_KILL };
+void (*const EFF42_Jmp_Tbl[5])(WORK_Other *) = { EFF42_SUDDENLY, EFF42_SLIDE_IN, EFF42_SLIDE_OUT, EFF42_MOVE, EFF42_KILL };

@@ -1,12 +1,12 @@
-#include "sf33rd/Source/Game/EFF45.h"
+#include "Game/EFF45.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFF61.h"
-#include "sf33rd/Source/Game/EFFB6.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/debug/Debug.h"
+#include "Game/EFF61.h"
+#include "Game/EFFB6.h"
+#include "Game/EFFECT.h"
+#include "Game/WORK_SYS.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/debug/Debug.h"
 
 void EFF45_DISP(WORK_Other_CONN* ewk);
 void EFF45_SUSPEND(WORK_Other_CONN* ewk);
@@ -19,7 +19,7 @@ void Convert_16_10_2(WORK_Other_CONN* ewk, u16 target);
 // sbss
 MessageData Message_Data[4];
 
-void (*const EFF45_Jmp_Tbl[3])() = { EFF45_DISP, EFF45_CHANGE, EFF45_SUSPEND };
+void (*const EFF45_Jmp_Tbl[3])(WORK_Other_CONN *) = { EFF45_DISP, EFF45_CHANGE, EFF45_SUSPEND };
 
 void effect_45_move(WORK_Other_CONN* ewk) {
     Check_Pos_OBJ2((WORK_Other*)ewk);

@@ -1,17 +1,17 @@
-#include "sf33rd/Source/Game/EFF38.h"
+#include "Game/EFF38.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CALDIR.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/SYS_sub.h"
-#include "sf33rd/Source/Game/Sel_Data.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/bg_sub.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CALDIR.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/PLCNT.h"
+#include "Game/SYS_sub.h"
+#include "Game/Sel_Data.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/bg_sub.h"
+#include "Game/texcash.h"
+#include "Game/workuser.h"
 
 void EFF38_WAIT(WORK_Other* ewk);
 void EFF38_SUDDENLY(WORK_Other* ewk);
@@ -27,7 +27,7 @@ void EFF38_MOVE(WORK_Other* ewk);
 
 const s16 EFF38_Base_XY[2][2][2] = { { { -64, 16 }, { -128, 32 } }, { { 64, 16 }, { 128, -32 } } };
 
-void (*const EFF38_Jmp_Tbl[7])() = { EFF38_WAIT,  EFF38_SLIDE_IN, EFF38_SLIDE_OUT, EFF38_SUDDENLY,
+void (*const EFF38_Jmp_Tbl[7])(WORK_Other *) = { EFF38_WAIT,  EFF38_SLIDE_IN, EFF38_SLIDE_OUT, EFF38_SUDDENLY,
                                      EFF38_SHIFT, EFF38_MOVE,     EFF38_KILL };
 
 void effect_38_move(WORK_Other* ewk) {

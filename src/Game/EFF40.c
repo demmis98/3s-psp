@@ -1,20 +1,20 @@
-#include "sf33rd/Source/Game/EFF40.h"
+#include "Game/EFF40.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/debug/Debug.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/WORK_SYS.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/debug/Debug.h"
+#include "Game/texcash.h"
+#include "Game/workuser.h"
 
 void EFF40_EXIT(WORK_Other* ewk);
 void EFF40_BACK(WORK_Other* ewk);
 void EFF40_ARROW(WORK_Other* ewk);
 
-void (*const EFF40_Jmp_Tbl[4])() = { EFF40_EXIT, EFF40_BACK, EFF40_ARROW, EFF40_ARROW };
+void (*const EFF40_Jmp_Tbl[4])(WORK_Other *) = { EFF40_EXIT, EFF40_BACK, EFF40_ARROW, EFF40_ARROW };
 
 const s16 Pos_Data_40[4][3] = { { 0, 77, 70 }, { 0, 77, 72 }, { 0, 77, 68 }, { 0, 77, 68 } };
 

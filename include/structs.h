@@ -736,6 +736,19 @@ typedef struct {
 } WORK_Other_JUDGE;
 
 typedef struct {
+    // total size: 0xC
+    u8 order;    // offset 0x0, size 0x1
+    u8 kind_req; // offset 0x1, size 0x1
+    u8 kind_cnt; // offset 0x2, size 0x1
+    u8 request;  // offset 0x3, size 0x1
+    u8 contents; // offset 0x4, size 0x1
+    u8 timer;    // offset 0x5, size 0x1
+    s16 pos_x;   // offset 0x6, size 0x2
+    s16 pos_y;   // offset 0x8, size 0x2
+    s16 pos_z;   // offset 0xA, size 0x2
+} MessageData;
+
+typedef struct {
     // total size: 0x48
     s8 contents[10][7]; // offset 0x0, size 0x46
     u16 sum;            // offset 0x46, size 0x2
@@ -1235,6 +1248,53 @@ typedef struct {
     u8* srcAdrs;           // offset 0x18, size 0x4
     size_t srcSize;        // offset 0x1C, size 0x4
 } Texture;
+
+struct _VM_W {
+    // total size: 0x6C
+    u8 r_no[4];     // offset 0x0, size 0x4
+    u8 r_sub[4];    // offset 0x4, size 0x4
+    s32 Timer;      // offset 0x8, size 0x4
+    s32 FreeMem[2]; // offset 0xC, size 0x8
+    s8 Format[2];   // offset 0x14, size 0x2
+    s8 Find[2];     // offset 0x16, size 0x2
+    s8 Connect[2];  // offset 0x18, size 0x2
+    s8 CheckDrive;  // offset 0x1A, size 0x1
+    s8 AutoDrive;   // offset 0x1B, size 0x1
+    s8 Drive;       // offset 0x1C, size 0x1
+    s8 Access;      // offset 0x1D, size 0x1
+    s8 Request;     // offset 0x1E, size 0x1
+    s8 AutoLoaded;  // offset 0x1F, size 0x1
+    struct {
+        // total size: 0x8
+        u16 year;      // offset 0x0, size 0x2
+        u8 month;      // offset 0x2, size 0x1
+        u8 day;        // offset 0x3, size 0x1
+        u8 hour;       // offset 0x4, size 0x1
+        u8 minute;     // offset 0x5, size 0x1
+        u8 second;     // offset 0x6, size 0x1
+        u8 dayofweek;  // offset 0x7, size 0x1
+    } curTime[2];      // offset 0x20, size 0x10
+    s32 curSize[2];    // offset 0x30, size 0x8
+    s16 memKey;        // offset 0x38, size 0x2
+    u8* memAdr;        // offset 0x3C, size 0x4
+    s32 nowResult;     // offset 0x40, size 0x4
+    s32 nowNumber;     // offset 0x44, size 0x4
+    s32 polResult;     // offset 0x48, size 0x4
+    s32 polNumber;     // offset 0x4C, size 0x4
+    u8 File_Type;      // offset 0x50, size 0x1
+    u8* File_Name;     // offset 0x54, size 0x4
+    u32 Save_Size;     // offset 0x58, size 0x4
+    u16 Block_Size;    // offset 0x5C, size 0x2
+    u8 Icon_Type;      // offset 0x5E, size 0x1
+    u8 Comment_Type;   // offset 0x5F, size 0x1
+    u8 Target_Number;  // offset 0x60, size 0x1
+    u8 Number;         // offset 0x61, size 0x1
+    u8 Counter;        // offset 0x62, size 0x1
+    u8 Save_Type;      // offset 0x63, size 0x1
+    s8 New_File;       // offset 0x64, size 0x1
+    s8 Header_Counter; // offset 0x65, size 0x1
+    s8 padding[3];     // offset 0x66, size 0x3
+};
 
 typedef struct {
     u8 unit;

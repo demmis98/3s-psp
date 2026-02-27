@@ -1,15 +1,15 @@
-#include "sf33rd/Source/Game/EFF41.h"
+#include "Game/EFF41.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFD9.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/Grade.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/color3rd.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFD9.h"
+#include "Game/EFFECT.h"
+#include "Game/Grade.h"
+#include "Game/SLOWF.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/color3rd.h"
+#include "Game/workuser.h"
 
 void eff41_process_00(WORK_Other* ewk, PLW* mwk);
 void eff41_process_01(WORK_Other* ewk, PLW* mwk);
@@ -36,7 +36,7 @@ const s16 sa_sign_data[69][5] = {
     { 14, 56, 158, 1, 0 }
 };
 
-void (*const eff41_main_process[2])() = { eff41_process_00, eff41_process_01 };
+void (*const eff41_main_process[2])(WORK_Other *, PLW *) = { eff41_process_00, eff41_process_01 };
 
 void effect_41_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
