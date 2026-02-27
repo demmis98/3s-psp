@@ -1,13 +1,13 @@
-#include "sf33rd/Source/Game/eff06.h"
+#include "Game/eff06.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/bg_sub.h"
-#include "sf33rd/Source/Game/eff05.h"
-#include "sf33rd/Source/Game/ta_sub.h"
-#include "sf33rd/Source/Game/texcash.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/bg_sub.h"
+#include "Game/eff05.h"
+#include "Game/ta_sub.h"
+#include "Game/texcash.h"
 
 const s16 scr_obj_num6[22] = { 1, 6, 4, 0, 3, 1, 0, 2, 8, 3, 0, 4, 3, 0, 1, 1, 4, 0, 1, 1, 0, 0 };
 

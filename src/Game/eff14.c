@@ -1,10 +1,10 @@
-#include "sf33rd/Source/Game/eff14.h"
+#include "Game/eff14.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/Manage.h"
-#include "sf33rd/Source/Game/SYS_sub.h"
-#include "sf33rd/Source/Game/eff08.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFECT.h"
+#include "Game/Manage.h"
+#include "Game/SYS_sub.h"
+#include "Game/eff08.h"
+#include "Game/workuser.h"
 
 void effect_14_move(WORK_Other* ewk) {
     if (Suicide[5] & 0x80) {

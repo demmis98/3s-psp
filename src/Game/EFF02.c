@@ -1,15 +1,15 @@
-#include "sf33rd/Source/Game/EFF02.h"
+#include "Game/EFF02.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/PulPul.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/Se_Data.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/PLS02.h"
+#include "Game/PulPul.h"
+#include "Game/SLOWF.h"
+#include "Game/Se_Data.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/workuser.h"
 
 void urian_guard_se_check(WORK_Other* ewk, PLW* twk, u16 oto);
 
@@ -302,12 +302,12 @@ void effect_02_move(WORK_Other* ewk) {
 
 void urian_guard_se_check(WORK_Other* ewk, PLW* twk, u16 oto) {
     if (twk->player_number == 13 && (oto == 266 || oto == 267)) {
-        sound_effect_request[280](ewk, 280);
+        //sound_effect_request[280](ewk, 280);
         Last_Called_SE = 280;
         return;
     }
 
-    sound_effect_request[oto](ewk, oto);
+    //sound_effect_request[oto](ewk, oto);
     Last_Called_SE = oto;
 }
 

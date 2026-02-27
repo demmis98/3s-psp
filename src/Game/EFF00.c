@@ -1,8 +1,8 @@
-#include "sf33rd/Source/Game/EFF00.h"
+#include "Game/EFF00.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/debug/Debug.h"
+#include "Game/EFFECT.h"
+#include "Game/aboutspr.h"
+#include "Game/debug/Debug.h"
 
 const u16 jdb[16] = { 0x8000, 0x80FF, 0xBC00, 0xBCFF, 0x8300, 0x83FF, 0xBF00, 0xBFFF,
                       0xC000, 0xC0FF, 0xFC00, 0xFCFF, 0xC300, 0xC3FF, 0xFF00, 0xFFFF };

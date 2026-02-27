@@ -1,22 +1,40 @@
-#include "sf33rd/Source/Game/EFF13.h"
+#include "Game/EFF13.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CALDIR.h"
-#include "sf33rd/Source/Game/CHARID.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFF00.h"
-#include "sf33rd/Source/Game/EFF96.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/EFFI9.h"
-#include "sf33rd/Source/Game/Grade.h"
-#include "sf33rd/Source/Game/HITCHECK.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/PulPul.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/bg_sub.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CALDIR.h"
+#include "Game/CHARID.h"
+#include "Game/CHARSET.h"
+#include "Game/EFF00.h"
+#include "Game/EFF96.h"
+#include "Game/EFFECT.h"
+#include "Game/EFFI9.h"
+#include "Game/Grade.h"
+#include "Game/HITCHECK.h"
+#include "Game/PLCNT.h"
+#include "Game/PLS02.h"
+#include "Game/PulPul.h"
+#include "Game/SLOWF.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/bg_sub.h"
+#include "Game/workuser.h"
+
+void kotp_00000(WORK_Other*, TAMA*);
+void kotp_01000(WORK_Other*, TAMA*);
+void kotp_02000(WORK_Other*, TAMA*);
+void kotp_03000(WORK_Other*, TAMA*);
+void kotp_04000(WORK_Other*, TAMA*);
+void kotp_05000(WORK_Other*, TAMA*);
+void kotp_06000(WORK_Other*, TAMA*);
+void kotp_07000(WORK_Other*, TAMA*);
+void kotp_08000(WORK_Other*, TAMA*);
+void kotp_09000(WORK_Other*, TAMA*);
+void kotp_10000(WORK_Other*, TAMA*);
+void kotp_11000(WORK_Other*, TAMA*);
+void kotp_12000(WORK_Other*, TAMA*);
+void kotp_13000(WORK_Other*, TAMA*);
+void kotp_14000(WORK_Other*, TAMA*);
+void kotp_15000(WORK_Other*, TAMA*);
+void kotp_16000(WORK_Other*, TAMA*);
 
 void tama_display(WORK* wk);
 void set_tengu_init_pos(WORK* ewk, WORK* mwk);
@@ -28,7 +46,7 @@ void make_speed_xy_back(WORK* ewk, WORK* mwk, TAMA* twk);
 const s16 kotp_07_dm_vital[4];
 const TAMA tama_data[243];
 const s16 tcct[36];
-void (*const kind_of_tama_process[17])();
+void (*const kind_of_tama_process[17])(WORK_Other*, TAMA*);
 const s16 kage_tbl[6][4];
 const s16 homing_empos_hos[1][20][2];
 const s16 enemy_pos_hos[1][20][2];
@@ -2174,7 +2192,7 @@ const s16 tcct[36] = { 8192, 8192, 8192, 8208, 8192, 8192, 8192, 8208, 8192, 820
                        8212, 8196, 8212, 8196, 8212, 8196, 8212, 8196, 8212, 8196, 8212, 8196,
                        8212, 8196, 8212, 8192, 8196, 8212, 8198, 8214, 8196, 8212, 8196, 8212 };
 
-void (*const kind_of_tama_process[17])() = { kotp_00000, kotp_01000, kotp_02000, kotp_03000, kotp_04000, kotp_05000,
+void (*const kind_of_tama_process[17])(WORK_Other*, TAMA*) = { kotp_00000, kotp_01000, kotp_02000, kotp_03000, kotp_04000, kotp_05000,
                                              kotp_06000, kotp_07000, kotp_08000, kotp_09000, kotp_10000, kotp_11000,
                                              kotp_12000, kotp_13000, kotp_14000, kotp_15000, kotp_16000 };
 

@@ -1,23 +1,27 @@
-#include "sf33rd/Source/Game/DEMO00.h"
+#include "Game/DEMO00.h"
 #include "common.h"
-#include "sf33rd/AcrSDK/ps2/foundaps2.h"
-#include "sf33rd/Source/Common/MemMan.h"
-#include "sf33rd/Source/Common/PPGFile.h"
-#include "sf33rd/Source/Common/PPGWork.h"
-#include "sf33rd/Source/Game/AcrUtil.h"
-#include "sf33rd/Source/Game/DC_Ghost.h"
-#include "sf33rd/Source/Game/GD3rd.h"
-#include "sf33rd/Source/Game/MTRANS.h"
-#include "sf33rd/Source/Game/OPENING.h"
-#include "sf33rd/Source/Game/RAMCNT.h"
-#include "sf33rd/Source/Game/SYS_sub2.h"
-#include "sf33rd/Source/Game/Sound3rd.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
-#include "sf33rd/Source/Game/op_sub.h"
-#include "sf33rd/Source/Game/sc_sub.h"
-#include "sf33rd/Source/Game/texgroup.h"
-#include "sf33rd/Source/Game/workuser.h"
+//#include "sf33rd/AcrSDK/ps2/foundaps2.h"
+//#include "sf33rd/Source/Common/MemMan.h"
+//#include "sf33rd/Source/Common/PPGFile.h"
+//#include "sf33rd/Source/Common/PPGWork.h"
+#include "Game/AcrUtil.h"
+#include "Game/DC_Ghost.h"
+#include "Game/GD3rd.h"
+#include "Game/MTRANS.h"
+#include "Game/OPENING.h"
+#include "Game/RAMCNT.h"
+#include "Game/SYS_sub2.h"
+#include "Game/Sound3rd.h"
+#include "Game/WORK_SYS.h"
+#include "Game/op_sub.h"
+#include "Game/sc_sub.h"
+#include "Game/texgroup.h"
+#include "Game/workuser.h"
 #include "structs.h"
+
+#if defined(__PSP__)
+#include "common/graphics.h"
+#endif
 
 void CAPLOGO_Init();
 s16 CAPLOGO_Move(u16 type);
@@ -112,7 +116,7 @@ s32 Warning() {
 s32 CAPCOM_Logo() {
     setTexAdrsMode(0);
     setFilterMode(0);
-    ppgSetupCurrentDataList(&ppgCapLogoList);
+    //ppgSetupCurrentDataList(&ppgCapLogoList);
     Next_Demo = 0;
 
     switch (D_No[1]) {
@@ -201,23 +205,23 @@ void CAPLOGO_Init() {
     u32 loadSize;
     s16 key;
 
-    mmDebWriteTag("\nCAPCOM LOGO\n\n");
-    ppgCapLogoList.tex = &ppgCapLogoTex;
-    ppgCapLogoList.pal = &ppgCapLogoPal;
-    ppgSetupCurrentDataList(&ppgCapLogoList);
+    //mmDebWriteTag("\nCAPCOM LOGO\n\n");
+    //ppgCapLogoList.tex = &ppgCapLogoTex;
+    //ppgCapLogoList.pal = &ppgCapLogoPal;
+    //ppgSetupCurrentDataList(&ppgCapLogoList);
     loadSize = load_it_use_any_key2(75, &loadAdrs, &key, 2, 1); // CapLogo.ppg
 
     if (loadSize == 0) {
-        flLogOut("カプロゴのテクスチャが読み込めませんでした。\n");
+        //flLogOut("カプロゴのテクスチャが読み込めませんでした。\n");
         while (1) {}
     }
 
-    ppgSetupPalChunk(NULL, loadAdrs, loadSize, 0, 0, 1);
-    ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, 600, 1, 0, 0);
-    ppgSetupTexChunk_2nd(NULL, 600);
-    ppgSetupTexChunk_3rd(NULL, 600, 1);
+    //ppgSetupPalChunk(NULL, loadAdrs, loadSize, 0, 0, 1);
+    //ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, 600, 1, 0, 0);
+    //ppgSetupTexChunk_2nd(NULL, 600);
+    //ppgSetupTexChunk_3rd(NULL, 600, 1);
     Push_ramcnt_key(key);
-    ppgSourceDataReleased(0);
+    //ppgSourceDataReleased(0);
 }
 
 s16 CAPLOGO_Move(u16 type) {
@@ -283,30 +287,30 @@ void Warning_Init() {
     s16 key;
     s16 i;
 
-    mmDebWriteTag("\nWARNING\n\n");
-    ppgWarList.tex = &ppgWarTex;
-    ppgWarList.pal = &ppgWarPal;
-    ppgAdxList.tex = &ppgWarTex;
-    ppgAdxList.pal = &ppgAdxPal;
-    ppgSetupCurrentDataList(&ppgWarList);
+    //mmDebWriteTag("\nWARNING\n\n");
+    //ppgWarList.tex = &ppgWarTex;
+    //ppgWarList.pal = &ppgWarPal;
+    //ppgAdxList.tex = &ppgWarTex;
+    //ppgAdxList.pal = &ppgAdxPal;
+    //ppgSetupCurrentDataList(&ppgWarList);
     loadSize = load_it_use_any_key2(12, &loadAdrs, &key, 2, 1); // Warning.ppg
 
     if (loadSize == 0) {
-        flLogOut("警告文のテクスチャが読み込めませんでした。\n");
+        //flLogOut("警告文のテクスチャが読み込めませんでした。\n");
         while (1) {}
     }
 
-    ppgSetupPalChunk(&ppgWarPal, loadAdrs, loadSize, 0, 0, 1);
-    ppgSetupPalChunk(&ppgAdxPal, loadAdrs, loadSize, 0, 1, 1);
-    ppgSetupTexChunk_1st(0, loadAdrs, loadSize, 590, 4, 0, 0);
+    //ppgSetupPalChunk(&ppgWarPal, loadAdrs, loadSize, 0, 0, 1);
+    //ppgSetupPalChunk(&ppgAdxPal, loadAdrs, loadSize, 0, 1, 1);
+    //ppgSetupTexChunk_1st(0, loadAdrs, loadSize, 590, 4, 0, 0);
 
-    for (i = 0; i < ppgWarTex.textures; i++) {
-        ppgSetupTexChunk_2nd(0, i + 590);
-        ppgSetupTexChunk_3rd(0, i + 590, 1);
-    }
+    //for (i = 0; i < ppgWarTex.textures; i++) {
+    //    ppgSetupTexChunk_2nd(0, i + 590);
+    //    ppgSetupTexChunk_3rd(0, i + 590, 1);
+    //}
 
     Push_ramcnt_key(key);
-    ppgSourceDataReleased(0);
+    //ppgSourceDataReleased(0);
     picon_no = 0;
 }
 
@@ -324,29 +328,33 @@ void Put_Warning(s16 type) {
 
     switch (type) {
     case 0:
-        ppgSetupCurrentDataList(&ppgWarList);
-        ppgSetupCurrentPaletteNumber(0, 0);
+        //ppgSetupCurrentDataList(&ppgWarList);
+        //ppgSetupCurrentPaletteNumber(0, 0);
         tex[0].u = tex[1].u = 0.0f;
         tex[0].v = tex[2].v = 0.0f;
         tex[2].u = tex[3].u = 1.0f;
         tex[1].v = tex[3].v = 1.0f;
         tex[0].x = tex[1].x = 0.0f;
         tex[0].y = tex[2].y = 0.0f;
-        tex[2].x = tex[3].x = flPs2State.DispWidth;
-        tex[1].y = tex[3].y = flPs2State.DispHeight;
+        //tex[2].x = tex[3].x = flPs2State.DispWidth;
+        //tex[1].y = tex[3].y = flPs2State.DispHeight;
+        tex[2].x = tex[3].x = SCREEN_WIDTH;
+        tex[1].y = tex[3].y = SCREEN_HEIGHT;
         break;
 
     case 1:
-        ppgSetupCurrentDataList(&ppgAdxList);
-        ppgSetupCurrentPaletteNumber(0, 0);
+        //ppgSetupCurrentDataList(&ppgAdxList);
+        //ppgSetupCurrentPaletteNumber(0, 0);
         tex[0].u = tex[1].u = 0.0f;
         tex[0].v = tex[2].v = 0.0f;
         tex[2].u = tex[3].u = 1.0f;
         tex[1].v = tex[3].v = 0.875f;
         tex[0].x = tex[1].x = 0.0f;
         tex[0].y = tex[2].y = 0.0f;
-        tex[2].x = tex[3].x = flPs2State.DispWidth;
-        tex[1].y = tex[3].y = flPs2State.DispHeight;
+        //tex[2].x = tex[3].x = flPs2State.DispWidth;
+        //tex[1].y = tex[3].y = flPs2State.DispHeight;
+        tex[2].x = tex[3].x = SCREEN_WIDTH;
+        tex[1].y = tex[3].y = SCREEN_HEIGHT;
         break;
 
     case 2:

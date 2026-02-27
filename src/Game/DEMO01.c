@@ -1,13 +1,13 @@
 #include "common.h"
-#include "sf33rd/Source/Game/DC_Ghost.h"
-#include "sf33rd/Source/Game/GD3rd.h"
-#include "sf33rd/Source/Game/OPENING.h"
-#include "sf33rd/Source/Game/SE.h"
-#include "sf33rd/Source/Game/SYS_sub.h"
-#include "sf33rd/Source/Game/Sound3rd.h"
-#include "sf33rd/Source/Game/main.h"
-#include "sf33rd/Source/Game/op_sub.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/DC_Ghost.h"
+#include "Game/GD3rd.h"
+#include "Game/OPENING.h"
+#include "Game/SE.h"
+#include "Game/SYS_sub.h"
+#include "Game/Sound3rd.h"
+#include "Game/main.h"
+#include "Game/op_sub.h"
+#include "Game/workuser.h"
 
 s16 Title() {
     s16 xx = 0;

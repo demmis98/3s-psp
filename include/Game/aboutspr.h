@@ -6,8 +6,8 @@
 
 #define MULTITEXTURE_MAX 24
 
-extern MultiTexture mts[MULTITEXTURE_MAX];
-extern MTS_OK mts_ok[MULTITEXTURE_MAX];
+//extern MultiTexture mts[MULTITEXTURE_MAX];
+//extern MTS_OK mts_ok[MULTITEXTURE_MAX];
 extern WORK dmwk_moji;
 extern WORK dmwk_kage;
 extern const u16 effk8k9_pattern[18];

@@ -1155,6 +1155,88 @@ typedef struct {
 } CharInitData2;
 
 typedef struct {
+    // total size: 0xC
+    uintptr_t adr;  // offset 0x0, size 0x4
+    size_t size;    // offset 0x4, size 0x4
+    u8 search_type; // offset 0x8, size 0x1
+    u8 group_num;   // offset 0x9, size 0x1
+    u8 type;        // offset 0xA, size 0x1
+    u8 use;         // offset 0xB, size 0x1
+} RCKeyWork;
+
+typedef struct {
+    // total size: 0x32
+    s8 type;         // offset 0x0, size 0x1
+    s8 form;         // offset 0x1, size 0x1
+    s8 end_flag[4];  // offset 0x2, size 0x4
+    s8 dmm;          // offset 0x6, size 0x1
+    s16 id;          // offset 0x8, size 0x2
+    s16 r_no_0;      // offset 0xA, size 0x2
+    s16 r_no_1;      // offset 0xC, size 0x2
+    u8 rank_in;      // offset 0xE, size 0x1
+    s16 rank_status; // offset 0x10, size 0x2
+    s16 rank;        // offset 0x12, size 0x2
+    s16 status;      // offset 0x14, size 0x2
+    s16 index;       // offset 0x16, size 0x2
+    s16 timer;       // offset 0x18, size 0x2
+    s16 code[4];     // offset 0x1A, size 0x8
+    s16 old_code[4]; // offset 0x22, size 0x8
+    s16 count1[2];   // offset 0x2A, size 0x4
+    s8 count2[2];    // offset 0x2E, size 0x2
+    s16 wait_cnt;    // offset 0x30, size 0x2
+} NAME_WK;
+
+typedef struct {
+    // total size: 0xC
+    s8 type;           // offset 0x0, size 0x1
+    s8 n_disp_flag;    // offset 0x1, size 0x1
+    s16 c_cnt;         // offset 0x2, size 0x2
+    s16 r_no_0;        // offset 0x4, size 0x2
+    s16 r_no_1;        // offset 0x6, size 0x2
+    s16 f_cnt;         // offset 0x8, size 0x2
+    u8 tenmetsu_flag;  // offset 0xA, size 0x1
+    u8 tenmetsu_place; // offset 0xB, size 0x1
+} SC_NAME_WK;
+
+typedef struct {
+    // total size: 0x4
+    s8 code[4]; // offset 0x0, size 0x4
+} RANK_NAME_W;
+
+typedef struct {
+    // total size: 0x14
+    s8 be;        // offset 0x0, size 0x1
+    u8 c_mode;    // offset 0x1, size 0x1
+    u16 total;    // offset 0x2, size 0x2
+    u16* handle;  // offset 0x4, size 0x4
+    s32 ixNum1st; // offset 0x8, size 0x4
+    u8* srcAdrs;  // offset 0xC, size 0x4
+    u32 srcSize;  // offset 0x10, size 0x4
+} Palette;
+
+typedef union {
+    u32 b32;    // offset 0x0, size 0x4
+    u16 b16[2]; // offset 0x0, size 0x4
+    u8 b8[4];   // offset 0x0, size 0x4
+} TextureHandle;
+
+typedef struct {
+    // total size: 0x20
+    s8 be;                 // offset 0x0, size 0x1
+    u8 flags;              // offset 0x1, size 0x1
+    s16 arCnt;             // offset 0x2, size 0x2
+    s16 arInit;            // offset 0x4, size 0x2
+    u16 total;             // offset 0x6, size 0x2
+    TextureHandle* handle; // offset 0x8, size 0x4
+    s32 ixNum1st;          // offset 0xC, size 0x4
+    u16 textures;          // offset 0x10, size 0x2
+    u16 accnum;            // offset 0x12, size 0x2
+    u32* offset;           // offset 0x14, size 0x4
+    u8* srcAdrs;           // offset 0x18, size 0x4
+    size_t srcSize;        // offset 0x1C, size 0x4
+} Texture;
+
+typedef struct {
     u8 unit;
     u8 flag;
     s8 power;
@@ -1375,8 +1457,293 @@ typedef struct {
     s16 y2; // offset 0x6, size 0x2
 } Rect;
 
+typedef struct {
+    // total size: 0xC
+    s8 ok;                   // offset 0x0, size 0x1
+    s8 type;                 // offset 0x1, size 0x1
+    s16 key;                 // offset 0x2, size 0x2
+    uintptr_t texture_table; // offset 0x4, size 0x4
+    uintptr_t trans_table;   // offset 0x8, size 0x4
+} TEX_GRP_LD;
+
+typedef struct {
+    // total size: 0xB0
+    Palette palDC;  // offset 0x0, size 0x14
+    Palette palCP3; // offset 0x14, size 0x14
+    s16 req[32][2]; // offset 0x28, size 0x80
+    s16 reqNum;     // offset 0xA8, size 0x2
+    u32 upBits;     // offset 0xAC, size 0x4
+} Col3rd_W;
+
+typedef struct {
+    // total size: 0x28
+    u8 be;           // offset 0x0, size 0x1
+    u8 type;         // offset 0x1, size 0x1
+    s16 id;          // offset 0x2, size 0x2
+    u8 rno;          // offset 0x4, size 0x1
+    u8 retry;        // offset 0x5, size 0x1
+    u8 ix;           // offset 0x6, size 0x1
+    u8 frre;         // offset 0x7, size 0x1
+    s16 key;         // offset 0x8, size 0x2
+    u8 kokey;        // offset 0xA, size 0x1
+    u8 group;        // offset 0xB, size 0x1
+    u8* result;      // offset 0xC, size 0x4
+    s32 size;        // offset 0x10, size 0x4
+    s32 sect;        // offset 0x14, size 0x4
+    u16 fnum;        // offset 0x18, size 0x2
+    u8 free[2];      // offset 0x1A, size 0x2
+    TEX_GRP_LD* lds; // offset 0x1C, size 0x4
+    struct {
+        // total size: 0x8
+        u32 number; // offset 0x0, size 0x4
+        u32 size;   // offset 0x4, size 0x4
+    } info;         // offset 0x20, size 0x8
+} REQ;
+
+typedef struct {
+    // total size: 0x40
+    f32 _11; // offset 0x0, size 0x4
+    f32 _12; // offset 0x4, size 0x4
+    f32 _13; // offset 0x8, size 0x4
+    f32 _14; // offset 0xC, size 0x4
+    f32 _21; // offset 0x10, size 0x4
+    f32 _22; // offset 0x14, size 0x4
+    f32 _23; // offset 0x18, size 0x4
+    f32 _24; // offset 0x1C, size 0x4
+    f32 _31; // offset 0x20, size 0x4
+    f32 _32; // offset 0x24, size 0x4
+    f32 _33; // offset 0x28, size 0x4
+    f32 _34; // offset 0x2C, size 0x4
+    f32 _41; // offset 0x30, size 0x4
+    f32 _42; // offset 0x34, size 0x4
+    f32 _43; // offset 0x38, size 0x4
+    f32 _44; // offset 0x3C, size 0x4
+} Matrix;
+
 typedef union {
+    f32 f[16];   // offset 0x0, size 0x40
+    f32 a[4][4]; // offset 0x0, size 0x40
+    Matrix m;    // offset 0x0, size 0x40
 } MTX;
+
+typedef struct {
+    float x, y, z;        // 12 bytes
+    short u, v;           // 4 bytes
+    u32 col;              // 4 bytes
+} Polygon;
+
+typedef struct {
+    // total size: 0x8
+    f32 x; // offset 0x0, size 0x4
+    f32 y; // offset 0x4, size 0x4
+} PAL_CURSOR_P;
+
+typedef union {
+    u32 color; // offset 0x0, size 0x4
+    struct {
+        // total size: 0x4
+        s16 u; // offset 0x0, size 0x2
+        s16 v; // offset 0x2, size 0x2
+    } tex;     // offset 0x0, size 0x4
+    struct {
+        // total size: 0x4
+        u8 b; // offset 0x0, size 0x1
+        u8 g; // offset 0x1, size 0x1
+        u8 r; // offset 0x2, size 0x1
+        u8 a; // offset 0x3, size 0x1
+    } argb;   // offset 0x0, size 0x4
+} PAL_CURSOR_COL;
+
+typedef struct {
+    // total size: 0x30
+    PAL_CURSOR_P pal_cursor_p[4];     // offset 0x0, size 0x20
+    PAL_CURSOR_COL pal_cursor_col[4]; // offset 0x20, size 0x10
+} PAL_CURSOR_TBL;
+
+typedef struct {
+    // total size: 0x10
+    PAL_CURSOR_P* p;     // offset 0x0, size 0x4
+    PAL_CURSOR_COL* col; // offset 0x4, size 0x4
+    PAL_CURSOR_COL* tex; // offset 0x8, size 0x4
+    u32 num;             // offset 0xC, size 0x4
+} PAL_CURSOR;
+
+typedef union {
+    s32 full; // offset 0x0, size 0x4
+    struct {
+        // total size: 0x4
+        u8 B; // offset 0x0, size 0x1
+        u8 G; // offset 0x1, size 0x1
+        u8 R; // offset 0x2, size 0x1
+        u8 A; // offset 0x3, size 0x1
+    } rgb;    // offset 0x0, size 0x4
+} OPTW_Color;
+
+typedef struct {
+    // total size: 0x20
+    u32 g_no;       // offset 0x0, size 0x4
+    u16 hv;         // offset 0x4, size 0x2
+    s16 off_x;      // offset 0x6, size 0x2
+    s16 off_y;      // offset 0x8, size 0x2
+    f32 zx;         // offset 0xC, size 0x4
+    f32 zy;         // offset 0x10, size 0x4
+    s32 prio;       // offset 0x14, size 0x4
+    s32 trans;      // offset 0x18, size 0x4
+    OPTW_Color col; // offset 0x1C, size 0x4
+} OPTW;
+
+typedef struct {
+    // total size: 0x10
+    u32 g_no;       // offset 0x0, size 0x4
+    s32 trans;      // offset 0x4, size 0x4
+    u16 hv;         // offset 0x8, size 0x2
+    s16 ok;         // offset 0xA, size 0x2
+    OPTW_Color col; // offset 0xC, size 0x4
+} OPTW_Small;
+
+typedef struct {
+    // total size: 0x10C
+    s8 r_no_0;            // offset 0x0, size 0x1
+    s8 r_no_1;            // offset 0x1, size 0x1
+    s8 dir;               // offset 0x2, size 0x1
+    s8 ctr;               // offset 0x3, size 0x1
+    s16 bg_no;            // offset 0x4, size 0x2
+    u16 blk_no;           // offset 0x6, size 0x2
+    s32 prio;             // offset 0x8, size 0x4
+    OPTW_Small map[4][4]; // offset 0xC, size 0x100
+} OPBW;
+
+typedef struct {
+    // total size: 0x330
+    s8 r_no_0;     // offset 0x0, size 0x1
+    s8 r_no_1;     // offset 0x1, size 0x1
+    s8 r_no_2;     // offset 0x2, size 0x1
+    s8 old_rno;    // offset 0x3, size 0x1
+    s16 index;     // offset 0x4, size 0x2
+    s16 mv_ctr;    // offset 0x6, size 0x2
+    s16 free_work; // offset 0x8, size 0x2
+    s16 dummy;     // offset 0xA, size 0x2
+    OPBW bgw[3];   // offset 0xC, size 0x324
+} OP_W;
+
+typedef struct {
+    // total size: 0xD0
+    u16 x16_map[4][16]; // offset 0x0, size 0x80
+    u8 x32_map[10][8];  // offset 0x80, size 0x50
+} PatternMap;
+
+typedef struct {
+    Texture* texture;      // pointer to PSP texture
+    
+    int frameCount;        // total frames in animation
+    int currentFrame;      // current frame index
+    int frameTime;         // time per frame
+    int frameTimer;        // current timer
+    
+    int frameWidth;        // width of one frame
+    int frameHeight;       // height of one frame
+    
+    u32 attribute;         // blending / flags
+    u8 id;
+    u8 ext;
+    s16 mode;              // render mode
+} MultiTexture;
+
+typedef struct _MEMMAN_CELL {
+    // total size: 0xC
+    struct _MEMMAN_CELL* prev; // offset 0x0, size 0x4
+    struct _MEMMAN_CELL* next; // offset 0x4, size 0x4
+    ssize_t size;              // offset 0x8, size 0x4
+} _MEMMAN_CELL;
+
+typedef struct {
+    // total size: 0x2C
+    u8* memHead;                   // offset 0x0, size 0x4
+    ssize_t memSize;               // offset 0x4, size 0x4
+    u32 ownNumber;                 // offset 0x8, size 0x4
+    s32 ownUnit;                   // offset 0xC, size 0x4
+    ssize_t remainder;             // offset 0x10, size 0x4
+    ssize_t remainderMin;          // offset 0x14, size 0x4
+    struct _MEMMAN_CELL* cell_1st; // offset 0x18, size 0x4
+    struct _MEMMAN_CELL* cell_fin; // offset 0x1C, size 0x4
+    u8* oriHead;                   // offset 0x20, size 0x4
+    s32 oriSize;                   // offset 0x24, size 0x4
+    s32 debIndex;                  // offset 0x28, size 0x4
+} _MEMMAN_OBJ;
+
+typedef struct {
+    // total size: 0x20
+    u8 cmd;       // offset 0x0, size 0x1
+    u8 flags;     // offset 0x1, size 0x1
+    u8 prog;      // offset 0x2, size 0x1
+    u8 note;      // offset 0x3, size 0x1
+    u8 attr;      // offset 0x4, size 0x1
+    u8 vol;       // offset 0x5, size 0x1
+    u8 pan;       // offset 0x6, size 0x1
+    s16 pitch;    // offset 0x8, size 0x2
+    u8 prio;      // offset 0xA, size 0x1
+    u8 id1;       // offset 0xB, size 0x1
+    u8 id2;       // offset 0xC, size 0x1
+    u32 kofftime; // offset 0x10, size 0x4
+    u8 limit;     // offset 0x14, size 0x1
+    u16 param0;   // offset 0x16, size 0x2
+    u16 param1;   // offset 0x18, size 0x2
+    u16 param2;   // offset 0x1A, size 0x2
+    u16 param3;   // offset 0x1C, size 0x2
+    u16 link;     // offset 0x1E, size 0x2
+} SoundEvent;     // Tentative name
+
+typedef struct {
+    // total size: 0x14
+    u16 num_of_1st; // offset 0x0, size 0x2
+    u16 apfn;       // offset 0x2, size 0x2
+    s16 conv;       // offset 0x4, size 0x2
+    s16 ix1st;      // offset 0x6, size 0x2
+    u32 use;        // offset 0x8, size 0x4
+    u32 to_tex;     // offset 0xC, size 0x4
+    u32 to_chd;     // offset 0x10, size 0x4
+} TexGroupData;
+
+typedef struct {
+    // total size: 0x10
+    s16 hx;     // offset 0x0, size 0x2
+    s16 hy;     // offset 0x2, size 0x2
+    s16 hz;     // offset 0x4, size 0x2
+    s8 sel_pri; // offset 0x6, size 0x1
+    s8 sel_rl;  // offset 0x7, size 0x1
+    s16 color;  // offset 0x8, size 0x2
+    s8 sel_col; // offset 0xA, size 0x1
+    s8 dspf;    // offset 0xB, size 0x1
+    s8 ichi;    // offset 0xC, size 0x1
+    s8 mts;     // offset 0xD, size 0x1
+    s16 chix;   // offset 0xE, size 0x2
+} PLEF;
+
+typedef struct {
+    // total size: 0x1C
+    s16 my_wkid;     // offset 0x0, size 0x2
+    u8 waza_num;     // offset 0x2, size 0x1
+    u8 vs_refrect;   // offset 0x3, size 0x1
+    u16 koa;         // offset 0x4, size 0x2
+    u8 kind_of_tama; // offset 0x6, size 0x1
+    u8 kage_index;   // offset 0x7, size 0x1
+    u8 chix;         // offset 0x8, size 0x1
+    u8 ernm;         // offset 0x9, size 0x1
+    u8 erht;         // offset 0xA, size 0x1
+    u8 erdf;         // offset 0xB, size 0x1
+    u8 erex;         // offset 0xC, size 0x1
+    u8 col_1p;       // offset 0xD, size 0x1
+    u8 col_2p;       // offset 0xE, size 0x1
+    u8 data00;       // offset 0xF, size 0x1
+    u8 data01;       // offset 0x10, size 0x1
+    u8 disp_type;    // offset 0x11, size 0x1
+    s16 def_power;   // offset 0x12, size 0x2
+    s16 life_time;   // offset 0x14, size 0x2
+    s16 hos_x;       // offset 0x16, size 0x2
+    s16 hos_y;       // offset 0x18, size 0x2
+    u8 kz_blocking;  // offset 0x1A, size 0x1
+    u8 free;         // offset 0x1B, size 0x1
+} TAMA;
 
 typedef struct {
 } TexturePoolUsed;

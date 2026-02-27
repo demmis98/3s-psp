@@ -8,9 +8,10 @@
 #include "Game/color3rd.h"
 //#include "sf33rd/Source/PS2/ps2Quad.h"
 #include "structs.h"
-#include <libvu0.h>
+//#include <libvu0.h>
 
 #include "common/sprites.h"
+#include "common/graphics.h"
 
 #if !defined(TARGET_PS2)
 #include <string.h>
@@ -58,26 +59,31 @@ static void matmul(MTX* dst, const MTX* a, const MTX* b) {
 #endif
 
 void njUnitMatrix(MTX* mtx) {
+    /*
     if (mtx == NULL) {
         mtx = &cmtx;
     }
 
     sceVu0UnitMatrix(mtx->a);
+    */
 }
 
 void njGetMatrix(MTX* m) {
-    *m = cmtx;
+    //*m = cmtx;
 }
 
 void njSetMatrix(MTX* md, MTX* ms) {
+    /*
     if (md == NULL) {
         md = &cmtx;
     }
 
     *md = *ms;
+    */
 }
 
 void njScale(MTX* mtx, f32 x, f32 y, f32 z) {
+    /*
     f32 v0[4];
 
     v0[0] = x;
@@ -112,9 +118,11 @@ void njScale(MTX* mtx, f32 x, f32 y, f32 z) {
         mtx->a[2][i] *= v0[2];
     }
 #endif
+    */
 }
 
 void njTranslate(MTX* mtx, f32 x, f32 y, f32 z) {
+    /*
     if (mtx == NULL) {
         mtx = &cmtx;
     }
@@ -152,17 +160,20 @@ void njTranslate(MTX* mtx, f32 x, f32 y, f32 z) {
 
     matmul(mtx, &translation_matrix, mtx);
 #endif
+    */
 }
 
 void njSetBackColor(u32 c0, u32 c1, u32 c2) {
+    /*
     c0 = c0 | c1 | c2;
     flSetRenderState(FLRENDER_BACKCOLOR, NTH_BYTE(c0, 3) | NTH_BYTE(c0, 2) | NTH_BYTE(c0, 1) | NTH_BYTE(c0, 0));
+    */
 }
 
 void njColorBlendingMode(s32 target, s32 mode) {
     target = target;
     mode = mode;
-    flSetRenderState(FLRENDER_ALPHABLENDMODE, 0x32);
+    //flSetRenderState(FLRENDER_ALPHABLENDMODE, 0x32);
 }
 
 void njCalcPoint(MTX* mtx, Vec3* ps, Vec3* pd) {
@@ -223,29 +234,51 @@ void njRotateZ(s32 /* unused */, s32 /* unused */) {
     // Do nothing
 }
 
-void njDrawTexture(Polygon* polygon, s32 /* unused */, s32 tex, s32 /* unused */) {
-    Vertex vtx[4];
-    s32 i;
+void njDrawTexture(Polygon* polygon, s32 unused0, s32 texture, s32 unused1)
+{
+    // polygon layout assumed:
+    // [0] = top-left
+    // [3] = bottom-right
 
-    for (i = 0; i < 4; i++) {
-        vtx[i] = ((_Polygon*)polygon)[i].v;
-    }
+    drawTexture(getTexture(texture),
+        polygon[0].x,
+        polygon[0].y,
+        polygon[0].u,
+        polygon[0].v,
 
-    ppgWriteQuadWithST_B(vtx, polygon[0].col, NULL, tex, -1);
+        polygon[3].x,
+        polygon[3].y,
+        polygon[3].u,
+        polygon[3].v,
+
+        polygon[0].col
+    );
 }
 
-void njDrawSprite(Polygon* polygon, s32 /* unused */, s32 tex, s32 /* unused */) {
-    Vertex vtx[4];
-
-    if ((getCP3toFullScreenDrawFlag() != 0) &&
-        ((polygon[0].x >= 384.0f) || (polygon[3].x < 0.0f) || (polygon[0].y >= 224.0f) || (polygon[3].y < 0.0f))) {
+void njDrawSprite(Polygon* polygon, s32 unused0, s32 texture, s32 unused1)
+{
+    // simple screen bounds reject
+    if (polygon[0].x >= SCREEN_WIDTH ||
+        polygon[3].x < 0.0f ||
+        polygon[0].y >= SCREEN_HEIGHT ||
+        polygon[3].y < 0.0f)
+    {
         return;
     }
 
-    vtx[0] = ((_Polygon*)polygon)[0].v;
-    vtx[3] = ((_Polygon*)polygon)[3].v;
+    drawTexture(getTexture(texture),
+        polygon[0].x,
+        polygon[0].y,
+        polygon[0].u,
+        polygon[0].v,
 
-    ppgWriteQuadWithST_B2(vtx, polygon[0].col, 0, tex, -1);
+        polygon[3].x,
+        polygon[3].y,
+        polygon[3].u,
+        polygon[3].v,
+
+        polygon[0].col
+    );
 }
 
 void njdp2d_init() {
@@ -254,6 +287,7 @@ void njdp2d_init() {
 }
 
 void njdp2d_draw() {
+    /*
     Quad prm;
     s32 i;
 
@@ -279,6 +313,7 @@ void njdp2d_draw() {
 
     njdp2d_init();
     ps2SeqsRenderQuadEnd();
+    */
 }
 
 // `col` needs to be `uintptr_t` because it sometimes stores a pointer to `WORK`
@@ -295,9 +330,11 @@ void njdp2d_sort(f32* pos, f32 pri, uintptr_t col, s32 flag) {
         // flLogOut("２Ｄポリゴンの表示要求がバッファをオーバーしました\n");
 
         // The 2D polygon display request has exceeded the buffer\n
+        /*
         flLogOut(
             "\x82\x51\x82\x63\x83\x7C\x83\x8A\x83\x53\x83\x93\x82\xCC\x95\x5C\x8E\xA6\x97\x76\x8B\x81\x82\xAA\x83\x6F"
             "\x83\x62\x83\x74\x83\x40\x82\xF0\x83\x49\x81\x5B\x83\x6F\x81\x5B\x82\xB5\x82\xDC\x82\xB5\x82\xBD\xA");
+        */
         return;
     }
 
@@ -364,7 +401,7 @@ void njDrawPolygon2D(PAL_CURSOR* p, s32 /* unused */, f32 pri, u32 attr) {
 
 void njSetPaletteBankNumG(u32 globalIndex, s32 bank) {
     globalIndex = globalIndex;
-    ppgSetupCurrentPaletteNumber(0, bank);
+    //ppgSetupCurrentPaletteNumber(0, bank);
 }
 
 void njSetPaletteMode(u32 mode) {
@@ -372,11 +409,11 @@ void njSetPaletteMode(u32 mode) {
 }
 
 void njSetPaletteData(s32 offset, s32 count, void* data) {
-    palCopyGhostDC(offset, count, data);
-    palUpdateGhostDC();
+    //palCopyGhostDC(offset, count, data);
+    //palUpdateGhostDC();
 }
 
 s32 njReLoadTexturePartNumG(u32 gix, s8* srcAdrs, u32 ofs, u32 size) {
-    ppgRenewDotDataSeqs(0, gix, (u32*)srcAdrs, ofs, size);
+    //ppgRenewDotDataSeqs(0, gix, (u32*)srcAdrs, ofs, size);
     return 1;
 }

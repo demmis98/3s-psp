@@ -4,6 +4,7 @@
 #if defined(__PSP__)
 
 #include <psptypes.h>
+#include <sys/types.h>
 
 //typedef char int8_t;
 typedef short int16_t;

@@ -1,9 +1,9 @@
-#include "sf33rd/Source/Game/EFF01.h"
+#include "Game/EFF01.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFECT.h"
+#include "Game/SLOWF.h"
+#include "Game/aboutspr.h"
+#include "Game/workuser.h"
 
 const s16 parts_colmd_table[2] = { 0x4000, 0x0 };
 

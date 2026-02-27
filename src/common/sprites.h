@@ -30,22 +30,27 @@ typedef struct {
     int wRender, hRender;
     int mode;
     uint32_t * data;
-} Texture;
+} TexturePSP;
 
 // functions
-Texture * loadTexture(const char * filename, bool inVram);
+TexturePSP * loadTexture(const char * filename, bool inVram);
 
-void setTexture(Texture *texture, int tfx);
+void setTexture(TexturePSP *texture, int tfx);
 void drawTextureSet(float x1, float y1, float u1, float v1, float x2, float y2, float u2, float v2, u32 colour);
 
-void drawTexture(Texture * texture, float x1, float y1, float u1, float v1, float x2, float y2, float u2, float v2, u32 colour);
-void drawTextureC(Texture * texture, float x, float y, float w, float h);
-void drawTextureF(Texture * texture, float x, float y);
+void drawTexture(TexturePSP * texture, float x1, float y1, float u1, float v1, float x2, float y2, float u2, float v2, u32 colour);
+void drawTextureC(TexturePSP * texture, float x, float y, float w, float h);
+void drawTextureF(TexturePSP * texture, float x, float y);
 
-void drawTextureH(Texture * texture, float x, float y, uint32_t color);
+void drawTextureH(TexturePSP * texture, float x, float y, uint32_t color);
 
 void drawRect(float x, float y, float w, float h, uint32_t colour);
 
+// getters setters
+TexturePSP ** getTextures();
+TexturePSP * getTexture(s32 i);
+void setTextures(TexturePSP ** t);
+void setTextureI(TexturePSP *t, s32 i);
 // end c++ guard
 #ifdef __cplusplus
 }
