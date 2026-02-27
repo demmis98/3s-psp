@@ -1,6 +1,6 @@
-CMakeFiles/3rd-strike.dir/src/Game/CALDIR.c.obj: \
- /home/demma/Documents/code/psp/3rd-strike/src/Game/CALDIR.c \
- /home/demma/Documents/code/psp/3rd-strike/include/Game/CALDIR.h \
+CMakeFiles/3rd-strike.dir/src/Game/Demo_Dat.c.obj: \
+ /home/demma/Documents/code/psp/3rd-strike/src/Game/Demo_Dat.c \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/Demo_Dat.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/psptypes.h \

@@ -1,7 +1,6 @@
-CMakeFiles/3rd-strike.dir/src/Game/CALDIR.c.obj: \
- /home/demma/Documents/code/psp/3rd-strike/src/Game/CALDIR.c \
- /home/demma/Documents/code/psp/3rd-strike/include/Game/CALDIR.h \
- /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+CMakeFiles/3rd-strike.dir/src/Game/DIR_DATA.c.obj: \
+ /home/demma/Documents/code/psp/3rd-strike/src/Game/DIR_DATA.c \
+ /home/demma/Documents/code/psp/3rd-strike/include/common.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/psptypes.h \
  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdint.h \
@@ -35,5 +34,4 @@ CMakeFiles/3rd-strike.dir/src/Game/CALDIR.c.obj: \
  /home/demma/.local/bin/pspdev/psp/include/sys/syslimits.h \
  /home/demma/.local/bin/pspdev/psp/include/sys/sched.h \
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h \
- /home/demma/Documents/code/psp/3rd-strike/include/types.h \
- /home/demma/Documents/code/psp/3rd-strike/include/common.h
+ /home/demma/Documents/code/psp/3rd-strike/include/structs.h

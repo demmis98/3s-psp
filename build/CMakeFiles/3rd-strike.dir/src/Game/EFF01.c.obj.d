@@ -1,6 +1,6 @@
-CMakeFiles/3rd-strike.dir/src/Game/CALDIR.c.obj: \
- /home/demma/Documents/code/psp/3rd-strike/src/Game/CALDIR.c \
- /home/demma/Documents/code/psp/3rd-strike/include/Game/CALDIR.h \
+CMakeFiles/3rd-strike.dir/src/Game/EFF01.c.obj: \
+ /home/demma/Documents/code/psp/3rd-strike/src/Game/EFF01.c \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/EFF01.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/psptypes.h \
@@ -36,4 +36,9 @@ CMakeFiles/3rd-strike.dir/src/Game/CALDIR.c.obj: \
  /home/demma/.local/bin/pspdev/psp/include/sys/sched.h \
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
- /home/demma/Documents/code/psp/3rd-strike/include/common.h
+ /home/demma/Documents/code/psp/3rd-strike/include/common.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFECT.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/SLOWF.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/aboutspr.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/workuser.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h
