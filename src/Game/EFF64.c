@@ -1,12 +1,12 @@
-#include "sf33rd/Source/Game/EFF64.h"
+#include "Game/EFF64.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFF61.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/Sel_Data.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFF61.h"
+#include "Game/EFFECT.h"
+#include "Game/Sel_Data.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/texcash.h"
+#include "Game/workuser.h"
 
 void EFF64_WAIT(WORK_Other_CONN* ewk);
 void EFF64_SLIDE_IN(WORK_Other_CONN* ewk);
@@ -64,7 +64,7 @@ const s8* Letter_Data_64[16][16] = {
     { " STOP(B) BUTTON-", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL }
 };
 
-void (*const EFF64_Jmp_Tbl[4])() = { EFF64_WAIT, EFF64_SLIDE_IN, EFF64_CHAR_CHANGE, EFF64_SUDDENLY };
+void (*const EFF64_Jmp_Tbl[4])(WORK_Other_CONN *) = { EFF64_WAIT, EFF64_SLIDE_IN, EFF64_CHAR_CHANGE, EFF64_SUDDENLY };
 
 void effect_64_move(WORK_Other_CONN* ewk) {
     if (Check_Die_61((WORK_Other*)ewk)) {

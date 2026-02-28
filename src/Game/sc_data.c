@@ -1,4 +1,4 @@
-#include "sf33rd/Source/Game/sc_data.h"
+#include "Game/sc_data.h"
 #include "common.h"
 #include "structs.h"
 

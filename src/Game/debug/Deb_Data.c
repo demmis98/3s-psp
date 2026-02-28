@@ -1,4 +1,4 @@
-#include "sf33rd/Source/Game/debug/Deb_Data.h"
+#include "Game/debug/Deb_Data.h"
 #include "common.h"
 
 // rodata

@@ -1,12 +1,12 @@
-#include "sf33rd/Source/Game/EFFB8.h"
+#include "Game/EFFB8.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFB6.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFB6.h"
+#include "Game/EFFECT.h"
+#include "Game/PLCNT.h"
+#include "Game/PLS02.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/workuser.h"
 
 u16 effb8_normal_or_senyou();
 u16 effb8_sel_1_by_8();

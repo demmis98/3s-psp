@@ -1,4 +1,4 @@
-#include "sf33rd/Source/Game/debug/Nakai.h"
+#include "Game/debug/Nakai.h"
 #include "common.h"
 
 u8 const NAKAI_debug_data[73] = { 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

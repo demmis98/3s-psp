@@ -1,15 +1,15 @@
-#include "sf33rd/Source/Game/EFF75.h"
+#include "Game/EFF75.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFF57.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFF57.h"
+#include "Game/EFFECT.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/texcash.h"
+#include "Game/workuser.h"
 
-void (*const EFF75_Jmp_Tbl[5])();
+void (*const EFF75_Jmp_Tbl[5])(WORK_Other *);
 
 void effect_75_move(WORK_Other* ewk) {
     EFF75_Jmp_Tbl[ewk->wu.routine_no[0]](ewk);
@@ -98,4 +98,4 @@ s32 effect_75_init(s16 dir_old, s16 ID, s16 Target_BG) {
     return 0;
 }
 
-void (*const EFF75_Jmp_Tbl[5])() = { EFF75_WAIT, EFF75_SLIDE_IN, EFF75_CHAR_CHANGE, EFF75_SUDDENLY, EFF57_KILL };
+void (*const EFF75_Jmp_Tbl[5])(WORK_Other *) = { EFF75_WAIT, EFF75_SLIDE_IN, EFF75_CHAR_CHANGE, EFF75_SUDDENLY, EFF57_KILL };

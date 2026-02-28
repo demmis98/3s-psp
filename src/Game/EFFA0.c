@@ -1,11 +1,11 @@
-#include "sf33rd/Source/Game/EFFA0.h"
+#include "Game/EFFA0.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFF45.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFF45.h"
+#include "Game/EFFECT.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/texcash.h"
+#include "Game/workuser.h"
 
 const s16 Pos_Data_A0[4][3] = { { -52, 148, 69 }, { 140, 148, 69 }, { -52, 131, 69 }, { 140, 131, 69 } };
 

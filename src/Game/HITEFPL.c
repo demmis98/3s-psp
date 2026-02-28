@@ -1,10 +1,10 @@
-#include "sf33rd/Source/Game/HITEFPL.h"
+#include "Game/HITEFPL.h"
 #include "bin2obj/gauge.h"
 #include "common.h"
-#include "sf33rd/Source/Game/HITCHECK.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/Pow_Pow.h"
-#include "sf33rd/Source/Game/SysDir.h"
+#include "Game/HITCHECK.h"
+#include "Game/PLS02.h"
+#include "Game/Pow_Pow.h"
+#include "Game/SysDir.h"
 
 void setup_dm_rl_pldm(WORK* as, WORK* ds);
 

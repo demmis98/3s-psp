@@ -1,15 +1,16 @@
-#include "sf33rd/Source/Game/effL9.h"
+#include "Game/effL9.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/PLCNT.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/texcash.h"
+#include "Game/workuser.h"
 
-void effect_L9_move(WORK_Other* ewk) {
+void effect_L9_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -47,7 +48,9 @@ void effect_L9_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_L9_init(WORK_Other* oya, u8 ten_type) {
+s32 effect_L9_init(WORK* wkp, s32 d) {
+    WORK_Other* oya = (WORK_Other*) wkp;
+    u8 ten_type = (u8) d;
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

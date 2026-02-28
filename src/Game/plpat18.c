@@ -1,11 +1,11 @@
-#include "sf33rd/Source/Game/plpat18.h"
+#include "Game/plpat18.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/Grade.h"
-#include "sf33rd/Source/Game/PLPAT.h"
-#include "sf33rd/Source/Game/PLPATUNI.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/Grade.h"
+#include "Game/PLPAT.h"
+#include "Game/PLPATUNI.h"
+#include "Game/PLS02.h"
+#include "Game/workuser.h"
 
 void (*const pl18_exatt_table[18])(PLW*);
 

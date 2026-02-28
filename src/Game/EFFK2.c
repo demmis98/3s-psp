@@ -1,15 +1,15 @@
-#include "sf33rd/Source/Game/EFFK2.h"
+#include "Game/EFFK2.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFF13.h"
-#include "sf33rd/Source/Game/EFFC2.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/Se_Data.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFF13.h"
+#include "Game/EFFC2.h"
+#include "Game/EFFECT.h"
+#include "Game/PLS02.h"
+#include "Game/SLOWF.h"
+#include "Game/Se_Data.h"
+#include "Game/aboutspr.h"
+#include "Game/workuser.h"
 
 void disp_effK2(WORK* wk, WORK* mk, DADD* hk);
 void set_next_next_y(WORK* wk, u8 flag);
@@ -221,7 +221,7 @@ const s16 k2_kidou[83][4] = {
     { 512, 0, 1280, -96 },    { 768, 0, 768, -96 },    { 128, 0, 1536, -96 }
 };
 
-void (*const effK2_main_process[9])();
+void (*const effK2_main_process[9])(WORK_Other *, DADD *);
 
 void effect_K2_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
@@ -606,7 +606,7 @@ void effK2_parts_move_type_8(WORK_Other* ewk, DADD* hahen) {
                 ewk->wu.routine_no[2] = 1;
             }
 
-            sound_effect_request[0x3E4](ewk, 0x3E4);
+            //sound_effect_request[0x3E4](ewk, 0x3E4);
         }
 
         if (screen_x_range_check(&ewk->wu)) {
@@ -751,6 +751,6 @@ void illegal_setup_effK2(WORK* wk, s16 ix) {
     }
 }
 
-void (*const effK2_main_process[9])() = { effK2_parts_move_type_0, effK2_parts_move_type_1, effK2_parts_move_type_2,
+void (*const effK2_main_process[9])(WORK_Other *, DADD *) = { effK2_parts_move_type_0, effK2_parts_move_type_1, effK2_parts_move_type_2,
                                           effK2_parts_move_type_3, effK2_parts_move_type_4, effK2_parts_move_type_5,
                                           effK2_parts_move_type_6, effK2_parts_move_type_7, effK2_parts_move_type_8 };

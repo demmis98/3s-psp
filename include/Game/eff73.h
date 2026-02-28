@@ -5,6 +5,6 @@
 #include "types.h"
 
 void effect_73_move(WORK_Other* ewk);
-s32 effect_73_init(WORK_Other* oya);
+s32 effect_73_init(WORK* wk, s32 /*unused*/);
 
 #endif

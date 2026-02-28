@@ -1,12 +1,12 @@
-#include "sf33rd/Source/Game/EFFB0.h"
+#include "Game/EFFB0.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/end_data.h"
-#include "sf33rd/Source/Game/ta_sub.h"
-#include "sf33rd/Source/Game/texcash.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/PLS02.h"
+#include "Game/end_data.h"
+#include "Game/ta_sub.h"
+#include "Game/texcash.h"
 
 const s16 effb0_timer_tbl[8] = { 60, 30, 120, 150, 8, 20, 10, 90 };
 

@@ -1,13 +1,13 @@
-#include "sf33rd/Source/Game/bg020.h"
+#include "Game/bg020.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFF78.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/bg_data.h"
-#include "sf33rd/Source/Game/bg_sub.h"
-#include "sf33rd/Source/Game/eff06.h"
-#include "sf33rd/Source/Game/ta_sub.h"
+#include "Game/EFF78.h"
+#include "Game/PLCNT.h"
+#include "Game/WORK_SYS.h"
+#include "Game/bg.h"
+#include "Game/bg_data.h"
+#include "Game/bg_sub.h"
+#include "Game/eff06.h"
+#include "Game/ta_sub.h"
 
 void BG020() {
     bgw_ptr = &bg_w.bgw[1];

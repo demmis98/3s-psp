@@ -1,9 +1,9 @@
-#include "sf33rd/Source/Game/EFFE1.h"
+#include "Game/EFFE1.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/aboutspr.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/aboutspr.h"
 
 void effect_E1_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)

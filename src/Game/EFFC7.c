@@ -1,11 +1,11 @@
-#include "sf33rd/Source/Game/EFFC7.h"
+#include "Game/EFFC7.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/SLOWF.h"
+#include "Game/aboutspr.h"
+#include "Game/workuser.h"
 
 void effc7_sort_push(WORK* ewk, WORK*);
 
@@ -83,7 +83,9 @@ void effc7_sort_push(WORK* ewk, WORK* /* unused */) {
     sort_push_request8(ewk);
 }
 
-s32 effect_C7_init(PLW* wk, u8 data) {
+s32 effect_C7_init(WORK* wkp, s32 d) {
+    PLW* wk = (PLW*) wkp;
+    u8 data = (u8) d;
     WORK_Other* ewk;
     s16 ix;
 

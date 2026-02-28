@@ -1,13 +1,13 @@
-#include "sf33rd/Source/Game/EFF77.h"
+#include "Game/EFF77.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/bg_data.h"
-#include "sf33rd/Source/Game/sc_sub.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFECT.h"
+#include "Game/PLCNT.h"
+#include "Game/SLOWF.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/bg_data.h"
+#include "Game/sc_sub.h"
+#include "Game/workuser.h"
 
 s16 chk77_flag;
 
@@ -152,7 +152,8 @@ void effect_77_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_77_init(u8 /* unused */, u8 data) {
+s32 effect_77_init(WORK* /* unused */, s32 d) {
+    u8 data = (u8) d;
     WORK_Other* ewk;
     s16 ix;
 

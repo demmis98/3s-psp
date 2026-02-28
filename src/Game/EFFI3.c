@@ -1,9 +1,9 @@
-#include "sf33rd/Source/Game/EFFI3.h"
+#include "Game/EFFI3.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/bg_data.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFECT.h"
+#include "Game/SLOWF.h"
+#include "Game/bg_data.h"
+#include "Game/workuser.h"
 
 const I3_Data i3_data[6] = { { 3, 2, 0 }, { 1, 1, 0 }, { 2, 0, 0 }, { 2, 0, 0 }, { 2, 0, 0 }, { 2, 0, 0 } };
 

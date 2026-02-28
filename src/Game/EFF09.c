@@ -1846,7 +1846,8 @@ void eff09_27000(WORK_Other* ewk) {
     }
 }
 
-s32 effect_09_init(WORK* wk, u8 data) {
+s32 effect_09_init(WORK* wk, s32 d) {
+    u8 data = (u8) d;
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif
@@ -1887,7 +1888,8 @@ s32 effect_09_init(WORK* wk, u8 data) {
     return 0;
 }
 
-s32 effect_09_init2(WORK* wk, u8 data) {
+s32 effect_09_init2(WORK* wk, s32 d) {
+    u8 data = (u8) d;
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

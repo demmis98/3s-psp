@@ -69,6 +69,31 @@ struct _TASK {
     u8 free[4];              // offset 0x10, size 0x4
 };
 
+struct _disp {
+    // total size: 0xC
+    u16 size_x; // offset 0x0, size 0x2
+    u16 size_y; // offset 0x2, size 0x2
+    u16 now;    // offset 0x4, size 0x2
+    u16 new;    // offset 0x6, size 0x2
+    s32 cable;  // offset 0x8, size 0x4
+};
+
+struct _SYSTEM_W {
+    // total size: 0x1C
+    struct _disp disp; // offset 0x0, size 0xC
+    s32 pause;         // offset 0xC, size 0x4
+    s32 gd_error;      // offset 0x10, size 0x4
+    s32 reset;         // offset 0x14, size 0x4
+    u8 sound_mode;     // offset 0x18, size 0x1
+    u8 screen_mode;    // offset 0x19, size 0x1
+
+    /// Controls background music type (arranged vs original)
+    /// offset 0x1A, size 0x1
+    u8 bgm_type;
+
+    u8 dummy; // offset 0x1B, size 0x1
+};
+
 typedef struct {
     // total size: 0x10
     u16 boix; // offset 0x0, size 0x2
@@ -805,6 +830,13 @@ struct _SAVE_W {
     u32 sum;                    // offset 0x204, size 0x4
 };
 
+typedef struct {
+    // total size: 0x8
+    s8*** msgAdr; // offset 0x0, size 0x4
+    s8* msgNum;   // offset 0x4, size 0x4
+} MessageTable;
+
+
 struct _player_infor {
     // total size: 0x4
     u8 my_char;     // offset 0x0, size 0x1
@@ -1447,6 +1479,17 @@ typedef struct {
     u16 sum;            // offset 0x46, size 0x2
 } DirData;
 
+typedef struct {
+    // total size: 0xA
+    u8 max_hitcombo;       // offset 0x0, size 0x1
+    u8 new_max_flag;       // offset 0x1, size 0x1
+    u8 frash_flag;         // offset 0x2, size 0x1
+    u8 frash_switch;       // offset 0x3, size 0x1
+    s16 damage;            // offset 0x4, size 0x2
+    s16 total_damage;      // offset 0x6, size 0x2
+    s16 disp_total_damage; // offset 0x8, size 0x2
+} TrainingData2;
+
 typedef struct _anon6 {
     s8 xxxx[8][2][32];
 } _anon6;
@@ -1780,6 +1823,14 @@ typedef struct {
 } PLEF;
 
 typedef struct {
+    // total size: 0xC
+    s16 flag;                // offset 0x0, size 0x2
+    s16 timer;               // offset 0x2, size 0x2
+    const s16* changetbl_1p; // offset 0x4, size 0x4
+    const s16* changetbl_2p; // offset 0x8, size 0x4
+} ColorTableIndex;
+
+typedef struct {
     // total size: 0x1C
     s16 my_wkid;     // offset 0x0, size 0x2
     u8 waza_num;     // offset 0x2, size 0x1
@@ -1804,6 +1855,85 @@ typedef struct {
     u8 kz_blocking;  // offset 0x1A, size 0x1
     u8 free;         // offset 0x1B, size 0x1
 } TAMA;
+
+typedef struct {
+    // total size: 0xC
+    s16 r_no_0;   //  offset 0x0, size 0x2
+    s16 r_no_1;   // offset 0x2, size 0x2
+    s16 r_no_2;   // offset 0x4, size 0x2
+    s16 type;     // offset 0x6, size 0x2
+    s16 end_flag; // offset 0x8, size 0x2
+    s16 timer;    // offset 0xA, size 0x2
+} END_W;
+
+typedef struct {
+    // total size: 0x4
+    s16 pos_x; // offset 0x0, size 0x2
+    s16 pos_y; // offset 0x2, size 0x2
+} ImageBuff;
+
+typedef struct {
+    // total size: 0x6
+    u16 flag; // offset 0x0, size 0x2
+    s16 sour; // offset 0x2, size 0x2
+    s16 tm;   // offset 0x4, size 0x2
+} I3_Data;
+
+typedef struct {
+    // total size: 0x8
+    s16 timer;       // offset 0x0, size 0x2
+    s16 endcode;     // offset 0x2, size 0x2
+    const s16* adrs; // offset 0x4, size 0x4
+} ColorCode;
+
+typedef struct {
+    // total size: 0x40
+    s16 data[32]; // offset 0x0, size 0x40
+} POWER;
+
+typedef struct {
+    // total size: 0x48
+    s16 step[9][4]; // offset 0x0, size 0x48
+} KOATT;
+
+typedef union {
+    s32 ixl;    // offset 0x0, size 0x4
+    LoHi16 ixs; // offset 0x0, size 0x4
+} TBL;
+
+typedef struct {
+    // total size: 0x18
+    s16 rno;      // offset 0x0, size 0x2
+    s16 cix;      // offset 0x2, size 0x2
+    s16 hx;       // offset 0x4, size 0x2
+    s16 hy;       // offset 0x6, size 0x2
+    s16 hzr;      // offset 0x8, size 0x2
+    s16 hzd;      // offset 0xA, size 0x2
+    u8 pri_use;   // offset 0xC, size 0x1
+    u8 bomb;      // offset 0xD, size 0x1
+    s16 ispix;    // offset 0xE, size 0x2
+    u8 bau;       // offset 0x10, size 0x1
+    u8 kage_char; // offset 0x11, size 0x1
+    u8 doa;       // offset 0x12, size 0x1
+    u8 init_dsp;  // offset 0x13, size 0x1
+    s16 tmt;      // offset 0x14, size 0x2
+    s16 gr1st;    // offset 0x16, size 0x2
+} DADD;
+
+typedef struct /* @anon19 */ {
+    // total size: 0x8
+    s16 kosuu;        // offset 0x0, size 0x2
+    s16 bomb;         // offset 0x2, size 0x2
+    const DADD* dadd; // offset 0x4, size 0x4
+} HAHEN;
+
+typedef struct {
+    // total size: 0x8
+    s16 hx;   // offset 0x0, size 0x2
+    s16 hy;   // offset 0x2, size 0x2
+    s16 hz;   // offset 0x4, size 0x2
+    s16 chix; // offset 0x6, size 0x2
+} GillEffData;
 
 typedef struct {
 } TexturePoolUsed;

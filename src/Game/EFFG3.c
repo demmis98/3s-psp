@@ -1,11 +1,11 @@
-#include "sf33rd/Source/Game/EFFG3.h"
+#include "Game/EFFG3.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/SLOWF.h"
+#include "Game/aboutspr.h"
+#include "Game/workuser.h"
 
 void effect_G3_move(WORK_Other* ewk) {
     WORK_Other* mwk;
@@ -75,7 +75,8 @@ void effect_G3_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_G3_init(WORK* wk, u8 data) {
+s32 effect_G3_init(WORK* wk, s32 d) {
+    u8 data = (u8) d;
     WORK_Other* ewk;
     WORK_Other* ewk2;
     s16 ix;

@@ -1,7 +1,7 @@
-#include "sf33rd/Source/Game/active17.h"
+#include "Game/active17.h"
 #include "common.h"
-#include "sf33rd/Source/Game/Com_Sub.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/Com_Sub.h"
+#include "Game/workuser.h"
 
 void (*const Pattern17_Tbl[83])();
 

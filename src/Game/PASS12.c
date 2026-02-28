@@ -1,7 +1,7 @@
-#include "sf33rd/Source/Game/PASS12.h"
+#include "Game/PASS12.h"
 #include "common.h"
-#include "sf33rd/Source/Game/Com_Sub.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/Com_Sub.h"
+#include "Game/workuser.h"
 
 void (*const Passive12_Tbl[231])();
 

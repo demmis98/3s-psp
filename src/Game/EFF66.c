@@ -1,15 +1,15 @@
-#include "sf33rd/Source/Game/EFF66.h"
+#include "Game/EFF66.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFF57.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/Sel_Data.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/debug/Debug.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFF57.h"
+#include "Game/EFFECT.h"
+#include "Game/Sel_Data.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/debug/Debug.h"
+#include "Game/texcash.h"
+#include "Game/workuser.h"
 
 void EFF66_WAIT(WORK_Other* ewk);
 void EFF66_SUSPEND(WORK_Other* ewk);
@@ -29,7 +29,7 @@ const s16 EFF66_Half_OBJ_Data[15][7] = {
     { -184, 368, -40, 156, 1, 77, 1 }, { -184, 368, -54, 160, 1, 64, 1 }, { -176, 352, -32, 192, 1, 77, 1 }
 };
 
-void (*const EFF66_Jmp_Tbl[7])();
+void (*const EFF66_Jmp_Tbl[7])(WORK_Other *);
 
 void effect_66_move(WORK_Other* ewk) {
     if (Menu_Suicide[ewk->master_player]) {
@@ -301,5 +301,5 @@ s32 effect_66_init(s16 order_index, s16 id, s16 master_player, s16 target_bg, s1
     return 0;
 }
 
-void (*const EFF66_Jmp_Tbl[7])() = { EFF66_WAIT, EFF66_SLIDE_IN, EFF66_BOWAN, EFF66_SUDDENLY,
+void (*const EFF66_Jmp_Tbl[7])(WORK_Other *) = { EFF66_WAIT, EFF66_SLIDE_IN, EFF66_BOWAN, EFF66_SUDDENLY,
                                      EFF57_KILL, EFF66_SUSPEND,  EFF66_FLASH };

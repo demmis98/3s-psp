@@ -1,15 +1,15 @@
-#include "sf33rd/Source/Game/effM8.h"
+#include "Game/effM8.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/ta_sub.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/PLS02.h"
+#include "Game/SLOWF.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/ta_sub.h"
+#include "Game/texcash.h"
+#include "Game/workuser.h"
 
 void effm8_move_app(WORK_Other* ewk);
 void don_run_sub_m8(WORK_Other* ewk);
@@ -19,7 +19,8 @@ const s8 effm8_random_tbl[16] = { 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1
 
 const s16 effm8_timer_tbl[4] = { 24, 56, 72, 112 };
 
-void effect_M8_move(WORK_Other* ewk) {
+void effect_M8_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     switch (ewk->wu.routine_no[0]) {
     case 0:
         if (!EXE_flag && !Game_pause) {
@@ -112,7 +113,8 @@ void effm8_move_win(WORK_Other* ewk) {
     }
 }
 
-s32 effect_M8_init(WORK* oya, u8 data) {
+s32 effect_M8_init(WORK* oya, s32 d) {
+    u8 data = (u8) s32 d;
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

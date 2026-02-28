@@ -10,9 +10,9 @@
 #include "Game/Sel_Data.h"
 #include "Game/aboutspr.h"
 #include "Game/bg.h"
-#include "sf33rd/Source/Game/bg_sub.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/bg_sub.h"
+#include "Game/texcash.h"
+#include "Game/workuser.h"
 
 void EFF39_WAIT(WORK_Other* ewk);
 void EFF39_SUDDENLY(WORK_Other* ewk);

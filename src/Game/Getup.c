@@ -1,4 +1,4 @@
-#include "sf33rd/Source/Game/Getup.h"
+#include "Game/Getup.h"
 #include "common.h"
 
 const u8 Get_Up_Data[20][4][32] = {

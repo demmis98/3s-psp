@@ -1,11 +1,11 @@
-#include "sf33rd/Source/Game/bg_sub.h"
+#include "Game/bg_sub.h"
 #include "common.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/bg_data.h"
-#include "sf33rd/Source/Game/ta_sub.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/PLCNT.h"
+#include "Game/PLS02.h"
+#include "Game/bg.h"
+#include "Game/bg_data.h"
+#include "Game/ta_sub.h"
+#include "Game/workuser.h"
 #include "structs.h"
 
 void (*scr_x_mv_jp[35])() = { scr_10_20,   scr_10_21,   scr_10_22,   scr_x_dummy, scr_x_dummy, scr_x_dummy, scr_x_dummy,

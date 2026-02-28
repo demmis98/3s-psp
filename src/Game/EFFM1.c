@@ -1,20 +1,21 @@
-#include "sf33rd/Source/Game/EFFM1.h"
+#include "Game/EFFM1.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CALDIR.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/bg_sub.h"
-#include "sf33rd/Source/Game/ta_sub.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CALDIR.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/SLOWF.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/bg_sub.h"
+#include "Game/ta_sub.h"
+#include "Game/texcash.h"
+#include "Game/workuser.h"
 
 void effm1_move(WORK_Other* ewk);
 
-void effect_M1_move(WORK_Other* ewk) {
+void effect_M1_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     switch (ewk->wu.routine_no[0]) {
     case 0:
         ewk->wu.routine_no[0]++;
@@ -92,7 +93,7 @@ void effm1_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_M1_init(WORK* wk) {
+s32 effect_M1_init(WORK* wk, s32 /*unused*/) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

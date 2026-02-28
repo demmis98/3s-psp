@@ -85,7 +85,7 @@ void effect_41_move(WORK_Other* ewk) {
 
         if (ewk->wu.cg_type == 4) {
             ewk->wu.cg_type = 0;
-            effect_D9_init(mwk, 7);
+            effect_D9_init((WORK*) mwk, 7);
         }
 
         if (ewk->wu.cg_type == 0xFF) {
@@ -188,7 +188,9 @@ void gauge_minus(WORK_Other* ewk, PLW* mwk) {
     }
 }
 
-s32 effect_41_init(PLW* wk, u8 data) {
+s32 effect_41_init(WORK* wkp, s32 d) {
+    PLW* wk = (PLW*) wkp;
+    u8 data = (u8) d;
 #if defined(TARGET_PS2)
     void write_my_shell_ix(WORK * wk, s32 ix);
 #endif

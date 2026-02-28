@@ -1,9 +1,9 @@
-#include "sf33rd/Source/Game/EFFF9.h"
+#include "Game/EFFF9.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFB6.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFB6.h"
+#include "Game/EFFECT.h"
+#include "Game/aboutspr.h"
+#include "Game/workuser.h"
 
 const u16 plXXtxt0[2] = { 0, 0xFFFF };
 const u16 pl00txt1[8] = { 1, 212, 2, 212, 3, 212, 0, 0xFFFF };

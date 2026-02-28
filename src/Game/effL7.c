@@ -1,23 +1,24 @@
-#include "sf33rd/Source/Game/effL7.h"
+#include "Game/effL7.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CALDIR.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/bg_sub.h"
-#include "sf33rd/Source/Game/ta_sub.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/win_pl.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CALDIR.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/PLS02.h"
+#include "Game/SLOWF.h"
+#include "Game/WORK_SYS.h"
+#include "Game/bg.h"
+#include "Game/bg_sub.h"
+#include "Game/ta_sub.h"
+#include "Game/texcash.h"
+#include "Game/win_pl.h"
+#include "Game/workuser.h"
 
 // forward declaration
 const s16 effl7_data_tbl[16];
 
-void effect_L7_move(WORK_Other* ewk) {
+void effect_L7_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     WORK* oya_ptr = (WORK*)ewk->my_master;
 
     if (Suicide[0] || (ewk->wu.dead_f)) {

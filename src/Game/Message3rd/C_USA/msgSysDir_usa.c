@@ -1,4 +1,4 @@
-#include "sf33rd/Source/Game/Message3rd/C_USA/msgSysDir_usa.h"
+#include "Game/Message3rd/C_USA/msgSysDir_usa.h"
 #include "common.h"
 
 static s8* msgSYSDIR_000[1] = { "GROUND PARRYING................" };

@@ -1,16 +1,17 @@
-#include "sf33rd/Source/Game/EffM3.h"
+#include "Game/EffM3.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFECT.h"
+#include "Game/PLS02.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/workuser.h"
 
 const s16 M3_bahn_data[5] = { 16, 10, 78, 0, -512 };
 
 void effM3_trans(WORK* ewk);
 
-void effect_M3_move(WORK_Other* ewk) {
+void effect_M3_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     switch (ewk->wu.routine_no[0]) {
     case 0:
         ewk->wu.routine_no[0] = 1;

@@ -1,4 +1,4 @@
-#include "sf33rd/Source/Game/Message3rd/C_USA/msgExtra_usa.h"
+#include "Game/Message3rd/C_USA/msgExtra_usa.h"
 #include "common.h"
 
 static s8* msgEXTRA_000[1] = { "Change the Life Gauge settings." };

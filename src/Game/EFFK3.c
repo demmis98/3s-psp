@@ -1,12 +1,12 @@
-#include "sf33rd/Source/Game/EFFK3.h"
+#include "Game/EFFK3.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/PLS02.h"
+#include "Game/SLOWF.h"
+#include "Game/aboutspr.h"
+#include "Game/workuser.h"
 
 void set_init_posspeed_effK3(WORK* wk);
 

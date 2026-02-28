@@ -1,18 +1,18 @@
-#include "sf33rd/Source/Game/EFF74.h"
+#include "Game/EFF74.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFF57.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFF57.h"
+#include "Game/EFFECT.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/workuser.h"
 
 const s16 EFF74_Pos_Data[3][2][2] = { { { 0, 148 }, { 0, 116 } },
                                       { { -48, 104 }, { 48, 104 } },
                                       { { -48, 80 }, { 48, 80 } } };
 
-void (*const EFF74_Jmp_Tbl[5])();
+void (*const EFF74_Jmp_Tbl[5])(WORK_Other *);
 
 void effect_74_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
@@ -91,4 +91,4 @@ void EFF74_SUDDENLY(WORK_Other* ewk) {
     }
 }
 
-void (*const EFF74_Jmp_Tbl[5])() = { EFF74_WAIT, EFF74_SUDDENLY, EFF74_SUDDENLY, EFF74_SUDDENLY, EFF57_KILL };
+void (*const EFF74_Jmp_Tbl[5])(WORK_Other *) = { EFF74_WAIT, EFF74_SUDDENLY, EFF74_SUDDENLY, EFF74_SUDDENLY, EFF57_KILL };

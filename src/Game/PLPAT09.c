@@ -1,14 +1,14 @@
-#include "sf33rd/Source/Game/PLPAT09.h"
+#include "Game/PLPAT09.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CALDIR.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFF13.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/Grade.h"
-#include "sf33rd/Source/Game/PLPAT.h"
-#include "sf33rd/Source/Game/PLPATUNI.h"
-#include "sf33rd/Source/Game/PLS01.h"
-#include "sf33rd/Source/Game/PLS02.h"
+#include "Game/CALDIR.h"
+#include "Game/CHARSET.h"
+#include "Game/EFF13.h"
+#include "Game/EFFECT.h"
+#include "Game/Grade.h"
+#include "Game/PLPAT.h"
+#include "Game/PLPATUNI.h"
+#include "Game/PLS01.h"
+#include "Game/PLS02.h"
 
 void mvxy_table_reader(PLW* wk);
 
@@ -101,7 +101,9 @@ void Att_SP_YAGYOUDAMA(PLW* wk) {
     }
 }
 
-s32 set_tenguiwa(PLW* wk, u8 data) {
+s32 set_tenguiwa(WORK* wkp, s32 d) {
+    PLW* wk = (PLW*) wkp;
+    u8 data = (u8) d;
 #if defined(TARGET_PS2)
     s32 effect_13_init(WORK * wk, const u32 data);
     s32 get_my_shell_ix(WORK * wk, s32 ix, WORK * *tmw);

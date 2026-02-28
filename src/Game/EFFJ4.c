@@ -1,11 +1,11 @@
-#include "sf33rd/Source/Game/EFFJ4.h"
+#include "Game/EFFJ4.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg_data.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFECT.h"
+#include "Game/PLCNT.h"
+#include "Game/SLOWF.h"
+#include "Game/aboutspr.h"
+#include "Game/bg_data.h"
+#include "Game/workuser.h"
 
 void effect_J4_move(WORK_Other* ewk) {
     switch (ewk->wu.routine_no[0]) {
@@ -89,7 +89,8 @@ s32 effect_J4_init(u8 data2) {
     return 0;
 }
 
-s32 setup_sa_shadow(u8 /* unused */, u8 data) {
+s32 setup_sa_shadow(WORK* /* unused */, s32 d) {
+    u8 data = (u8) d;
 #if defined(TARGET_PS2)
     s32 effect_J4_init(u32 data2);
 #endif

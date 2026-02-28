@@ -1,11 +1,11 @@
-#include "sf33rd/Source/Game/stun.h"
+#include "Game/stun.h"
 #include "common.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/SysDir.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
-#include "sf33rd/Source/Game/sc_sub.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/PLCNT.h"
+#include "Game/SLOWF.h"
+#include "Game/SysDir.h"
+#include "Game/WORK_SYS.h"
+#include "Game/sc_sub.h"
+#include "Game/workuser.h"
 
 SDAT sdat[2];
 

@@ -1,7 +1,7 @@
-#include "sf33rd/Source/Game/effl8.h"
+#include "Game/effl8.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/color3rd.h"
+#include "Game/EFFECT.h"
+#include "Game/color3rd.h"
 
 u32 spmv_ng_save[2];
 
@@ -9,7 +9,8 @@ u32 spmv_ng_save[2];
 
 const s16 pl17_0_00[12];
 
-void effect_L8_move(WORK_Other* ewk) {
+void effect_L8_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     PLW* mwk = (PLW*)ewk->my_master;
     s16* save_old_col_ptr = (s16*)&ewk->wu.zu_flag;
 
@@ -79,7 +80,8 @@ void load_old_color_data(s16* wram, s16* tram) {
     }
 }
 
-s32 effect_L8_init(PLW* wk) {
+s32 effect_L8_init(WORK* wkp, s32 /*unused*/) {
+    PLW* wk = (PLW*) wkp;
     WORK_Other* ewk;
     s16 ix;
 

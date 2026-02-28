@@ -1,14 +1,14 @@
-#include "sf33rd/Source/Game/eff73.h"
+#include "Game/eff73.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg_sub.h"
-#include "sf33rd/Source/Game/ta_sub.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/PLS02.h"
+#include "Game/SLOWF.h"
+#include "Game/aboutspr.h"
+#include "Game/bg_sub.h"
+#include "Game/ta_sub.h"
+#include "Game/workuser.h"
 
 const s32 eff73_sp_tbl[4][3] = {
     { 0x28000, -0x18000, -0x800 }, { 0x10000, 0x8000, 0x20000 }, { -0x4000, 0x0, 0x0 }, { -0x10000, 0x8000, 0x28000 }
@@ -90,7 +90,8 @@ void effect_73_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_73_init(WORK_Other* oya) {
+s32 effect_73_init(WORK* wk, s32 /*unused*/) {
+    WORK_Other* oya = (WORK_Other*) wk;
     WORK_Other* ewk;
     s16 ix;
     s16 i;

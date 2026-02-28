@@ -1,10 +1,10 @@
-#include "sf33rd/Source/Game/plpat10.h"
+#include "Game/plpat10.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/Grade.h"
-#include "sf33rd/Source/Game/PLPAT.h"
-#include "sf33rd/Source/Game/PLPATUNI.h"
-#include "sf33rd/Source/Game/PLS02.h"
+#include "Game/CHARSET.h"
+#include "Game/Grade.h"
+#include "Game/PLPAT.h"
+#include "Game/PLPATUNI.h"
+#include "Game/PLS02.h"
 
 void (*const pl10_exatt_table[18])(PLW*);
 

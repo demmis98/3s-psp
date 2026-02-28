@@ -1,9 +1,9 @@
-#include "sf33rd/Source/Game/EFFI9.h"
+#include "Game/EFFI9.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/EFFJ0.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFECT.h"
+#include "Game/EFFJ0.h"
+#include "Game/SLOWF.h"
+#include "Game/workuser.h"
 
 void push_image_buff(WORK_Other* wk, ImageBuff* image_buff);
 void init_image_buff(WORK_Other* wk, ImageBuff* image_buff);

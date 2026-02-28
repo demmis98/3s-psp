@@ -1,6 +1,6 @@
-#include "sf33rd/Source/Game/SLOWF.h"
+#include "Game/SLOWF.h"
 #include "common.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/workuser.h"
 
 s16 EXE_flag;
 s16 SLOW_flag;

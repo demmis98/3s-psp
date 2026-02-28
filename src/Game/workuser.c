@@ -1,5 +1,5 @@
 #include "common.h"
-#include "sf33rd/Source/Game/cmd_data.h"
+#include "Game/cmd_data.h"
 #include "structs.h"
 
 // bss

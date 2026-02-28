@@ -1,9 +1,9 @@
-#include "sf33rd/Source/Game/Saver.h"
+#include "Game/Saver.h"
 #include "common.h"
-#include "sf33rd/Source/Game/Reset.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
-#include "sf33rd/Source/Game/sc_sub.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/Reset.h"
+#include "Game/WORK_SYS.h"
+#include "Game/sc_sub.h"
+#include "Game/workuser.h"
 
 void Saver_Task(struct _TASK* task_ptr) {
     void (*const Main_Jmp_Tbl[4])(struct _TASK*) = { Saver_Init, Saver_Check, Saver_Move, Saver_Exit };

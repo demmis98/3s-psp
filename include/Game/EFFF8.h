@@ -5,6 +5,6 @@
 #include "types.h"
 
 void effect_F8_move(WORK_Other* ewk);
-s32 effect_F8_init(PLW* wk, u8 data);
+s32 effect_F8_init(WORK* wkp, s32 d);
 
 #endif

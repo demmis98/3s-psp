@@ -1,4 +1,4 @@
-#include "sf33rd/Source/Game/efff5.h"
+#include "Game/efff5.h"
 #include "common.h"
 
 void efff5_0000(WORK_Other* /* unused */);

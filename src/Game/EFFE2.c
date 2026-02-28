@@ -1,11 +1,11 @@
-#include "sf33rd/Source/Game/EFFE2.h"
+#include "Game/EFFE2.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/SLOWF.h"
+#include "Game/aboutspr.h"
+#include "Game/workuser.h"
 
 const s16 flames_stand[20][4][4] = { { { 1, -32, -16, 18 }, { 1, 16, 16, 57 }, { 3, 16, 24, 18 }, { 3, -16, 16, 18 } },
                                      { { 1, 32, -16, 57 }, { 2, 0, 0, 18 }, { 3, 32, 8, 18 }, { 3, -16, 16, 18 } },
@@ -334,7 +334,9 @@ s32 effect_E2_init(PLW* wk, const s16* data, s16 color_code, u8 ff) {
     return 0;
 }
 
-s32 setup_accessories(PLW* wk, u8 data) {
+s32 setup_accessories(WORK* wkp, s32 d) {
+    PLW* wk = (PLW*) wkp;
+    u8 data = (u8) d;
     s16 i;
 
     if (wk->wu.work_id != 1) {

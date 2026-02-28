@@ -6,8 +6,8 @@
 
 extern const s8 effl2_dir_tbl[2][16];
 
-void effect_L2_move(WORK_Other* ewk);
+void effect_L2_move(WORK* wkp, s32 /*unused*/);
 void effl2_dir_check(WORK_Other* ewk);
-s32 effect_L2_init();
+s32 effect_L2_init(WORK* /*unused*/, s32 /*unused*/);
 
 #endif

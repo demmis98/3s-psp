@@ -1,23 +1,24 @@
-#include "sf33rd/Source/Game/effM5.h"
+#include "Game/effM5.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CALDIR.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/SE.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/Sound3rd.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/appear.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/bg_data.h"
-#include "sf33rd/Source/Game/bg_sub.h"
-#include "sf33rd/Source/Game/effM6.h"
-#include "sf33rd/Source/Game/ta_sub.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CALDIR.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/SE.h"
+#include "Game/SLOWF.h"
+#include "Game/Sound3rd.h"
+#include "Game/aboutspr.h"
+#include "Game/appear.h"
+#include "Game/bg.h"
+#include "Game/bg_data.h"
+#include "Game/bg_sub.h"
+#include "Game/effM6.h"
+#include "Game/ta_sub.h"
+#include "Game/texcash.h"
+#include "Game/workuser.h"
 
-void effect_M5_move(WORK_Other* ewk) {
+void effect_M5_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -125,7 +126,8 @@ void effect_M5_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_M5_init(PLW* oya) {
+s32 effect_M5_init(WORK* wkp, s32 /*unused*/) {
+    PLW* oya = (PLW*) wkp;
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

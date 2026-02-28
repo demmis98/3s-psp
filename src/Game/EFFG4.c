@@ -1,11 +1,11 @@
-#include "sf33rd/Source/Game/EFFG4.h"
+#include "Game/EFFG4.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/SLOWF.h"
+#include "Game/aboutspr.h"
+#include "Game/workuser.h"
 
 const GillEffData gill_eff_data[54] = {
     { 0, 0, -1, 92 },      { 0, 0, -1, 93 },      { 6, -10, -1, 94 },    { 12, -1, -1, 95 },    { -6, -1, -1, 96 },
@@ -72,7 +72,8 @@ void effect_G4_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_G4_init(WORK* wk, u8 data) {
+s32 effect_G4_init(WORK* wk, s32 d) {
+    u8 data = (u8) d;
     WORK_Other* ewk;
     s16 ix;
 

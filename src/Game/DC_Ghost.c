@@ -6,7 +6,7 @@
 #include "Game/AcrUtil.h"
 #include "Game/aboutspr.h"
 #include "Game/color3rd.h"
-//#include "sf33rd/Source/PS2/ps2Quad.h"
+//#include "PS2/ps2Quad.h"
 #include "structs.h"
 //#include <libvu0.h>
 

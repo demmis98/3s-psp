@@ -1,12 +1,12 @@
-#include "sf33rd/Source/Game/EFFA8.h"
+#include "Game/EFFA8.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/sc_sub.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFECT.h"
+#include "Game/WORK_SYS.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/sc_sub.h"
+#include "Game/texcash.h"
+#include "Game/workuser.h"
 
 void Setup_A8_Sub(WORK_Other_CONN* ewk);
 

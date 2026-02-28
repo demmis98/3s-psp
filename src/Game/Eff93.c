@@ -1,10 +1,10 @@
-#include "sf33rd/Source/Game/Eff93.h"
+#include "Game/Eff93.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CALDIR.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/bg_data.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CALDIR.h"
+#include "Game/EFFECT.h"
+#include "Game/bg.h"
+#include "Game/bg_data.h"
+#include "Game/workuser.h"
 
 typedef void (*Eff93_Jmp_Tbl_t)(WORK_Other* ewk);
 

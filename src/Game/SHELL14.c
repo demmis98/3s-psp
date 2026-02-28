@@ -1,7 +1,7 @@
-#include "sf33rd/Source/Game/SHELL14.h"
+#include "Game/SHELL14.h"
 #include "common.h"
-#include "sf33rd/Source/Game/Com_Sub.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/Com_Sub.h"
+#include "Game/workuser.h"
 
 void (*const Shell14_Tbl[13])(PLW*);
 

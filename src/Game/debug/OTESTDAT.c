@@ -1,4 +1,4 @@
-#include "sf33rd/Source/Game/debug/OTESTDAT.h"
+#include "Game/debug/OTESTDAT.h"
 #include "common.h"
 
 s16 ot_all_of[2];

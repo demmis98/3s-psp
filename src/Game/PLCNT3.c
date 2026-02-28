@@ -1,13 +1,13 @@
-#include "sf33rd/Source/Game/PLCNT3.h"
+#include "Game/PLCNT3.h"
 #include "common.h"
-#include "sf33rd/Source/Game/HITCHECK.h"
-#include "sf33rd/Source/Game/Manage.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/PLCNT2.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/bg_sub.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/HITCHECK.h"
+#include "Game/Manage.h"
+#include "Game/PLCNT.h"
+#include "Game/PLCNT2.h"
+#include "Game/PLS02.h"
+#include "Game/SLOWF.h"
+#include "Game/bg_sub.h"
+#include "Game/workuser.h"
 
 void plcnt_b2_move();
 void plcnt_b2_die();

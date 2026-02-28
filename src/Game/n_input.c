@@ -1,9 +1,9 @@
-#include "sf33rd/Source/Game/n_input.h"
+#include "Game/n_input.h"
 #include "common.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
-#include "sf33rd/Source/Game/end_data.h"
-#include "sf33rd/Source/Game/sc_sub.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/WORK_SYS.h"
+#include "Game/end_data.h"
+#include "Game/sc_sub.h"
+#include "Game/workuser.h"
 
 void Name_Scs_Input_init();
 void Name_Scs_Input_comm();

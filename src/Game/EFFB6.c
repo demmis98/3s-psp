@@ -1,9 +1,9 @@
-#include "sf33rd/Source/Game/EFFB6.h"
+#include "Game/EFFB6.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/Message3rd/C_USA/msgTable_usa.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/debug/OTESTDAT.h"
+#include "Game/EFFECT.h"
+#include "Game/Message3rd/C_USA/msgTable_usa.h"
+#include "Game/aboutspr.h"
+#include "Game/debug/OTESTDAT.h"
 
 #include <string.h>
 

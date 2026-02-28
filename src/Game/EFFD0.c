@@ -1,11 +1,11 @@
-#include "sf33rd/Source/Game/EFFD0.h"
+#include "Game/EFFD0.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/ta_sub.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/ta_sub.h"
+#include "Game/texcash.h"
+#include "Game/workuser.h"
 
 void d0_speed_set(WORK* ewk, s16 num);
 
@@ -133,7 +133,8 @@ void d0_speed_set(WORK* ewk, s16 num) {
     ewk->mvxy.d[1].sp = effd0_data_tbl[num][3];
 }
 
-s32 effect_D0_init(PLW* oya, s32 /* unused */) {
+s32 effect_D0_init(WORK* wkp, s32 /* unused */) {
+    PLW* oya = (PLW*) wkp;
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

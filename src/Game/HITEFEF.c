@@ -1,8 +1,8 @@
-#include "sf33rd/Source/Game/HITEFEF.h"
+#include "Game/HITEFEF.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFF02.h"
-#include "sf33rd/Source/Game/HITCHECK.h"
-#include "sf33rd/Source/Game/Pow_Pow.h"
+#include "Game/EFF02.h"
+#include "Game/HITCHECK.h"
+#include "Game/Pow_Pow.h"
 
 void effect_at_vs_effect_dm(s16 ix2, s16 ix) {
 #if defined(TARGET_PS2)

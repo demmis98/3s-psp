@@ -1,10 +1,10 @@
-#include "sf33rd/Source/Game/EFFE8.h"
+#include "Game/EFFE8.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFE5.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFE5.h"
+#include "Game/EFFECT.h"
+#include "Game/PLCNT.h"
+#include "Game/aboutspr.h"
+#include "Game/workuser.h"
 
 void effe8_zanzou_process(WORK_Other* ewk, PLW* mwk);
 void effE8_trans(WORK_Other* ewk, PLW* mwk);

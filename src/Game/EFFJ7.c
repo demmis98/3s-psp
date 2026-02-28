@@ -1,9 +1,9 @@
-#include "sf33rd/Source/Game/EFFJ7.h"
+#include "Game/EFFJ7.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/color3rd.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFECT.h"
+#include "Game/SLOWF.h"
+#include "Game/color3rd.h"
+#include "Game/workuser.h"
 
 const s16 pl00_L_0_00[64] = { 0x0000, 0xF3BF, 0xE75F, 0xDB1F, 0xCEBE, 0xC67C, 0xBA39, 0xB1D5, 0xADB4, 0xA992, 0xA151,
                               0x9D2F, 0xC1B9, 0xB997, 0xB595, 0xB595, 0xBB12, 0xFFB9, 0xFEF2, 0xFA2E, 0xF5CB, 0xEDAC,

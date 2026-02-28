@@ -1,12 +1,12 @@
-#include "sf33rd/Source/Game/EFFI0.h"
+#include "Game/EFFI0.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/PLS02.h"
+#include "Game/SLOWF.h"
+#include "Game/aboutspr.h"
+#include "Game/workuser.h"
 
 // forward declarations
 
@@ -113,7 +113,8 @@ s32 effect_I0_init(WORK* wk, s16 hsx, s16 hsy, s16 spx, s16 spy, s16 nxy) {
     return 0;
 }
 
-s32 setup_koishi_extra(WORK* wk, u8 num) {
+s32 setup_koishi_extra(WORK* wk, s32 d) {
+    u8 num = (u8) d;
     s16* dix;
     s16 i;
     s16 hsx;

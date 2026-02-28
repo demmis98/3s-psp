@@ -1,12 +1,12 @@
-#include "sf33rd/Source/Game/EFFA6.h"
+#include "Game/EFFA6.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFB6.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/Next_CPU.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFB6.h"
+#include "Game/EFFECT.h"
+#include "Game/Next_CPU.h"
+#include "Game/WORK_SYS.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/workuser.h"
 
 s16 effa6_pos_x_1p;
 s16 effa6_pos_y_1p;

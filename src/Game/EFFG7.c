@@ -1,12 +1,12 @@
-#include "sf33rd/Source/Game/EFFG7.h"
+#include "Game/EFFG7.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/end_data.h"
-#include "sf33rd/Source/Game/ta_sub.h"
-#include "sf33rd/Source/Game/texcash.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/aboutspr.h"
+#include "Game/end_data.h"
+#include "Game/ta_sub.h"
+#include "Game/texcash.h"
 
 void effect_G7_move(WORK_Other* ewk) {
     if (ewk->wu.old_rno[0] < end_w.r_no_2) {
@@ -38,7 +38,7 @@ void effect_G7_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_G7_init(s32 /* unused */, s32 /* unused */) {
+s32 effect_G7_init(WORK* /* unused */, s32 /* unused */) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

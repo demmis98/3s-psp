@@ -1,9 +1,9 @@
-#include "sf33rd/Source/Game/EFF56.h"
+#include "Game/EFF56.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/sc_sub.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFECT.h"
+#include "Game/bg.h"
+#include "Game/sc_sub.h"
+#include "Game/workuser.h"
 
 const u8* ci_pointer;
 u8 ci_col;

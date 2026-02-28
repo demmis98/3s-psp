@@ -1,9 +1,9 @@
-#include "sf33rd/Source/Game/EFFA5.h"
+#include "Game/EFFA5.h"
 #include "common.h"
-#include "sf33rd/Source/Game/BCD.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/debug/Debug.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/BCD.h"
+#include "Game/EFFECT.h"
+#include "Game/debug/Debug.h"
+#include "Game/workuser.h"
 
 s32 Check_Sleep_A5(WORK_Other* ewk);
 

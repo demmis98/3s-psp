@@ -1,7 +1,7 @@
-#include "sf33rd/Source/Game/FOLLOW02.h"
+#include "Game/FOLLOW02.h"
 #include "common.h"
-#include "sf33rd/Source/Game/Com_Sub.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/Com_Sub.h"
+#include "Game/workuser.h"
 
 void (*const Follow02_Tbl[4])(PLW*);
 

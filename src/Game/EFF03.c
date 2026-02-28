@@ -204,7 +204,8 @@ void eff03_disp_pos(WORK* ewk, WORK* mwk) {
     ewk->position_y = ewk->xyz[1].disp.pos;
 }
 
-s32 effect_03_init(WORK* wk, u8 data) {
+s32 effect_03_init(WORK* wk, s32 d) {
+    u8 data = (u8) d;
     WORK_Other* ewk;
     s16 ix;
 

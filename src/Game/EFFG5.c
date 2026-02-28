@@ -1,13 +1,13 @@
-#include "sf33rd/Source/Game/EFFG5.h"
+#include "Game/EFFG5.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CALDIR.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CALDIR.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/PLS02.h"
+#include "Game/SLOWF.h"
+#include "Game/aboutspr.h"
+#include "Game/workuser.h"
 
 const s16 num_of_ase[4] = { 0, 3, 5, 6 };
 
@@ -106,7 +106,8 @@ s32 effect_G5_init(WORK* wk, s16 dr, s16 sp, s16 dl) {
     return 0;
 }
 
-s32 setup_ase_extra(WORK* wk, u8 num) {
+s32 setup_ase_extra(WORK* wk, s32 d) {
+    u8 num = (u8) d;
 #if defined(TARGET_PS2)
     s32 effect_G5_init(WORK * wk, s32 dr, s32 sp, s32 dl);
 #endif

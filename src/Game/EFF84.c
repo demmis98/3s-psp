@@ -1,10 +1,10 @@
-#include "sf33rd/Source/Game/EFF84.h"
+#include "Game/EFF84.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFF56.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFF56.h"
+#include "Game/EFFECT.h"
+#include "Game/PLS02.h"
+#include "Game/bg.h"
+#include "Game/workuser.h"
 
 const u8 Time_Data[5] = { 80, 90, 50, 50, 50 };
 

@@ -1,18 +1,18 @@
-#include "sf33rd/Source/Game/EFFD5.h"
+#include "Game/EFFD5.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CALDIR.h"
-#include "sf33rd/Source/Game/CHARID.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFD6.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/HITCHECK.h"
-#include "sf33rd/Source/Game/PLS01.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/Se_Data.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CALDIR.h"
+#include "Game/CHARID.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFD6.h"
+#include "Game/EFFECT.h"
+#include "Game/HITCHECK.h"
+#include "Game/PLS01.h"
+#include "Game/PLS02.h"
+#include "Game/SLOWF.h"
+#include "Game/Se_Data.h"
+#include "Game/aboutspr.h"
+#include "Game/workuser.h"
 
 void effD5_main_process(WORK_Other* ewk);
 void cal_speeds(WORK_Other* ewk, PLW* /* unused */, PLW* twk);
@@ -153,7 +153,7 @@ void effD5_main_process(WORK_Other* ewk) {
                 setup_hana_extra(&ewk->wu, 1, 0x18);
             }
         } else {
-            sound_effect_request[0x10B](ewk, 0x10B);
+            //sound_effect_request[0x10B](ewk, 0x10B);
             ewk->wu.routine_no[1] = 2;
             ewk->wu.rl_flag = (ewk->wu.rl_flag + 1) & 1;
             ewk->wu.disp_flag = 2;

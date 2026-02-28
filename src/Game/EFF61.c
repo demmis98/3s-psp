@@ -1,11 +1,11 @@
-#include "sf33rd/Source/Game/EFF61.h"
+#include "Game/EFF61.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/Sel_Data.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFECT.h"
+#include "Game/Sel_Data.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/texcash.h"
+#include "Game/workuser.h"
 
 void EFF61_WAIT(WORK_Other_CONN* ewk);
 void EFF61_SLIDE_IN(WORK_Other_CONN* ewk);
@@ -79,7 +79,7 @@ const s8* Menu_Letter_Data[66] = { "ARCADE",
                                    "BGM TEST",
                                    "EXIT" };
 
-void (*const EFF61_Jmp_Tbl[4])() = { EFF61_WAIT, EFF61_SLIDE_IN, EFF61_SLIDE_OUT, EFF61_SUDDENLY };
+void (*const EFF61_Jmp_Tbl[4])(WORK_Other_CONN *) = { EFF61_WAIT, EFF61_SLIDE_IN, EFF61_SLIDE_OUT, EFF61_SUDDENLY };
 
 void effect_61_move(WORK_Other_CONN* ewk) {
     if (Check_Die_61((WORK_Other*)ewk)) {

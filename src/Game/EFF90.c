@@ -1,10 +1,10 @@
-#include "sf33rd/Source/Game/EFF90.h"
+#include "Game/EFF90.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/debug/Debug.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFECT.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/debug/Debug.h"
+#include "Game/workuser.h"
 
 s32 Check_Disp_90(WORK_Other_CONN* ewk);
 s16 Check_Disp_Pos_90(WORK_Other_CONN* ewk);

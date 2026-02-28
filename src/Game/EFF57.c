@@ -1,17 +1,17 @@
-#include "sf33rd/Source/Game/EFF57.h"
+#include "Game/EFF57.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFF58.h"
-#include "sf33rd/Source/Game/EFF62.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/sc_sub.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFF58.h"
+#include "Game/EFF62.h"
+#include "Game/EFFECT.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/sc_sub.h"
+#include "Game/texcash.h"
+#include "Game/workuser.h"
 
-void (*const EFF57_Jmp_Tbl[6])();
+void (*const EFF57_Jmp_Tbl[6])(WORK_Other *);
 
 void effect_57_move(WORK_Other* ewk) {
     if (ewk->wu.routine_no[0] != Order[ewk->wu.dir_old]) {
@@ -208,5 +208,5 @@ s32 effect_57_init(s16 dir_old, s16 ID, s16 Target_BG, s16 char_ix, s16 option) 
     return 0;
 }
 
-void (*const EFF57_Jmp_Tbl[6])() = { EFF57_WAIT,     EFF57_SLIDE_IN, EFF57_CHAR_CHANGE,
+void (*const EFF57_Jmp_Tbl[6])(WORK_Other *) = { EFF57_WAIT,     EFF57_SLIDE_IN, EFF57_CHAR_CHANGE,
                                      EFF57_SUDDENLY, EFF57_KILL,     EFF57_WALL };

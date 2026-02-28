@@ -1,4 +1,4 @@
-#include "sf33rd/Source/Game/app_data.h"
+#include "Game/app_data.h"
 #include "common.h"
 
 const s8 app_type_tbl[20][20][22] = {

@@ -1,19 +1,19 @@
-#include "sf33rd/Source/Game/EFF69.h"
+#include "Game/EFF69.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFF57.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/Eff59.h"
-#include "sf33rd/Source/Game/Sel_Data.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg_sub.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFF57.h"
+#include "Game/EFFECT.h"
+#include "Game/Eff59.h"
+#include "Game/Sel_Data.h"
+#include "Game/aboutspr.h"
+#include "Game/bg_sub.h"
+#include "Game/texcash.h"
+#include "Game/workuser.h"
 
 void Setup_Clear_OBJ(WORK_Other* ewk);
 
-void (*const EFF69_Jmp_Tbl[5])();
+void (*const EFF69_Jmp_Tbl[5])(WORK_Other *);
 
 void effect_69_move(WORK_Other* ewk) {
     EFF69_Jmp_Tbl[ewk->wu.routine_no[0]](ewk);
@@ -195,4 +195,4 @@ void Setup_Clear_OBJ(WORK_Other* ewk) {
     }
 }
 
-void (*const EFF69_Jmp_Tbl[5])() = { EFF69_WAIT, EFF69_SLIDE_IN, EFF69_SLIDE_OUT, EFF69_SUDDENLY, EFF57_KILL };
+void (*const EFF69_Jmp_Tbl[5])(WORK_Other *) = { EFF69_WAIT, EFF69_SLIDE_IN, EFF69_SLIDE_OUT, EFF69_SUDDENLY, EFF57_KILL };

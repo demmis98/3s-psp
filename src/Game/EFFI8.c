@@ -1,21 +1,21 @@
-#include "sf33rd/Source/Game/EFFI8.h"
+#include "Game/EFFI8.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CALDIR.h"
-#include "sf33rd/Source/Game/CHARID.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFF03.h"
-#include "sf33rd/Source/Game/EFFD7.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/HITCHECK.h"
-#include "sf33rd/Source/Game/PLS01.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/Pow_Pow.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/Se_Data.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CALDIR.h"
+#include "Game/CHARID.h"
+#include "Game/CHARSET.h"
+#include "Game/EFF03.h"
+#include "Game/EFFD7.h"
+#include "Game/EFFECT.h"
+#include "Game/HITCHECK.h"
+#include "Game/PLS01.h"
+#include "Game/PLS02.h"
+#include "Game/Pow_Pow.h"
+#include "Game/SLOWF.h"
+#include "Game/Se_Data.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/workuser.h"
 
 const s16 effI8_hit_box[2][4] = { { -9, 17, -6, 12 }, { -4, 10, 114, 9 } };
 
@@ -140,7 +140,7 @@ void effI8_main_process(WORK_Other* ewk) {
                     break;
 
                 default:
-                    sound_effect_request[0x157](ewk, 0x157);
+                    //sound_effect_request[0x157](ewk, 0x157);
                     break;
                 }
 
@@ -240,14 +240,14 @@ void effI8_main_process(WORK_Other* ewk) {
                 set_char_move_init(&ewk->wu, 0, 0x8B);
             }
         } else if (ewk->wu.hf.hit.effect && ((WORK*)ewk->wu.hit_adrs)->id == 0x89) {
-            sound_effect_request[0x157](ewk, 0x157);
+            //sound_effect_request[0x157](ewk, 0x157);
             ewk->wu.routine_no[1] = 0;
             ewk->wu.rl_flag = (ewk->wu.rl_flag + 1) & 1;
             ewk->wu.mvxy.a[0].sp = (ewk->wu.mvxy.a[0].sp * 3) / 4;
             ewk->wu.hit_stop = 2;
         } else {
             if (ewk->wu.dmg_work_id != 1) {
-                sound_effect_request[0x10B](ewk, 0x10B);
+                //sound_effect_request[0x10B](ewk, 0x10B);
             }
 
             ewk->wu.routine_no[1] = 2;

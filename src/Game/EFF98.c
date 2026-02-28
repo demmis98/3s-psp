@@ -1,16 +1,16 @@
-#include "sf33rd/Source/Game/EFF98.h"
+#include "Game/EFF98.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/Eff80.h"
-#include "sf33rd/Source/Game/Sel_Data.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/Eff80.h"
+#include "Game/Sel_Data.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/texcash.h"
+#include "Game/workuser.h"
 
-void (*const EFF98_Jmp_Tbl[5])();
+void (*const EFF98_Jmp_Tbl[5])(WORK_Other *);
 
 void effect_98_move(WORK_Other* ewk) {
     EFF98_Jmp_Tbl[ewk->wu.routine_no[0]](ewk);
@@ -154,4 +154,4 @@ s32 effect_98_init(s16 PL_id, s16 dir_old, s16 master_player, s16 Target_BG) {
     return 0;
 }
 
-void (*const EFF98_Jmp_Tbl[5])() = { EFF98_WAIT, EFF98_SLIDE_IN, EFF98_SLIDE_OUT, EFF98_SUDDENLY, EFF98_KILL };
+void (*const EFF98_Jmp_Tbl[5])(WORK_Other *) = { EFF98_WAIT, EFF98_SLIDE_IN, EFF98_SLIDE_OUT, EFF98_SUDDENLY, EFF98_KILL };

@@ -1,12 +1,12 @@
-#include "sf33rd/Source/Game/bonus_bg.h"
+#include "Game/bonus_bg.h"
 #include "common.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/bg_data.h"
-#include "sf33rd/Source/Game/bg_sub.h"
-#include "sf33rd/Source/Game/eff05.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/PLCNT.h"
+#include "Game/WORK_SYS.h"
+#include "Game/bg.h"
+#include "Game/bg_data.h"
+#include "Game/bg_sub.h"
+#include "Game/eff05.h"
+#include "Game/workuser.h"
 
 void Bonus_bg() {
     bgw_ptr = &bg_w.bgw[1];

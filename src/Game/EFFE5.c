@@ -1,14 +1,14 @@
-#include "sf33rd/Source/Game/EFFE5.h"
+#include "Game/EFFE5.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFE7.h"
-#include "sf33rd/Source/Game/EFFE8.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/HITCHECK.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/color3rd.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFE7.h"
+#include "Game/EFFE8.h"
+#include "Game/EFFECT.h"
+#include "Game/HITCHECK.h"
+#include "Game/PLCNT.h"
+#include "Game/SLOWF.h"
+#include "Game/color3rd.h"
+#include "Game/workuser.h"
 
 const u16 after_image_data[39][10] = {
     { 28, 14, 5, 3, 0, 80, 8, 0, 1, 4 },   { 24, 11, 6, 2, 0, 4, 10, 0, 1, 4 },  { 28, 18, 4, 2, 0, 80, 8, 0, 1, 4 },
@@ -311,7 +311,9 @@ void get_attdata_of_illusion(WORK_Other* ewk) {
     }
 }
 
-s32 setup_after_images(PLW* wk, u8 ix) {
+s32 setup_after_images(WORK* wkp, s32 d) {
+    PLW* wk = (PLW*) wkp;
+    u8 ix = (u8) d;
     PLW* tk = (PLW*)wk->wu.target_adrs;
 
     switch (illusion_setup_table[ix][0]) {
@@ -334,7 +336,9 @@ s32 setup_after_images(PLW* wk, u8 ix) {
     return 0;
 }
 
-s32 erase_after_images(PLW* wk, u8 who) {
+s32 erase_after_images(WORK* wkp, s32 d) {
+    PLW* wk = (PLW*) wkp;
+    u8 who = (u8) d;
     PLW* tk = (PLW*)wk->wu.target_adrs;
 
     switch (who) {

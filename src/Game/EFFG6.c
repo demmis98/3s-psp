@@ -1,9 +1,9 @@
-#include "sf33rd/Source/Game/EFFG6.h"
+#include "Game/EFFG6.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/EFFG9.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFECT.h"
+#include "Game/EFFG9.h"
+#include "Game/SLOWF.h"
+#include "Game/workuser.h"
 
 const s16 effg6_data[230][8] = { { 46, 0, 0, 0, -32, 32, 515, 31 },       { 46, 0, 0, 0, -64, 40, 515, 31 },
                                  { 46, 0, 0, 0, -128, 48, 515, 30 },      { 46, 0, 0, 0, -192, 64, 515, 30 },
@@ -201,7 +201,8 @@ void effect_G6_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_G6_init(WORK* wk, u8 dat) {
+s32 effect_G6_init(WORK* wk, s32 d) {
+    u8 dat = (u8) d;
     WORK_Other* ewk;
     s16 ix;
 

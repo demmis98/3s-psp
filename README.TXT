@@ -28,5 +28,30 @@ src/Game/DEMO00.c:
 -mmDebWriteTag
 -test flPs2State.DispWidth to SCREEN_WIDTH (and height equivalent)
 
+EFFnn.c effect_nn_init(), text if just changing data types worked
+
+maybe fix sound_effect_request definition(?)
+
 src/Game/EFF02.c:
+-fix sound_effect_request
+
+src/Game/EFFA7.c:
+-fix sound_effect_request
+
+src/Game/EFFB1.c:
+-fix sound_effect_request
+
+src/Game/EFFC9.c:
+-fix sound_effect_request
+
+src/Game/EFFD5.c:
+-fix sound_effect_request
+
+src/Game/EFFD7.c:
+-fix sound_effect_request
+
+src/Game/EFFI8.c:
+-fix sound_effect_request
+
+src/Game/EFFK2.c:
 -fix sound_effect_request

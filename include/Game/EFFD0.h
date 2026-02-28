@@ -5,6 +5,6 @@
 #include "types.h"
 
 void effect_D0_move(WORK_Other* ewk);
-s32 effect_D0_init(PLW* oya, s32 /* unused */);
+s32 effect_D0_init(WORK* wk, s32 /* unused */);
 
 #endif

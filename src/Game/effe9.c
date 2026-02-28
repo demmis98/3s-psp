@@ -1,11 +1,11 @@
-#include "sf33rd/Source/Game/effe9.h"
+#include "Game/effe9.h"
 #include "common.h"
-#include "sf33rd/Source/Game/DC_Ghost.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/MTRANS.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
-#include "sf33rd/Source/Game/end_data.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/DC_Ghost.h"
+#include "Game/EFFECT.h"
+#include "Game/MTRANS.h"
+#include "Game/WORK_SYS.h"
+#include "Game/end_data.h"
+#include "Game/workuser.h"
 
 void effect_E9_move(WORK_Other* ewk) {
     PAL_CURSOR ita;

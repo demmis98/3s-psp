@@ -1,11 +1,11 @@
-#include "sf33rd/Source/Game/EFFB1.h"
+#include "Game/EFFB1.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/Se_Data.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFECT.h"
+#include "Game/SLOWF.h"
+#include "Game/Se_Data.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/workuser.h"
 
 const s16 effB1_wait_table[4] = { 2, 2, 2, 2 };
 
@@ -62,7 +62,7 @@ void effect_B1_move(WORK_Other_CONN* ewk) {
             }
 
             if (ewk->wu.kage_prio) {
-                sound_effect_request[167](ewk, 167);
+                //sound_effect_request[167](ewk, 167);
             }
 
             ewk->wu.dir_timer = 3;

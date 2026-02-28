@@ -1,10 +1,10 @@
-#include "sf33rd/Source/Game/EFF67.h"
+#include "Game/EFF67.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/texcash.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/aboutspr.h"
+#include "Game/texcash.h"
 
 void effect_67_move(WORK_Other_CONN* ewk) {
 #if defined(TARGET_PS2)

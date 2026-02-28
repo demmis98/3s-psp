@@ -1,11 +1,11 @@
-#include "sf33rd/Source/Game/EFFC0.h"
+#include "Game/EFFC0.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/SLOWF.h"
+#include "Game/aboutspr.h"
+#include "Game/workuser.h"
 
 const s16 hok_table_ef[8] = { 1, 1, 2, 2, 3, 3, 3, 3 };
 
@@ -80,7 +80,8 @@ void effect_C0_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_C0_init(PLW* wk, s32 /* unused */) {
+s32 effect_C0_init(WORK* wkp, s32 /* unused */) {
+    PLW* wk = (PLW*) wkp;
     WORK_Other* ewk;
     s16 ix;
 

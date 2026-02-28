@@ -1,4 +1,4 @@
-#include "sf33rd/Source/Game/Message3rd/C_USA/PL16Win_usa.h"
+#include "Game/Message3rd/C_USA/PL16Win_usa.h"
 #include "common.h"
 
 static s8* msgWinPL16_00P[1] = { "" };

@@ -1,12 +1,12 @@
-#include "sf33rd/Source/Game/EFFE4.h"
+#include "Game/EFFE4.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/PLMAIN.h"
-#include "sf33rd/Source/Game/SysDir.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
-#include "sf33rd/Source/Game/spgauge.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFECT.h"
+#include "Game/PLCNT.h"
+#include "Game/PLMAIN.h"
+#include "Game/SysDir.h"
+#include "Game/WORK_SYS.h"
+#include "Game/spgauge.h"
+#include "Game/workuser.h"
 
 void effect_E4_move(WORK_Other* ewk) {
     PLW* mwk = (PLW*)ewk->my_master;

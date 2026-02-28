@@ -1,16 +1,16 @@
-#include "sf33rd/Source/Game/EFFA7.h"
+#include "Game/EFFA7.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFF02.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/PulPul.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/Se_Data.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFF02.h"
+#include "Game/EFFECT.h"
+#include "Game/PLS02.h"
+#include "Game/PulPul.h"
+#include "Game/SLOWF.h"
+#include "Game/Se_Data.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/workuser.h"
 
 void effect_A7_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
@@ -29,7 +29,7 @@ void effect_A7_move(WORK_Other* ewk) {
 
         if (tad->hits == 0) {
             if (tad->se) {
-                sound_effect_request[tad->se](ewk, tad->se);
+                //sound_effect_request[tad->se](ewk, tad->se);
                 Last_Called_SE = tad->se;
             } else {
                 Last_Called_SE = 0;
@@ -65,7 +65,7 @@ void effect_A7_move(WORK_Other* ewk) {
         }
 
         if (tad->se) {
-            sound_effect_request[tad->se](ewk, tad->se);
+            //sound_effect_request[tad->se](ewk, tad->se);
             Last_Called_SE = tad->se;
         } else {
             Last_Called_SE = 0;

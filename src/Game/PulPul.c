@@ -1,15 +1,15 @@
-#include "sf33rd/Source/Game/PulPul.h"
+#include "Game/PulPul.h"
 #include "common.h"
 #include "sdk/libvib.h"
 #include "sf33rd/AcrSDK/common/mlPAD.h"
 #include "sf33rd/AcrSDK/ps2/ps2PAD.h"
-#include "sf33rd/Source/Game/GD3rd.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/SYS_sub.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
-#include "sf33rd/Source/Game/debug/OBJTEST.h"
-#include "sf33rd/Source/Game/debug/OTESTDAT.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/GD3rd.h"
+#include "Game/PLCNT.h"
+#include "Game/SYS_sub.h"
+#include "Game/WORK_SYS.h"
+#include "Game/debug/OBJTEST.h"
+#include "Game/debug/OTESTDAT.h"
+#include "Game/workuser.h"
 
 // local declarations
 

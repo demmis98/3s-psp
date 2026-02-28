@@ -1,14 +1,14 @@
-#include "sf33rd/Source/Game/EFFD6.h"
+#include "Game/EFFD6.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CALDIR.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLS01.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CALDIR.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/PLS01.h"
+#include "Game/PLS02.h"
+#include "Game/SLOWF.h"
+#include "Game/aboutspr.h"
+#include "Game/workuser.h"
 
 const s16 num_of_hana[4] = { 3, 4, 5, 6 };
 
@@ -98,7 +98,13 @@ void effect_D6_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_D6_init(WORK_Other* wk, s16 dr, s16 sp, s16 dl, s16 acc) {
+s32 effect_D6_init(WORK* wkp, s32 d) {
+    WORK_Other* wk = (WORK_Other*) wkp;
+    s16* list_s16 = (s16*) d;
+    s16 dr = list_s16[0];
+    s16 sp = list_s16[1];
+    s16 dl = list_s16[2];
+    s16 acc = list_s16[3];
     WORK_Other* ewk;
     s16 ix;
 
@@ -137,12 +143,13 @@ void setup_hana_extra(WORK* wk, s16 num, s16 acc) {
     s16 rnd_00 = random_16() & 3;
     s16 rnd_01;
 
+    s16 list_s16[4];
     for (i = 0; i < num_of_hana[num]; i++) {
         rnd_01 = random_16() & 3;
-        effect_D6_init((WORK_Other*)wk,
-                       way + hana_dir_hosei[rnd_00][i] & 0x3F,
-                       hana_speed_hosei[rnd_01][i],
-                       hana_delta_hosei[rnd_01][i],
-                       acc);
+        list_s16[0] = way + hana_dir_hosei[rnd_00][i] & 0x3F;
+        list_s16[1] = hana_speed_hosei[rnd_01][i];
+        list_s16[2] = hana_delta_hosei[rnd_01][i];
+        list_s16[3] = acc;
+        effect_D6_init(wk, (s32) list_s16);
     }
 }

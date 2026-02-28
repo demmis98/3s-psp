@@ -1,9 +1,9 @@
-#include "sf33rd/Source/Game/EFFK5.h"
+#include "Game/EFFK5.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CALDIR.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CALDIR.h"
+#include "Game/EFFECT.h"
+#include "Game/PLCNT.h"
+#include "Game/workuser.h"
 
 // Types
 

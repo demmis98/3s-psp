@@ -1,12 +1,12 @@
-#include "sf33rd/Source/Game/EFFECT.h"
+#include "Game/EFFECT.h"
 #include "common.h"
-#include "sf33rd/AcrSDK/ps2/flps2debug.h"
-#include "sf33rd/Source/Game/EFFXX.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/PulPul.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/debug/Debug.h"
-#include "sf33rd/Source/Game/workuser.h"
+//#include "sf33rd/AcrSDK/ps2/flps2debug.h"
+#include "Game/EFFXX.h"
+#include "Game/PLCNT.h"
+#include "Game/PulPul.h"
+#include "Game/bg.h"
+#include "Game/debug/Debug.h"
+#include "Game/workuser.h"
 
 s16 frwctr;
 s16 frwctr_min;
@@ -66,7 +66,7 @@ void disp_effect_work() {
 
             c_addr = (WORK*)frw[curr_ix];
             next_ix = c_addr->behind;
-            flPrintL(px, py, "%c%d", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[(c_addr->id / 10)], c_addr -> id % 10);
+            //flPrintL(px, py, "%c%d", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[(c_addr->id / 10)], c_addr -> id % 10);
             py++;
         }
     }
@@ -422,37 +422,41 @@ s32 shell_live_check(PLW* wk, s16 wix) {
     return 0;
 }
 
-s32 clear_caution_flag(PLW* wk, u8 /* unused */) {
+s32 clear_caution_flag(WORK* wkp, s32 /* unused */) {
+    PLW* wk = (PLW*) wkp;
     wk->caution_flag = 0;
     return 0;
 }
 
-s32 set_caution_flag(PLW* wk, u8 /* unused */) {
+s32 set_caution_flag(WORK* wkp, s32 /* unused */) {
+    PLW* wk = (PLW*) wkp;
     wk->caution_flag = 1;
     return 0;
 }
 
-s32 setup_status_flag(WORK* wk, u8 data) {
+s32 setup_status_flag(WORK* wk, s32 data) {
     wk->pat_status = data;
     return 0;
 }
 
-s32 reset_extra_bg_flag(WORK* wk, u8 /* unused */) {
+s32 reset_extra_bg_flag(WORK* wk, s32 /* unused */) {
     another_bg[wk->id] = 0;
     return 0;
 }
 
-s32 flip_my_rl_flag(WORK* wk, u8 /* unused */) {
+s32 flip_my_rl_flag(WORK* wk, s32 /* unused */) {
     wk->rl_flag = wk->rl_flag + 1U & 1;
     return 0;
 }
 
-s32 setup_meoshi_hit_flag(WORK* wk, u8 data) {
+s32 setup_meoshi_hit_flag(WORK* wk, s32 d) {
+    u8 data = (u8) d;
     wk->meoshi_hit_flag = data;
     return 0;
 }
 
-s32 exec_char_asxy(WORK* wk, u8 data) {
+s32 exec_char_asxy(WORK* wk, s32 d) {
+    u8 data = (u8) d;
     s16* from_rom2;
     s32 st;
     s16 ix = data;
@@ -474,26 +478,30 @@ s32 exec_char_asxy(WORK* wk, u8 data) {
     return 0;
 }
 
-s32 setup_my_clear_level(WORK* wk, u8 data) {
+s32 setup_my_clear_level(WORK* wk, s32 d) {
+    u8 data = (u8) d;
     wk->my_clear_level = data;
     return 0;
 }
 
-s32 setup_my_bright_level(WORK* wk, u8 data) {
+s32 setup_my_bright_level(WORK* wk, s32 d) {
+    u8 data = (u8) d;
     wk->my_bright_level = data;
     return 0;
 }
 
-s32 setup_free_program(s32 /* unused */, s32 /* unused */) {
+s32 setup_free_program(WORK* /* unused */, s32 /* unused */) {
     return 0;
 }
 
-s32 setup_bg_quake_x(s32 /* unused */, u8 data) {
+s32 setup_bg_quake_x(WORK* /* unused */, s32 d) {
+    u8 data = (u8) d;
     bg_w.quake_x_index = data;
     return 0;
 }
 
-s32 setup_bg_quake_y(s32 /* unused */, u8 data) {
+s32 setup_bg_quake_y(WORK* /* unused */, s32 d) {
+    u8 data = (u8) d;
 #if defined(TARGET_PS2)
     void pp_screen_quake(s32);
 #endif
@@ -503,22 +511,29 @@ s32 setup_bg_quake_y(s32 /* unused */, u8 data) {
     return 0;
 }
 
-s32 setup_exdm_ix(PLW* wk, u8 data) {
+s32 setup_exdm_ix(WORK* wkp, s32 d) {
+    PLW* wk = (PLW*) wkp;
+    u8 data = (u8) d;
     wk->exdm_ix = data;
     return 0;
 }
 
-s32 setup_dmv_use_flag(PLW* wk, u8 data) {
+s32 setup_dmv_use_flag(WORK* wkp, s32 d) {
+    PLW* wk = (PLW*) wkp;
+    u8 data = (u8) d;
     wk->dm_vital_use = data;
     return 0;
 }
 
-s32 setup_disp_flag(WORK* wk, u8 data) {
+s32 setup_disp_flag(WORK* wk, s32 d) {
+    u8 data = (u8) d;
     wk->disp_flag = data;
     return 0;
 }
 
-s32 setup_command_number(PLW* wk, u8 data) {
+s32 setup_command_number(WORK* wkp, s32 d) {
+    PLW* wk = (PLW*) wkp;
+    u8 data = (u8) d;
     wk->cmd_request = data;
     return 0;
 }

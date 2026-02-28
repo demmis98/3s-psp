@@ -1,9 +1,9 @@
-#include "sf33rd/Source/Game/EFFJ2.h"
+#include "Game/EFFJ2.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFECT.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/workuser.h"
 
 void effJ2_trans(WORK* ewk);
 

@@ -78,7 +78,10 @@ void effect_37_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_37_init(WORK* wk, u8 gal, u8 ohen) {
+s32 effect_37_init(WORK* wk, s32 d) {
+    u8* list_u8 = (u8*) d;
+    u8 gal = list_u8[0];
+    u8 ohen = list_u8[1];
     WORK_Other* ewk;
     s16 ix;
 

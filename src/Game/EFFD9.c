@@ -1,8 +1,8 @@
-#include "sf33rd/Source/Game/EFFD9.h"
+#include "Game/EFFD9.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFECT.h"
+#include "Game/SLOWF.h"
+#include "Game/workuser.h"
 
 const s16 coltbl_000_1P[10] = { 1, 8192, 2, 8193, 1, 8195, 2, 8193, 0, 0 };
 const s16 coltbl_000_2P[10] = { 1, 8208, 2, 8209, 1, 8211, 2, 8209, 0, 0 };
@@ -126,7 +126,9 @@ void effect_D9_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_D9_init(PLW* wk, u8 data) {
+s32 effect_D9_init(WORK* wkp, s32 d) {
+    PLW* wk = (PLW*) wkp;
+    u8 data = (u8) d;
     WORK_Other* ewk;
     s16 ix;
 

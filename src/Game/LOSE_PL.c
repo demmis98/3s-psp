@@ -1,12 +1,12 @@
-#include "sf33rd/Source/Game/LOSE_PL.h"
+#include "Game/LOSE_PL.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFC1.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
-#include "sf33rd/Source/Game/bg_data.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFC1.h"
+#include "Game/PLCNT.h"
+#include "Game/PLS02.h"
+#include "Game/WORK_SYS.h"
+#include "Game/bg_data.h"
+#include "Game/workuser.h"
 
 s16 lose_rno[3];
 s16 lose_free[2];

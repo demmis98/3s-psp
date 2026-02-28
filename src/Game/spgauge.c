@@ -1,12 +1,12 @@
-#include "sf33rd/Source/Game/spgauge.h"
+#include "Game/spgauge.h"
 #include "common.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/PLMAIN.h"
-#include "sf33rd/Source/Game/SE.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/SysDir.h"
-#include "sf33rd/Source/Game/sc_sub.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/PLCNT.h"
+#include "Game/PLMAIN.h"
+#include "Game/SE.h"
+#include "Game/SLOWF.h"
+#include "Game/SysDir.h"
+#include "Game/sc_sub.h"
+#include "Game/workuser.h"
 
 typedef struct {
     // total size: 0x34

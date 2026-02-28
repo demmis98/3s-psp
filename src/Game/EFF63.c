@@ -1,13 +1,13 @@
-#include "sf33rd/Source/Game/EFF63.h"
+#include "Game/EFF63.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFF61.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/Sel_Data.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/texcash.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFF61.h"
+#include "Game/EFFECT.h"
+#include "Game/Sel_Data.h"
+#include "Game/WORK_SYS.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/texcash.h"
+#include "Game/workuser.h"
 
 void EFF63_WAIT(WORK_Other_CONN* ewk);
 void EFF63_SLIDE_IN(WORK_Other_CONN* ewk);
@@ -23,7 +23,7 @@ const s8* Letter_Data_63[3][21] = { { "-10", "-9", "-8", "-7", "-6", "-5", "-4",
                                     { "OFF", "ON", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
                                       NULL,  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL } };
 
-void (*const EFF63_Jmp_Tbl[4])() = { EFF63_WAIT, EFF63_SLIDE_IN, EFF63_CHAR_CHANGE, EFF63_SUDDENLY };
+void (*const EFF63_Jmp_Tbl[4])(WORK_Other_CONN *) = { EFF63_WAIT, EFF63_SLIDE_IN, EFF63_CHAR_CHANGE, EFF63_SUDDENLY };
 
 void effect_63_move(WORK_Other_CONN* ewk) {
     if (Check_Die_61((WORK_Other*)ewk) != 0) {

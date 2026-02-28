@@ -1,10 +1,11 @@
-#include "sf33rd/Source/Game/EFFL0.h"
+#include "Game/EFFL0.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFECT.h"
+#include "Game/SLOWF.h"
+#include "Game/workuser.h"
 
-void effect_L0_move(WORK_Other* ewk) {
+void effect_L0_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     PLW* mwk = (PLW*)ewk->my_master;
 
     switch (ewk->wu.routine_no[0]) {
@@ -63,7 +64,8 @@ void effect_L0_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_L0_init(WORK* wk, s16 data) {
+s32 effect_L0_init(WORK* wk, s32 d) {
+    s16 data = (s16) d;
     WORK_Other* ewk;
     s16 ix;
 
@@ -81,6 +83,6 @@ s32 effect_L0_init(WORK* wk, s16 data) {
     ewk->wu.my_col_code = wk->my_col_code;
     ewk->wu.now_koc = wk->now_koc;
     ewk->wu.char_index = wk->char_index;
-    effect_L0_move(ewk);
+    effect_L0_move((WORK*) ewk, 0);
     return 0;
 }

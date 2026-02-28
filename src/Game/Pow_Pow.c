@@ -1,8 +1,8 @@
-#include "sf33rd/Source/Game/Pow_Pow.h"
+#include "Game/Pow_Pow.h"
 #include "common.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/POW_DATA.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/PLCNT.h"
+#include "Game/POW_DATA.h"
+#include "Game/workuser.h"
 
 void cal_damage_vitality(PLW* as, PLW* ds) {
     u16 xx = as->wu.att.pow;

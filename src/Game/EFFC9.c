@@ -1,18 +1,18 @@
-#include "sf33rd/Source/Game/EFFC9.h"
+#include "Game/EFFC9.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFF03.h"
-#include "sf33rd/Source/Game/EFF37.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/Grade.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/Se_Data.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/bg_sub.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/CHARSET.h"
+#include "Game/EFF03.h"
+#include "Game/EFF37.h"
+#include "Game/EFFECT.h"
+#include "Game/Grade.h"
+#include "Game/PLS02.h"
+#include "Game/SLOWF.h"
+#include "Game/Se_Data.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/bg_sub.h"
+#include "Game/workuser.h"
 
 // forward declarations
 
@@ -30,6 +30,7 @@ void effect_C9_move(WORK_Other* ewk) {
 #endif
 
     s16 scrc;
+    u8 list_u8[2];
 
     switch (ewk->wu.routine_no[0]) {
     case 0:
@@ -107,7 +108,7 @@ void effect_C9_move(WORK_Other* ewk) {
                             ewk->wu.mvxy.a[1].sp = 0;
                             ewk->wu.mvxy.kop[0] = 1;
                             effect_03_init(&ewk->wu, 110);
-                            sound_effect_request[309](ewk, 309);
+                            //sound_effect_request[309](ewk, 309);
                             char_move_z(&ewk->wu);
                         }
 
@@ -131,7 +132,9 @@ void effect_C9_move(WORK_Other* ewk) {
                 if (ewk->wu.cg_type == 0xFF) {
                     ewk->wu.routine_no[1] += 1;
                     set_char_move_init(&ewk->wu, 0, 2);
-                    effect_37_init(&ewk->wu, ewk->wu.charset_id, EJG_index[ewk->wu.type]);
+                    list_u8[0] = ewk->wu.charset_id;
+                    list_u8[1] = EJG_index[ewk->wu.type];
+                    effect_37_init(&ewk->wu, (s32) list_u8);
                 }
 
                 break;

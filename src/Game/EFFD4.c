@@ -1,9 +1,9 @@
-#include "sf33rd/Source/Game/EFFD4.h"
+#include "Game/EFFD4.h"
 #include "common.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/EFFG3.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFECT.h"
+#include "Game/EFFG3.h"
+#include "Game/SLOWF.h"
+#include "Game/workuser.h"
 
 static s32 distance2speed(WORK_Other* ewk, WORK* wk, s32 dir);
 
@@ -197,7 +197,8 @@ s32 distance2speed(WORK_Other* ewk, WORK* wk, s32 dir) {
     return swallow_areas_y[y][x];
 }
 
-s32 effect_D4_init(WORK* wk, u8 data) {
+s32 effect_D4_init(WORK* wk, s32 d) {
+    u8 data = (u8) d;
     WORK_Other* ewk;
     s16 ix;
 

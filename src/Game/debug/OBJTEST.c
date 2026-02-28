@@ -1,7 +1,7 @@
-#include "sf33rd/Source/Game/debug/OBJTEST.h"
+#include "Game/debug/OBJTEST.h"
 #include "common.h"
-#include "sf33rd/Source/Game/PulPul.h"
-#include "sf33rd/Source/Game/debug/OTESTDAT.h"
+#include "Game/PulPul.h"
+#include "Game/debug/OTESTDAT.h"
 
 // sbss
 PPWORK_SUB_SUB ot_pulreq_xx[OT_PULREQ_XX_MAX];

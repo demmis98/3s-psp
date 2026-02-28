@@ -1,12 +1,12 @@
-#include "sf33rd/Source/Game/EFFB7.h"
+#include "Game/EFFB7.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/n_input.h"
-#include "sf33rd/Source/Game/ta_sub.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/aboutspr.h"
+#include "Game/bg.h"
+#include "Game/n_input.h"
+#include "Game/ta_sub.h"
 
 void effect_B7_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)

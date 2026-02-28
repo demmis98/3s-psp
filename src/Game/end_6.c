@@ -1,12 +1,12 @@
 #include "common.h"
-#include "sf33rd/Source/Game/EFFF9.h"
-#include "sf33rd/Source/Game/SE.h"
-#include "sf33rd/Source/Game/bg.h"
-#include "sf33rd/Source/Game/bg_data.h"
-#include "sf33rd/Source/Game/effe6.h"
-#include "sf33rd/Source/Game/end_data.h"
-#include "sf33rd/Source/Game/end_main.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFF9.h"
+#include "Game/SE.h"
+#include "Game/bg.h"
+#include "Game/bg_data.h"
+#include "Game/effe6.h"
+#include "Game/end_data.h"
+#include "Game/end_main.h"
+#include "Game/workuser.h"
 
 void end_600_move();
 void end_601_move();

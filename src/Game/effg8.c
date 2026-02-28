@@ -1,13 +1,13 @@
-#include "sf33rd/Source/Game/effg8.h"
+#include "Game/effg8.h"
 #include "bin2obj/char_table.h"
 #include "common.h"
-#include "sf33rd/Source/Game/CHARSET.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/PLS02.h"
-#include "sf33rd/Source/Game/aboutspr.h"
-#include "sf33rd/Source/Game/bg_data.h"
-#include "sf33rd/Source/Game/ta_sub.h"
-#include "sf33rd/Source/Game/texcash.h"
+#include "Game/CHARSET.h"
+#include "Game/EFFECT.h"
+#include "Game/PLS02.h"
+#include "Game/aboutspr.h"
+#include "Game/bg_data.h"
+#include "Game/ta_sub.h"
+#include "Game/texcash.h"
 
 const s32 effg8_sp_tbl[28][4];
 

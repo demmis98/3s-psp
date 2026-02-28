@@ -1,13 +1,13 @@
-#include "sf33rd/Source/Game/count.h"
+#include "Game/count.h"
 #include "common.h"
-#include "sf33rd/Source/Game/PLS01.h"
-#include "sf33rd/Source/Game/SLOWF.h"
-#include "sf33rd/Source/Game/SysDir.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
-#include "sf33rd/Source/Game/debug/Debug.h"
-#include "sf33rd/Source/Game/sc_data.h"
-#include "sf33rd/Source/Game/sc_sub.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/PLS01.h"
+#include "Game/SLOWF.h"
+#include "Game/SysDir.h"
+#include "Game/WORK_SYS.h"
+#include "Game/debug/Debug.h"
+#include "Game/sc_data.h"
+#include "Game/sc_sub.h"
+#include "Game/workuser.h"
 
 Round_Timer round_timer;
 s8 flash_timer;

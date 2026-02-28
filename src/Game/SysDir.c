@@ -1,8 +1,8 @@
-#include "sf33rd/Source/Game/SysDir.h"
+#include "Game/SysDir.h"
 #include "common.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/WORK_SYS.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/PLCNT.h"
+#include "Game/WORK_SYS.h"
+#include "Game/workuser.h"
 
 u8 chainex_check[2][36];
 s16 omop_use_ex_gauge_ix[2];

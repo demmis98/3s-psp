@@ -1,14 +1,14 @@
-#include "sf33rd/Source/Game/cmb_win.h"
+#include "Game/cmb_win.h"
 #include "common.h"
 #include "gcc/memory.h"
-#include "sf33rd/Source/Game/EFFECT.h"
-#include "sf33rd/Source/Game/Grade.h"
-#include "sf33rd/Source/Game/PLCNT.h"
-#include "sf33rd/Source/Game/SYS_sub.h"
-#include "sf33rd/Source/Game/Sound3rd.h"
-#include "sf33rd/Source/Game/sc_data.h"
-#include "sf33rd/Source/Game/sc_sub.h"
-#include "sf33rd/Source/Game/workuser.h"
+#include "Game/EFFECT.h"
+#include "Game/Grade.h"
+#include "Game/PLCNT.h"
+#include "Game/SYS_sub.h"
+#include "Game/Sound3rd.h"
+#include "Game/sc_data.h"
+#include "Game/sc_sub.h"
+#include "Game/workuser.h"
 
 // bss
 CMST_BUFF cmst_buff[2][5];
