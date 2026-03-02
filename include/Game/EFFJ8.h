@@ -8,7 +8,7 @@ extern const s16 effj8_timer_tbl[8];
 extern const s16 effj8_y_tbl[8];
 extern const s32 effj8_sp_tbl[8][4];
 
-void effect_J8_move(WORK_Other* ewk);
+void effect_J8_move(WORK* wkp, s32 /*unused*/);
 void dragonfly_move(WORK_Other* ewk);
 void dragonfly_l_move_0(WORK_Other* ewk);
 void dragonfly_l_move_1(WORK_Other* ewk);
@@ -29,6 +29,6 @@ void dragonfly_move_0005(WORK_Other* ewk);
 void dragonfly_stop_timer(WORK_Other* ewk);
 void dragonfly_line_set(WORK_Other* ewk, s16 dir_type);
 void dragonfly_move_next(WORK_Other* ewk);
-s32 effect_J8_init();
+s32 effect_J8_init(WORK* /*unused*/, s32 /*unused*/);
 
 #endif

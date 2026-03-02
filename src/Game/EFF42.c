@@ -19,7 +19,8 @@ void Setup_Char_Index(WORK_Other* ewk);
 
 void (*const EFF42_Jmp_Tbl[5])(WORK_Other *);
 
-void effect_42_move(WORK_Other* ewk) {
+void effect_42_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     EFF42_Jmp_Tbl[Order[ewk->wu.dir_old]](ewk);
 
     if (ewk->wu.be_flag != 0) {

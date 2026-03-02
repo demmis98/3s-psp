@@ -13,7 +13,8 @@
 
 const s16 eff85_char_index_tbl[9] = { 0, 30, 0, 32, 29, 33, 0, 0, 0 };
 
-void effect_85_move(WORK_Other* ewk) {
+void effect_85_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     void (*const eff85_jp_tbl[3])(WORK_Other*) = { eff85_0000, eff85_0100, eff85_0200 };
     eff85_jp_tbl[ewk->wu.routine_no[0]](ewk);
 };
@@ -276,7 +277,7 @@ void eff85_0200(WORK_Other* ewk) {
     push_effect_work(&ewk->wu);
 }
 
-s32 effect_85_init() {
+s32 effect_85_init(WORK* /*unused*/, s32 /*unused*/) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

@@ -154,7 +154,8 @@ const s8* Letter_Data_A8AC[69] = { "-PLAY(  )",
 
 const s8** Letter_Data_A8[2] = { Letter_Data_A8DC, Letter_Data_A8AC };
 
-void effect_A8_move(WORK_Other_CONN* ewk) {
+void effect_A8_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other_CONN* ewk = (WORK_Other_CONN*) wkp;
     s16 ix;
 
     if (Menu_Suicide[ewk->master_player]) {

@@ -101,7 +101,7 @@ void Lose_20000(PLW* wk) {
 
         if (!Extra_Break && ((Round_num >= (save_w[Present_Mode].Battle_Number[Play_Type]) * 2) ||
                              (PL_Wins[Winner_id] >= (save_w[Present_Mode].Battle_Number[Play_Type]) + 1))) {
-            effect_C1_init(&wk->wu);
+            effect_C1_init(&wk->wu, 0);
         }
 
         if ((pcon_rno[1] != 0) && (pcon_rno[1] != 4)) {

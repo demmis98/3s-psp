@@ -66,7 +66,8 @@ const s8* Letter_Data_64[16][16] = {
 
 void (*const EFF64_Jmp_Tbl[4])(WORK_Other_CONN *) = { EFF64_WAIT, EFF64_SLIDE_IN, EFF64_CHAR_CHANGE, EFF64_SUDDENLY };
 
-void effect_64_move(WORK_Other_CONN* ewk) {
+void effect_64_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other_CONN* ewk = (WORK_Other_CONN*) wkp;
     if (Check_Die_61((WORK_Other*)ewk)) {
         push_effect_work(&ewk->wu);
         return;

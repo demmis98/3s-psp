@@ -18,7 +18,8 @@ void (*const EFF40_Jmp_Tbl[4])(WORK_Other *) = { EFF40_EXIT, EFF40_BACK, EFF40_A
 
 const s16 Pos_Data_40[4][3] = { { 0, 77, 70 }, { 0, 77, 72 }, { 0, 77, 68 }, { 0, 77, 68 } };
 
-void effect_40_move(WORK_Other* ewk) {
+void effect_40_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     Check_Pos_OBJ2(ewk);
 
     if (Menu_Suicide[ewk->master_player]) {

@@ -19,7 +19,8 @@ extern const s16 eff48_num_tbl[22];
 void eff48_0000(WORK_Other*);
 void eff48_1000(WORK_Other*);
 
-void effect_48_move(WORK_Other* ewk) {
+void effect_48_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     void (*eff48_jp[3])(WORK_Other*) = { eff48_0000, eff48_1000, eff48_0000 };
     eff48_jp[ewk->wu.routine_no[0]](ewk);
 }

@@ -26,7 +26,8 @@ const s16 hana_delta_hosei[4][6] = { { -64, -72, -80, -72, -88, -80 },
                                      { -64, -72, -80, -72, -88, -80 },
                                      { -64, -72, -80, -72, -88, -80 } };
 
-void effect_D6_move(WORK_Other* ewk) {
+void effect_D6_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     switch (ewk->wu.routine_no[0]) {
     case 0:
         ewk->wu.routine_no[0]++;

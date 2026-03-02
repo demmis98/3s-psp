@@ -24,7 +24,8 @@ const s16 judge_gals_kage_tbl[8][4];
 const u8 ag_sel_table[22][4][4];
 u32* ag_char_table[];
 
-void effect_C9_move(WORK_Other* ewk) {
+void effect_C9_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     s32 effect_37_init(WORK * wk, u32 gal, u32 ohen);
 #endif
@@ -164,7 +165,8 @@ void effect_C9_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_C9_init(PLW* arg0, u8 data) {
+s32 effect_C9_init(WORK* arg0, s32 d) {
+    u8 data = (u8) d;
     WORK_Other* ewk;
     s16 ix;
 

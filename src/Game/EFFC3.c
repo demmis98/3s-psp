@@ -1031,7 +1031,8 @@ const u16 car_parts[7][8][18][2] = { { { { 0x7D10, 0x0000 },
                                          { 0x7A3E, 0x0000 },
                                          { 0x7A3F, 0x0000 } } } };
 
-void effect_C3_move(WORK_Other* ewk) {
+void effect_C3_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     s16 c3_hit_disp_check(u32 ix);
 #endif
@@ -1047,7 +1048,7 @@ void effect_C3_move(WORK_Other* ewk) {
         set_display_car_parts(ewk);
 
         if (c3_hit_disp_check(ewk->wu.type)) {
-            effect_00_init(&ewk->wu);
+            effect_00_init(&ewk->wu, 0);
         }
 
         clear_attack_num(&ewk->wu);
@@ -1223,7 +1224,9 @@ s32 get_efffC3_nsc(WORK* wk, WORK* c2wk) {
     return 0;
 }
 
-s32 effect_C3_init(WORK_Other* wk, s16 data) {
+s32 effect_C3_init(WORK* wkp, s32 d) {
+    WORK_Other* wk = (WORK_Other*) wkp;
+    s16 data = (s16) d;
     WORK_Other* ewk;
     s16 ix;
 
@@ -1242,6 +1245,6 @@ s32 effect_C3_init(WORK_Other* wk, s16 data) {
     ewk->master_player = wk->master_player;
     ewk->master_id = wk->master_id;
     ewk->master_work_id = wk->master_work_id;
-    effect_C3_move(ewk);
+    effect_C3_move((WORK*) ewk, 0);
     return 0;
 }

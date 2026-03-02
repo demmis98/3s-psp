@@ -15,7 +15,8 @@ const u8 hnc_color_tbl[88] = { 21, 2, 22, 1, 21, 2, 20, 18, 21, 2, 22, 1, 21, 2,
                                21, 2, 20, 4, 21, 2, 22, 1,  21, 2, 20, 4, 21, 2, 22, 1,  21, 2, 20, 4, 21, 2,
                                22, 1, 21, 2, 20, 4, 21, 2,  22, 1, 21, 2, 20, 4, 21, 2,  22, 1, 21, 2, 20, 255 };
 
-void effect_A2_move(WORK_Other* ewk) {
+void effect_A2_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     if (!(Game_pause & 0x80)) {
         hnc_end_timer++;
     }
@@ -104,7 +105,7 @@ void effect_A2_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_A2_init() {
+s32 effect_A2_init(WORK* /*unused*/, s32 /*unused*/) {
     WORK_Other* ewk;
     s16 ix;
 

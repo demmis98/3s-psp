@@ -1,9 +1,9 @@
 #include "Game/GD3rd.h"
 #include "common.h"
-#include "sf33rd/AcrSDK/MiddleWare/PS2/CapSndEng/cse.h"
-#include "sf33rd/AcrSDK/ps2/flps2debug.h"
-#include "sf33rd/AcrSDK/ps2/foundaps2.h"
-#include "Common/FileSizeAFS.h"
+//#include "sf33rd/AcrSDK/MiddleWare/PS2/CapSndEng/cse.h"
+//#include "sf33rd/AcrSDK/ps2/flps2debug.h"
+//#include "sf33rd/AcrSDK/ps2/foundaps2.h"
+//#include "Common/FileSizeAFS.h"
 #include "Game/RAMCNT.h"
 #include "Game/WORK_SYS.h"
 #include "Game/color3rd.h"
@@ -12,9 +12,9 @@
 #include "Game/workuser.h"
 #include "structs.h"
 
-#include <cri_mw.h>
-#include <libcdvd.h>
-#include <libgraph.h>
+//#include <cri_mw.h>
+//#include <libcdvd.h>
+//#include <libgraph.h>
 
 typedef struct {
     // total size: 0x4
@@ -67,12 +67,14 @@ s32 Setup_Directory_Record_Data() {
     DskDrvErrType = 0xFFFF;
     DskDrvErrRetry = 0;
 
-    ADXF_LoadPartitionNw(0, "SF33RD.AFS", NULL, sf3ptinfo);
+    //ADXF_LoadPartitionNw(0, "SF33RD.AFS", NULL, sf3ptinfo);
 
     while (1) {
+        /*
         if (ADXF_GetPtStat(0) == ADXF_STAT_READEND) {
             break;
         }
+        */
 
 #if defined(TARGET_PS2)
         sceGsSyncV(0);
@@ -81,12 +83,12 @@ s32 Setup_Directory_Record_Data() {
         // On modern platforms we don't call the VSync interrupt handler until
         // we get to the main loop. That's why we have to emulate the interrupt
         // manually like this.
-        begin_interrupt();
-        ADXPS2_ExecVint(0);
-        end_interrupt();
+        //begin_interrupt();
+        //ADXPS2_ExecVint(0);
+        //end_interrupt();
 #endif
 
-        ADXM_ExecMain();
+        //ADXM_ExecMain();
     }
 
     ps2CdReadMode.trycount = 64;
@@ -99,6 +101,7 @@ s32 Setup_Directory_Record_Data() {
 void fsUpdateDiskDriveError() {
     s32 chkNext = 0;
 
+    /*
     switch (sceCdGetDiskType()) {
     case SCECdNODISC:
         DskDrvErrType = 1;
@@ -143,43 +146,51 @@ void fsUpdateDiskDriveError() {
         DskDrvErrType = 0;
         break;
     }
+    */
 }
 
 s32 fsOpen(REQ* req) {
+    /*
     if (req->fnum >= AFS_FILE_COUNT) {
         return 0;
     }
+    */
 
+    /*
     if (appFileSizes[req->fnum] == 0) {
         return 0;
     }
+    */
 
     if (adxf != NULL) {
-        ADXF_Close(adxf);
+        //ADXF_Close(adxf);
     }
 
-    adxf = ADXF_OpenAfs(0, req->fnum);
+    //adxf = ADXF_OpenAfs(0, req->fnum);
 
     if (adxf == NULL) {
         return 0;
     }
 
     req->info.number = 1;
-    req->info.size = appFileSizes[req->fnum];
+    //req->info.size = appFileSizes[req->fnum];
     return 1;
 }
 
 void fsClose(REQ* /* unused */) {
-    ADXF_Close(adxf);
+    //ADXF_Close(adxf);
     adxf = NULL;
 }
 
 u32 fsGetFileSize(u16 fnum) {
+    /*
     if (fnum >= AFS_FILE_COUNT) {
         return 0;
     }
 
     return appFileSizes[fnum];
+    */
+    return 0;
 }
 
 u32 fsCalSectorSize(u32 size) {
@@ -187,9 +198,11 @@ u32 fsCalSectorSize(u32 size) {
 }
 
 s32 fsCansel(REQ* /* unused */) {
+    /*
     if (adxf != NULL && ADXF_GetStat(adxf) == ADXF_STAT_READING) {
         ADXF_StopNw(adxf);
     }
+    */
 
     return 1;
 }
@@ -199,22 +212,25 @@ s32 fsCheckCommandExecuting() {
         return 0;
     }
 
+    /*
     if (ADXF_GetStat(adxf) == ADXF_STAT_READING || ADXF_GetStat(adxf) == ADXF_STAT_ERROR) {
         return 1;
     }
+    */
 
     return 0;
 }
 
 s32 fsRequestFileRead(REQ* /* unused */, u32 sec, void* buff) {
-    ADXF_ReadNw(adxf, sec, buff);
+    //ADXF_ReadNw(adxf, sec, buff);
     return 1;
 }
 
 s32 fsCheckFileReaded(REQ* /* unused */) {
-    s32 rnum = ADXF_GetStat(adxf);
+    //s32 rnum = ADXF_GetStat(adxf);
     fsUpdateDiskDriveError();
 
+    /*
     if (rnum == ADXF_STAT_ERROR) {
         DskDrvErrBe = 1;
         return 2;
@@ -223,6 +239,7 @@ s32 fsCheckFileReaded(REQ* /* unused */) {
     if (rnum == ADXF_STAT_READING) {
         return 0;
     }
+    */
 
     return 1;
 }
@@ -250,15 +267,15 @@ s32 fsFileReadSync(REQ* req, u32 sec, void* buff) {
 }
 
 void waitVsyncDummy() {
-    ADXM_ExecMain();
-    cseExecServer();
+    //ADXM_ExecMain();
+    //cseExecServer();
 
 #if defined(TARGET_PS2)
     sceGsSyncV(0);
 #else
-    begin_interrupt();
-    ADXPS2_ExecVint(0);
-    end_interrupt();
+    //begin_interrupt();
+    //ADXPS2_ExecVint(0);
+    //end_interrupt();
 #endif
 }
 
@@ -266,10 +283,12 @@ s32 load_it_use_any_key2(u16 fnum, void** adrs, s16* key, u8 kokey, u8 group) {
     u32 size;
     u32 err;
 
+    /*
     if (fnum >= AFS_FILE_COUNT) {
-        flLogOut("ファイルナンバーに異常があります。ファイル番号：%d\n", fnum);
+        //flLogOut("ファイルナンバーに異常があります。ファイル番号：%d\n", fnum);
         while (1) {}
     }
+    */
 
     size = fsGetFileSize(fnum);
     *key = Pull_ramcnt_key(fsCalSectorSize(size) << 11, kokey, group, 0);
@@ -322,7 +341,7 @@ s32 load_it_use_this_key(u16 fnum, s16 key) {
             return 1;
         }
 
-        flLogOut("ファイルの読み込みに失敗しました。ファイル番号：%d\n", fnum);
+        //flLogOut("ファイルの読み込みに失敗しました。ファイル番号：%d\n", fnum);
     }
 }
 
@@ -476,7 +495,7 @@ s32 Push_LDREQ_Queue(REQ* ldreq) {
         return 1;
     }
 
-    flLogOut("ファイル読み込み要求バッファがオーバーしました。\n");
+    //flLogOut("ファイル読み込み要求バッファがオーバーしました。\n");
     return 0;
 }
 
@@ -512,15 +531,15 @@ void Check_LDREQ_Queue() {
 void disp_ldreq_status() {
     s16 i;
 
-    flPrintColor(0xFFFFFF8F);
+    //flPrintColor(0xFFFFFF8F);
 
     if (Debug_w[0xE]) {
         for (i = 0; i < 16; i++) {
-            flPrintL(2, i + 18, "%1d", q_ldreq[i].be);
-            flPrintL(3, i + 18, ldreq_process_name[q_ldreq[i].type]);
+            //flPrintL(2, i + 18, "%1d", q_ldreq[i].be);
+            //flPrintL(3, i + 18, ldreq_process_name[q_ldreq[i].type]);
         }
 
-        flPrintL(2, i + 18, "%4d", system_timer);
+        //flPrintL(2, i + 18, "%4d", system_timer);
     }
 }
 
@@ -588,7 +607,7 @@ s32 Check_LDREQ_Queue_Direct(s16 ix) {
 
 void q_ldreq_error(REQ* curr) {
     curr->be = 0;
-    flLogOut("Q_LDREQ_ERROR : ロード処理の指定に誤りがあります。\n");
+    //flLogOut("Q_LDREQ_ERROR : ロード処理の指定に誤りがあります。\n");
 }
 
 const LDREQ_Process_Func ldreq_process[6] = {

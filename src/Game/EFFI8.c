@@ -30,7 +30,8 @@ void effI8_main_process(WORK_Other* ewk);
 void cal_speeds_to_me_effI8(WORK_Other* ewk, PLW* mwk);
 void cal_speeds_to_em_effI8(WORK_Other* ewk, PLW* twk);
 
-void effect_I8_move(WORK_Other* ewk) {
+void effect_I8_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     switch (ewk->wu.routine_no[0]) {
     case 0:
         ewk->wu.routine_no[0]++;

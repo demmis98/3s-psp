@@ -8,7 +8,8 @@
 #include "Game/ta_sub.h"
 #include "Game/texcash.h"
 
-void effect_G7_move(WORK_Other* ewk) {
+void effect_G7_move(WORK* wkp, s32/*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     if (ewk->wu.old_rno[0] < end_w.r_no_2) {
         ewk->wu.routine_no[0] = 99;
     }

@@ -510,10 +510,10 @@ void Damage_12000(PLW* wk) {
         wk->zuru_ix_counter = 0;
 
         if (wk->wu.dm_attribute) {
-            setup_accessories(wk, wk->wu.pat_status);
+            setup_accessories((WORK*) wk, wk->wu.pat_status);
 
             if (wk->wu.dm_attribute != 2) {
-                effect_D9_init(wk, (u8)wk->wu.dm_attribute);
+                effect_D9_init((WORK*) wk, (u8)wk->wu.dm_attribute);
             }
         }
 
@@ -708,10 +708,10 @@ void Damage_18000(PLW* wk) {
         get_sky_dm_timer(wk);
 
         if (wk->wu.dm_attribute) {
-            setup_accessories(wk, wk->wu.pat_status);
+            setup_accessories((WORK*) wk, wk->wu.pat_status);
 
             if (wk->wu.dm_attribute != 2) {
-                effect_D9_init(wk, (u8)wk->wu.dm_attribute);
+                effect_D9_init((WORK*) wk, (u8)wk->wu.dm_attribute);
             }
         }
 
@@ -1198,10 +1198,10 @@ void Damage_30000(PLW* wk) {
         get_sky_dm_timer(wk);
 
         if (wk->wu.dm_attribute) {
-            setup_accessories(wk, wk->wu.pat_status);
+            setup_accessories((WORK*) wk, wk->wu.pat_status);
 
             if (wk->wu.dm_attribute != 2) {
-                effect_D9_init(wk, (u8)wk->wu.dm_attribute);
+                effect_D9_init((WORK*) wk, (u8)wk->wu.dm_attribute);
             }
         }
 
@@ -1302,7 +1302,7 @@ void first_flight_union(PLW* wk, s16 num, s16 dv) {
     }
 
     subtract_cu_vital(wk);
-    effect_A7_init(wk);
+    effect_A7_init((WORK*) wk, 0);
     buttobi_chakuchi_cg_type_check(wk);
 
     if (wk->ukemi_ok_timer != 0 && wk->ukemi_success == 0) {
@@ -1325,7 +1325,7 @@ void first_TtktV_union(PLW* wk, s16 num, s16 dv) {
         }
 
         subtract_cu_vital(wk);
-        effect_A7_init(wk);
+        effect_A7_init((WORK*) wk, 0);
         buttobi_chakuchi_cg_type_check(wk);
 
         if (wk->ukemi_ok_timer != 0 && wk->ukemi_success == 0) {

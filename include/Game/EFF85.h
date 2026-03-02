@@ -6,7 +6,7 @@
 
 extern const s16 eff85_char_index_tbl[9];
 
-void effect_85_move(WORK_Other* ewk);
+void effect_85_move(WORK* wkp, s32 /*unused*/);
 void eff85_0000(WORK_Other* ewk);
 void eff85_0100(WORK_Other* ewk);
 void eff85_1000(WORK_Other* ewk);
@@ -18,6 +18,6 @@ void eff85_8000(WORK_Other* ewk);
 void eff85_9000(WORK_Other* ewk);
 s32 swallow_sprize_check(WORK_Other *ewk);
 void eff85_0200(WORK_Other* ewk);
-s32 effect_85_init();
+s32 effect_85_init(WORK* /*unused*/, s32 /*unused*/);
 
 #endif

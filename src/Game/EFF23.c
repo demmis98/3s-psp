@@ -56,7 +56,8 @@ const s8* Letter_Data_23[4][12] = { { "L.PUNCH",
 
 void (*const EFF23_Jmp_Tbl[4])(WORK_Other_CONN *) = { EFF23_WAIT, EFF23_SLIDE_IN, EFF23_CHAR_CHANGE, EFF23_SUDDENLY };
 
-void effect_23_move(WORK_Other_CONN* ewk) {
+void effect_23_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other_CONN* ewk = (WORK_Other_CONN*) wkp;
     if (Check_Die_61((WORK_Other*)ewk)) {
         push_effect_work(&ewk->wu);
         return;

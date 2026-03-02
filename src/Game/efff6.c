@@ -13,7 +13,8 @@
 void efff6_move_common(WORK_Other* ewk);
 void efff6_move01(WORK_Other* ewk);
 
-void effect_F6_move(WORK_Other* ewk) {
+void effect_F6_move(WORK* wkp, s32/*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     switch (ewk->wu.routine_no[0]) {
     case 0:
         if (ewk->wu.old_rno[1] <= op_w.index) {
@@ -220,7 +221,8 @@ void efff6_move01(WORK_Other* ewk) {
     }
 }
 
-s32 effect_F6_init(u8 typenum) {
+s32 effect_F6_init(WORK* /*unused*/, s32 d) {
+    u8 typenum = (u8) d;
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif
@@ -267,7 +269,7 @@ s32 effect_F6_init(u8 typenum) {
     ewk->wu.mvxy.d[0].sp = efff6_etc_data[typenum].sp_x_d;
     ewk->wu.mvxy.a[1].sp = efff6_etc_data[typenum].sp_y_a;
     ewk->wu.mvxy.d[1].sp = efff6_etc_data[typenum].sp_y_d;
-    effect_F6_move(ewk);
+    effect_F6_move((WORK*) ewk, 0);
     return 0;
 }
 

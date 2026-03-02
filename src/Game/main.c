@@ -1,5 +1,6 @@
 #include "Game/main.h"
 #include "common.h"
+/*
 #include "sf33rd/AcrSDK/common/mlPAD.h"
 #include "sf33rd/AcrSDK/ps2/flps2debug.h"
 #include "sf33rd/AcrSDK/ps2/flps2etc.h"
@@ -9,6 +10,7 @@
 #include "Common/PPGFile.h"
 #include "Common/PPGWork.h"
 #include "Compress/zlibApp.h"
+*/
 #include "Game/AcrUtil.h"
 #include "Game/DC_Ghost.h"
 #include "Game/EFFECT.h"
@@ -27,9 +29,11 @@
 #include "Game/init3rd.h"
 #include "Game/texcash.h"
 #include "Game/workuser.h"
+/*
 #include "PS2/mc/knjsub.h"
 #include "PS2/mc/mcsub.h"
 #include "PS2/ps2Quad.h"
+*/
 #include "structs.h"
 
 #include <memory.h>
@@ -54,18 +58,18 @@ void AcrMain() {
     u16 sw_buff;
     u32 sysinfodisp;
 
-    flInitialize(flPs2State.DispWidth, flPs2State.DispHeight);
-    flSetRenderState(FLRENDER_BACKCOLOR, 0);
-    flSetDebugMode(0);
+    //flInitialize(flPs2State.DispWidth, flPs2State.DispHeight);
+    //flSetRenderState(FLRENDER_BACKCOLOR, 0);
+    //flSetDebugMode(0);
     system_init_level = 0;
-    ppgWorkInitializeApprication();
+    //ppgWorkInitializeApprication();
     distributeScratchPadAddress();
     njdp2d_init();
     njUserInit();
     palCreateGhost();
-    ppgMakeConvTableTexDC();
+    //ppgMakeConvTableTexDC();
     appSetupBasePriority();
-    MemcardInit();
+    //MemcardInit();
 
     while (1) {
         initRenderState(0);
@@ -82,7 +86,7 @@ void AcrMain() {
 
         appViewSetItems(&mpp_w.vprm);
         appViewMatrix();
-        flAdjustScreen(X_Adjust + Correct_X[0], Y_Adjust + Correct_Y[0]);
+        //flAdjustScreen(X_Adjust + Correct_X[0], Y_Adjust + Correct_Y[0]);
         setBackGroundColor(0xFF000000);
 
         if (Debug_w[0x43]) {
@@ -91,7 +95,7 @@ void AcrMain() {
 
         appSetupTempPriority();
 
-        flPADGetALL();
+        //flPADGetALL();
         keyConvert();
 
         if (((Usage == 7) || (Usage == 2)) && !test_flag) {
@@ -176,10 +180,10 @@ void AcrMain() {
         seqsAfterProcess();
 
         if (Debug_w[6] == 0) {
-            CP3toPS2Draw();
+            //CP3toPS2Draw();
         }
 
-        KnjFlush();
+        //KnjFlush();
         render_end();
 
         sysinfodisp = 0;
@@ -202,9 +206,9 @@ void AcrMain() {
             break;
         }
 
-        flSetDebugMode(sysinfodisp);
+        //flSetDebugMode(sysinfodisp);
         disp_effect_work();
-        flFlip(0);
+        //flFlip(0);
 
         Interrupt_Flag = 1;
         Interrupt_Timer += 1;
@@ -218,9 +222,11 @@ void AcrMain() {
 }
 
 void distributeScratchPadAddress() {
+    /*
     dctex_linear = (s16*)(SPR + 0x800);
     texcash_melt_buffer = (u8*)(SPR + 0x1000);
     tpu_free = (TexturePoolUsed*)(SPR + 0x2000);
+    */
 }
 
 void MaskScreenEdge() {
@@ -275,7 +281,8 @@ void appCopyKeyData() {
 }
 
 u8* mppMalloc(u32 size) {
-    return flAllocMemory(size);
+    //return flAllocMemory(size);
+    return NULL;
 }
 
 void njUserInit() {
@@ -297,12 +304,13 @@ void njUserInit() {
     mpp_w.vprm.fa = 1.0f;
     appViewSetItems(&mpp_w.vprm);
     appViewMatrix();
-    mmSystemInitialize();
-    flGetFrame(&mpp_w.fmsFrame);
-    seqsInitialize(mppMalloc(seqsGetUseMemorySize()));
-    ppg_Initialize(mppMalloc(0x60000), 0x60000);
-    zlib_Initialize(mppMalloc(0x10000), 0x10000);
-    size = flGetSpace();
+    //mmSystemInitialize();
+    //flGetFrame(&mpp_w.fmsFrame);
+    //seqsInitialize(mppMalloc(seqsGetUseMemorySize()));
+    //ppg_Initialize(mppMalloc(0x60000), 0x60000);
+    //zlib_Initialize(mppMalloc(0x10000), 0x10000);
+    //size = flGetSpace();
+    size = 0x20000;    //i suppose its ram(?)
     mpp_w.ramcntBuff = mppMalloc(size);
     Init_ram_control_work(mpp_w.ramcntBuff, size);
 
@@ -371,8 +379,8 @@ s32 njUserMain() {
                 Check_Replay_Status(0, 1);
 
                 if (Debug_w[0x21]) {
-                    flPrintColor(0xFFFFFFFF);
-                    flPrintL(0x10, 0xA, "FAKE REC! PL1");
+                    //flPrintColor(0xFFFFFFFF);
+                    //flPrintL(0x10, 0xA, "FAKE REC! PL1");
                 }
             }
 
@@ -382,8 +390,8 @@ s32 njUserMain() {
                 Check_Replay_Status(1, 1);
 
                 if (Debug_w[0x21]) {
-                    flPrintColor(0xFFFFFFFF);
-                    flPrintL(0x10, 0xA, "FAKE REC!     PL2");
+                    //flPrintColor(0xFFFFFFFF);
+                    //flPrintL(0x10, 0xA, "FAKE REC!     PL2");
                 }
             }
         }

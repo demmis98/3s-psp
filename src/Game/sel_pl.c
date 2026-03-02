@@ -255,7 +255,7 @@ void Sel_PL_Cont_1st() {
     Setup_1st_Play_Type();
     Setup_Face_Sub();
     Time_Stop = 1;
-    effect_A5_init();
+    effect_A5_init(NULL, 0);
     Appear_Cursor = 0;
     Face_MV_Request = 0;
     Face_Status = 0;

@@ -661,7 +661,7 @@ void Win_07000(PLW* wk) {
                     break;
                 }
 
-                effect_82_init(&wk->wu);
+                effect_82_init(&wk->wu, 0);
                 win_rno[0] = 1;
                 set_char_move_init(&wk->wu, 9, 60);
                 wk->wu.cmwk[1] = 0;
@@ -674,7 +674,7 @@ void Win_07000(PLW* wk) {
                 break;
             }
 
-            effect_83_init(&wk->wu);
+            effect_83_init(&wk->wu, 0);
             win_rno[0] = 2;
             set_char_move_init(&wk->wu, 9, 60);
             wk->wu.cmwk[1] = 0;
@@ -794,15 +794,15 @@ void Win_09000(PLW* wk) {
             break;
 
         case 3:
-            effect_30_init(&wk->wu);
+            effect_30_init(&wk->wu, 0);
             break;
 
         case 4:
-            effect_31_init(&wk->wu);
+            effect_31_init(&wk->wu, 0);
             break;
 
         case 5:
-            effect_32_init(&wk->wu);
+            effect_32_init(&wk->wu, 0);
             break;
 
         case 7:
@@ -1172,7 +1172,7 @@ void Win_11000(PLW* wk) {
             if (Perfect_Flag) {
                 win_rno[0] = 1;
                 set_char_move_init(&wk->wu, 9, 38);
-                effect_L3_init(wk);
+                effect_L3_init((WORK*) wk, 0);
             } else {
                 set_char_move_init(&wk->wu, 9, work + 36);
                 switch (work) {
@@ -1184,7 +1184,7 @@ void Win_11000(PLW* wk) {
                     break;
 
                 default:
-                    effect_L3_init(wk);
+                    effect_L3_init((WORK*) wk, 0);
                     win_rno[0] = 1;
                     break;
                 }

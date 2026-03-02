@@ -1,6 +1,6 @@
 #include "Game/texgroup.h"
 #include "common.h"
-#include "sf33rd/AcrSDK/ps2/foundaps2.h"
+//#include "sf33rd/AcrSDK/ps2/foundaps2.h"
 #include "Game/CHARID.h"
 #include "Game/GD3rd.h"
 #include "Game/PLCNT.h"
@@ -195,7 +195,7 @@ void q_ldreq_texture_group(REQ* curr) {
                 }
 
                 // A duplicate transfer occurred. File number: %d\n
-                flLogOut("二重転送が発生しました。ファイル番号：%d\n", bsd->apfn);
+                //flLogOut("二重転送が発生しました。ファイル番号：%d\n", bsd->apfn);
                 while (1) {}
             }
 

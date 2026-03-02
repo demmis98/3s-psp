@@ -4,7 +4,7 @@
 #include "structs.h"
 #include "types.h"
 
-void effect_G5_move(WORK_Other* ewk);
+void effect_G5_move(WORK* wkp, s32/*unused*/);
 s32 setup_ase_extra(WORK* wk, s32 d);
 
 #endif

@@ -41,7 +41,7 @@ void bns11_init00() {
     bgw_ptr->hos_xy[0].cal = bgw_ptr->wxy[0].cal = bgw_ptr->xy[0].cal;
     bgw_ptr->zuubun = 0;
     bg_app = 0;
-    effect_05_init();
+    effect_05_init(NULL, 0);
     effect_12_init(4);
 
     if (!plw->wu.operator) {

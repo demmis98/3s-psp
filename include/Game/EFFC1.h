@@ -4,11 +4,11 @@
 #include "structs.h"
 #include "types.h"
 
-void effect_C1_move(WORK_Other* ewk);
+void effect_C1_move(WORK* wkp, s32 /*unused*/);
 #if defined(TARGET_PS2)
 s32 effect_C1_init(WORK* wk, s32 /* unused */);
 #else
-s32 effect_C1_init(WORK* wk);
+s32 effect_C1_init(WORK* wk, s32 /*unused*/);
 #endif
 
 #endif

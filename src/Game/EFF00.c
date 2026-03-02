@@ -12,7 +12,8 @@ s32 get_dip_modoki2(s16 from, s8 fl);
 void renewal_table_address(WORK_Other_JUDGE* ewk, WORK* twk);
 void renewal_table_data(WORK_Other_JUDGE* ewk);
 
-void effect_00_move(WORK_Other_JUDGE* ewk) {
+void effect_00_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other_JUDGE* ewk = (WORK_Other_JUDGE*) wkp;
 #if defined(TARGET_PS2)
     s32 get_dip_modoki(s16 from, s32 fl);
     s32 get_dip_modoki2(s16 from, s32 fl);
@@ -173,7 +174,7 @@ void renewal_table_data(WORK_Other_JUDGE* ewk) {
     }
 }
 
-s32 effect_00_init(WORK* wk) {
+s32 effect_00_init(WORK* wk, s32 /*unused*/) {
     WORK_Other_JUDGE* ewk;
     s16 ix;
 

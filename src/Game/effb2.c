@@ -28,7 +28,8 @@ s32 fight_col_chg_sub(WORK_Other* ewk);
 
 // Funcs
 
-void effect_B2_move(WORK_Other* ewk) {
+void effect_B2_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     s16 work;
 
     b3_Break_Into_check(ewk);
@@ -53,7 +54,7 @@ void effect_B2_move(WORK_Other* ewk) {
         if (ewk->wu.hit_stop < 0) {
             ewk->wu.routine_no[0] += 1;
             ewk->wu.my_mr.size.y = 0;
-            effect_I6_init(ewk);
+            effect_I6_init((WORK*) ewk, 0);
             return;
         }
 
@@ -93,7 +94,7 @@ void effect_B2_move(WORK_Other* ewk) {
         if (ewk->wu.hit_stop < 0) {
             ewk->wu.routine_no[0] += 1;
             rf_b2_flag = 0;
-            effect_L5_init(ewk);
+            effect_L5_init((WORK*) ewk, 0);
             return;
         }
 
@@ -214,7 +215,7 @@ s32 fight_col_chg_sub(WORK_Other* ewk) {
     return 0;
 }
 
-s32 effect_B2_init() {
+s32 effect_B2_init(WORK* /*unused*/, s32 /*unused*/) {
     WORK_Other* ewk;
     s16 ix;
 
@@ -267,6 +268,6 @@ s32 effect_B2_init() {
         break;
     }
 
-    effect_B3_init(ewk);
+    effect_B3_init((WORK*) ewk, 0);
     return 0;
 }

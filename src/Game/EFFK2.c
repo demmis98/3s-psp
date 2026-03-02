@@ -223,7 +223,8 @@ const s16 k2_kidou[83][4] = {
 
 void (*const effK2_main_process[9])(WORK_Other *, DADD *);
 
-void effect_K2_move(WORK_Other* ewk) {
+void effect_K2_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -698,7 +699,7 @@ s32 effect_K2_init(WORK_Other* wk, u32* dad) {
     ewk->wu.xyz[0].disp.pos = 448;
     ewk->wu.xyz[1].disp.pos = 0;
     *ewk->wu.char_table = _bonus_char_table;
-    effect_K2_move(ewk);
+    effect_K2_move((WORK*) ewk, 0);
     return 0;
 }
 

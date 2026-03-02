@@ -7,7 +7,8 @@
 #include "Game/end_data.h"
 #include "Game/workuser.h"
 
-void effect_E9_move(WORK_Other* ewk) {
+void effect_E9_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     PAL_CURSOR ita;
     PAL_CURSOR_P ita_p[4];
     PAL_CURSOR_P ita_pos[4];
@@ -116,7 +117,7 @@ void effect_E9_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_E9_init() {
+s32 effect_E9_init(WORK* /*unused*/, s32 /*unused*/) {
     WORK_Other* ewk;
     s16 ix;
     s16 i;

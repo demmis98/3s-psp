@@ -46,7 +46,8 @@ const ColorTableIndex color_table_index[11] = {
     { 17, 24, coltbl_010_1P, coltbl_010_2P }
 };
 
-void effect_D9_move(WORK_Other* ewk) {
+void effect_D9_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     PLW* mwk = (PLW*)ewk->my_master;
 
     switch (ewk->wu.routine_no[0]) {

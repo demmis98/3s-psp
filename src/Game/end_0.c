@@ -109,7 +109,7 @@ void end_000_0000() {
         bgw_ptr->abs_x = bgw_ptr->xy[0].disp.pos;
         bgw_ptr->abs_y = 0;
         Bg_On_W(1);
-        effect_E6_init(0xA8);
+        effect_E6_init(NULL, 0xA8);
         Rewrite_End_Message(1);
         gill_quake_flag = gill_quake_flag2 = 1;
         break;
@@ -127,8 +127,8 @@ void end_000_0001() {
         bgw_ptr->abs_x = bgw_ptr->xy[0].disp.pos;
         bgw_ptr->abs_y = 0;
         Bg_On_W(1);
-        effect_E6_init(0xA9);
-        effect_E6_init(0xAB);
+        effect_E6_init(NULL, 0xA9);
+        effect_E6_init(NULL, 0xAB);
         Rewrite_End_Message(2);
         bgw_ptr->free = end_0_1_time[0];
         break;
@@ -139,7 +139,7 @@ void end_000_0001() {
         if (bgw_ptr->free < 1) {
             bgw_ptr->r_no_1++;
             bgw_ptr->free = gill_time[0];
-            effect_E6_init(0xAA);
+            effect_E6_init(NULL, 0xAA);
         }
 
         break;
@@ -227,7 +227,7 @@ void end_000_0002() {
             bgw_ptr->xy[1].disp.pos = end_0_pos[end_w.r_no_2][1];
             bgw_ptr->abs_x = bgw_ptr->xy[0].disp.pos;
             bgw_ptr->abs_y = 0;
-            effect_E6_init(0xAC);
+            effect_E6_init(NULL, 0xAC);
             end_no_cut = 1;
         }
 
@@ -255,7 +255,7 @@ void end_000_0003() {
         bgw_ptr->xy[1].disp.pos = end_0_pos[end_w.r_no_2][1];
         bgw_ptr->abs_x = bgw_ptr->xy[0].disp.pos;
         bgw_ptr->abs_y = 0;
-        effect_E6_init(0xAD);
+        effect_E6_init(NULL, 0xAD);
         Rewrite_End_Message(4);
         break;
 
@@ -292,7 +292,7 @@ void end_000_0004() {
 
     case 2:
         bgw_ptr->r_no_1++;
-        effect_E6_init(0xB0);
+        effect_E6_init(NULL, 0xB0);
         bgw_ptr->frame_deff = 0;
         bgw_ptr->r_limit = 1;
         /* fallthrough */
@@ -396,8 +396,8 @@ void end_001_0004() {
         bgw_ptr->xy[1].disp.pos = 0;
         bgw_ptr->abs_x = bgw_ptr->xy[0].disp.pos;
         bgw_ptr->abs_y = bgw_ptr->xy[1].disp.pos;
-        effect_E6_init(0xAE);
-        effect_E6_init(0xAF);
+        effect_E6_init(NULL, 0xAE);
+        effect_E6_init(NULL, 0xAF);
         bgw_ptr->speed_y = 0x340000 / gill_time[2];
         bgw_ptr->l_limit = gill_time[2];
         break;

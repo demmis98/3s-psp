@@ -14,7 +14,8 @@ const s16 parts_colcd_table[14] = {
 void get_new_parts_data(WORK_Other* ewk, PLW* mwk);
 void set_parts_disp_flag(WORK_Other* ewk, PLW* mwk);
 
-void effect_01_move(WORK_Other* ewk) {
+void effect_01_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     WORK* mwk = (WORK*)ewk->my_master;
 
     switch (ewk->wu.routine_no[0]) {
@@ -198,7 +199,8 @@ void set_parts_disp_flag(WORK_Other* ewk, PLW* mwk) {
     }
 }
 
-s32 effect_01_init(WORK* wk, u8 koolc) {
+s32 effect_01_init(WORK* wk, s32 d) {
+    u8 koolc = (u8) d;
     WORK_Other* ewk;
     s16 ix;
 

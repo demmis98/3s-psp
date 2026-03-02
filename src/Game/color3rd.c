@@ -1,11 +1,13 @@
 #include "Game/color3rd.h"
 #include "common.h"
+/*
 #include "sf33rd/AcrSDK/MiddleWare/PS2/CapSndEng/cse.h"
 #include "sf33rd/AcrSDK/MiddleWare/PS2/CapSndEng/emlMemMap.h"
 #include "sf33rd/AcrSDK/MiddleWare/PS2/CapSndEng/emlTSB.h"
 #include "sf33rd/AcrSDK/common/plcommon.h"
 #include "sf33rd/AcrSDK/ps2/flps2vram.h"
 #include "Common/PPGFile.h"
+*/
 #include "Game/DC_Ghost.h"
 #include "Game/GD3rd.h"
 #include "Game/RAMCNT.h"
@@ -54,9 +56,13 @@ Col3rd_W col3rd_w;
 
 // sbss
 COL* plcol[2];
-PixelFormat palFormRam;
-PixelFormat palFormSrc;
+//PixelFormat palFormRam;
+//PixelFormat palFormSrc;
 s32 palFormConv;
+
+//functions
+s32 cseTsbSetBankAddr(u32 bank, SoundEvent* addr) ;
+s32 cseMemMapSetPhdAddr(u32 bank, void* addr);
 
 // forward decls
 void palConvRowTim2CI8Clut(u16* src, u16* dst, s32 size);
@@ -82,11 +88,13 @@ void q_ldreq_color_data(REQ* curr) {
             if (sndCheckVTransStatus(0) == 0) {
                 break;
             }
+            /*
             if (cfn->data + 1 == cseGetIdStoredBd(curr->id + 1)) {
                 *curr->result |= lpr_wrdata[curr->id];
                 curr->be = 0;
                 break;
             }
+            */
         }
 
         curr->rno = 1;
@@ -130,10 +138,12 @@ void q_ldreq_color_data(REQ* curr) {
         case 1:
             if (cfn->type == 10) {
                 fsClose(curr);
+                /*
                 cseSendBd2SpuWithId((void*)Get_ramcnt_address(curr->key),
                                     Get_size_data_ramcnt_key(curr->key),
                                     curr->id + 1,
                                     cfn->data + 1);
+                */
                 curr->rno = 5;
             } else {
                 init_trans_color_ram(curr->id, curr->key, cfn->type, cfn->data);
@@ -167,11 +177,13 @@ void q_ldreq_color_data(REQ* curr) {
 }
 
 s32 cseTsbSetBankAddr(u32 bank, SoundEvent* addr) {
-    return mlTsbSetBankAddr(bank, addr);
+    //return mlTsbSetBankAddr(bank, addr);
+    return 0;
 }
 
 s32 cseMemMapSetPhdAddr(u32 bank, void* addr) {
-    return mlMemMapSetPhdAddr(bank, addr);
+    //return mlMemMapSetPhdAddr(bank, addr);
+    return 0;
 }
 
 void load_any_color(u16 ix, u8 kokey) {
@@ -390,7 +402,7 @@ void init_trans_color_ram(s16 id, s16 key, u8 type, u16 data) {
         break;
     }
     case 8:
-        cseSendBd2SpuWithId((void*)Get_ramcnt_address(key), Get_size_data_ramcnt_key(key), 0, 0);
+        //cseSendBd2SpuWithId((void*)Get_ramcnt_address(key), Get_size_data_ramcnt_key(key), 0, 0);
 
         while (!sndCheckVTransStatus(1)) {
             waitVsyncDummy();
@@ -400,7 +412,7 @@ void init_trans_color_ram(s16 id, s16 key, u8 type, u16 data) {
         break;
 
     case 10:
-        cseSendBd2SpuWithId((void*)Get_ramcnt_address(key), Get_size_data_ramcnt_key(key), id + 1, data + 1);
+        //cseSendBd2SpuWithId((void*)Get_ramcntl_address(key), Get_size_data_ramcnt_key(key), id + 1, data + 1);
 
         while (!sndCheckVTransStatus(1)) {
             waitVsyncDummy();
@@ -452,6 +464,7 @@ u16 palConvSrcToRam(u16 col) {
     u8 cG;
     u8 cB;
 
+    /*
     if (palFormConv == 0) {
         return col;
     }
@@ -461,9 +474,12 @@ u16 palConvSrcToRam(u16 col) {
     cG = palFormSrc.gm & (col >> palFormSrc.gs);
     cB = palFormSrc.bm & (col >> palFormSrc.bs);
     return (cA << palFormRam.as) | (cR << palFormRam.rs) | (cG << palFormRam.gs) | (cB << palFormRam.bs);
+    */
+    return 0;
 }
 
 void palCreateGhost() {
+    /*
     PPLFileHeader ppl;
     s32 key;
     s32 size;
@@ -517,10 +533,10 @@ void palCreateGhost() {
         adrs[i] = 0;
     }
 
-    ppgSetupPalChunkDir(&col3rd_w.palDC, &ppl, adrs, 0, 1);
+    //ppgSetupPalChunkDir(&col3rd_w.palDC, &ppl, adrs, 0, 1);
     Push_ramcnt_key(key);
 
-    ppl.palettes = 2;
+    //ppl.palettes = 2;
     size = 0x2000;
     key = Pull_ramcnt_key(size, 2, 0, 1);
     adrs = (u8*)Get_ramcnt_address(key);
@@ -529,8 +545,9 @@ void palCreateGhost() {
         adrs[i] = 0;
     }
 
-    ppgSetupPalChunkDir(&col3rd_w.palCP3, &ppl, adrs, 0, 1);
+    //ppgSetupPalChunkDir(&col3rd_w.palCP3, &ppl, adrs, 0, 1);
     Push_ramcnt_key(key);
+    */
 }
 
 Palette* palGetChunkGhostDC() {
@@ -542,6 +559,7 @@ Palette* palGetChunkGhostCP3() {
 }
 
 void palUpdateGhostDC() {
+    /*
     plContext bits;
     s32 i;
     u16* srcAdrs;
@@ -549,30 +567,32 @@ void palUpdateGhostDC() {
 
     for (i = 0; i < col3rd_w.palDC.total; i++) {
         if (col3rd_w.upBits & (1 << i)) {
-            flLockPalette(NULL, col3rd_w.palDC.handle[i], &bits, 2);
+            //flLockPalette(NULL, col3rd_w.palDC.handle[i], &bits, 2);
             dstAdrs = bits.ptr;
             srcAdrs = &colPalBuffDC[i << 6];
-            palConvRowTim2CI8Clut(srcAdrs, dstAdrs, 0x40);
-            flUnlockPalette(col3rd_w.palDC.handle[i]);
+            //palConvRowTim2CI8Clut(srcAdrs, dstAdrs, 0x40);
+            //flUnlockPalette(col3rd_w.palDC.handle[i]);
         }
     }
-
-    col3rd_w.upBits = 0;
+    */
+    col3rd_w.upBits = 0;  
 }
 
 void palUpdateGhostCP3(s32 pal, s32 nums) {
+    /*
     plContext bits;
     s32 i;
     u16* srcAdrs;
     u16* dstAdrs;
 
     for (i = pal; i < (pal + nums); i++) {
-        flLockPalette(NULL, col3rd_w.palCP3.handle[i], &bits, 2);
+        //flLockPalette(NULL, col3rd_w.palCP3.handle[i], &bits, 2);
         dstAdrs = bits.ptr;
         srcAdrs = (u16*)&ColorRAM[i];
         palConvRowTim2CI8Clut(srcAdrs, dstAdrs, 0x40);
-        flUnlockPalette(col3rd_w.palCP3.handle[i]);
+        //flUnlockPalette(col3rd_w.palCP3.handle[i]);
     }
+    */
 }
 
 void palConvRowTim2CI8Clut(u16* src, u16* dst, s32 size) {

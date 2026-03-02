@@ -1,6 +1,6 @@
 #include "Game/cmb_win.h"
 #include "common.h"
-#include "gcc/memory.h"
+//#include "gcc/memory.h"
 #include "Game/EFFECT.h"
 #include "Game/Grade.h"
 #include "Game/PLCNT.h"
@@ -10,6 +10,7 @@
 #include "Game/sc_sub.h"
 #include "Game/workuser.h"
 
+#include <string.h>
 // bss
 CMST_BUFF cmst_buff[2][5];
 

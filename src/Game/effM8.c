@@ -114,7 +114,7 @@ void effm8_move_win(WORK_Other* ewk) {
 }
 
 s32 effect_M8_init(WORK* oya, s32 d) {
-    u8 data = (u8) s32 d;
+    u8 data = (u8) d;
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

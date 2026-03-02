@@ -142,7 +142,8 @@ const s16 thunder_set_pos_SKB[20][4] = { { 2, 5, 1, 23 }, { 2, 5, 1, 23 }, { 2, 
 void effE2_sort_push(WORK* ewk, WORK* mwk);
 void effe2_erase_or_die(WORK* wk);
 
-void effect_E2_move(WORK_Other* ewk) {
+void effect_E2_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif

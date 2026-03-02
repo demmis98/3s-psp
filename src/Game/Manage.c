@@ -367,7 +367,7 @@ void Game_Manage_2_2() {
         Message_Suicide[ix] = 0;
     }
 
-    if (effect_84_init()) {
+    if (effect_84_init(NULL, 0)) {
         return;
     }
 
@@ -421,7 +421,7 @@ void Game_Manage_2_3() {
     }
 
     C_No[1]++;
-    effect_B2_init();
+    effect_B2_init(NULL, 0);
 }
 
 void Game_Manage_2_4() {
@@ -637,7 +637,7 @@ void Game_Manage_5_4() {
         Cover_Timer = 5;
         Suicide[6] = 1;
         judge_flag = 1;
-        effect_J4_init(0xFF);
+        effect_J4_init(NULL, 0xFF);
         compel_bg_init_position();
         pcon_rno[0] = 0;
         pcon_rno[1] = 0;
@@ -1936,7 +1936,7 @@ void Game_Manage_12_0() {
     Suicide[6] = 0;
     Suicide[5] = 0;
 
-    if (effect_84_init()) {
+    if (effect_84_init(NULL, 0)) {
         return;
     }
 

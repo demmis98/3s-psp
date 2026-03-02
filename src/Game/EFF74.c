@@ -14,7 +14,8 @@ const s16 EFF74_Pos_Data[3][2][2] = { { { 0, 148 }, { 0, 116 } },
 
 void (*const EFF74_Jmp_Tbl[5])(WORK_Other *);
 
-void effect_74_move(WORK_Other* ewk) {
+void effect_74_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void set_char_move_init2(WORK * wk, s32 koc, s32 index, s32 ip, s32 scf);
 #endif

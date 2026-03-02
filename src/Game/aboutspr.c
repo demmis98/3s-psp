@@ -1,6 +1,6 @@
 #include "Game/aboutspr.h"
 #include "common.h"
-#include "sf33rd/AcrSDK/ps2/foundaps2.h"
+//#include "sf33rd/AcrSDK/ps2/foundaps2.h"
 #include "Game/AcrUtil.h"
 #include "Game/CHARID.h"
 #include "Game/DC_Ghost.h"
@@ -206,10 +206,12 @@ void Mtrans_use_trans_mode(WORK* wk, s16 bsy) {
         // Original text: "ＭＴＳの初期化前に表示要求が入りました。ＭＴＳ番号：%d\n"
         // For some reason MWCC (or mwccgap) removes a single byte from the string, resulting in a mismatch.
         // single byte.
+        /*
         flLogOut("\x82\x6c\x82\x73\x82\x72\x82\xcc\x8f\x89\x8a\xfa\x89\xbb\x91\x4f\x82\xc9\x95\x5c\x8e\xa6\x97\x76\x8b"
                  "\x81\x82\xaa\x93\xfc\x82\xe8\x82\xdc\x82\xb5\x82\xbd\x81\x42\x82\x6c\x82\x73\x82\x72\x94\xd4\x8d\x86"
                  "\x81\x46\x25\x64\x0a",
                  wk->my_mts);
+        */
         return;
     }
     if (!No_Trans) {

@@ -13,7 +13,8 @@
 
 const s16 eff29_vanish_time[8] = { 480, 600, 300, 240, 200, 340, 500, 360 };
 
-void effect_29_move(WORK_Other* ewk) {
+void effect_29_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -62,7 +63,7 @@ void effect_29_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_29_init() {
+s32 effect_29_init(WORK* /*unused*/, s32 /*unused*/) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

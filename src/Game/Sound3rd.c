@@ -1,5 +1,6 @@
 #include "Game/Sound3rd.h"
 #include "common.h"
+/*
 #include "sf33rd/AcrSDK/MiddleWare/PS2/ADX/flADX.h"
 #include "sf33rd/AcrSDK/MiddleWare/PS2/CapSndEng/cse.h"
 #include "sf33rd/AcrSDK/MiddleWare/PS2/CapSndEng/emlMemMap.h"
@@ -7,6 +8,7 @@
 #include "sf33rd/AcrSDK/MiddleWare/PS2/CapSndEng/emlTSB.h"
 #include "sf33rd/AcrSDK/ps2/flps2debug.h"
 #include "Common/PPGFile.h"
+*/
 #include "Game/EFFECT.h"
 #include "Game/GD3rd.h"
 #include "Game/RAMCNT.h"
@@ -18,9 +20,9 @@
 #include "Game/debug/Debug.h"
 #include "Game/main.h"
 #include "Game/workuser.h"
-#include "PS2/cseDataFiles/CSEData.h"
+//#include "PS2/cseDataFiles/CSEData.h"
 #include "structs.h"
-#include <cri/ee/cri_mw.h>
+//#include <cri/ee/cri_mw.h>
 
 #define ADX_STM_WORK_SIZE 252388
 
@@ -34,7 +36,7 @@ s16 bgm_half_down;
 s16 current_bgm;
 s16 bgm_seamless_always;
 BGMFade bgm_fade;
-ADXT adxt;
+//ADXT adxt;
 BGMExecution bgm_exe;
 BGMRequest bgm_req;
 s8* sdbd[3];
@@ -43,6 +45,11 @@ s8* sdbd[3];
 u8 adx_VS[198954];
 u8 adx_EmSel[391168];
 s8 adx_stm_work[ADX_STM_WORK_SIZE];
+
+// functions
+s32 cseSysSetMono(u32 mono_sw);
+s32 cseSysSetMasterVolume(s32 vol);
+s32 cseSeStopAll();
 
 // data
 BGMTableEntry bgm_tableDC[68] = {
@@ -105,13 +112,18 @@ BGMExecutionData bgm_exdataAC[32] = {
 };
 
 // sdata
+SoundEvent* cseTSBDataTable[21];
+/*
 SoundEvent* cseTSBDataTable[21] = { TSB_SE,   TSB_PL00, TSB_PL01, TSB_PL02, TSB_PL03, TSB_PL04, TSB_PL05,
                                     TSB_PL06, TSB_PL07, TSB_PL08, TSB_PL09, TSB_PL10, TSB_PL11, TSB_PL12,
                                     TSB_PL13, TSB_PL14, TSB_PL15, TSB_PL16, TSB_PL17, TSB_PL18, TSB_PL19 };
-
+*/
+s8* csePHDDataTable[21];
+/*
 s8* csePHDDataTable[21] = { PHD_SE,   PHD_PL00, PHD_PL01, PHD_PL02, PHD_PL03, PHD_PL04, PHD_PL05,
                             PHD_PL06, PHD_PL07, PHD_PL08, PHD_PL09, PHD_PL10, PHD_PL11, PHD_PL12,
                             PHD_PL13, PHD_PL14, PHD_PL15, PHD_PL16, PHD_PL17, PHD_PL18, PHD_PL19 };
+*/
 
 u8 adx_NowOnMemoryType = 0xFF;
 
@@ -141,17 +153,17 @@ void Init_sound_system() {
     bgm_seamless_always = 0;
     sys_w.sound_mode = 0;
     sys_w.bgm_type = 0;
-    flAdxInitialize(NULL, "\\THIRD\\");
-    ADXT_Init();
-    adxt = ADXT_Create(2, adx_stm_work, ADX_STM_WORK_SIZE);
+    //flAdxInitialize(NULL, "\\THIRD\\");
+    //ADXT_Init();
+    //adxt = ADXT_Create(2, adx_stm_work, ADX_STM_WORK_SIZE);
     system_init_level |= 2;
-    cseInitSndDrv();
+    //cseInitSndDrv();
     system_init_level |= 1;
 }
 
 s32 sndCheckVTransStatus(s32 type) {
     s32 rnum = 0;
-
+    /*
     switch (type) {
     case 0:
         if (cseCheckVTransStatus(0) >= 0) {
@@ -167,19 +179,20 @@ s32 sndCheckVTransStatus(s32 type) {
 
         break;
     }
-
+    */
     return rnum;
 }
 
 void sndInitialLoad() {
-    cseMemMapInit(&SpuMap);
-    cseMemMapSetPhdAddr(0, *csePHDDataTable);
-    cseTsbSetBankAddr(0, *cseTSBDataTable);
+    //cseMemMapInit(&SpuMap);
+    //cseMemMapSetPhdAddr(0, *csePHDDataTable);
+    //cseTsbSetBankAddr(0, *cseTSBDataTable);
     load_any_color(109, 20); // This loads SE.bd (index 7)
 }
 
 s32 cseMemMapInit(void* pSpuMemMap) {
-    return mlMemMapInit(pSpuMemMap);
+    //return mlMemMapInit(pSpuMemMap);
+    return 0;
 }
 
 void checkAdxFileLoaded() {
@@ -202,16 +215,16 @@ void checkAdxFileLoaded() {
     } while (key == 0);
 
     adr = (u8*)Get_ramcnt_address(key);
-    ppgSetupCmpChunk(adr, 0, adx_VS);
-    ppgSetupCmpChunk(adr, 1, adx_EmSel);
+    //ppgSetupCmpChunk(adr, 0, adx_VS);
+    //ppgSetupCmpChunk(adr, 1, adx_EmSel);
     Push_ramcnt_key(key);
     adx_NowOnMemoryType = sys_w.bgm_type;
 }
 
 void Exit_sound_system() {
     if (system_init_level & 2) {
-        ADXT_Destroy(adxt);
-        ADXT_Finish();
+        //ADXT_Destroy(adxt);
+        //ADXT_Finish();
         system_init_level &= ~2;
     }
 
@@ -238,8 +251,8 @@ void spu_all_off() {
 }
 
 s32 cseSeStopAll() {
-    mlTsbStopAll();
-    mlSeStopAll();
+    //mlTsbStopAll();
+    //mlSeStopAll();
     return 0;
 }
 
@@ -249,8 +262,7 @@ void sound_bgm_off() {
     }
 }
 
-void setSeVolume() {
-    f32 vol;
+void setSeVolume(f32 vol) {
 
     if (system_init_level & 2) {
         vol = (127.0f / 15.0f) * se_level;
@@ -259,18 +271,20 @@ void setSeVolume() {
 }
 
 s32 cseSysSetMasterVolume(s32 vol) {
-    return mlSysSetMasterVolume(vol);
+    //return mlSysSetMasterVolume(vol);
+    return 0;
 }
 
 void setupSoundMode() {
     if (system_init_level & 2) {
         cseSysSetMono(sys_w.sound_mode);
-        ADXT_SetOutputMono(sys_w.sound_mode);
+        //ADXT_SetOutputMono(sys_w.sound_mode);
     }
 }
 
 s32 cseSysSetMono(u32 mono_sw) {
-    return mlSysSetMono(mono_sw);
+    //return mlSysSetMono(mono_sw);
+    return 0;
 }
 
 void sound_request_for_dc(SoundPatchConfig* rmc, s16 pan) {
@@ -287,7 +301,7 @@ void sound_request_for_dc(SoundPatchConfig* rmc, s16 pan) {
             rmc->port = 0;
         }
 
-        cseTsbRequest(rmc->ptix, rmc->code, 2, 6, pan, 2, rmc->port);
+        //cseTsbRequest(rmc->ptix, rmc->code, 2, 6, pan, 2, rmc->port);
         return;
     }
 
@@ -341,6 +355,7 @@ void sound_request_for_dc(SoundPatchConfig* rmc, s16 pan) {
 }
 
 void BGM_Server() {
+    /*
 #if defined(TARGET_PS2)
     void bgm_volume_setup(s32 data);
 #endif
@@ -482,7 +497,7 @@ void BGM_Server() {
             bgm_fade.in.cal = 0;
             bgm_exe.rno = 1;
             /* fallthrough */
-
+    /*
         case 1:
             if (adx_now_playing() == 0) {
                 bgm_exe.rno = 3;
@@ -493,7 +508,7 @@ void BGM_Server() {
             }
 
             /* fallthrough */
-
+    /*
         case 2:
             bgm_fade.in.cal += bgm_fade.speed;
             bgm_volume_setup(bgm_fade.in.dex.hi);
@@ -503,7 +518,7 @@ void BGM_Server() {
             }
 
             /* fallthrough */
-
+    /*
         default:
             bgm_exe.kind = 1;
             break;
@@ -567,7 +582,7 @@ void BGM_Server() {
             bgm_fade.in.dex.hi = -bgm_vol_mix;
             bgm_fade.in.dex.low = -0x8000;
             /* fallthrough */
-
+    /*
         case 1:
             if (adx_now_playing() != 0) {
                 bgm_exe.rno = 2;
@@ -577,7 +592,7 @@ void BGM_Server() {
             }
 
             /* fallthrough */
-
+    /*
         case 2:
             bgm_fade.in.cal += bgm_fade.speed;
             bgm_volume_setup(bgm_fade.in.dex.hi);
@@ -587,7 +602,7 @@ void BGM_Server() {
             }
 
             /* fallthrough */
-
+    /*
         default:
             bgm_exe.kind = 0;
             break;
@@ -615,6 +630,7 @@ void BGM_Server() {
 
         bgm_play_request(bgm_exe.exEntry, 0);
     }
+    */
 }
 
 s32 bgm_separate_check() {
@@ -630,14 +646,17 @@ void setupAlwaysSeamlessFlag(s16 flag) {
 }
 
 void bgm_play_request(s32 filenum, s32 flag) {
+    /*
     if (flag == 0) {
         ADXT_EntryAfs(adxt, 0, filenum);
     } else {
         ADXT_StartAfs(adxt, 0, bgm_table[sys_w.bgm_type][filenum].fnum);
     }
+    */
 }
 
 void bgm_seamless_clear() {
+    /*
     if (!bgm_exe.nowSeamless) {
         return;
     }
@@ -647,9 +666,11 @@ void bgm_seamless_clear() {
     ADXT_ResetEntry(adxt);
     ADXT_Destroy(adxt);
     adxt = ADXT_Create(2, adx_stm_work, ADX_STM_WORK_SIZE);
+    */
 }
 
 void bgm_volume_setup(s16 data) {
+    /*
     s16 bhd;
 
     bgm_fade_ix = data;
@@ -677,25 +698,28 @@ void bgm_volume_setup(s16 data) {
     }
 
     ADXT_SetOutVol(adxt, adx_volume[bgm_vol_now]);
+    */
 }
 
 s32 adx_now_playing() {
+    /*
     bgm_exe.state = ADXT_GetStat(adxt);
 
     if ((bgm_exe.state == ADXT_STAT_PLAYING) || (bgm_exe.state == ADXT_STAT_DECEND)) {
         return 1;
     }
-
+    */
     return 0;
 }
 
 s32 adx_now_playend() {
+    /*
     bgm_exe.state = ADXT_GetStat(adxt);
 
     if (bgm_exe.state == ADXT_STAT_PLAYEND) {
         return 1;
     }
-
+    */
     return 0;
 }
 
@@ -835,7 +859,7 @@ u16 remake_sound_code_for_DC(u16 code, SoundPatchConfig* rmcode) {
         rnum = 1;
 
         while (1) {
-            flPrintL(3, 5, "BAD SE CODE %X", code);
+            //flPrintL(3, 5, "BAD SE CODE %X", code);
             njWaitVSync_with_N();
         }
 

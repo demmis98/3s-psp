@@ -34,8 +34,8 @@ void bbbs_com_execute2(PLW* wk) {
         wk->wu.xyz[0].disp.pos = 468;
         wk->wu.xyz[1].disp.pos = 0;
         effect_C2_init(&wk->wu, 0);
-        effect_16_init(wk, 0);
-        effect_16_init(wk, 1);
+        effect_16_init((WORK*) wk, 0);
+        effect_16_init((WORK*) wk, 1);
         Bonus_Stage_RNO[1] = 1;
 
         break;

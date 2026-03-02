@@ -188,7 +188,7 @@ void caught_cg_type_check(PLW* wk, PLW* emwk) {
         break;
 
     case 3:
-        effect_A7_init(wk);
+        effect_A7_init((WORK*) wk, 0);
         wk->wu.cg_type = 0;
         break;
 
@@ -261,10 +261,10 @@ void scdmd_12000(PLW* wk) {
         return;
     }
 
-    setup_accessories(wk, wk->wu.pat_status);
+    setup_accessories((WORK*) wk, wk->wu.pat_status);
 
     if (wk->wu.dm_attribute != 2) {
-        effect_D9_init(wk, (u8)wk->wu.dm_attribute);
+        effect_D9_init((WORK*) wk, (u8)wk->wu.dm_attribute);
     }
 }
 
@@ -296,10 +296,10 @@ void scdmd_18000(PLW* wk) {
         return;
     }
 
-    setup_accessories(wk, wk->wu.pat_status);
+    setup_accessories((WORK*) wk, wk->wu.pat_status);
 
     if (wk->wu.dm_attribute != 2) {
-        effect_D9_init(wk, (u8)wk->wu.dm_attribute);
+        effect_D9_init((WORK*) wk, (u8)wk->wu.dm_attribute);
     }
 }
 

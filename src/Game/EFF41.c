@@ -38,7 +38,8 @@ const s16 sa_sign_data[69][5] = {
 
 void (*const eff41_main_process[2])(WORK_Other *, PLW *) = { eff41_process_00, eff41_process_01 };
 
-void effect_41_move(WORK_Other* ewk) {
+void effect_41_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
     void push_color_trans_req(s32 from_col, s16 to_col);

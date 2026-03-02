@@ -9,7 +9,8 @@
 #include "Game/color3rd.h"
 #include "Game/workuser.h"
 
-void effect_K9_move(WORK_Other* ewk) {
+void effect_K9_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     WORK* mwk = (WORK*)ewk->my_master;
 
     switch (ewk->wu.routine_no[0]) {

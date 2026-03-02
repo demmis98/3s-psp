@@ -38,7 +38,7 @@ void Att_PL12_TOKUSHUKOUDOU(PLW* wk) {
             break;
         }
 
-        if (effect_D7_init(wk)) {
+        if (effect_D7_init((WORK*) wk, 0)) {
             set_char_move_init(&wk->wu, 5, wk->as->char_ix + 1);
             break;
         }

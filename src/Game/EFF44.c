@@ -44,7 +44,8 @@ const s16 eff44_data_tbl9[16] = { 0, 2, 8492, 720, 80, 83, 5, 0, 0, 2, 300, 286,
 const s16* scr_obj_data44[10] = { eff44_data_tbl0, eff44_data_tbl1, eff44_data_tbl2, eff44_data_tbl3, eff44_data_tbl4,
                                   eff44_data_tbl5, eff44_data_tbl6, eff44_data_tbl7, eff44_data_tbl8, eff44_data_tbl9 };
 
-void effect_44_move(WORK_Other* ewk) {
+void effect_44_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif

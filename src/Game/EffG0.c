@@ -18,7 +18,8 @@ const u16 bunkai_numobj_G0[10] = { 27159, 27160, 27161, 27162, 27163, 27164, 271
 const CONN Result_Score[6] = { { 40, 0, 0, 27159 }, { 32, 0, 0, 27159 }, { 24, 0, 0, 27159 },
                                { 16, 0, 0, 27159 }, { 8, 0, 0, 27159 },  { 0, 0, 0, 27159 } };
 
-void effect_G0_move(WORK_Other* ewk) {
+void effect_G0_move(WORK* wkp, s32/*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     switch (ewk->wu.routine_no[0]) {
     case 0:
         switch (ewk->wu.routine_no[1]) {

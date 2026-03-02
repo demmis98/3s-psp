@@ -6,7 +6,8 @@
 #include "Game/bg.h"
 #include "Game/workuser.h"
 
-void effect_A1_move(WORK_Other* ewk) {
+void effect_A1_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     s16 x;
 
     ewk->wu.disp_flag = 0;

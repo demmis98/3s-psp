@@ -14,7 +14,8 @@ const s16 eff86_data_tbl00[7] = { 0, 2, 8224, 511, 56, 10, 18 };
 
 const s16* eff86_adrs_tbl[1] = { eff86_data_tbl00 };
 
-void effect_86_move(WORK_Other* ewk) {
+void effect_86_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     void (*eff86_jp_tbl[1])(WORK_Other*) = { eff86_0000 };
 
     switch (ewk->wu.routine_no[0]) {

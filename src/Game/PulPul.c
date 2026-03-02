@@ -1,8 +1,8 @@
 #include "Game/PulPul.h"
 #include "common.h"
-#include "sdk/libvib.h"
-#include "sf33rd/AcrSDK/common/mlPAD.h"
-#include "sf33rd/AcrSDK/ps2/ps2PAD.h"
+//#include "sdk/libvib.h"
+//#include "sf33rd/AcrSDK/common/mlPAD.h"
+//#include "sf33rd/AcrSDK/ps2/ps2PAD.h"
 #include "Game/GD3rd.h"
 #include "Game/PLCNT.h"
 #include "Game/SYS_sub.h"
@@ -300,10 +300,13 @@ void move_pulpul_work() {
 }
 
 s32 chkVibUnit(s32 port) {
+    /*
     if (((flpad_adr)[0][port].kind == 0) || ((flpad_adr)[0][port].kind) == 0x8000)
         return 0;
 
     return (flpad_adr)[0][port].conn.gc.etc1;
+    */
+    return 0;
 }
 
 void move_pulpul(PPWORK* wk) {
@@ -440,7 +443,7 @@ s32 vibParamTrans(s32 id, PULPARA* prm) {
     u8 vib_data[2];
     u8 profile;
 
-    profile = ps2slot[id].vprofile & 3;
+    //profile = ps2slot[id].vprofile & 3;
     if ((prm->power == 0) || (prm->unit == 0) || (profile == 0)) {
         switch (profile) {
         case 1:
@@ -480,7 +483,7 @@ s32 vibParamTrans(s32 id, PULPARA* prm) {
         }
     }
 
-    rnum = sceVibSetActParam(ps2slot[id].socket_id, 1, &profile, vib_data_size, vib_data);
+    //rnum = sceVibSetActParam(ps2slot[id].socket_id, 1, &profile, vib_data_size, vib_data);
 
     return rnum == 1;
 }
@@ -516,19 +519,19 @@ s32 pp_conv_kow(u8 num) {
     return dokidoki_ix_change_table[ix];
 }
 
-void pp_pulpara_remake_at_init() {
+void pp_pulpara_remake_at_init(WORK* /*unused*/) {
     // do nothing
 }
 
-void pp_pulpara_remake_at_init2() {
+void pp_pulpara_remake_at_init2(PLW* /*unused*/) {
     // do nothing
 }
 
-void pp_pulpara_remake_at_hit() {
+void pp_pulpara_remake_at_hit(PLW* /*unused*/) {
     // do nothing
 }
 
-void pp_pulpara_remake_at() {
+void pp_pulpara_remake_at(PLW* /*unused*/) {
     // do nothing
 }
 
@@ -591,7 +594,7 @@ void pp_pulpara_caught(WORK* wk) {
     pulpul_request(wk->id, 0x23);
 }
 
-void pp_pulpara_remake_nm_move(s32 arg0) {
+void pp_pulpara_remake_nm_move(PLW* /*unused*/) {
     // do nothing
 }
 

@@ -15,7 +15,8 @@ const s16 eff77_data_tbl[7][2] = { { 64, 0 }, { 2, 0 }, { 1, 1 }, { 32, 1 }, { 2
 
 const u32 eff77_col_tbl[2] = { 0xFFFFFFFF, 0xFF000000 };
 
-void effect_77_move(WORK_Other* ewk) {
+void effect_77_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void Bg_Off_R(u32 s_prm);
     void Bg_On_R(u32 s_prm);

@@ -6,7 +6,8 @@
 #include "Game/eff08.h"
 #include "Game/workuser.h"
 
-void effect_14_move(WORK_Other* ewk) {
+void effect_14_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     if (Suicide[5] & 0x80) {
         push_effect_work(&ewk->wu);
         return;
@@ -61,6 +62,6 @@ s32 effect_14_init(s16 id, s16 x, s16 y, s16 atr) {
     ewk->wu.position_y = y;
     ewk->wu.my_col_code = atr;
     Disp_Bonus_Contents = 0;
-    effect_14_move((WORK_Other*)ewk);
+    effect_14_move((WORK*)ewk, 0);
     return 0;
 }

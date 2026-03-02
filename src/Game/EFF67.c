@@ -6,7 +6,8 @@
 #include "Game/aboutspr.h"
 #include "Game/texcash.h"
 
-void effect_67_move(WORK_Other_CONN* ewk) {
+void effect_67_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other_CONN* ewk = (WORK_Other_CONN*) wkp;
 #if defined(TARGET_PS2)
     void set_char_move_init2(WORK * wk, s32 koc, s32 index, s32 ip, s32 scf);
 #endif

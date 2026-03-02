@@ -23,7 +23,8 @@ s32 my_ball_live_check(PLW* wk);
 
 const s16 effD7_hit_box[2][4] = { { -9, 17, -6, 12 }, { -4, 10, 114, 9 } };
 
-void effect_D7_move(WORK_Other* ewk) {
+void effect_D7_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     switch (ewk->wu.routine_no[0]) {
     case 0:
         ewk->wu.routine_no[0]++;
@@ -344,7 +345,8 @@ u8 screen_range_check_effD7(WORK* wk) {
     return 0;
 }
 
-s32 effect_D7_init(PLW* wk) {
+s32 effect_D7_init(WORK* wkp, s32 /*unused*/) {
+    PLW* wk = (PLW*) wkp;
     WORK_Other* ewk;
     s16 ix;
 

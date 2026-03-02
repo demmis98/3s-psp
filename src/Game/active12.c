@@ -3,7 +3,7 @@
 #include "Game/Com_Sub.h"
 #include "Game/workuser.h"
 
-void (*const Pattern12_Tbl[86])();
+void (*const Pattern12_Tbl[86])(PLW*);
 
 void Computer12(PLW* wk) {
     Pattern12_Tbl[(s16)Pattern_Index[wk->wu.id]](wk);

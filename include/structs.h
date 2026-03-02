@@ -59,9 +59,39 @@ typedef struct {
     u8 useChar[20];        // offset 0x38, size 0x14
 } MPP;
 
+typedef struct {
+    // total size: 0xC
+    s16 x;   // offset 0x0, size 0x2
+    s16 y;   // offset 0x2, size 0x2
+    s16 pow; // offset 0x4, size 0x2
+    s16 ang; // offset 0x6, size 0x2
+    f32 rad; // offset 0x8, size 0x4
+} PAD_STICK;
+
+typedef struct {
+    // total size: 0x34
+    u8 state;           // offset 0x0, size 0x1
+    u8 anstate;         // offset 0x1, size 0x1
+    u16 kind;           // offset 0x2, size 0x2
+    u32 sw;             // offset 0x4, size 0x4
+    u32 sw_old;         // offset 0x8, size 0x4
+    u32 sw_new;         // offset 0xC, size 0x4
+    u32 sw_off;         // offset 0x10, size 0x4
+    u32 sw_chg;         // offset 0x14, size 0x4
+    u32 sw_repeat;      // offset 0x18, size 0x4
+    PAD_STICK stick[2]; // offset 0x1C, size 0x18
+} IOPad;
+
+typedef struct {
+    // total size: 0x6C
+    IOPad data[2]; // offset 0x0, size 0x68
+    u16 sw[2];     // offset 0x68, size 0x4
+} IO;
+
+
 struct _TASK {
     // total size: 0x14
-    void (*func_adrs)();     // offset 0x0, size 0x4
+    void (*func_adrs)(struct _TASK*);     // offset 0x0, size 0x4
     void (*callback_adrs)(); // offset 0x4, size 0x4
     u8 r_no[4];              // offset 0x8, size 0x4
     u16 condition;           // offset 0xC, size 0x2
@@ -1024,6 +1054,24 @@ typedef struct {
 } BG_POS;
 
 typedef struct {
+    // total size: 0x10
+    union POS_FLOAT family_x;      // offset 0x0, size 0x4
+    union POS_FLOAT family_x_buff; // offset 0x4, size 0x4
+    union POS_FLOAT family_y;      // offset 0x8, size 0x4
+    union POS_FLOAT family_y_buff; // offset 0xC, size 0x4
+} FM_POS;
+
+typedef struct {
+    // total size: 0x14
+    u8 bg_num;          // offset 0x0, size 0x1
+    const s16* rwd_ptr; // offset 0x4, size 0x4
+    const s16* brw_ptr; // offset 0x8, size 0x4
+    s16 rw_cnt;         // offset 0xC, size 0x2
+    s16 rwgbix;         // offset 0xE, size 0x2
+    s16 gbix;           // offset 0x10, size 0x2
+} RW_DATA;
+
+typedef struct {
     // total size: 0x4C
     s16 offence_total;  // offset 0x0, size 0x2
     s16 defence_total;  // offset 0x2, size 0x2
@@ -1080,6 +1128,22 @@ typedef struct {
 } GradeFinalData;
 
 typedef struct {
+    // total size: 0x8
+    s16 x;    // offset 0x0, size 0x2
+    s16 y;    // offset 0x2, size 0x2
+    u16 attr; // offset 0x4, size 0x2
+    u16 code; // offset 0x6, size 0x2
+} TileMapEntry;
+
+typedef struct {
+    // total size: 0x8
+    s16 cyerw; // offset 0x0, size 0x2
+    s16 cred;  // offset 0x2, size 0x2
+    s16 ored;  // offset 0x4, size 0x2
+    s8 colnum; // offset 0x6, size 0x1
+} VIT;
+
+typedef struct {
     // total size: 0xA
     s16 offence_total;  // offset 0x0, size 0x2
     s16 defence_total;  // offset 0x2, size 0x2
@@ -1099,6 +1163,16 @@ typedef struct {
 } JudgeCom;
 
 typedef struct {
+    s16 cstn;         // offset 0x0, size 0x2
+    s8 sflag;         // offset 0x2, size 0x1
+    s8 osflag;        // offset 0x3, size 0x1
+    s8 g_or_s;        // offset 0x4, size 0x1
+    s8 stimer;        // offset 0x5, size 0x1
+    s16 slen;         // offset 0x6, size 0x2
+    s8 proccess_dead; // offset 0x8, size 0x1
+} SDAT;
+
+typedef struct {
     // total size: 0x10
     s16 pos_x;  // offset 0x0, size 0x2
     s16 pos_y;  // offset 0x2, size 0x2
@@ -1110,6 +1184,16 @@ typedef struct {
     u8 cg_flp;  // offset 0xD, size 0x1
     s16 kowaza; // offset 0xE, size 0x2
 } ZanzouTableEntry;
+
+typedef struct {
+    // total size: 0xC
+    s16 be;    // offset 0x0, size 0x2
+    s16 mincg; // offset 0x2, size 0x2
+    s16 min16; // offset 0x4, size 0x2
+    s16 min32; // offset 0x6, size 0x2
+    s16 key0;  // offset 0x8, size 0x2
+    s16 key1;  // offset 0xA, size 0x2
+} MTS_OK;
 
 typedef union {
     s32 pl;    // offset 0x0, size 0x4
@@ -1141,6 +1225,35 @@ typedef union {
     s32 psi;    // offset 0x0, size 0x4
     LoHi16 pss; // offset 0x0, size 0x4
 } MS;
+
+typedef struct {
+    // total size: 0x8
+    union {
+        s16 full; // offset 0x0, size 0x2
+        struct {
+            // total size: 0x2
+            s8 l; // offset 0x0, size 0x1
+            s8 h; // offset 0x1, size 0x1
+        } half;   // offset 0x0, size 0x2
+    } size;       // offset 0x0, size 0x2
+    s32 step;     // offset 0x4, size 0x4
+} Round_Timer;
+
+typedef struct {
+    // total size: 0x1C
+    s16 x_pos_num;   // offset 0x0, size 0x2
+    s8 routine_num;  // offset 0x2, size 0x1
+    u8 hit_hi;       // offset 0x3, size 0x1
+    u8 hit_low;      // offset 0x4, size 0x1
+    s8 kind;         // offset 0x5, size 0x1
+    u32 pts;         // offset 0x8, size 0x4
+    s8 pts_digit[4]; // offset 0xC, size 0x4
+    s8 pts_flag;     // offset 0x10, size 0x1
+    s8 first_digit;  // offset 0x11, size 0x1
+    u8 move[2];      // offset 0x12, size 0x2
+    u8 x_posnum[2];  // offset 0x14, size 0x2
+    s16 timer[2];    // offset 0x16, size 0x4
+} CMST_BUFF;
 
 typedef union {
     s32 dy;    // offset 0x0, size 0x4
@@ -1334,6 +1447,23 @@ typedef struct {
     s8 power;
     u8 freq;
 } PULPARA;
+
+typedef struct {
+    u16 low;
+    u16 hi;
+} PUL_UNI_HILO;
+
+typedef union {
+    s32 cal;
+    PUL_UNI_HILO num;
+} PUL_UNION;
+
+typedef struct {
+    s16 pow_ans;
+    s16 tim_ans;
+    s32 rc_step;
+    PUL_UNION ix;
+} PUL;
 
 typedef struct {
     // total size: 0x90
@@ -1637,6 +1767,36 @@ typedef struct {
 
 typedef struct {
     // total size: 0x8
+    f32 s; // offset 0x0, size 0x4
+    f32 t; // offset 0x4, size 0x4
+} TexCoord;
+
+typedef struct {
+    // total size: 0x54
+    Vec3 v[4];     // offset 0x0, size 0x30
+    TexCoord t[4]; // offset 0x30, size 0x20
+    u32 texCode;   // offset 0x50, size 0x4
+} Sprite;
+
+typedef struct {
+    // total size: 0x34
+    Vec3 v[2];     // offset 0x0, size 0x18
+    TexCoord t[2]; // offset 0x18, size 0x10
+    u32 vtxColor;  // offset 0x28, size 0x4
+    u32 texCode;   // offset 0x2C, size 0x4
+    u32 id;        // offset 0x30, size 0x4
+} Sprite2;
+
+typedef struct {
+    // total size: 0x20
+    Sprite2* chip; // offset 0x0, size 0x4
+    u16 sprTotal;  // offset 0x4, size 0x2
+    u16 sprMax;    // offset 0x6, size 0x2
+    s8 up[24];     // offset 0x8, size 0x18
+} SpriteChipSet;
+
+typedef struct {
+    // total size: 0x8
     f32 x; // offset 0x0, size 0x4
     f32 y; // offset 0x4, size 0x4
 } PAL_CURSOR_P;
@@ -1735,6 +1895,39 @@ typedef struct {
     u8 x32_map[10][8];  // offset 0x80, size 0x50
 } PatternMap;
 
+typedef union {
+    u32 code; // offset 0x0, size 0x4
+    struct {
+        // total size: 0x4
+        u16 offset; // offset 0x0, size 0x2
+        u16 group;  // offset 0x2, size 0x2
+    } parts;        // offset 0x0, size 0x4
+} PatternCode;
+
+typedef struct {
+    // total size: 0x8
+    s16 time;       // offset 0x0, size 0x2
+    s16 state;      // offset 0x2, size 0x2
+    PatternCode cs; // offset 0x4, size 0x4
+} PatternState;
+
+typedef struct {
+    // total size: 0xDC
+    s16 curr_disp;  // offset 0x0, size 0x2
+    s16 time;       // offset 0x2, size 0x2
+    PatternCode cg; // offset 0x4, size 0x4
+    s16 x16;        // offset 0x8, size 0x2
+    s16 x32;        // offset 0xA, size 0x2
+    PatternMap map; // offset 0xC, size 0xD0
+} PatternInstance;
+
+typedef struct {
+    // total size: 0x3804
+    s16 kazu;                 // offset 0x0, size 0x2
+    PatternInstance* adr[64]; // offset 0x4, size 0x100
+    PatternInstance patt[64]; // offset 0x104, size 0x3700
+} PatternCollection;
+
 typedef struct {
     Texture* texture;      // pointer to PSP texture
     
@@ -1773,6 +1966,57 @@ typedef struct {
     s32 oriSize;                   // offset 0x24, size 0x4
     s32 debIndex;                  // offset 0x28, size 0x4
 } _MEMMAN_OBJ;
+
+typedef struct {
+    // total size: 0x8
+    s16 req;  // offset 0x0, size 0x2
+    s16 kind; // offset 0x2, size 0x2
+    s16 data; // offset 0x4, size 0x2
+    s16 code; // offset 0x6, size 0x2
+} BGMRequest;
+
+typedef struct {
+    // total size: 0x16
+    s16 kind;        // offset 0x0, size 0x2
+    s16 rno;         // offset 0x2, size 0x2
+    s16 code;        // offset 0x4, size 0x2
+    s16 timer;       // offset 0x6, size 0x2
+    s16 data;        // offset 0x8, size 0x2
+    s16 volume;      // offset 0xA, size 0x2
+    s16 state;       // offset 0xC, size 0x2
+    u16 ownData;     // offset 0xE, size 0x2
+    u16 nowSeamless; // offset 0x10, size 0x2
+    u16 exEntry;     // offset 0x12, size 0x2
+    u16 exIndex;     // offset 0x14, size 0x2
+} BGMExecution;
+
+typedef struct {
+    // total size: 0x8
+    u16 numStart; // offset 0x0, size 0x2
+    u16 numEnd;   // offset 0x2, size 0x2
+    u16 numLoop;  // offset 0x4, size 0x2
+    s16 free;     // offset 0x6, size 0x2
+} BGMExecutionData;
+
+typedef struct {
+    // total size: 0x8
+    union {
+        s32 cal; // offset 0x0, size 0x4
+        struct {
+            // total size: 0x4
+            s16 low; // offset 0x0, size 0x2
+            s16 hi;  // offset 0x2, size 0x2
+        } dex;       // offset 0x0, size 0x4
+    } in;            // offset 0x0, size 0x4
+    s32 speed;       // offset 0x4, size 0x4
+} BGMFade;
+
+typedef struct {
+    // total size: 0x8
+    u16 data; // offset 0x0, size 0x2
+    s16 vol;  // offset 0x2, size 0x2
+    s32 fnum; // offset 0x4, size 0x4
+} BGMTableEntry;
 
 typedef struct {
     // total size: 0x20
@@ -1939,6 +2183,9 @@ typedef struct {
 } TexturePoolUsed;
 
 typedef struct {
-} PatternState;
+} TexturePoolFree;
+
+typedef struct {
+} PPGDataList;
 
 #endif

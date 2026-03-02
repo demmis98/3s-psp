@@ -11,7 +11,8 @@
 
 const s16 paring_b_mark_data[3][20][2];
 
-void effect_F8_move(WORK_Other* ewk) {
+void effect_F8_move(WORK* wkp, s32/*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     WORK* mwk = (WORK*)ewk->my_master;
 
     switch (ewk->wu.routine_no[0]) {

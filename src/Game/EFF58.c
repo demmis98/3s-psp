@@ -14,7 +14,8 @@ s32 SF33rd_Logo(WORK_Other* ewk);
 void EFF58_Type_01(WORK_Other* ewk);
 void Fade_In_58_Sub(WORK_Other* ewk);
 
-void effect_58_move(WORK_Other* ewk) {
+void effect_58_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     s16 xx;
 
     switch (ewk->wu.routine_no[0]) {

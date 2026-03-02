@@ -44,7 +44,8 @@ const u16 illusion_setup_table[13][2] = {
 s32 check_new_after_image(WORK_Other* ewk, PLW* mwk);
 void setup_illusion_data(WORK_Other* ewk, PLW* mwk);
 
-void effect_E5_move(WORK_Other* ewk) {
+void effect_E5_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     s32 effect_E8_init(WORK_Other * ek, PLW * mk, s32 data);
 #endif
@@ -226,7 +227,8 @@ s32 check_new_after_image(WORK_Other* ewk, PLW* mwk) {
     return 1;
 }
 
-s32 effect_E5_init(PLW* wk) {
+s32 effect_E5_init(WORK* wkp, s32 /*unused*/) {
+    PLW* wk = (PLW*) wkp;
     WORK_Other* ewk;
     s16 ix;
 

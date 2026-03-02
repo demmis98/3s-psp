@@ -1,10 +1,10 @@
 #include "Game/OPENING.h"
 #include "common.h"
-#include "sf33rd/AcrSDK/ps2/flps2debug.h"
-#include "sf33rd/AcrSDK/ps2/foundaps2.h"
-#include "Common/MemMan.h"
-#include "Common/PPGFile.h"
-#include "Common/PPGWork.h"
+//#include "sf33rd/AcrSDK/ps2/flps2debug.h"
+//#include "sf33rd/AcrSDK/ps2/foundaps2.h"
+//#include "Common/MemMan.h"
+//#include "Common/PPGFile.h"
+//#include "Common/PPGWork.h"
 #include "Game/AcrUtil.h"
 #include "Game/DC_Ghost.h"
 #include "Game/DEMO00.h"
@@ -120,24 +120,24 @@ void TITLE_Init() {
     u32 loadSize;
     s16 key;
 
-    mmDebWriteTag("\nMAIN TITLE\n\n");
+    //mmDebWriteTag("\nMAIN TITLE\n\n");
     Opening_Now = 0;
-    ppgTitleList.tex = &ppgTitleTex;
-    ppgTitleList.pal = NULL;
-    ppgSetupCurrentDataList(&ppgTitleList);
+    //ppgTitleList.tex = &ppgTitleTex;
+    //ppgTitleList.pal = NULL;
+    //ppgSetupCurrentDataList(&ppgTitleList);
     loadSize = load_it_use_any_key2(78, &loadAdrs, &key, 2, 1); // TitleTM.ppg
 
     if (loadSize == 0) {
         // Main title texture could not be loaded.
-        flLogOut("メインタイトルのテクスチャが読み込めませんでした。\n");
+        //flLogOut("メインタイトルのテクスチャが読み込めませんでした。\n");
         while (1) {}
     }
 
-    ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, 601, 1, 0, 0);
-    ppgSetupTexChunk_2nd(NULL, 601);
-    ppgSetupTexChunk_3rd(NULL, 601, 1);
+    //ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, 601, 1, 0, 0);
+    //ppgSetupTexChunk_2nd(NULL, 601);
+    //ppgSetupTexChunk_3rd(NULL, 601, 1);
     Push_ramcnt_key(key);
-    ppgSourceDataReleased(NULL);
+    //ppgSourceDataReleased(NULL);
     title_tex_flag = 1;
     op_w.r_no_0 = 0;
 }
@@ -147,7 +147,7 @@ s16 TITLE_Move(u16 type) {
     void Frame_Up(u16 x, u16 y, s32 add);
 #endif
 
-    ppgSetupCurrentDataList(&ppgTitleList);
+    //ppgSetupCurrentDataList(&ppgTitleList);
     setTexAdrsMode(0);
     setFilterMode(0);
 
@@ -205,29 +205,31 @@ void OPBG_Init() {
     s16 i;
     s16 key;
 
-    mmDebWriteTag("\nOPENING\n\n");
-    ppgOpnBgList.tex = &ppgOpnBgTex;
-    ppgOpnBgList.pal = palGetChunkGhostCP3();
-    ppgSetupCurrentDataList(&ppgOpnBgList);
+    //mmDebWriteTag("\nOPENING\n\n");
+    //ppgOpnBgList.tex = &ppgOpnBgTex;
+    //ppgOpnBgList.pal = palGetChunkGhostCP3();
+    //ppgSetupCurrentDataList(&ppgOpnBgList);
 
     if ((key = Search_ramcnt_type(0x1D)) == 0) {
         // Opening demo texture has not been loaded.
-        flLogOut("オープニングデモテクスチャが読み込まれていません。\n");
+        //flLogOut("オープニングデモテクスチャが読み込まれていません。\n");
         while (1) {}
     }
 
     loadSize = Get_size_data_ramcnt_key(key);
     loadAdrs = (void*)Get_ramcnt_address(key);
-    ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, 602, 91, 0, 0);
+    //ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, 602, 91, 0, 0);
 
+    /*
     for (i = 0; i < ppgOpnBgTex.textures; i++) {
-        ppgSetupTexChunk_2nd(NULL, i + 602);
-        ppgSetupTexChunk_3rd(NULL, i + 602, 1);
+        //ppgSetupTexChunk_2nd(NULL, i + 602);
+        //ppgSetupTexChunk_3rd(NULL, i + 602, 1);
     }
+    */
 
     Opening_Now = 1;
     make_texcash_work(9);
-    mlt_obj_melt2(&mts[9], 0x8C40);
+    //mlt_obj_melt2(&mts[9], 0x8C40);
     sound_trg_init();
     opening_init();
     Zoom_Value_Set(0x40);
@@ -296,7 +298,7 @@ void OPBG_Trans() {
 
     setTexAdrsMode(1);
     setFilterMode(0);
-    ppgSetupCurrentDataList(&ppgOpnBgList);
+    //ppgSetupCurrentDataList(&ppgOpnBgList);
     Scrn_Renew();
     Irl_Family();
     Irl_Scrn();
@@ -320,11 +322,11 @@ void OPBG_Trans() {
         for (k = 0; k < 3; k++) {
             for (j = 0; j < 4; j++) {
                 for (i = 0; i < 4; i++) {
-                    flPrintL(i * 5 + 20, 23 - j + k * 5, "%04d", op_w.bgw[k].map[i][j].g_no);
+                    //flPrintL(i * 5 + 20, 23 - j + k * 5, "%04d", op_w.bgw[k].map[i][j].g_no);
                 }
             }
 
-            flPrintL(46, k * 5 + 20, "%04x , %04x", bg_w.bgw[k].wxy[0].disp.pos, bg_w.bgw[k].xy[1].disp.pos);
+            //flPrintL(46, k * 5 + 20, "%04x , %04x", bg_w.bgw[k].wxy[0].disp.pos, bg_w.bgw[k].xy[1].disp.pos);
         }
     }
 }
@@ -344,7 +346,7 @@ s16 oh_tsr_ck(s32 blk_no) {
 void oh_reload_tex(OPBW* opbw, s32 blk_no, s16 mapx, s16 mapy) {
     if (!oh_tsr_ck(blk_no) && (opbw->map[mapx][mapy].g_no != (blk_no + 0x259))) {
         if (opbw->map[mapx][mapy].g_no && !oh_tsr_ck(opbw->map[mapx][mapy].g_no - 0x259)) {
-            ppgReleaseTextureHandle(&ppgOpnBgTex, opbw->map[mapx][mapy].g_no);
+            //ppgReleaseTextureHandle(&ppgOpnBgTex, opbw->map[mapx][mapy].g_no);
         }
 
         opbw->map[mapx][mapy].ok = 1;
@@ -536,8 +538,8 @@ void opening_move() {
     s16 work2;
 
     if (Debug_w[0x30]) {
-        flPrintColor(0xFFFFFF8F);
-        flPrintL(2, 1, "BAR %d", op_w.r_no_1);
+        //flPrintColor(0xFFFFFF8F);
+        //flPrintL(2, 1, "BAR %d", op_w.r_no_1);
     }
 
     op_plmove_timer += 1;

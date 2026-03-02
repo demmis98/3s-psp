@@ -1,7 +1,7 @@
 #include "Game/SYS_sub.h"
 #include "common.h"
-#include "sf33rd/AcrSDK/common/mlPAD.h"
-#include "sf33rd/AcrSDK/ps2/flps2debug.h"
+//#include "sf33rd/AcrSDK/common/mlPAD.h"
+//#include "sf33rd/AcrSDK/ps2/flps2debug.h"
 #include "Game/COM_DATU.h"
 #include "Game/Com_Data.h"
 #include "Game/EFFB8.h"
@@ -526,13 +526,13 @@ void Game_Data_Init() {
 
     Setup_Default_Game_Option();
     mpp_w.cutAnalogStickData = 0;
-
+    /*
     if ((flpad_adr[0][0].sw & 0x330) == 0x330) {
         mpp_w.cutAnalogStickData = 1;
     } else if ((flpad_adr[0][1].sw & 0x330) == 0x330) {
         mpp_w.cutAnalogStickData = 1;
     }
-
+    */
     if (mpp_w.cutAnalogStickData) {
         for (ix = 0; ix < 6; ix++) {
             save_w[ix].AnalogStick = 0;
@@ -1165,8 +1165,8 @@ void Check_Replay_Status(s16 PL_id, u8 Status) {
         Get_Replay(PL_id);
 
         if ((Game_pause != 0x81) && Debug_w[0x21]) {
-            flPrintColor(0xFFFFFFFF);
-            flPrintL(16, 8, "HUMAN REC!");
+            //flPrintColor(0xFFFFFFFF);
+            //flPrintL(16, 8, "HUMAN REC!");
             break;
         }
 
@@ -1186,8 +1186,8 @@ void Check_Replay_Status(s16 PL_id, u8 Status) {
         break;
 
     case 99:
-        flPrintColor(0xFFFFFF00);
-        flPrintL(12, 20, "[REPLAY AREA FULL!!]");
+        //flPrintColor(0xFFFFFF00);
+        //flPrintL(12, 20, "[REPLAY AREA FULL!!]");
         Disp_Rec_Time(PL_id, Rec_Time[PL_id]);
         break;
     }

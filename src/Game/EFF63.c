@@ -25,7 +25,8 @@ const s8* Letter_Data_63[3][21] = { { "-10", "-9", "-8", "-7", "-6", "-5", "-4",
 
 void (*const EFF63_Jmp_Tbl[4])(WORK_Other_CONN *) = { EFF63_WAIT, EFF63_SLIDE_IN, EFF63_CHAR_CHANGE, EFF63_SUDDENLY };
 
-void effect_63_move(WORK_Other_CONN* ewk) {
+void effect_63_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other_CONN* ewk = (WORK_Other_CONN*) wkp;
     if (Check_Die_61((WORK_Other*)ewk) != 0) {
         push_effect_work(&ewk->wu);
         return;

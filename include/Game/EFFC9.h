@@ -4,8 +4,8 @@
 #include "structs.h"
 #include "types.h"
 
-void effect_C9_move(WORK_Other* ewk);
-s32 effect_C9_init(PLW* /* unused */, u8 data);
+void effect_C9_move(WORK* wkp, s32 /*unused*/);
+s32 effect_C9_init(WORK* /* unused */, s32 d);
 void setup_EJG_index();
 
 #endif

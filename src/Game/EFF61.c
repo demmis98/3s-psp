@@ -81,7 +81,8 @@ const s8* Menu_Letter_Data[66] = { "ARCADE",
 
 void (*const EFF61_Jmp_Tbl[4])(WORK_Other_CONN *) = { EFF61_WAIT, EFF61_SLIDE_IN, EFF61_SLIDE_OUT, EFF61_SUDDENLY };
 
-void effect_61_move(WORK_Other_CONN* ewk) {
+void effect_61_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other_CONN* ewk = (WORK_Other_CONN*) wkp;
     if (Check_Die_61((WORK_Other*)ewk)) {
         push_effect_work(&ewk->wu);
         return;

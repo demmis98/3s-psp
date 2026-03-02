@@ -40,7 +40,7 @@ void bg0001_init00() {
         setup_GILL_Opening_Ceremony();
     }
 
-    effect_06_init();
+    effect_06_init(NULL, 0);
     effect_44_init(7);
     effect_60_init(2);
 

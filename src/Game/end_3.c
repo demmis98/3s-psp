@@ -88,12 +88,12 @@ void end_300_0000() {
         switch (end_w.r_no_2) {
         case 0:
             Bg_On_W(1);
-            effect_E6_init(0x9A);
+            effect_E6_init(NULL, 0x9A);
             Rewrite_End_Message(1);
             break;
 
         case 1:
-            effect_E6_init(0x9B);
+            effect_E6_init(NULL, 0x9B);
             Rewrite_End_Message(2);
             break;
         }
@@ -154,8 +154,8 @@ void end_300_0003() {
         bgw_ptr->xy[1].disp.pos = end_3_pos[end_w.r_no_2][1];
         bgw_ptr->abs_x = 512;
         bgw_ptr->abs_y = bgw_ptr->xy[1].disp.pos;
-        effect_E6_init(0x9D);
-        effect_E6_init(0xB3);
+        effect_E6_init(NULL, 0x9D);
+        effect_E6_init(NULL, 0xB3);
         Rewrite_End_Message(4);
         /* fallthrough */
 
@@ -196,9 +196,9 @@ void end_300_0004() {
         bgw_ptr->xy[1].disp.pos = end_3_pos[end_w.r_no_2][1];
         bgw_ptr->abs_x = 512;
         bgw_ptr->abs_y = 0;
-        effect_E6_init(0x9E);
+        effect_E6_init(NULL, 0x9E);
         end_etc_flag = 0;
-        effect_E6_init(0x9F);
+        effect_E6_init(NULL, 0x9F);
         Rewrite_End_Message(5);
         bgw_ptr->free = 0x21C;
         bgw_ptr->l_limit = -1;
@@ -230,7 +230,7 @@ void end_300_0005() {
         bgw_ptr->xy[1].disp.pos = end_3_pos[end_w.r_no_2][1];
         bgw_ptr->abs_x = 512;
         bgw_ptr->abs_y = 0;
-        effect_E6_init(0xA0);
+        effect_E6_init(NULL, 0xA0);
         Rewrite_End_Message(6);
         end_fade_flag = 1;
         end_fade_timer = timer_3_tbl[end_w.r_no_2] - 120;

@@ -9,7 +9,8 @@
 void effe8_zanzou_process(WORK_Other* ewk, PLW* mwk);
 void effE8_trans(WORK_Other* ewk, PLW* mwk);
 
-void effect_E8_move(WORK_Other* ewk) {
+void effect_E8_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     PLW* mwk = (PLW*)ewk->my_master;
     WORK_Other* cwk = (WORK_Other*)ewk->wu.target_adrs;
     WORK* mtwk;

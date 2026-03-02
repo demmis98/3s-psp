@@ -1,8 +1,8 @@
 #include "Game/MTRANS.h"
 #include "common.h"
-#include "sf33rd/AcrSDK/ps2/flps2render.h"
-#include "sf33rd/AcrSDK/ps2/foundaps2.h"
-#include "Common/PPGFile.h"
+//#include "sf33rd/AcrSDK/ps2/flps2render.h"
+//#include "sf33rd/AcrSDK/ps2/foundaps2.h"
+//#include "Common/PPGFile.h"
 #include "Game/DC_Ghost.h"
 #include "Game/EFFECT.h"
 #include "Game/WORK_SYS.h"
@@ -12,7 +12,7 @@
 #include "Game/debug/Debug.h"
 #include "Game/texcash.h"
 #include "Game/texgroup.h"
-#include "PS2/ps2Quad.h"
+//#include "PS2/ps2Quad.h"
 #include "structs.h"
 
 #define PRIO_BASE_SIZE 128
@@ -139,6 +139,7 @@ static void search_trsptr(uintptr_t trstbl, s32 i, s32 n, s32 cods, s32 atrs, s3
 }
 
 void mlt_obj_disp(MultiTexture* mt, WORK* wk, s32 base_y) {
+    /*
     u16* trsbas;
     TileMapEntry* trsptr;
     s32 rnum;
@@ -238,9 +239,11 @@ void mlt_obj_disp(MultiTexture* mt, WORK* wk, s32 base_y) {
 
     seqs_w.up[mt->id] = 1;
     appRenewTempPriority(wk->position_z);
+    */
 }
 
 void mlt_obj_disp_rgb(MultiTexture* mt, WORK* wk, s32 base_y) {
+    /*
     u16* trsbas;
     TileMapEntry* trsptr;
     s32 rnum;
@@ -338,6 +341,7 @@ void mlt_obj_disp_rgb(MultiTexture* mt, WORK* wk, s32 base_y) {
 
     seqs_w.up[mt->id] = 1;
     appRenewTempPriority(wk->position_z);
+    */
 }
 
 s16 getObjectHeight(u16 cgnum) {
@@ -378,6 +382,7 @@ s16 getObjectHeight(u16 cgnum) {
 }
 
 void mlt_obj_trans_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
+    /*
     u32* textbl;
     u16* trsbas;
     TileMapEntry* trsptr;
@@ -615,9 +620,11 @@ void mlt_obj_trans_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
         seqs_w.up[mt->id] = 1;
         appRenewTempPriority(wk->position_z);
     }
+    */
 }
 
 void mlt_obj_trans(MultiTexture* mt, WORK* wk, s32 base_y) {
+    /*
     u32* textbl;
     u16* trsbas;
     TileMapEntry* trsptr;
@@ -750,9 +757,11 @@ void mlt_obj_trans(MultiTexture* mt, WORK* wk, s32 base_y) {
 
     seqs_w.up[mt->id] = 1;
     appRenewTempPriority(wk->position_z);
+    */
 }
 
 void mlt_obj_trans_cp3_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
+    /*
     u32* textbl;
     u16* trsbas;
     TileMapEntry* trsptr;
@@ -1000,9 +1009,11 @@ void mlt_obj_trans_cp3_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
         seqs_w.up[mt->id] = 1;
         appRenewTempPriority(wk->position_z);
     }
+    */
 }
 
 void mlt_obj_trans_cp3(MultiTexture* mt, WORK* wk, s32 base_y) {
+    /*
     u32* textbl;
     u16* trsbas;
     TileMapEntry* trsptr;
@@ -1140,12 +1151,14 @@ void mlt_obj_trans_cp3(MultiTexture* mt, WORK* wk, s32 base_y) {
 
     seqs_w.up[mt->id] = 1;
     appRenewTempPriority(wk->position_z);
+    */
 }
 
 #if defined(TARGET_PS2)
 INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/MTRANS", mlt_obj_trans_rgb_ext);
 #else
 void mlt_obj_trans_rgb_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
+    /*
     u32* textbl;
     u16* trsbas;
     TileMapEntry* trsptr;
@@ -1373,10 +1386,12 @@ void mlt_obj_trans_rgb_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
         seqs_w.up[mt->id] = 1;
         appRenewTempPriority(wk->position_z);
     }
+    */
 }
 #endif
 
 void mlt_obj_trans_rgb(MultiTexture* mt, WORK* wk, s32 base_y) {
+    /*
     u32* textbl;
     u16* trsbas;
     TileMapEntry* trsptr;
@@ -1506,6 +1521,7 @@ void mlt_obj_trans_rgb(MultiTexture* mt, WORK* wk, s32 base_y) {
 
     seqs_w.up[mt->id] = 1;
     appRenewTempPriority(wk->position_z);
+    */
 }
 
 void mlt_obj_matrix(WORK* wk, s32 base_y) {
@@ -1575,6 +1591,7 @@ u32 seqsGetUseMemorySize() {
 }
 
 void seqsBeforeProcess() {
+    /*
     s32 i;
 
     seqs_w.sprTotal = 0;
@@ -1583,9 +1600,11 @@ void seqsBeforeProcess() {
     for (i = 0; i < 24; i++) {
         seqs_w.up[i] = 0;
     }
+    */
 }
 
 void seqsAfterProcess() {
+    /*
     s32 i;
     u32 keep = 0;
     u32 val = 0;
@@ -1624,9 +1643,11 @@ void seqsAfterProcess() {
 
         ps2SeqsRenderQuadEnd();
     }
+    */
 }
 
 s32 seqsStoreChip(f32 x, f32 y, s32 w, s32 h, s32 gix, s32 code, s32 attr, s32 alpha, s32 id) {
+    /*
     Sprite2* chip;
     s32 u;
     s32 v;
@@ -1702,11 +1723,12 @@ s32 seqsStoreChip(f32 x, f32 y, s32 w, s32 h, s32 gix, s32 code, s32 attr, s32 a
         flLogOut("ＯＢＪの破片が予定数を越えてしまいました");
         while (1) {}
     }
-
+    */
     return 1;
 }
 
 static s32 get_mltbuf16(MultiTexture* mt, u32 code, u32 palt, s32* ret) {
+    /*
     s32 i;
     s32 b = -1;
     PatternState* mc = mt->mltcsh16;
@@ -1742,9 +1764,11 @@ static s32 get_mltbuf16(MultiTexture* mt, u32 code, u32 palt, s32* ret) {
             while (1) {}
         }
     }
+    */
 }
 
 static s32 get_mltbuf32(MultiTexture* mt, u32 code, u32 palt, s32* ret) {
+    /*
     s32 i;
     s32 b = -1;
     PatternState* mc = mt->mltcsh32;
@@ -1780,9 +1804,11 @@ static s32 get_mltbuf32(MultiTexture* mt, u32 code, u32 palt, s32* ret) {
             while (1) {}
         }
     }
+    */
 }
 
 static s32 get_mltbuf16_ext_2(MultiTexture* mt, u32 code, u32 palt, s32* ret, PatternInstance* cp) {
+    /*
     PatternState* mc = mt->mltcsh16;
     s32 i;
 
@@ -1818,9 +1844,11 @@ static s32 get_mltbuf16_ext_2(MultiTexture* mt, u32 code, u32 palt, s32* ret, Pa
     // CG cache is full. x16 EXT2\n
     flLogOut("ＣＧキャッシュが一杯になりました。×１６　ＥＸＴ２\n");
     while (1) {}
+    */
 }
 
 static s32 get_mltbuf32_ext_2(MultiTexture* mt, u32 code, u32 palt, s32* ret, PatternInstance* cp) {
+    /*
     PatternState* mc = mt->mltcsh32;
     s32 i;
 
@@ -1855,9 +1883,11 @@ static s32 get_mltbuf32_ext_2(MultiTexture* mt, u32 code, u32 palt, s32* ret, Pa
 
     flLogOut("ＣＧキャッシュが一杯になりました。×３２　ＥＸＴ２\n");
     while (1) {}
+    */
 }
 
 static s32 get_mltbuf16_ext(MultiTexture* mt, u32 code, u32 palt) {
+    /*
     PatternState* mc = mt->mltcsh16;
     s32 i;
 
@@ -1869,9 +1899,11 @@ static s32 get_mltbuf16_ext(MultiTexture* mt, u32 code, u32 palt) {
 
     flLogOut("ＣＧ展開エラー　１６×１６\n");
     while (1) {}
+    */
 }
 
 static s32 get_mltbuf32_ext(MultiTexture* mt, u32 code, u32 palt) {
+    /*
     PatternState* mc = mt->mltcsh32;
     s32 i;
 
@@ -1883,6 +1915,7 @@ static s32 get_mltbuf32_ext(MultiTexture* mt, u32 code, u32 palt) {
 
     flLogOut("ＣＧ展開エラー　３２×３２\n");
     while (1) {}
+    */
 }
 
 static u16 x16_mapping_set(PatternMap* map, s32 code) {
@@ -1913,6 +1946,7 @@ static u16 x32_mapping_set(PatternMap* map, s32 code) {
 }
 
 void makeup_tpu_free(s32 x16, s32 x32, PatternMap* map) {
+    /*
     s16 i;
     s16 j;
     s16 k;
@@ -1945,6 +1979,7 @@ void makeup_tpu_free(s32 x16, s32 x32, PatternMap* map) {
             }
         }
     }
+    */
 }
 
 static s16 check_patcash_ex_trans(PatternCollection* padr, u32 cg) {
@@ -1970,7 +2005,7 @@ static s32 get_free_patcash_index(PatternCollection* padr) {
         }
     }
 
-    flLogOut("ＣＧキャッシュバッファが一杯になりました。\n");
+    //flLogOut("ＣＧキャッシュバッファが一杯になりました。\n");
     while (1) {}
 }
 
@@ -2075,6 +2110,7 @@ static void lz_ext_p6_cx(u8* srcptr, u16* dstptr, u32 len, u16* palptr) {
 }
 
 void mlt_obj_trans_init(MultiTexture* mt, s32 mode, u8* adrs) {
+    /*
     PatternState* mc;
     PPGFileHeader ppg;
     s32 i;
@@ -2122,9 +2158,11 @@ void mlt_obj_trans_init(MultiTexture* mt, s32 mode, u8* adrs) {
             mc++;
         }
     }
+    */
 }
 
 void mlt_obj_trans_update(MultiTexture* mt) {
+    /*
     s32 i;
     PatternState* mc;
 
@@ -2146,6 +2184,7 @@ void mlt_obj_trans_update(MultiTexture* mt) {
             }
         }
     }
+    */
 }
 
 void draw_box(f64 arg0, f64 arg1, f64 arg2, f64 arg3, u32 col, u32 attr, s16 prio) {
@@ -2208,6 +2247,7 @@ static void DebugLine(f32 x, f32 y, f32 w, f32 h) {
 }
 
 void mlt_obj_melt2(MultiTexture* mt, u16 cg_number) {
+    /*
     u32* textbl;
     u16* trsbas;
     TileMapEntry* trsptr;
@@ -2290,4 +2330,5 @@ void mlt_obj_melt2(MultiTexture* mt, u16 cg_number) {
     }
 
     ppgRenewTexChunkSeqs(NULL);
+    */
 }

@@ -1,6 +1,7 @@
 #include "Game/staff.h"
 #include "common.h"
-#include "gcc/string.h"
+//#include "gcc/string.h"
+#include <string.h>
 #include "Game/EFFH6.h"
 #include "Game/SE.h"
 #include "Game/Sound3rd.h"

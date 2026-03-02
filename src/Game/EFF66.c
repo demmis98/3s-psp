@@ -31,7 +31,8 @@ const s16 EFF66_Half_OBJ_Data[15][7] = {
 
 void (*const EFF66_Jmp_Tbl[7])(WORK_Other *);
 
-void effect_66_move(WORK_Other* ewk) {
+void effect_66_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     if (Menu_Suicide[ewk->master_player]) {
         push_effect_work(&ewk->wu);
         return;

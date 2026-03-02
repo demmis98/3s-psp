@@ -25,7 +25,8 @@ void fight_vanish(WORK_Other* ewk);
 
 // Funcs
 
-void effect_B3_move(WORK_Other* ewk) {
+void effect_B3_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     oya_adrs = (WORK_Other*)ewk->my_master;
 
     if (ewk->wu.old_rno[1] != oya_adrs->wu.routine_no[0]) {
@@ -173,7 +174,8 @@ void fight_vanish(WORK_Other* ewk) {
     }
 }
 
-s32 effect_B3_init(WORK_Other* oya) {
+s32 effect_B3_init(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* oya = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif
@@ -208,6 +210,6 @@ s32 effect_B3_init(WORK_Other* oya) {
         ewk->wu.hit_quake = 0;
     }
 
-    effect_B9_init(oya);
+    effect_B9_init((WORK*) oya, 0);
     return 0;
 }

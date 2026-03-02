@@ -246,7 +246,7 @@ void Att_PL17_AT2(PLW* wk) {
 
         if (wk->wu.cg_type == 10) {
             wk->wu.cg_type = 0;
-            effect_L8_init(wk);
+            effect_L8_init((WORK*) wk, 0);
         }
 
         break;

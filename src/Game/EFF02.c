@@ -124,7 +124,8 @@ const s16 hit_mark_hosei_table[108][2] = {
     { -72, 0 },   { -48, 104 }, { 0, 2 },     { -48, 50 }
 };
 
-void effect_02_move(WORK_Other* ewk) {
+void effect_02_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void urian_guard_se_check(WORK_Other * ewk, PLW * twk, u32 oto);
     void pp_screen_quake(s32 ix);

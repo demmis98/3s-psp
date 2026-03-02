@@ -14,7 +14,8 @@
 
 void Setup_A9(WORK_Other* ewk, s16 Char_Index, s16 Option, s16 Option2);
 
-void effect_A9_move(WORK_Other* ewk) {
+void effect_A9_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void set_char_move_init2(WORK * wk, s16 koc, s32 index, s32 ip, s16 scf);
 #endif

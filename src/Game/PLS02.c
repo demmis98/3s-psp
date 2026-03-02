@@ -1206,9 +1206,9 @@ void dead_voice_request2(PLW* wk) {
     secd2 = dead_voice_table[wk->player_number][1];
 
     if ((wk->wu.routine_no[1] == 1) && atsagct[wk->wu.routine_no[2]] & 0x10) {
-        sound_effect_request[secd2](wk, secd2 + ks);
+        sound_effect_request[secd2]((WORK*) wk, secd2 + ks);
         return;
     }
 
-    sound_effect_request[secd1](wk, secd1 + ks);
+    sound_effect_request[secd1]((WORK*) wk, secd1 + ks);
 }

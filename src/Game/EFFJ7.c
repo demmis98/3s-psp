@@ -378,7 +378,8 @@ const ColorCode* pl00_cctbl[][2];
 void check_new_color_data(WORK* wk);
 void get_new_color_data(WORK* wk, ColorCode* trom, s16* tram);
 
-void effect_J7_move(WORK_Other* ewk) {
+void effect_J7_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     PLW* mwk = (PLW*)ewk->my_master;
 
     ewk->wu.rl_flag = mwk->wu.rl_flag;
@@ -489,7 +490,8 @@ void get_new_color_data(WORK* wk, ColorCode* trom, s16* tram) {
     }
 }
 
-s32 effect_J7_init(PLW* wk) {
+s32 effect_J7_init(WORK* wkp, s32 /*unused*/) {
+    PLW* wk = (PLW*) wkp;
     WORK_Other* ewk;
     s16 ix;
 

@@ -4,7 +4,7 @@
 #include "structs.h"
 #include "types.h"
 
-void effect_E8_move(WORK_Other* ewk);
+void effect_E8_move(WORK* wkp, s32 /*unused*/);
 s32 effect_E8_init(WORK_Other* ek, PLW* mk, s16 data);
 
 #endif

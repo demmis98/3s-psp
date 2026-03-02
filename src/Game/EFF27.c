@@ -28,7 +28,8 @@ const s16 piece_0001[57] = { 2, 8492, 14,  80, 70, 51, 1, 0, 2, 32, 32, 2,  0, 0
 
 const s16* scr_obj_data27[2] = { piece_0000, piece_0001 };
 
-void effect_27_move(WORK_Other* ewk) {
+void effect_27_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -301,7 +302,7 @@ void eff27_08(WORK_Other* ewk) {
         break;
 
     case 1:
-        effect_27_init(ewk, 4);
+        effect_27_init((WORK*) ewk, 4);
         ewk->wu.routine_no[1]++;
         break;
 
@@ -369,7 +370,9 @@ void dead_check27(WORK_Other* ewk) {
 void (*eff27_jp_tbl[11])(WORK_Other*) = { eff27_00, eff27_00, eff27_02, eff27_03, eff27_04, eff27_05,
                                           eff27_06, eff27_06, eff27_07, eff27_08, eff27_09 };
 
-s32 effect_27_init(WORK_Other* oya, s16 type) {
+s32 effect_27_init(WORK* wkp, s32 d) {
+    WORK_Other* oya = (WORK_Other*) wkp;
+    s16 type = (s16) d;
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

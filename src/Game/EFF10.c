@@ -40,7 +40,8 @@ const s8* button_string_data[8][12] = {
     { "PLAYER 1", "PLAYER 2", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL }
 };
 
-void effect_10_move(WORK_Other* ewk) {
+void effect_10_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     s16 color;
     s16 correct_index;
     s16 ix;

@@ -30,7 +30,7 @@ void bg1301_init00() {
     bgw_ptr->old_pos_x = bgw_ptr->xy[0].disp.pos = bgw_ptr->pos_x_work = 0x200;
     bgw_ptr->hos_xy[0].cal = bgw_ptr->wxy[0].cal = bgw_ptr->xy[0].cal;
     bgw_ptr->zuubun = 0;
-    effect_05_init();
+    effect_05_init(NULL, 0);
 }
 
 void bg1300() {

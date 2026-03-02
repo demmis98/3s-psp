@@ -159,7 +159,7 @@ void end_600_2000() {
         bgw_ptr->abs_y = 16;
         bgw_ptr->free = 0;
         bgw_ptr->old_pos_x = 16;
-        effect_E6_init(0x2B);
+        effect_E6_init(NULL, 0x2B);
         Rewrite_End_Message(0);
         break;
 
@@ -213,8 +213,8 @@ void end_600_3000() {
         bgw_ptr->abs_x = 512;
         bgw_ptr->abs_y = 0;
         Rewrite_End_Message(3);
-        effect_E6_init(0x2D);
-        effect_E6_init(0x2E);
+        effect_E6_init(NULL, 0x2D);
+        effect_E6_init(NULL, 0x2E);
         bgw_ptr->free = 0x1E;
         break;
 
@@ -226,7 +226,7 @@ void end_600_3000() {
         if (bgw_ptr->free <= 0) {
             bgw_ptr->r_no_1++;
             bgw_ptr->free = 0x1E;
-            effect_E6_init(0x31);
+            effect_E6_init(NULL, 0x31);
         }
 
         break;
@@ -366,11 +366,11 @@ void end_601_2000() {
         bgw_ptr->old_pos_x = 16;
 
         if (Country == 1 || Country == 8) {
-            effect_E6_init(0x2C);
+            effect_E6_init(NULL, 0x2C);
             break;
         }
 
-        effect_E6_init(0x98);
+        effect_E6_init(NULL, 0x98);
         break;
 
     case 1:

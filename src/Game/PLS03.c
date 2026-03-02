@@ -1283,7 +1283,7 @@ s32 check_renda_cancel(PLW* wk) {
         wk->caution_flag = 1;
         wk->cancel_timer = 0;
         wk->wu.cg_cancel &= 0xE0;
-        pp_pulpara_remake_at_init2(&wk->wu);
+        pp_pulpara_remake_at_init2((PLW*) &wk->wu);
         return 1;
     }
 

@@ -25,7 +25,8 @@ void effB1_trans(WORK* ewk);
 void effB1_mark_change(WORK_Other_CONN* ewk);
 void effB1_mark_exchange(WORK_Other_CONN* ewk);
 
-void effect_B1_move(WORK_Other_CONN* ewk) {
+void effect_B1_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other_CONN* ewk = (WORK_Other_CONN*) wkp;
     s16 i;
 
     switch (ewk->wu.routine_no[0]) {
@@ -195,7 +196,8 @@ void effB1_mark_exchange(WORK_Other_CONN* ewk) {
     }
 }
 
-s32 effect_B1_init(PLW* wk, s32 flag) {
+s32 effect_B1_init(WORK* wkp, s32 flag) {
+    PLW* wk = (PLW*) wkp;
     WORK_Other_CONN* ewk;
     s16 ix;
     s16 i;

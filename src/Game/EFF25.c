@@ -20,7 +20,8 @@ const s16* scr_obj_data25[1] = { eff25_data_0000 };
 void (*eff25_jp_tbl[10])(WORK_Other* ewk) = { eff25_00, eff25_00, eff25_02, eff25_02, eff25_04,
                                               eff25_04, eff25_06, eff25_06, eff25_08, eff25_08 };
 
-void effect_25_move(WORK_Other* ewk) {
+void effect_25_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     if (compel_dead_check(ewk)) {
         ewk->wu.routine_no[0] = 99;
         ewk->wu.disp_flag = 0;
@@ -293,7 +294,7 @@ void piece_set(WORK_Other* ewk) {
         return;
     }
 
-    effect_27_init(ewk, ewk->wu.old_rno[0]);
+    effect_27_init((WORK*) ewk, ewk->wu.old_rno[0]);
 }
 
 s32 effect_25_init(s8 num) {
@@ -335,7 +336,7 @@ s32 effect_25_init(s8 num) {
     ewk->wu.position_z = ewk->wu.my_priority;
 
     if (*data_ptr >= 0) {
-        effect_26_init(ewk, *data_ptr);
+        effect_26_init((WORK*) ewk, *data_ptr);
     }
 
     *data_ptr++;

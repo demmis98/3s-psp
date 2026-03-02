@@ -8,7 +8,8 @@
 void push_image_buff(WORK_Other* wk, ImageBuff* image_buff);
 void init_image_buff(WORK_Other* wk, ImageBuff* image_buff);
 
-void effect_I9_move(WORK_Other* ewk) {
+void effect_I9_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     s32 effect_J0_init(WORK_Other * ek, WORK_Other * mk, s32 data);
 #endif

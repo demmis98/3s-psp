@@ -21,7 +21,7 @@ static s32 cat07_running_check(WORK* wk);
 void catch_cg_type_check(PLW* wk);
 void set_char_move_init_ca(PLW* wk, s16 koc, s16 index);
 
-void (*const plpca_lv_00[9])();
+void (*const plpca_lv_00[9])(PLW* wk);
 
 void Player_catch(PLW* wk) {
     wk->wu.next_z = wk->wu.my_priority;

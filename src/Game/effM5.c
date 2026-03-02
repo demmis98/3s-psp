@@ -177,6 +177,6 @@ s32 effect_M5_init(WORK* wkp, s32 /*unused*/) {
     suzi_offset_set(ewk);
     ewk->wu.my_mts = 14;
     ewk->wu.my_trans_mode = get_my_trans_mode(ewk->wu.my_mts);
-    effect_M6_init(ewk);
+    effect_M6_init((WORK*) ewk, 0);
     return 0;
 }

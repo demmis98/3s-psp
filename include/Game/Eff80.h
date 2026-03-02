@@ -4,7 +4,7 @@
 #include "structs.h"
 #include "types.h"
 
-void effect_80_move(WORK_Other* ewk);
+void effect_80_move(WORK* wkp, s32 /*unused*/);
 s32 effect_80_init(WORK_Other* mwk, s16 PL_id, s16 Plate_id, s16 Target_BG);
 
 #endif

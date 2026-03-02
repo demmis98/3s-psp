@@ -5,7 +5,8 @@
 #include "Game/aboutspr.h"
 #include "Game/workuser.h"
 
-void effect_J0_move(WORK_Other* ewk) {
+void effect_J0_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     WORK_Other* mwk = (WORK_Other*)ewk->my_master;
     WORK_Other* cwk = (WORK_Other*)ewk->wu.target_adrs;
     WORK* sub_w = (WORK*)cwk->wu.target_adrs;

@@ -349,13 +349,13 @@ void Appear_06000(PLW* wk) {
         wk->wu.routine_no[3]++;
         switch (wk->wu.routine_no[4]) {
         case 6:
-            effect_C5_init(wk, 0);
+            effect_C5_init((WORK*) wk, 0);
             break;
         case 27:
-            effect_C5_init(wk, 1);
+            effect_C5_init((WORK*) wk, 1);
             break;
         case 40:
-            effect_M5_init(wk);
+            effect_M5_init((WORK*) wk, 0);
             break;
         }
         wk->wu.disp_flag = 0;
@@ -464,7 +464,7 @@ void Appear_07000(PLW* wk) {
             wk->wu.routine_no[3] = 3;
         } else {
             set_char_move_init(&wk->wu, 9, 8);
-            effect_C8_init(wk);
+            effect_C8_init((WORK*) wk, 0);
 
             if (Appear_flag[wk->wu.id]) {
                 wk->wu.routine_no[3]++;
@@ -847,7 +847,7 @@ void Appear_15000(PLW* wk) {
         bg_app_stop = 1;
         wk->wu.disp_flag = 1;
         set_char_move_init(&wk->wu, 9, 8);
-        effect_97_init(wk);
+        effect_97_init((WORK*) wk, 0);
         break;
 
     case 1:
@@ -1868,7 +1868,7 @@ void Appear_37000(PLW* wk) {
         set_char_move_init(&wk->wu, 9, 0x11);
         bg_app_stop = 1;
         wk->wu.cmwk[0] = 0;
-        effect_M1_init(&wk->wu);
+        effect_M1_init(&wk->wu, 0);
         break;
 
     case 1:
@@ -2036,7 +2036,7 @@ void Appear_41000(PLW* wk) {
         bg_app_stop = 1;
         set_char_move_init(&wk->wu, 0, 0);
         app_counter[wk->wu.id] = 0x78;
-        effect_M7_init(wk);
+        effect_M7_init((WORK*) wk, 0);
         break;
 
     case 1:

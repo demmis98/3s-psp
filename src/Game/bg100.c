@@ -34,7 +34,7 @@ void bg1000_init00() {
     bgw_ptr->wxy[0].cal = bgw_ptr->xy[0].cal;
     bgw_ptr->hos_xy[0].disp.pos = bgw_ptr->wxy[0].disp.pos - bg_w.pos_offset;
     bgw_ptr->hos_xy[0].disp.low = 0;
-    effect_29_init();
+    effect_29_init(NULL, 0);
 }
 
 void bg1001() {
@@ -52,7 +52,7 @@ void bg1001_init00() {
     bgw_ptr->hos_xy[0].disp.low = 0;
     bgw_ptr->wxy[1].cal = 0;
     bgw_ptr->xy[1].cal = 0;
-    effect_05_init();
-    effect_06_init();
+    effect_05_init(NULL, 0);
+    effect_06_init(NULL, 0);
     effect_44_init(5);
 }

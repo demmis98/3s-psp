@@ -8,7 +8,8 @@
 #include "Game/spgauge.h"
 #include "Game/workuser.h"
 
-void effect_E4_move(WORK_Other* ewk) {
+void effect_E4_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     PLW* mwk = (PLW*)ewk->my_master;
     s16 num;
 
@@ -91,7 +92,8 @@ void effect_E4_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_E4_init(PLW* wk) {
+s32 effect_E4_init(WORK* wkp, s32 /*unused*/) {
+    PLW* wk = (PLW*) wkp;
     WORK_Other* ewk;
     s16 ix;
 

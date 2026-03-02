@@ -13,7 +13,8 @@
 void eff15_kemuri(WORK_Other* ewk);
 void eff15_koishi(WORK_Other* ewk);
 
-void effect_15_move(WORK_Other* ewk) {
+void effect_15_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     if (ewk->wu.type) {
         eff15_koishi(ewk);
     } else {
@@ -100,7 +101,8 @@ void eff15_koishi(WORK_Other* ewk) {
     }
 }
 
-s32 effect_15_init(WORK* wk, u8 data) {
+s32 effect_15_init(WORK* wk, s32 d) {
+    u8 data = (u8) d;
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

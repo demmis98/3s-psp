@@ -10,7 +10,8 @@
 
 const s16 eff07_data_tbl[2][3] = { { 4, 742, 28 }, { 5, 806, 28 } };
 
-void effect_07_move(WORK_Other* ewk) {
+void effect_07_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -41,7 +42,7 @@ void effect_07_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_07_init() {
+s32 effect_07_init(WORK* /*unused*/, s32 /*unused*/) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

@@ -12,7 +12,8 @@
 #include "Game/bg.h"
 #include "Game/workuser.h"
 
-void effect_A7_move(WORK_Other* ewk) {
+void effect_A7_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void pp_screen_quake(s32 ix);
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
@@ -167,7 +168,8 @@ void effect_A7_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_A7_init(PLW* wk) {
+s32 effect_A7_init(WORK* wkp, s32 /*unused*/) {
+    PLW* wk = (PLW*) wkp;
     WORK_Other* ewk;
     PLW* twk;
     s16 ix;

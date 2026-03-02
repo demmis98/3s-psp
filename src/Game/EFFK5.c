@@ -64,7 +64,8 @@ u32 decode_mvsw(u16 flag);
 
 // Funcs
 
-void effect_K5_move(WORK_Other* ewk) {
+void effect_K5_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     WORK* mwk = (WORK*)ewk->my_master;
     MVJ* mvj;
 
@@ -456,7 +457,8 @@ void k5_add_sub(MVJ* mvj) {
     }
 }
 
-s32 effect_K5_init(PLW* wk) {
+s32 effect_K5_init(WORK* wkp, s32 /*unused*/) {
+    PLW* wk = (PLW*) wkp;
     WORK_Other* ewk;
     s16 ix;
 

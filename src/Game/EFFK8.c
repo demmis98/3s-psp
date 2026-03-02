@@ -11,7 +11,8 @@
 #include "Game/color3rd.h"
 #include "Game/workuser.h"
 
-void effect_K8_move(WORK_Other* ewk) {
+void effect_K8_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void push_color_trans_req(s32 from_col, s32 to_col);
 #endif

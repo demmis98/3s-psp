@@ -12,7 +12,8 @@ s16 get_c2_quake(WORK* c2wk);
 
 const s16 c2quake_table[19] = { 0, 3, 3, 2, 2, 1, 1, 1, 0, 0, 0, -1, -1, -1, -2, -2, -3, -3, 0 };
 
-void effect_J9_move(WORK_Other* ewk) {
+void effect_J9_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void player_hosei_data(WORK_Other * ewk, s32 flag);
 #endif
@@ -28,7 +29,7 @@ void effect_J9_move(WORK_Other* ewk) {
         ewk->wu.my_col_code = 0x21FF;
         ewk->wu.position_y = ewk->wu.xyz[1].disp.pos;
         ewk->wu.position_z = ewk->wu.my_priority = 68;
-        effect_00_init(&ewk->wu);
+        effect_00_init(&ewk->wu, 0);
         ewk->wu.next_x = 0;
         break;
 
@@ -95,7 +96,9 @@ s16 get_c2_quake(WORK* c2wk) {
     return c2quake_table[c2cg];
 }
 
-s32 effect_J9_init(WORK_Other* wk, u8 data) {
+s32 effect_J9_init(WORK* wkp, s32 d) {
+    WORK_Other* wk = (WORK_Other*) wkp;
+    u8 data = (u8) d;
     WORK_Other* ewk;
     s16 ix;
 

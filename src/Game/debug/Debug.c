@@ -1,7 +1,7 @@
 #include "Game/debug/Debug.h"
 #include "common.h"
-#include "sf33rd/AcrSDK/common/mlPAD.h"
-#include "sf33rd/AcrSDK/ps2/flps2debug.h"
+//#include "sf33rd/AcrSDK/common/mlPAD.h"
+//#include "sf33rd/AcrSDK/ps2/flps2debug.h"
 #include "Game/EFFECT.h"
 #include "Game/IOConv.h"
 #include "Game/MTRANS.h"
@@ -44,7 +44,7 @@ u8 time_check_ix;
 extern s8* cpu_data[];
 
 void Debug_Task(struct _TASK* task_ptr) {
-    void (*Main_Jmp_Tbl[3])() = { Debug_Init, Debug_1st, Debug_2nd };
+    void (*Main_Jmp_Tbl[3])(struct _TASK*) = { Debug_Init, Debug_1st, Debug_2nd };
 
     Main_Jmp_Tbl[(task_ptr->r_no[0])](task_ptr);
 
@@ -76,9 +76,11 @@ void Debug_Init(struct _TASK* task_ptr) {
         ix += 1;
     }
 
+    /*
     if ((flpad_adr[0]->sw | flpad_adr[0][1].sw) & 0x4000) {
         Debug_w[0x2C] = 1;
     }
+    */
 }
 
 void Debug_1st(struct _TASK* task_ptr) {
@@ -105,9 +107,9 @@ void Debug_2nd(struct _TASK* task_ptr) {
     offset_y[0] = 2;
     offset_y[1] = 6;
     offset_y[2] = 2;
-    flPrintColor(-256);
-    flPrintL(1, 1, "[DEBUG MODE]");
-    flPrintL(14, 1, (s8*)debug_name_data[Debug_ID]);
+    //flPrintColor(-256);
+    //flPrintL(1, 1, "[DEBUG MODE]");
+    //flPrintL(14, 1, (s8*)debug_name_data[Debug_ID]);
 
     if ((sw = Debug_Menu_Shot())) {
         if (sw == 256) {
@@ -153,13 +155,13 @@ void Debug_Menu_Disp(u32 /* unused */, u32 /* unused */) {
     for (; side < 3;) {
         for (i = 0; i < 24;) {
             if (Debug_Index != ix) {
-                flPrintColor(COLOR_WHITE);
+                //flPrintColor(COLOR_WHITE);
             } else {
-                flPrintColor(COLOR_YELLOW);
+                //flPrintColor(COLOR_YELLOW);
             }
 
-            flPrintL(x, y, debug_string_data[ix].name);
-            flPrintL(x + 18, y, "%2X", Debug_w[ix]);
+            //flPrintL(x, y, debug_string_data[ix].name);
+            //flPrintL(x + 18, y, "%2X", Debug_w[ix]);
             i += 1;
             y += 2;
             assignment_var2 = ix++;
@@ -170,8 +172,8 @@ void Debug_Menu_Disp(u32 /* unused */, u32 /* unused */) {
         assignment_var3 = x += 21;
     }
 
-    flPrintColor(COLOR_WHITE);
-    flPrintL(1, 52, "SPR-MAX : %d", seqsGetSprMax());
+    //flPrintColor(COLOR_WHITE);
+    //flPrintL(1, 52, "SPR-MAX : %d", seqsGetSprMax());
 }
 
 void Debug_Move_Sub(u16 sw) {
@@ -337,10 +339,10 @@ void Check_Check_Screen() {
             check_screen_S += 1;
             check_time_S = 10;
         } else {
-            flPrintL(1, 32, "%04X", p1sw_0);
-            flPrintL(1, 33, "%04X", p2sw_0);
-            flPrintL(1, 34, "%04X", p3sw_0);
-            flPrintL(1, 35, "%04X", p4sw_0);
+            //flPrintL(1, 32, "%04X", p1sw_0);
+            //flPrintL(1, 33, "%04X", p2sw_0);
+            //flPrintL(1, 34, "%04X", p3sw_0);
+            //flPrintL(1, 35, "%04X", p4sw_0);
             SSPutStr(0, 20, 9, "0123456789");
             SSPutStr(10, 20, 9, "0123456789");
             SSPutStr(20, 20, 9, "0123456789");
@@ -440,12 +442,12 @@ void Check_Pos_OBJ(WORK_Other* ewk) {
         ewk->wu.position_x = ewk->wu.xyz[0].disp.pos;
         ewk->wu.position_y = ewk->wu.xyz[1].disp.pos;
 
-        flPrintColor(COLOR_YELLOW);
-        flPrintL(2, 13, "%4X", ewk->wu.xyz[0].disp.pos);
-        flPrintL(9, 13, "%4X", ewk->wu.position_x);
-        flPrintL(2, 14, "%4X", ewk->wu.xyz[1].disp.pos);
-        flPrintL(9, 14, "%4X", ewk->wu.position_y);
-        flPrintL(2, 15, "%4X", ewk->wu.position_z);
+        //flPrintColor(COLOR_YELLOW);
+        //flPrintL(2, 13, "%4X", ewk->wu.xyz[0].disp.pos);
+        //flPrintL(9, 13, "%4X", ewk->wu.position_x);
+        //flPrintL(2, 14, "%4X", ewk->wu.xyz[1].disp.pos);
+        //flPrintL(9, 14, "%4X", ewk->wu.position_y);
+        //flPrintL(2, 15, "%4X", ewk->wu.position_z);
     }
 }
 
@@ -467,12 +469,12 @@ void Check_Pos_OBJ2(WORK_Other* ewk) {
             ewk->wu.position_x -= 4;
         }
 
-        flPrintColor(COLOR_WHITE);
-        flPrintL(12, 13, "%4X", ewk->wu.xyz[0].disp.pos);
-        flPrintL(19, 13, "%4X", ewk->wu.position_x);
-        flPrintL(12, 14, "%4X", ewk->wu.xyz[1].disp.pos);
-        flPrintL(19, 14, "%4X", ewk->wu.position_y);
-        flPrintL(12, 15, "%4X", ewk->wu.position_z);
+        //flPrintColor(COLOR_WHITE);
+        //flPrintL(12, 13, "%4X", ewk->wu.xyz[0].disp.pos);
+        //flPrintL(19, 13, "%4X", ewk->wu.position_x);
+        //flPrintL(12, 14, "%4X", ewk->wu.xyz[1].disp.pos);
+        //flPrintL(19, 14, "%4X", ewk->wu.position_y);
+        //flPrintL(12, 15, "%4X", ewk->wu.position_z);
     }
 }
 
@@ -494,11 +496,11 @@ void Check_Pos_BG() {
             bg_w.bgw[Debug_w[0x3E]].wxy[0].disp.pos -= 1;
         }
 
-        flPrintColor(COLOR_YELLOW);
-        flPrintL(39, 13, "BG POSITION:");
-        flPrintL(51, 13, "%1X", Debug_w[0x3E]);
-        flPrintL(48, 14, "%4X", bg_w.bgw[Debug_w[0x3E]].wxy[0].disp.pos);
-        flPrintL(48, 15, "%4X", bg_w.bgw[Debug_w[0x3E]].xy[1].disp.pos);
+        //flPrintColor(COLOR_YELLOW);
+        //flPrintL(39, 13, "BG POSITION:");
+        //flPrintL(51, 13, "%1X", Debug_w[0x3E]);
+        //flPrintL(48, 14, "%4X", bg_w.bgw[Debug_w[0x3E]].wxy[0].disp.pos);
+        //flPrintL(48, 15, "%4X", bg_w.bgw[Debug_w[0x3E]].xy[1].disp.pos);
     }
 }
 
@@ -518,7 +520,7 @@ void Disp_Rec_Time(s16 PL_id, u32 time) {
     s16 offset_y;
 
     if (Debug_w[0x46]) {
-        flPrintColor(COLOR_WHITE);
+        //flPrintColor(COLOR_WHITE);
 
         if (PL_id) {
             offset_y = 1;
@@ -532,10 +534,10 @@ void Disp_Rec_Time(s16 PL_id, u32 time) {
         rec_time[1] = time_buff / 3600;
         time_buff -= rec_time[1] * 3600;
         rec_time[2] = time_buff / 60;
-        flPrintL(2, offset_y + 12, "TIME:  h  m  s");
-        flPrintL(7, offset_y + 12, "%2d", rec_time[0]);
-        flPrintL(10, offset_y + 12, "%2d", rec_time[1]);
-        flPrintL(13, offset_y + 12, "%2d", rec_time[2]);
+        //flPrintL(2, offset_y + 12, "TIME:  h  m  s");
+        //flPrintL(7, offset_y + 12, "%2d", rec_time[0]);
+        //flPrintL(10, offset_y + 12, "%2d", rec_time[1]);
+        //flPrintL(13, offset_y + 12, "%2d", rec_time[2]);
     }
 }
 
@@ -544,7 +546,7 @@ void Disp_Mode(PLW* wk) {
     s16 offset_y = 0;
 
     if (Debug_w[0x38]) {
-        flPrintColor(COLOR_YELLOW);
+        //flPrintColor(COLOR_YELLOW);
 
         if (wk->wu.id) {
             x = 49;
@@ -554,17 +556,17 @@ void Disp_Mode(PLW* wk) {
 
         "%3d";
 
-        flPrintL(x, offset_y + 16, "%3X", Control_Time);
-        flPrintL(x + 1, offset_y + 17, cpu_data[CP_No[wk->wu.id][0]]);
-        flPrintL(x, offset_y + 18, "%3d", Pattern_Index[wk->wu.id]);
+        //flPrintL(x, offset_y + 16, "%3X", Control_Time);
+        //flPrintL(x + 1, offset_y + 17, cpu_data[CP_No[wk->wu.id][0]]);
+        //flPrintL(x, offset_y + 18, "%3d", Pattern_Index[wk->wu.id]);
     }
 }
 
 void Disp_Free_work() {
     if (Debug_w[0x39]) {
-        flPrintColor(COLOR_WHITE);
-        flPrintL(1, 8, "%3d", frwctr);
-        flPrintL(1, 9, "%3d", frwctr_min);
+        //flPrintColor(COLOR_WHITE);
+        //flPrintL(1, 8, "%3d", frwctr);
+        //flPrintL(1, 9, "%3d", frwctr_min);
     }
 }
 
@@ -572,29 +574,29 @@ void Disp_Random() {
     s16 offset_y = -4;
 
     if (Debug_w[0x3B]) {
-        flPrintColor(COLOR_YELLOW);
-        flPrintL(8, offset_y + 32, "%4X", Random_ix16_com);
-        flPrintL(8, offset_y + 33, "%4X", Random_ix32_com);
-        flPrintL(8, offset_y + 34, "%4X", Random_ix16_ex_com);
-        flPrintL(8, offset_y + 35, "%4X", Random_ix32_ex_com);
-        flPrintL(14, offset_y + 32, "%4X", Random_ix16);
-        flPrintL(14, offset_y + 33, "%4X", Random_ix32);
-        flPrintL(14, offset_y + 34, "%4X", Random_ix16_ex);
-        flPrintL(14, offset_y + 35, "%4X", Random_ix32_ex);
-        flPrintL(20, offset_y + 32, "%4X", plw->wu.position_x);
-        flPrintL(20, offset_y + 33, "%4X", plw->wu.position_y);
-        flPrintL(20, offset_y + 34, "%4X", plw[1].wu.position_x);
-        flPrintL(20, offset_y + 35, "%4X", plw[1].wu.position_y);
-        flPrintL(26, offset_y + 32, "%4X", Turbo_Timer);
-        flPrintL(26, offset_y + 33, "%4X", players_timer);
-        flPrintL(26, offset_y + 34, "%4X", system_timer);
-        flPrintL(26, offset_y + 35, "%4X", Game_timer);
-        flPrintL(32, offset_y + 32, "%4X", time_check[0]);
-        flPrintL(32, offset_y + 33, "%4X", time_check[1]);
-        flPrintL(32, offset_y + 34, "%4X", time_check[2]);
-        flPrintL(32, offset_y + 35, "%4X", time_check[3]);
-        flPrintL(32, offset_y + 29, "%4X", bg_w.bgw[1].wxy[0].disp.pos);
-        flPrintL(32, offset_y + 30, "%4X", bg_w.bgw[1].xy[0].disp.pos);
+        //flPrintColor(COLOR_YELLOW);
+        //flPrintL(8, offset_y + 32, "%4X", Random_ix16_com);
+        //flPrintL(8, offset_y + 33, "%4X", Random_ix32_com);
+        //flPrintL(8, offset_y + 34, "%4X", Random_ix16_ex_com);
+        //flPrintL(8, offset_y + 35, "%4X", Random_ix32_ex_com);
+        //flPrintL(14, offset_y + 32, "%4X", Random_ix16);
+        //flPrintL(14, offset_y + 33, "%4X", Random_ix32);
+        //flPrintL(14, offset_y + 34, "%4X", Random_ix16_ex);
+        //flPrintL(14, offset_y + 35, "%4X", Random_ix32_ex);
+        //flPrintL(20, offset_y + 32, "%4X", plw->wu.position_x);
+        //flPrintL(20, offset_y + 33, "%4X", plw->wu.position_y);
+        //flPrintL(20, offset_y + 34, "%4X", plw[1].wu.position_x);
+        //flPrintL(20, offset_y + 35, "%4X", plw[1].wu.position_y);
+        //flPrintL(26, offset_y + 32, "%4X", Turbo_Timer);
+        //flPrintL(26, offset_y + 33, "%4X", players_timer);
+        //flPrintL(26, offset_y + 34, "%4X", system_timer);
+        //flPrintL(26, offset_y + 35, "%4X", Game_timer);
+        //flPrintL(32, offset_y + 32, "%4X", time_check[0]);
+        //flPrintL(32, offset_y + 33, "%4X", time_check[1]);
+        //flPrintL(32, offset_y + 34, "%4X", time_check[2]);
+        //flPrintL(32, offset_y + 35, "%4X", time_check[3]);
+        //flPrintL(32, offset_y + 29, "%4X", bg_w.bgw[1].wxy[0].disp.pos);
+        //flPrintL(32, offset_y + 30, "%4X", bg_w.bgw[1].xy[0].disp.pos);
     }
 }
 

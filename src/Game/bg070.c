@@ -52,9 +52,9 @@ void bg0702_init00() {
     bgw_ptr->old_pos_x = bgw_ptr->xy[0].disp.pos = bgw_ptr->pos_x_work = 0x200;
     bgw_ptr->hos_xy[0].cal = bgw_ptr->wxy[0].cal = bgw_ptr->xy[0].cal;
     bgw_ptr->zuubun = 0;
-    effect_06_init();
+    effect_06_init(NULL, 0);
     effect_94_init(3);
-    effect_J8_init();
+    effect_J8_init(NULL, 0);
 }
 
 void bg0703() {

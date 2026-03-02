@@ -22,11 +22,12 @@ void EFF39_KILL(WORK_Other* ewk);
 void EFF39_MOVE(WORK_Other* ewk);
 s32 Get_Pos39(WORK_Other* ewk, s16 Who, s16 Get_Type);
 
-void (*const EFF39_Jmp_Tbl[6])() = {
+void (*const EFF39_Jmp_Tbl[6])(WORK_Other*) = {
     EFF39_WAIT, EFF39_SLIDE_IN, EFF39_SLIDE_OUT, EFF39_SUDDENLY, EFF39_MOVE, EFF39_KILL
 };
 
-void effect_39_move(WORK_Other* ewk) {
+void effect_39_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     EFF39_Jmp_Tbl[ewk->wu.routine_no[0]](ewk);
 
     if (ewk->wu.be_flag != 0) {

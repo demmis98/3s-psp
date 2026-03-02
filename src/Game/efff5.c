@@ -14,7 +14,8 @@ void efff5_9000(WORK_Other* /* unused */);
 void efff5_A000(WORK_Other* /* unused */);
 void efff5_B000(WORK_Other* /* unused */);
 
-void effect_F5_move(WORK_Other* ewk) {
+void effect_F5_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     void (*efff5_jp[12])(WORK_Other*) = { efff5_0000, efff5_1000, efff5_2000, efff5_3000, efff5_4000, efff5_5000,
                                           efff5_6000, efff5_7000, efff5_8000, efff5_9000, efff5_A000, efff5_B000 };
 
@@ -45,6 +46,6 @@ void efff5_A000(WORK_Other* /* unused */) {}
 
 void efff5_B000(WORK_Other* /* unused */) {}
 
-s32 effect_F5_init(s16 /* unused */) {
+s32 effect_F5_init(WORK* /*unused*/, s32 /* unused */) {
     return 0;
 }

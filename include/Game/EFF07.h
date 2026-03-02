@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-void effect_07_move(WORK_Other* ewk);
-s32 effect_07_init();
+void effect_07_move(WORK* wkp, s32 /*unused*/);
+s32 effect_07_init(WORK* /*unused*/, s32 /*unused*/);
 
 #endif

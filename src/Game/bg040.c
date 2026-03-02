@@ -32,9 +32,9 @@ void bg0401_init00() {
     bgw_ptr->hos_xy[0].cal = bgw_ptr->wxy[0].cal = bgw_ptr->xy[0].cal;
     bgw_ptr->zuubun = 0;
     effect_12_init(1);
-    effect_06_init();
+    effect_06_init(NULL, 0);
     effect_44_init(3);
-    effect_53_init();
+    effect_53_init(NULL, 0);
 }
 
 void bg0401_init01() {

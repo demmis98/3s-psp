@@ -10,10 +10,10 @@
 
 static TexturePSP **textures;
 
-Texture * loadTexture(const char * filename, bool inVram) {
-    Texture * texture = (Texture *) calloc(1, sizeof(Texture));
+TexturePSP * loadTexture(const char * filename, bool inVram) {
+    TexturePSP * texture = (TexturePSP *) calloc(1, sizeof(TexturePSP));
     void *temp_tex;
-    //Texture *texture = (Texture*)sceGuGetMemory(1,  sizeof(Texture));
+    //TexturePSP *texture = (Texture*)sceGuGetMemory(1,  sizeof(Texture));
 
     texture->data = (uint32_t *) stbi_load(filename, &(texture->width), &(texture->height), NULL, STBI_rgb_alpha);
     texture->wRender = nextPowTwo(texture->width);
@@ -34,7 +34,7 @@ Texture * loadTexture(const char * filename, bool inVram) {
     return texture;
 }
 
-void setTexture(Texture *texture, int tfx){
+void setTexture(TexturePSP *texture, int tfx){
     sceGuTexMode(texture->mode, 0, 0, GU_FALSE);
     sceGuTexFunc(tfx, GU_TCC_RGBA);
     sceGuTexImage(0, texture->wRender, texture->hRender, texture->width, texture->data);
@@ -61,7 +61,7 @@ void drawTextureSet(float x1, float y1, float u1, float v1, float x2, float y2, 
     sceGuDrawArray(GU_SPRITES, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
 }
 
-void drawTexture(Texture * texture, float x1, float y1, float u1, float v1, float x2, float y2, float u2, float v2, u32 colour) {
+void drawTexture(TexturePSP * texture, float x1, float y1, float u1, float v1, float x2, float y2, float u2, float v2, u32 colour) {
     TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(2 * sizeof(TextureVertex));
     //static TextureVertex vertices[2];
 
@@ -89,15 +89,15 @@ void drawTexture(Texture * texture, float x1, float y1, float u1, float v1, floa
     //sceGuDisable(GU_TEXTURE_2D);
 }
 
-void drawTextureC(Texture * texture, float x, float y, float w, float h){
+void drawTextureC(TexturePSP * texture, float x, float y, float w, float h){
     drawTexture(texture, x, y, 0.0f, 0.0f, x + w, y + h, texture->width, texture->height, 0xFFFFFFFF);
 }
 
-void drawTextureF(Texture * texture, float x, float y) {
+void drawTextureF(TexturePSP * texture, float x, float y) {
 	drawTextureC(texture, x, y, texture -> width, texture -> height);
 }
 
-void drawTextureH(Texture * texture, float x, float y, uint32_t colour) {
+void drawTextureH(TexturePSP * texture, float x, float y, uint32_t colour) {
     TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(2 * sizeof(TextureVertex));
     //static TextureVertex vertices[2];
 
@@ -126,7 +126,7 @@ void drawTextureH(Texture * texture, float x, float y, uint32_t colour) {
     //sceGuDisable(GU_TEXTURE_2D);
 }
 
-void drawTextureR(Texture * texture, float x, float y, float angle, u32 colour) {
+void drawTextureR(TexturePSP * texture, float x, float y, float angle, u32 colour) {
     TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(3 * sizeof(TextureVertex));
     //static TextureVertex vertices[2];
 

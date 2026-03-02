@@ -1,9 +1,9 @@
 #include "Game/bg.h"
 #include "common.h"
-#include "sf33rd/AcrSDK/ps2/foundaps2.h"
-#include "Common/MemMan.h"
-#include "Common/PPGFile.h"
-#include "Common/PPGWork.h"
+//#include "sf33rd/AcrSDK/ps2/foundaps2.h"
+//#include "Common/MemMan.h"
+//#include "Common/PPGFile.h"
+//#include "Common/PPGWork.h"
 #include "Game/AcrUtil.h"
 #include "Game/DC_Ghost.h"
 #include "Game/GD3rd.h"
@@ -55,6 +55,7 @@ static void ppgCalScrPosition(s32 x, s32 y, s32 xs, s32 ys);
 void Bg_TexInit() {
     s32 i;
 
+    /*
     for (i = 0; i < 3; i++) {
         ppgBgList[i].tex = &ppgBgTex[i];
         ppgBgList[i].pal = palGetChunkGhostCP3();
@@ -66,6 +67,7 @@ void Bg_TexInit() {
     ppgAkeList.pal = &ppgAkePal;
     ppgAkaneList.tex = &ppgAkaneTex;
     ppgAkaneList.pal = &ppgAkanePal;
+    */
 }
 
 void Bg_Kakikae_Set() {
@@ -247,6 +249,7 @@ void Bg_Close() {
     tokusyu_stage = 0;
     rw_num = 0;
 
+    /*
     for (i = 0; i < 3; i++) {
         ppgReleaseTextureHandle(&ppgBgTex[i], -1);
     }
@@ -256,6 +259,7 @@ void Bg_Close() {
     ppgReleasePaletteHandle(&ppgAkePal, -1);
     ppgReleaseTextureHandle(&ppgAkaneTex, -1);
     ppgReleasePaletteHandle(&ppgAkanePal, -1);
+    */
     Screen_Switch = 0;
     Screen_Switch_Buffer = 0;
     bg_disp_off = 0;
@@ -287,7 +291,7 @@ void Bg_Texture_Load_EX() {
     u32 assign2;
     u8 assign3;
 
-    mmDebWriteTag("\nSTAGE\n\n");
+    //mmDebWriteTag("\nSTAGE\n\n");
     Bg_TexInit();
 
     for (i = 0; i < 8; i++) {
@@ -335,14 +339,16 @@ void Bg_Texture_Load_EX() {
     for (j = 0; j < bg_w.scrno; j++, assign3 = stg++) {
         tgbix = bgtex_stage_gbix[bg_w.stage][j];
         mask = 0x80000000;
+        /*
         ppgSetupCurrentDataList(&ppgBgList[stg]);
         ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, (stg * 64) + 0x84, 32, 0, 0);
         ppgSetupTexChunk_1st_Accnum(0, accnum);
+        */
 
         for (i = 0; i < 32; i++, assign2 = mask >>= 1) {
             if (tgbix & mask) {
-                accnum = ppgSetupTexChunk_2nd(NULL, i + ((stg * 64) + 0x84));
-                ppgSetupTexChunk_3rd(NULL, i + ((stg * 64) + 0x84), 1);
+                //accnum = ppgSetupTexChunk_2nd(NULL, i + ((stg * 64) + 0x84));
+                //ppgSetupTexChunk_3rd(NULL, i + ((stg * 64) + 0x84), 1);
             }
         }
     }
@@ -350,44 +356,50 @@ void Bg_Texture_Load_EX() {
     x = rewrite_scr[bg_w.stage];
 
     if (x) {
+        /*
         ppgSetupCurrentDataList(&ppgRwBgList);
         ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, (stg * 64) + 0x64, x, 0, 0);
         ppgSetupTexChunk_1st_Accnum(0, accnum);
+        */
 
         for (i = 0; i < x; i++) {
-            accnum = ppgSetupTexChunk_2nd(NULL, i + ((stg * 64) + 0x64));
-            ppgSetupTexChunk_3rd(NULL, i + ((stg * 64) + 0x64), 1);
+            //accnum = ppgSetupTexChunk_2nd(NULL, i + ((stg * 64) + 0x64));
+            //ppgSetupTexChunk_3rd(NULL, i + ((stg * 64) + 0x64), 1);
         }
     }
 
     if (bg_w.stage == 7) {
+        /*
         ppgSetupCurrentDataList(&ppgAkaneList);
         ppgSetupPalChunk(NULL, loadAdrs, loadSize, 0, 0, 1);
         ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, 0, 3, 0, 0);
         ppgSetupTexChunk_1st_Accnum(0, accnum);
+        */
 
         for (i = 0; i < 3; i++) {
-            accnum = ppgSetupTexChunk_2nd(NULL, i);
-            ppgSetupTexChunk_3rd(NULL, i, 1);
+            //accnum = ppgSetupTexChunk_2nd(NULL, i);
+            //ppgSetupTexChunk_3rd(NULL, i, 1);
         }
 
-        ppgSourceDataReleased(&ppgAkaneList);
+        //ppgSourceDataReleased(&ppgAkaneList);
     }
 
     if (bg_w.stage != 20 && bg_w.stage != 21) {
         akeKey = Search_ramcnt_type(0x1F);
         akeSize = Get_size_data_ramcnt_key(akeKey);
         akeAdrs = (u8*)Get_ramcnt_address(akeKey);
+        /*
         ppgSetupCurrentDataList(&ppgAkeList);
         ppgSetupPalChunk(NULL, akeAdrs, akeSize, 0, 0, 1);
         ppgSetupTexChunk_1st(NULL, akeAdrs, akeSize, 0, 3, 0, 0);
+        */
 
         for (i = 0; i < 3; i++) {
-            ppgSetupTexChunk_2nd(NULL, i);
-            ppgSetupTexChunk_3rd(NULL, i, 1);
+            //ppgSetupTexChunk_2nd(NULL, i);
+            //ppgSetupTexChunk_3rd(NULL, i, 1);
         }
 
-        ppgSourceDataReleased(&ppgAkeList);
+        //ppgSourceDataReleased(&ppgAkeList);
     }
 }
 
@@ -409,7 +421,7 @@ void Bg_Texture_Load2(u8 type) {
 
     u32 assign;
 
-    mmDebWriteTag("\nBG ETC.\n\n");
+    //mmDebWriteTag("\nBG ETC.\n\n");
     Bg_TexInit();
     (void)assign;
     ending_flag = 0;
@@ -425,18 +437,18 @@ void Bg_Texture_Load2(u8 type) {
         Bg_On_R(1 << i);
     }
 
-    ppgSetupCurrentDataList(ppgBgList);
-    ppgReleaseTextureHandle(NULL, -1);
+    //ppgSetupCurrentDataList(ppgBgList);
+    //ppgReleaseTextureHandle(NULL, -1);
     key = Search_ramcnt_type(0x18);
 
     if (key == 0) {
-        flLogOut("背景用テクスチャが読み込まれていませんでした。\n");
+        //flLogOut("背景用テクスチャが読み込まれていませんでした。\n");
         while (!NULL) {};
     }
 
     loadSize = Get_size_data_ramcnt_key(key);
     loadAdrs = (void*)Get_ramcnt_address(key);
-    ppgSetupTexChunk_1st(0, loadAdrs, loadSize, 0x84, 0x20, 0, 0);
+    //ppgSetupTexChunk_1st(0, loadAdrs, loadSize, 0x84, 0x20, 0, 0);
     pmask = 0xFF000000;
     shift = 24;
     tgbix = bgtex_etc_gbix[type];
@@ -448,9 +460,11 @@ void Bg_Texture_Load2(u8 type) {
 
     for (j = 0, i = 0; i < 32; i++, assign = mask >>= 1) {
         if (tgbix & mask) {
+            /*
             ppgBgList->tex->accnum = etcBgGixCnvTable[type][j];
             ppgSetupTexChunk_2nd(NULL, i + 0x84);
             ppgSetupTexChunk_3rd(NULL, i + 0x84, 1);
+            */
             j++;
         }
     }
@@ -480,7 +494,7 @@ void Bg_Texture_Load_Ending(s16 type) {
     u32 assign;
     u32 assign2;
 
-    mmDebWriteTag("\nENDING\n\n");
+    //mmDebWriteTag("\nENDING\n\n");
     rw_num = 0;
     Bg_TexInit();
     ending_flag = 1;
@@ -504,15 +518,17 @@ void Bg_Texture_Load_Ending(s16 type) {
         tgbix[0] = bgtex_ending_gbix[type][j * 2];
         tgbix[1] = bgtex_ending_gbix[type][(j * 2) + 1];
         mask = 0x80000000;
+        /*
         ppgSetupCurrentDataList(&ppgBgList[j]);
         ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, (j * 64) + 100, 64, 0, 0);
         ppgSetupTexChunk_1st_Accnum(0, accnum);
+        */
 
         for (k = 0; k < 2; k++) {
             for (i = 0; i < 32; i++, assign2 = mask >>= 1) {
                 if (mask & tgbix[k]) {
-                    accnum = ppgSetupTexChunk_2nd(NULL, i + ((j * 64) + 100 + (k * 32)));
-                    ppgSetupTexChunk_3rd(NULL, i + ((j * 64) + 100 + (k * 32)), 1);
+                    //accnum = ppgSetupTexChunk_2nd(NULL, i + ((j * 64) + 100 + (k * 32)));
+                    //ppgSetupTexChunk_3rd(NULL, i + ((j * 64) + 100 + (k * 32)), 1);
                 }
             }
 
@@ -523,13 +539,15 @@ void Bg_Texture_Load_Ending(s16 type) {
     x = ending_rewrite_scr[type];
 
     if (x) {
+        /*
         ppgSetupCurrentDataList(&ppgRwBgList);
         ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, (j * 64) + 100, x, 0, 0);
         ppgSetupTexChunk_1st_Accnum(0, accnum);
+        */
 
         for (i = 0; i < x; i++) {
-            accnum = ppgSetupTexChunk_2nd(NULL, i + ((j * 64) + 100));
-            ppgSetupTexChunk_3rd(NULL, i + ((j * 64) + 100), 1);
+            //accnum = ppgSetupTexChunk_2nd(NULL, i + ((j * 64) + 100));
+            //ppgSetupTexChunk_3rd(NULL, i + ((j * 64) + 100), 1);
         }
     }
 
@@ -543,14 +561,16 @@ void Bg_Texture_Load_Ending(s16 type) {
             }
         }
 
+        /*
         ppgSetupCurrentDataList(&ppgAkeList);
         ppgSetupPalChunk(NULL, loadAdrs, loadSize, 0, 0, 1);
         ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, 0x1A0, 0x18, 0, 0);
         ppgSetupTexChunk_1st_Accnum(0, accnum);
+        */
 
         for (i = 0; i < 0x18; i++) {
-            accnum = ppgSetupTexChunk_2nd(NULL, i + 0x1A0);
-            ppgSetupTexChunk_3rd(NULL, i + 0x1A0, 1);
+            //accnum = ppgSetupTexChunk_2nd(NULL, i + 0x1A0);
+            //ppgSetupTexChunk_3rd(NULL, i + 0x1A0, 1);
         }
 
         break;
@@ -561,12 +581,14 @@ void Bg_Texture_Load_Ending(s16 type) {
 
     case 19:
         tokusyu_stage = 7;
+        /*
         ppgSetupCurrentDataList(&ppgAkeList);
         ppgSetupPalChunk(NULL, loadAdrs, loadSize, 0, 0, 1);
         ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, 0xE4, 1, 0, 0);
         ppgSetupTexChunk_1st_Accnum(0, accnum);
         accnum = ppgSetupTexChunk_2nd(NULL, 0xE4);
         ppgSetupTexChunk_3rd(NULL, 0xE4, 1);
+        */
         break;
 
     default:
@@ -576,11 +598,13 @@ void Bg_Texture_Load_Ending(s16 type) {
 
     Push_ramcnt_key(key1);
     Ed_Kakikae_Set(type);
+    /*
     ppgSourceDataReleased(&ppgBgList[0]);
     ppgSourceDataReleased(&ppgBgList[1]);
     ppgSourceDataReleased(&ppgBgList[2]);
     ppgSourceDataReleased(&ppgRwBgList);
     ppgSourceDataReleased(&ppgAkeList);
+    */
 }
 
 void scr_trans(u8 bgnm) {
@@ -654,18 +678,18 @@ void scr_trans(u8 bgnm) {
 
     if (ending_flag == 0) {
         if (bgnm == 3) {
-            ppgSetupCurrentDataList(&ppgAkeList);
+            //ppgSetupCurrentDataList(&ppgAkeList);
             bgAkebonoDraw();
             return;
         }
 
         global_index = (bgnm * 64) + 100;
-        ppgSetupCurrentDataList(&ppgBgList[bgnm]);
-        curDataList = &ppgBgList[bgnm];
+        //ppgSetupCurrentDataList(&ppgBgList[bgnm]);
+        //curDataList = &ppgBgList[bgnm];
     } else {
         global_index = (bgnm * 64) + 100;
-        ppgSetupCurrentDataList(&ppgBgList[bgnm]);
-        curDataList = &ppgBgList[bgnm];
+        //ppgSetupCurrentDataList(&ppgBgList[bgnm]);
+        //curDataList = &ppgBgList[bgnm];
     }
 
     switch (tokusyu_stage) {
@@ -679,9 +703,11 @@ void scr_trans(u8 bgnm) {
                     for (i = 0; i < 4; i++) {
                         if (global_index_real == rw_dat[i + 1].rwgbix) {
                             global_index_real = rw_dat[i + 1].gbix;
+                            /*
                             if (ppgCheckTextureNumber(0, global_index_real) == 0) {
                                 ppgSetupCurrentDataList(&ppgRwBgList);
                             }
+                            */
                             break;
                         }
                     }
@@ -690,17 +716,18 @@ void scr_trans(u8 bgnm) {
                         if (global_index_real == rw_gbix[i]) {
                             global_index_real = *(rw_dat[0].rwd_ptr + i + 1);
                             vtxColor = *rw3col_ptr;
-
+                            /*
                             if (ppgCheckTextureNumber(0, global_index_real) == 0) {
                                 ppgSetupCurrentDataList(&ppgRwBgList);
                             }
+                            */
                             break;
                         }
                     }
                 }
 
                 bgDrawOneChip(x, y, 128, 128, global_index_real, vtxColor, palOffset);
-                ppgSetupCurrentDataList(curDataList);
+                //ppgSetupCurrentDataList(curDataList);
             }
         }
 
@@ -796,12 +823,13 @@ void scr_trans(u8 bgnm) {
                 if (bgnm == 1) {
                     global_index_real += yang_ix_plus;
                 }
-
+                /*
                 if (ppgCheckTextureNumber(0, global_index_real) == 0) {
                     ppgSetupCurrentDataList(&ppgRwBgList);
                 }
+                */
                 bgDrawOneChip(x, y, 128, 128, global_index_real, vtxColor, palOffset);
-                ppgSetupCurrentDataList(curDataList);
+                //ppgSetupCurrentDataList(curDataList);
             }
         }
 
@@ -837,19 +865,20 @@ void scr_trans(u8 bgnm) {
                 if (bgnm == 1) {
                     if (rw_dat[1].rwgbix == global_index_real) {
                         global_index_real = rw_dat[1].gbix;
-
+                        /*
                         if (!ppgCheckTextureNumber(0, global_index_real)) {
                             ppgSetupCurrentDataList(&ppgRwBgList);
                         }
+                        */
                     } else {
                         for (i = 0; i < 4; i++) {
                             if (global_index_real == rw_gbix[i]) {
                                 global_index_real = *(rw_dat[0].rwd_ptr + i + 1);
-
+                                /*
                                 if (!ppgCheckTextureNumber(0, global_index_real)) {
                                     ppgSetupCurrentDataList(&ppgRwBgList);
                                 }
-
+                                */
                                 break;
                             }
                         }
@@ -857,7 +886,7 @@ void scr_trans(u8 bgnm) {
                 }
 
                 bgDrawOneChip(x, y, 128, 128, global_index_real, -1, palOffset);
-                ppgSetupCurrentDataList(curDataList);
+                //ppgSetupCurrentDataList(curDataList);
             }
         }
 
@@ -936,7 +965,7 @@ void scr_trans(u8 bgnm) {
                     for (i = 0; i < 16; i++) {
                         if (gouki_end_gbix[i] == global_index_real) {
                             global_index_real = gouki_end_nosekae[nosekae - 1][i];
-
+                            /*
                             if (ppgCheckTextureNumber(0, global_index_real) == 0) {
                                 if (ppgCheckTextureNumber(&ppgRwBgTex, global_index_real)) {
                                     ppgSetupCurrentDataList(&ppgRwBgList);
@@ -944,6 +973,7 @@ void scr_trans(u8 bgnm) {
                                     ppgSetupCurrentDataList(&ppgAkeList);
                                 }
                             }
+                            */
 
                             break;
                         }
@@ -955,7 +985,7 @@ void scr_trans(u8 bgnm) {
                         for (i = 0; i < 12; i++) {
                             if (global_index_real == rw_dat[i].rwgbix) {
                                 global_index_real = rw_dat[i].rwd_ptr[g_number[0]];
-
+                                /*
                                 if (ppgCheckTextureNumber(0, global_index_real) == 0) {
                                     if (ppgCheckTextureNumber(&ppgRwBgTex, global_index_real)) {
                                         ppgSetupCurrentDataList(&ppgRwBgList);
@@ -963,7 +993,7 @@ void scr_trans(u8 bgnm) {
                                         ppgSetupCurrentDataList(&ppgAkeList);
                                     }
                                 }
-
+                                */
                                 break;
                             }
                         }
@@ -973,7 +1003,7 @@ void scr_trans(u8 bgnm) {
                         for (i = 12; i < 20; i++) {
                             if (global_index_real == rw_dat[i].rwgbix) {
                                 global_index_real = rw_dat[i].rwd_ptr[g_number[1]];
-
+                                /*
                                 if (!ppgCheckTextureNumber(0, global_index_real)) {
                                     if (ppgCheckTextureNumber(&ppgRwBgTex, global_index_real)) {
                                         ppgSetupCurrentDataList(&ppgRwBgList);
@@ -981,7 +1011,7 @@ void scr_trans(u8 bgnm) {
                                         ppgSetupCurrentDataList(&ppgAkeList);
                                     }
                                 }
-
+                                */
                                 break;
                             }
                         }
@@ -989,7 +1019,7 @@ void scr_trans(u8 bgnm) {
                 }
 
                 bgDrawOneChip(x, y, 128, 128, global_index_real, -1, palOffset);
-                ppgSetupCurrentDataList(curDataList);
+                //ppgSetupCurrentDataList(curDataList);
             }
         }
 
@@ -1007,11 +1037,11 @@ void scr_trans(u8 bgnm) {
                         for (i = 0; i < 8; i++) {
                             if (global_index_real == rw_dat[i].rwgbix) {
                                 global_index_real = rw_dat[i].rwd_ptr[c_number];
-
+                                /*
                                 if (!ppgCheckTextureNumber(0, global_index_real)) {
                                     ppgSetupCurrentDataList(&ppgRwBgList);
                                 }
-
+                                */
                                 break;
                             }
                         }
@@ -1022,11 +1052,11 @@ void scr_trans(u8 bgnm) {
                         for (i = 8; i < 16; i++) {
                             if (global_index_real == rw_dat[i].rwgbix) {
                                 global_index_real = rw_dat[i].rwd_ptr[c_number];
-
+                                /*
                                 if (!ppgCheckTextureNumber(0, global_index_real)) {
                                     ppgSetupCurrentDataList(&ppgRwBgList);
                                 }
-
+                                */
                                 break;
                             }
                         }
@@ -1034,7 +1064,7 @@ void scr_trans(u8 bgnm) {
                 }
 
                 bgDrawOneChip(x, y, 128, 128, global_index_real, -1, palOffset);
-                ppgSetupCurrentDataList(curDataList);
+                //ppgSetupCurrentDataList(curDataList);
             }
         }
 
@@ -1063,13 +1093,13 @@ void scr_trans(u8 bgnm) {
         if (bgnm == 2) {
             suzi_pos = bg_pos[2].scr_x_buff.word_pos.h - 320;
             suzi_pos = suzi_pos * -0.5f;
-            ppgSetupCurrentDataList(&ppgAkaneList);
+            //ppgSetupCurrentDataList(&ppgAkaneList);
 
             for (x = 0; x < 3; x = x + 1) {
                 scr_trans_sub2(x * 256 + 128, 128, suzi_pos);
 
                 if (No_Trans == 0) {
-                    ppgSetupCurrentPaletteNumber(0, x);
+                    //ppgSetupCurrentPaletteNumber(0, x);
                     njDrawTexture(bgpoly, 4, x, 0);
                 }
             }
@@ -1118,16 +1148,18 @@ void bgDrawOneScreen(s32 bgnum, s32 gixbase, s32* xx, s32* yy, s32 /* unused */,
                 for (i = 0; i < rw_num; i++) {
                     if (bgnum == rw_dat[i].bg_num && gbix == rw_dat[i].rwgbix) {
                         gbix = rw_dat[i].gbix;
+                        /*
                         if (!(ppgCheckTextureNumber(0, gbix))) {
                             ppgSetupCurrentDataList(&ppgRwBgList);
                         }
+                        */
                         break;
                     }
                 }
             }
 
             bgDrawOneChip(x, y, 128, 128, gbix, -1, ofsPal);
-            ppgSetupCurrentDataList(curDataList);
+            //ppgSetupCurrentDataList(curDataList);
         }
     }
 }
@@ -1135,6 +1167,7 @@ void bgDrawOneScreen(s32 bgnum, s32 gixbase, s32* xx, s32* yy, s32 /* unused */,
 void bgDrawOneChip(s32 x, s32 y, s32 xs, s32 ys, s32 gbix, u32 vtxCol, s32 ofsPal) {
     s32 i;
 
+    /*
     if (No_Trans == 0 && ppgCheckTextureNumber(0, gbix)) {
         ppgCalScrPosition(x, y, xs, ys);
         if (!(scrDrawPos->x < 384.0f && !(scrDrawPos[3].x < 0.0f) && (scrDrawPos->y < 224.0f) &&
@@ -1144,6 +1177,7 @@ void bgDrawOneChip(s32 x, s32 y, s32 xs, s32 ys, s32 gbix, u32 vtxCol, s32 ofsPa
             ppgWriteQuadUseTrans(scrDrawPos, vtxCol, 0, gbix, 0, 0, ofsPal);
         }
     }
+    */
 }
 
 void bgAkebonoDraw() {
@@ -1154,12 +1188,12 @@ void bgAkebonoDraw() {
     scrDrawPos[3].x = 128.0f;
     scrDrawPos[3].y = 224.0f;
     scrDrawPos->z = scrDrawPos[3].z = PrioBase[bg_priority[3]];
-    scrDrawPos->s = scrDrawPos->t = 0.0f;
-    scrDrawPos[3].s = 1.0f;
-    scrDrawPos[3].t = 0.875f;
+    scrDrawPos->u = scrDrawPos->v = 0.0f;
+    scrDrawPos[3].u = 1.0f;
+    scrDrawPos[3].v = 0.875f;
 
     for (i = 0; i < 3; i++) {
-        ppgWriteQuadUseTrans(scrDrawPos, 0xFFFFFFFF, NULL, i, i, 0, 0);
+        //ppgWriteQuadUseTrans(scrDrawPos, 0xFFFFFFFF, NULL, i, i, 0, 0);
         scrDrawPos->x += 128.0f;
         scrDrawPos[3].x += 128.0f;
     }
@@ -1186,16 +1220,16 @@ void ppgCalScrPosition(s32 x, s32 y, s32 xs, s32 ys) {
     scrDrawPos[3].s = (0.5f + (f32)((x & 0x7F) + xs)) / 128.0f;
     scrDrawPos[3].t = (0.5f + (f32)((y & 0x7F) + ys)) / 128.0f;
 #else
-    scrDrawPos[0].s = (f32)(x & 0x7F) / 128.0f;
-    scrDrawPos[0].t = (f32)(y & 0x7F) / 128.0f;
-    scrDrawPos[3].s = (f32)((x & 0x7F) + xs) / 128.0f;
-    scrDrawPos[3].t = (f32)((y & 0x7F) + ys) / 128.0f;
+    scrDrawPos[0].u = (f32)(x & 0x7F) / 128.0f;
+    scrDrawPos[0].v = (f32)(y & 0x7F) / 128.0f;
+    scrDrawPos[3].u = (f32)((x & 0x7F) + xs) / 128.0f;
+    scrDrawPos[3].v = (f32)((y & 0x7F) + ys) / 128.0f;
 #endif
 
-    scrDrawPos[1].s = scrDrawPos[3].s;
-    scrDrawPos[2].s = scrDrawPos[0].s;
-    scrDrawPos[1].t = scrDrawPos[0].t;
-    scrDrawPos[2].t = scrDrawPos[3].t;
+    scrDrawPos[1].u = scrDrawPos[3].u;
+    scrDrawPos[2].u = scrDrawPos[0].u;
+    scrDrawPos[1].v = scrDrawPos[0].v;
+    scrDrawPos[2].v = scrDrawPos[3].v;
 }
 
 void scr_trans_sub2(s32 x, s32 y, s32 suzi) {

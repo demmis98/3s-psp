@@ -11,7 +11,8 @@
 #include "Game/texcash.h"
 #include "Game/workuser.h"
 
-void effect_97_move(WORK_Other* ewk) {
+void effect_97_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     switch (ewk->wu.routine_no[0]) {
     case 0:
         ewk->wu.routine_no[0]++;
@@ -87,7 +88,8 @@ void effect_97_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_97_init(PLW* oya) {
+s32 effect_97_init(WORK* wkp, s32 /*unused*/) {
+    PLW* oya = (PLW*) wkp;
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

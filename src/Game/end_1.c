@@ -78,7 +78,7 @@ void end_100_0000() {
         bgw_ptr->abs_x = bgw_ptr->xy[0].disp.pos;
         bgw_ptr->abs_y = 0;
         Bg_On_W(1);
-        effect_E6_init(0xA1);
+        effect_E6_init(NULL, 0xA1);
         Rewrite_End_Message(1);
         bgw_ptr->free = 0x46;
         break;
@@ -151,7 +151,7 @@ void end_100_0001() {
             bgw_ptr->xy[0].disp.pos = end_1_pos[end_w.r_no_2][0];
             bgw_ptr->xy[1].disp.pos = end_1_pos[end_w.r_no_2][1];
             bgw_ptr->abs_x = 512;
-            effect_E6_init(0xA3);
+            effect_E6_init(NULL, 0xA3);
             Rewrite_End_Message(2);
         }
 
@@ -179,7 +179,7 @@ void end_100_0002() {
 
         switch (end_w.r_no_2) {
         case 2:
-            effect_E6_init(0xA4U);
+            effect_E6_init(NULL, 0xA4U);
             Rewrite_End_Message(3U);
             break;
 
@@ -202,7 +202,7 @@ void end_100_0004() {
         bgw_ptr->xy[0].disp.pos = end_1_pos[end_w.r_no_2][0];
         bgw_ptr->xy[1].disp.pos = end_1_pos[end_w.r_no_2][1];
         bgw_ptr->abs_y = bgw_ptr->xy[1].disp.pos;
-        effect_E6_init(0xA6);
+        effect_E6_init(NULL, 0xA6);
         Rewrite_End_Message(5);
         end_fade_flag = 1;
         end_fade_timer = timer_1_tbl[end_w.r_no_2] - 120;

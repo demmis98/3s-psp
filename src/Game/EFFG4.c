@@ -21,7 +21,8 @@ const GillEffData gill_eff_data[54] = {
     { -16, 140, -2, 110 }, { -16, 140, -2, 111 }, { -40, 144, -2, 110 }, { -40, 144, -2, 111 }
 };
 
-void effect_G4_move(WORK_Other* ewk) {
+void effect_G4_move(WORK* wkp, s32/*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif

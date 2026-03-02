@@ -20,8 +20,8 @@
 #include "Game/texcash.h"
 #include "Game/texgroup.h"
 #include "Game/workuser.h"
-#include "PS2/mc/savesub.h"
-#include "PS2/ps2Quad.h"
+//#include "PS2/mc/savesub.h"
+//#include "PS2/ps2Quad.h"
 #include "structs.h"
 
 #if !defined(TARGET_PS2)
@@ -44,7 +44,7 @@ void Init_Task_End(struct _TASK* task_ptr);
 void Setup_Difficult_V();
 
 void Init_Task(struct _TASK* task_ptr) {
-    void (*Main_Jmp_Tbl[6])() = { Init_Task_1st, Init_Task_Aload, Init_Task_2nd,
+    void (*Main_Jmp_Tbl[6])(struct _TASK*) = { Init_Task_1st, Init_Task_Aload, Init_Task_2nd,
                                   Init_Task_End, Init_Task_Test1, Init_Task_Test2 };
 
     Main_Jmp_Tbl[task_ptr->r_no[0]](task_ptr);
@@ -133,7 +133,7 @@ void Init_Task_1st(struct _TASK* task_ptr) {
     Reset_Status[1] = 0;
     pulpul_stop();
     Warning_Init();
-    CP3toPS2DrawOff();
+    //CP3toPS2DrawOff();
 }
 
 void Setup_Difficult_V() {
@@ -154,16 +154,18 @@ void Init_Task_Aload(struct _TASK* task_ptr) {
     case 0:
     case 1:
         task_ptr->r_no[1] = 2;
-        SaveInit(0, 2);
+        //SaveInit(0, 2);
         /* fallthrough */
 
     case 2:
+        /*
         if (SaveMove() <= 0) {
             task_ptr->r_no[0] += 1;
             task_ptr->r_no[1] = 0;
             mpp_w.cutAnalogStickData = 0;
             Forbid_Reset = 1;
         }
+        */
 
         break;
 
@@ -180,7 +182,7 @@ void Init_Task_2nd(struct _TASK* task_ptr) {
     task_ptr->r_no[0] += 1;
     Setup_Disp_Size(0);
     Screen_Zoom_X = Keep_Zoom_X;
-    CP3toPS2DrawOn();
+    //CP3toPS2DrawOn();
 }
 
 void Init_Task_Test1(struct _TASK* task_ptr) {

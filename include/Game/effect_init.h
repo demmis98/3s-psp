@@ -43,7 +43,7 @@ s32 effect_C4_init(s16 id, s16 letter_type, s16 cursor_index, s16 master_player)
 s32 effect_E1_init(s16 id, s16 Time, s16 /* unused */);
 s32 effect_F5_init(s16 /* unused */);
 s32 effect_F6_init(u8 typenum);
-s32 effect_J2_init(s16 delay);                                           // Range: 0x227340 -> 0x227478
+s32 effect_J2_init(WORK* /*unused*/, s16 delay);                                           // Range: 0x227340 -> 0x227478
 s32 effect_K6_init(s16 PL_id, s16 dir_old, s16 dm_vital, s16 Target_BG); // Range: 0x22EEC0 -> 0x22F020
 s32 effect_L1_init(s16 flag);                                            // Range: 0x232820 -> 0x2328E8
 

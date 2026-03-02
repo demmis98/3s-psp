@@ -1,6 +1,6 @@
 #include "Game/Game.h"
 #include "common.h"
-#include "Common/PPGWork.h"
+//#include "Common/PPGWork.h"
 #include "Game/BBBSCOM.h"
 #include "Game/Continue.h"
 #include "Game/DC_Ghost.h"
@@ -58,7 +58,7 @@
 
 void Wait_Auto_Load(struct _TASK* /* unused */);
 void Loop_Demo(struct _TASK* /* unused */);
-void Game();
+void Game(struct _TASK* /*unused*/);
 void Game00();
 void Game01();
 void Game02();
@@ -148,7 +148,7 @@ void Game_Task(struct _TASK* task_ptr) {
     Disp_Sound_Code();
 }
 
-void Game() {
+void Game(struct _TASK* /*unused*/) {
     void (*Game_Jmp_Tbl[13])() = { Game00, Game01, Game02, Game03, Game04, Game05, Game06,
                                    Game07, Game08, Game09, Game10, Game11, Game12 };
 
@@ -497,12 +497,12 @@ void Game2_1() {
     }
 
     set_EXE_flag();
-    ppgPurgeFromVRAM(5);
+    //ppgPurgeFromVRAM(5);
     Player_control();
     TATE00();
     Game_Management();
     BG_Draw_System();
-    ppgPurgeFromVRAM(4);
+    //ppgPurgeFromVRAM(4);
     reqPlayerDraw();
     Basic_Sub_Ex();
 
@@ -520,7 +520,7 @@ void Game2_1() {
         Disp_Win_Record();
     }
 
-    ppgPurgeFromVRAM(0);
+    //ppgPurgeFromVRAM(0);
     hit_check_main_process();
 }
 
@@ -1307,7 +1307,7 @@ void Game09() {
                 if (Bonus_Type == 0x15) {
                     makeup_bonus_game_level(COM_id);
                     effect_35_init(0x3C, 5);
-                    effect_J2_init(0x78);
+                    effect_J2_init(NULL, 0x78);
                     effect_35_init(0xB4, 7);
                     effect_58_init(6, 0xB4, 0xA1);
                 } else {

@@ -65,7 +65,8 @@ void jijii_win_tama_sub(WORK_Other* ewk);
 
 void (*eff09_tbl[28])(WORK_Other*);
 
-void effect_09_move(WORK_Other* ewk) {
+void effect_09_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     if (compel_dead_check(ewk)) {
         ewk->wu.disp_flag = 0;
         ewk->wu.routine_no[1] = 99;
@@ -266,7 +267,7 @@ void eff09_2000(WORK_Other* ewk) {
                 ball_bound_set(ewk);
                 set_char_move_init2(&hit_pl->wu, 9, 63, 1, 0);
                 Appear_free[ewk->master_id] = 2;
-                effect_B4_init(ewk);
+                effect_B4_init((WORK*) ewk, 0);
                 work = random_16();
                 work &= 7;
                 add_super_arts_gauge(

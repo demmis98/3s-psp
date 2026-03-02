@@ -4,7 +4,7 @@
 #include "structs.h"
 #include "types.h"
 
-void effect_J2_move(WORK_Other_CONN* ewk);
-s32 effect_J2_init(s16 delay);
+void effect_J2_move(WORK* wkp, s32 /*unused*/);
+s32 effect_J2_init(WORK* /*unused*/, s16 delay);
 
 #endif

@@ -121,7 +121,8 @@ const s16 effg6_data[230][8] = { { 46, 0, 0, 0, -32, 32, 515, 31 },       { 46, 
                                  { 63, 7, -55, -5, -48, 28, 513, 31 },    { 63, 5, -48, -6, -36, 20, 515, 31 },
                                  { 63, 6, -38, -6, -32, 10, 515, 31 },    { 63, 7, -28, -5, 24, 18, 513, 31 } };
 
-void effect_G6_move(WORK_Other* ewk) {
+void effect_G6_move(WORK* wkp, s32/*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     WORK* mwk = (WORK*)ewk->my_master;
 
     switch (ewk->wu.routine_no[0]) {
@@ -191,7 +192,7 @@ void effect_G6_move(WORK_Other* ewk) {
         ewk->wu.xyz[0].disp.pos = ewk->wu.old_pos[0] + ewk->wu.next_x;
         ewk->wu.xyz[1].disp.pos = ewk->wu.old_pos[1] + ewk->wu.next_y;
         ewk->wu.position_z = mwk->position_z;
-        effect_G9_init(&ewk->wu);
+        effect_G9_init(&ewk->wu, 0);
         break;
 
     case 2:

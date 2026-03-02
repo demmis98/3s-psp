@@ -68,7 +68,8 @@ s8* Letter_Data_A3[23][8] = {
     { "REPLAY DATA", "FINISHED$!", NULL, NULL, NULL, NULL, NULL, NULL }
 };
 
-void effect_A3_move(WORK_Other* ewk) {
+void effect_A3_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     s16 color;
     s16 ix;
     s16 clear_level;

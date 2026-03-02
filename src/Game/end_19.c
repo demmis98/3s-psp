@@ -77,10 +77,10 @@ void end_1900_0() {
         bgw_ptr->abs_x = bgw_ptr->xy[0].disp.pos;
         bgw_ptr->abs_y = 0;
         bgw_ptr->speed_x = 0x10000;
-        effect_E6_init(0x84);
-        effect_E6_init(0x85);
-        effect_E6_init(0x86);
-        effect_E6_init(0x87);
+        effect_E6_init(NULL, 0x84);
+        effect_E6_init(NULL, 0x85);
+        effect_E6_init(NULL, 0x86);
+        effect_E6_init(NULL, 0x87);
         Rewrite_End_Message(1);
         bgw_ptr->free = 0x28;
         break;
@@ -121,12 +121,12 @@ void end_1900_common() {
 
         switch (end_w.r_no_2) {
         case 1:
-            effect_E6_init(0x88);
-            effect_E6_init(0x89);
-            effect_E6_init(0x8A);
-            effect_E6_init(0x8B);
-            effect_E6_init(0x8C);
-            effect_E6_init(0x8D);
+            effect_E6_init(NULL, 0x88);
+            effect_E6_init(NULL, 0x89);
+            effect_E6_init(NULL, 0x8A);
+            effect_E6_init(NULL, 0x8B);
+            effect_E6_init(NULL, 0x8C);
+            effect_E6_init(NULL, 0x8D);
             Rewrite_End_Message(2);
             break;
 
@@ -139,12 +139,12 @@ void end_1900_common() {
             break;
 
         case 4:
-            effect_E6_init(0x8F);
+            effect_E6_init(NULL, 0x8F);
             Rewrite_End_Message(5);
             break;
 
         case 5:
-            effect_E6_init(0x90);
+            effect_E6_init(NULL, 0x90);
             Rewrite_End_Message(0);
             end_fade_flag = 1;
             end_fade_timer = timer_19_tbl[end_w.r_no_2] - 120;

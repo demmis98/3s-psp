@@ -18,7 +18,8 @@ const s16 EFF04_Cursor_Data[7][7][2] = {
     { { -16, 163 }, { 0, 145 }, { 16, 127 }, { 32, 109 }, { 48, 91 }, { 68, 68 }, { 120, 28 } },
 };
 
-void effect_04_move(WORK_Other* ewk) {
+void effect_04_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     if (Menu_Suicide[ewk->master_player]) {
         push_effect_work(&ewk->wu);
         return;

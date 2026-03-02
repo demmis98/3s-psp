@@ -52,7 +52,8 @@ const s16 homing_empos_hos[1][20][2];
 const s16 enemy_pos_hos[1][20][2];
 const s16 X_F_L_A_T_pos_hos[1][20][2];
 
-void effect_13_move(WORK_Other* ewk) {
+void effect_13_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void set_char_move_init2(WORK * wk, s16 koc, s32 index, s32 ip, s16 scf);
     s32 erase_my_shell_ix(WORK * wk, s32 ix);
@@ -159,7 +160,7 @@ void effect_13_move(WORK_Other* ewk) {
         }
 
         tama_display(&ewk->wu);
-        effect_00_init(&ewk->wu);
+        effect_00_init(&ewk->wu, 0);
         break;
 
     case 1:

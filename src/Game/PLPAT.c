@@ -38,7 +38,7 @@ void check_ja_nmj_dummy_RTNM(PLW* wk);
 u8 get_cjdR(PLW*);
 
 void (*const plpat_lv_00[16])(PLW* wk);
-void (*const plxx_extra_attack_table[])();
+void (*const plxx_extra_attack_table[])(PLW* wk);
 
 const u8* cjdr_karaburi_table[20];
 const u8* cjdr_hits_table[20];
@@ -823,7 +823,7 @@ void (*const plpat_lv_00[16])(PLW* wk) = { Attack_00000, Attack_01000, Attack_02
                                            Attack_08000, Attack_09000, Attack_10000, Attack_00000,
                                            Attack_00000, Attack_00000, Attack_14000, Attack_15000 };
 
-void (*const plxx_extra_attack_table[])() = {
+void (*const plxx_extra_attack_table[])(PLW*) = {
     pl00_extra_attack, pl01_extra_attack, pl02_extra_attack, pl03_extra_attack, pl04_extra_attack,
     pl05_extra_attack, pl06_extra_attack, pl07_extra_attack, pl08_extra_attack, pl09_extra_attack,
     pl10_extra_attack, pl11_extra_attack, pl12_extra_attack, pl13_extra_attack, pl14_extra_attack,

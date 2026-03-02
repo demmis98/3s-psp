@@ -77,13 +77,13 @@ void end_900_0000() {
             Bg_On_W(1);
             bgw_ptr->abs_x = 512;
             bgw_ptr->abs_y = 0;
-            effect_E6_init(0x24);
+            effect_E6_init(NULL, 0x24);
             Rewrite_End_Message(1);
             break;
 
         case 1:
             Rewrite_End_Message(2);
-            effect_E6_init(0x25);
+            effect_E6_init(NULL, 0x25);
             break;
 
         case 2:
@@ -91,16 +91,16 @@ void end_900_0000() {
             break;
 
         case 3:
-            effect_E6_init(0x26);
-            effect_E6_init(0x27);
-            effect_E6_init(0x28);
-            effect_E6_init(0x29);
+            effect_E6_init(NULL, 0x26);
+            effect_E6_init(NULL, 0x27);
+            effect_E6_init(NULL, 0x28);
+            effect_E6_init(NULL, 0x29);
             Rewrite_End_Message(4);
             break;
 
         case 4:
             Rewrite_End_Message(5);
-            effect_E6_init(0x25);
+            effect_E6_init(NULL, 0x25);
             break;
         }
 
@@ -115,7 +115,7 @@ void end_900_5000() {
     switch (bgw_ptr->r_no_1) {
     case 0:
         bgw_ptr->r_no_1++;
-        effect_E6_init(0x2A);
+        effect_E6_init(NULL, 0x2A);
         bgw_ptr->free = 0x1E;
         bgw_ptr->xy[0].disp.pos = end_9_pos[end_w.r_no_2][0];
         bgw_ptr->xy[1].disp.pos = end_9_pos[end_w.r_no_2][1];

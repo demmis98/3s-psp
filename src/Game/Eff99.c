@@ -60,7 +60,8 @@ const s8* Letter_Data_99[5][21] = {
       "" }
 };
 
-void effect_99_move(WORK_Other_CONN* ewk) {
+void effect_99_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other_CONN* ewk = (WORK_Other_CONN*) wkp;
     if (Menu_Suicide[ewk->master_player]) {
         push_effect_work(&ewk->wu);
         return;

@@ -11,7 +11,8 @@
 
 void (*const EFF75_Jmp_Tbl[5])(WORK_Other *);
 
-void effect_75_move(WORK_Other* ewk) {
+void effect_75_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     EFF75_Jmp_Tbl[ewk->wu.routine_no[0]](ewk);
 
     if (ewk->wu.be_flag != 0) {

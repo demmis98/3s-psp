@@ -166,8 +166,8 @@ void end_401_0000() {
         bgw_ptr->r_no_1++;
         bgw_ptr->xy[0].disp.pos = end_4_pos[end_w.r_no_2][0];
         bgw_ptr->xy[1].disp.pos = end_4_pos[end_w.r_no_2][1];
-        effect_E6_init(0x5D);
-        effect_H1_init();
+        effect_E6_init(NULL, 0x5D);
+        effect_H1_init(NULL, 0);
         bgw_ptr->speed_x = 0xC000;
         bgw_ptr->abs_x = bgw_ptr->xy[0].disp.pos;
         break;
@@ -193,7 +193,7 @@ void end_401_1000() {
         bgw_ptr->r_no_1++;
         bgw_ptr->xy[0].disp.pos = end_4_pos[end_w.r_no_2][0];
         bgw_ptr->xy[1].disp.pos = end_4_pos[end_w.r_no_2][1];
-        effect_E6_init(0x5F);
+        effect_E6_init(NULL, 0x5F);
         bgw_ptr->free = 0x12C;
         bgw_ptr->abs_x = bgw_ptr->xy[0].disp.pos;
         bgw_ptr->abs_y = bgw_ptr->xy[1].disp.pos;
@@ -422,7 +422,7 @@ void end_402_1000() {
         bgw_ptr->r_no_1++;
         bgw_ptr->xy[0].disp.pos = end_4_pos[end_w.r_no_2][0];
         bgw_ptr->xy[1].disp.pos = end_4_pos[end_w.r_no_2][1];
-        effect_E6_init(0x5E);
+        effect_E6_init(NULL, 0x5E);
         bgw_ptr->free = 0x12C;
         bgw_ptr->abs_x = bgw_ptr->xy[0].disp.pos;
         bgw_ptr->abs_y = bgw_ptr->xy[1].disp.pos;

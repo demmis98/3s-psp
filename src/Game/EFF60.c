@@ -19,7 +19,8 @@ const s16 flash_0002[10] = { 0, 2, 300, 431, 64, 83, 2, 0, 0, 2 };
 
 const s16* flash_obj_data61[3] = { flash_0000, flash_0001, flash_0002 };
 
-void effect_60_move(WORK_Other* ewk) {
+void effect_60_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif

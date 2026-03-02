@@ -3,7 +3,7 @@
 #include "Game/Com_Sub.h"
 #include "Game/workuser.h"
 
-void (*const Passive19_Tbl[176])();
+void (*const Passive19_Tbl[176])(PLW*);
 
 void Passive19(PLW* wk) {
     Passive19_Tbl[(s16)Pattern_Index[wk->wu.id]](wk);

@@ -1,6 +1,6 @@
 #include "Game/SE.h"
 #include "common.h"
-#include "sf33rd/AcrSDK/ps2/flps2debug.h"
+//#include "sf33rd/AcrSDK/ps2/flps2debug.h"
 #include "Game/PLCNT.h"
 #include "Game/Se_Data.h"
 #include "Game/Sound3rd.h"
@@ -300,6 +300,7 @@ void Store_Sound_Code(u16 code, SoundPatchConfig* rmc) {
 }
 
 void Disp_Sound_Code() {
+    /*
     s16 i;
 
     if (Debug_w[4] == 0) {
@@ -318,4 +319,5 @@ void Disp_Sound_Code() {
 
     flPrintColor(0xFFFFFF8F);
     flPrintL(2, 9, "CODE  KDCM PORT BKCD PRIO VOL  POS  PICH NEXT   PX BK PO CODE");
+    */
 }

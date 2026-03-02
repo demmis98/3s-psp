@@ -12,7 +12,8 @@
 
 void effect_j6_hit_sub(WORK_Other* ewk);
 
-void effect_J6_move(WORK_Other* ewk) {
+void effect_J6_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     WORK_Other* oya_ptr;
 
     if (obr_no_disp_check()) {
@@ -70,11 +71,12 @@ void effect_J6_move(WORK_Other* ewk) {
 void effect_j6_hit_sub(WORK_Other* ewk) {
     if (eff_hit_check(ewk, 0)) {
         ewk->wu.routine_no[0]++;
-        effect_27_init(ewk, 1);
+        effect_27_init((WORK*) ewk, 1);
     }
 }
 
-s32 effect_J6_init(WORK_Other* oya) {
+s32 effect_J6_init(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* oya = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

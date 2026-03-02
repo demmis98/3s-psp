@@ -510,19 +510,19 @@ void init_app_30000() {
         pcon_rno[1] = 3;
         pcon_rno[2] = 1;
         setup_EJG_index();
-        effect_C9_init(plw, 0);
-        effect_C9_init(plw, 1);
-        effect_C9_init(plw, 2);
+        effect_C9_init((WORK*) plw, 0);
+        effect_C9_init((WORK*) plw, 1);
+        effect_C9_init((WORK*) plw, 2);
         load_any_color(0x3F, 0);
         load_any_texture_patnum(0x71E0, 0xE, 0);
         effect_work_kill(4, 0xD9);
 
         if (plw[0].player_number == 6) {
-            effect_33_init(&plw[0].wu);
+            effect_33_init(&plw[0].wu, 0);
         }
 
         if (plw[1].player_number == 6) {
-            effect_33_init(&plw[1].wu);
+            effect_33_init(&plw[1].wu, 0);
         }
 
         break;
@@ -617,9 +617,9 @@ void plcnt_move() {
     if (pcon_rno[0] == 2) {
         if (Round_Result & 0x980) {
             if ((Round_Result & 0x800) && gouki_wins) {
-                effect_D3_init(1);
+                effect_D3_init(NULL, 1);
             } else {
-                effect_D3_init(0);
+                effect_D3_init(NULL, 0);
             }
         }
 
@@ -1224,10 +1224,10 @@ void setup_base_and_other_data() {
     setup_other_data(&plw[1]);
     effect_work_list_init(6, 0xC5);
     plw[0].gill_ccch_go = plw[1].gill_ccch_go = 0;
-    effect_J7_init(&plw[0]);
-    effect_J7_init(&plw[1]);
-    effect_E5_init(&plw[0]);
-    effect_E5_init(&plw[1]);
+    effect_J7_init((WORK*) &plw[0], 0);
+    effect_J7_init((WORK*) &plw[1], 0);
+    effect_E5_init((WORK*) &plw[0], 0);
+    effect_E5_init((WORK*) &plw[1], 0);
 
     if (plw[0].wu.my_priority == plw[1].wu.my_priority) {
         plw[0].the_same_players = plw[1].the_same_players = 1;
@@ -1237,10 +1237,10 @@ void setup_base_and_other_data() {
     poison_flag[1] = 0;
 
     if (Mode_Type == 3 || Mode_Type == 4) {
-        effect_E3_init(&plw[0]);
-        effect_E3_init(&plw[1]);
-        effect_E4_init(&plw[0]);
-        effect_E4_init(&plw[1]);
+        effect_E3_init((WORK*) &plw[0], 0);
+        effect_E3_init((WORK*) &plw[1], 0);
+        effect_E4_init((WORK*) &plw[0], 0);
+        effect_E4_init((WORK*) &plw[1], 0);
     }
 }
 
@@ -1251,10 +1251,10 @@ void setup_any_data() {
     setup_other_data(&plw[1]);
     effect_work_list_init(6, 0xC5);
     plw[0].gill_ccch_go = plw[1].gill_ccch_go = 0;
-    effect_J7_init(&plw[0]);
-    effect_J7_init(&plw[1]);
-    effect_E5_init(&plw[0]);
-    effect_E5_init(&plw[1]);
+    effect_J7_init((WORK*) &plw[0], 0);
+    effect_J7_init((WORK*) &plw[1], 0);
+    effect_E5_init((WORK*) &plw[0], 0);
+    effect_E5_init((WORK*) &plw[1], 0);
 
     if (plw[0].wu.my_priority == plw[1].wu.my_priority) {
         plw[0].the_same_players = plw[1].the_same_players = 1;
@@ -1349,8 +1349,8 @@ void setup_other_data(PLW* wk) {
         effect_01_init(&wk->wu, i);
     }
 
-    effect_K5_init(wk);
-    effect_00_init(&wk->wu);
+    effect_K5_init((WORK*) wk, 0);
+    effect_00_init(&wk->wu, 0);
 }
 
 void clear_chainex_check(s16 ix) {

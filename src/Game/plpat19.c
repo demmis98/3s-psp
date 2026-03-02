@@ -37,7 +37,7 @@ void Att_METAMORPHOSE(PLW* wk) {
         wk->metamorphose = 0;
         wk->metamor_over = 0;
 
-        if ((Bonus_Game_Flag != 20) && (effect_K7_init(wk) != -1)) {
+        if ((Bonus_Game_Flag != 20) && (effect_K7_init((WORK*) wk, 0) != -1)) {
             set_char_move_init(&wk->wu, 5, wk->as->char_ix);
             break;
         }

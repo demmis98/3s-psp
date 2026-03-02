@@ -13,7 +13,8 @@
 
 void (*const EFF57_Jmp_Tbl[6])(WORK_Other *);
 
-void effect_57_move(WORK_Other* ewk) {
+void effect_57_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     if (ewk->wu.routine_no[0] != Order[ewk->wu.dir_old]) {
         ewk->wu.routine_no[0] = Order[ewk->wu.dir_old];
         ewk->wu.routine_no[1] = 0;
@@ -201,7 +202,7 @@ s32 effect_57_init(s16 dir_old, s16 ID, s16 Target_BG, s16 char_ix, s16 option) 
         break;
 
     case 2:
-        effect_62_init(ewk, 0);
+        effect_62_init((WORK*)ewk, 0);
         break;
     }
 

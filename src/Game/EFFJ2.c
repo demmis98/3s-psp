@@ -9,7 +9,8 @@ void effJ2_trans(WORK* ewk);
 
 const CONN bbbs_nando_large[2] = { { 92, 78, 0, 0x7EC7 }, { -20, 78, 0, 0x7EC6 } };
 
-void effect_J2_move(WORK_Other_CONN* ewk) {
+void effect_J2_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other_CONN* ewk = (WORK_Other_CONN*) wkp;
     switch (ewk->wu.routine_no[0]) {
     case 0:
         switch (ewk->wu.routine_no[1]) {
@@ -59,7 +60,7 @@ void effJ2_trans(WORK* ewk) {
     sort_push_request3(ewk);
 }
 
-s32 effect_J2_init(s16 delay) {
+s32 effect_J2_init(WORK* /*unused*/, s16 delay) {
     WORK_Other_CONN* ewk;
     s16 ix;
 

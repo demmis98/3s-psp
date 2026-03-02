@@ -135,7 +135,7 @@ void Next_CPU_1st() {
 
     Time_Stop = 1;
     Unit_Of_Timer = 50;
-    effect_A5_init();
+    effect_A5_init(NULL, 0);
     Rnd = random_16() & 3;
     effect_58_init(6, 10, EM_Select_Voice_Data[Rnd]);
     Next_Step = 0;

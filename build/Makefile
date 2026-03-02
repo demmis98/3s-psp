@@ -5193,6 +5193,1494 @@ src/Game/Manage.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Manage.c.s
 .PHONY : src/Game/Manage.c.s
 
+src/Game/Message3rd/C_USA/PL00End_usa.obj: src/Game/Message3rd/C_USA/PL00End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL00End_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL00End_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL00End_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL00End_usa.i: src/Game/Message3rd/C_USA/PL00End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL00End_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL00End_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL00End_usa.c.i
+
+src/Game/Message3rd/C_USA/PL00End_usa.s: src/Game/Message3rd/C_USA/PL00End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL00End_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL00End_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL00End_usa.c.s
+
+src/Game/Message3rd/C_USA/PL00Tlk_usa.obj: src/Game/Message3rd/C_USA/PL00Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL00Tlk_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL00Tlk_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL00Tlk_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL00Tlk_usa.i: src/Game/Message3rd/C_USA/PL00Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL00Tlk_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL00Tlk_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL00Tlk_usa.c.i
+
+src/Game/Message3rd/C_USA/PL00Tlk_usa.s: src/Game/Message3rd/C_USA/PL00Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL00Tlk_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL00Tlk_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL00Tlk_usa.c.s
+
+src/Game/Message3rd/C_USA/PL00Win_usa.obj: src/Game/Message3rd/C_USA/PL00Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL00Win_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL00Win_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL00Win_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL00Win_usa.i: src/Game/Message3rd/C_USA/PL00Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL00Win_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL00Win_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL00Win_usa.c.i
+
+src/Game/Message3rd/C_USA/PL00Win_usa.s: src/Game/Message3rd/C_USA/PL00Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL00Win_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL00Win_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL00Win_usa.c.s
+
+src/Game/Message3rd/C_USA/PL01End_usa.obj: src/Game/Message3rd/C_USA/PL01End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL01End_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL01End_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL01End_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL01End_usa.i: src/Game/Message3rd/C_USA/PL01End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL01End_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL01End_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL01End_usa.c.i
+
+src/Game/Message3rd/C_USA/PL01End_usa.s: src/Game/Message3rd/C_USA/PL01End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL01End_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL01End_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL01End_usa.c.s
+
+src/Game/Message3rd/C_USA/PL01Tlk_usa.obj: src/Game/Message3rd/C_USA/PL01Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL01Tlk_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL01Tlk_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL01Tlk_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL01Tlk_usa.i: src/Game/Message3rd/C_USA/PL01Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL01Tlk_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL01Tlk_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL01Tlk_usa.c.i
+
+src/Game/Message3rd/C_USA/PL01Tlk_usa.s: src/Game/Message3rd/C_USA/PL01Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL01Tlk_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL01Tlk_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL01Tlk_usa.c.s
+
+src/Game/Message3rd/C_USA/PL01Win_usa.obj: src/Game/Message3rd/C_USA/PL01Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL01Win_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL01Win_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL01Win_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL01Win_usa.i: src/Game/Message3rd/C_USA/PL01Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL01Win_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL01Win_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL01Win_usa.c.i
+
+src/Game/Message3rd/C_USA/PL01Win_usa.s: src/Game/Message3rd/C_USA/PL01Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL01Win_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL01Win_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL01Win_usa.c.s
+
+src/Game/Message3rd/C_USA/PL02End_usa.obj: src/Game/Message3rd/C_USA/PL02End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL02End_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL02End_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL02End_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL02End_usa.i: src/Game/Message3rd/C_USA/PL02End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL02End_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL02End_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL02End_usa.c.i
+
+src/Game/Message3rd/C_USA/PL02End_usa.s: src/Game/Message3rd/C_USA/PL02End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL02End_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL02End_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL02End_usa.c.s
+
+src/Game/Message3rd/C_USA/PL02Tlk_usa.obj: src/Game/Message3rd/C_USA/PL02Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL02Tlk_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL02Tlk_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL02Tlk_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL02Tlk_usa.i: src/Game/Message3rd/C_USA/PL02Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL02Tlk_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL02Tlk_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL02Tlk_usa.c.i
+
+src/Game/Message3rd/C_USA/PL02Tlk_usa.s: src/Game/Message3rd/C_USA/PL02Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL02Tlk_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL02Tlk_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL02Tlk_usa.c.s
+
+src/Game/Message3rd/C_USA/PL02Win_usa.obj: src/Game/Message3rd/C_USA/PL02Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL02Win_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL02Win_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL02Win_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL02Win_usa.i: src/Game/Message3rd/C_USA/PL02Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL02Win_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL02Win_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL02Win_usa.c.i
+
+src/Game/Message3rd/C_USA/PL02Win_usa.s: src/Game/Message3rd/C_USA/PL02Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL02Win_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL02Win_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL02Win_usa.c.s
+
+src/Game/Message3rd/C_USA/PL03End_usa.obj: src/Game/Message3rd/C_USA/PL03End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL03End_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL03End_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL03End_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL03End_usa.i: src/Game/Message3rd/C_USA/PL03End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL03End_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL03End_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL03End_usa.c.i
+
+src/Game/Message3rd/C_USA/PL03End_usa.s: src/Game/Message3rd/C_USA/PL03End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL03End_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL03End_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL03End_usa.c.s
+
+src/Game/Message3rd/C_USA/PL03Tlk_usa.obj: src/Game/Message3rd/C_USA/PL03Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL03Tlk_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL03Tlk_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL03Tlk_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL03Tlk_usa.i: src/Game/Message3rd/C_USA/PL03Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL03Tlk_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL03Tlk_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL03Tlk_usa.c.i
+
+src/Game/Message3rd/C_USA/PL03Tlk_usa.s: src/Game/Message3rd/C_USA/PL03Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL03Tlk_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL03Tlk_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL03Tlk_usa.c.s
+
+src/Game/Message3rd/C_USA/PL03Win_usa.obj: src/Game/Message3rd/C_USA/PL03Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL03Win_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL03Win_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL03Win_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL03Win_usa.i: src/Game/Message3rd/C_USA/PL03Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL03Win_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL03Win_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL03Win_usa.c.i
+
+src/Game/Message3rd/C_USA/PL03Win_usa.s: src/Game/Message3rd/C_USA/PL03Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL03Win_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL03Win_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL03Win_usa.c.s
+
+src/Game/Message3rd/C_USA/PL04End_usa.obj: src/Game/Message3rd/C_USA/PL04End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL04End_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL04End_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL04End_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL04End_usa.i: src/Game/Message3rd/C_USA/PL04End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL04End_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL04End_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL04End_usa.c.i
+
+src/Game/Message3rd/C_USA/PL04End_usa.s: src/Game/Message3rd/C_USA/PL04End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL04End_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL04End_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL04End_usa.c.s
+
+src/Game/Message3rd/C_USA/PL04Tlk_usa.obj: src/Game/Message3rd/C_USA/PL04Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL04Tlk_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL04Tlk_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL04Tlk_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL04Tlk_usa.i: src/Game/Message3rd/C_USA/PL04Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL04Tlk_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL04Tlk_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL04Tlk_usa.c.i
+
+src/Game/Message3rd/C_USA/PL04Tlk_usa.s: src/Game/Message3rd/C_USA/PL04Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL04Tlk_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL04Tlk_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL04Tlk_usa.c.s
+
+src/Game/Message3rd/C_USA/PL04Win_usa.obj: src/Game/Message3rd/C_USA/PL04Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL04Win_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL04Win_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL04Win_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL04Win_usa.i: src/Game/Message3rd/C_USA/PL04Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL04Win_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL04Win_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL04Win_usa.c.i
+
+src/Game/Message3rd/C_USA/PL04Win_usa.s: src/Game/Message3rd/C_USA/PL04Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL04Win_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL04Win_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL04Win_usa.c.s
+
+src/Game/Message3rd/C_USA/PL05End_usa.obj: src/Game/Message3rd/C_USA/PL05End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL05End_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL05End_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL05End_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL05End_usa.i: src/Game/Message3rd/C_USA/PL05End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL05End_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL05End_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL05End_usa.c.i
+
+src/Game/Message3rd/C_USA/PL05End_usa.s: src/Game/Message3rd/C_USA/PL05End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL05End_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL05End_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL05End_usa.c.s
+
+src/Game/Message3rd/C_USA/PL05Tlk_usa.obj: src/Game/Message3rd/C_USA/PL05Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL05Tlk_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL05Tlk_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL05Tlk_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL05Tlk_usa.i: src/Game/Message3rd/C_USA/PL05Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL05Tlk_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL05Tlk_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL05Tlk_usa.c.i
+
+src/Game/Message3rd/C_USA/PL05Tlk_usa.s: src/Game/Message3rd/C_USA/PL05Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL05Tlk_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL05Tlk_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL05Tlk_usa.c.s
+
+src/Game/Message3rd/C_USA/PL05Win_usa.obj: src/Game/Message3rd/C_USA/PL05Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL05Win_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL05Win_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL05Win_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL05Win_usa.i: src/Game/Message3rd/C_USA/PL05Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL05Win_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL05Win_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL05Win_usa.c.i
+
+src/Game/Message3rd/C_USA/PL05Win_usa.s: src/Game/Message3rd/C_USA/PL05Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL05Win_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL05Win_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL05Win_usa.c.s
+
+src/Game/Message3rd/C_USA/PL06End_usa.obj: src/Game/Message3rd/C_USA/PL06End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL06End_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL06End_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL06End_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL06End_usa.i: src/Game/Message3rd/C_USA/PL06End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL06End_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL06End_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL06End_usa.c.i
+
+src/Game/Message3rd/C_USA/PL06End_usa.s: src/Game/Message3rd/C_USA/PL06End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL06End_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL06End_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL06End_usa.c.s
+
+src/Game/Message3rd/C_USA/PL06Tlk_usa.obj: src/Game/Message3rd/C_USA/PL06Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL06Tlk_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL06Tlk_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL06Tlk_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL06Tlk_usa.i: src/Game/Message3rd/C_USA/PL06Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL06Tlk_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL06Tlk_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL06Tlk_usa.c.i
+
+src/Game/Message3rd/C_USA/PL06Tlk_usa.s: src/Game/Message3rd/C_USA/PL06Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL06Tlk_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL06Tlk_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL06Tlk_usa.c.s
+
+src/Game/Message3rd/C_USA/PL06Win_usa.obj: src/Game/Message3rd/C_USA/PL06Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL06Win_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL06Win_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL06Win_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL06Win_usa.i: src/Game/Message3rd/C_USA/PL06Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL06Win_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL06Win_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL06Win_usa.c.i
+
+src/Game/Message3rd/C_USA/PL06Win_usa.s: src/Game/Message3rd/C_USA/PL06Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL06Win_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL06Win_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL06Win_usa.c.s
+
+src/Game/Message3rd/C_USA/PL07End_usa.obj: src/Game/Message3rd/C_USA/PL07End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL07End_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL07End_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL07End_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL07End_usa.i: src/Game/Message3rd/C_USA/PL07End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL07End_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL07End_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL07End_usa.c.i
+
+src/Game/Message3rd/C_USA/PL07End_usa.s: src/Game/Message3rd/C_USA/PL07End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL07End_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL07End_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL07End_usa.c.s
+
+src/Game/Message3rd/C_USA/PL07Tlk_usa.obj: src/Game/Message3rd/C_USA/PL07Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL07Tlk_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL07Tlk_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL07Tlk_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL07Tlk_usa.i: src/Game/Message3rd/C_USA/PL07Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL07Tlk_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL07Tlk_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL07Tlk_usa.c.i
+
+src/Game/Message3rd/C_USA/PL07Tlk_usa.s: src/Game/Message3rd/C_USA/PL07Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL07Tlk_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL07Tlk_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL07Tlk_usa.c.s
+
+src/Game/Message3rd/C_USA/PL07Win_usa.obj: src/Game/Message3rd/C_USA/PL07Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL07Win_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL07Win_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL07Win_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL07Win_usa.i: src/Game/Message3rd/C_USA/PL07Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL07Win_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL07Win_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL07Win_usa.c.i
+
+src/Game/Message3rd/C_USA/PL07Win_usa.s: src/Game/Message3rd/C_USA/PL07Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL07Win_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL07Win_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL07Win_usa.c.s
+
+src/Game/Message3rd/C_USA/PL08End_usa.obj: src/Game/Message3rd/C_USA/PL08End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL08End_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL08End_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL08End_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL08End_usa.i: src/Game/Message3rd/C_USA/PL08End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL08End_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL08End_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL08End_usa.c.i
+
+src/Game/Message3rd/C_USA/PL08End_usa.s: src/Game/Message3rd/C_USA/PL08End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL08End_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL08End_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL08End_usa.c.s
+
+src/Game/Message3rd/C_USA/PL08Tlk_usa.obj: src/Game/Message3rd/C_USA/PL08Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL08Tlk_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL08Tlk_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL08Tlk_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL08Tlk_usa.i: src/Game/Message3rd/C_USA/PL08Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL08Tlk_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL08Tlk_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL08Tlk_usa.c.i
+
+src/Game/Message3rd/C_USA/PL08Tlk_usa.s: src/Game/Message3rd/C_USA/PL08Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL08Tlk_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL08Tlk_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL08Tlk_usa.c.s
+
+src/Game/Message3rd/C_USA/PL08Win_usa.obj: src/Game/Message3rd/C_USA/PL08Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL08Win_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL08Win_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL08Win_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL08Win_usa.i: src/Game/Message3rd/C_USA/PL08Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL08Win_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL08Win_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL08Win_usa.c.i
+
+src/Game/Message3rd/C_USA/PL08Win_usa.s: src/Game/Message3rd/C_USA/PL08Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL08Win_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL08Win_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL08Win_usa.c.s
+
+src/Game/Message3rd/C_USA/PL09End_usa.obj: src/Game/Message3rd/C_USA/PL09End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL09End_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL09End_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL09End_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL09End_usa.i: src/Game/Message3rd/C_USA/PL09End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL09End_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL09End_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL09End_usa.c.i
+
+src/Game/Message3rd/C_USA/PL09End_usa.s: src/Game/Message3rd/C_USA/PL09End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL09End_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL09End_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL09End_usa.c.s
+
+src/Game/Message3rd/C_USA/PL09Tlk_usa.obj: src/Game/Message3rd/C_USA/PL09Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL09Tlk_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL09Tlk_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL09Tlk_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL09Tlk_usa.i: src/Game/Message3rd/C_USA/PL09Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL09Tlk_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL09Tlk_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL09Tlk_usa.c.i
+
+src/Game/Message3rd/C_USA/PL09Tlk_usa.s: src/Game/Message3rd/C_USA/PL09Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL09Tlk_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL09Tlk_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL09Tlk_usa.c.s
+
+src/Game/Message3rd/C_USA/PL09Win_usa.obj: src/Game/Message3rd/C_USA/PL09Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL09Win_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL09Win_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL09Win_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL09Win_usa.i: src/Game/Message3rd/C_USA/PL09Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL09Win_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL09Win_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL09Win_usa.c.i
+
+src/Game/Message3rd/C_USA/PL09Win_usa.s: src/Game/Message3rd/C_USA/PL09Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL09Win_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL09Win_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL09Win_usa.c.s
+
+src/Game/Message3rd/C_USA/PL10End_usa.obj: src/Game/Message3rd/C_USA/PL10End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL10End_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL10End_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL10End_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL10End_usa.i: src/Game/Message3rd/C_USA/PL10End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL10End_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL10End_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL10End_usa.c.i
+
+src/Game/Message3rd/C_USA/PL10End_usa.s: src/Game/Message3rd/C_USA/PL10End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL10End_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL10End_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL10End_usa.c.s
+
+src/Game/Message3rd/C_USA/PL10Tlk_usa.obj: src/Game/Message3rd/C_USA/PL10Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL10Tlk_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL10Tlk_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL10Tlk_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL10Tlk_usa.i: src/Game/Message3rd/C_USA/PL10Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL10Tlk_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL10Tlk_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL10Tlk_usa.c.i
+
+src/Game/Message3rd/C_USA/PL10Tlk_usa.s: src/Game/Message3rd/C_USA/PL10Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL10Tlk_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL10Tlk_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL10Tlk_usa.c.s
+
+src/Game/Message3rd/C_USA/PL10Win_usa.obj: src/Game/Message3rd/C_USA/PL10Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL10Win_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL10Win_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL10Win_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL10Win_usa.i: src/Game/Message3rd/C_USA/PL10Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL10Win_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL10Win_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL10Win_usa.c.i
+
+src/Game/Message3rd/C_USA/PL10Win_usa.s: src/Game/Message3rd/C_USA/PL10Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL10Win_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL10Win_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL10Win_usa.c.s
+
+src/Game/Message3rd/C_USA/PL11End_usa.obj: src/Game/Message3rd/C_USA/PL11End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL11End_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL11End_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL11End_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL11End_usa.i: src/Game/Message3rd/C_USA/PL11End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL11End_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL11End_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL11End_usa.c.i
+
+src/Game/Message3rd/C_USA/PL11End_usa.s: src/Game/Message3rd/C_USA/PL11End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL11End_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL11End_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL11End_usa.c.s
+
+src/Game/Message3rd/C_USA/PL11Tlk_usa.obj: src/Game/Message3rd/C_USA/PL11Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL11Tlk_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL11Tlk_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL11Tlk_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL11Tlk_usa.i: src/Game/Message3rd/C_USA/PL11Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL11Tlk_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL11Tlk_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL11Tlk_usa.c.i
+
+src/Game/Message3rd/C_USA/PL11Tlk_usa.s: src/Game/Message3rd/C_USA/PL11Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL11Tlk_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL11Tlk_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL11Tlk_usa.c.s
+
+src/Game/Message3rd/C_USA/PL11Win_usa.obj: src/Game/Message3rd/C_USA/PL11Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL11Win_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL11Win_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL11Win_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL11Win_usa.i: src/Game/Message3rd/C_USA/PL11Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL11Win_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL11Win_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL11Win_usa.c.i
+
+src/Game/Message3rd/C_USA/PL11Win_usa.s: src/Game/Message3rd/C_USA/PL11Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL11Win_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL11Win_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL11Win_usa.c.s
+
+src/Game/Message3rd/C_USA/PL12End_usa.obj: src/Game/Message3rd/C_USA/PL12End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL12End_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL12End_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL12End_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL12End_usa.i: src/Game/Message3rd/C_USA/PL12End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL12End_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL12End_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL12End_usa.c.i
+
+src/Game/Message3rd/C_USA/PL12End_usa.s: src/Game/Message3rd/C_USA/PL12End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL12End_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL12End_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL12End_usa.c.s
+
+src/Game/Message3rd/C_USA/PL12Tlk_usa.obj: src/Game/Message3rd/C_USA/PL12Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL12Tlk_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL12Tlk_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL12Tlk_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL12Tlk_usa.i: src/Game/Message3rd/C_USA/PL12Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL12Tlk_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL12Tlk_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL12Tlk_usa.c.i
+
+src/Game/Message3rd/C_USA/PL12Tlk_usa.s: src/Game/Message3rd/C_USA/PL12Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL12Tlk_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL12Tlk_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL12Tlk_usa.c.s
+
+src/Game/Message3rd/C_USA/PL12Win_usa.obj: src/Game/Message3rd/C_USA/PL12Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL12Win_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL12Win_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL12Win_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL12Win_usa.i: src/Game/Message3rd/C_USA/PL12Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL12Win_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL12Win_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL12Win_usa.c.i
+
+src/Game/Message3rd/C_USA/PL12Win_usa.s: src/Game/Message3rd/C_USA/PL12Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL12Win_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL12Win_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL12Win_usa.c.s
+
+src/Game/Message3rd/C_USA/PL13End_usa.obj: src/Game/Message3rd/C_USA/PL13End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL13End_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL13End_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL13End_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL13End_usa.i: src/Game/Message3rd/C_USA/PL13End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL13End_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL13End_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL13End_usa.c.i
+
+src/Game/Message3rd/C_USA/PL13End_usa.s: src/Game/Message3rd/C_USA/PL13End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL13End_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL13End_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL13End_usa.c.s
+
+src/Game/Message3rd/C_USA/PL13Tlk_usa.obj: src/Game/Message3rd/C_USA/PL13Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL13Tlk_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL13Tlk_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL13Tlk_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL13Tlk_usa.i: src/Game/Message3rd/C_USA/PL13Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL13Tlk_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL13Tlk_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL13Tlk_usa.c.i
+
+src/Game/Message3rd/C_USA/PL13Tlk_usa.s: src/Game/Message3rd/C_USA/PL13Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL13Tlk_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL13Tlk_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL13Tlk_usa.c.s
+
+src/Game/Message3rd/C_USA/PL13Win_usa.obj: src/Game/Message3rd/C_USA/PL13Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL13Win_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL13Win_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL13Win_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL13Win_usa.i: src/Game/Message3rd/C_USA/PL13Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL13Win_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL13Win_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL13Win_usa.c.i
+
+src/Game/Message3rd/C_USA/PL13Win_usa.s: src/Game/Message3rd/C_USA/PL13Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL13Win_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL13Win_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL13Win_usa.c.s
+
+src/Game/Message3rd/C_USA/PL14End_usa.obj: src/Game/Message3rd/C_USA/PL14End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL14End_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL14End_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL14End_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL14End_usa.i: src/Game/Message3rd/C_USA/PL14End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL14End_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL14End_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL14End_usa.c.i
+
+src/Game/Message3rd/C_USA/PL14End_usa.s: src/Game/Message3rd/C_USA/PL14End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL14End_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL14End_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL14End_usa.c.s
+
+src/Game/Message3rd/C_USA/PL14Win_usa.obj: src/Game/Message3rd/C_USA/PL14Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL14Win_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL14Win_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL14Win_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL14Win_usa.i: src/Game/Message3rd/C_USA/PL14Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL14Win_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL14Win_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL14Win_usa.c.i
+
+src/Game/Message3rd/C_USA/PL14Win_usa.s: src/Game/Message3rd/C_USA/PL14Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL14Win_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL14Win_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL14Win_usa.c.s
+
+src/Game/Message3rd/C_USA/PL15End_usa.obj: src/Game/Message3rd/C_USA/PL15End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL15End_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL15End_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL15End_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL15End_usa.i: src/Game/Message3rd/C_USA/PL15End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL15End_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL15End_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL15End_usa.c.i
+
+src/Game/Message3rd/C_USA/PL15End_usa.s: src/Game/Message3rd/C_USA/PL15End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL15End_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL15End_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL15End_usa.c.s
+
+src/Game/Message3rd/C_USA/PL15Tlk_usa.obj: src/Game/Message3rd/C_USA/PL15Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL15Tlk_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL15Tlk_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL15Tlk_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL15Tlk_usa.i: src/Game/Message3rd/C_USA/PL15Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL15Tlk_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL15Tlk_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL15Tlk_usa.c.i
+
+src/Game/Message3rd/C_USA/PL15Tlk_usa.s: src/Game/Message3rd/C_USA/PL15Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL15Tlk_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL15Tlk_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL15Tlk_usa.c.s
+
+src/Game/Message3rd/C_USA/PL15Win_usa.obj: src/Game/Message3rd/C_USA/PL15Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL15Win_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL15Win_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL15Win_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL15Win_usa.i: src/Game/Message3rd/C_USA/PL15Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL15Win_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL15Win_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL15Win_usa.c.i
+
+src/Game/Message3rd/C_USA/PL15Win_usa.s: src/Game/Message3rd/C_USA/PL15Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL15Win_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL15Win_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL15Win_usa.c.s
+
+src/Game/Message3rd/C_USA/PL16End_usa.obj: src/Game/Message3rd/C_USA/PL16End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL16End_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL16End_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL16End_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL16End_usa.i: src/Game/Message3rd/C_USA/PL16End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL16End_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL16End_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL16End_usa.c.i
+
+src/Game/Message3rd/C_USA/PL16End_usa.s: src/Game/Message3rd/C_USA/PL16End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL16End_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL16End_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL16End_usa.c.s
+
+src/Game/Message3rd/C_USA/PL16Tlk_usa.obj: src/Game/Message3rd/C_USA/PL16Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL16Tlk_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL16Tlk_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL16Tlk_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL16Tlk_usa.i: src/Game/Message3rd/C_USA/PL16Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL16Tlk_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL16Tlk_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL16Tlk_usa.c.i
+
+src/Game/Message3rd/C_USA/PL16Tlk_usa.s: src/Game/Message3rd/C_USA/PL16Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL16Tlk_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL16Tlk_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL16Tlk_usa.c.s
+
+src/Game/Message3rd/C_USA/PL16Win_usa.obj: src/Game/Message3rd/C_USA/PL16Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL16Win_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL16Win_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL16Win_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL16Win_usa.i: src/Game/Message3rd/C_USA/PL16Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL16Win_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL16Win_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL16Win_usa.c.i
+
+src/Game/Message3rd/C_USA/PL16Win_usa.s: src/Game/Message3rd/C_USA/PL16Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL16Win_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL16Win_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL16Win_usa.c.s
+
+src/Game/Message3rd/C_USA/PL17End_usa.obj: src/Game/Message3rd/C_USA/PL17End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL17End_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL17End_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL17End_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL17End_usa.i: src/Game/Message3rd/C_USA/PL17End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL17End_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL17End_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL17End_usa.c.i
+
+src/Game/Message3rd/C_USA/PL17End_usa.s: src/Game/Message3rd/C_USA/PL17End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL17End_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL17End_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL17End_usa.c.s
+
+src/Game/Message3rd/C_USA/PL17Win_usa.obj: src/Game/Message3rd/C_USA/PL17Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL17Win_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL17Win_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL17Win_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL17Win_usa.i: src/Game/Message3rd/C_USA/PL17Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL17Win_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL17Win_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL17Win_usa.c.i
+
+src/Game/Message3rd/C_USA/PL17Win_usa.s: src/Game/Message3rd/C_USA/PL17Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL17Win_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL17Win_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL17Win_usa.c.s
+
+src/Game/Message3rd/C_USA/PL18End_usa.obj: src/Game/Message3rd/C_USA/PL18End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL18End_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL18End_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL18End_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL18End_usa.i: src/Game/Message3rd/C_USA/PL18End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL18End_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL18End_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL18End_usa.c.i
+
+src/Game/Message3rd/C_USA/PL18End_usa.s: src/Game/Message3rd/C_USA/PL18End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL18End_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL18End_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL18End_usa.c.s
+
+src/Game/Message3rd/C_USA/PL18Tlk_usa.obj: src/Game/Message3rd/C_USA/PL18Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL18Tlk_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL18Tlk_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL18Tlk_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL18Tlk_usa.i: src/Game/Message3rd/C_USA/PL18Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL18Tlk_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL18Tlk_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL18Tlk_usa.c.i
+
+src/Game/Message3rd/C_USA/PL18Tlk_usa.s: src/Game/Message3rd/C_USA/PL18Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL18Tlk_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL18Tlk_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL18Tlk_usa.c.s
+
+src/Game/Message3rd/C_USA/PL18Win_usa.obj: src/Game/Message3rd/C_USA/PL18Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL18Win_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL18Win_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL18Win_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL18Win_usa.i: src/Game/Message3rd/C_USA/PL18Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL18Win_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL18Win_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL18Win_usa.c.i
+
+src/Game/Message3rd/C_USA/PL18Win_usa.s: src/Game/Message3rd/C_USA/PL18Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL18Win_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL18Win_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL18Win_usa.c.s
+
+src/Game/Message3rd/C_USA/PL19End_usa.obj: src/Game/Message3rd/C_USA/PL19End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL19End_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL19End_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19End_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL19End_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL19End_usa.i: src/Game/Message3rd/C_USA/PL19End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL19End_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL19End_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19End_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL19End_usa.c.i
+
+src/Game/Message3rd/C_USA/PL19End_usa.s: src/Game/Message3rd/C_USA/PL19End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL19End_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL19End_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19End_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL19End_usa.c.s
+
+src/Game/Message3rd/C_USA/PL19Tlk_usa.obj: src/Game/Message3rd/C_USA/PL19Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL19Tlk_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL19Tlk_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Tlk_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL19Tlk_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL19Tlk_usa.i: src/Game/Message3rd/C_USA/PL19Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL19Tlk_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL19Tlk_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Tlk_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL19Tlk_usa.c.i
+
+src/Game/Message3rd/C_USA/PL19Tlk_usa.s: src/Game/Message3rd/C_USA/PL19Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL19Tlk_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL19Tlk_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Tlk_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL19Tlk_usa.c.s
+
+src/Game/Message3rd/C_USA/PL19Win_usa.obj: src/Game/Message3rd/C_USA/PL19Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL19Win_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/PL19Win_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Win_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/PL19Win_usa.c.obj
+
+src/Game/Message3rd/C_USA/PL19Win_usa.i: src/Game/Message3rd/C_USA/PL19Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL19Win_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/PL19Win_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Win_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/PL19Win_usa.c.i
+
+src/Game/Message3rd/C_USA/PL19Win_usa.s: src/Game/Message3rd/C_USA/PL19Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL19Win_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/PL19Win_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Win_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/PL19Win_usa.c.s
+
+src/Game/Message3rd/C_USA/msgExtra_usa.obj: src/Game/Message3rd/C_USA/msgExtra_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/msgExtra_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/msgExtra_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgExtra_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/msgExtra_usa.c.obj
+
+src/Game/Message3rd/C_USA/msgExtra_usa.i: src/Game/Message3rd/C_USA/msgExtra_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/msgExtra_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/msgExtra_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgExtra_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/msgExtra_usa.c.i
+
+src/Game/Message3rd/C_USA/msgExtra_usa.s: src/Game/Message3rd/C_USA/msgExtra_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/msgExtra_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/msgExtra_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgExtra_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/msgExtra_usa.c.s
+
+src/Game/Message3rd/C_USA/msgMenu_usa.obj: src/Game/Message3rd/C_USA/msgMenu_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/msgMenu_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/msgMenu_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgMenu_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/msgMenu_usa.c.obj
+
+src/Game/Message3rd/C_USA/msgMenu_usa.i: src/Game/Message3rd/C_USA/msgMenu_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/msgMenu_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/msgMenu_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgMenu_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/msgMenu_usa.c.i
+
+src/Game/Message3rd/C_USA/msgMenu_usa.s: src/Game/Message3rd/C_USA/msgMenu_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/msgMenu_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/msgMenu_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgMenu_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/msgMenu_usa.c.s
+
+src/Game/Message3rd/C_USA/msgSysDir_usa.obj: src/Game/Message3rd/C_USA/msgSysDir_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/msgSysDir_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/msgSysDir_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgSysDir_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/msgSysDir_usa.c.obj
+
+src/Game/Message3rd/C_USA/msgSysDir_usa.i: src/Game/Message3rd/C_USA/msgSysDir_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/msgSysDir_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/msgSysDir_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgSysDir_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/msgSysDir_usa.c.i
+
+src/Game/Message3rd/C_USA/msgSysDir_usa.s: src/Game/Message3rd/C_USA/msgSysDir_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/msgSysDir_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/msgSysDir_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgSysDir_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/msgSysDir_usa.c.s
+
+src/Game/Message3rd/C_USA/msgTable_usa.obj: src/Game/Message3rd/C_USA/msgTable_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/msgTable_usa.obj
+
+# target to build an object file
+src/Game/Message3rd/C_USA/msgTable_usa.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgTable_usa.c.obj
+.PHONY : src/Game/Message3rd/C_USA/msgTable_usa.c.obj
+
+src/Game/Message3rd/C_USA/msgTable_usa.i: src/Game/Message3rd/C_USA/msgTable_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/msgTable_usa.i
+
+# target to preprocess a source file
+src/Game/Message3rd/C_USA/msgTable_usa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgTable_usa.c.i
+.PHONY : src/Game/Message3rd/C_USA/msgTable_usa.c.i
+
+src/Game/Message3rd/C_USA/msgTable_usa.s: src/Game/Message3rd/C_USA/msgTable_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/msgTable_usa.s
+
+# target to generate assembly for a file
+src/Game/Message3rd/C_USA/msgTable_usa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgTable_usa.c.s
+.PHONY : src/Game/Message3rd/C_USA/msgTable_usa.c.s
+
 src/Game/Next_CPU.obj: src/Game/Next_CPU.c.obj
 .PHONY : src/Game/Next_CPU.obj
 
@@ -8265,6 +9753,150 @@ src/Game/count.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/count.c.s
 .PHONY : src/Game/count.c.s
 
+src/Game/debug/Deb_Data.obj: src/Game/debug/Deb_Data.c.obj
+.PHONY : src/Game/debug/Deb_Data.obj
+
+# target to build an object file
+src/Game/debug/Deb_Data.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/Deb_Data.c.obj
+.PHONY : src/Game/debug/Deb_Data.c.obj
+
+src/Game/debug/Deb_Data.i: src/Game/debug/Deb_Data.c.i
+.PHONY : src/Game/debug/Deb_Data.i
+
+# target to preprocess a source file
+src/Game/debug/Deb_Data.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/Deb_Data.c.i
+.PHONY : src/Game/debug/Deb_Data.c.i
+
+src/Game/debug/Deb_Data.s: src/Game/debug/Deb_Data.c.s
+.PHONY : src/Game/debug/Deb_Data.s
+
+# target to generate assembly for a file
+src/Game/debug/Deb_Data.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/Deb_Data.c.s
+.PHONY : src/Game/debug/Deb_Data.c.s
+
+src/Game/debug/Debug.obj: src/Game/debug/Debug.c.obj
+.PHONY : src/Game/debug/Debug.obj
+
+# target to build an object file
+src/Game/debug/Debug.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/Debug.c.obj
+.PHONY : src/Game/debug/Debug.c.obj
+
+src/Game/debug/Debug.i: src/Game/debug/Debug.c.i
+.PHONY : src/Game/debug/Debug.i
+
+# target to preprocess a source file
+src/Game/debug/Debug.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/Debug.c.i
+.PHONY : src/Game/debug/Debug.c.i
+
+src/Game/debug/Debug.s: src/Game/debug/Debug.c.s
+.PHONY : src/Game/debug/Debug.s
+
+# target to generate assembly for a file
+src/Game/debug/Debug.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/Debug.c.s
+.PHONY : src/Game/debug/Debug.c.s
+
+src/Game/debug/Debug_ID.obj: src/Game/debug/Debug_ID.c.obj
+.PHONY : src/Game/debug/Debug_ID.obj
+
+# target to build an object file
+src/Game/debug/Debug_ID.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.obj
+.PHONY : src/Game/debug/Debug_ID.c.obj
+
+src/Game/debug/Debug_ID.i: src/Game/debug/Debug_ID.c.i
+.PHONY : src/Game/debug/Debug_ID.i
+
+# target to preprocess a source file
+src/Game/debug/Debug_ID.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.i
+.PHONY : src/Game/debug/Debug_ID.c.i
+
+src/Game/debug/Debug_ID.s: src/Game/debug/Debug_ID.c.s
+.PHONY : src/Game/debug/Debug_ID.s
+
+# target to generate assembly for a file
+src/Game/debug/Debug_ID.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.s
+.PHONY : src/Game/debug/Debug_ID.c.s
+
+src/Game/debug/Nakai.obj: src/Game/debug/Nakai.c.obj
+.PHONY : src/Game/debug/Nakai.obj
+
+# target to build an object file
+src/Game/debug/Nakai.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/Nakai.c.obj
+.PHONY : src/Game/debug/Nakai.c.obj
+
+src/Game/debug/Nakai.i: src/Game/debug/Nakai.c.i
+.PHONY : src/Game/debug/Nakai.i
+
+# target to preprocess a source file
+src/Game/debug/Nakai.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/Nakai.c.i
+.PHONY : src/Game/debug/Nakai.c.i
+
+src/Game/debug/Nakai.s: src/Game/debug/Nakai.c.s
+.PHONY : src/Game/debug/Nakai.s
+
+# target to generate assembly for a file
+src/Game/debug/Nakai.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/Nakai.c.s
+.PHONY : src/Game/debug/Nakai.c.s
+
+src/Game/debug/OBJTEST.obj: src/Game/debug/OBJTEST.c.obj
+.PHONY : src/Game/debug/OBJTEST.obj
+
+# target to build an object file
+src/Game/debug/OBJTEST.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/OBJTEST.c.obj
+.PHONY : src/Game/debug/OBJTEST.c.obj
+
+src/Game/debug/OBJTEST.i: src/Game/debug/OBJTEST.c.i
+.PHONY : src/Game/debug/OBJTEST.i
+
+# target to preprocess a source file
+src/Game/debug/OBJTEST.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/OBJTEST.c.i
+.PHONY : src/Game/debug/OBJTEST.c.i
+
+src/Game/debug/OBJTEST.s: src/Game/debug/OBJTEST.c.s
+.PHONY : src/Game/debug/OBJTEST.s
+
+# target to generate assembly for a file
+src/Game/debug/OBJTEST.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/OBJTEST.c.s
+.PHONY : src/Game/debug/OBJTEST.c.s
+
+src/Game/debug/OTESTDAT.obj: src/Game/debug/OTESTDAT.c.obj
+.PHONY : src/Game/debug/OTESTDAT.obj
+
+# target to build an object file
+src/Game/debug/OTESTDAT.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/OTESTDAT.c.obj
+.PHONY : src/Game/debug/OTESTDAT.c.obj
+
+src/Game/debug/OTESTDAT.i: src/Game/debug/OTESTDAT.c.i
+.PHONY : src/Game/debug/OTESTDAT.i
+
+# target to preprocess a source file
+src/Game/debug/OTESTDAT.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/OTESTDAT.c.i
+.PHONY : src/Game/debug/OTESTDAT.c.i
+
+src/Game/debug/OTESTDAT.s: src/Game/debug/OTESTDAT.c.s
+.PHONY : src/Game/debug/OTESTDAT.s
+
+# target to generate assembly for a file
+src/Game/debug/OTESTDAT.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/OTESTDAT.c.s
+.PHONY : src/Game/debug/OTESTDAT.c.s
+
 src/Game/eff05.obj: src/Game/eff05.c.obj
 .PHONY : src/Game/eff05.obj
 
@@ -10665,6 +12297,270 @@ src/Game/workuser.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/workuser.c.s
 .PHONY : src/Game/workuser.c.s
 
+src/bin2obj/asstbl.obj: src/bin2obj/asstbl.c.obj
+.PHONY : src/bin2obj/asstbl.obj
+
+# target to build an object file
+src/bin2obj/asstbl.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/bin2obj/asstbl.c.obj
+.PHONY : src/bin2obj/asstbl.c.obj
+
+src/bin2obj/asstbl.i: src/bin2obj/asstbl.c.i
+.PHONY : src/bin2obj/asstbl.i
+
+# target to preprocess a source file
+src/bin2obj/asstbl.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/bin2obj/asstbl.c.i
+.PHONY : src/bin2obj/asstbl.c.i
+
+src/bin2obj/asstbl.s: src/bin2obj/asstbl.c.s
+.PHONY : src/bin2obj/asstbl.s
+
+# target to generate assembly for a file
+src/bin2obj/asstbl.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/bin2obj/asstbl.c.s
+.PHONY : src/bin2obj/asstbl.c.s
+
+src/bin2obj/buttobi.obj: src/bin2obj/buttobi.c.obj
+.PHONY : src/bin2obj/buttobi.obj
+
+# target to build an object file
+src/bin2obj/buttobi.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/bin2obj/buttobi.c.obj
+.PHONY : src/bin2obj/buttobi.c.obj
+
+src/bin2obj/buttobi.i: src/bin2obj/buttobi.c.i
+.PHONY : src/bin2obj/buttobi.i
+
+# target to preprocess a source file
+src/bin2obj/buttobi.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/bin2obj/buttobi.c.i
+.PHONY : src/bin2obj/buttobi.c.i
+
+src/bin2obj/buttobi.s: src/bin2obj/buttobi.c.s
+.PHONY : src/bin2obj/buttobi.s
+
+# target to generate assembly for a file
+src/bin2obj/buttobi.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/bin2obj/buttobi.c.s
+.PHONY : src/bin2obj/buttobi.c.s
+
+src/bin2obj/char_table.obj: src/bin2obj/char_table.c.obj
+.PHONY : src/bin2obj/char_table.obj
+
+# target to build an object file
+src/bin2obj/char_table.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/bin2obj/char_table.c.obj
+.PHONY : src/bin2obj/char_table.c.obj
+
+src/bin2obj/char_table.i: src/bin2obj/char_table.c.i
+.PHONY : src/bin2obj/char_table.i
+
+# target to preprocess a source file
+src/bin2obj/char_table.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/bin2obj/char_table.c.i
+.PHONY : src/bin2obj/char_table.c.i
+
+src/bin2obj/char_table.s: src/bin2obj/char_table.c.s
+.PHONY : src/bin2obj/char_table.s
+
+# target to generate assembly for a file
+src/bin2obj/char_table.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/bin2obj/char_table.c.s
+.PHONY : src/bin2obj/char_table.c.s
+
+src/bin2obj/etc.obj: src/bin2obj/etc.c.obj
+.PHONY : src/bin2obj/etc.obj
+
+# target to build an object file
+src/bin2obj/etc.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/bin2obj/etc.c.obj
+.PHONY : src/bin2obj/etc.c.obj
+
+src/bin2obj/etc.i: src/bin2obj/etc.c.i
+.PHONY : src/bin2obj/etc.i
+
+# target to preprocess a source file
+src/bin2obj/etc.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/bin2obj/etc.c.i
+.PHONY : src/bin2obj/etc.c.i
+
+src/bin2obj/etc.s: src/bin2obj/etc.c.s
+.PHONY : src/bin2obj/etc.s
+
+# target to generate assembly for a file
+src/bin2obj/etc.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/bin2obj/etc.c.s
+.PHONY : src/bin2obj/etc.c.s
+
+src/bin2obj/exchange.obj: src/bin2obj/exchange.c.obj
+.PHONY : src/bin2obj/exchange.obj
+
+# target to build an object file
+src/bin2obj/exchange.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/bin2obj/exchange.c.obj
+.PHONY : src/bin2obj/exchange.c.obj
+
+src/bin2obj/exchange.i: src/bin2obj/exchange.c.i
+.PHONY : src/bin2obj/exchange.i
+
+# target to preprocess a source file
+src/bin2obj/exchange.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/bin2obj/exchange.c.i
+.PHONY : src/bin2obj/exchange.c.i
+
+src/bin2obj/exchange.s: src/bin2obj/exchange.c.s
+.PHONY : src/bin2obj/exchange.s
+
+# target to generate assembly for a file
+src/bin2obj/exchange.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/bin2obj/exchange.c.s
+.PHONY : src/bin2obj/exchange.c.s
+
+src/bin2obj/gauge.obj: src/bin2obj/gauge.c.obj
+.PHONY : src/bin2obj/gauge.obj
+
+# target to build an object file
+src/bin2obj/gauge.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/bin2obj/gauge.c.obj
+.PHONY : src/bin2obj/gauge.c.obj
+
+src/bin2obj/gauge.i: src/bin2obj/gauge.c.i
+.PHONY : src/bin2obj/gauge.i
+
+# target to preprocess a source file
+src/bin2obj/gauge.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/bin2obj/gauge.c.i
+.PHONY : src/bin2obj/gauge.c.i
+
+src/bin2obj/gauge.s: src/bin2obj/gauge.c.s
+.PHONY : src/bin2obj/gauge.s
+
+# target to generate assembly for a file
+src/bin2obj/gauge.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/bin2obj/gauge.c.s
+.PHONY : src/bin2obj/gauge.c.s
+
+src/common/audio.obj: src/common/audio.c.obj
+.PHONY : src/common/audio.obj
+
+# target to build an object file
+src/common/audio.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/common/audio.c.obj
+.PHONY : src/common/audio.c.obj
+
+src/common/audio.i: src/common/audio.c.i
+.PHONY : src/common/audio.i
+
+# target to preprocess a source file
+src/common/audio.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/common/audio.c.i
+.PHONY : src/common/audio.c.i
+
+src/common/audio.s: src/common/audio.c.s
+.PHONY : src/common/audio.s
+
+# target to generate assembly for a file
+src/common/audio.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/common/audio.c.s
+.PHONY : src/common/audio.c.s
+
+src/common/graphics.obj: src/common/graphics.c.obj
+.PHONY : src/common/graphics.obj
+
+# target to build an object file
+src/common/graphics.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/common/graphics.c.obj
+.PHONY : src/common/graphics.c.obj
+
+src/common/graphics.i: src/common/graphics.c.i
+.PHONY : src/common/graphics.i
+
+# target to preprocess a source file
+src/common/graphics.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/common/graphics.c.i
+.PHONY : src/common/graphics.c.i
+
+src/common/graphics.s: src/common/graphics.c.s
+.PHONY : src/common/graphics.s
+
+# target to generate assembly for a file
+src/common/graphics.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/common/graphics.c.s
+.PHONY : src/common/graphics.c.s
+
+src/common/math.obj: src/common/math.c.obj
+.PHONY : src/common/math.obj
+
+# target to build an object file
+src/common/math.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/common/math.c.obj
+.PHONY : src/common/math.c.obj
+
+src/common/math.i: src/common/math.c.i
+.PHONY : src/common/math.i
+
+# target to preprocess a source file
+src/common/math.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/common/math.c.i
+.PHONY : src/common/math.c.i
+
+src/common/math.s: src/common/math.c.s
+.PHONY : src/common/math.s
+
+# target to generate assembly for a file
+src/common/math.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/common/math.c.s
+.PHONY : src/common/math.c.s
+
+src/common/sprites.obj: src/common/sprites.c.obj
+.PHONY : src/common/sprites.obj
+
+# target to build an object file
+src/common/sprites.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/common/sprites.c.obj
+.PHONY : src/common/sprites.c.obj
+
+src/common/sprites.i: src/common/sprites.c.i
+.PHONY : src/common/sprites.i
+
+# target to preprocess a source file
+src/common/sprites.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/common/sprites.c.i
+.PHONY : src/common/sprites.c.i
+
+src/common/sprites.s: src/common/sprites.c.s
+.PHONY : src/common/sprites.s
+
+# target to generate assembly for a file
+src/common/sprites.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/common/sprites.c.s
+.PHONY : src/common/sprites.c.s
+
+src/psp/common.obj: src/psp/common.c.obj
+.PHONY : src/psp/common.obj
+
+# target to build an object file
+src/psp/common.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/common.c.obj
+.PHONY : src/psp/common.c.obj
+
+src/psp/common.i: src/psp/common.c.i
+.PHONY : src/psp/common.i
+
+# target to preprocess a source file
+src/psp/common.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/common.c.i
+.PHONY : src/psp/common.c.i
+
+src/psp/common.s: src/psp/common.c.s
+.PHONY : src/psp/common.s
+
+# target to generate assembly for a file
+src/psp/common.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/common.c.s
+.PHONY : src/psp/common.c.s
+
 src/psp/pspmain.obj: src/psp/pspmain.c.obj
 .PHONY : src/psp/pspmain.obj
 
@@ -10688,6 +12584,30 @@ src/psp/pspmain.s: src/psp/pspmain.c.s
 src/psp/pspmain.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/pspmain.c.s
 .PHONY : src/psp/pspmain.c.s
+
+src/psp/savesub.obj: src/psp/savesub.c.obj
+.PHONY : src/psp/savesub.obj
+
+# target to build an object file
+src/psp/savesub.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj
+.PHONY : src/psp/savesub.c.obj
+
+src/psp/savesub.i: src/psp/savesub.c.i
+.PHONY : src/psp/savesub.i
+
+# target to preprocess a source file
+src/psp/savesub.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/savesub.c.i
+.PHONY : src/psp/savesub.c.i
+
+src/psp/savesub.s: src/psp/savesub.c.s
+.PHONY : src/psp/savesub.s
+
+# target to generate assembly for a file
+src/psp/savesub.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/savesub.c.s
+.PHONY : src/psp/savesub.c.s
 
 # Help Target
 help:
@@ -11331,6 +13251,192 @@ help:
 	@echo "... src/Game/Manage.obj"
 	@echo "... src/Game/Manage.i"
 	@echo "... src/Game/Manage.s"
+	@echo "... src/Game/Message3rd/C_USA/PL00End_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL00End_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL00End_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL00Tlk_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL00Tlk_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL00Tlk_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL00Win_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL00Win_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL00Win_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL01End_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL01End_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL01End_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL01Tlk_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL01Tlk_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL01Tlk_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL01Win_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL01Win_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL01Win_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL02End_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL02End_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL02End_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL02Tlk_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL02Tlk_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL02Tlk_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL02Win_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL02Win_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL02Win_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL03End_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL03End_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL03End_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL03Tlk_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL03Tlk_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL03Tlk_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL03Win_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL03Win_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL03Win_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL04End_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL04End_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL04End_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL04Tlk_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL04Tlk_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL04Tlk_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL04Win_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL04Win_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL04Win_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL05End_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL05End_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL05End_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL05Tlk_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL05Tlk_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL05Tlk_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL05Win_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL05Win_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL05Win_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL06End_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL06End_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL06End_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL06Tlk_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL06Tlk_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL06Tlk_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL06Win_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL06Win_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL06Win_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL07End_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL07End_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL07End_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL07Tlk_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL07Tlk_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL07Tlk_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL07Win_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL07Win_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL07Win_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL08End_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL08End_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL08End_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL08Tlk_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL08Tlk_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL08Tlk_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL08Win_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL08Win_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL08Win_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL09End_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL09End_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL09End_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL09Tlk_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL09Tlk_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL09Tlk_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL09Win_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL09Win_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL09Win_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL10End_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL10End_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL10End_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL10Tlk_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL10Tlk_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL10Tlk_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL10Win_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL10Win_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL10Win_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL11End_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL11End_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL11End_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL11Tlk_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL11Tlk_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL11Tlk_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL11Win_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL11Win_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL11Win_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL12End_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL12End_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL12End_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL12Tlk_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL12Tlk_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL12Tlk_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL12Win_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL12Win_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL12Win_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL13End_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL13End_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL13End_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL13Tlk_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL13Tlk_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL13Tlk_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL13Win_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL13Win_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL13Win_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL14End_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL14End_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL14End_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL14Win_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL14Win_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL14Win_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL15End_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL15End_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL15End_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL15Tlk_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL15Tlk_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL15Tlk_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL15Win_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL15Win_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL15Win_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL16End_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL16End_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL16End_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL16Tlk_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL16Tlk_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL16Tlk_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL16Win_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL16Win_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL16Win_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL17End_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL17End_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL17End_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL17Win_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL17Win_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL17Win_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL18End_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL18End_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL18End_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL18Tlk_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL18Tlk_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL18Tlk_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL18Win_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL18Win_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL18Win_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL19End_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL19End_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL19End_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL19Tlk_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL19Tlk_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL19Tlk_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/PL19Win_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/PL19Win_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/PL19Win_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/msgExtra_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/msgExtra_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/msgExtra_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/msgMenu_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/msgMenu_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/msgMenu_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/msgSysDir_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/msgSysDir_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/msgSysDir_usa.s"
+	@echo "... src/Game/Message3rd/C_USA/msgTable_usa.obj"
+	@echo "... src/Game/Message3rd/C_USA/msgTable_usa.i"
+	@echo "... src/Game/Message3rd/C_USA/msgTable_usa.s"
 	@echo "... src/Game/Next_CPU.obj"
 	@echo "... src/Game/Next_CPU.i"
 	@echo "... src/Game/Next_CPU.s"
@@ -11715,6 +13821,24 @@ help:
 	@echo "... src/Game/count.obj"
 	@echo "... src/Game/count.i"
 	@echo "... src/Game/count.s"
+	@echo "... src/Game/debug/Deb_Data.obj"
+	@echo "... src/Game/debug/Deb_Data.i"
+	@echo "... src/Game/debug/Deb_Data.s"
+	@echo "... src/Game/debug/Debug.obj"
+	@echo "... src/Game/debug/Debug.i"
+	@echo "... src/Game/debug/Debug.s"
+	@echo "... src/Game/debug/Debug_ID.obj"
+	@echo "... src/Game/debug/Debug_ID.i"
+	@echo "... src/Game/debug/Debug_ID.s"
+	@echo "... src/Game/debug/Nakai.obj"
+	@echo "... src/Game/debug/Nakai.i"
+	@echo "... src/Game/debug/Nakai.s"
+	@echo "... src/Game/debug/OBJTEST.obj"
+	@echo "... src/Game/debug/OBJTEST.i"
+	@echo "... src/Game/debug/OBJTEST.s"
+	@echo "... src/Game/debug/OTESTDAT.obj"
+	@echo "... src/Game/debug/OTESTDAT.i"
+	@echo "... src/Game/debug/OTESTDAT.s"
 	@echo "... src/Game/eff05.obj"
 	@echo "... src/Game/eff05.i"
 	@echo "... src/Game/eff05.s"
@@ -12015,9 +14139,45 @@ help:
 	@echo "... src/Game/workuser.obj"
 	@echo "... src/Game/workuser.i"
 	@echo "... src/Game/workuser.s"
+	@echo "... src/bin2obj/asstbl.obj"
+	@echo "... src/bin2obj/asstbl.i"
+	@echo "... src/bin2obj/asstbl.s"
+	@echo "... src/bin2obj/buttobi.obj"
+	@echo "... src/bin2obj/buttobi.i"
+	@echo "... src/bin2obj/buttobi.s"
+	@echo "... src/bin2obj/char_table.obj"
+	@echo "... src/bin2obj/char_table.i"
+	@echo "... src/bin2obj/char_table.s"
+	@echo "... src/bin2obj/etc.obj"
+	@echo "... src/bin2obj/etc.i"
+	@echo "... src/bin2obj/etc.s"
+	@echo "... src/bin2obj/exchange.obj"
+	@echo "... src/bin2obj/exchange.i"
+	@echo "... src/bin2obj/exchange.s"
+	@echo "... src/bin2obj/gauge.obj"
+	@echo "... src/bin2obj/gauge.i"
+	@echo "... src/bin2obj/gauge.s"
+	@echo "... src/common/audio.obj"
+	@echo "... src/common/audio.i"
+	@echo "... src/common/audio.s"
+	@echo "... src/common/graphics.obj"
+	@echo "... src/common/graphics.i"
+	@echo "... src/common/graphics.s"
+	@echo "... src/common/math.obj"
+	@echo "... src/common/math.i"
+	@echo "... src/common/math.s"
+	@echo "... src/common/sprites.obj"
+	@echo "... src/common/sprites.i"
+	@echo "... src/common/sprites.s"
+	@echo "... src/psp/common.obj"
+	@echo "... src/psp/common.i"
+	@echo "... src/psp/common.s"
 	@echo "... src/psp/pspmain.obj"
 	@echo "... src/psp/pspmain.i"
 	@echo "... src/psp/pspmain.s"
+	@echo "... src/psp/savesub.obj"
+	@echo "... src/psp/savesub.i"
+	@echo "... src/psp/savesub.s"
 .PHONY : help
 
 

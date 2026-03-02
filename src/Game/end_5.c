@@ -125,13 +125,13 @@ void end_500_comm() {
             break;
 
         case 4:
-            effect_E6_init(0xB);
+            effect_E6_init(NULL, 0xB);
             Rewrite_End_Message(4);
             break;
 
         case 5:
-            effect_E6_init(0xC);
-            effect_E6_init(0xD);
+            effect_E6_init(NULL, 0xC);
+            effect_E6_init(NULL, 0xD);
             Rewrite_End_Message(5);
             break;
         }
@@ -156,12 +156,12 @@ void end_500_0001() {
 
         switch (end_w.r_no_2) {
         case 1:
-            effect_E6_init(9);
+            effect_E6_init(NULL, 9);
             Rewrite_End_Message(1);
             break;
 
         case 2:
-            effect_E6_init(0xA);
+            effect_E6_init(NULL, 0xA);
             Rewrite_End_Message(2);
             break;
         }
@@ -236,8 +236,8 @@ void end_500_0007() {
         bgw_ptr->xy[0].disp.pos = 512;
         bgw_ptr->xy[1].disp.pos = 768;
         bgw_ptr->abs_x = bgw_ptr->xy[0].disp.pos;
-        effect_E6_init(0xF);
-        effect_E6_init(0x49);
+        effect_E6_init(NULL, 0xF);
+        effect_E6_init(NULL, 0x49);
         break;
 
     case 1:
@@ -262,7 +262,7 @@ void end_500_0007() {
 
         if (bgw_ptr->xy[0].disp.pos < 193) {
             bgw_ptr->r_no_1++;
-            effect_E6_init(0x11);
+            effect_E6_init(NULL, 0x11);
             bg_w.quake_y_index = 0;
             bgw_ptr->frame_deff = 4;
         }
@@ -294,7 +294,7 @@ void end_500_0008() {
 
         if (bgw_ptr->xy[0].disp.pos < -240) {
             bgw_ptr->r_no_1++;
-            effect_E6_init(0x12);
+            effect_E6_init(NULL, 0x12);
         }
 
         break;
@@ -305,7 +305,7 @@ void end_500_0008() {
 
         if (bgw_ptr->xy[0].disp.pos < -624) {
             bgw_ptr->r_no_1++;
-            effect_E6_init(0x14);
+            effect_E6_init(NULL, 0x14);
         }
 
         break;
@@ -316,7 +316,7 @@ void end_500_0008() {
 
         if (bgw_ptr->xy[0].disp.pos < -1008) {
             bgw_ptr->r_no_1++;
-            effect_E6_init(0x15);
+            effect_E6_init(NULL, 0x15);
         }
 
         break;
@@ -328,7 +328,7 @@ void end_500_0008() {
         if (bgw_ptr->xy[0].disp.pos < -1376) {
             bgw_ptr->r_no_1++;
             end_etc_flag = 0;
-            effect_E6_init(0x13);
+            effect_E6_init(NULL, 0x13);
         }
 
         break;
@@ -526,7 +526,7 @@ void end_501_0011() {
         bgw_ptr->xy[1].disp.pos = 0;
         bgw_ptr->abs_x = 512;
         bgw_ptr->abs_y = 0;
-        effect_E6_init(0x10);
+        effect_E6_init(NULL, 0x10);
         overwrite_panel(0xFFFFFFFF, 0x17);
 
         if (Request_Fade(2)) {
@@ -559,7 +559,7 @@ void end_501_0012() {
     switch (bgw_ptr->r_no_1) {
     case 0:
         bgw_ptr->r_no_1++;
-        effect_E6_init(0xE);
+        effect_E6_init(NULL, 0xE);
         end_fade_flag = 1;
         end_fade_timer = timer_5_tbl[end_w.r_no_2] - 120;
         /* fallthrough */

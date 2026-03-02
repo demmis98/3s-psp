@@ -18,7 +18,8 @@ const s16 effh1_data_tbl[8][5] = { { -96, 256, 74, 34, 10 }, { 64, 288, 74, 34, 
                                    { 128, 272, 78, 35, 28 }, { -32, 240, 74, 34, 2 }, { 96, 240, 74, 34, 2 },
                                    { -160, 224, 78, 35, 2 }, { 128, 224, 78, 35, 2 } };
 
-void effect_H1_move(WORK_Other* ewk) {
+void effect_H1_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     switch (ewk->wu.routine_no[0]) {
     case 0:
         if (ewk->wu.old_rno[6] < end_w.r_no_2) {
@@ -84,7 +85,7 @@ void eff_h1_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_H1_init() {
+s32 effect_H1_init(WORK* /*unused*/, s32 /*unused*/) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

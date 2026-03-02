@@ -1,6 +1,6 @@
 #include "Game/IOConv.h"
 #include "common.h"
-#include "sf33rd/AcrSDK/common/mlPAD.h"
+//#include "sf33rd/AcrSDK/common/mlPAD.h"
 #include "Game/WORK_SYS.h"
 #include "Game/debug/Debug.h"
 #include "Game/main.h"
@@ -36,15 +36,16 @@ void keyConvert() {
     }
 
     for (i = 0; i < 2; i++) {
-        flPADSetRepeatSw(&flpad_adr[0][i], 0xFF000F, 15, 3);
+        //flPADSetRepeatSw(&flpad_adr[0][i], 0xFF000F, 15, 3);
 
         if (repeat_on) {
-            flPADSetRepeatSw(&flpad_adr[0][i], 0x3FF0, 2, 1);
+            //flPADSetRepeatSw(&flpad_adr[0][i], 0x3FF0, 2, 1);
         } else {
-            flPADSetRepeatSw(&flpad_adr[0][i], 0x3FF0, 10, 2);
+            //flPADSetRepeatSw(&flpad_adr[0][i], 0x3FF0, 10, 2);
         }
 
         pad = &io_w.data[i];
+        /*
         pad->state = flpad_adr[0][i].state;
         pad->anstate = flpad_adr[0][i].anstate;
         pad->kind = flpad_adr[0][i].kind;
@@ -76,7 +77,7 @@ void keyConvert() {
                 pad->sw_repeat |= (pad->sw_repeat >> 20) & 0xF;
             }
         }
-
+        */
         if (pad->kind == 0 || pad->kind == 0x8000) {
             Interface_Type[i] = 0;
         } else {

@@ -9,7 +9,8 @@
 
 const s16 eff29_data_tbl[8] = { 687, 128, 82, 7, 415, 152, 79, 8 };
 
-void effect_54_move(WORK_Other* ewk) {
+void effect_54_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -29,7 +30,8 @@ void effect_54_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_54_init(WORK_Other* oya) {
+s32 effect_54_init(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* oya = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

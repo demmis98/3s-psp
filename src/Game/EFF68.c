@@ -11,7 +11,8 @@
 #include "Game/texcash.h"
 #include "Game/workuser.h"
 
-void effect_68_move(WORK_Other* ewk) {
+void effect_68_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -128,7 +129,7 @@ const s16 eff68_data_tbl[52] = { 2, 432, 192, 504, 180, 576, 172, 522, 160, 8,  
                                  3, 736, 160, 808, 148, 880, 140, 826, 128, 10, 11, 83, 50,
                                  3, 624, 192, 696, 180, 768, 172, 714, 160, 10, 11, 83, 40 };
 
-s32 effect_68_init() {
+s32 effect_68_init(WORK* /*unused*/, s32 /*unused*/) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

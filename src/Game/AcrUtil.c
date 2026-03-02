@@ -64,6 +64,10 @@ void setZ_Operation(s32 flag) {
     //flSetRenderState(FLRENDER_ZOPE, ope_mode[flag]);
 }
 
+void setFilterMode(s32 mode){
+
+}
+
 void setBlendMode(s32 ope, s32 src, s32 dst) {
     setBlendSource(src, dst);
     setBlendOperation(ope);

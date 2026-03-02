@@ -6,7 +6,8 @@
 #include "Game/bg.h"
 #include "Game/workuser.h"
 
-void effect_17_move(WORK_Other* ewk) {
+void effect_17_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     if (Menu_Suicide[ewk->master_player]) {
         push_effect_work(&ewk->wu);
     } else if (Menu_Cursor_Y[0] == ewk->wu.type) {

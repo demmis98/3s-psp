@@ -7,7 +7,8 @@
 
 s32 Check_Sleep_A5(WORK_Other* ewk);
 
-void effect_A5_move(WORK_Other* ewk) {
+void effect_A5_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     if (Present_Mode == 4 || Present_Mode == 5) {
         return;
     }
@@ -90,7 +91,7 @@ s32 Check_Sleep_A5(WORK_Other* ewk) {
     return 1;
 }
 
-s32 effect_A5_init() {
+s32 effect_A5_init(WORK* /*unused*/, s32 /*unused*/) {
     WORK_Other* ewk;
     s16 ix;
 

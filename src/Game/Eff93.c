@@ -14,7 +14,8 @@ extern const Eff93_Jmp_Tbl_t Eff93_Jmp_Tbl[4];
 
 // Funcs
 
-void effect_93_move(WORK_Other* ewk) {
+void effect_93_move(WORK* wkp, s32 /*unused*/) {
+    WORK_Other* ewk = (WORK_Other*) wkp;
     Eff93_Jmp_Tbl[ewk->wu.routine_no[0]](ewk);
 }
 

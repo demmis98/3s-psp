@@ -59,11 +59,11 @@ void bg0602_init00() {
     bgw_ptr->hos_xy[0].disp.low = 0;
     bgw_ptr->wxy[1].cal = 0;
     bgw_ptr->xy[1].cal = 0;
-    effect_05_init();
+    effect_05_init(NULL, 0);
     effect_60_init(0);
     effect_60_init(1);
     effect_44_init(1);
-    effect_24_init();
+    effect_24_init(NULL, 0);
 }
 
 void bg0603() {

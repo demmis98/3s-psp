@@ -90,8 +90,8 @@ void end_1100_common() {
         switch (end_w.r_no_2) {
         case 0:
             Bg_On_W(1);
-            effect_E6_init(0);
-            effect_E6_init(1);
+            effect_E6_init(NULL, 0);
+            effect_E6_init(NULL, 1);
             Rewrite_End_Message(1);
             break;
 
@@ -103,8 +103,8 @@ void end_1100_common() {
         case 2:
             Bg_On_W(1);
             Rewrite_End_Message(3);
-            effect_E6_init(0x81);
-            effect_E6_init(0x82);
+            effect_E6_init(NULL, 0x81);
+            effect_E6_init(NULL, 0x82);
             break;
 
         case 4:
@@ -113,9 +113,9 @@ void end_1100_common() {
             break;
 
         case 5:
-            effect_E6_init(3);
-            effect_E6_init(4);
-            effect_E6_init(5);
+            effect_E6_init(NULL, 3);
+            effect_E6_init(NULL, 4);
+            effect_E6_init(NULL, 5);
             Rewrite_End_Message(6);
             break;
         }
@@ -136,8 +136,8 @@ void end_1100_3() {
         bgw_ptr->xy[1].disp.pos = end_11_pos[end_w.r_no_2][1];
         bgw_ptr->abs_x = 512;
         bgw_ptr->abs_y = 0;
-        effect_E6_init(2);
-        effect_E6_init(0x83);
+        effect_E6_init(NULL, 2);
+        effect_E6_init(NULL, 0x83);
         break;
 
     case 1:
@@ -159,8 +159,8 @@ void end_1100_6() {
         bgw_ptr->r_limit = end_11_115_pos[bgw_ptr->l_limit][2];
         bgw_ptr->abs_x = 512;
         bgw_ptr->abs_y = 0;
-        effect_E6_init(6);
-        effect_E6_init(8);
+        effect_E6_init(NULL, 6);
+        effect_E6_init(NULL, 8);
         Rewrite_End_Message(7);
         end_fade_flag = 1;
         end_fade_timer = timer_11_tbl[end_w.r_no_2] - 120;

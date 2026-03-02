@@ -43,8 +43,9 @@
 #include "Game/sc_sub.h"
 #include "Game/texgroup.h"
 #include "Game/workuser.h"
-#include "PS2/mc/savesub.h"
-#include "PS2/reboot.h"
+//#include "PS2/mc/savesub.h"
+#include "psp/savesub.h"
+//#include "PS2/reboot.h"
 #include "structs.h"
 
 void Default_Training_Option();
@@ -72,8 +73,8 @@ void In_Game(struct _TASK* task_ptr);
 void Wait_Load_Save(struct _TASK* task_ptr);
 void Wait_Replay_Check(struct _TASK* task_ptr);
 void Disp_Auto_Save(struct _TASK* task_ptr);
-void Suspend_Menu();
-void Wait_Replay_Load();
+void Suspend_Menu(struct _TASK* task_ptr);
+void Wait_Replay_Load(struct _TASK* task_ptr);
 void Training_Menu(struct _TASK* task_ptr);
 void After_Replay(struct _TASK* task_ptr);
 void Disp_Auto_Save2(struct _TASK* task_ptr);
@@ -212,7 +213,7 @@ void Setup_Pad_or_Stick() {
 }
 
 void After_Title(struct _TASK* task_ptr) {
-    void (*AT_Jmp_Tbl[21])() = { Menu_Init,        Mode_Select,   Option_Select, Option_Select,  Training_Mode,
+    void (*AT_Jmp_Tbl[21])(struct _TASK*) = { Menu_Init,        Mode_Select,   Option_Select, Option_Select,  Training_Mode,
                                  System_Direction, Load_Replay,   Option_Select, toSelectGame,   Game_Option,
                                  Button_Config,    Screen_Adjust, Sound_Test,    Memory_Card,    Extra_Option,
                                  Option_Select,    VS_Result,     Save_Replay,   Direction_Menu, Save_Direction,
@@ -531,7 +532,7 @@ void toSelectGame(struct _TASK* task_ptr) {
 }
 
 void jmpRebootProgram() {
-    Reboot_Program("cdrom0:\\SLUS_209.49;1");
+    //Reboot_Program("cdrom0:\\SLUS_209.49;1");
 }
 
 void imgSelectGameButton() {
@@ -1337,7 +1338,7 @@ void Save_Direction(struct _TASK* task_ptr) {
 
     case 1:
         if (Menu_Sub_case1(task_ptr) != 0) {
-            SaveInit(1, 1);
+            //SaveInit(1, 1);
         }
 
         break;
@@ -1347,10 +1348,12 @@ void Save_Direction(struct _TASK* task_ptr) {
         break;
 
     case 3:
+        /*
         if (SaveMove() <= 0) {
             IO_Result = 0x200;
             Load_Replay_MC_Sub(task_ptr, 0);
         }
+        */
 
         break;
     }
@@ -1377,7 +1380,7 @@ void Load_Direction(struct _TASK* task_ptr) {
 
     case 1:
         if (Menu_Sub_case1(task_ptr) != 0) {
-            SaveInit(1, 0);
+            //SaveInit(1, 0);
         }
 
         break;
@@ -1392,10 +1395,12 @@ void Load_Direction(struct _TASK* task_ptr) {
         break;
 
     case 3:
+        /*
         if (SaveMove() <= 0) {
             IO_Result = 0x200;
             Load_Replay_MC_Sub(task_ptr, 0);
         }
+        */
 
         break;
     }
@@ -1432,6 +1437,7 @@ void Load_Replay(struct _TASK* task_ptr) {
         break;
 
     case 3:
+        /*
         switch (SaveMove()) {
         case 0:
             Decide_ID = 0;
@@ -1449,6 +1455,7 @@ void Load_Replay(struct _TASK* task_ptr) {
             Load_Replay_MC_Sub(task_ptr, 0);
             break;
         }
+        */
 
         break;
 
@@ -2686,9 +2693,11 @@ void Save_Load_Menu(struct _TASK* task_ptr) {
         /* fallthrough */
 
     case 3:
+        /*
         if (SaveMove() <= 0) {
             Go_Back_MC(task_ptr);
         }
+        */
 
         break;
 
@@ -3011,7 +3020,7 @@ u16 Check_Menu_Lever(u8 PL_id, s16 type) {
 void Suspend_Menu(struct _TASK* /* unused */) {}
 
 void In_Game(struct _TASK* task_ptr) {
-    void (*In_Game_Jmp_Tbl[5])() = { Menu_Init, Menu_Select, Button_Config_in_Game, Character_Change, Pad_Come_Out };
+    void (*In_Game_Jmp_Tbl[5])(struct _TASK* task_ptr) = { Menu_Init, Menu_Select, Button_Config_in_Game, Character_Change, Pad_Come_Out };
     In_Game_Jmp_Tbl[task_ptr->r_no[1]](task_ptr);
 }
 
@@ -3416,7 +3425,7 @@ void Wait_Load_Save(struct _TASK* task_ptr) {
 }
 
 void Disp_Auto_Save(struct _TASK* task_ptr) {
-    void (*Auto_Save_Jmp_Tbl[4])() = { DAS_1st, DAS_2nd, DAS_3rd, DAS_4th };
+    void (*Auto_Save_Jmp_Tbl[4])(struct _TASK* task_ptr) = { DAS_1st, DAS_2nd, DAS_3rd, DAS_4th };
     Auto_Save_Jmp_Tbl[task_ptr->r_no[1]](task_ptr);
 }
 
@@ -3438,7 +3447,7 @@ void DAS_2nd(struct _TASK* task_ptr) {
     if ((task_ptr->timer -= 1) == 0) {
         task_ptr->r_no[1]++;
         FadeInit();
-        SaveInit(0, 3);
+        //SaveInit(0, 3);
     }
 }
 
@@ -3459,7 +3468,7 @@ void DAS_4th(struct _TASK* task_ptr) {
 }
 
 void Disp_Auto_Save2(struct _TASK* task_ptr) {
-    void (*Auto_Save2_Jmp_Tbl[4])() = { DAS_1st, DAS_2nd, DAS_3rd, DAS2_4th };
+    void (*Auto_Save2_Jmp_Tbl[4])(struct _TASK* task_ptr) = { DAS_1st, DAS_2nd, DAS_3rd, DAS2_4th };
     Auto_Save2_Jmp_Tbl[task_ptr->r_no[1]](task_ptr);
 }
 
@@ -4441,7 +4450,7 @@ void Reset_Replay(struct _TASK* task_ptr) {
 }
 
 void Training_Menu(struct _TASK* task_ptr) {
-    void (*Training_Jmp_Tbl[8])() = { Training_Init,   Normal_Training,  Blocking_Training, Dummy_Setting,
+    void (*Training_Jmp_Tbl[8])(struct _TASK*) = { Training_Init,   Normal_Training,  Blocking_Training, Dummy_Setting,
                                       Training_Option, Button_Config_Tr, Character_Change,  Blocking_Tr_Option };
     Training_Jmp_Tbl[task_ptr->r_no[1]](task_ptr);
     Akaobi();

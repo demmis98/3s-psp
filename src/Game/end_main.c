@@ -301,8 +301,8 @@ void common_end_init01() {
     bg_w.bgw[3].position_y = 0;
     end_fam_set(3);
     Scrn_Move_Set(3, bg_w.bgw[3].position_x, bg_w.bgw[3].position_y);
-    effect_E9_init();
-    effect_F9_init(end_w.type);
+    effect_E9_init(NULL, 0);
+    effect_F9_init(NULL, end_w.type);
 }
 
 void end_fam_set(s16 i) {

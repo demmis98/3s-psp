@@ -14,7 +14,7 @@ typedef struct {
     s16 prio_low;  // offset 0xA, size 0x2
 } BS2;
 
-void effect_C2_move(WORK_Other* ewk);
+void effect_C2_move(WORK* wkp, s32 /*unused*/);
 void setup_demojump(PLW* twk, s16 ix);
 s32 check_effc2_p2_rno(WORK* wk);
 void player_hosei_data(WORK_Other* ewk, s16 flag, s16 f2);
@@ -26,6 +26,6 @@ s16 bs2_sync_bomb(WORK* wk);
 void bs2_get_parts_break(WORK* wk);
 s32 check_parts_break_level(WORK* wk);
 void get_shizumi_guai(WORK* wk);
-s32 effect_C2_init(WORK* wk, u8 data);
+s32 effect_C2_init(WORK* wk, s32 d);
 
 #endif
