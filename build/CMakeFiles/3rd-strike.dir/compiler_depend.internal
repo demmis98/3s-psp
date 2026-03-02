@@ -607,6 +607,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Com_Pl.c.obj
  /home/demma/.local/bin/pspdev/psp/include/sys/sched.h
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h
  /home/demma/Documents/code/psp/3rd-strike/include/common.h
+ /home/demma/Documents/code/psp/3rd-strike/include/fl.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/ACTIVE00.h
  /home/demma/Documents/code/psp/3rd-strike/include/types.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/CMD_MAIN.h
@@ -6659,6 +6660,7 @@ CMakeFiles/3rd-strike.dir/src/Game/EFFECT.c.obj
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h
  /home/demma/Documents/code/psp/3rd-strike/include/types.h
  /home/demma/Documents/code/psp/3rd-strike/include/common.h
+ /home/demma/Documents/code/psp/3rd-strike/include/fl.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFXX.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/PLCNT.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/PulPul.h
@@ -9962,6 +9964,7 @@ CMakeFiles/3rd-strike.dir/src/Game/GD3rd.c.obj
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h
  /home/demma/Documents/code/psp/3rd-strike/include/types.h
  /home/demma/Documents/code/psp/3rd-strike/include/common.h
+ /home/demma/Documents/code/psp/3rd-strike/include/fl.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/RAMCNT.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/WORK_SYS.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/color3rd.h
@@ -13443,6 +13446,7 @@ CMakeFiles/3rd-strike.dir/src/Game/OPENING.c.obj
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h
  /home/demma/Documents/code/psp/3rd-strike/include/types.h
  /home/demma/Documents/code/psp/3rd-strike/include/common.h
+ /home/demma/Documents/code/psp/3rd-strike/include/fl.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/AcrUtil.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h
  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h
@@ -15653,6 +15657,8 @@ CMakeFiles/3rd-strike.dir/src/Game/RAMCNT.c.obj
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h
  /home/demma/Documents/code/psp/3rd-strike/include/types.h
  /home/demma/Documents/code/psp/3rd-strike/include/common.h
+ /home/demma/Documents/code/psp/3rd-strike/include/fl.h
+ /home/demma/Documents/code/psp/3rd-strike/include/psp/MemMan.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/debug/Debug.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/texgroup.h
 
@@ -15802,6 +15808,7 @@ CMakeFiles/3rd-strike.dir/src/Game/SE.c.obj
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h
  /home/demma/Documents/code/psp/3rd-strike/include/types.h
  /home/demma/Documents/code/psp/3rd-strike/include/common.h
+ /home/demma/Documents/code/psp/3rd-strike/include/fl.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/PLCNT.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/Se_Data.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/Sound3rd.h
@@ -16323,6 +16330,7 @@ CMakeFiles/3rd-strike.dir/src/Game/SYS_sub.c.obj
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h
  /home/demma/Documents/code/psp/3rd-strike/include/types.h
  /home/demma/Documents/code/psp/3rd-strike/include/common.h
+ /home/demma/Documents/code/psp/3rd-strike/include/fl.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/COM_DATU.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/Com_Data.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFB8.h
@@ -16561,6 +16569,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Sound3rd.c.obj
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h
  /home/demma/Documents/code/psp/3rd-strike/include/types.h
  /home/demma/Documents/code/psp/3rd-strike/include/common.h
+ /home/demma/Documents/code/psp/3rd-strike/include/fl.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFECT.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/GD3rd.h
  /home/demma/Documents/code/psp/3rd-strike/include/Game/RAMCNT.h
@@ -25457,6 +25466,46 @@ CMakeFiles/3rd-strike.dir/src/common/sprites.c.obj
  /home/demma/.local/bin/pspdev/psp/include/math.h
  /home/demma/.local/bin/pspdev/psp/include/assert.h
 
+CMakeFiles/3rd-strike.dir/src/psp/MemMan.c.obj
+ /home/demma/Documents/code/psp/3rd-strike/src/psp/MemMan.c
+ /home/demma/Documents/code/psp/3rd-strike/include/psp/MemMan.h
+ /home/demma/Documents/code/psp/3rd-strike/include/structs.h
+ /home/demma/Documents/code/psp/3rd-strike/include/types.h
+ /home/demma/.local/bin/pspdev/psp/sdk/include/psptypes.h
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdint.h
+ /home/demma/.local/bin/pspdev/psp/include/stdint.h
+ /home/demma/.local/bin/pspdev/psp/include/machine/_default_types.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/features.h
+ /home/demma/.local/bin/pspdev/psp/include/_newlib_version.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/_intsup.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/_stdint.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/types.h
+ /home/demma/.local/bin/pspdev/psp/include/_ansi.h
+ /home/demma/.local/bin/pspdev/psp/include/newlib.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/config.h
+ /home/demma/.local/bin/pspdev/psp/include/machine/ieeefp.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/cdefs.h
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stddef.h
+ /home/demma/.local/bin/pspdev/psp/include/machine/_types.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/_types.h
+ /home/demma/.local/bin/pspdev/psp/include/machine/endian.h
+ /home/demma/.local/bin/pspdev/psp/include/machine/_endian.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/select.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/_sigset.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/_timeval.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/timespec.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/_timespec.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/_pthreadtypes.h
+ /home/demma/.local/bin/pspdev/psp/include/bits/posix_opt.h
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/limits.h
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/syslimits.h
+ /home/demma/.local/bin/pspdev/psp/include/limits.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/syslimits.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/sched.h
+ /home/demma/.local/bin/pspdev/psp/include/machine/types.h
+ /home/demma/Documents/code/psp/3rd-strike/include/types.h
+ /home/demma/Documents/code/psp/3rd-strike/include/common.h
+
 CMakeFiles/3rd-strike.dir/src/psp/common.c.obj
  /home/demma/Documents/code/psp/3rd-strike/src/psp/common.c
  /home/demma/Documents/code/psp/3rd-strike/include/common.h
@@ -25493,6 +25542,46 @@ CMakeFiles/3rd-strike.dir/src/psp/common.c.obj
  /home/demma/.local/bin/pspdev/psp/include/sys/syslimits.h
  /home/demma/.local/bin/pspdev/psp/include/sys/sched.h
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h
+
+CMakeFiles/3rd-strike.dir/src/psp/fl.c.obj
+ /home/demma/Documents/code/psp/3rd-strike/src/psp/fl.c
+ /home/demma/Documents/code/psp/3rd-strike/include/fl.h
+ /home/demma/Documents/code/psp/3rd-strike/include/types.h
+ /home/demma/.local/bin/pspdev/psp/sdk/include/psptypes.h
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdint.h
+ /home/demma/.local/bin/pspdev/psp/include/stdint.h
+ /home/demma/.local/bin/pspdev/psp/include/machine/_default_types.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/features.h
+ /home/demma/.local/bin/pspdev/psp/include/_newlib_version.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/_intsup.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/_stdint.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/types.h
+ /home/demma/.local/bin/pspdev/psp/include/_ansi.h
+ /home/demma/.local/bin/pspdev/psp/include/newlib.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/config.h
+ /home/demma/.local/bin/pspdev/psp/include/machine/ieeefp.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/cdefs.h
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stddef.h
+ /home/demma/.local/bin/pspdev/psp/include/machine/_types.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/_types.h
+ /home/demma/.local/bin/pspdev/psp/include/machine/endian.h
+ /home/demma/.local/bin/pspdev/psp/include/machine/_endian.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/select.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/_sigset.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/_timeval.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/timespec.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/_timespec.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/_pthreadtypes.h
+ /home/demma/.local/bin/pspdev/psp/include/bits/posix_opt.h
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/limits.h
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/syslimits.h
+ /home/demma/.local/bin/pspdev/psp/include/limits.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/syslimits.h
+ /home/demma/.local/bin/pspdev/psp/include/sys/sched.h
+ /home/demma/.local/bin/pspdev/psp/include/machine/types.h
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdarg.h
+ /home/demma/.local/bin/pspdev/psp/sdk/include/pspdebug.h
+ /home/demma/.local/bin/pspdev/psp/sdk/include/pspmoduleinfo.h
 
 CMakeFiles/3rd-strike.dir/src/psp/pspmain.c.obj
  /home/demma/Documents/code/psp/3rd-strike/src/psp/pspmain.c

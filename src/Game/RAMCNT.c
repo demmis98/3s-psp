@@ -1,8 +1,12 @@
 #include "Game/RAMCNT.h"
 #include "common.h"
 //#include "sf33rd/AcrSDK/ps2/flps2debug.h"
+#include "fl.h"
+
 //#include "sf33rd/AcrSDK/ps2/foundaps2.h"
 //#include "Common/MemMan.h"
+#include "psp/MemMan.h"
+
 #include "Game/debug/Debug.h"
 #include "Game/texgroup.h"
 
@@ -17,11 +21,11 @@ s16 rckeymin;
 
 void disp_ramcnt_free_area() {
     if (Debug_w[0xA]) {
-        //flPrintColor(0xFFFFFF8F);
-        //flPrintL(4, 8, "Ramcnt Status");
-        //flPrintL(4, 9, "Now %07X", mmGetRemainder(&rckey_mmobj));
-        //flPrintL(4, 0xA, "Min %07X", mmGetRemainderMin(&rckey_mmobj));
-        //flPrintL(4, 0xB, "Key %2d / %2d", rckeymin, rckeyctr);
+        flPrintColor(0xFFFFFF8F);
+        flPrintL(4, 8, "Ramcnt Status");
+        flPrintL(4, 9, "Now %07X", mmGetRemainder(&rckey_mmobj));
+        flPrintL(4, 0xA, "Min %07X", mmGetRemainderMin(&rckey_mmobj));
+        flPrintL(4, 0xB, "Key %2d / %2d", rckeymin, rckeyctr);
     }
 }
 

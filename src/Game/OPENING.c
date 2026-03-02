@@ -1,6 +1,8 @@
 #include "Game/OPENING.h"
 #include "common.h"
 //#include "sf33rd/AcrSDK/ps2/flps2debug.h"
+#include "fl.h"
+
 //#include "sf33rd/AcrSDK/ps2/foundaps2.h"
 //#include "Common/MemMan.h"
 //#include "Common/PPGFile.h"
@@ -322,11 +324,11 @@ void OPBG_Trans() {
         for (k = 0; k < 3; k++) {
             for (j = 0; j < 4; j++) {
                 for (i = 0; i < 4; i++) {
-                    //flPrintL(i * 5 + 20, 23 - j + k * 5, "%04d", op_w.bgw[k].map[i][j].g_no);
+                    flPrintL(i * 5 + 20, 23 - j + k * 5, "%04d", op_w.bgw[k].map[i][j].g_no);
                 }
             }
 
-            //flPrintL(46, k * 5 + 20, "%04x , %04x", bg_w.bgw[k].wxy[0].disp.pos, bg_w.bgw[k].xy[1].disp.pos);
+            flPrintL(46, k * 5 + 20, "%04x , %04x", bg_w.bgw[k].wxy[0].disp.pos, bg_w.bgw[k].xy[1].disp.pos);
         }
     }
 }
@@ -538,8 +540,8 @@ void opening_move() {
     s16 work2;
 
     if (Debug_w[0x30]) {
-        //flPrintColor(0xFFFFFF8F);
-        //flPrintL(2, 1, "BAR %d", op_w.r_no_1);
+        flPrintColor(0xFFFFFF8F);
+        flPrintL(2, 1, "BAR %d", op_w.r_no_1);
     }
 
     op_plmove_timer += 1;

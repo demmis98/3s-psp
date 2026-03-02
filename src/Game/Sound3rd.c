@@ -9,6 +9,8 @@
 #include "sf33rd/AcrSDK/ps2/flps2debug.h"
 #include "Common/PPGFile.h"
 */
+#include "fl.h"
+
 #include "Game/EFFECT.h"
 #include "Game/GD3rd.h"
 #include "Game/RAMCNT.h"
@@ -859,7 +861,7 @@ u16 remake_sound_code_for_DC(u16 code, SoundPatchConfig* rmcode) {
         rnum = 1;
 
         while (1) {
-            //flPrintL(3, 5, "BAD SE CODE %X", code);
+            flPrintL(3, 5, "BAD SE CODE %X", code);
             njWaitVSync_with_N();
         }
 

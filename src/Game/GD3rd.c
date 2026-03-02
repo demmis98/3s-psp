@@ -2,6 +2,8 @@
 #include "common.h"
 //#include "sf33rd/AcrSDK/MiddleWare/PS2/CapSndEng/cse.h"
 //#include "sf33rd/AcrSDK/ps2/flps2debug.h"
+#include "fl.h"
+
 //#include "sf33rd/AcrSDK/ps2/foundaps2.h"
 //#include "Common/FileSizeAFS.h"
 #include "Game/RAMCNT.h"
@@ -531,15 +533,15 @@ void Check_LDREQ_Queue() {
 void disp_ldreq_status() {
     s16 i;
 
-    //flPrintColor(0xFFFFFF8F);
+    flPrintColor(0xFFFFFF8F);
 
     if (Debug_w[0xE]) {
         for (i = 0; i < 16; i++) {
-            //flPrintL(2, i + 18, "%1d", q_ldreq[i].be);
-            //flPrintL(3, i + 18, ldreq_process_name[q_ldreq[i].type]);
+            flPrintL(2, i + 18, "%1d", q_ldreq[i].be);
+            flPrintL(3, i + 18, ldreq_process_name[q_ldreq[i].type]);
         }
 
-        //flPrintL(2, i + 18, "%4d", system_timer);
+        flPrintL(2, i + 18, "%4d", system_timer);
     }
 }
 

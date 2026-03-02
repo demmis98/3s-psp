@@ -1,6 +1,8 @@
 #include "Game/SE.h"
 #include "common.h"
 //#include "sf33rd/AcrSDK/ps2/flps2debug.h"
+#include "fl.h"
+
 #include "Game/PLCNT.h"
 #include "Game/Se_Data.h"
 #include "Game/Sound3rd.h"

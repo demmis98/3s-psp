@@ -100,6 +100,10 @@ src/Game/texcash.c:
 -commented out basically everything
 
 
+src/psp/MemMan.c:
+-verify if it handles memory correctly
+
+
 src/Game/Sound3rd.c:
 -it's sound, it has to be ported with care, specificaly adxt stuff
 -BGM_Server()

@@ -1,6 +1,8 @@
 #include "Game/texcash.h"
 #include "common.h"
 //#include "sf33rd/AcrSDK/ps2/flps2debug.h"
+#include "fl.h"
+
 //#include "Common/PPGFile.h"
 #include "Game/EFFECT.h"
 #include "Game/MTRANS.h"

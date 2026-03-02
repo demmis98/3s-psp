@@ -2,6 +2,8 @@
 #include "common.h"
 //#include "sf33rd/AcrSDK/common/mlPAD.h"
 //#include "sf33rd/AcrSDK/ps2/flps2debug.h"
+#include "fl.h"
+
 #include "Game/COM_DATU.h"
 #include "Game/Com_Data.h"
 #include "Game/EFFB8.h"
@@ -1165,8 +1167,8 @@ void Check_Replay_Status(s16 PL_id, u8 Status) {
         Get_Replay(PL_id);
 
         if ((Game_pause != 0x81) && Debug_w[0x21]) {
-            //flPrintColor(0xFFFFFFFF);
-            //flPrintL(16, 8, "HUMAN REC!");
+            flPrintColor(0xFFFFFFFF);
+            flPrintL(16, 8, "HUMAN REC!");
             break;
         }
 
@@ -1186,8 +1188,8 @@ void Check_Replay_Status(s16 PL_id, u8 Status) {
         break;
 
     case 99:
-        //flPrintColor(0xFFFFFF00);
-        //flPrintL(12, 20, "[REPLAY AREA FULL!!]");
+        flPrintColor(0xFFFFFF00);
+        flPrintL(12, 20, "[REPLAY AREA FULL!!]");
         Disp_Rec_Time(PL_id, Rec_Time[PL_id]);
         break;
     }

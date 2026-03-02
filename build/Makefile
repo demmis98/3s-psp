@@ -12537,6 +12537,30 @@ src/common/sprites.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/common/sprites.c.s
 .PHONY : src/common/sprites.c.s
 
+src/psp/MemMan.obj: src/psp/MemMan.c.obj
+.PHONY : src/psp/MemMan.obj
+
+# target to build an object file
+src/psp/MemMan.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/MemMan.c.obj
+.PHONY : src/psp/MemMan.c.obj
+
+src/psp/MemMan.i: src/psp/MemMan.c.i
+.PHONY : src/psp/MemMan.i
+
+# target to preprocess a source file
+src/psp/MemMan.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/MemMan.c.i
+.PHONY : src/psp/MemMan.c.i
+
+src/psp/MemMan.s: src/psp/MemMan.c.s
+.PHONY : src/psp/MemMan.s
+
+# target to generate assembly for a file
+src/psp/MemMan.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/MemMan.c.s
+.PHONY : src/psp/MemMan.c.s
+
 src/psp/common.obj: src/psp/common.c.obj
 .PHONY : src/psp/common.obj
 
@@ -12560,6 +12584,30 @@ src/psp/common.s: src/psp/common.c.s
 src/psp/common.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/common.c.s
 .PHONY : src/psp/common.c.s
+
+src/psp/fl.obj: src/psp/fl.c.obj
+.PHONY : src/psp/fl.obj
+
+# target to build an object file
+src/psp/fl.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/fl.c.obj
+.PHONY : src/psp/fl.c.obj
+
+src/psp/fl.i: src/psp/fl.c.i
+.PHONY : src/psp/fl.i
+
+# target to preprocess a source file
+src/psp/fl.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/fl.c.i
+.PHONY : src/psp/fl.c.i
+
+src/psp/fl.s: src/psp/fl.c.s
+.PHONY : src/psp/fl.s
+
+# target to generate assembly for a file
+src/psp/fl.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/fl.c.s
+.PHONY : src/psp/fl.c.s
 
 src/psp/pspmain.obj: src/psp/pspmain.c.obj
 .PHONY : src/psp/pspmain.obj
@@ -14169,9 +14217,15 @@ help:
 	@echo "... src/common/sprites.obj"
 	@echo "... src/common/sprites.i"
 	@echo "... src/common/sprites.s"
+	@echo "... src/psp/MemMan.obj"
+	@echo "... src/psp/MemMan.i"
+	@echo "... src/psp/MemMan.s"
 	@echo "... src/psp/common.obj"
 	@echo "... src/psp/common.i"
 	@echo "... src/psp/common.s"
+	@echo "... src/psp/fl.obj"
+	@echo "... src/psp/fl.i"
+	@echo "... src/psp/fl.s"
 	@echo "... src/psp/pspmain.obj"
 	@echo "... src/psp/pspmain.i"
 	@echo "... src/psp/pspmain.s"

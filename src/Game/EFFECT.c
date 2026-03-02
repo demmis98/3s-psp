@@ -1,6 +1,8 @@
 #include "Game/EFFECT.h"
 #include "common.h"
 //#include "sf33rd/AcrSDK/ps2/flps2debug.h"
+#include "fl.h"
+
 #include "Game/EFFXX.h"
 #include "Game/PLCNT.h"
 #include "Game/PulPul.h"
@@ -66,7 +68,7 @@ void disp_effect_work() {
 
             c_addr = (WORK*)frw[curr_ix];
             next_ix = c_addr->behind;
-            //flPrintL(px, py, "%c%d", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[(c_addr->id / 10)], c_addr -> id % 10);
+            flPrintL(px, py, "%c%d", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[(c_addr->id / 10)], c_addr -> id % 10);
             py++;
         }
     }

@@ -1,6 +1,8 @@
 #include "Game/Com_Pl.h"
 #include "common.h"
 //#include "sf33rd/AcrSDK/ps2/flps2debug.h"
+#include "fl.h"
+
 #include "Game/ACTIVE00.h"
 #include "Game/CMD_MAIN.h"
 #include "Game/Ck_Pass.h"
@@ -151,8 +153,8 @@ u16 cpu_algorithm(PLW* wk) {
         CPU_Rec[wk->wu.id] = 1;
 
         if (Debug_w[0x21]) {
-            //flPrintColor(0xFFFFFFFF);
-            //flPrintL(16, 9, "CPU REC!");
+            flPrintColor(0xFFFFFFFF);
+            flPrintL(16, 9, "CPU REC!");
         }
 
         Check_Replay_Status(wk->wu.id, 1);

@@ -11,6 +11,8 @@
 #include "Common/PPGWork.h"
 #include "Compress/zlibApp.h"
 */
+#include "fl.h"
+
 #include "Game/AcrUtil.h"
 #include "Game/DC_Ghost.h"
 #include "Game/EFFECT.h"
@@ -379,8 +381,8 @@ s32 njUserMain() {
                 Check_Replay_Status(0, 1);
 
                 if (Debug_w[0x21]) {
-                    //flPrintColor(0xFFFFFFFF);
-                    //flPrintL(0x10, 0xA, "FAKE REC! PL1");
+                    flPrintColor(0xFFFFFFFF);
+                    flPrintL(0x10, 0xA, "FAKE REC! PL1");
                 }
             }
 
@@ -390,8 +392,8 @@ s32 njUserMain() {
                 Check_Replay_Status(1, 1);
 
                 if (Debug_w[0x21]) {
-                    //flPrintColor(0xFFFFFFFF);
-                    //flPrintL(0x10, 0xA, "FAKE REC!     PL2");
+                    flPrintColor(0xFFFFFFFF);
+                    flPrintL(0x10, 0xA, "FAKE REC!     PL2");
                 }
             }
         }
