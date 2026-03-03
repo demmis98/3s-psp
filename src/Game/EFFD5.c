@@ -154,7 +154,7 @@ void effD5_main_process(WORK_Other* ewk) {
                 setup_hana_extra(&ewk->wu, 1, 0x18);
             }
         } else {
-            //sound_effect_request[0x10B](ewk, 0x10B);
+            sound_effect_request[0x10B]((WORK*) ewk, 0x10B);
             ewk->wu.routine_no[1] = 2;
             ewk->wu.rl_flag = (ewk->wu.rl_flag + 1) & 1;
             ewk->wu.disp_flag = 2;

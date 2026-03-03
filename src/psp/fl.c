@@ -13,6 +13,14 @@ void enableDebug(){
     }
 }
 
+s32 flLogOut(s8* format, ...){
+    va_list args;
+    va_start(args, format);
+
+    enableDebug();
+    pspDebugScreenPrintf(format, args);
+}
+
 s32 flPrintL(s32 posi_x, s32 posi_y, const s8* format, ...) {
     va_list args;
     va_start(args, format);

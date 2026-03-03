@@ -15,6 +15,8 @@
 #include "Game/meta_col.h"
 #include "Game/workuser.h"
 
+#include "fl.h"
+
 typedef struct {
     // total size: 0x1C00
     u16 col[2][28][64]; // offset 0x0, size 0x1C00
@@ -187,6 +189,7 @@ s32 cseMemMapSetPhdAddr(u32 bank, void* addr) {
 }
 
 void load_any_color(u16 ix, u8 kokey) {
+    flLogOut("load_any_color\n");
 #if defined(TARGET_PS2)
     void init_trans_color_ram(s16 id, s32 key, u32 type, u32 data);
 #endif
@@ -196,7 +199,7 @@ void load_any_color(u16 ix, u8 kokey) {
 
     cfn = (col_file_data*)&color_file[ix];
     key = load_it_use_any_key(cfn->apfn, kokey, 0);
-
+    
     if (key) {
         init_trans_color_ram(0, key, cfn->type, cfn->data);
     }
@@ -224,6 +227,7 @@ void init_trans_color_ram(s16 id, s16 key, u8 type, u16 data) {
 #if defined(TARGET_PS2)
     void metamor_color_store(s32 wkid);
 #endif
+    flLogOut("init_trans_color_ram\n");
 
     u16* ldadrs;
     u16* tradrs;

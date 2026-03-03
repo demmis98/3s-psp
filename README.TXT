@@ -108,29 +108,6 @@ src/Game/Sound3rd.c:
 -it's sound, it has to be ported with care, specificaly adxt stuff
 -BGM_Server()
 
-maybe fix sound_effect_request definition(?)
-
-
-src/Game/EFF02.c:
--fix sound_effect_request
-
-src/Game/EFFA7.c:
--fix sound_effect_request
-
-src/Game/EFFB1.c:
--fix sound_effect_request
-
-src/Game/EFFC9.c:
--fix sound_effect_request
-
-src/Game/EFFD5.c:
--fix sound_effect_request
-
-src/Game/EFFD7.c:
--fix sound_effect_request
-
-src/Game/EFFI8.c:
--fix sound_effect_request
 
 src/Game/EFFK2.c:
 -fix sound_effect_request

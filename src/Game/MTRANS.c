@@ -2,6 +2,8 @@
 #include "common.h"
 //#include "sf33rd/AcrSDK/ps2/flps2render.h"
 //#include "sf33rd/AcrSDK/ps2/foundaps2.h"
+#include "fl.h"
+
 //#include "Common/PPGFile.h"
 #include "Game/DC_Ghost.h"
 #include "Game/EFFECT.h"
@@ -2005,7 +2007,7 @@ static s32 get_free_patcash_index(PatternCollection* padr) {
         }
     }
 
-    //flLogOut("ＣＧキャッシュバッファが一杯になりました。\n");
+    flLogOut("ＣＧキャッシュバッファが一杯になりました。\n");
     while (1) {}
 }
 

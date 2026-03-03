@@ -5,6 +5,8 @@
 
 //#include "sf33rd/AcrSDK/ps2/foundaps2.h"
 //#include "Common/MemMan.h"
+#include "psp/MemMan.h"
+
 //#include "Common/PPGFile.h"
 //#include "Common/PPGWork.h"
 #include "Game/AcrUtil.h"
@@ -122,7 +124,7 @@ void TITLE_Init() {
     u32 loadSize;
     s16 key;
 
-    //mmDebWriteTag("\nMAIN TITLE\n\n");
+    mmDebWriteTag("\nMAIN TITLE\n\n");
     Opening_Now = 0;
     //ppgTitleList.tex = &ppgTitleTex;
     //ppgTitleList.pal = NULL;
@@ -131,7 +133,7 @@ void TITLE_Init() {
 
     if (loadSize == 0) {
         // Main title texture could not be loaded.
-        //flLogOut("メインタイトルのテクスチャが読み込めませんでした。\n");
+        flLogOut("メインタイトルのテクスチャが読み込めませんでした。\n");
         while (1) {}
     }
 
@@ -207,14 +209,14 @@ void OPBG_Init() {
     s16 i;
     s16 key;
 
-    //mmDebWriteTag("\nOPENING\n\n");
+    mmDebWriteTag("\nOPENING\n\n");
     //ppgOpnBgList.tex = &ppgOpnBgTex;
     //ppgOpnBgList.pal = palGetChunkGhostCP3();
     //ppgSetupCurrentDataList(&ppgOpnBgList);
 
     if ((key = Search_ramcnt_type(0x1D)) == 0) {
         // Opening demo texture has not been loaded.
-        //flLogOut("オープニングデモテクスチャが読み込まれていません。\n");
+        flLogOut("オープニングデモテクスチャが読み込まれていません。\n");
         while (1) {}
     }
 

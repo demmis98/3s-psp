@@ -6,6 +6,8 @@
 #include "Common/PPGFile.h"
 #include "Common/PPGWork.h"
 */
+#include "fl.h"
+
 #include "Game/AcrUtil.h"
 #include "Game/DC_Ghost.h"
 #include "Game/Eff76.h"
@@ -84,7 +86,7 @@ void Scrscreen_Init() {
 
     if (loadSize == 0) {
         // Could not load texture for score screen.\n
-        //flLogOut("スコアスクリーン用のテクスチャが読み込めませんでした。\n");
+        flLogOut("スコアスクリーン用のテクスチャが読み込めませんでした。\n");
         while (1) {
             // Do nothing
         }

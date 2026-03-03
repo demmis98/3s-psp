@@ -109,7 +109,7 @@ void effect_C9_move(WORK* wkp, s32 /*unused*/) {
                             ewk->wu.mvxy.a[1].sp = 0;
                             ewk->wu.mvxy.kop[0] = 1;
                             effect_03_init(&ewk->wu, 110);
-                            //sound_effect_request[309](ewk, 309);
+                            sound_effect_request[309]((WORK*) ewk, 309);
                             char_move_z(&ewk->wu);
                         }
 

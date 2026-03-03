@@ -30,7 +30,7 @@ void effect_A7_move(WORK* wkp, s32 /*unused*/) {
 
         if (tad->hits == 0) {
             if (tad->se) {
-                //sound_effect_request[tad->se](ewk, tad->se);
+                sound_effect_request[tad->se]((WORK*) ewk, tad->se);
                 Last_Called_SE = tad->se;
             } else {
                 Last_Called_SE = 0;
@@ -66,7 +66,7 @@ void effect_A7_move(WORK* wkp, s32 /*unused*/) {
         }
 
         if (tad->se) {
-            //sound_effect_request[tad->se](ewk, tad->se);
+            sound_effect_request[tad->se]((WORK*) ewk, tad->se);
             Last_Called_SE = tad->se;
         } else {
             Last_Called_SE = 0;

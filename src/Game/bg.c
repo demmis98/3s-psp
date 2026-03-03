@@ -1,7 +1,11 @@
 #include "Game/bg.h"
 #include "common.h"
 //#include "sf33rd/AcrSDK/ps2/foundaps2.h"
+#include "fl.h"
+
 //#include "Common/MemMan.h"
+#include "psp/MemMan.h"
+
 //#include "Common/PPGFile.h"
 //#include "Common/PPGWork.h"
 #include "Game/AcrUtil.h"
@@ -291,7 +295,7 @@ void Bg_Texture_Load_EX() {
     u32 assign2;
     u8 assign3;
 
-    //mmDebWriteTag("\nSTAGE\n\n");
+    mmDebWriteTag("\nSTAGE\n\n");
     Bg_TexInit();
 
     for (i = 0; i < 8; i++) {
@@ -421,7 +425,7 @@ void Bg_Texture_Load2(u8 type) {
 
     u32 assign;
 
-    //mmDebWriteTag("\nBG ETC.\n\n");
+    mmDebWriteTag("\nBG ETC.\n\n");
     Bg_TexInit();
     (void)assign;
     ending_flag = 0;
@@ -442,7 +446,7 @@ void Bg_Texture_Load2(u8 type) {
     key = Search_ramcnt_type(0x18);
 
     if (key == 0) {
-        //flLogOut("背景用テクスチャが読み込まれていませんでした。\n");
+        flLogOut("背景用テクスチャが読み込まれていませんでした。\n");
         while (!NULL) {};
     }
 
@@ -494,7 +498,7 @@ void Bg_Texture_Load_Ending(s16 type) {
     u32 assign;
     u32 assign2;
 
-    //mmDebWriteTag("\nENDING\n\n");
+    mmDebWriteTag("\nENDING\n\n");
     rw_num = 0;
     Bg_TexInit();
     ending_flag = 1;

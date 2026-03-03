@@ -65,6 +65,9 @@ const LDREQ_TBL ldreq_tbl[294];
 const s16 ldreq_ix[43][2];
 
 s32 Setup_Directory_Record_Data() {
+    //i trust SF33RD.AFS will be extracted
+
+    /*
     DskDrvErrBe = 0;
     DskDrvErrType = 0xFFFF;
     DskDrvErrRetry = 0;
@@ -72,11 +75,9 @@ s32 Setup_Directory_Record_Data() {
     //ADXF_LoadPartitionNw(0, "SF33RD.AFS", NULL, sf3ptinfo);
 
     while (1) {
-        /*
         if (ADXF_GetPtStat(0) == ADXF_STAT_READEND) {
             break;
         }
-        */
 
 #if defined(TARGET_PS2)
         sceGsSyncV(0);
@@ -97,6 +98,7 @@ s32 Setup_Directory_Record_Data() {
     ps2CdReadMode.spindlctrl = 1;
     ps2CdReadMode.datapattern = 0;
     ps2CdReadMode.pad = 0;
+    */
     return 1;
 }
 
@@ -190,8 +192,8 @@ u32 fsGetFileSize(u16 fnum) {
         return 0;
     }
 
-    return appFileSizes[fnum];
     */
+    //return appFileSizes[fnum];
     return 0;
 }
 
@@ -287,21 +289,26 @@ s32 load_it_use_any_key2(u16 fnum, void** adrs, s16* key, u8 kokey, u8 group) {
 
     /*
     if (fnum >= AFS_FILE_COUNT) {
-        //flLogOut("ファイルナンバーに異常があります。ファイル番号：%d\n", fnum);
+        flLogOut("ファイルナンバーに異常があります。ファイル番号：%d\n", fnum);
         while (1) {}
     }
     */
 
+    flLogOut("load_it_use_any_key2 fsGetFileSize\n");
     size = fsGetFileSize(fnum);
+    flLogOut("load_it_use_any_key2 Pull_ramcnt_key\n");
     *key = Pull_ramcnt_key(fsCalSectorSize(size) << 11, kokey, group, 0);
+    flLogOut("load_it_use_any_key2 Get_ramcnt_address\n");
     *adrs = (void*)Get_ramcnt_address(*key);
 
+    flLogOut("load_it_use_any_key2 load_it_use_this_key\n");
     err = load_it_use_this_key(fnum, *key);
 
     if (err != 0) {
         return size;
     }
 
+    flLogOut("load_it_use_any_key2 Push_ramcnt_key\n");
     Push_ramcnt_key(*key);
     return 0;
 }
@@ -343,7 +350,7 @@ s32 load_it_use_this_key(u16 fnum, s16 key) {
             return 1;
         }
 
-        //flLogOut("ファイルの読み込みに失敗しました。ファイル番号：%d\n", fnum);
+        flLogOut("ファイルの読み込みに失敗しました。ファイル番号：%d\n", fnum);
     }
 }
 
@@ -497,7 +504,7 @@ s32 Push_LDREQ_Queue(REQ* ldreq) {
         return 1;
     }
 
-    //flLogOut("ファイル読み込み要求バッファがオーバーしました。\n");
+    flLogOut("ファイル読み込み要求バッファがオーバーしました。\n");
     return 0;
 }
 
@@ -609,7 +616,7 @@ s32 Check_LDREQ_Queue_Direct(s16 ix) {
 
 void q_ldreq_error(REQ* curr) {
     curr->be = 0;
-    //flLogOut("Q_LDREQ_ERROR : ロード処理の指定に誤りがあります。\n");
+    flLogOut("Q_LDREQ_ERROR : ロード処理の指定に誤りがあります。\n");
 }
 
 const LDREQ_Process_Func ldreq_process[6] = {

@@ -56,7 +56,7 @@ void Push_ramcnt_key(s16 key) {
 
     if (rwk->use != 0) {
         if ((rwk->type == 8) || (rwk->type == 9)) {
-            //flLogOut("TEXCASH KEY PUSH ERROR\n");
+            flLogOut("TEXCASH KEY PUSH ERROR\n");
             ERR_STOP;
         }
 
@@ -71,7 +71,7 @@ void Push_ramcnt_key_original(s16 key) {
 
     if (rwk->use != 0) {
         if ((rwk->type != 8) && (rwk->type != 9)) {
-            //flLogOut("TEXCASH KEY PUSH ERROR2\n");
+            flLogOut("TEXCASH KEY PUSH ERROR2\n");
             ERR_STOP;
         }
 
@@ -118,7 +118,7 @@ void Purge_memory_of_kind_of_key(u8 kokey) {
 void Set_size_data_ramcnt_key(s16 key, u32 size) {
     if (key <= 0) {
         // An attempt was made to store a file size in an unused memory key.\n
-        //flLogOut("未使用のメモリキーへファイルサイズを格納しようとしました。\n");
+        flLogOut("未使用のメモリキーへファイルサイズを格納しようとしました。\n");
         ERR_STOP;
     }
 
@@ -128,7 +128,7 @@ void Set_size_data_ramcnt_key(s16 key, u32 size) {
 size_t Get_size_data_ramcnt_key(s16 key) {
     if (key <= 0) {
         // An attempt was made to get a file size from an unused memory key.\n
-        //flLogOut("未使用のメモリキーからファイルサイズを取得しようとしました。\n");
+        flLogOut("未使用のメモリキーからファイルサイズを取得しようとしました。\n");
         ERR_STOP;
     }
 
@@ -138,7 +138,7 @@ size_t Get_size_data_ramcnt_key(s16 key) {
 uintptr_t Get_ramcnt_address(s16 key) {
     if (key <= 0) {
         // An attempt was made to obtain an address from an unused memory key.\n
-        //flLogOut("未使用のメモリキーからアドレスを取得しようとしました。\n");
+        flLogOut("未使用のメモリキーからアドレスを取得しようとしました。\n");
         ERR_STOP;
     }
 
@@ -179,7 +179,7 @@ s16 Pull_ramcnt_key(size_t memreq, u8 kokey, u8 group, u8 frre) {
 
     if (rckeyctr <= 0) {
         // There are not enough memory keys.\n
-        //flLogOut("メモリキーの個数が足りなくなりました。\n");
+        flLogOut("メモリキーの個数が足りなくなりました。\n");
         ERR_STOP;
     }
 
@@ -206,7 +206,7 @@ s16 Pull_ramcnt_key(size_t memreq, u8 kokey, u8 group, u8 frre) {
     err:
         rckeyque[rckeyctr++] = key;
         // Failed to allocate memory.\n
-        //flLogOut("メモリの確保に失敗しました。\n");
+        flLogOut("メモリの確保に失敗しました。\n");
         ERR_STOP;
     }
 

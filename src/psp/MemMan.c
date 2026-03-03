@@ -1,5 +1,8 @@
 #include "psp/MemMan.h"
+
 #include "common.h"
+
+#include "fl.h"
 
 u32 mmInitialNumber;
 
@@ -34,8 +37,9 @@ uintptr_t mmRoundOff(s32 unit, uintptr_t num) {
     return num & ~(unit - 1);
 }
 
-void mmDebWriteTag(s8* /* unused */) {
+void mmDebWriteTag(s8* tag) {
     // Do nothing
+    flLogOut(tag);
 }
 
 ssize_t mmGetRemainder(_MEMMAN_OBJ* mmobj) {

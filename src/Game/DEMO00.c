@@ -1,7 +1,11 @@
 #include "Game/DEMO00.h"
 #include "common.h"
 //#include "sf33rd/AcrSDK/ps2/foundaps2.h"
+#include "fl.h"
+
 //#include "Common/MemMan.h"
+#include "psp/MemMan.h"
+
 //#include "Common/PPGFile.h"
 //#include "Common/PPGWork.h"
 #include "Game/AcrUtil.h"
@@ -212,7 +216,7 @@ void CAPLOGO_Init() {
     loadSize = load_it_use_any_key2(75, &loadAdrs, &key, 2, 1); // CapLogo.ppg
 
     if (loadSize == 0) {
-        //flLogOut("カプロゴのテクスチャが読み込めませんでした。\n");
+        flLogOut("カプロゴのテクスチャが読み込めませんでした。\n");
         while (1) {}
     }
 
@@ -296,7 +300,7 @@ void Warning_Init() {
     loadSize = load_it_use_any_key2(12, &loadAdrs, &key, 2, 1); // Warning.ppg
 
     if (loadSize == 0) {
-        //flLogOut("警告文のテクスチャが読み込めませんでした。\n");
+        flLogOut("警告文のテクスチャが読み込めませんでした。\n");
         while (1) {}
     }
 

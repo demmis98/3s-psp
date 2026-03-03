@@ -63,7 +63,7 @@ void effect_B1_move(WORK* wkp, s32 /*unused*/) {
             }
 
             if (ewk->wu.kage_prio) {
-                //sound_effect_request[167](ewk, 167);
+                sound_effect_request[167]((WORK*) ewk, 167);
             }
 
             ewk->wu.dir_timer = 3;
