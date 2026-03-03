@@ -1039,6 +1039,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/3rd-strike.dir/src/psp/MemMan.c.obj.d"
   "CMakeFiles/3rd-strike.dir/src/psp/common.c.obj"
   "CMakeFiles/3rd-strike.dir/src/psp/common.c.obj.d"
+  "CMakeFiles/3rd-strike.dir/src/psp/files.c.obj"
+  "CMakeFiles/3rd-strike.dir/src/psp/files.c.obj.d"
   "CMakeFiles/3rd-strike.dir/src/psp/fl.c.obj"
   "CMakeFiles/3rd-strike.dir/src/psp/fl.c.obj.d"
   "CMakeFiles/3rd-strike.dir/src/psp/pspmain.c.obj"

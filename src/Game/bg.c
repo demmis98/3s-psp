@@ -446,7 +446,7 @@ void Bg_Texture_Load2(u8 type) {
     key = Search_ramcnt_type(0x18);
 
     if (key == 0) {
-        flLogOut("背景用テクスチャが読み込まれていませんでした。\n");
+        flLogOut("The background texture was not loaded.\n");
         while (!NULL) {};
     }
 

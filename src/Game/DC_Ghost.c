@@ -239,6 +239,12 @@ void njDrawTexture(Polygon* polygon, s32 unused0, s32 texture, s32 unused1)
     // polygon layout assumed:
     // [0] = top-left
     // [3] = bottom-right
+    drawRect(
+        polygon[0].x,
+        polygon[0].y,
+        polygon[1].x,
+        polygon[2].y,
+        0xFFFFFFFF);
 
     drawTexture(getTexture(texture),
         polygon[0].x,
@@ -287,13 +293,13 @@ void njdp2d_init() {
 }
 
 void njdp2d_draw() {
-    /*
     Quad prm;
     s32 i;
+    /*
 
     ps2SeqsRenderQuadInit_B();
     setZ_Operation(1);
-
+    */
     for (i = njdp2d_w.ix1st; i != -1; i = njdp2d_w.prim[i].next) {
         switch (njdp2d_w.prim[i].type) {
         case 0:
@@ -302,18 +308,19 @@ void njdp2d_draw() {
             prm.v[2] = njdp2d_w.prim[i].v[2];
             prm.v[3] = njdp2d_w.prim[i].v[3];
 
-            ps2SeqsRenderQuad_B(&prm, njdp2d_w.prim[i].col);
+            drawRect(prm.v[0].x, prm.v[0].y, prm.v[3].x, prm.v[3].y, 0xFFFFFFFF);
+
+            //ps2SeqsRenderQuad_B(&prm, njdp2d_w.prim[i].col);
             break;
 
         case 1:
-            shadow_drawing((WORK*)njdp2d_w.prim[i].col, njdp2d_w.prim[i].v[0].y);
+            //shadow_drawing((WORK*)njdp2d_w.prim[i].col, njdp2d_w.prim[i].v[0].y);
             break;
         }
     }
 
-    njdp2d_init();
-    ps2SeqsRenderQuadEnd();
-    */
+    //njdp2d_init();
+    //ps2SeqsRenderQuadEnd();
 }
 
 // `col` needs to be `uintptr_t` because it sometimes stores a pointer to `WORK`

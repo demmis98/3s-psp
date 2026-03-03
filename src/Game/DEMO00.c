@@ -209,14 +209,14 @@ void CAPLOGO_Init() {
     u32 loadSize;
     s16 key;
 
-    //mmDebWriteTag("\nCAPCOM LOGO\n\n");
+    mmDebWriteTag("\nCAPCOM LOGO\n\n");
     //ppgCapLogoList.tex = &ppgCapLogoTex;
     //ppgCapLogoList.pal = &ppgCapLogoPal;
     //ppgSetupCurrentDataList(&ppgCapLogoList);
     loadSize = load_it_use_any_key2(75, &loadAdrs, &key, 2, 1); // CapLogo.ppg
 
     if (loadSize == 0) {
-        flLogOut("カプロゴのテクスチャが読み込めませんでした。\n");
+        flLogOut("The Kaprogo texture could not be loaded.\n");
         while (1) {}
     }
 
@@ -291,7 +291,7 @@ void Warning_Init() {
     s16 key;
     s16 i;
 
-    //mmDebWriteTag("\nWARNING\n\n");
+    mmDebWriteTag("\nWARNING\n\n");
     //ppgWarList.tex = &ppgWarTex;
     //ppgWarList.pal = &ppgWarPal;
     //ppgAdxList.tex = &ppgWarTex;
@@ -300,7 +300,7 @@ void Warning_Init() {
     loadSize = load_it_use_any_key2(12, &loadAdrs, &key, 2, 1); // Warning.ppg
 
     if (loadSize == 0) {
-        flLogOut("警告文のテクスチャが読み込めませんでした。\n");
+        flLogOut("The warning message texture could not be loaded.\n");
         while (1) {}
     }
 

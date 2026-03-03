@@ -1766,6 +1766,11 @@ typedef struct {
 } Polygon;
 
 typedef struct {
+    // total size: 0x30
+    Vec3 v[4]; // offset 0x0, size 0x30
+} Quad;
+
+typedef struct {
     // total size: 0x8
     f32 s; // offset 0x0, size 0x4
     f32 t; // offset 0x4, size 0x4

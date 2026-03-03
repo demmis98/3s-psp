@@ -197,7 +197,7 @@ void q_ldreq_texture_group(REQ* curr) {
                 }
 
                 // A duplicate transfer occurred. File number: %d\n
-                flLogOut("二重転送が発生しました。ファイル番号：%d\n", bsd->apfn);
+                flLogOut("A duplicate transfer occurred. File number: %d\n", bsd->apfn);
                 while (1) {}
             }
 

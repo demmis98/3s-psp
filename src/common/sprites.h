@@ -20,6 +20,11 @@ typedef struct {
 } Vertex;
 
 typedef struct {
+    uint32_t colour;
+    float x, y, z;
+} ColorVertex;
+
+typedef struct {
     float u, v;
     uint32_t colour;
     float x, y, z;

@@ -86,7 +86,7 @@ void Scrscreen_Init() {
 
     if (loadSize == 0) {
         // Could not load texture for score screen.\n
-        flLogOut("スコアスクリーン用のテクスチャが読み込めませんでした。\n");
+        flLogOut("Could not load texture for score screen.\n");
         while (1) {
             // Do nothing
         }

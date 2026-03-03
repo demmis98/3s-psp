@@ -12585,6 +12585,30 @@ src/psp/common.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/common.c.s
 .PHONY : src/psp/common.c.s
 
+src/psp/files.obj: src/psp/files.c.obj
+.PHONY : src/psp/files.obj
+
+# target to build an object file
+src/psp/files.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/files.c.obj
+.PHONY : src/psp/files.c.obj
+
+src/psp/files.i: src/psp/files.c.i
+.PHONY : src/psp/files.i
+
+# target to preprocess a source file
+src/psp/files.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/files.c.i
+.PHONY : src/psp/files.c.i
+
+src/psp/files.s: src/psp/files.c.s
+.PHONY : src/psp/files.s
+
+# target to generate assembly for a file
+src/psp/files.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/files.c.s
+.PHONY : src/psp/files.c.s
+
 src/psp/fl.obj: src/psp/fl.c.obj
 .PHONY : src/psp/fl.obj
 
@@ -14223,6 +14247,9 @@ help:
 	@echo "... src/psp/common.obj"
 	@echo "... src/psp/common.i"
 	@echo "... src/psp/common.s"
+	@echo "... src/psp/files.obj"
+	@echo "... src/psp/files.i"
+	@echo "... src/psp/files.s"
 	@echo "... src/psp/fl.obj"
 	@echo "... src/psp/fl.i"
 	@echo "... src/psp/fl.s"

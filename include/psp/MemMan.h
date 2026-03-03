@@ -4,6 +4,8 @@
 #include "structs.h"
 #include "types.h"
 
+#define ALIGN16(x) (((x) + 15) & ~15)
+
 void mmSystemInitialize();
 void mmHeapInitialize(_MEMMAN_OBJ* mmobj, u8* adrs, s32 size, s32 unit, s8* format);
 uintptr_t mmRoundUp(s32 unit, uintptr_t num);

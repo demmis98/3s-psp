@@ -6,6 +6,8 @@
 
 //#include "sf33rd/AcrSDK/ps2/foundaps2.h"
 //#include "Common/FileSizeAFS.h"
+#include "psp/files.h"
+
 #include "Game/RAMCNT.h"
 #include "Game/WORK_SYS.h"
 #include "Game/color3rd.h"
@@ -17,6 +19,8 @@
 //#include <cri_mw.h>
 //#include <libcdvd.h>
 //#include <libgraph.h>
+
+#include <stdio.h>
 
 typedef struct {
     // total size: 0x4
@@ -42,7 +46,7 @@ u16 DskDrvErrRetry;
 PS2CDReadMode ps2CdReadMode;
 s16 plt_req[2]; // size: 0x4, address: 0x579084
 u8 ldreq_break;
-struct _adx_fs* adxf = NULL;
+FILE* adxf = NULL;
 u8 sf3ptinfo[3352];
 REQ q_ldreq[16];      // size: 0x280, address: 0x5E1DD0
 u8 ldreq_result[294]; // size: 0x126, address: 0x5E1CA0
@@ -154,47 +158,46 @@ void fsUpdateDiskDriveError() {
 }
 
 s32 fsOpen(REQ* req) {
-    /*
     if (req->fnum >= AFS_FILE_COUNT) {
         return 0;
     }
-    */
 
-    /*
-    if (appFileSizes[req->fnum] == 0) {
+    if (fsGetFileSize(req->fnum) == 0) {
         return 0;
     }
-    */
 
     if (adxf != NULL) {
-        //ADXF_Close(adxf);
+        fclose(adxf);
     }
 
-    //adxf = ADXF_OpenAfs(0, req->fnum);
+    adxf = fopen(getFile(req->fnum),"rb");
 
     if (adxf == NULL) {
         return 0;
     }
 
     req->info.number = 1;
-    //req->info.size = appFileSizes[req->fnum];
+    req->info.size = fsGetFileSize(req->fnum);
     return 1;
 }
 
 void fsClose(REQ* /* unused */) {
-    //ADXF_Close(adxf);
+    fclose(adxf);
     adxf = NULL;
 }
 
 u32 fsGetFileSize(u16 fnum) {
-    /*
+    SceIoStat stat;
+
     if (fnum >= AFS_FILE_COUNT) {
         return 0;
     }
+    
+    if (sceIoGetstat(getFile(fnum), &stat) < 0) {
+        return 0;  // Error
+    }
 
-    */
-    //return appFileSizes[fnum];
-    return 0;
+    return stat.st_size;  // File size in bytes
 }
 
 u32 fsCalSectorSize(u32 size) {
@@ -226,25 +229,33 @@ s32 fsCheckCommandExecuting() {
 }
 
 s32 fsRequestFileRead(REQ* /* unused */, u32 sec, void* buff) {
-    //ADXF_ReadNw(adxf, sec, buff);
+    if (adxf == NULL || buff == NULL)
+        return 0; // error
+
+    size_t bytes = sec * SECTOR_SIZE;
+
+    size_t read = fread(buff, 1, bytes, adxf);
+
+    if (read != bytes){
+        if (ferror(adxf))
+            return 0; // read error
+    }
+
     return 1;
 }
 
 s32 fsCheckFileReaded(REQ* /* unused */) {
-    //s32 rnum = ADXF_GetStat(adxf);
     fsUpdateDiskDriveError();
 
-    /*
-    if (rnum == ADXF_STAT_ERROR) {
-        DskDrvErrBe = 1;
-        return 2;
+    if (adxf == NULL) {
+        return 2; // error
     }
 
-    if (rnum == ADXF_STAT_READING) {
-        return 0;
+    if (ferror(adxf)) {
+        return 2; // read error
     }
-    */
 
+    // Since stdio is synchronous, if we're here, read is complete
     return 1;
 }
 
@@ -287,29 +298,23 @@ s32 load_it_use_any_key2(u16 fnum, void** adrs, s16* key, u8 kokey, u8 group) {
     u32 size;
     u32 err;
 
-    /*
     if (fnum >= AFS_FILE_COUNT) {
-        flLogOut("ファイルナンバーに異常があります。ファイル番号：%d\n", fnum);
+        flLogOut("There is an error in the file number. File number:%d\n", fnum);
         while (1) {}
     }
-    */
 
-    flLogOut("load_it_use_any_key2 fsGetFileSize\n");
     size = fsGetFileSize(fnum);
-    flLogOut("load_it_use_any_key2 Pull_ramcnt_key\n");
     *key = Pull_ramcnt_key(fsCalSectorSize(size) << 11, kokey, group, 0);
-    flLogOut("load_it_use_any_key2 Get_ramcnt_address\n");
     *adrs = (void*)Get_ramcnt_address(*key);
 
-    flLogOut("load_it_use_any_key2 load_it_use_this_key\n");
     err = load_it_use_this_key(fnum, *key);
 
     if (err != 0) {
         return size;
     }
 
-    flLogOut("load_it_use_any_key2 Push_ramcnt_key\n");
     Push_ramcnt_key(*key);
+
     return 0;
 }
 
@@ -349,8 +354,6 @@ s32 load_it_use_this_key(u16 fnum, s16 key) {
         if (err != 0) {
             return 1;
         }
-
-        flLogOut("ファイルの読み込みに失敗しました。ファイル番号：%d\n", fnum);
     }
 }
 
@@ -504,7 +507,7 @@ s32 Push_LDREQ_Queue(REQ* ldreq) {
         return 1;
     }
 
-    flLogOut("ファイル読み込み要求バッファがオーバーしました。\n");
+    flLogOut("The file read request buffer is overflowed.\n");
     return 0;
 }
 
@@ -616,7 +619,7 @@ s32 Check_LDREQ_Queue_Direct(s16 ix) {
 
 void q_ldreq_error(REQ* curr) {
     curr->be = 0;
-    flLogOut("Q_LDREQ_ERROR : ロード処理の指定に誤りがあります。\n");
+    flLogOut("Q_LDREQ_ERROR : There is an error in the load processing specification.\n");
 }
 
 const LDREQ_Process_Func ldreq_process[6] = {

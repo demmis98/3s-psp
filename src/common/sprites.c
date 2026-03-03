@@ -181,18 +181,22 @@ void drawTextureR(TexturePSP * texture, float x, float y, float angle, u32 colou
 
 void drawRect(float x, float y, float w, float h, uint32_t color) {
 
-    Vertex* vertices = (Vertex*) sceGuGetMemory(2 * sizeof(Vertex));
+    ColorVertex* vertices = (ColorVertex*) sceGuGetMemory(2 * sizeof(ColorVertex));
     //Vertex vertices[2];
 
     vertices[0].x = x;
     vertices[0].y = y;
+    vertices[0].z = 0.0f;
+    vertices[0].colour = color;    
 
     vertices[1].x = x + w;
     vertices[1].y = y + h;
+    vertices[1].z = 0.0f;
+    vertices[1].colour = color;
 
     sceGuColor(color); // colors are ABGR
     sceGuDisable(GU_TEXTURE_2D);
-    sceGuDrawArray(GU_SPRITES, GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
+    sceGuDrawArray(GU_SPRITES, GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
     sceGuEnable(GU_TEXTURE_2D);
 }
 

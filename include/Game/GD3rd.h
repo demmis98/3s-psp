@@ -4,6 +4,8 @@
 #include "structs.h"
 #include "types.h"
 
+#define SECTOR_SIZE 2048
+
 extern s16 plt_req[2];
 extern const u8 lpr_wrdata[3];
 extern const u8 lpt_seldat[4];

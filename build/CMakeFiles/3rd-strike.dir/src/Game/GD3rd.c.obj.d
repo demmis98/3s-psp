@@ -38,10 +38,23 @@ CMakeFiles/3rd-strike.dir/src/Game/GD3rd.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/common.h \
  /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/psp/files.h \
+ /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr.h \
+ /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
+ /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_fcntl.h \
+ /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_stat.h \
+ /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_dirent.h \
+ /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_devctl.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/RAMCNT.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/WORK_SYS.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/color3rd.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/debug/Debug.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/texgroup.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/workuser.h \
- /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h \
+ /home/demma/.local/bin/pspdev/psp/include/stdio.h \
+ /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdarg.h \
+ /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
+ /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
+ /home/demma/.local/bin/pspdev/psp/include/sys/stdio.h

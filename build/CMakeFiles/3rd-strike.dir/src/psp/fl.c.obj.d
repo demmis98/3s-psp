@@ -35,5 +35,10 @@ CMakeFiles/3rd-strike.dir/src/psp/fl.c.obj: \
  /home/demma/.local/bin/pspdev/psp/include/sys/sched.h \
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h \
  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdarg.h \
+ /home/demma/.local/bin/pspdev/psp/include/stdio.h \
+ /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+ /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
+ /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
+ /home/demma/.local/bin/pspdev/psp/include/sys/stdio.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdebug.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmoduleinfo.h

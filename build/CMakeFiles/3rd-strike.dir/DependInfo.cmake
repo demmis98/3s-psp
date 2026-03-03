@@ -527,6 +527,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/demma/Documents/code/psp/3rd-strike/src/common/sprites.c" "CMakeFiles/3rd-strike.dir/src/common/sprites.c.obj" "gcc" "CMakeFiles/3rd-strike.dir/src/common/sprites.c.obj.d"
   "/home/demma/Documents/code/psp/3rd-strike/src/psp/MemMan.c" "CMakeFiles/3rd-strike.dir/src/psp/MemMan.c.obj" "gcc" "CMakeFiles/3rd-strike.dir/src/psp/MemMan.c.obj.d"
   "/home/demma/Documents/code/psp/3rd-strike/src/psp/common.c" "CMakeFiles/3rd-strike.dir/src/psp/common.c.obj" "gcc" "CMakeFiles/3rd-strike.dir/src/psp/common.c.obj.d"
+  "/home/demma/Documents/code/psp/3rd-strike/src/psp/files.c" "CMakeFiles/3rd-strike.dir/src/psp/files.c.obj" "gcc" "CMakeFiles/3rd-strike.dir/src/psp/files.c.obj.d"
   "/home/demma/Documents/code/psp/3rd-strike/src/psp/fl.c" "CMakeFiles/3rd-strike.dir/src/psp/fl.c.obj" "gcc" "CMakeFiles/3rd-strike.dir/src/psp/fl.c.obj.d"
   "/home/demma/Documents/code/psp/3rd-strike/src/psp/pspmain.c" "CMakeFiles/3rd-strike.dir/src/psp/pspmain.c.obj" "gcc" "CMakeFiles/3rd-strike.dir/src/psp/pspmain.c.obj.d"
   "/home/demma/Documents/code/psp/3rd-strike/src/psp/savesub.c" "CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj" "gcc" "CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj.d"

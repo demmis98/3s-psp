@@ -12,6 +12,7 @@
 #include "Compress/zlibApp.h"
 */
 #include "fl.h"
+#include "psp/MemMan.h"
 
 #include "Game/AcrUtil.h"
 #include "Game/DC_Ghost.h"
@@ -57,7 +58,6 @@ void cpReadyTask(u16 num, void* func_adrs);
 void cpExitTask(u16 num);
 
 void AcrMain() {
-    flLogOut("acr main\n");
     u16 sw_buff;
     u32 sysinfodisp;
 
@@ -67,20 +67,14 @@ void AcrMain() {
     system_init_level = 0;
     //ppgWorkInitializeApprication();
     distributeScratchPadAddress();
-    flLogOut("acr init 0\n");
     njdp2d_init();
-    flLogOut("acr init 1\n");
     njUserInit();
-    flLogOut("acr init 2\n");
     palCreateGhost();
-    flLogOut("acr init 3\n");
     //ppgMakeConvTableTexDC();
     appSetupBasePriority();
-    flLogOut("acr init 4\n");
     //MemcardInit();
 
     while (1) {
-        flLogOut("acr loop\n");
 
         initRenderState(0);
         mpp_w.ds_h[0] = mpp_w.ds_h[1];
@@ -177,6 +171,7 @@ void AcrMain() {
                 p1sw_0 = sw_buff;
             }
         }
+
 
         appCopyKeyData();
         render_start();
@@ -314,7 +309,7 @@ void njUserInit() {
     mpp_w.vprm.fa = 1.0f;
     appViewSetItems(&mpp_w.vprm);
     appViewMatrix();
-    //mmSystemInitialize();
+    mmSystemInitialize();
     //flGetFrame(&mpp_w.fmsFrame);
     //seqsInitialize(mppMalloc(seqsGetUseMemorySize()));
     //ppg_Initialize(mppMalloc(0x60000), 0x60000);
@@ -359,19 +354,12 @@ void njUserInit() {
     sys_w.pause = 0;
     sys_w.reset = 0;
 
-    flLogOut("njUserInit \n");
     Init_sound_system();
-    flLogOut("njUserInit 0\n");
     Init_bgm_work();
-    flLogOut("njUserInit 1\n");
     Setup_Directory_Record_Data();
-    flLogOut("njUserInit 2\n");
     sndInitialLoad();
-    flLogOut("njUserInit 3\n");
     cpInitTask();
-    flLogOut("njUserInit 4\n");
     cpReadyTask(INIT_TASK_NUM, Init_Task);
-    flLogOut("njUserInit 5\n");
 }
 
 s32 njUserMain() {
