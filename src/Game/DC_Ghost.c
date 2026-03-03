@@ -12,6 +12,7 @@
 
 #include "common/sprites.h"
 #include "common/graphics.h"
+#include "fl.h"
 
 #if !defined(TARGET_PS2)
 #include <string.h>
@@ -242,9 +243,10 @@ void njDrawTexture(Polygon* polygon, s32 unused0, s32 texture, s32 unused1)
     drawRect(
         polygon[0].x,
         polygon[0].y,
-        polygon[1].x,
-        polygon[2].y,
-        0xFFFFFFFF);
+        polygon[3].x,
+        polygon[3].y,
+        0xFFFF0000);
+    
 
     drawTexture(getTexture(texture),
         polygon[0].x,
@@ -295,6 +297,7 @@ void njdp2d_init() {
 void njdp2d_draw() {
     Quad prm;
     s32 i;
+    int x0=-1, y0=-1, x1=-1, y1=-1, i_prm;
     /*
 
     ps2SeqsRenderQuadInit_B();
@@ -308,7 +311,30 @@ void njdp2d_draw() {
             prm.v[2] = njdp2d_w.prim[i].v[2];
             prm.v[3] = njdp2d_w.prim[i].v[3];
 
-            drawRect(prm.v[0].x, prm.v[0].y, prm.v[3].x, prm.v[3].y, 0xFFFFFFFF);
+            if(!DEMMA_DEBUG){
+                for(i_prm = 0; i_prm < 4; i_prm++){
+                    if(prm.v[i_prm].x > x1)
+                        x1 = prm.v[i_prm].x;
+                    if(prm.v[i_prm].y > y1)
+                        y1 = prm.v[i_prm].y;
+
+                    if(prm.v[i_prm].x < x0 || x0 == -1)
+                        x0 = prm.v[i_prm].x;
+                    if(prm.v[i_prm].y < y0 || y0 == -1)
+                        y0 = prm.v[i_prm].y;
+                }
+                drawRect(x0, y0, x1 - x0, y1 - y0, 0xFFFFFFFF);
+                //drawRect(x0, y0, x1 - x0, y1 - y0, njdp2d_w.prim[i].col);
+
+                drawRect(prm.v[0].x, prm.v[0].y, 10, 10, 0xFFFFFFFF);
+                drawRect(prm.v[1].x, prm.v[1].y, 10, 10, 0xFFFF0000);
+                drawRect(prm.v[2].x, prm.v[2].y, 10, 10, 0xFF00FF00);
+                drawRect(prm.v[3].x, prm.v[3].y, 10, 10, 0xFF0000FF);
+                //drawRect(prm.v[0].x, prm.v[0].y, prm.v[3].x - prm.v[0].x , prm.v[3].y - prm.v[0].y, 0xFFFFFFFF);
+            }
+            else{
+                flLogOut("drawrect\n");
+            }
 
             //ps2SeqsRenderQuad_B(&prm, njdp2d_w.prim[i].col);
             break;
@@ -319,7 +345,7 @@ void njdp2d_draw() {
         }
     }
 
-    //njdp2d_init();
+    njdp2d_init();
     //ps2SeqsRenderQuadEnd();
 }
 

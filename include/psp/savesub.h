@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-s32 SaveMove();
 void SaveInit(s32 file_type, s32 save_mode);
+s32 SaveMove();
 
 #endif  //  SAVESUB_H_

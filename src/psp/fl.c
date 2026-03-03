@@ -5,6 +5,8 @@
 
 #include <pspdebug.h>
 
+s32 flFrame;
+
 int debug_mode = 0;
 
 void enableDebug(){
@@ -25,6 +27,7 @@ s32 flLogOut(s8* format, ...){
     va_end(args);
 
     enableDebug();
+    flPrintColor(0xFFFFFFFF);
     pspDebugScreenPrintf("%s", buffer);
 }
 
@@ -42,10 +45,18 @@ s32 flPrintL(s32 posi_x, s32 posi_y, const s8* format, ...) {
     pspDebugScreenSetXY(posi_x, posi_y);
     pspDebugScreenPrintf("%s", buffer);
 
-    va_end(args);
 }
 
 s32 flPrintColor(u32 col){
     enableDebug();
     pspDebugScreenSetTextColor(col);
+}
+
+s32 flFlip(u32 flag) {
+    flFrame++;
+
+    if(DEMMA_DEBUG)
+        flLogOut("flFrame %d\n", flFrame);
+
+    return 1;
 }

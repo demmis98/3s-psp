@@ -1,10 +1,8 @@
-#include "psp/MemMan.h"
-
 #include "malloc.h"
 
 #include "common.h"
-
 #include "fl.h"
+#include "psp/MemMan.h"
 
 u32 mmInitialNumber;
 
@@ -41,6 +39,7 @@ uintptr_t mmRoundOff(s32 unit, uintptr_t num) {
 
 void mmDebWriteTag(s8* tag) {
     // Do nothing
+    flLogOut("mmDebWriteTag");
     flLogOut(tag);
 }
 

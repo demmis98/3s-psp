@@ -205,7 +205,7 @@ TexturePSP ** getTextures(){
     return textures;
 }
 TexturePSP * getTexture(s32 i){
-    int textures[i];
+    return textures[i];
 }
 void setTextures(TexturePSP ** t){
     textures = t;

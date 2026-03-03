@@ -118,6 +118,8 @@ s32 Warning() {
 }
 
 s32 CAPCOM_Logo() {
+    if(DEMMA_DEBUG)
+        flLogOut("CAPCOM_Logo\n");
     setTexAdrsMode(0);
     setFilterMode(0);
     //ppgSetupCurrentDataList(&ppgCapLogoList);

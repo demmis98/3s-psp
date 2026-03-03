@@ -11,8 +11,12 @@ static unsigned int __attribute__((aligned(64))) list[0x20000];
 static void * fbp0;
 static void * fbp1;
 
+static void * currentBuffer;
+
 //variables
 static uint32_t bg_color = 0xFF000000;
+
+int my_gu_init = 0;
 
 void initGu(){
     sceGuInit();
@@ -52,11 +56,15 @@ void initGu(){
     sceDisplayWaitVblankStart();
 
     sceGuDisplay(GU_TRUE);
+
+    my_gu_init = 1;
 }
 
 void endGu(){
     sceGuDisplay(GU_FALSE);
     sceGuTerm();
+
+    my_gu_init = 0;
 }
 
 void startFrame(){
@@ -70,7 +78,12 @@ void endFrame(){
     sceGuFinish();
     sceGuSync(GU_SYNC_FINISH, GU_SYNC_WHAT_DONE);
     sceDisplayWaitVblankStart();
-    sceGuSwapBuffers();
+    currentBuffer = sceGuSwapBuffers();
+
+    if(currentBuffer == fbp0)
+        pspDebugScreenSetBase(fbp1);
+    else
+        pspDebugScreenSetBase(fbp0);
 }
 
 uint32_t getBgColor(){
@@ -79,4 +92,12 @@ uint32_t getBgColor(){
 
 void setBgColor(uint32_t color){
     bg_color = color;
+}
+
+int getGuInit(){
+    return my_gu_init;
+}
+
+void* getBuffer(){
+    return currentBuffer;
 }

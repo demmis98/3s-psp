@@ -37,10 +37,18 @@ CMakeFiles/3rd-strike.dir/src/Game/DEMO00.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/common.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
- /home/demma/Documents/code/psp/3rd-strike/include/psp/MemMan.h \
- /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
- /home/demma/Documents/code/psp/3rd-strike/include/Game/AcrUtil.h \
- /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h \
+ /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+ /home/demma/.local/bin/pspdev/psp/include/memory.h \
+ /home/demma/.local/bin/pspdev/psp/include/string.h \
+ /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+ /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
+ /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
+ /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
+ /home/demma/.local/bin/pspdev/psp/include/strings.h \
+ /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+ /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+ /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+ /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
@@ -58,11 +66,7 @@ CMakeFiles/3rd-strike.dir/src/Game/DEMO00.c.obj: \
  /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h \
  /home/demma/.local/bin/pspdev/psp/include/sys/time.h \
  /home/demma/.local/bin/pspdev/psp/include/time.h \
- /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
- /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
- /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
  /home/demma/.local/bin/pspdev/psp/include/machine/time.h \
- /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
  /home/demma/.local/bin/pspdev/psp/include/signal.h \
  /home/demma/.local/bin/pspdev/psp/include/sys/signal.h \
  /home/demma/.local/bin/pspdev/psp/include/machine/_time.h \
@@ -85,6 +89,11 @@ CMakeFiles/3rd-strike.dir/src/Game/DEMO00.c.obj: \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/psp/MemMan.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/AcrUtil.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h \
+ /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/GD3rd.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/MTRANS.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/OPENING.h \
@@ -96,13 +105,4 @@ CMakeFiles/3rd-strike.dir/src/Game/DEMO00.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/sc_sub.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/texgroup.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/workuser.h \
- /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h \
- /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
- /home/demma/.local/bin/pspdev/psp/include/memory.h \
- /home/demma/.local/bin/pspdev/psp/include/string.h \
- /home/demma/.local/bin/pspdev/psp/include/strings.h \
- /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
- /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
- /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
- /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
- /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h

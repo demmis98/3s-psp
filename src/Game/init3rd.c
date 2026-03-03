@@ -21,8 +21,11 @@
 #include "Game/texgroup.h"
 #include "Game/workuser.h"
 //#include "PS2/mc/savesub.h"
+#include "psp/savesub.h"
 //#include "PS2/ps2Quad.h"
 #include "structs.h"
+
+#include "fl.h"
 
 #if !defined(TARGET_PS2)
 #include <string.h>
@@ -52,6 +55,9 @@ void Init_Task(struct _TASK* task_ptr) {
 
 void Init_Task_1st(struct _TASK* task_ptr) {
     s16 ix;
+
+    if(DEMMA_DEBUG)
+        flLogOut("Init_Task_1st\n");
 
     task_ptr->r_no[0] = 1;
     init_texcash_1st();
@@ -150,22 +156,22 @@ void Setup_Difficult_V() {
 }
 
 void Init_Task_Aload(struct _TASK* task_ptr) {
+    if(DEMMA_DEBUG)
+        flLogOut("Init_Task_Aload\n");
     switch (task_ptr->r_no[1]) {
     case 0:
     case 1:
         task_ptr->r_no[1] = 2;
-        //SaveInit(0, 2);
+        SaveInit(0, 2);
         /* fallthrough */
 
     case 2:
-        /*
         if (SaveMove() <= 0) {
             task_ptr->r_no[0] += 1;
             task_ptr->r_no[1] = 0;
             mpp_w.cutAnalogStickData = 0;
             Forbid_Reset = 1;
         }
-        */
 
         break;
 
@@ -175,6 +181,9 @@ void Init_Task_Aload(struct _TASK* task_ptr) {
 }
 
 void Init_Task_2nd(struct _TASK* task_ptr) {
+    if(DEMMA_DEBUG)
+        flLogOut("Init_Task_2nd\n");
+
     if (Warning() == 0) {
         return;
     }
@@ -187,6 +196,9 @@ void Init_Task_2nd(struct _TASK* task_ptr) {
 
 void Init_Task_Test1(struct _TASK* task_ptr) {
     u16 sw;
+
+    if(DEMMA_DEBUG)
+        flLogOut("Init_Task_Test1\n");
 
     switch (task_ptr->r_no[1]) {
     case 0:
@@ -261,6 +273,9 @@ void Init_Task_Test1(struct _TASK* task_ptr) {
 }
 
 void Init_Task_Test2(struct _TASK* task_ptr) {
+    if(DEMMA_DEBUG)
+        flLogOut("Init_Task_Test2\n");
+
     switch (task_ptr->r_no[1]) {
     case 0:
         task_ptr->r_no[1] += 1;
@@ -286,6 +301,8 @@ void Init_Task_Test2(struct _TASK* task_ptr) {
 }
 
 void Init_Task_End(struct _TASK* task_ptr) {
+    if(DEMMA_DEBUG)
+        flLogOut("Init_Task_End\n");
     cpReadyTask(GAME_TASK_NUM, Game_Task);
     task_ptr->r_no[0] += 1;
     task_ptr->r_no[1] = 0;

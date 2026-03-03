@@ -55,6 +55,7 @@ void disp_effect_work() {
     px = 7;
     py = 15;
 
+
     for (index = 0; index <= 7; index += 1) {
         curr_ix = head_ix[index];
         px += 5;

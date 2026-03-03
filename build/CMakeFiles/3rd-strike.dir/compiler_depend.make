@@ -134,7 +134,8 @@ CMakeFiles/3rd-strike.dir/src/Game/AcrUtil.c.obj: /home/demma/Documents/code/psp
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
-  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/fl.h
 
 CMakeFiles/3rd-strike.dir/src/Game/BBBSCOM.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/BBBSCOM.c \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/BBBSCOM.h \
@@ -595,6 +596,58 @@ CMakeFiles/3rd-strike.dir/src/Game/Com_Pl.c.obj: /home/demma/Documents/code/psp/
   /home/demma/.local/bin/pspdev/psp/include/machine/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
   /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+  /home/demma/.local/bin/pspdev/psp/include/memory.h \
+  /home/demma/.local/bin/pspdev/psp/include/string.h \
+  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
+  /home/demma/.local/bin/pspdev/psp/include/strings.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_fcntl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_stat.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_dirent.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_devctl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadexec.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmoduleinfo.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysmem.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspthreadman.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/_time.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerror.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman.h \
+  /home/demma/.local/bin/pspdev/psp/include/stb_image.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdio.h \
+  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdarg.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/stdio.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/alloca.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/math.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadcore.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysreg.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/ACTIVE00.h \
   /home/demma/Documents/code/psp/3rd-strike/include/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/CMD_MAIN.h \
@@ -865,7 +918,8 @@ CMakeFiles/3rd-strike.dir/src/Game/DC_Ghost.c.obj: /home/demma/Documents/code/ps
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
-  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/fl.h
 
 CMakeFiles/3rd-strike.dir/src/Game/DEMO00.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/DEMO00.c \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/DEMO00.h \
@@ -905,10 +959,18 @@ CMakeFiles/3rd-strike.dir/src/Game/DEMO00.c.obj: /home/demma/Documents/code/psp/
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
   /home/demma/Documents/code/psp/3rd-strike/include/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/psp/MemMan.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/Game/AcrUtil.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+  /home/demma/.local/bin/pspdev/psp/include/memory.h \
+  /home/demma/.local/bin/pspdev/psp/include/string.h \
+  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
+  /home/demma/.local/bin/pspdev/psp/include/strings.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
   /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
@@ -926,11 +988,7 @@ CMakeFiles/3rd-strike.dir/src/Game/DEMO00.c.obj: /home/demma/Documents/code/psp/
   /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/time.h \
   /home/demma/.local/bin/pspdev/psp/include/time.h \
-  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
   /home/demma/.local/bin/pspdev/psp/include/machine/time.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
   /home/demma/.local/bin/pspdev/psp/include/signal.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/signal.h \
   /home/demma/.local/bin/pspdev/psp/include/machine/_time.h \
@@ -953,6 +1011,11 @@ CMakeFiles/3rd-strike.dir/src/Game/DEMO00.c.obj: /home/demma/Documents/code/psp/
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/psp/MemMan.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/AcrUtil.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/GD3rd.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/MTRANS.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/OPENING.h \
@@ -964,16 +1027,7 @@ CMakeFiles/3rd-strike.dir/src/Game/DEMO00.c.obj: /home/demma/Documents/code/psp/
   /home/demma/Documents/code/psp/3rd-strike/include/Game/sc_sub.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/texgroup.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/workuser.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h \
-  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
-  /home/demma/.local/bin/pspdev/psp/include/memory.h \
-  /home/demma/.local/bin/pspdev/psp/include/string.h \
-  /home/demma/.local/bin/pspdev/psp/include/strings.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
-  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
-  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
-  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
-  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h
 
 CMakeFiles/3rd-strike.dir/src/Game/DEMO01.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/DEMO01.c \
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
@@ -6531,6 +6585,58 @@ CMakeFiles/3rd-strike.dir/src/Game/EFFECT.c.obj: /home/demma/Documents/code/psp/
   /home/demma/Documents/code/psp/3rd-strike/include/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
   /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+  /home/demma/.local/bin/pspdev/psp/include/memory.h \
+  /home/demma/.local/bin/pspdev/psp/include/string.h \
+  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
+  /home/demma/.local/bin/pspdev/psp/include/strings.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_fcntl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_stat.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_dirent.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_devctl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadexec.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmoduleinfo.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysmem.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspthreadman.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/_time.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerror.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman.h \
+  /home/demma/.local/bin/pspdev/psp/include/stb_image.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdio.h \
+  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdarg.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/stdio.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/alloca.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/math.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadcore.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysreg.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFXX.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/PLCNT.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/PulPul.h \
@@ -9770,26 +9876,66 @@ CMakeFiles/3rd-strike.dir/src/Game/GD3rd.c.obj: /home/demma/Documents/code/psp/3
   /home/demma/Documents/code/psp/3rd-strike/include/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
   /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/psp/files.h \
-  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+  /home/demma/.local/bin/pspdev/psp/include/memory.h \
+  /home/demma/.local/bin/pspdev/psp/include/string.h \
+  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
+  /home/demma/.local/bin/pspdev/psp/include/strings.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_fcntl.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_stat.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_dirent.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_devctl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadexec.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmoduleinfo.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysmem.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspthreadman.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/_time.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerror.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman.h \
+  /home/demma/.local/bin/pspdev/psp/include/stb_image.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdio.h \
+  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdarg.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/stdio.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/alloca.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/math.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadcore.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysreg.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/psp/files.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/RAMCNT.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/WORK_SYS.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/color3rd.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/debug/Debug.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/texgroup.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/workuser.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h \
-  /home/demma/.local/bin/pspdev/psp/include/stdio.h \
-  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
-  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdarg.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/stdio.h
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h
 
 CMakeFiles/3rd-strike.dir/src/Game/Game.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Game.c \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/Game.h \
@@ -10467,7 +10613,18 @@ CMakeFiles/3rd-strike.dir/src/Game/MTRANS.c.obj: /home/demma/Documents/code/psp/
   /home/demma/Documents/code/psp/3rd-strike/include/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
   /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+  /home/demma/.local/bin/pspdev/psp/include/memory.h \
+  /home/demma/.local/bin/pspdev/psp/include/string.h \
+  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
+  /home/demma/.local/bin/pspdev/psp/include/strings.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
   /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
@@ -10485,11 +10642,7 @@ CMakeFiles/3rd-strike.dir/src/Game/MTRANS.c.obj: /home/demma/Documents/code/psp/
   /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/time.h \
   /home/demma/.local/bin/pspdev/psp/include/time.h \
-  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
   /home/demma/.local/bin/pspdev/psp/include/machine/time.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
   /home/demma/.local/bin/pspdev/psp/include/signal.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/signal.h \
   /home/demma/.local/bin/pspdev/psp/include/machine/_time.h \
@@ -10512,6 +10665,8 @@ CMakeFiles/3rd-strike.dir/src/Game/MTRANS.c.obj: /home/demma/Documents/code/psp/
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFECT.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/WORK_SYS.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/aboutspr.h \
@@ -13188,9 +13343,18 @@ CMakeFiles/3rd-strike.dir/src/Game/OPENING.c.obj: /home/demma/Documents/code/psp
   /home/demma/Documents/code/psp/3rd-strike/include/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
   /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/psp/MemMan.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/Game/AcrUtil.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+  /home/demma/.local/bin/pspdev/psp/include/memory.h \
+  /home/demma/.local/bin/pspdev/psp/include/string.h \
+  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
+  /home/demma/.local/bin/pspdev/psp/include/strings.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
   /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
@@ -13208,11 +13372,7 @@ CMakeFiles/3rd-strike.dir/src/Game/OPENING.c.obj: /home/demma/Documents/code/psp
   /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/time.h \
   /home/demma/.local/bin/pspdev/psp/include/time.h \
-  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
   /home/demma/.local/bin/pspdev/psp/include/machine/time.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
   /home/demma/.local/bin/pspdev/psp/include/signal.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/signal.h \
   /home/demma/.local/bin/pspdev/psp/include/machine/_time.h \
@@ -13235,6 +13395,10 @@ CMakeFiles/3rd-strike.dir/src/Game/OPENING.c.obj: /home/demma/Documents/code/psp
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/psp/MemMan.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/AcrUtil.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/DEMO00.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFE1.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/GD3rd.h \
@@ -15356,6 +15520,58 @@ CMakeFiles/3rd-strike.dir/src/Game/RAMCNT.c.obj: /home/demma/Documents/code/psp/
   /home/demma/Documents/code/psp/3rd-strike/include/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
   /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+  /home/demma/.local/bin/pspdev/psp/include/memory.h \
+  /home/demma/.local/bin/pspdev/psp/include/string.h \
+  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
+  /home/demma/.local/bin/pspdev/psp/include/strings.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_fcntl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_stat.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_dirent.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_devctl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadexec.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmoduleinfo.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysmem.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspthreadman.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/_time.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerror.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman.h \
+  /home/demma/.local/bin/pspdev/psp/include/stb_image.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdio.h \
+  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdarg.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/stdio.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/alloca.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/math.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadcore.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysreg.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
   /home/demma/Documents/code/psp/3rd-strike/include/psp/MemMan.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/debug/Debug.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/texgroup.h
@@ -15504,6 +15720,58 @@ CMakeFiles/3rd-strike.dir/src/Game/SE.c.obj: /home/demma/Documents/code/psp/3rd-
   /home/demma/Documents/code/psp/3rd-strike/include/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
   /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+  /home/demma/.local/bin/pspdev/psp/include/memory.h \
+  /home/demma/.local/bin/pspdev/psp/include/string.h \
+  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
+  /home/demma/.local/bin/pspdev/psp/include/strings.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_fcntl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_stat.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_dirent.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_devctl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadexec.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmoduleinfo.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysmem.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspthreadman.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/_time.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerror.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman.h \
+  /home/demma/.local/bin/pspdev/psp/include/stb_image.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdio.h \
+  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdarg.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/stdio.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/alloca.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/math.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadcore.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysreg.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/PLCNT.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/Se_Data.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/Sound3rd.h \
@@ -16014,6 +16282,58 @@ CMakeFiles/3rd-strike.dir/src/Game/SYS_sub.c.obj: /home/demma/Documents/code/psp
   /home/demma/Documents/code/psp/3rd-strike/include/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
   /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+  /home/demma/.local/bin/pspdev/psp/include/memory.h \
+  /home/demma/.local/bin/pspdev/psp/include/string.h \
+  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
+  /home/demma/.local/bin/pspdev/psp/include/strings.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_fcntl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_stat.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_dirent.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_devctl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadexec.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmoduleinfo.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysmem.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspthreadman.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/_time.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerror.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman.h \
+  /home/demma/.local/bin/pspdev/psp/include/stb_image.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdio.h \
+  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdarg.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/stdio.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/alloca.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/math.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadcore.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysreg.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/COM_DATU.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/Com_Data.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFB8.h \
@@ -16040,15 +16360,7 @@ CMakeFiles/3rd-strike.dir/src/Game/SYS_sub.c.obj: /home/demma/Documents/code/psp
   /home/demma/Documents/code/psp/3rd-strike/include/Game/menu.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/sc_sub.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/workuser.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h \
-  /home/demma/.local/bin/pspdev/psp/include/memory.h \
-  /home/demma/.local/bin/pspdev/psp/include/string.h \
-  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
-  /home/demma/.local/bin/pspdev/psp/include/strings.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/string.h
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h
 
 CMakeFiles/3rd-strike.dir/src/Game/SYS_sub2.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/SYS_sub2.c \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/SYS_sub2.h \
@@ -16248,6 +16560,58 @@ CMakeFiles/3rd-strike.dir/src/Game/Sound3rd.c.obj: /home/demma/Documents/code/ps
   /home/demma/Documents/code/psp/3rd-strike/include/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
   /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+  /home/demma/.local/bin/pspdev/psp/include/memory.h \
+  /home/demma/.local/bin/pspdev/psp/include/string.h \
+  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
+  /home/demma/.local/bin/pspdev/psp/include/strings.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_fcntl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_stat.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_dirent.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_devctl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadexec.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmoduleinfo.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysmem.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspthreadman.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/_time.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerror.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman.h \
+  /home/demma/.local/bin/pspdev/psp/include/stb_image.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdio.h \
+  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdarg.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/stdio.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/alloca.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/math.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadcore.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysreg.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFECT.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/GD3rd.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/RAMCNT.h \
@@ -17796,9 +18160,18 @@ CMakeFiles/3rd-strike.dir/src/Game/bg.c.obj: /home/demma/Documents/code/psp/3rd-
   /home/demma/Documents/code/psp/3rd-strike/include/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
   /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/psp/MemMan.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/Game/AcrUtil.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+  /home/demma/.local/bin/pspdev/psp/include/memory.h \
+  /home/demma/.local/bin/pspdev/psp/include/string.h \
+  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
+  /home/demma/.local/bin/pspdev/psp/include/strings.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
   /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
@@ -17816,11 +18189,7 @@ CMakeFiles/3rd-strike.dir/src/Game/bg.c.obj: /home/demma/Documents/code/psp/3rd-
   /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/time.h \
   /home/demma/.local/bin/pspdev/psp/include/time.h \
-  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
   /home/demma/.local/bin/pspdev/psp/include/machine/time.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
   /home/demma/.local/bin/pspdev/psp/include/signal.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/signal.h \
   /home/demma/.local/bin/pspdev/psp/include/machine/_time.h \
@@ -17843,6 +18212,10 @@ CMakeFiles/3rd-strike.dir/src/Game/bg.c.obj: /home/demma/Documents/code/psp/3rd-
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/psp/MemMan.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/AcrUtil.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/GD3rd.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/MTRANS.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/PLS02.h \
@@ -19138,7 +19511,16 @@ CMakeFiles/3rd-strike.dir/src/Game/color3rd.c.obj: /home/demma/Documents/code/ps
   /home/demma/Documents/code/psp/3rd-strike/include/Game/meta_col.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/workuser.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/fl.h
+  /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+  /home/demma/.local/bin/pspdev/psp/include/memory.h \
+  /home/demma/.local/bin/pspdev/psp/include/string.h \
+  /home/demma/.local/bin/pspdev/psp/include/strings.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h
 
 CMakeFiles/3rd-strike.dir/src/Game/count.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/count.c \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/count.h \
@@ -19265,6 +19647,58 @@ CMakeFiles/3rd-strike.dir/src/Game/debug/Debug.c.obj: /home/demma/Documents/code
   /home/demma/Documents/code/psp/3rd-strike/include/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
   /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+  /home/demma/.local/bin/pspdev/psp/include/memory.h \
+  /home/demma/.local/bin/pspdev/psp/include/string.h \
+  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
+  /home/demma/.local/bin/pspdev/psp/include/strings.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_fcntl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_stat.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_dirent.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_devctl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadexec.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmoduleinfo.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysmem.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspthreadman.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/_time.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerror.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman.h \
+  /home/demma/.local/bin/pspdev/psp/include/stb_image.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdio.h \
+  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdarg.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/stdio.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/alloca.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/math.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadcore.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysreg.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFECT.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/IOConv.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/MTRANS.h \
@@ -22492,13 +22926,60 @@ CMakeFiles/3rd-strike.dir/src/Game/init3rd.c.obj: /home/demma/Documents/code/psp
   /home/demma/Documents/code/psp/3rd-strike/include/Game/texgroup.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/workuser.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/psp/savesub.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+  /home/demma/.local/bin/pspdev/psp/include/memory.h \
   /home/demma/.local/bin/pspdev/psp/include/string.h \
   /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
   /home/demma/.local/bin/pspdev/psp/include/strings.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/string.h
+  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_fcntl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_stat.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_dirent.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_devctl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadexec.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmoduleinfo.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysmem.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspthreadman.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/_time.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerror.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman.h \
+  /home/demma/.local/bin/pspdev/psp/include/stb_image.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdio.h \
+  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdarg.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/stdio.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/alloca.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/math.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadcore.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysreg.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h
 
 CMakeFiles/3rd-strike.dir/src/Game/main.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/main.c \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/main.h \
@@ -22539,9 +23020,18 @@ CMakeFiles/3rd-strike.dir/src/Game/main.c.obj: /home/demma/Documents/code/psp/3r
   /home/demma/Documents/code/psp/3rd-strike/include/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
   /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/psp/MemMan.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/Game/AcrUtil.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+  /home/demma/.local/bin/pspdev/psp/include/memory.h \
+  /home/demma/.local/bin/pspdev/psp/include/string.h \
+  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
+  /home/demma/.local/bin/pspdev/psp/include/strings.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
   /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
@@ -22559,11 +23049,7 @@ CMakeFiles/3rd-strike.dir/src/Game/main.c.obj: /home/demma/Documents/code/psp/3r
   /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/time.h \
   /home/demma/.local/bin/pspdev/psp/include/time.h \
-  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
   /home/demma/.local/bin/pspdev/psp/include/machine/time.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
   /home/demma/.local/bin/pspdev/psp/include/signal.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/signal.h \
   /home/demma/.local/bin/pspdev/psp/include/machine/_time.h \
@@ -22586,6 +23072,10 @@ CMakeFiles/3rd-strike.dir/src/Game/main.c.obj: /home/demma/Documents/code/psp/3r
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/psp/MemMan.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/AcrUtil.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFECT.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/GD3rd.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/IOConv.h \
@@ -22602,11 +23092,7 @@ CMakeFiles/3rd-strike.dir/src/Game/main.c.obj: /home/demma/Documents/code/psp/3r
   /home/demma/Documents/code/psp/3rd-strike/include/Game/init3rd.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/texcash.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/workuser.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h \
-  /home/demma/.local/bin/pspdev/psp/include/memory.h \
-  /home/demma/.local/bin/pspdev/psp/include/string.h \
-  /home/demma/.local/bin/pspdev/psp/include/strings.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/string.h
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h
 
 CMakeFiles/3rd-strike.dir/src/Game/menu.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/menu.c \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/menu.h \
@@ -23789,9 +24275,18 @@ CMakeFiles/3rd-strike.dir/src/Game/sc_sub.c.obj: /home/demma/Documents/code/psp/
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
   /home/demma/Documents/code/psp/3rd-strike/include/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/Game/AcrUtil.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+  /home/demma/.local/bin/pspdev/psp/include/memory.h \
+  /home/demma/.local/bin/pspdev/psp/include/string.h \
+  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
+  /home/demma/.local/bin/pspdev/psp/include/strings.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
   /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
@@ -23809,11 +24304,7 @@ CMakeFiles/3rd-strike.dir/src/Game/sc_sub.c.obj: /home/demma/Documents/code/psp/
   /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/time.h \
   /home/demma/.local/bin/pspdev/psp/include/time.h \
-  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
   /home/demma/.local/bin/pspdev/psp/include/machine/time.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
   /home/demma/.local/bin/pspdev/psp/include/signal.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/signal.h \
   /home/demma/.local/bin/pspdev/psp/include/machine/_time.h \
@@ -23836,6 +24327,10 @@ CMakeFiles/3rd-strike.dir/src/Game/sc_sub.c.obj: /home/demma/Documents/code/psp/
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/AcrUtil.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/Eff76.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/GD3rd.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/MTRANS.h \
@@ -24209,6 +24704,58 @@ CMakeFiles/3rd-strike.dir/src/Game/texcash.c.obj: /home/demma/Documents/code/psp
   /home/demma/Documents/code/psp/3rd-strike/include/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
   /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+  /home/demma/.local/bin/pspdev/psp/include/memory.h \
+  /home/demma/.local/bin/pspdev/psp/include/string.h \
+  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
+  /home/demma/.local/bin/pspdev/psp/include/strings.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_fcntl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_stat.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_dirent.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_devctl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadexec.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmoduleinfo.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysmem.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspthreadman.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/_time.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerror.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman.h \
+  /home/demma/.local/bin/pspdev/psp/include/stb_image.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdio.h \
+  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdarg.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/stdio.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/alloca.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/math.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadcore.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysreg.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFECT.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/MTRANS.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/RAMCNT.h \
@@ -24256,19 +24803,65 @@ CMakeFiles/3rd-strike.dir/src/Game/texgroup.c.obj: /home/demma/Documents/code/ps
   /home/demma/Documents/code/psp/3rd-strike/include/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
   /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+  /home/demma/.local/bin/pspdev/psp/include/memory.h \
+  /home/demma/.local/bin/pspdev/psp/include/string.h \
+  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
+  /home/demma/.local/bin/pspdev/psp/include/strings.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_fcntl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_stat.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_dirent.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_devctl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadexec.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmoduleinfo.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysmem.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspthreadman.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/_time.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerror.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman.h \
+  /home/demma/.local/bin/pspdev/psp/include/stb_image.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdio.h \
+  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdarg.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/stdio.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/alloca.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/math.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadcore.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysreg.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/CHARID.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/GD3rd.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/PLCNT.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/RAMCNT.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/chren3rd.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/main.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/Game/texcash.h \
-  /home/demma/.local/bin/pspdev/psp/include/stdlib.h \
-  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
-  /home/demma/.local/bin/pspdev/psp/include/machine/stdlib.h \
-  /home/demma/.local/bin/pspdev/psp/include/alloca.h
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/texcash.h
 
 CMakeFiles/3rd-strike.dir/src/Game/vm.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/vm.c \
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
@@ -24976,26 +25569,29 @@ CMakeFiles/3rd-strike.dir/src/common/sprites.c.obj: /home/demma/Documents/code/p
   /home/demma/.local/bin/pspdev/psp/include/assert.h
 
 CMakeFiles/3rd-strike.dir/src/psp/MemMan.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/psp/MemMan.c \
-  /home/demma/Documents/code/psp/3rd-strike/include/psp/MemMan.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+  /home/demma/.local/bin/pspdev/psp/include/malloc.h \
+  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+  /home/demma/.local/bin/pspdev/psp/include/newlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/_newlib_version.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/config.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/ieeefp.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/features.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
+  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stddef.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/cdefs.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/_default_types.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/_types.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/_types.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/malloc.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/common.h \
   /home/demma/Documents/code/psp/3rd-strike/include/types.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/psptypes.h \
   /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdint.h \
   /home/demma/.local/bin/pspdev/psp/include/stdint.h \
-  /home/demma/.local/bin/pspdev/psp/include/machine/_default_types.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/features.h \
-  /home/demma/.local/bin/pspdev/psp/include/_newlib_version.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/_intsup.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/_stdint.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/types.h \
-  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
-  /home/demma/.local/bin/pspdev/psp/include/newlib.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/config.h \
-  /home/demma/.local/bin/pspdev/psp/include/machine/ieeefp.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/cdefs.h \
-  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stddef.h \
-  /home/demma/.local/bin/pspdev/psp/include/machine/_types.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/_types.h \
   /home/demma/.local/bin/pspdev/psp/include/machine/endian.h \
   /home/demma/.local/bin/pspdev/psp/include/machine/_endian.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/select.h \
@@ -25011,13 +25607,60 @@ CMakeFiles/3rd-strike.dir/src/psp/MemMan.c.obj: /home/demma/Documents/code/psp/3
   /home/demma/.local/bin/pspdev/psp/include/sys/syslimits.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/sched.h \
   /home/demma/.local/bin/pspdev/psp/include/machine/types.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
-  /home/demma/.local/bin/pspdev/psp/include/malloc.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
-  /home/demma/.local/bin/pspdev/psp/include/machine/malloc.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/common.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/fl.h
+  /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+  /home/demma/.local/bin/pspdev/psp/include/memory.h \
+  /home/demma/.local/bin/pspdev/psp/include/string.h \
+  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
+  /home/demma/.local/bin/pspdev/psp/include/strings.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_fcntl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_stat.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_dirent.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_devctl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadexec.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmoduleinfo.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysmem.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspthreadman.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/_time.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerror.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman.h \
+  /home/demma/.local/bin/pspdev/psp/include/stb_image.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdio.h \
+  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdarg.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/stdio.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/alloca.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/math.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadcore.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysreg.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/psp/MemMan.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/types.h
 
 CMakeFiles/3rd-strike.dir/src/psp/common.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/psp/common.c \
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
@@ -25107,14 +25750,58 @@ CMakeFiles/3rd-strike.dir/src/psp/fl.c.obj: /home/demma/Documents/code/psp/3rd-s
   /home/demma/.local/bin/pspdev/psp/include/sys/syslimits.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/sched.h \
   /home/demma/.local/bin/pspdev/psp/include/machine/types.h \
-  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdarg.h \
-  /home/demma/.local/bin/pspdev/psp/include/stdio.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
+  /home/demma/.local/bin/pspdev/psp/include/memory.h \
+  /home/demma/.local/bin/pspdev/psp/include/string.h \
   /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/reent.h \
   /home/demma/.local/bin/pspdev/psp/include/sys/lock.h \
-  /home/demma/.local/bin/pspdev/psp/include/sys/stdio.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h \
+  /home/demma/.local/bin/pspdev/psp/include/strings.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspdisplay.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspgu.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_fcntl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_stat.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_dirent.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_devctl.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadexec.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmoduleinfo.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysmem.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspthreadman.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspdebug.h \
-  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmoduleinfo.h
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/time.h \
+  /home/demma/.local/bin/pspdev/psp/include/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/signal.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/_time.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerror.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman.h \
+  /home/demma/.local/bin/pspdev/psp/include/stb_image.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdio.h \
+  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdarg.h \
+  /home/demma/.local/bin/pspdev/psp/include/sys/stdio.h \
+  /home/demma/.local/bin/pspdev/psp/include/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/stdlib.h \
+  /home/demma/.local/bin/pspdev/psp/include/alloca.h \
+  /home/demma/Documents/code/psp/3rd-strike/src/common/math.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadcore.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspsysreg.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h
 
 CMakeFiles/3rd-strike.dir/src/psp/pspmain.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/psp/pspmain.c \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
@@ -26016,6 +26703,14 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 
 /home/demma/Documents/code/psp/3rd-strike/include/Game/cmb_win.h:
 
+/home/demma/Documents/code/psp/3rd-strike/include/fl.h:
+
+/home/demma/Documents/code/psp/3rd-strike/include/Game/EFF45.h:
+
+/home/demma/Documents/code/psp/3rd-strike/src/Game/ac0004.c:
+
+/home/demma/.local/bin/pspdev/psp/include/sys/sched.h:
+
 /home/demma/Documents/code/psp/3rd-strike/include/Game/SHELL01.h:
 
 /home/demma/.local/bin/pspdev/psp/include/sys/_pthreadtypes.h:
@@ -26069,8 +26764,6 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 /home/demma/.local/bin/pspdev/psp/sdk/include/psputils.h:
 
 /home/demma/.local/bin/pspdev/psp/include/sys/_intsup.h:
-
-/home/demma/.local/bin/pspdev/psp/include/sys/sched.h:
 
 /home/demma/Documents/code/psp/3rd-strike/include/Game/SHELL14.h:
 
@@ -26187,10 +26880,6 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 /home/demma/Documents/code/psp/3rd-strike/src/Game/EFF21.c:
 
 /home/demma/.local/bin/pspdev/psp/include/sys/_locale.h:
-
-/home/demma/Documents/code/psp/3rd-strike/include/Game/EFF66.h:
-
-/home/demma/Documents/code/psp/3rd-strike/src/Game/Demo_Dat.c:
 
 /home/demma/Documents/code/psp/3rd-strike/src/Game/EFFE8.c:
 
@@ -26346,11 +27035,9 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 
 /home/demma/Documents/code/psp/3rd-strike/src/Game/EFF67.c:
 
-/home/demma/Documents/code/psp/3rd-strike/include/fl.h:
+/home/demma/Documents/code/psp/3rd-strike/include/Game/EFF66.h:
 
-/home/demma/Documents/code/psp/3rd-strike/include/Game/EFF45.h:
-
-/home/demma/Documents/code/psp/3rd-strike/src/Game/ac0004.c:
+/home/demma/Documents/code/psp/3rd-strike/src/Game/Demo_Dat.c:
 
 /home/demma/Documents/code/psp/3rd-strike/include/Game/GD3rd.h:
 

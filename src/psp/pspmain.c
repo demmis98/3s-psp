@@ -1,5 +1,6 @@
 #include <pspuser.h>
 
+
 #include "common/audio.h"
 #include "common/graphics.h"
 
@@ -32,10 +33,12 @@ int setup_callbacks(void) {
 }
 
 int main(void)  {
+
     // Use above functions to make exiting possible
     setup_callbacks();
-	
+
     initGu();
+
     initMusic();
 
     AcrMain();

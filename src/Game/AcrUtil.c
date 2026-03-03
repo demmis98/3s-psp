@@ -5,6 +5,8 @@
 #include "common/graphics.h"
 #include "structs.h"
 
+#include "fl.h"
+
 /*
 typedef struct {
     // total size: 0x60
@@ -29,11 +31,13 @@ void appViewMatrix() {
 }
 
 void render_start() {
-    startFrame();
+    if(!DEMMA_DEBUG)
+        startFrame();
 }
 
 void render_end() {
-    endFrame();
+    if(!DEMMA_DEBUG)
+        endFrame();
 }
 
 void initRenderState(s32 flag) {

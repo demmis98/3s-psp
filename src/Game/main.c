@@ -57,6 +57,8 @@ void cpInitTask();
 void cpReadyTask(u16 num, void* func_adrs);
 void cpExitTask(u16 num);
 
+char c = 0;
+
 void AcrMain() {
     u16 sw_buff;
     u32 sysinfodisp;
@@ -174,12 +176,17 @@ void AcrMain() {
 
 
         appCopyKeyData();
+
+        flLogOut("test\n");
+
         render_start();
 
         mpp_w.inGame = 0;
 
         njUserMain();
+
         MaskScreenEdge();
+
         seqsBeforeProcess();
         njdp2d_draw();
         seqsAfterProcess();
@@ -187,6 +194,7 @@ void AcrMain() {
         if (Debug_w[6] == 0) {
             //CP3toPS2Draw();
         }
+
 
         //KnjFlush();
         render_end();
@@ -213,7 +221,7 @@ void AcrMain() {
 
         //flSetDebugMode(sysinfodisp);
         disp_effect_work();
-        //flFlip(0);
+        flFlip(0);
 
         Interrupt_Flag = 1;
         Interrupt_Timer += 1;
@@ -223,6 +231,9 @@ void AcrMain() {
         Irl_Family();
         Irl_Scrn();
         BGM_Server();
+        
+        c++;
+        while(DEMMA_DEBUG && c > 10);
     }
 }
 
@@ -293,6 +304,9 @@ u8* mppMalloc(u32 size) {
 void njUserInit() {
     s32 i;
     u32 size;
+
+    if(DEMMA_DEBUG)
+        flLogOut("njUserInit\n");
 
     sysFF = 1;
     mpp_w.sysStop = 0;
@@ -409,6 +423,9 @@ s32 njUserMain() {
 
 void cpLoopTask() {
     struct _TASK* task_ptr = task;
+
+    if(DEMMA_DEBUG)
+        flLogOut("cpLoopTask\n");
 
     disp_ramcnt_free_area();
 
