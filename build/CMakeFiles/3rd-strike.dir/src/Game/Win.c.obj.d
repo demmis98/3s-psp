@@ -36,6 +36,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Win.c.obj: \
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/GD3rd.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/MMTMCNT.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/PulPul.h \

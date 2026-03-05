@@ -51,11 +51,6 @@ void drawTextureH(TexturePSP * texture, float x, float y, uint32_t color);
 
 void drawRect(float x, float y, float w, float h, uint32_t colour);
 
-// getters setters
-TexturePSP ** getTextures();
-TexturePSP * getTexture(s32 i);
-void setTextures(TexturePSP ** t);
-void setTextureI(TexturePSP *t, s32 i);
 // end c++ guard
 #ifdef __cplusplus
 }

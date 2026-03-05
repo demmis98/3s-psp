@@ -1,27 +1,14 @@
-BUILD
+BUILD:
 
 $ cd build
 $ make
 
-TO-DO
-
-modify structs:
--MTX
--TexturePoolUsed
--PatternState
+TO-DO:
 
 copy other structs
 
-include/Game/aboutspr.h:
--multitextures (idk what they do so they are commented)
-
-
-src/Game/bg.c:
--ppg functions commented out
-
 
 src/Game/color3rd.c:
--fl functions commented out
 -plContext commented out
 -cseGetIdStoredBd commented
 -cseSendBd2SpuWithId commented
@@ -35,12 +22,10 @@ modify src/Game/DC_Ghost.c:
 
 
 src/Game/DEMO00.c:
--ppg functions
--mmDebWriteTag
 -test flPs2State.DispWidth to SCREEN_WIDTH (and height equivalent)
 
 
-EFFnn.c effect_nn_init(), text if just changing data types worked
+EFFnn.c effect_nn_init(), test if just changing data types worked
 
 
 src/Game/GD3rd.c:
@@ -107,7 +92,3 @@ src/psp/MemMan.c:
 src/Game/Sound3rd.c:
 -it's sound, it has to be ported with care, specificaly adxt stuff
 -BGM_Server()
-
-
-src/Game/EFFK2.c:
--fix sound_effect_request

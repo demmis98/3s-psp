@@ -1,16 +1,15 @@
 #include "Game/main.h"
 #include "common.h"
 /*
-#include "sf33rd/AcrSDK/common/mlPAD.h"
 #include "sf33rd/AcrSDK/ps2/flps2debug.h"
 #include "sf33rd/AcrSDK/ps2/flps2etc.h"
 #include "sf33rd/AcrSDK/ps2/flps2render.h"
 #include "sf33rd/AcrSDK/ps2/foundaps2.h"
-#include "Common/MemMan.h"
-#include "Common/PPGFile.h"
-#include "Common/PPGWork.h"
 #include "Compress/zlibApp.h"
 */
+#include "AcrSDK/common/mlPAD.h"
+#include "psp/PPGFile.h"
+#include "psp/PPGWork.h"
 #include "fl.h"
 #include "psp/MemMan.h"
 
@@ -57,7 +56,7 @@ void cpInitTask();
 void cpReadyTask(u16 num, void* func_adrs);
 void cpExitTask(u16 num);
 
-char c = 0;
+u8 c = 0;
 
 void AcrMain() {
     u16 sw_buff;
@@ -67,7 +66,7 @@ void AcrMain() {
     //flSetRenderState(FLRENDER_BACKCOLOR, 0);
     //flSetDebugMode(0);
     system_init_level = 0;
-    //ppgWorkInitializeApprication();
+    ppgWorkInitializeApprication();
     distributeScratchPadAddress();
     njdp2d_init();
     njUserInit();
@@ -93,7 +92,8 @@ void AcrMain() {
         appViewSetItems(&mpp_w.vprm);
         appViewMatrix();
         //flAdjustScreen(X_Adjust + Correct_X[0], Y_Adjust + Correct_Y[0]);
-        setBackGroundColor(0xFF000000);
+        //setBackGroundColor(0xFF000000);
+        setBackGroundColor(0xFF0000FF);
 
         if (Debug_w[0x43]) {
             setBackGroundColor(0xFF0000FF);
@@ -101,7 +101,7 @@ void AcrMain() {
 
         appSetupTempPriority();
 
-        //flPADGetALL();
+        flPADGetALL();
         keyConvert();
 
         if (((Usage == 7) || (Usage == 2)) && !test_flag) {
@@ -197,6 +197,9 @@ void AcrMain() {
 
 
         //KnjFlush();
+
+        drawRect(c, c, 10, 10, 0xFFFFFFFF);
+
         render_end();
 
         sysinfodisp = 0;
@@ -233,7 +236,7 @@ void AcrMain() {
         BGM_Server();
         
         c++;
-        while(DEMMA_DEBUG && c > 10);
+        while(DEMMA_DEBUG && c > DEMMA_LOOPS);
     }
 }
 

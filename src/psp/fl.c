@@ -5,6 +5,8 @@
 
 #include <pspdebug.h>
 
+#include "Game/color3rd.h"
+
 s32 flFrame;
 
 int debug_mode = 0;
@@ -60,3 +62,21 @@ s32 flFlip(u32 flag) {
 
     return 1;
 }
+
+s32 flLockTexture(Rect* lprect, u32 th, plContext* lpcontext, u32 flag) {}
+s32 flUnlockTexture(u32 th){}
+u32 flCreateTextureHandle(plContext* bits, u32 flag){}
+s32 flReleaseTextureHandle(u32 texture_handle){}
+
+u32 flCreatePaletteHandle(plContext* ctx, u32 flag) {
+    u16 *src = (u16*)ctx->ptr;
+    for(int i = 0; i < 64; i++){
+        ColorRAM[0][currentPaletteIndex] = src[i];
+    }
+}
+
+s32 flReleasePaletteHandle(u32 palette_handle){}
+
+s32 flLockPalette(Rect* lprect, u32 th, plContext* lpcontext, u32 flag){}
+s32 flUnlockPalette(u32 th){}
+s32 flSetRenderState(enum _FLSETRENDERSTATE func, u32 value){}

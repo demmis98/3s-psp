@@ -38,4 +38,5 @@ CMakeFiles/3rd-strike.dir/src/Game/SLOWF.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/workuser.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h \
- /home/demma/Documents/code/psp/3rd-strike/include/structs.h
+ /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h

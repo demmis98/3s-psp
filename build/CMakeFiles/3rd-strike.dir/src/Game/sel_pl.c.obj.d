@@ -39,6 +39,7 @@ CMakeFiles/3rd-strike.dir/src/Game/sel_pl.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/Com_Data.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h \
  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \

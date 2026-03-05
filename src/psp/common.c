@@ -1,4 +1,4 @@
-#import "common.h"
+#include "common.h"
 
 void fatal_error(const s8* fmt, ...){
 

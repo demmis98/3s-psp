@@ -38,6 +38,7 @@ CMakeFiles/3rd-strike.dir/src/Game/TATE00.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/bg.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/bg000.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/bg010.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/bg020.h \

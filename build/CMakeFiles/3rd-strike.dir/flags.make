@@ -4,7 +4,7 @@
 # compile C with /home/demma/.local/bin/pspdev/bin/psp-gcc
 C_DEFINES = -DPSP -D_PSP_FW_VERSION=600 -D__PSP__
 
-C_INCLUDES = -I/home/demma/Documents/code/psp/3rd-strike/src -I/home/demma/Documents/code/psp/3rd-strike/3rd-strike -I/home/demma/Documents/code/psp/3rd-strike/include
+C_INCLUDES = -I/home/demma/Documents/code/psp/3rd-strike/src -I/home/demma/Documents/code/psp/3rd-strike/3rd-strike -I/home/demma/Documents/code/psp/3rd-strike/include -I/home/demma/Documents/code/psp/3rd-strike/include/Compress/zlib
 
 C_FLAGS = -I/home/demma/.local/bin/pspdev/psp/include -I/home/demma/.local/bin/pspdev/psp/sdk/include -DPSP
 

@@ -39,6 +39,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Next_CPU.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/Com_Data.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFF38.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFF42.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFF58.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFF75.h \

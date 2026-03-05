@@ -158,6 +158,7 @@ void fsUpdateDiskDriveError() {
 }
 
 s32 fsOpen(REQ* req) {
+    flLogOut("fsOpen\n");
     if (req->fnum >= AFS_FILE_COUNT) {
         return 0;
     }
@@ -171,6 +172,7 @@ s32 fsOpen(REQ* req) {
     }
 
     adxf = fopen(getFile(req->fnum),"rb");
+    flLogOut("opened: %s\n", getFile(req->fnum));
 
     if (adxf == NULL) {
         return 0;

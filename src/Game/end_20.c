@@ -1,6 +1,6 @@
 #include "common.h"
-//#include "Common/PPGFile.h"
-//#include "Common/PPGWork.h"
+#include "psp/PPGFile.h"
+#include "psp/PPGWork.h"
 #include "Game/CALDIR.h"
 #include "Game/DC_Ghost.h"
 #include "Game/EFFF9.h"
@@ -272,8 +272,8 @@ void end_2001_0002() {
 }
 
 void end_2001_0003() {
-    //ppgSetupCurrentDataList(&ppgAkeList);
-    //ppgSetupCurrentPaletteNumber(NULL, 0);
+    ppgSetupCurrentDataList(&ppgAkeList);
+    ppgSetupCurrentPaletteNumber(NULL, 0);
 
     switch (bgw_ptr->r_no_1) {
     case 0:

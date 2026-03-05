@@ -2,12 +2,9 @@
 #include "common.h"
 //#include "sf33rd/AcrSDK/ps2/foundaps2.h"
 #include "fl.h"
-
-//#include "Common/MemMan.h"
 #include "psp/MemMan.h"
-
-//#include "Common/PPGFile.h"
-//#include "Common/PPGWork.h"
+#include "psp/PPGFile.h"
+#include "psp/PPGWork.h"
 #include "Game/AcrUtil.h"
 #include "Game/DC_Ghost.h"
 #include "Game/GD3rd.h"
@@ -118,11 +115,12 @@ s32 Warning() {
 }
 
 s32 CAPCOM_Logo() {
-    if(DEMMA_DEBUG)
-        flLogOut("CAPCOM_Logo\n");
+    
+    flLogOut("CAPCOM_Logo %d\n", D_No[1]);
+
     setTexAdrsMode(0);
     setFilterMode(0);
-    //ppgSetupCurrentDataList(&ppgCapLogoList);
+    ppgSetupCurrentDataList(&ppgCapLogoList);
     Next_Demo = 0;
 
     switch (D_No[1]) {
@@ -212,26 +210,28 @@ void CAPLOGO_Init() {
     s16 key;
 
     mmDebWriteTag("\nCAPCOM LOGO\n\n");
-    //ppgCapLogoList.tex = &ppgCapLogoTex;
-    //ppgCapLogoList.pal = &ppgCapLogoPal;
-    //ppgSetupCurrentDataList(&ppgCapLogoList);
+    ppgCapLogoList.tex = &ppgCapLogoTex;
+    ppgCapLogoList.pal = &ppgCapLogoPal;
+    ppgSetupCurrentDataList(&ppgCapLogoList);
     loadSize = load_it_use_any_key2(75, &loadAdrs, &key, 2, 1); // CapLogo.ppg
 
     if (loadSize == 0) {
-        flLogOut("The Kaprogo texture could not be loaded.\n");
+        flLogOut("The CapLogo texture could not be loaded.\n");
         while (1) {}
     }
 
-    //ppgSetupPalChunk(NULL, loadAdrs, loadSize, 0, 0, 1);
-    //ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, 600, 1, 0, 0);
-    //ppgSetupTexChunk_2nd(NULL, 600);
-    //ppgSetupTexChunk_3rd(NULL, 600, 1);
+    ppgSetupPalChunk(NULL, loadAdrs, loadSize, 0, 0, 1);
+    ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, 600, 1, 0, 0);
+    ppgSetupTexChunk_2nd(NULL, 600);
+    ppgSetupTexChunk_3rd(NULL, 600, 1);
     Push_ramcnt_key(key);
-    //ppgSourceDataReleased(0);
+    ppgSourceDataReleased(0);
 }
 
 s16 CAPLOGO_Move(u16 type) {
     s16 rnum = 0;
+
+    flLogOut("CAPLOGO_Move %d\n", type);
 
     switch (type) {
     case 0:
@@ -258,6 +258,9 @@ void Put_char(const f32* ptr, u32 indexG, u16 prio, s16 x, s16 y, f32 zx, f32 zy
     s16 off_x;
     s16 off_y;
 
+    if(DEMMA_DEBUG)
+        flLogOut("Put_char %d\n", No_Trans);
+
     if (No_Trans) {
         return;
     }
@@ -266,6 +269,7 @@ void Put_char(const f32* ptr, u32 indexG, u16 prio, s16 x, s16 y, f32 zx, f32 zy
     tex[0].z = tex[1].z = tex[2].z = tex[3].z = PrioBase[prio];
 
     while (*ptr != -1.0f) {
+
         tex[0].u = tex[1].u = *ptr++;
         tex[0].v = tex[2].v = *ptr++;
         tex[2].u = tex[3].u = *ptr++;
@@ -283,8 +287,18 @@ void Put_char(const f32* ptr, u32 indexG, u16 prio, s16 x, s16 y, f32 zx, f32 zy
         tex[0].y = tex[2].y = Frame_Zoom_Y * (y + off_y * zy);
         tex[2].x = tex[3].x = Frame_Zoom_X * (x + (off_x * zx) + ((u32)*ptr++ * zx));
         tex[1].y = tex[3].y = Frame_Zoom_Y * (y + (off_y * zy) + ((u32)*ptr++ * zy));
+
+        for(int i = 0; i < 4 && DEMMA_DEBUG; i++){
+            flLogOut("tex %d ", i);
+            flLogOut("x: %f", tex[i].x);
+            flLogOut("y: %f", tex[i].y);
+            flLogOut("u: %d", tex[i].u);
+            flLogOut("v: %d\n", tex[i].v);
+        }
+
         njDrawTexture(tex, 4, indexG, 1);
     }
+    //while(1);
 }
 
 void Warning_Init() {
@@ -294,11 +308,11 @@ void Warning_Init() {
     s16 i;
 
     mmDebWriteTag("\nWARNING\n\n");
-    //ppgWarList.tex = &ppgWarTex;
-    //ppgWarList.pal = &ppgWarPal;
-    //ppgAdxList.tex = &ppgWarTex;
-    //ppgAdxList.pal = &ppgAdxPal;
-    //ppgSetupCurrentDataList(&ppgWarList);
+    ppgWarList.tex = &ppgWarTex;
+    ppgWarList.pal = &ppgWarPal;
+    ppgAdxList.tex = &ppgWarTex;
+    ppgAdxList.pal = &ppgAdxPal;
+    ppgSetupCurrentDataList(&ppgWarList);
     loadSize = load_it_use_any_key2(12, &loadAdrs, &key, 2, 1); // Warning.ppg
 
     if (loadSize == 0) {
@@ -306,17 +320,17 @@ void Warning_Init() {
         while (1) {}
     }
 
-    //ppgSetupPalChunk(&ppgWarPal, loadAdrs, loadSize, 0, 0, 1);
-    //ppgSetupPalChunk(&ppgAdxPal, loadAdrs, loadSize, 0, 1, 1);
-    //ppgSetupTexChunk_1st(0, loadAdrs, loadSize, 590, 4, 0, 0);
+    ppgSetupPalChunk(&ppgWarPal, loadAdrs, loadSize, 0, 0, 1);
+    ppgSetupPalChunk(&ppgAdxPal, loadAdrs, loadSize, 0, 1, 1);
+    ppgSetupTexChunk_1st(0, loadAdrs, loadSize, 590, 4, 0, 0);
 
-    //for (i = 0; i < ppgWarTex.textures; i++) {
-    //    ppgSetupTexChunk_2nd(0, i + 590);
-    //    ppgSetupTexChunk_3rd(0, i + 590, 1);
-    //}
+    for (i = 0; i < ppgWarTex.textures; i++) {
+        ppgSetupTexChunk_2nd(0, i + 590);
+        ppgSetupTexChunk_3rd(0, i + 590, 1);
+    }
 
     Push_ramcnt_key(key);
-    //ppgSourceDataReleased(0);
+    ppgSourceDataReleased(0);
     picon_no = 0;
 }
 
@@ -334,31 +348,27 @@ void Put_Warning(s16 type) {
 
     switch (type) {
     case 0:
-        //ppgSetupCurrentDataList(&ppgWarList);
-        //ppgSetupCurrentPaletteNumber(0, 0);
+        ppgSetupCurrentDataList(&ppgWarList);
+        ppgSetupCurrentPaletteNumber(0, 0);
         tex[0].u = tex[1].u = 0.0f;
         tex[0].v = tex[2].v = 0.0f;
         tex[2].u = tex[3].u = 1.0f;
         tex[1].v = tex[3].v = 1.0f;
         tex[0].x = tex[1].x = 0.0f;
         tex[0].y = tex[2].y = 0.0f;
-        //tex[2].x = tex[3].x = flPs2State.DispWidth;
-        //tex[1].y = tex[3].y = flPs2State.DispHeight;
         tex[2].x = tex[3].x = SCREEN_WIDTH;
         tex[1].y = tex[3].y = SCREEN_HEIGHT;
         break;
 
     case 1:
-        //ppgSetupCurrentDataList(&ppgAdxList);
-        //ppgSetupCurrentPaletteNumber(0, 0);
+        ppgSetupCurrentDataList(&ppgAdxList);
+        ppgSetupCurrentPaletteNumber(0, 0);
         tex[0].u = tex[1].u = 0.0f;
         tex[0].v = tex[2].v = 0.0f;
         tex[2].u = tex[3].u = 1.0f;
         tex[1].v = tex[3].v = 0.875f;
         tex[0].x = tex[1].x = 0.0f;
         tex[0].y = tex[2].y = 0.0f;
-        //tex[2].x = tex[3].x = flPs2State.DispWidth;
-        //tex[1].y = tex[3].y = flPs2State.DispHeight;
         tex[2].x = tex[3].x = SCREEN_WIDTH;
         tex[1].y = tex[3].y = SCREEN_HEIGHT;
         break;

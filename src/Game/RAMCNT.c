@@ -126,6 +126,7 @@ void Set_size_data_ramcnt_key(s16 key, u32 size) {
 }
 
 size_t Get_size_data_ramcnt_key(s16 key) {
+    
     if (key <= 0) {
         // An attempt was made to get a file size from an unused memory key.\n
         flLogOut("An attempt was made to get a file size from an unused memory key.\n");

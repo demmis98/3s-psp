@@ -36,6 +36,7 @@ CMakeFiles/3rd-strike.dir/src/Game/EFFXX.c.obj: \
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFF00.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFF01.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFF02.h \

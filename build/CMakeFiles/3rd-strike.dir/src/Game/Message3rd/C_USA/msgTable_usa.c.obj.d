@@ -2,6 +2,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgTable_usa.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/msgTable_usa.c \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/Message3rd/C_USA/msgTable_usa.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/psptypes.h \
  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdint.h \
@@ -35,9 +36,9 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgTable_usa.c.obj: \
  /home/demma/.local/bin/pspdev/psp/include/sys/syslimits.h \
  /home/demma/.local/bin/pspdev/psp/include/sys/sched.h \
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/common.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/Message3rd/C_USA/PL00End_usa.h \
- /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/Message3rd/C_USA/PL00Tlk_usa.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/Message3rd/C_USA/PL00Win_usa.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/Message3rd/C_USA/PL01End_usa.h \

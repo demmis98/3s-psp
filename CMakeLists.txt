@@ -8,6 +8,10 @@ file(GLOB gameC src/Game/*.c)
 file(GLOB debugC src/Game/debug/*.c)
 file(GLOB message3rdC src/Game/Message3rd/C_USA/*.c)
 file(GLOB bin2objC src/bin2obj/*.c)
+file(GLOB acrCommonC src/AcrSDK/common/*.c)
+file(GLOB compressC src/Compress/*.c)
+file(GLOB Lz77C src/Compress/Lz77/*.c)
+file(GLOB zlibC src/Compress/zlib/*.c)
 
 add_executable(${PROJECT_NAME}
 	${pspC}
@@ -16,11 +20,16 @@ add_executable(${PROJECT_NAME}
     ${debugC}
     ${message3rdC}
     ${bin2objC}
+    ${acrCommonC}
+    ${compressC}
+    ${Lz77C}
+    ${zlibC}
 )
 
 target_include_directories(
     ${PROJECT_NAME} PRIVATE src
     ${PROJECT_NAME} PRIVATE include
+    ${PROJECT_NAME} PRIVATE include/Compress/zlib
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE

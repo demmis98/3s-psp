@@ -38,6 +38,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Manage.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFF56.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFF58.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFF84.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFF92.h \

@@ -1,7 +1,7 @@
 #include "Game/PulPul.h"
 #include "common.h"
 //#include "sdk/libvib.h"
-//#include "sf33rd/AcrSDK/common/mlPAD.h"
+//#include "AcrSDK/common/mlPAD.h"
 //#include "sf33rd/AcrSDK/ps2/ps2PAD.h"
 #include "Game/GD3rd.h"
 #include "Game/PLCNT.h"

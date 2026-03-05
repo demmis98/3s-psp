@@ -87,5 +87,6 @@ CMakeFiles/3rd-strike.dir/src/psp/pspmain.c.obj: \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/main.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h

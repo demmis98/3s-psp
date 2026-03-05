@@ -7,6 +7,8 @@
 extern u16 ColorRAM[512][64];
 extern Col3rd_W col3rd_w;
 
+extern s32 currentPaletteIndex;
+
 void q_ldreq_color_data(REQ* curr);
 void load_any_color(u16 ix, u8 kokey);
 void set_hitmark_color();

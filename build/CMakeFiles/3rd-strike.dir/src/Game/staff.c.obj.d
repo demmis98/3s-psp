@@ -45,6 +45,7 @@ CMakeFiles/3rd-strike.dir/src/Game/staff.c.obj: \
  /home/demma/.local/bin/pspdev/psp/include/sys/string.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFH6.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/SE.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/Sound3rd.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/WORK_SYS.h \

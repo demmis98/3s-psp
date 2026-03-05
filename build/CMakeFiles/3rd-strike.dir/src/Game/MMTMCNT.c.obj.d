@@ -38,6 +38,7 @@ CMakeFiles/3rd-strike.dir/src/Game/MMTMCNT.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/PLCNT.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/RAMCNT.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/texcash.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/texgroup.h

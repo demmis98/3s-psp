@@ -36,8 +36,9 @@ CMakeFiles/3rd-strike.dir/src/Game/DEMO02.c.obj: \
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/Game.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
- /home/demma/Documents/code/psp/3rd-strike/include/Game/Grade.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/Grade.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/MMTMCNT.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/PLCNT.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/PLS02.h \

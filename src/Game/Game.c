@@ -56,6 +56,8 @@
 #include "Game/workuser.h"
 #include "structs.h"
 
+#include "fl.h"
+
 void Wait_Auto_Load(struct _TASK* /* unused */);
 void Loop_Demo(struct _TASK* /* unused */);
 void Game(struct _TASK* /*unused*/);
@@ -101,6 +103,9 @@ void Before_Select_Sub();
 void Game_Task(struct _TASK* task_ptr) {
     s16 ix;
     s16 ff;
+
+    if(DEMMA_DEBUG)
+        flLogOut("Entry_Task\n");
 
     void (*Main_Jmp_Tbl[3])(struct _TASK*) = { Wait_Auto_Load, Loop_Demo, Game };
 

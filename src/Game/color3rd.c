@@ -4,10 +4,11 @@
 #include "sf33rd/AcrSDK/MiddleWare/PS2/CapSndEng/cse.h"
 #include "sf33rd/AcrSDK/MiddleWare/PS2/CapSndEng/emlMemMap.h"
 #include "sf33rd/AcrSDK/MiddleWare/PS2/CapSndEng/emlTSB.h"
-#include "sf33rd/AcrSDK/common/plcommon.h"
+
 #include "sf33rd/AcrSDK/ps2/flps2vram.h"
-#include "Common/PPGFile.h"
 */
+#include "AcrSDK/common/plcommon.h"
+#include "psp/PPGFile.h"
 #include "Game/DC_Ghost.h"
 #include "Game/GD3rd.h"
 #include "Game/RAMCNT.h"
@@ -58,9 +59,12 @@ Col3rd_W col3rd_w;
 
 // sbss
 COL* plcol[2];
-//PixelFormat palFormRam;
-//PixelFormat palFormSrc;
+PixelFormat palFormRam;
+PixelFormat palFormSrc;
 s32 palFormConv;
+
+// psp stuff
+s32 currentPaletteIndex;
 
 //functions
 s32 cseTsbSetBankAddr(u32 bank, SoundEvent* addr) ;
@@ -467,22 +471,18 @@ u16 palConvSrcToRam(u16 col) {
     u8 cG;
     u8 cB;
 
-    /*
     if (palFormConv == 0) {
         return col;
     }
 
     cA = palFormSrc.am & (col >> palFormSrc.as);
-    cR = palFormSrc.rm & (col >> palFormSrc.rs);
+    cB = palFormSrc.rm & (col >> palFormSrc.rs);
     cG = palFormSrc.gm & (col >> palFormSrc.gs);
-    cB = palFormSrc.bm & (col >> palFormSrc.bs);
+    cR = palFormSrc.bm & (col >> palFormSrc.bs);
     return (cA << palFormRam.as) | (cR << palFormRam.rs) | (cG << palFormRam.gs) | (cB << palFormRam.bs);
-    */
-    return 0;
 }
 
 void palCreateGhost() {
-    /*
     PPLFileHeader ppl;
     s32 key;
     s32 size;
@@ -536,10 +536,10 @@ void palCreateGhost() {
         adrs[i] = 0;
     }
 
-    //ppgSetupPalChunkDir(&col3rd_w.palDC, &ppl, adrs, 0, 1);
+    ppgSetupPalChunkDir(&col3rd_w.palDC, &ppl, adrs, 0, 1);
     Push_ramcnt_key(key);
 
-    //ppl.palettes = 2;
+    ppl.palettes = 2;
     size = 0x2000;
     key = Pull_ramcnt_key(size, 2, 0, 1);
     adrs = (u8*)Get_ramcnt_address(key);
@@ -548,9 +548,8 @@ void palCreateGhost() {
         adrs[i] = 0;
     }
 
-    //ppgSetupPalChunkDir(&col3rd_w.palCP3, &ppl, adrs, 0, 1);
+    ppgSetupPalChunkDir(&col3rd_w.palCP3, &ppl, adrs, 0, 1);
     Push_ramcnt_key(key);
-    */
 }
 
 Palette* palGetChunkGhostDC() {
@@ -562,7 +561,6 @@ Palette* palGetChunkGhostCP3() {
 }
 
 void palUpdateGhostDC() {
-    /*
     plContext bits;
     s32 i;
     u16* srcAdrs;
@@ -570,42 +568,41 @@ void palUpdateGhostDC() {
 
     for (i = 0; i < col3rd_w.palDC.total; i++) {
         if (col3rd_w.upBits & (1 << i)) {
-            //flLockPalette(NULL, col3rd_w.palDC.handle[i], &bits, 2);
+            /*
+            flLockPalette(NULL, col3rd_w.palDC.handle[i], &bits, 2);
             dstAdrs = bits.ptr;
             srcAdrs = &colPalBuffDC[i << 6];
-            //palConvRowTim2CI8Clut(srcAdrs, dstAdrs, 0x40);
-            //flUnlockPalette(col3rd_w.palDC.handle[i]);
+            palConvRowTim2CI8Clut(srcAdrs, dstAdrs, 0x40);
+            flUnlockPalette(col3rd_w.palDC.handle[i]);
+            */
         }
     }
-    */
     col3rd_w.upBits = 0;  
 }
 
 void palUpdateGhostCP3(s32 pal, s32 nums) {
-    /*
+    // unused bc this was for ps2
+
     plContext bits;
     s32 i;
     u16* srcAdrs;
     u16* dstAdrs;
 
     for (i = pal; i < (pal + nums); i++) {
-        //flLockPalette(NULL, col3rd_w.palCP3.handle[i], &bits, 2);
+        /*
+        flLockPalette(NULL, col3rd_w.palCP3.handle[i], &bits, 2);
         dstAdrs = bits.ptr;
         srcAdrs = (u16*)&ColorRAM[i];
         palConvRowTim2CI8Clut(srcAdrs, dstAdrs, 0x40);
-        //flUnlockPalette(col3rd_w.palCP3.handle[i]);
+        flUnlockPalette(col3rd_w.palCP3.handle[i]);
+        */
     }
-    */
+    
+    currentPaletteIndex = pal;
 }
 
 void palConvRowTim2CI8Clut(u16* src, u16* dst, s32 size) {
-    s32 i;
-    static u8 clut_tbl[32] = { 0, 1, 2,  3,  4,  5,  6,  7,  16, 17, 18, 19, 20, 21, 22, 23,
-                               8, 9, 10, 11, 12, 13, 14, 15, 24, 25, 26, 27, 28, 29, 30, 31 };
-
-    for (i = 0; i < size; i++) {
-        dst[(i & 0xE0) + clut_tbl[i & 0x1F]] = src[i];
-    }
+    memcpy(dst, src, size * sizeof(u16));
 }
 
 // rodata

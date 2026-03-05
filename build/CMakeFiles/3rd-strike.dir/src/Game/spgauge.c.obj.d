@@ -38,6 +38,7 @@ CMakeFiles/3rd-strike.dir/src/Game/spgauge.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/PLCNT.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/PLMAIN.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/SE.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/SLOWF.h \

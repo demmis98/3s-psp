@@ -37,4 +37,5 @@ CMakeFiles/3rd-strike.dir/src/Game/meta_col.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/common.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/color3rd.h \
- /home/demma/Documents/code/psp/3rd-strike/include/structs.h
+ /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h

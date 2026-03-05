@@ -18,6 +18,8 @@
 #include "Game/workuser.h"
 #include "structs.h"
 
+#include "fl.h"
+
 u8 letter_stack[40];
 u8 letter_counter;
 u8* letter_ptr;
@@ -85,6 +87,9 @@ void Continue_Score_Sub(s16 PL_id);
 void Entry_Task(struct _TASK* /* unused */) {
     s16 ix;
     s16 ff;
+
+    if(DEMMA_DEBUG)
+        flLogOut("Entry_Task\n");
 
     void (*Main_Jmp_Tbl[11])() = { Entry_00, Entry_01, Entry_02, Entry_03, Entry_04, Entry_03,
                                    Entry_06, Entry_07, Entry_08, Entry_03, Entry_10 };

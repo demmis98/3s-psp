@@ -38,6 +38,7 @@ CMakeFiles/3rd-strike.dir/src/Game/eff36.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/CHARSET.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFECT.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/OPENING.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/SE.h \

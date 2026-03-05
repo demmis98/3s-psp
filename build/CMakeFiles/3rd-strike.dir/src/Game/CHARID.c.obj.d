@@ -2,6 +2,7 @@ CMakeFiles/3rd-strike.dir/src/Game/CHARID.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/src/Game/CHARID.c \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/CHARID.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/psptypes.h \
  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdint.h \
@@ -35,6 +36,6 @@ CMakeFiles/3rd-strike.dir/src/Game/CHARID.c.obj: \
  /home/demma/.local/bin/pspdev/psp/include/sys/syslimits.h \
  /home/demma/.local/bin/pspdev/psp/include/sys/sched.h \
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h \
- /home/demma/Documents/code/psp/3rd-strike/include/bin2obj/char_table.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/bin2obj/char_table.h \
  /home/demma/Documents/code/psp/3rd-strike/include/common.h

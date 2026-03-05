@@ -1,10 +1,18 @@
 #ifndef STRUCTS_H
 #define STRUCTS_H
 
-//#include "sf33rd/AcrSDK/common/plcommon.h"
+#include "AcrSDK/common/plcommon.h"
 #include "types.h"
 //#include <libdma.h>
 //#include <libgraph.h>
+
+typedef struct {
+} TexturePoolUsed;
+
+typedef struct {
+} TexturePoolFree;
+
+
 
 typedef struct {
     // total size: 0x4
@@ -1394,6 +1402,45 @@ typedef struct {
     size_t srcSize;        // offset 0x1C, size 0x4
 } Texture;
 
+typedef struct {
+    // total size: 0x8
+    Texture* tex; // offset 0x0, size 0x4
+    Palette* pal; // offset 0x4, size 0x4
+} PPGDataList;
+
+typedef struct {
+    // total size: 0x10
+    u32 magic;     // offset 0x0, size 0x4
+    u32 fileSize;  // offset 0x4, size 0x4
+    u8 width;      // offset 0x8, size 0x1
+    u8 height;     // offset 0x9, size 0x1
+    u8 compress;   // offset 0xA, size 0x1
+    u8 pixel;      // offset 0xB, size 0x1
+    u16 formARGB;  // offset 0xC, size 0x2
+    u16 transNums; // offset 0xE, size 0x2
+} PPGFileHeader;
+
+typedef struct {
+    // total size: 0x10
+    u32 magic;    // offset 0x0, size 0x4
+    u32 fileSize; // offset 0x4, size 0x4
+    u16 id;       // offset 0x8, size 0x2
+    u8 compress;  // offset 0xA, size 0x1
+    u8 free;      // offset 0xB, size 0x1
+    u32 expSize;  // offset 0xC, size 0x4
+} PPXFileHeader;
+
+typedef struct {
+    // total size: 0x10
+    u32 magic;    // offset 0x0, size 0x4
+    u32 fileSize; // offset 0x4, size 0x4
+    u16 free;     // offset 0x8, size 0x2
+    u8 compress;  // offset 0xA, size 0x1
+    u8 c_mode;    // offset 0xB, size 0x1
+    u16 formARGB; // offset 0xC, size 0x2
+    u16 palettes; // offset 0xE, size 0x2
+} PPLFileHeader;
+
 struct _VM_W {
     // total size: 0x6C
     u8 r_no[4];     // offset 0x0, size 0x4
@@ -1551,6 +1598,84 @@ typedef struct {
 } BG;
 
 typedef struct {
+    // total size: 0x18
+    u8* memoryblock;   // offset 0x0, size 0x4
+    u8* baseandcap[2]; // offset 0x4, size 0x8
+    u8* frame[2];      // offset 0xC, size 0x8
+    s32 align;         // offset 0x14, size 0x4
+} FL_FMS;
+
+typedef union {
+    u32 etc; // offset 0x0, size 0x4
+    struct /* @anon1 */ {
+        // total size: 0x4
+        u8 vib;  // offset 0x0, size 0x1
+        u8 etc0; // offset 0x1, size 0x1
+        u8 etc1; // offset 0x2, size 0x1
+        u8 etc2; // offset 0x3, size 0x1
+    } gc;        // offset 0x0, size 0x4
+    struct /* @anon4 */ {
+        // total size: 0x4
+        u8 port; // offset 0x0, size 0x1
+        u8 slot; // offset 0x1, size 0x1
+        u8 vib;  // offset 0x2, size 0x1
+        u8 etc;  // offset 0x3, size 0x1
+    } ps;        // offset 0x0, size 0x4
+    struct /* @anon6 */ {
+        // total size: 0x4
+        u8 socket1; // offset 0x0, size 0x1
+        u8 socket2; // offset 0x1, size 0x1
+        u16 etc;    // offset 0x2, size 0x2
+    } dc;           // offset 0x0, size 0x4
+    struct /* @anon8 */ {
+        // total size: 0x4
+        void* handle; // offset 0x0, size 0x4
+    } xbox;           // offset 0x0, size 0x4
+} PAD_CONN;
+
+typedef struct {
+    // total size: 0x10
+    u8 pow[16]; // offset 0x0, size 0x10
+} PAD_ANSHOT;
+
+typedef struct {
+    // total size: 0x88
+    u8 state;           // offset 0x0, size 0x1
+    u8 anstate;         // offset 0x1, size 0x1
+    u16 kind;           // offset 0x2, size 0x2
+    PAD_CONN conn;      // offset 0x4, size 0x4
+    u32 sw;             // offset 0x8, size 0x4
+    u32 sw_old;         // offset 0xC, size 0x4
+    u32 sw_new;         // offset 0x10, size 0x4
+    u32 sw_off;         // offset 0x14, size 0x4
+    u32 sw_chg;         // offset 0x18, size 0x4
+    PAD_ANSHOT anshot;  // offset 0x1C, size 0x10
+    PAD_STICK stick[2]; // offset 0x2C, size 0x18
+    u32 sw_repeat;      // offset 0x44, size 0x4
+    union /* @anon9 */ {
+        u16 work; // offset 0x0, size 0x2
+        struct /* @anon10 */ {
+            // total size: 0x2
+            u8 press; // offset 0x0, sizek 0x1
+            u8 sw_up; // offset 0x1, size 0x1
+        } ctr;        // offset 0x0, size 0x2
+    } rpsw[32];       // offset 0x48, size 0x40
+} FLPAD;
+
+typedef struct {
+    // total size: 0x2C
+    u8 conf_sw[32]; // offset 0x0, size 0x20
+    u8 flip_lever;  // offset 0x20, size 0x1
+    u8 flip_ast1;   // offset 0x21, size 0x1
+    u8 flip_ast2;   // offset 0x22, size 0x1
+    u8 free;        // offset 0x23, size 0x1
+    s16 abut_on;    // offset 0x24, size 0x2
+    s16 ast1_on;    // offset 0x26, size 0x2
+    s16 ast2_on;    // offset 0x28, size 0x2
+    u16 free2;      // offset 0x2A, size 0x2
+} FLPAD_CONFIG;
+
+typedef struct {
     // total size: 0x10
     union {
         u16 results; // offset 0x0, size 0x2
@@ -1668,6 +1793,13 @@ typedef struct {
 } ScoreRankingEntry;
 
 typedef struct {
+    // total size: 0x8
+    s16 x; // offset 0x0, size 0x2
+    s16 y; // offset 0x2, size 0x2
+    u32 c; // offset 0x4, size 0x4
+} Pixel;
+
+typedef struct {
     // total size: 0xC
     f32 x; // offset 0x0, size 0x4
     f32 y; // offset 0x4, size 0x4
@@ -1761,7 +1893,7 @@ typedef union {
 
 typedef struct {
     float x, y, z;        // 12 bytes
-    short u, v;           // 4 bytes
+    float u, v;           // 4 bytes
     u32 col;              // 4 bytes
 } Polygon;
 
@@ -1934,20 +2066,26 @@ typedef struct {
 } PatternCollection;
 
 typedef struct {
-    Texture* texture;      // pointer to PSP texture
-    
-    int frameCount;        // total frames in animation
-    int currentFrame;      // current frame index
-    int frameTime;         // time per frame
-    int frameTimer;        // current timer
-    
-    int frameWidth;        // width of one frame
-    int frameHeight;       // height of one frame
-    
-    u32 attribute;         // blending / flags
-    u8 id;
-    u8 ext;
-    s16 mode;              // render mode
+    // total size: 0x64
+    s32 mltnum16;            // offset 0x0, size 0x4
+    s32 mltnum32;            // offset 0x4, size 0x4
+    s32 mltnum;              // offset 0x8, size 0x4
+    s32 mltgidx16;           // offset 0xC, size 0x4
+    s32 mltgidx32;           // offset 0x10, size 0x4
+    s32 mltcshtime16;        // offset 0x14, size 0x4
+    s32 mltcshtime32;        // offset 0x18, size 0x4
+    PatternState* mltcsh16;  // offset 0x1C, size 0x4
+    PatternState* mltcsh32;  // offset 0x20, size 0x4
+    u8* mltbuf;              // offset 0x24, size 0x4
+    Texture tex;             // offset 0x28, size 0x20
+    PPGDataList texList;     // offset 0x48, size 0x8
+    u32 attribute;           // offset 0x50, size 0x4
+    PatternCollection* cpat; // offset 0x54, size 0x4
+    TexturePoolFree* tpf;    // offset 0x58, size 0x4
+    TexturePoolUsed* tpu;    // offset 0x5C, size 0x4
+    u8 id;                   // offset 0x60, size 0x1
+    u8 ext;                  // offset 0x61, size 0x1
+    s16 mode;                // offset 0x62, size 0x2
 } MultiTexture;
 
 typedef struct _MEMMAN_CELL {
@@ -2184,13 +2322,119 @@ typedef struct {
     s16 chix; // offset 0x6, size 0x2
 } GillEffData;
 
-typedef struct {
-} TexturePoolUsed;
 
-typedef struct {
-} TexturePoolFree;
+enum _FLSETRENDERSTATE {
+    FLRENDER_CULL = 0,
+    FLRENDER_LIGHTING = 1,
+    FLRENDER_SPECULAR = 2,
+    FLRENDER_WRAP = 3,
+    FLRENDER_TEXSTAGE0 = 4,
+    FLRENDER_TEXSTAGE1 = 5,
+    FLRENDER_TEXSTAGE2 = 6,
+    FLRENDER_TEXSTAGE3 = 7,
+    FLRENDER_TEXOPE0 = 8,
+    FLRENDER_TEXOPE1 = 9,
+    FLRENDER_TEXOPE2 = 10,
+    FLRENDER_TEXOPE3 = 11,
+    FLRENDER_SCISSOR = 12,
+    FLRENDER_BLENDOPE = 13,
+    FLRENDER_AMBIENT = 14,
+    FLRENDER_FOGCOLOR = 15,
+    FLRENDER_FOGSTART = 16,
+    FLRENDER_FOGEND = 17,
+    FLRENDER_FOGENABLE = 18,
+    FLRENDER_FLIP = 19,
+    FLRENDER_BACKCOLOR = 20,
+    FLRENDER_MATERIAL = 21,
+    FLRENDER_VIEW = 22,
+    FLRENDER_PROJ = 23,
+    FLRENDER_VIEWPORT = 24,
+    FLRENDER_UVSCRMATRIX = 25,
+    FLRENDER_WORLD0 = 26,
+    FLRENDER_WORLD1 = 27,
+    FLRENDER_WORLD2 = 28,
+    FLRENDER_WORLD3 = 29,
+    FLRENDER_WORLD4 = 30,
+    FLRENDER_WORLD5 = 31,
+    FLRENDER_WORLD6 = 32,
+    FLRENDER_WORLD7 = 33,
+    FLRENDER_WORLD8 = 34,
+    FLRENDER_WORLD9 = 35,
+    FLRENDER_WORLD10 = 36,
+    FLRENDER_WORLD11 = 37,
+    FLRENDER_WORLD12 = 38,
+    FLRENDER_WORLD13 = 39,
+    FLRENDER_WORLD14 = 40,
+    FLRENDER_WORLD15 = 41,
+    FLRENDER_WORLD16 = 42,
+    FLRENDER_WORLD17 = 43,
+    FLRENDER_WORLD18 = 44,
+    FLRENDER_WORLD19 = 45,
+    FLRENDER_WORLD20 = 46,
+    FLRENDER_WORLD21 = 47,
+    FLRENDER_WORLD22 = 48,
+    FLRENDER_WORLD23 = 49,
+    FLRENDER_WORLD24 = 50,
+    FLRENDER_WORLD25 = 51,
+    FLRENDER_WORLD26 = 52,
+    FLRENDER_WORLD27 = 53,
+    FLRENDER_WORLD28 = 54,
+    FLRENDER_WORLD29 = 55,
+    FLRENDER_WORLD30 = 56,
+    FLRENDER_WORLD31 = 57,
+    FLRENDER_MATERIAL0 = 58,
+    FLRENDER_MATERIAL1 = 59,
+    FLRENDER_MATERIAL2 = 60,
+    FLRENDER_MATERIAL3 = 61,
+    FLRENDER_MATERIAL4 = 62,
+    FLRENDER_MATERIAL5 = 63,
+    FLRENDER_MATERIAL6 = 64,
+    FLRENDER_MATERIAL7 = 65,
+    FLRENDER_MATERIAL8 = 66,
+    FLRENDER_MATERIAL9 = 67,
+    FLRENDER_MATERIAL10 = 68,
+    FLRENDER_MATERIAL11 = 69,
+    FLRENDER_MATERIAL12 = 70,
+    FLRENDER_MATERIAL13 = 71,
+    FLRENDER_MATERIAL14 = 72,
+    FLRENDER_MATERIAL15 = 73,
+    FLRENDER_MATERIAL16 = 74,
+    FLRENDER_MATERIAL17 = 75,
+    FLRENDER_MATERIAL18 = 76,
+    FLRENDER_MATERIAL19 = 77,
+    FLRENDER_MATERIAL20 = 78,
+    FLRENDER_MATERIAL21 = 79,
+    FLRENDER_MATERIAL22 = 80,
+    FLRENDER_MATERIAL23 = 81,
+    FLRENDER_MATERIAL24 = 82,
+    FLRENDER_MATERIAL25 = 83,
+    FLRENDER_MATERIAL26 = 84,
+    FLRENDER_MATERIAL27 = 85,
+    FLRENDER_MATERIAL28 = 86,
+    FLRENDER_MATERIAL29 = 87,
+    FLRENDER_MATERIAL30 = 88,
+    FLRENDER_MATERIAL31 = 89,
+    FLRENDER_LIGHT0 = 90,
+    FLRENDER_LIGHT1 = 91,
+    FLRENDER_LIGHT2 = 92,
+    FLRENDER_SHADER = 93,
+    FLRENDER_ALPHABLENDMODE = 94,
+    FLRENDER_ALPHATEST = 95,
+    FLRENDER_ALPHAREF = 96,
+    FLRENDER_ALPHABLENDENABLE = 97,
+    FLRENDER_UVSCROLL = 98,
+    FLRENDER_TEXTUREFILTER = 99,
+    FLRENDER_TEXTUREADDRESSING = 100,
+    FLRENDER_RENDERTARGET = 101,
+    FLRENDER_FADECOLORENABLE = 102,
+    FLRENDER_FADECOLOR = 103,
+    FLRENDER_MIPMAPBIAS = 104,
+    FLRENDER_MIPMAPARG1 = 105,
+    FLRENDER_MIPMAPARG2 = 106,
+    FLRENDER_MIPMAPFILTER = 107,
+    FLRENDER_ZWRITE = 108,
+    FLRENDER_ZOPE = 109,
+};
 
-typedef struct {
-} PPGDataList;
 
 #endif

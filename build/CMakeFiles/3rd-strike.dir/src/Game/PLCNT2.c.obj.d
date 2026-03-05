@@ -38,6 +38,7 @@ CMakeFiles/3rd-strike.dir/src/Game/PLCNT2.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/CMD_MAIN.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFECT.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/HITCHECK.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/Manage.h \

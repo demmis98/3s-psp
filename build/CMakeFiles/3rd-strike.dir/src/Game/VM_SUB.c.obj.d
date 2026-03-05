@@ -39,4 +39,5 @@ CMakeFiles/3rd-strike.dir/src/Game/VM_SUB.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/VM_DATA.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/WORK_SYS.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/vm.h

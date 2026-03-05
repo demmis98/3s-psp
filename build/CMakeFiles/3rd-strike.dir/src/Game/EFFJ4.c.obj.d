@@ -2,6 +2,7 @@ CMakeFiles/3rd-strike.dir/src/Game/EFFJ4.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/src/Game/EFFJ4.c \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFJ4.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/psptypes.h \
  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdint.h \

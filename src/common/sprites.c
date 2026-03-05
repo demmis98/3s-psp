@@ -8,8 +8,6 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-static TexturePSP **textures;
-
 TexturePSP * loadTexture(const char * filename, bool inVram) {
     TexturePSP * texture = (TexturePSP *) calloc(1, sizeof(TexturePSP));
     void *temp_tex;
@@ -198,18 +196,4 @@ void drawRect(float x, float y, float w, float h, uint32_t color) {
     sceGuDisable(GU_TEXTURE_2D);
     sceGuDrawArray(GU_SPRITES, GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
     sceGuEnable(GU_TEXTURE_2D);
-}
-
-// getters setters
-TexturePSP ** getTextures(){
-    return textures;
-}
-TexturePSP * getTexture(s32 i){
-    return textures[i];
-}
-void setTextures(TexturePSP ** t){
-    textures = t;
-}
-void setTextureI(TexturePSP *t, s32 i){
-    textures[i] = t;
 }
