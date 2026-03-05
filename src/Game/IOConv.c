@@ -6,6 +6,22 @@
 #include "Game/main.h"
 #include "Game/workuser.h"
 #include "structs.h"
+#include <pspctrl.h>
+
+#define BTN_UP       0x0001
+#define BTN_DOWN     0x0002
+#define BTN_LEFT     0x0004
+#define BTN_RIGHT    0x0008
+#define BTN_TRIANGLE 0x0010
+#define BTN_CIRCLE   0x0020
+#define BTN_CROSS    0x0040
+#define BTN_SQUARE   0x0080
+#define BTN_L1       0x0100
+#define BTN_R1       0x0200
+#define BTN_L2       0x0400
+#define BTN_R2       0x0800
+#define BTN_START    0x4000
+#define BTN_SELECT   0x2000
 
 IO io_w;
 
@@ -17,99 +33,26 @@ u32 ioconv_table[24][2] = { { 0x1, 0x1 },      { 0x2, 0x2 },      { 0x4, 0x4 }, 
                             { 0x0, 0x100000 }, { 0x0, 0x200000 }, { 0x0, 0x400000 },  { 0x0, 0x800000 } };
 
 void keyConvert() {
-    IOPad* pad;
-    u32 currSw;
-    s32 i;
-    s32 j;
-    s32 repeat_on = 0;
+    for (int i = 0; i < 2; i++) {
+        u32 ps2Buttons = 0;
+        u32 pspButtons = io_w.data[i].sw; // already read from PSP
 
-    if (Debug_w[0x2B] && mpp_w.inGame && (Game_pause == 0)) {
-        repeat_on = 1;
+        if (pspButtons & PSP_CTRL_UP)       ps2Buttons |= BTN_UP;
+        if (pspButtons & PSP_CTRL_DOWN)     ps2Buttons |= BTN_DOWN;
+        if (pspButtons & PSP_CTRL_LEFT)     ps2Buttons |= BTN_LEFT;
+        if (pspButtons & PSP_CTRL_RIGHT)    ps2Buttons |= BTN_RIGHT;
+        if (pspButtons & PSP_CTRL_TRIANGLE) ps2Buttons |= BTN_TRIANGLE;
+        if (pspButtons & PSP_CTRL_CIRCLE)   ps2Buttons |= BTN_CIRCLE;
+        if (pspButtons & PSP_CTRL_CROSS)    ps2Buttons |= BTN_CROSS;
+        if (pspButtons & PSP_CTRL_SQUARE)   ps2Buttons |= BTN_SQUARE;
+        if (pspButtons & PSP_CTRL_LTRIGGER) ps2Buttons |= BTN_L1;
+        if (pspButtons & PSP_CTRL_RTRIGGER) ps2Buttons |= BTN_R1;
+        if (pspButtons & PSP_CTRL_SELECT)   ps2Buttons |= BTN_SELECT;
+        if (pspButtons & PSP_CTRL_START)    ps2Buttons |= BTN_START;
+
+        io_w.sw[i] = ps2Buttons; // store for your game logic
     }
-
-    if ((save_w[Present_Mode].extra_option.contents[0][4]) && mpp_w.inGame && (Game_pause == 0)) {
-        repeat_on = 1;
-
-        if ((task[3].condition == 1) && (task[3].r_no[0] != 10)) {
-            repeat_on = 0;
-        }
-    }
-
-    for (i = 0; i < 2; i++) {
-        flPADSetRepeatSw(&flpad_adr[0][i], 0xFF000F, 15, 3);
-
-        if (repeat_on) {
-            flPADSetRepeatSw(&flpad_adr[0][i], 0x3FF0, 2, 1);
-        } else {
-            flPADSetRepeatSw(&flpad_adr[0][i], 0x3FF0, 10, 2);
-        }
-
-        pad = &io_w.data[i];
-
-        pad->state = flpad_adr[0][i].state;
-        pad->anstate = flpad_adr[0][i].anstate;
-        pad->kind = flpad_adr[0][i].kind;
-        pad->sw = flpad_adr[0][i].sw;
-        pad->sw_old = flpad_adr[0][i].sw_old;
-        pad->sw_new = flpad_adr[0][i].sw_new;
-        pad->sw_off = flpad_adr[0][i].sw_off;
-        pad->sw_chg = flpad_adr[0][i].sw_chg;
-        pad->sw_repeat = flpad_adr[0][i].sw_repeat;
-        pad->stick[0] = flpad_adr[0][i].stick[0];
-        pad->stick[1] = flpad_adr[0][i].stick[1];
-
-        if (mpp_w.useAnalogStickData) {
-            if (!(flpad_adr[0][i].sw & 0xF)) {
-                pad->sw |= (pad->sw >> 16) & 0xF;
-                pad->sw_old |= (pad->sw_old >> 16) & 0xF;
-                pad->sw_new |= (pad->sw_new >> 16) & 0xF;
-                pad->sw_off |= (pad->sw_off >> 16) & 0xF;
-                pad->sw_chg |= (pad->sw_chg >> 16) & 0xF;
-                pad->sw_repeat |= (pad->sw_repeat >> 16) & 0xF;
-            }
-
-            if (!(flpad_adr[0][i].sw & 0xF)) {
-                pad->sw |= (pad->sw >> 20) & 0xF;
-                pad->sw_old |= (pad->sw_old >> 20) & 0xF;
-                pad->sw_new |= (pad->sw_new >> 20) & 0xF;
-                pad->sw_off |= (pad->sw_off >> 20) & 0xF;
-                pad->sw_chg |= (pad->sw_chg >> 20) & 0xF;
-                pad->sw_repeat |= (pad->sw_repeat >> 20) & 0xF;
-            }
-        }
-        
-        if (pad->kind == 0 || pad->kind == 0x8000) {
-            Interface_Type[i] = 0;
-        } else {
-            Interface_Type[i] = 2;
-        }
-
-        io_w.sw[i] = 0;
-        currSw = pad->sw;
-
-        for (j = 0; j < 4; j++) {
-            if (currSw & ioconv_table[j][1]) {
-                io_w.sw[i] |= ioconv_table[j][0];
-            }
-        }
-
-        for (j = 12; j < 16; j++) {
-            if (currSw & ioconv_table[j][1]) {
-                io_w.sw[i] |= ioconv_table[j][0];
-            }
-        }
-
-        if (repeat_on) {
-            currSw = pad->sw_repeat;
-        }
-
-        for (j = 4; j < 12; j++) {
-            if (currSw & ioconv_table[j][1]) {
-                io_w.sw[i] |= ioconv_table[j][0];
-            }
-        }
-    }
-
+    
     p1sw_buff = io_w.sw[0];
     p2sw_buff = io_w.sw[1];
 }

@@ -43,4 +43,5 @@ CMakeFiles/3rd-strike.dir/src/Game/IOConv.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/debug/Debug.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/main.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/workuser.h \
- /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h \
+ /home/demma/.local/bin/pspdev/psp/sdk/include/pspctrl.h

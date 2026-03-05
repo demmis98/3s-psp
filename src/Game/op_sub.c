@@ -1,7 +1,7 @@
 #include "Game/op_sub.h"
 #include "common.h"
-//#include "Common/PPGFile.h"
-//#include "Common/PPGWork.h"
+#include "psp/PPGFile.h"
+#include "psp/PPGWork.h"
 #include "Game/DC_Ghost.h"
 #include "Game/MTRANS.h"
 #include "Game/OPENING.h"
@@ -18,14 +18,14 @@ void TexRelease(u32 G_Num) {
 
     switch (G_Num) {
     case 590:
-        //ppgReleaseTextureHandle(&ppgWarTex, -1);
-        //ppgReleasePaletteHandle(&ppgWarPal, -1);
-        //ppgReleasePaletteHandle(&ppgAdxPal, -1);
+        ppgReleaseTextureHandle(&ppgWarTex, -1);
+        ppgReleasePaletteHandle(&ppgWarPal, -1);
+        ppgReleasePaletteHandle(&ppgAdxPal, -1);
         break;
 
     case 600:
-        //ppgReleaseTextureHandle(&ppgCapLogoTex, -1);
-        //ppgReleasePaletteHandle(&ppgCapLogoPal, -1);
+        ppgReleaseTextureHandle(&ppgCapLogoTex, -1);
+        ppgReleasePaletteHandle(&ppgCapLogoPal, -1);
         break;
 
     case 601:
@@ -36,14 +36,14 @@ void TexRelease(u32 G_Num) {
 
 void TexRelease_OP() {
     Purge_memory_of_kind_of_key(0x1D);
-    //ppgSourceDataReleased(&ppgOpnBgList);
-    //ppgReleaseTextureHandle(&ppgOpnBgTex, -1);
+    ppgSourceDataReleased(&ppgOpnBgList);
+    ppgReleaseTextureHandle(&ppgOpnBgTex, -1);
     reset_dma_group(0x8C40);
     purge_texcash_work(9);
 }
 
 void put_chr2(OPTW* optw) {
-    Vertex tex[4];
+    Polygon tex[4];
 
     if (No_Trans) {
         return;
@@ -54,6 +54,7 @@ void put_chr2(OPTW* optw) {
     tex[3].x = Frame_Zoom_X * ((optw->off_x + 0x100) * optw->zx);
     tex[3].y = Frame_Zoom_Y * ((optw->off_y + 0x100) * optw->zy);
     tex[0].z = tex[3].z = PrioBase[optw->prio];
+    njDrawSprite(tex, 0, optw->col.full, 0);
     //ppgWriteQuadUseTrans(tex, optw->col.full, NULL, optw->g_no, -1, optw->hv, 300);
 }
 

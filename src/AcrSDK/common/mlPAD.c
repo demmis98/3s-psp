@@ -2,6 +2,7 @@
 #include "common.h"
 //#include "sf33rd/AcrSDK/ps2/flPADUSR.h"
 //#include "sf33rd/AcrSDK/ps2/ps2PAD.h"
+#include "Game/IOConv.h"
 #include "structs.h"
 
 #include <pspctrl.h>
@@ -55,25 +56,27 @@ void flPADConfigSet(const FLPAD_CONFIG* adrs, s32 padnum) {
 }
 
 void flPADGetALL() {
-    s16 i = 0;
+    SceCtrlData padData;
+    sceCtrlPeekBufferPositive(&padData, 1); // read current controller state
 
-    SceCtrlData pad;
+    for (int i = 0; i < 2; i++) {
+        // If you only have 1 PSP pad, just use i=0
+        io_w.data[i].state = padData.Buttons;
+        io_w.data[i].anstate = padData.Buttons; // for analog
+        io_w.data[i].kind = 1;           // assume digital pad connected
+        //io_w.data[i].conn = 1;
 
-    // Read the current state of the pads (maximum 2 pads on PSP)
-    sceCtrlReadBufferPositive(&pad, 1);  // Pass the buffer to store the data, reading 2 pads
+        // Store analog sticks
+        io_w.data[i].stick[0].x = padData.Lx - 128;
+        io_w.data[i].stick[0].y = padData.Ly - 128;
+        io_w.data[i].stick[1].x = padData.Rx - 128; // PSP only has L stick, R stick fake?
+        io_w.data[i].stick[1].y = padData.Ry - 128;
 
-    NumOfValidPads = 0;
-
-    flpad_adr[0][i].state = 0;
-    //flpad_adr[0][i].state = pad.Buttons;
-    if(pad.Buttons & PSP_CTRL_UP){
-        flpad_adr[0][i].state = 0xFF;
-        flpad_adr[0][i].sw = 0xFF;
-        flpad_adr[0][i].sw_new = 0xFF;
-        flpad_adr[0][i].sw_chg = 0xFF;
+        // Update raw button state
+        io_w.data[i].sw_new = padData.Buttons;// & 0xFFFF; // mask lower 16 bits
+        io_w.data[i].sw_old = io_w.data[i].sw;          // previous frame
+        io_w.data[i].sw = io_w.data[i].sw_new;
     }
-
-    flPADACRConf();  // Same function for configuration as in the PS2 code
 }
 
 void flPADACRConf() {

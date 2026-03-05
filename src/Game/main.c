@@ -71,7 +71,7 @@ void AcrMain() {
     njdp2d_init();
     njUserInit();
     palCreateGhost();
-    //ppgMakeConvTableTexDC();
+    ppgMakeConvTableTexDC();
     appSetupBasePriority();
     //MemcardInit();
 

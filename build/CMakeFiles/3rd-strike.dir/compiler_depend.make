@@ -162,6 +162,7 @@ CMakeFiles/3rd-strike.dir/src/AcrSDK/common/mlPAD.c.obj: /home/demma/Documents/c
   /home/demma/.local/bin/pspdev/psp/include/machine/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/IOConv.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspctrl.h
 
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plapx.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/AcrSDK/common/plapx.c \
@@ -11474,7 +11475,8 @@ CMakeFiles/3rd-strike.dir/src/Game/IOConv.c.obj: /home/demma/Documents/code/psp/
   /home/demma/Documents/code/psp/3rd-strike/include/Game/debug/Debug.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/main.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/workuser.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h \
+  /home/demma/.local/bin/pspdev/psp/sdk/include/pspctrl.h
 
 CMakeFiles/3rd-strike.dir/src/Game/LOSE_PL.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/LOSE_PL.c \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/LOSE_PL.h \
@@ -24590,7 +24592,7 @@ CMakeFiles/3rd-strike.dir/src/Game/op_sub.c.obj: /home/demma/Documents/code/psp/
   /home/demma/.local/bin/pspdev/psp/include/machine/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/types.h \
   /home/demma/Documents/code/psp/3rd-strike/include/common.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/psp/PPGFile.h \
   /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerneltypes.h \
@@ -24635,6 +24637,10 @@ CMakeFiles/3rd-strike.dir/src/Game/op_sub.c.obj: /home/demma/Documents/code/psp/
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
   /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
+  /home/demma/.local/bin/pspdev/psp/include/malloc.h \
+  /home/demma/.local/bin/pspdev/psp/include/machine/malloc.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/psp/PPGWork.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/MTRANS.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/OPENING.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/RAMCNT.h \
@@ -28000,12 +28006,6 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 
 /home/demma/.local/bin/pspdev/psp/include/malloc.h:
 
-/home/demma/Documents/code/psp/3rd-strike/src/Game/EFF63.c:
-
-/home/demma/Documents/code/psp/3rd-strike/src/Game/EFFH0.c:
-
-/home/demma/Documents/code/psp/3rd-strike/include/Compress/zlib/infcodes.h:
-
 /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman.h:
 
 /home/demma/Documents/code/psp/3rd-strike/include/Game/EFF32.h:
@@ -28044,10 +28044,6 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 
 /home/demma/Documents/code/psp/3rd-strike/include/Game/workuser.h:
 
-/home/demma/.local/bin/pspdev/psp/sdk/include/psploadcore.h:
-
-/home/demma/Documents/code/psp/3rd-strike/include/Game/active08.h:
-
 /home/demma/Documents/code/psp/3rd-strike/include/Game/Se_Data.h:
 
 /home/demma/Documents/code/psp/3rd-strike/src/Game/EFF38.c:
@@ -28055,10 +28051,6 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 /home/demma/Documents/code/psp/3rd-strike/src/Game/EFF27.c:
 
 /home/demma/Documents/code/psp/3rd-strike/src/Game/EFF17.c:
-
-/home/demma/Documents/code/psp/3rd-strike/include/Game/EFF67.h:
-
-/home/demma/Documents/code/psp/3rd-strike/include/Game/Grade.h:
 
 /home/demma/Documents/code/psp/3rd-strike/include/Game/ACTIVE00.h:
 
@@ -28132,10 +28124,6 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 
 /home/demma/Documents/code/psp/3rd-strike/include/Game/Message3rd/C_USA/PL11End_usa.h:
 
-/home/demma/Documents/code/psp/3rd-strike/src/common/math.h:
-
-/home/demma/Documents/code/psp/3rd-strike/src/Game/EffA9.c:
-
 /home/demma/.local/bin/pspdev/psp/include/stdlib.h:
 
 /home/demma/Documents/code/psp/3rd-strike/src/Game/end_main.c:
@@ -28188,6 +28176,8 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 
 /home/demma/Documents/code/psp/3rd-strike/src/Compress/Lz77/Lz77Dec.c:
 
+/home/demma/.local/bin/pspdev/psp/sdk/include/pspctrl.h:
+
 /home/demma/.local/bin/pspdev/psp/include/sys/_timeval.h:
 
 /home/demma/Documents/code/psp/3rd-strike/src/Game/MMTMCNT.c:
@@ -28197,6 +28187,10 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 /home/demma/Documents/code/psp/3rd-strike/include/Game/SLOWF.h:
 
 /home/demma/.local/bin/pspdev/psp/include/machine/stdlib.h:
+
+/home/demma/.local/bin/pspdev/psp/include/sys/stdio.h:
+
+/home/demma/.local/bin/pspdev/psp/include/sys/select.h:
 
 /home/demma/Documents/code/psp/3rd-strike/include/Game/VM_SUB.h:
 
@@ -28213,6 +28207,16 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 /home/demma/Documents/code/psp/3rd-strike/src/Game/HITEFPL.c:
 
 /home/demma/Documents/code/psp/3rd-strike/include/Game/DIR_DATA.h:
+
+/home/demma/Documents/code/psp/3rd-strike/src/Game/EffA9.c:
+
+/home/demma/Documents/code/psp/3rd-strike/src/common/math.h:
+
+/home/demma/Documents/code/psp/3rd-strike/include/Game/EFF67.h:
+
+/home/demma/Documents/code/psp/3rd-strike/include/Game/Grade.h:
+
+/home/demma/Documents/code/psp/3rd-strike/include/Game/COM_DATU.h:
 
 /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFECT.h:
 
@@ -28231,6 +28235,14 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 /home/demma/.local/bin/pspdev/psp/sdk/include/pspthreadman.h:
 
 /home/demma/Documents/code/psp/3rd-strike/src/Game/EFFD4.c:
+
+/home/demma/Documents/code/psp/3rd-strike/src/Game/EFFH0.c:
+
+/home/demma/Documents/code/psp/3rd-strike/include/Compress/zlib/infcodes.h:
+
+/home/demma/Documents/code/psp/3rd-strike/include/Game/active08.h:
+
+/home/demma/.local/bin/pspdev/psp/sdk/include/psploadcore.h:
 
 /home/demma/Documents/code/psp/3rd-strike/include/Game/bg180.h:
 
@@ -28520,11 +28532,7 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 
 /home/demma/Documents/code/psp/3rd-strike/src/Game/ac0001.c:
 
-/home/demma/.local/bin/pspdev/psp/sdk/include/pspctrl.h:
-
-/home/demma/.local/bin/pspdev/psp/include/sys/select.h:
-
-/home/demma/.local/bin/pspdev/psp/include/sys/stdio.h:
+/home/demma/Documents/code/psp/3rd-strike/src/Game/EFF63.c:
 
 /home/demma/Documents/code/psp/3rd-strike/src/Game/EFF67.c:
 
@@ -28613,8 +28621,6 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 /home/demma/Documents/code/psp/3rd-strike/include/Game/EFF41.h:
 
 /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFC8.h:
-
-/home/demma/Documents/code/psp/3rd-strike/include/Game/EFFG7.h:
 
 /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_stat.h:
 
@@ -28707,6 +28713,8 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 /home/demma/Documents/code/psp/3rd-strike/include/Game/Eff95.h:
 
 /home/demma/Documents/code/psp/3rd-strike/src/Game/Eff99.c:
+
+/home/demma/Documents/code/psp/3rd-strike/include/psp/PPGFile.h:
 
 /home/demma/Documents/code/psp/3rd-strike/src/Game/EFFF9.c:
 
@@ -28846,8 +28854,6 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 
 /home/demma/Documents/code/psp/3rd-strike/include/Game/end_19.h:
 
-/home/demma/Documents/code/psp/3rd-strike/include/Game/COM_DATU.h:
-
 /home/demma/Documents/code/psp/3rd-strike/include/Game/EFF18.h:
 
 /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerror.h:
@@ -28894,8 +28900,6 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 
 /home/demma/Documents/code/psp/3rd-strike/include/Game/SE.h:
 
-/home/demma/Documents/code/psp/3rd-strike/include/psp/PPGFile.h:
-
 /home/demma/Documents/code/psp/3rd-strike/include/Game/SHELL05.h:
 
 /home/demma/Documents/code/psp/3rd-strike/src/Game/BBBSCOM.c:
@@ -28905,6 +28909,8 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 /home/demma/Documents/code/psp/3rd-strike/src/Game/DC_Ghost.c:
 
 /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h:
+
+/home/demma/Documents/code/psp/3rd-strike/include/Game/EFFG7.h:
 
 /home/demma/Documents/code/psp/3rd-strike/src/Game/EFFG9.c:
 
@@ -28953,6 +28959,10 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 /home/demma/Documents/code/psp/3rd-strike/include/Game/SHELL03.h:
 
 /home/demma/Documents/code/psp/3rd-strike/src/Game/EFFJ2.c:
+
+/home/demma/Documents/code/psp/3rd-strike/include/Game/IOConv.h:
+
+/home/demma/Documents/code/psp/3rd-strike/include/Game/EFFJ2.h:
 
 /home/demma/Documents/code/psp/3rd-strike/include/Game/Message3rd/C_USA/PL16Win_usa.h:
 
@@ -29165,10 +29175,6 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 /home/demma/Documents/code/psp/3rd-strike/include/Game/PLS00.h:
 
 /home/demma/Documents/code/psp/3rd-strike/src/Game/IOConv.c:
-
-/home/demma/Documents/code/psp/3rd-strike/include/Game/EFFJ2.h:
-
-/home/demma/Documents/code/psp/3rd-strike/include/Game/IOConv.h:
 
 /home/demma/Documents/code/psp/3rd-strike/include/psp/files.h:
 
