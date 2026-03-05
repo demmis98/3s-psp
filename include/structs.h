@@ -7,12 +7,20 @@
 //#include <libgraph.h>
 
 typedef struct {
-} TexturePoolUsed;
-
-typedef struct {
+    // total size: 0xD08
+    s32 x16;            // offset 0x0, size 0x4
+    s32 x32;            // offset 0x4, size 0x4
+    u16 x16_free[1024]; // offset 0x8, size 0x800
+    u16 x32_free[640];  // offset 0x808, size 0x500
 } TexturePoolFree;
 
-
+typedef struct {
+    // total size: 0xD08
+    s32 x16;            // offset 0x0, size 0x4
+    s32 x32;            // offset 0x4, size 0x4
+    u16 x16_used[1024]; // offset 0x8, size 0x800
+    u16 x32_used[640];  // offset 0x808, size 0x500
+} TexturePoolUsed;
 
 typedef struct {
     // total size: 0x4
@@ -1830,6 +1838,12 @@ typedef struct {
     uintptr_t texture_table; // offset 0x4, size 0x4
     uintptr_t trans_table;   // offset 0x8, size 0x4
 } TEX_GRP_LD;
+
+typedef struct {
+    // total size: 0x5
+    u8 wh;     // offset 0x0, size 0x1
+    u8 dat[4]; // offset 0x1, size 0x4
+} TEX;
 
 typedef struct {
     // total size: 0xB0

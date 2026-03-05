@@ -29,7 +29,7 @@ void TexRelease(u32 G_Num) {
         break;
 
     case 601:
-        //ppgReleaseTextureHandle(&ppgTitleTex, -1);
+        ppgReleaseTextureHandle(&ppgTitleTex, -1);
         break;
     }
 }

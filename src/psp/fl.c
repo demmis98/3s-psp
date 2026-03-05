@@ -19,39 +19,44 @@ void enableDebug(){
 }
 
 s32 flLogOut(s8* format, ...){
-    char buffer[LOG_BUFFER_SIZE];
+    if(DEMMA_DEBUG){
+        char buffer[LOG_BUFFER_SIZE];
 
-    va_list args;
-    va_start(args, format);
+        va_list args;
+        va_start(args, format);
 
-    vsnprintf(buffer, sizeof(buffer), format, args);
+        vsnprintf(buffer, sizeof(buffer), format, args);
 
-    va_end(args);
+        va_end(args);
 
-    enableDebug();
-    flPrintColor(0xFFFFFFFF);
-    pspDebugScreenPrintf("%s", buffer);
+        enableDebug();
+        flPrintColor(0xFFFFFFFF);
+        pspDebugScreenPrintf("%s", buffer);
+    }
 }
 
 s32 flPrintL(s32 posi_x, s32 posi_y, const s8* format, ...) {
-    char buffer[LOG_BUFFER_SIZE];
+    if(DEMMA_DEBUG){
+        char buffer[LOG_BUFFER_SIZE];
 
-    va_list args;
-    va_start(args, format);
+        va_list args;
+        va_start(args, format);
 
-    vsnprintf(buffer, sizeof(buffer), format, args);
+        vsnprintf(buffer, sizeof(buffer), format, args);
 
-    va_end(args);
+        va_end(args);
 
-    enableDebug();
-    pspDebugScreenSetXY(posi_x, posi_y);
-    pspDebugScreenPrintf("%s", buffer);
-
+        enableDebug();
+        pspDebugScreenSetXY(posi_x, posi_y);
+        pspDebugScreenPrintf("%s", buffer);
+    }
 }
 
 s32 flPrintColor(u32 col){
-    enableDebug();
-    pspDebugScreenSetTextColor(col);
+    if(DEMMA_DEBUG){
+        enableDebug();
+        pspDebugScreenSetTextColor(col);
+    }
 }
 
 s32 flFlip(u32 flag) {
@@ -69,13 +74,32 @@ u32 flCreateTextureHandle(plContext* bits, u32 flag){}
 s32 flReleaseTextureHandle(u32 texture_handle){}
 
 u32 flCreatePaletteHandle(plContext* ctx, u32 flag) {
-    u16 *src = (u16*)ctx->ptr;
+    int id;
+    u16* src = ctx->ptr;
+
+    for(id = 0; ColorRAMUsed[id] && id < PALETTES_N; id++);
+
+    if (id == PALETTES_N)
+        return -1;
+
+
+
+    //memcpy(&ColorRAM[id], ctx->ptr, ctx->width * ctx->bitdepth);
+
     for(int i = 0; i < 64; i++){
-        ColorRAM[0][currentPaletteIndex] = src[i];
+        ColorRAM[id][i] = src[i] & 0x83D0;
+        ColorRAM[id][i] += (src[i] & 0x001F) << 10;
+        ColorRAM[id][i] += (src[i] & 0x7B00) >> 10;
     }
+
+    ColorRAMUsed[id] = true;
+
+    return id;
 }
 
-s32 flReleasePaletteHandle(u32 palette_handle){}
+s32 flReleasePaletteHandle(u32 palette_handle){
+    ColorRAMUsed[palette_handle] = false;
+}
 
 s32 flLockPalette(Rect* lprect, u32 th, plContext* lpcontext, u32 flag){}
 s32 flUnlockPalette(u32 th){}

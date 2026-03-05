@@ -7,8 +7,17 @@
 #include "common/sprites.h"
 #include "malloc.h"
 
+typedef struct {
+    // total size: 0x34
+    PPGDataList* cur; // offset 0x0, size 0x4
+    u16 hanPal;       // offset 0x4, size 0x2
+    u16 hanTex;       // offset 0x6, size 0x2
+    _MEMMAN_OBJ mm;   // offset 0x8, size 0x2C
+} PPG_W;
+
 extern s16* dctex_linear; // size: 0x4, address: 0x57A950
 extern TexturePSP texturesPSP[]; // textures used
+extern PPG_W ppg_w;
 
 void ppg_Initialize(void* lcmAdrs, s32 lcmSize);
 void ppgSourceDataReleased(PPGDataList* dlist);

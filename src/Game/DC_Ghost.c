@@ -259,77 +259,78 @@ void njDrawTexture(Polygon* polygon, s32 unused0, s32 texture, s32 unused1) {
             //flLogOut("%x ", texturesPSP[texture].data[i]);
         }
     }
-    
-    /*
-    for(i_pol = 0; i_pol < 4; i_pol++){
-        if(polygon[i_pol].x > x1)
-            x1 = polygon[i_pol].x;
+    if(texture >= 0){
+        /*
+        for(i_pol = 0; i_pol < 4; i_pol++){
+            if(polygon[i_pol].x > x1)
+                x1 = polygon[i_pol].x;
 
-        if(polygon[i_pol].y > y1)
-            y1 = polygon[i_pol].y;
+            if(polygon[i_pol].y > y1)
+                y1 = polygon[i_pol].y;
 
-        if(polygon[i_pol].u > u1)
-            u1 = polygon[i_pol].u;
+            if(polygon[i_pol].u > u1)
+                u1 = polygon[i_pol].u;
 
-        if(polygon[i_pol].v > v1)
-            v1 = polygon[i_pol].v;
+            if(polygon[i_pol].v > v1)
+                v1 = polygon[i_pol].v;
 
-        if(polygon[i_pol].x < x0 || x0 == -999.0f)
-            x0 = polygon[i_pol].x;
+            if(polygon[i_pol].x < x0 || x0 == -999.0f)
+                x0 = polygon[i_pol].x;
 
-        if(polygon[i_pol].y < y0 || y0 == -999.0f)
-            y0 = polygon[i_pol].y;
+            if(polygon[i_pol].y < y0 || y0 == -999.0f)
+                y0 = polygon[i_pol].y;
 
-        if(polygon[i_pol].u < u0 || u0 == -999.0f)
-            u0 = polygon[i_pol].u;
+            if(polygon[i_pol].u < u0 || u0 == -999.0f)
+                u0 = polygon[i_pol].u;
 
-        if(polygon[i_pol].v < v0 || v0 == -999.0f)
-            v0 = polygon[i_pol].v;
+            if(polygon[i_pol].v < v0 || v0 == -999.0f)
+                v0 = polygon[i_pol].v;
+        }
+
+        u0 *= texturesPSP[texture].width;
+        v0 *= texturesPSP[texture].height;
+        u1 *= texturesPSP[texture].width;
+        v1 *= texturesPSP[texture].height;
+
+        if(DEMMA_DEBUG){
+            flLogOut("x0: %f y0: %f x1: %f y1: %f\n", x0, y0, x1, y1);
+            flLogOut("u0: %f v0: %f u1: %f v1: %f\n", u0, v0, u1, v1);
+        }
+
+        //while(1);
+        */
+        //drawRect(x0, y0, x1 - x0, y1 - y0, 0xFF00FFFF);
+        //drawRect(x0, y0, x1 - x0, y1 - y0, njdp2d_w.prim[i].col);
+
+        //drawRect(polygon[0].x, polygon[0].y, 10, 10, 0xFFFFFFFF);
+        //drawRect(polygon[1].x, polygon[1].y, 10, 10, 0xFFFF00FF);
+        //drawRect(polygon[2].x, polygon[2].y, 10, 10, 0xFFFF00FF);
+        //drawRect(polygon[3].x, polygon[3].y, 10, 10, 0xFFFF00FF);
+
+        //sceGuClutMode(GU_PSM_5551, 0, 0x3F, 0);
+        sceGuClutMode(GU_PSM_5551, 0, 0xFF, 0);
+        sceGuClutLoad(8, ColorRAM[ppg_w.hanPal]);
+
+        //drawTextureF(&texturesPSP[texture], x0, y0);
+        //drawTexture(&texturesPSP[texture], x0, y0, u0, v0, x1, y1, u1, v1, 0xFFFFFFFF);
+        if(currentTexture != texture){
+            currentTexture = texture;
+            setTexture(&texturesPSP[texture], GU_TFX_REPLACE);
+        }
+        //drawTextureSet(x0, y0, u0, v0, x1, y1, u1, v1, 0xFFFFFFFF);
+        // draw directly bc what the hell
+        TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(4 * sizeof(TextureVertex));
+        for(int i = 0; i < 4; i++){
+            vertices[i].u = polygon[i].u * texturesPSP[texture].width;
+            vertices[i].v = polygon[i].v * texturesPSP[texture].height;
+            vertices[i].colour = 0xFFFFFFFF;
+            vertices[i].x = polygon[i].x;
+            vertices[i].y = polygon[i].y;
+            vertices[i].z = 0.0f;
+        }
+        //sceGuDrawArray(GU_SPRITES, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
+        sceGuDrawArray( GU_TRIANGLE_FAN, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 4, 0, vertices);
     }
-
-    u0 *= texturesPSP[texture].width;
-    v0 *= texturesPSP[texture].height;
-    u1 *= texturesPSP[texture].width;
-    v1 *= texturesPSP[texture].height;
-
-    if(DEMMA_DEBUG){
-        flLogOut("x0: %f y0: %f x1: %f y1: %f\n", x0, y0, x1, y1);
-        flLogOut("u0: %f v0: %f u1: %f v1: %f\n", u0, v0, u1, v1);
-    }
-
-    //while(1);
-    */
-    //drawRect(x0, y0, x1 - x0, y1 - y0, 0xFF00FFFF);
-    //drawRect(x0, y0, x1 - x0, y1 - y0, njdp2d_w.prim[i].col);
-
-    //drawRect(polygon[0].x, polygon[0].y, 10, 10, 0xFFFFFFFF);
-    //drawRect(polygon[1].x, polygon[1].y, 10, 10, 0xFFFF00FF);
-    //drawRect(polygon[2].x, polygon[2].y, 10, 10, 0xFFFF00FF);
-    //drawRect(polygon[3].x, polygon[3].y, 10, 10, 0xFFFF00FF);
-
-    //sceGuClutMode(GU_PSM_5551, 0, 0x3F, 0);
-    sceGuClutMode(GU_PSM_5551, 0, 0xFF, 0);
-    sceGuClutLoad(8, ColorRAM[currentPaletteIndex]);
-
-    //drawTextureF(&texturesPSP[texture], x0, y0);
-    //drawTexture(&texturesPSP[texture], x0, y0, u0, v0, x1, y1, u1, v1, 0xFFFFFFFF);
-    if(currentTexture != texture){
-        currentTexture = texture;
-        setTexture(&texturesPSP[texture], GU_TFX_REPLACE);
-    }
-    //drawTextureSet(x0, y0, u0, v0, x1, y1, u1, v1, 0xFFFFFFFF);
-    // draw directly bc what the hell
-    TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(4 * sizeof(TextureVertex));
-    for(int i = 0; i < 4; i++){
-        vertices[i].u = polygon[i].u * texturesPSP[texture].width;
-        vertices[i].v = polygon[i].v * texturesPSP[texture].height;
-        vertices[i].colour = 0xFFFFFFFF;
-        vertices[i].x = polygon[i].x;
-        vertices[i].y = polygon[i].y;
-        vertices[i].z = 0.0f;
-    }
-    //sceGuDrawArray(GU_SPRITES, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
-    sceGuDrawArray( GU_TRIANGLE_FAN, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 4, 0, vertices);
 }
 
 void njDrawSprite(Polygon* polygon, s32 unused0, s32 texture, s32 unused1){
@@ -337,30 +338,33 @@ void njDrawSprite(Polygon* polygon, s32 unused0, s32 texture, s32 unused1){
 
     if(DEMMA_DEBUG)
         flLogOut("njDrawSprite %d %x\n", texture, texturesPSP[texture]);
+    if(texture >= 0){
+        //if ((getCP3toFullScreenDrawFlag() != 0) &&
+        if (
+            ((polygon[0].x >= 384.0f) || (polygon[3].x < 0.0f) || (polygon[0].y >= 224.0f) || (polygon[3].y < 0.0f))) {
+            return;
+        }
 
-    //if ((getCP3toFullScreenDrawFlag() != 0) &&
-    if (
-        ((polygon[0].x >= 384.0f) || (polygon[3].x < 0.0f) || (polygon[0].y >= 224.0f) || (polygon[3].y < 0.0f))) {
-        return;
+        sceGuClutMode(GU_PSM_5551, 0, 0xFF, 0);
+        sceGuClutLoad(8, ColorRAM[ppg_w.hanPal]);
+
+        if(currentTexture != texture){
+            currentTexture = texture;
+            setTexture(&texturesPSP[texture], GU_TFX_REPLACE);
+        }
+
+        for(int i = 0; i < 2; i++){
+            vertices[i].x = polygon[i*3].x;
+            vertices[i].u = polygon[i*3].u * texturesPSP[texture].width;
+            vertices[i].v = polygon[i*3].v * texturesPSP[texture].height;
+            vertices[i].colour = 0xFFFFFFFF;
+            vertices[i].x = polygon[i*3].x;
+            vertices[i].y = polygon[i*3].y;
+            vertices[i].z = 0.0f;
+        }
+
+        sceGuDrawArray(GU_SPRITES, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
     }
-
-    if(currentTexture != texture){
-        currentTexture = texture;
-        setTexture(&texturesPSP[texture], GU_TFX_REPLACE);
-    }
-
-    for(int i = 0; i < 2; i++){
-        vertices[i].x = polygon[i*3].x;
-        vertices[i].u = polygon[i*3].u * texturesPSP[texture].width;
-        vertices[i].v = polygon[i*3].v * texturesPSP[texture].height;
-        vertices[i].colour = 0xFFFFFFFF;
-        vertices[i].x = polygon[i*3].x;
-        vertices[i].y = polygon[i*3].y;
-        vertices[i].z = 0.0f;
-    }
-
-    sceGuDrawArray(GU_SPRITES, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
-
     //njDrawTexture(polygon, unused0, texture, unused1);
 }
 
@@ -370,9 +374,8 @@ void njdp2d_init() {
 }
 
 void njdp2d_draw() {
-    Quad prm;
+    ColorVertex* vertices = (ColorVertex*) sceGuGetMemory(4 * sizeof(ColorVertex));
     s32 i;
-    int x0=-1, y0=-1, x1=-1, y1=-1, i_prm;
     /*
 
     ps2SeqsRenderQuadInit_B();
@@ -381,12 +384,28 @@ void njdp2d_draw() {
     for (i = njdp2d_w.ix1st; i != -1; i = njdp2d_w.prim[i].next) {
         switch (njdp2d_w.prim[i].type) {
         case 0:
-            prm.v[0] = njdp2d_w.prim[i].v[0];
-            prm.v[1] = njdp2d_w.prim[i].v[1];
-            prm.v[2] = njdp2d_w.prim[i].v[2];
-            prm.v[3] = njdp2d_w.prim[i].v[3];
+            //Vertex vertices[2];
+
+            for(int j = 0; j < 4; j++){
+                vertices[j].x = njdp2d_w.prim[j].v[j].x;
+                vertices[j].y = njdp2d_w.prim[j].v[j].y;
+                vertices[j].z = 0.0f;
+                vertices[j].colour = njdp2d_w.prim[j].col;
+            }
+
+            sceGuColor(njdp2d_w.prim[1].col); // colors are ABGR
+            sceGuDisable(GU_TEXTURE_2D);
+            sceGuDrawArray(GU_TRIANGLE_FAN, GU_COLOR_5551 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 4, 0, vertices);
+            sceGuEnable(GU_TEXTURE_2D);
+            /*
+            prm[0] = njdp2d_w.prim[i].v[0];
+            prm[1] = njdp2d_w.prim[i].v[1];
+            prm[2] = njdp2d_w.prim[i].v[2];
+            prm[3] = njdp2d_w.prim[i].v[3];
+            */
 
             if(!DEMMA_DEBUG){
+                /*
                 for(i_prm = 0; i_prm < 4; i_prm++){
                     if(prm.v[i_prm].x > x1)
                         x1 = prm.v[i_prm].x;
@@ -398,24 +417,26 @@ void njdp2d_draw() {
                     if(prm.v[i_prm].y < y0 || y0 == -1)
                         y0 = prm.v[i_prm].y;
                 }
+                */
                 //drawRect(x0, y0, x1 - x0, y1 - y0, 0xFFFFFFFF);
                 //drawRect(x0, y0, x1 - x0, y1 - y0, njdp2d_w.prim[i].col);
 
-                drawRect(prm.v[0].x, prm.v[0].y, 10, 10, 0xFFFFFFFF);
-                drawRect(prm.v[1].x, prm.v[1].y, 10, 10, 0xFFFF0000);
-                drawRect(prm.v[2].x, prm.v[2].y, 10, 10, 0xFF00FF00);
-                drawRect(prm.v[3].x, prm.v[3].y, 10, 10, 0xFF0000FF);
+                //drawRect(prm.v[0].x, prm.v[0].y, 10, 10, 0xFFFFFFFF);
+                //drawRect(prm.v[1].x, prm.v[1].y, 10, 10, 0xFFFF0000);
+                //drawRect(prm.v[2].x, prm.v[2].y, 10, 10, 0xFF00FF00);
+                //drawRect(prm.v[3].x, prm.v[3].y, 10, 10, 0xFF0000FF);
                 //drawRect(prm.v[0].x, prm.v[0].y, prm.v[3].x - prm.v[0].x , prm.v[3].y - prm.v[0].y, 0xFFFFFFFF);
+
             }
             else{
-                flLogOut("drawrect\n");
+                flLogOut("drawrect %x\n", njdp2d_w.prim[0].col);
             }
 
             //ps2SeqsRenderQuad_B(&prm, njdp2d_w.prim[i].col);
             break;
 
         case 1:
-            //shadow_drawing((WORK*)njdp2d_w.prim[i].col, njdp2d_w.prim[i].v[0].y);
+            shadow_drawing((WORK*)njdp2d_w.prim[i].col, njdp2d_w.prim[i].v[0].y);
             break;
         }
     }
@@ -435,7 +456,7 @@ void njdp2d_sort(f32* pos, f32 pri, uintptr_t col, s32 flag) {
         // Otherwise MWCC removes a single byte for some reason
         //
         // Original:
-        // flLogOut("２Ｄポリゴンの表示要求がバッファをオーバーしました\n");
+         flLogOut("The 2D polygon display request has exceeded the buffer\n");
 
         // The 2D polygon display request has exceeded the buffer\n
         /*

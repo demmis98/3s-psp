@@ -4,10 +4,11 @@
 #include "structs.h"
 #include "types.h"
 
-extern u16 ColorRAM[512][64];
-extern Col3rd_W col3rd_w;
+#define PALETTES_N 1024
 
-extern s32 currentPaletteIndex;
+extern u16 ColorRAM[PALETTES_N][64];
+extern bool ColorRAMUsed[PALETTES_N];
+extern Col3rd_W col3rd_w;
 
 void q_ldreq_color_data(REQ* curr);
 void load_any_color(u16 ix, u8 kokey);

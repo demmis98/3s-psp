@@ -54,7 +54,10 @@ typedef struct {
 
 // bss
 u16 colPalBuffDC[1024];
-u16 ColorRAM[512][64];
+
+u16 ColorRAM[PALETTES_N][64];
+bool ColorRAMUsed[PALETTES_N];
+
 Col3rd_W col3rd_w;
 
 // sbss
@@ -62,9 +65,6 @@ COL* plcol[2];
 PixelFormat palFormRam;
 PixelFormat palFormSrc;
 s32 palFormConv;
-
-// psp stuff
-s32 currentPaletteIndex;
 
 //functions
 s32 cseTsbSetBankAddr(u32 bank, SoundEvent* addr) ;
@@ -476,9 +476,9 @@ u16 palConvSrcToRam(u16 col) {
     }
 
     cA = palFormSrc.am & (col >> palFormSrc.as);
-    cB = palFormSrc.rm & (col >> palFormSrc.rs);
+    cR = palFormSrc.rm & (col >> palFormSrc.rs);
     cG = palFormSrc.gm & (col >> palFormSrc.gs);
-    cR = palFormSrc.bm & (col >> palFormSrc.bs);
+    cB = palFormSrc.bm & (col >> palFormSrc.bs);
     return (cA << palFormRam.as) | (cR << palFormRam.rs) | (cG << palFormRam.gs) | (cB << palFormRam.bs);
 }
 
@@ -589,16 +589,12 @@ void palUpdateGhostCP3(s32 pal, s32 nums) {
     u16* dstAdrs;
 
     for (i = pal; i < (pal + nums); i++) {
-        /*
-        flLockPalette(NULL, col3rd_w.palCP3.handle[i], &bits, 2);
-        dstAdrs = bits.ptr;
-        srcAdrs = (u16*)&ColorRAM[i];
-        palConvRowTim2CI8Clut(srcAdrs, dstAdrs, 0x40);
-        flUnlockPalette(col3rd_w.palCP3.handle[i]);
-        */
+        //flLockPalette(NULL, col3rd_w.palCP3.handle[i], &bits, 2);
+        //dstAdrs = bits.ptr;
+        //srcAdrs = (u16*)&ColorRAM[i];
+        //palConvRowTim2CI8Clut(srcAdrs, dstAdrs, 0x40);
+        //flUnlockPalette(col3rd_w.palCP3.handle[i]);
     }
-    
-    currentPaletteIndex = pal;
 }
 
 void palConvRowTim2CI8Clut(u16* src, u16* dst, s32 size) {

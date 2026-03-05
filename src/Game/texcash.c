@@ -3,7 +3,7 @@
 //#include "sf33rd/AcrSDK/ps2/flps2debug.h"
 #include "fl.h"
 
-//#include "Common/PPGFile.h"
+#include "psp/PPGFile.h"
 #include "Game/EFFECT.h"
 #include "Game/MTRANS.h"
 #include "Game/RAMCNT.h"
@@ -67,7 +67,6 @@ extern const MTSBase mts_base[24];
 void clear_texcash_work(s16 ix);
 
 void disp_texcash_free_area() {
-    /*
     s16 i;
 
     if (Debug_w[11]) {
@@ -129,11 +128,9 @@ void disp_texcash_free_area() {
             }
         }
     }
-    */
 }
 
 void search_texcash_free_area(s16 ix) {
-    /*
     PatternState* mc;
     s16 i;
     s16 num = 0;
@@ -162,11 +159,9 @@ void search_texcash_free_area(s16 ix) {
     if ((mts[ix].ext) && (mts[ix].cpat->kazu > mts_ok[ix].mincg)) {
         mts_ok[ix].mincg = mts[ix].cpat->kazu;
     }
-    */
 }
 
 void init_texcash_1st() {
-    /*
     s16 i;
 
     for (i = 0; i < MULTITEXTURE_MAX; i++) {
@@ -178,11 +173,9 @@ void init_texcash_1st() {
         mts_ok[i].key1 = 0;
         mts[i].mode = -1;
     }
-    */
 }
 
 void init_texcash_before_process() {
-    /*
 #if defined(TARGET_PS2)
     void init_texcash_2nd(s32 ix);
 #endif
@@ -193,11 +186,9 @@ void init_texcash_before_process() {
             init_texcash_2nd(i);
         }
     }
-    */
 }
 
 void init_texcash_2nd(s16 ix) {
-    /*
     PatternState* mc;
     PatternCollection* cp;
     TexturePoolFree* tf;
@@ -243,11 +234,9 @@ void init_texcash_2nd(s16 ix) {
             cp->kazu += 1;
         }
     }
-    */
 }
 
 void texture_cash_update() {
-    /*
 #if defined(TARGET_PS2)
     void search_texcash_free_area(s32 ix);
 #endif
@@ -285,11 +274,9 @@ void texture_cash_update() {
         }
     }
     disp_texcash_free_area();
-    */
 }
 
 void update_with_tpu_free(PatternState* mc16, PatternState* mc32) {
-    /*
     s16 i;
 
     for (i = 0; i < tpu_free->x16; i++) {
@@ -323,22 +310,17 @@ void update_with_tpu_free(PatternState* mc16, PatternState* mc32) {
             mc32[tpu_free->x32_used[i]].cs.code = -1;
         }
     }
-    */
 }
 
 s16 get_my_trans_mode(s16 curr) {
-    /*
     if (mts_ok[curr].be == 0) {
         return -1;
     }
 
     return mts[curr].mode;
-    */
-    return 0;
 }
 
 void make_texcash_work(s16 ix) {
-    /*
 #if defined(TARGET_PS2)
     void init_texcash_2nd(s32 ix);
 #endif
@@ -427,7 +409,6 @@ void make_texcash_work(s16 ix) {
         mts_ok[ix].min16 = 0x7FFF;
         mts_ok[ix].min32 = 0x7FFF;
     }
-    */
 }
 
 void Clear_texcash_work() {
@@ -442,7 +423,6 @@ void Clear_texcash_work() {
 }
 
 void clear_texcash_work(s16 ix) {
-    /*
 #if defined(TARGET_PS2)
     void init_texcash_2nd(s32 ix);
 #endif
@@ -470,11 +450,9 @@ void clear_texcash_work(s16 ix) {
         mts_ok[ix].min16 = 0x7FFF;
         mts_ok[ix].min32 = 0x7FFF;
     }
-    */
 }
 
 void purge_texcash_work(s16 ix) {
-    /*
     if (mts_ok[ix].be == 0) {
         return;
     }
@@ -492,11 +470,10 @@ void purge_texcash_work(s16 ix) {
         }
     }
 
-    //ppgReleaseTextureHandle(&mts[ix].tex, -1);
+    ppgReleaseTextureHandle(&mts[ix].tex, -1);
     mts_ok[ix].be = 0;
     mts_ok[ix].key0 = 0;
     mts_ok[ix].key1 = 0;
-    */
 }
 
 const MTSBase mts_base[24] = {

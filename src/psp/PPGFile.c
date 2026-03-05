@@ -29,14 +29,6 @@
 TexturePSP texturesPSP[1024];
 
 typedef struct {
-    // total size: 0x34
-    PPGDataList* cur; // offset 0x0, size 0x4
-    u16 hanPal;       // offset 0x4, size 0x2
-    u16 hanTex;       // offset 0x6, size 0x2
-    _MEMMAN_OBJ mm;   // offset 0x8, size 0x2C
-} PPG_W;
-
-typedef struct {
     Vec3 v;
     TexCoord t;
 } _Vertex;
@@ -587,8 +579,8 @@ s32 ppgSetupPalChunk(Palette* pch, u8* adrs, s32 size, s32 ixNum1st, s32 num, s3
             pch->handle[i] = flCreatePaletteHandle(&bits, 0);
             //pch->handle[i] = ColorRAM[ixNum1st + i];
             //pch->handle[i] = ixNum1st + i;
-            /*
-            if (pch->handle[i] == 0) {
+            
+            if (pch->handle[i] == -1) {
                 flLogOut("Failed to acquire palette handle.\n"); // Failed to acquire palette handle.
 
                 if (koCmpr == 0) {
@@ -598,7 +590,6 @@ s32 ppgSetupPalChunk(Palette* pch, u8* adrs, s32 size, s32 ixNum1st, s32 num, s3
                 ppgPushDecBuff(mltAdrs);
                 goto error_handler;
             }
-            */
 
             bits.ptr = (u8*)bits.ptr + (col_items * bits.bitdepth);
         }
@@ -663,11 +654,10 @@ s32 ppgSetupPalChunkDir(Palette* pch, PPLFileHeader* ppl, u8* adrs, s32 ixNum1st
             bits.ptr = adrs;
             pch->handle[i] = flCreatePaletteHandle(&bits, 0);
             //pch->handle[i] = ixNum1st + i;
-            /*
-            if (pch->handle[i] == 0) {
+            
+            if (pch->handle[i] == -1) {
                 goto error_handler;
             }
-            */
 
             adrs = &adrs[pch->srcSize];
         }

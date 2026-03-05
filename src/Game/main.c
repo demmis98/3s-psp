@@ -92,8 +92,7 @@ void AcrMain() {
         appViewSetItems(&mpp_w.vprm);
         appViewMatrix();
         //flAdjustScreen(X_Adjust + Correct_X[0], Y_Adjust + Correct_Y[0]);
-        //setBackGroundColor(0xFF000000);
-        setBackGroundColor(0xFF0000FF);
+        setBackGroundColor(0xFF000000);
 
         if (Debug_w[0x43]) {
             setBackGroundColor(0xFF0000FF);
