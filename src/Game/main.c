@@ -5,8 +5,8 @@
 #include "sf33rd/AcrSDK/ps2/flps2etc.h"
 #include "sf33rd/AcrSDK/ps2/flps2render.h"
 #include "sf33rd/AcrSDK/ps2/foundaps2.h"
-#include "Compress/zlibApp.h"
 */
+#include "Compress/zlibApp.h"
 #include "AcrSDK/common/mlPAD.h"
 #include "psp/PPGFile.h"
 #include "psp/PPGWork.h"
@@ -40,9 +40,7 @@
 
 #include <memory.h>
 
-#define SCRATCHPAD_SIZE 0x4000   // 16 KB (same size as PS2 scratchpad)
-
-static u8* scratchpad_psp = NULL;
+int DEMMA_DEBUG = 0;
 
 // sbss
 s32 system_init_level;
@@ -66,21 +64,34 @@ void AcrMain() {
     u16 sw_buff;
     u32 sysinfodisp;
 
-    //flInitialize(flPs2State.DispWidth, flPs2State.DispHeight);
+    flInitialize(0, 0);
     //flSetRenderState(FLRENDER_BACKCOLOR, 0);
     //flSetDebugMode(0);
     system_init_level = 0;
     ppgWorkInitializeApprication();
     distributeScratchPadAddress();
     njdp2d_init();
+    flLogOut("AcrMain 0\n");
     njUserInit();
+    flLogOut("AcrMain 1\n");
     palCreateGhost();
+    flLogOut("AcrMain 2\n");
     ppgMakeConvTableTexDC();
+    flLogOut("AcrMain 3\n");
     appSetupBasePriority();
+    flLogOut("AcrMain 4\n");
     //MemcardInit();
 
-    while (1) {
+    flPADGetALL();
+    keyConvert();
 
+    if(p1sw_buff != 0){
+        DEMMA_DEBUG = 1;
+        flLogOut("DEMMA_DEBUG = 1\n");
+    }
+
+    while (1) {
+        flLogOut("AcrMain loop\n");
         initRenderState(0);
         mpp_w.ds_h[0] = mpp_w.ds_h[1];
         mpp_w.ds_v[0] = mpp_w.ds_v[1];
@@ -98,15 +109,17 @@ void AcrMain() {
         //flAdjustScreen(X_Adjust + Correct_X[0], Y_Adjust + Correct_Y[0]);
         setBackGroundColor(0xFF000000);
         //setBackGroundColor(0xFFFF0000);
-
+        flLogOut("AcrMain loop 0\n");
         if (Debug_w[0x43]) {
             setBackGroundColor(0xFF0000FF);
         }
 
         appSetupTempPriority();
+        flLogOut("AcrMain loop 1\n");
 
         flPADGetALL();
         keyConvert();
+        flLogOut("AcrMain loop 2\n");
 
         if (((Usage == 7) || (Usage == 2)) && !test_flag) {
             if (mpp_w.sysStop) {
@@ -178,22 +191,28 @@ void AcrMain() {
             }
         }
 
-
+        flLogOut("AcrMain loop 3\n");
         appCopyKeyData();
 
         flLogOut("test\n");
 
         render_start();
 
+        flLogOut("AcrMain loop 4\n");
         mpp_w.inGame = 0;
 
+        flLogOut("AcrMain loop 5\n");
         njUserMain();
 
         MaskScreenEdge();
 
+        flLogOut("AcrMain loop 6\n");
         seqsBeforeProcess();
+        flLogOut("AcrMain loop 7\n");
         njdp2d_draw();
+        flLogOut("AcrMain loop 8\n");
         seqsAfterProcess();
+        flLogOut("AcrMain loop 9\n");
 
         if (Debug_w[6] == 0) {
             //CP3toPS2Draw();
@@ -244,19 +263,14 @@ void AcrMain() {
     }
 }
 
+u8 dctex_linear_mem[0x800];
+u8 texcash_melt_buffer_mem[0x1000];
+u8 tpu_free_mem[0x2000];
+
 void distributeScratchPadAddress() {
-    if (!scratchpad_psp) {
-        scratchpad_psp = memalign(16, SCRATCHPAD_SIZE);
-
-        if (!scratchpad_psp){
-            flLogOut("Failed to allocate PSP scratchpad replacement\n");
-            while (1);
-        }
-    }
-
-    dctex_linear        = (s16*)(scratchpad_psp + 0x800);
-    texcash_melt_buffer = (u8*)(scratchpad_psp + 0x1000);
-    tpu_free            = (TexturePoolUsed*)(scratchpad_psp + 0x2000);
+    dctex_linear = (s16*)dctex_linear_mem;
+    texcash_melt_buffer = (u8*)texcash_melt_buffer_mem;
+    tpu_free = (TexturePoolUsed*)tpu_free_mem;
 }
 
 void MaskScreenEdge() {
@@ -311,7 +325,7 @@ void appCopyKeyData() {
 }
 
 u8* mppMalloc(u32 size) {
-    //return flAllocMemory(size);
+    return flAllocMemory(size);
     return NULL;
 }
 
@@ -319,8 +333,7 @@ void njUserInit() {
     s32 i;
     u32 size;
 
-    if(DEMMA_DEBUG)
-        flLogOut("njUserInit\n");
+    flLogOut("njUserInit\n");
 
     sysFF = 1;
     mpp_w.sysStop = 0;
@@ -338,14 +351,22 @@ void njUserInit() {
     appViewSetItems(&mpp_w.vprm);
     appViewMatrix();
     mmSystemInitialize();
+    flLogOut("njUserInit 0\n");
     flGetFrame(&mpp_w.fmsFrame);
+    flLogOut("njUserInit 1\n");
     seqsInitialize(mppMalloc(seqsGetUseMemorySize()));
+    flLogOut("njUserInit 2\n");
     ppg_Initialize(mppMalloc(0x60000), 0x60000);
+    flLogOut("njUserInit 3\n");
     zlib_Initialize(mppMalloc(0x10000), 0x10000);
+    flLogOut("njUserInit 4\n");
     size = flGetSpace();
     size = 0x20000;    //i suppose its ram(?)
+    flLogOut("njUserInit 5\n");
     mpp_w.ramcntBuff = mppMalloc(size);
+    flLogOut("njUserInit 6\n");
     Init_ram_control_work(mpp_w.ramcntBuff, size);
+    flLogOut("njUserInit 7\n");
 
     for (i = 0; i < 0x14; i++) {
         mpp_w.useChar[i] = 0;
@@ -370,6 +391,7 @@ void njUserInit() {
     Turbo_Timer = 1;
     Screen_Zoom_X = 1.0f;
     Screen_Zoom_Y = 1.0f;
+    flLogOut("njUserInit 8\n");
     Setup_Disp_Size(0);
     Correct_X[0] = 0;
     Correct_Y[0] = 0;
@@ -382,12 +404,19 @@ void njUserInit() {
     sys_w.pause = 0;
     sys_w.reset = 0;
 
+    flLogOut("njUserInit 9\n");
     Init_sound_system();
+    flLogOut("njUserInit 10\n");
     Init_bgm_work();
+    flLogOut("njUserInit 11\n");
     Setup_Directory_Record_Data();
+    flLogOut("njUserInit 12\n");
     sndInitialLoad();
+    flLogOut("njUserInit 13\n");
     cpInitTask();
+    flLogOut("njUserInit 14\n");
     cpReadyTask(INIT_TASK_NUM, Init_Task);
+    flLogOut("njUserInit 15\n");
 }
 
 s32 njUserMain() {
@@ -438,8 +467,7 @@ s32 njUserMain() {
 void cpLoopTask() {
     struct _TASK* task_ptr = task;
 
-    if(DEMMA_DEBUG)
-        flLogOut("cpLoopTask\n");
+    flLogOut("cpLoopTask\n");
 
     disp_ramcnt_free_area();
 

@@ -305,9 +305,14 @@ s32 load_it_use_any_key2(u16 fnum, void** adrs, s16* key, u8 kokey, u8 group) {
         while (1) {}
     }
 
+    flLogOut("load_it_use_any_key2\n");
+
     size = fsGetFileSize(fnum);
+    flLogOut("load_it_use_any_key2 0\n");
     *key = Pull_ramcnt_key(fsCalSectorSize(size) << 11, kokey, group, 0);
+    flLogOut("load_it_use_any_key2 1\n");
     *adrs = (void*)Get_ramcnt_address(*key);
+    flLogOut("load_it_use_any_key2 2\n");
 
     err = load_it_use_this_key(fnum, *key);
 
@@ -339,6 +344,8 @@ s32 load_it_use_this_key(u16 fnum, s16 key) {
     u32 err;
 
     req.fnum = fnum;
+
+    flLogOut("load_it_use_this_key\n");
 
     while (1) {
         err = fsOpen(&req);

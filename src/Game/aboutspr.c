@@ -32,13 +32,21 @@ const u32 judge_area_attr[17][2] = { { 0x7FFFDFFF, 0x60 }, { 0x7FFFCFFF, 0x60 },
                                      { 0x7FFFFFFF, 0x20 }, { 0x7FFFFFFF, 0x60 } };
 
 void Init_load_on_memory_data() {
+    flLogOut("Init_load_on_memory_data\n");
     copy_char_base_data();
+    flLogOut("Init_load_on_memory_data 0\n");
     load_any_color(0x9C, 0x18);
+    flLogOut("Init_load_on_memory_data 1\n");
     load_any_color(0x9D, 0x1F);
+    flLogOut("Init_load_on_memory_data 2\n");
     load_any_color(0x14, 2);
+    flLogOut("Init_load_on_memory_data 3\n");
     reservMemKeySelObj();
+    flLogOut("Init_load_on_memory_data 4\n");
     load_any_texture_patnum(0x72A0, 0xF, 0);
+    flLogOut("Init_load_on_memory_data 5\n");
     load_any_texture_patnum(0x7F30, 0xC, 0);
+    flLogOut("Init_load_on_memory_data 6\n");
     dmwk_kage.my_mts = 0x11;
     dmwk_kage.current_colcd = 0x1FF;
     dmwk_kage.my_clear_level = 0x90;

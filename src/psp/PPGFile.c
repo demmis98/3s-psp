@@ -1186,7 +1186,7 @@ s32 ppgSetupTexChunk_3rd(Texture* tch, s32 ixNum, u32 attribute) {
         while (1) {}
     }
     
-    sceKernelDcacheWritebackRange(linear, linearSize);
+    sceKernelDcacheWritebackInvalidateRange(linear, linearSize);
 
     return 1;
 }

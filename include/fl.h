@@ -8,7 +8,7 @@
 
 #define LOG_BUFFER_SIZE 512
 
-#define DEMMA_DEBUG 0
+extern int DEMMA_DEBUG;
 #define DEMMA_LOOPS 3600
 
 #include "Game/color3rd.h"
@@ -30,5 +30,13 @@ s32 flReleasePaletteHandle(u32 palette_handle);
 s32 flLockPalette(Rect* lprect, u32 th, plContext* lpcontext, u32 flag);
 s32 flUnlockPalette(u32 th);
 s32 flSetRenderState(enum _FLSETRENDERSTATE func, u32 value);
+
+// memory management
+void* flAllocMemory(s32 size);
+s32 flGetFrame(FMS_FRAME* frame);
+s32 flGetSpace();
+void* flAllocMemoryS(s32 size);
+s32 flInitialize(s32 /* unused */, s32 /* unused */);
+s32 system_work_init();
 
 #endif  // FL_H_

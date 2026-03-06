@@ -6,8 +6,14 @@
 
 #include <pspdebug.h>
 
+#include "AcrSDK/common/fbms.h"
+#include "AcrSDK/common/mlPAD.h"
+#include "AcrSDK/common/prilay.h"
+#include "AcrSDK/common/memfound.h"
 #include "Game/color3rd.h"
 #include "psp/PPGFile.h"
+
+FL_FMS flFMS;
 
 s32 flFrame;
 
@@ -85,8 +91,7 @@ u32 flCreateTextureHandle(plContext* bits, u32 flag) {
 }
 
 u32 flSetTextureHandle(plContext* bits, s32 id, u32 flag) {
-    if(texturesPSPUsed[id])
-        free(texturesPSP[id].data);
+    flReleaseTextureHandle(id);
 
     texturesPSP[id].data = bits->ptr;
 
@@ -113,7 +118,8 @@ u32 flSetTextureHandle(plContext* bits, s32 id, u32 flag) {
 }
 
 s32 flReleaseTextureHandle(u32 texture_handle){
-    free(texturesPSP[texture_handle].data);
+    if(texturesPSP[texture_handle].data)
+        free(texturesPSP[texture_handle].data);
     texturesPSP[texture_handle].data = NULL;
     texturesPSPUsed[texture_handle] = false;
     return 1;
@@ -151,3 +157,82 @@ s32 flReleasePaletteHandle(u32 palette_handle){
 s32 flLockPalette(Rect* lprect, u32 th, plContext* lpcontext, u32 flag){}
 s32 flUnlockPalette(u32 th){}
 s32 flSetRenderState(enum _FLSETRENDERSTATE func, u32 value){}
+
+
+void flMemset(void* dst, u32 pat, s32 size) {
+    s32 i;
+    u8* now = dst;
+
+    for (i = 0; i < size; i++) {
+        *now++ = pat;
+    }
+}
+
+void flMemcpy(void* dst, void* src, s32 size) {
+    s32 i;
+    s8* now[2];
+
+    now[0] = dst;
+    now[1] = src;
+
+    for (i = 0; i < size; i++) {
+        *now[0]++ = *now[1]++;
+    }
+}
+
+void* flAllocMemory(s32 size) {
+    return fmsAllocMemory(&flFMS, size, 0);
+}
+
+s32 flGetFrame(FMS_FRAME* frame) {
+    return fmsGetFrame(&flFMS, 0, frame);
+}
+
+s32 flGetSpace() {
+    return fmsCalcSpace(&flFMS);
+}
+
+void* flAllocMemoryS(s32 size) {
+    return fmsAllocMemory(&flFMS, size, 1);
+}
+
+
+s32 flInitialize(s32 /* unused */, s32 /* unused */) {
+    if (system_work_init() == 0) {
+        return 0;
+    }
+
+    //flPS2SystemTmpBuffInit();
+    
+    flPADInitialize();
+
+    //DPUT_T1_MODE(0x80);
+    //DPUT_T1_COUNT(0);
+
+    return 1;
+}
+
+
+s32 system_work_init() {
+    void* temp;
+
+    //flMemset(&flPs2State, 0, sizeof(FLPS2State));
+    //flPS2VramInit();
+    temp = malloc(0x01800000);
+
+    if (temp == NULL) {
+        return 0;
+    }
+
+    fmsInitialize(&flFMS, temp, 0x01800000, 16);
+    u32 system_memory_size = 0x00A00000;
+    temp = flAllocMemoryS(system_memory_size);
+    //flPs2State.system_memory_start = (uintptr_t)temp;
+    mflInit(temp, system_memory_size, 16);
+
+    plmalloc = flAllocMemory;
+    plfree = free;
+    //flLoadCount = 100;
+
+    return 1;
+}

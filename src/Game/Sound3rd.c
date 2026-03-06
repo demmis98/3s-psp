@@ -7,8 +7,8 @@
 #include "sf33rd/AcrSDK/MiddleWare/PS2/CapSndEng/emlSndDrv.h"
 #include "sf33rd/AcrSDK/MiddleWare/PS2/CapSndEng/emlTSB.h"
 #include "sf33rd/AcrSDK/ps2/flps2debug.h"
-#include "Common/PPGFile.h"
 */
+#include "psp/PPGFile.h"
 #include "fl.h"
 
 #include "Game/EFFECT.h"
@@ -198,6 +198,7 @@ s32 cseMemMapInit(void* pSpuMemMap) {
 }
 
 void checkAdxFileLoaded() {
+    /*
     u8* adr;
     s16 key;
     u16 fnum;
@@ -217,10 +218,11 @@ void checkAdxFileLoaded() {
     } while (key == 0);
 
     adr = (u8*)Get_ramcnt_address(key);
-    //ppgSetupCmpChunk(adr, 0, adx_VS);
-    //ppgSetupCmpChunk(adr, 1, adx_EmSel);
+    ppgSetupCmpChunk(adr, 0, adx_VS);
+    ppgSetupCmpChunk(adr, 1, adx_EmSel);
     Push_ramcnt_key(key);
     adx_NowOnMemoryType = sys_w.bgm_type;
+    */
 }
 
 void Exit_sound_system() {

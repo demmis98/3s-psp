@@ -56,17 +56,23 @@ void Init_Task(struct _TASK* task_ptr) {
 void Init_Task_1st(struct _TASK* task_ptr) {
     s16 ix;
 
-    if(DEMMA_DEBUG)
-        flLogOut("Init_Task_1st\n");
+    flLogOut("Init_Task_1st\n");
 
     task_ptr->r_no[0] = 1;
     init_texcash_1st();
+    flLogOut("Init_Task_1st 0\n");
     Init_texgrplds_work();
+    flLogOut("Init_Task_1st 1\n");
     Init_load_on_memory_data();
+    flLogOut("Init_Task_1st 2\n");
     Pause_Family_On();
+    flLogOut("Init_Task_1st 3\n");
     Bg_TexInit();
+    flLogOut("Init_Task_1st 4\n");
     Scrscreen_Init();
+    flLogOut("Init_Task_1st 5\n");
     effect_work_init();
+    flLogOut("Init_Task_1st 6\n");
     Usage = 7;
     Max_vitality = 160;
     reset_NG_flag = 0;

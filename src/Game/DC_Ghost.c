@@ -329,7 +329,7 @@ void njDrawTexture(Polygon* polygon, s32 unused0, s32 texture, s32 unused1) {
             vertices[i].z = 0.0f;
         }
         //sceGuDrawArray(GU_SPRITES, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
-        sceGuDrawArray(GU_TRIANGLE_FAN, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 4, 0, vertices);
+        sceGuDrawArray(GU_TRIANGLE_STRIP, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 4, 0, vertices);
     }
     flLogOut("texture %d %x\n", texture, texturesPSP[texture].data);
     while(DEMMA_DEBUG && texturesPSP[texture].data == 0);
