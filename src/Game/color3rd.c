@@ -55,8 +55,8 @@ typedef struct {
 // bss
 u16 colPalBuffDC[1024];
 
-u16 ColorRAM[PALETTES_N][64];
-bool ColorRAMUsed[PALETTES_N];
+u16 ColorRAM[MAX_PALETTES][64] __attribute__((aligned(16)));
+bool ColorRAMUsed[MAX_PALETTES];
 
 Col3rd_W col3rd_w;
 
@@ -568,13 +568,11 @@ void palUpdateGhostDC() {
 
     for (i = 0; i < col3rd_w.palDC.total; i++) {
         if (col3rd_w.upBits & (1 << i)) {
-            /*
             flLockPalette(NULL, col3rd_w.palDC.handle[i], &bits, 2);
             dstAdrs = bits.ptr;
             srcAdrs = &colPalBuffDC[i << 6];
             palConvRowTim2CI8Clut(srcAdrs, dstAdrs, 0x40);
-            flUnlockPalette(col3rd_w.palDC.handle[i]);
-            */
+            flUnlockPalette(col3rd_w.palDC.handle[i]);            
         }
     }
     col3rd_w.upBits = 0;  
@@ -589,16 +587,16 @@ void palUpdateGhostCP3(s32 pal, s32 nums) {
     u16* dstAdrs;
 
     for (i = pal; i < (pal + nums); i++) {
-        //flLockPalette(NULL, col3rd_w.palCP3.handle[i], &bits, 2);
-        //dstAdrs = bits.ptr;
-        //srcAdrs = (u16*)&ColorRAM[i];
-        //palConvRowTim2CI8Clut(srcAdrs, dstAdrs, 0x40);
-        //flUnlockPalette(col3rd_w.palCP3.handle[i]);
+        flLockPalette(NULL, col3rd_w.palCP3.handle[i], &bits, 2);
+        dstAdrs = bits.ptr;
+        srcAdrs = (u16*)&ColorRAM[i];
+        palConvRowTim2CI8Clut(srcAdrs, dstAdrs, 0x40);
+        flUnlockPalette(col3rd_w.palCP3.handle[i]);
     }
 }
 
 void palConvRowTim2CI8Clut(u16* src, u16* dst, s32 size) {
-    memcpy(dst, src, size * sizeof(u16));
+    //memcpy(dst, src, size * sizeof(u16));
 }
 
 // rodata

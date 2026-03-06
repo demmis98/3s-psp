@@ -4,7 +4,6 @@
 #include "common/sprites.h"
 #include "structs.h"
 #include "types.h"
-#include "common/sprites.h"
 #include "malloc.h"
 
 typedef struct {
@@ -15,8 +14,11 @@ typedef struct {
     _MEMMAN_OBJ mm;   // offset 0x8, size 0x2C
 } PPG_W;
 
+#define MAX_TEXTURES 1024
+
 extern s16* dctex_linear; // size: 0x4, address: 0x57A950
-extern TexturePSP texturesPSP[]; // textures used
+extern TexturePSP texturesPSP[MAX_TEXTURES];    // textures
+extern bool texturesPSPUsed[MAX_TEXTURES];  // textures used
 extern PPG_W ppg_w;
 
 void ppg_Initialize(void* lcmAdrs, s32 lcmSize);

@@ -213,7 +213,7 @@ void OPBG_Init() {
 
     if ((key = Search_ramcnt_type(0x1D)) == 0) {
         // Opening demo texture has not been loaded.
-        flLogOut("// Opening demo texture has not been loaded.\n");
+        flLogOut("Opening demo texture has not been loaded.\n");
         while (1) {}
     }
 
@@ -225,19 +225,23 @@ void OPBG_Init() {
         ppgSetupTexChunk_2nd(NULL, i + 602);
         ppgSetupTexChunk_3rd(NULL, i + 602, 1);
     }
-
+    flLogOut("test 0\n");
     Opening_Now = 1;
     make_texcash_work(9);
-    mlt_obj_melt2(&mts[9], 0x8C40);
+    flLogOut("test 1\n");
+    //mlt_obj_melt2(&mts[9], 0x8C40);
+    flLogOut("test 2\n");
     sound_trg_init();
+    flLogOut("test 3\n");
     opening_init();
     Zoom_Value_Set(0x40);
+    flLogOut("test 4\n");
 }
 
 s16 OPBG_Move(s32 /* unused */) {
     s16 flag = 0;
 
-    flag = oh_opening_demo();
+    //flag = oh_opening_demo();
     OPBG_Trans();
     return flag;
 }

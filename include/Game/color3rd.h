@@ -4,10 +4,10 @@
 #include "structs.h"
 #include "types.h"
 
-#define PALETTES_N 1024
+#define MAX_PALETTES 1024
 
-extern u16 ColorRAM[PALETTES_N][64];
-extern bool ColorRAMUsed[PALETTES_N];
+extern u16 ColorRAM[MAX_PALETTES][64];
+extern bool ColorRAMUsed[MAX_PALETTES];
 extern Col3rd_W col3rd_w;
 
 void q_ldreq_color_data(REQ* curr);

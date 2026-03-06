@@ -26,7 +26,8 @@
 #define CODE_0(val) ((val & 0xF0) << 8) + ((val & 0xF) << 4)
 #define CODE_1(val) ((val & 0x38) << 0xA) + ((val & 7) << 5)
 
-TexturePSP texturesPSP[1024];
+TexturePSP texturesPSP[MAX_TEXTURES];
+bool texturesPSPUsed[MAX_TEXTURES];
 
 typedef struct {
     Vec3 v;
@@ -772,7 +773,7 @@ s32 ppgSetupTexChunkSeqs(Texture* tch, PPGFileHeader* ppg, u8* adrs, s32 ixNum1s
         tch->handle[i].b16[1] = ci_flag;
         tch->handle[i].b16[0] = flCreateTextureHandle(&bits, attribute);
 
-        if (tch->handle[i].b16[0] == 0) {
+        if (tch->handle[i].b16[0] == -1) {
             goto error_handler;
         }
 
@@ -1109,120 +1110,16 @@ s32 ppgSetupTexChunk_2nd(Texture* tch, s32 ixNum) {
 }
 
 s32 ppgSetupTexChunk_3rd(Texture* tch, s32 ixNum, u32 attribute) {
+    plContext bits;
     PPGFileHeader* ppg;
     TextureHandle* hnof;
-    plContext bits;
-
     s32 koCmpr;
-    s32 cmpHeaderSize;
     s32 cmpSize;
     s32 linearSize;
-
     void* cmpAdrs;
     void* linear;
 
-    if (tch == NULL)
-        tch = ppg_w.cur->tex;
-
-    if (tch->srcAdrs == NULL)
-        return 0;
-
-    // locate handle entry
-    hnof = tch->handle + (ixNum - tch->ixNum1st);
-
-    // already loaded?
-    if (hnof->b16[0])
-        return 1;
-
-    // locate PPG chunk
-    ppg = (PPGFileHeader*)
-        (tch->srcAdrs + (tch->offset[hnof->b16[1] & 0x0FFF]));
-
-    // extract context
-    ppgSetupContextFromPPG(ppg, &bits);
-
-    // compression
-    koCmpr = ppg->compress & 3;
-
-    cmpHeaderSize = (u16)REVERT_U16(ppg->transNums) * 3 + 0x10;
-    cmpAdrs = (u8*)ppg + cmpHeaderSize;
-    cmpSize = REVERT_U32(ppg->fileSize) - cmpHeaderSize;
-
-    linearSize = bits.height * bits.pitch;
-
-    // allocate aligned PSP memory
-    linear = memalign(16, linearSize);
-    if (!linear)
-        return 0;
-
-    // decompress
-    if (ppgDecompress(koCmpr, cmpAdrs, cmpSize, linear, linearSize) != linearSize)
-    {
-        free(linear);
-        return 0;
-    }
-
-    // endian fix
-    ppgChangeDataEndian(
-        linear,
-        linearSize,
-        ppg->pixel & 4,
-        ppg->formARGB == 0x8888,
-        bits.bitdepth,
-        0);
-
-    // -----------------------------------
-    // Fill PSP texture struct
-    // -----------------------------------
-
-    TexturePSP* out = &texturesPSP[ixNum];
-
-    out->width  = bits.width;
-    out->height = bits.height;
-    out->wRender = bits.width;
-    out->hRender = bits.width;
-
-    switch(bits.bitdepth)
-    {
-        case 0:  out->mode = GU_PSM_T4;    break;
-        case 1:  out->mode = GU_PSM_T8;    break;
-        case 2:  out->mode = GU_PSM_5551;  break;
-        case 3:
-        case 4:  out->mode = GU_PSM_8888;  break;
-        default:
-            free(linear);
-            return 0;
-    }
-    //out->mode = GU_PSM_5551;
-
-    out->data = linear;
-    /*
-    // palette extraction if indexed
-    if (bits.bitdepth <= 1)
-    {
-        out->palette = extractPaletteFromPPG(ppg);
-    }
-    else
-    {
-        out->palette = NULL;
-    }
-
-    // mark handle as loaded
-    hnof->b16[0] = 1;
-    */
-    return 1;
-}
-
-/*
-s32 ppgSetupTexChunk_3rd(Texture* tch, s32 ixNum, u32 attribute) {
-    plContext bits;
-    PPGFileHeader* ppg;
-    TextureHandle* hnof;
-    s32 koCmpr;
-    s32 cmpSize;
-    s32 mltSize;
-    void* cmpAdrs;
-    void* mltAdrs;
+    int bpp;
 
     s32 unused_s5;
 
@@ -1252,38 +1149,47 @@ s32 ppgSetupTexChunk_3rd(Texture* tch, s32 ixNum, u32 attribute) {
     cmpSize = (u16)REVERT_U16(ppg->transNums) * 3 + 0x10;
     cmpAdrs = (u8*)ppg + cmpSize;
     cmpSize = REVERT_U32(ppg->fileSize) - cmpSize;
-    mltSize = bits.height * bits.pitch;
-    mltAdrs = ppgPullDecBuff(mltSize);
 
-    if (mltAdrs == NULL) {
-        // Failed to allocate texture data expansion area.
-        flLogOut("Failed to allocate texture data expansion area.\n");
-        while (1) {}
+    switch(bits.bitdepth) {
+        case 0: bpp = 4;  break;   // T4
+        case 1: bpp = 8;  break;   // T8
+        case 2: bpp = 16; break;   // 5551
+        case 3:
+        case 4: bpp = 32; break;   // 8888
+        default: return 0;
     }
 
-    if (mltSize != ppgDecompress(koCmpr, cmpAdrs, cmpSize, mltAdrs, mltSize)) {
+    linearSize = (bits.width * bits.height * bpp) / 8;
+
+    linear = memalign(16, linearSize);
+    if (!linear)
+        return 0;
+
+    if (linearSize != ppgDecompress(koCmpr, cmpAdrs, cmpSize, linear, linearSize)) {
+        free(linear);
         // Failed to acquire sprite texture handle.
         flLogOut("Failed to acquire sprite texture handle.\n");
-        ppgPushDecBuff(mltAdrs);
         while (1) {}
+        return 0;
     }
 
     (bits.desc & 0x20) > 0;
     unused_s5 = 0;
-    ppgChangeDataEndian(mltAdrs, mltSize, ppg->pixel & 4, ppg->formARGB == 0x8888, bits.bitdepth, unused_s5);
-    bits.ptr = mltAdrs;
-    hnof->b16[0] = flCreateTextureHandle(&bits, attribute);
-    ppgPushDecBuff(mltAdrs);
+    ppgChangeDataEndian(linear, linearSize, ppg->pixel & 4, ppg->formARGB == 0x8888, bits.bitdepth, unused_s5);
+    bits.ptr = linear;
+    
+    hnof->b16[0] = flSetTextureHandle(&bits, ixNum, attribute);
 
-    if (hnof->b16[0] == 0) {
+    if (hnof->b16[0] == -1) {
         // Failed to acquire texture handle.
         flLogOut("Failed to acquire texture handle.\n");
         while (1) {}
     }
+    
+    sceKernelDcacheWritebackRange(linear, linearSize);
 
     return 1;
 }
-*/
 
 void ppgSetupContextFromPPL(PPLFileHeader* ppl, plContext* bits) {
     bits->desc = 0;

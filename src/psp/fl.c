@@ -2,10 +2,12 @@
 
 #include <stdarg.h>
 #include <stdio.h>
+#include <assert.h>
 
 #include <pspdebug.h>
 
 #include "Game/color3rd.h"
+#include "psp/PPGFile.h"
 
 s32 flFrame;
 
@@ -70,16 +72,60 @@ s32 flFlip(u32 flag) {
 
 s32 flLockTexture(Rect* lprect, u32 th, plContext* lpcontext, u32 flag) {}
 s32 flUnlockTexture(u32 th){}
-u32 flCreateTextureHandle(plContext* bits, u32 flag){}
-s32 flReleaseTextureHandle(u32 texture_handle){}
+
+u32 flCreateTextureHandle(plContext* bits, u32 flag) {
+    int id;
+
+    for(id = 0; (texturesPSPUsed[id] && (id < MAX_TEXTURES)); id++);
+
+    if (id == MAX_TEXTURES)
+        return -1;
+
+    return flSetTextureHandle(bits, id, flag);
+}
+
+u32 flSetTextureHandle(plContext* bits, s32 id, u32 flag) {
+    if(texturesPSPUsed[id])
+        free(texturesPSP[id].data);
+
+    texturesPSP[id].data = bits->ptr;
+
+    texturesPSP[id].width  = bits->width;
+    texturesPSP[id].height = bits->height;
+    texturesPSP[id].wRender = bits->width;
+    texturesPSP[id].hRender = bits->height;
+
+    
+    switch(bits->bitdepth) {
+        case 0:  texturesPSP[id].mode = GU_PSM_T4;    break;
+        case 1:  texturesPSP[id].mode = GU_PSM_T8;    break;
+        case 2:  texturesPSP[id].mode = GU_PSM_5551;  break;
+        case 3:
+        case 4:  texturesPSP[id].mode = GU_PSM_8888;  break;
+        default:
+            texturesPSPUsed[id] = false;
+            return 0;
+    }
+    
+    texturesPSPUsed[id] = true;
+    
+    return id;
+}
+
+s32 flReleaseTextureHandle(u32 texture_handle){
+    free(texturesPSP[texture_handle].data);
+    texturesPSP[texture_handle].data = NULL;
+    texturesPSPUsed[texture_handle] = false;
+    return 1;
+}
 
 u32 flCreatePaletteHandle(plContext* ctx, u32 flag) {
     int id;
     u16* src = ctx->ptr;
 
-    for(id = 0; ColorRAMUsed[id] && id < PALETTES_N; id++);
+    for(id = 0; ColorRAMUsed[id] && id < MAX_PALETTES; id++);
 
-    if (id == PALETTES_N)
+    if (id == MAX_PALETTES)
         return -1;
 
 
@@ -99,6 +145,7 @@ u32 flCreatePaletteHandle(plContext* ctx, u32 flag) {
 
 s32 flReleasePaletteHandle(u32 palette_handle){
     ColorRAMUsed[palette_handle] = false;
+    return 1;
 }
 
 s32 flLockPalette(Rect* lprect, u32 th, plContext* lpcontext, u32 flag){}

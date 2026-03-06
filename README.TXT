@@ -81,9 +81,6 @@ src/Game/sc_sub.c:
 
 
 src/Game/texcash.c:
--mts_ok commented out
--commented out basically everything
-
 
 src/psp/MemMan.c:
 -verify if it handles memory correctly

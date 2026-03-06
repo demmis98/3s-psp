@@ -215,6 +215,7 @@ void SSPutStr(u16 x, u16 y, u8 atr, const s8* str) {
     scrscrntex[0].col = scrscrntex[3].col = 0xFFFFFFFF;
     scrscrntex[0].z = scrscrntex[3].z = PrioBase[2];
     njSetPaletteBankNumG(1, atr & 0x3F);
+    
     x = x * 8;
     y = y * 8;
 
@@ -224,7 +225,6 @@ void SSPutStr(u16 x, u16 y, u8 atr, const s8* str) {
         } else {
             SSPutStrTexInput(x, y + 2, str);
         }
-
         njDrawSprite(scrscrntex, 4, 1, 1);
         x += 8;
         str++;

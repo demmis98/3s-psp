@@ -40,6 +40,10 @@
 
 #include <memory.h>
 
+#define SCRATCHPAD_SIZE 0x4000   // 16 KB (same size as PS2 scratchpad)
+
+static u8* scratchpad_psp = NULL;
+
 // sbss
 s32 system_init_level;
 MPP mpp_w;
@@ -93,6 +97,7 @@ void AcrMain() {
         appViewMatrix();
         //flAdjustScreen(X_Adjust + Correct_X[0], Y_Adjust + Correct_Y[0]);
         setBackGroundColor(0xFF000000);
+        //setBackGroundColor(0xFFFF0000);
 
         if (Debug_w[0x43]) {
             setBackGroundColor(0xFF0000FF);
@@ -240,11 +245,18 @@ void AcrMain() {
 }
 
 void distributeScratchPadAddress() {
-    /*
-    dctex_linear = (s16*)(SPR + 0x800);
-    texcash_melt_buffer = (u8*)(SPR + 0x1000);
-    tpu_free = (TexturePoolUsed*)(SPR + 0x2000);
-    */
+    if (!scratchpad_psp) {
+        scratchpad_psp = memalign(16, SCRATCHPAD_SIZE);
+
+        if (!scratchpad_psp){
+            flLogOut("Failed to allocate PSP scratchpad replacement\n");
+            while (1);
+        }
+    }
+
+    dctex_linear        = (s16*)(scratchpad_psp + 0x800);
+    texcash_melt_buffer = (u8*)(scratchpad_psp + 0x1000);
+    tpu_free            = (TexturePoolUsed*)(scratchpad_psp + 0x2000);
 }
 
 void MaskScreenEdge() {
@@ -326,11 +338,11 @@ void njUserInit() {
     appViewSetItems(&mpp_w.vprm);
     appViewMatrix();
     mmSystemInitialize();
-    //flGetFrame(&mpp_w.fmsFrame);
-    //seqsInitialize(mppMalloc(seqsGetUseMemorySize()));
-    //ppg_Initialize(mppMalloc(0x60000), 0x60000);
-    //zlib_Initialize(mppMalloc(0x10000), 0x10000);
-    //size = flGetSpace();
+    flGetFrame(&mpp_w.fmsFrame);
+    seqsInitialize(mppMalloc(seqsGetUseMemorySize()));
+    ppg_Initialize(mppMalloc(0x60000), 0x60000);
+    zlib_Initialize(mppMalloc(0x10000), 0x10000);
+    size = flGetSpace();
     size = 0x20000;    //i suppose its ram(?)
     mpp_w.ramcntBuff = mppMalloc(size);
     Init_ram_control_work(mpp_w.ramcntBuff, size);

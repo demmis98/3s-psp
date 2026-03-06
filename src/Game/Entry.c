@@ -18,6 +18,8 @@
 #include "Game/workuser.h"
 #include "structs.h"
 
+#include "psp/PPGFile.h"
+
 #include "fl.h"
 
 u8 letter_stack[40];
