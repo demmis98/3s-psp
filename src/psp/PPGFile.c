@@ -29,6 +29,8 @@
 TexturePSP texturesPSP[MAX_TEXTURES];
 bool texturesPSPUsed[MAX_TEXTURES];
 
+s32 currentTexture = -1;
+
 typedef struct {
     Vec3 v;
     TexCoord t;
@@ -137,19 +139,30 @@ s32 ppgWriteQuadWithST_A2(Vertex* pos, u32 col) {
 }
 
 void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode) {
-    Sprite prm;
+    TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(4 * sizeof(TextureVertex));
+    TexturePSP *tex = &texturesPSP[texCode];
     s32 i;
 
     flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
-    //ps2SeqsRenderQuadInit_A();
-
+    
     for (i = 0; i < 4; i++) {
-        prm.v[i] = ((_Vertex*)pos)[i].v;
-        prm.t[i] = ((_Vertex*)pos)[i].t;
+        vertices[i].x = ((Vertex*)pos)[i].x;
+        vertices[i].y = ((Vertex*)pos)[i].y;
+        vertices[i].z = ((Vertex*)pos)[i].z;
+        vertices[i].u = ((Vertex*)pos)[i].u * tex->width;
+        vertices[i].v = ((Vertex*)pos)[i].v * tex->height;
+        vertices[i].colour = 0xFFFFFFFF;
     }
 
-    //ps2SeqsRenderQuad_A(&prm, col);
-    //ps2SeqsRenderQuadEnd();
+    sceGuClutMode(GU_PSM_5551, 0, 0xFF, 0);
+    sceGuClutLoad(8, ColorRAM[ppg_w.hanPal]);
+
+    if(currentTexture != texCode){
+        currentTexture = texCode;
+        setTexture(tex, GU_TFX_REPLACE);
+    }
+
+    sceGuDrawArray(GU_TRIANGLE_STRIP, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 4, 0, vertices);
 }
 
 void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
@@ -1115,11 +1128,9 @@ s32 ppgSetupTexChunk_3rd(Texture* tch, s32 ixNum, u32 attribute) {
     TextureHandle* hnof;
     s32 koCmpr;
     s32 cmpSize;
-    s32 linearSize;
+    s32 mltSize;
     void* cmpAdrs;
-    void* linear;
-
-    int bpp;
+    void* mltAdrs;
 
     s32 unused_s5;
 
@@ -1139,7 +1150,7 @@ s32 ppgSetupTexChunk_3rd(Texture* tch, s32 ixNum, u32 attribute) {
 
     if (tch->srcAdrs == NULL) {
         // Texture chunk data has already been lost.
-        flLogOut("Texture chunk data has already been lost.\n");
+        flLogOut("テクスチャチャンクデータが既に失われています。\n");
         while (1) {}
     }
 
@@ -1149,44 +1160,34 @@ s32 ppgSetupTexChunk_3rd(Texture* tch, s32 ixNum, u32 attribute) {
     cmpSize = (u16)REVERT_U16(ppg->transNums) * 3 + 0x10;
     cmpAdrs = (u8*)ppg + cmpSize;
     cmpSize = REVERT_U32(ppg->fileSize) - cmpSize;
+    mltSize = bits.height * bits.pitch;
+    mltAdrs = ppgPullDecBuff(mltSize);
 
-    switch(bits.bitdepth) {
-        case 0: bpp = 4;  break;   // T4
-        case 1: bpp = 8;  break;   // T8
-        case 2: bpp = 16; break;   // 5551
-        case 3:
-        case 4: bpp = 32; break;   // 8888
-        default: return 0;
+    if (mltAdrs == NULL) {
+        // Failed to allocate texture data expansion area.
+        flLogOut("テクスチャデータ展開領域が確保できませんでした。\n");
+        while (1) {}
     }
 
-    linearSize = (bits.width * bits.height * bpp) / 8;
-
-    linear = memalign(16, linearSize);
-    if (!linear)
-        return 0;
-
-    if (linearSize != ppgDecompress(koCmpr, cmpAdrs, cmpSize, linear, linearSize)) {
-        free(linear);
+    if (mltSize != ppgDecompress(koCmpr, cmpAdrs, cmpSize, mltAdrs, mltSize)) {
         // Failed to acquire sprite texture handle.
-        flLogOut("Failed to acquire sprite texture handle.\n");
+        flLogOut("テクスチャデータの解凍に失敗しました。\n");
+        ppgPushDecBuff(mltAdrs);
         while (1) {}
-        return 0;
     }
 
     (bits.desc & 0x20) > 0;
     unused_s5 = 0;
-    ppgChangeDataEndian(linear, linearSize, ppg->pixel & 4, ppg->formARGB == 0x8888, bits.bitdepth, unused_s5);
-    bits.ptr = linear;
-    
-    hnof->b16[0] = flSetTextureHandle(&bits, ixNum, attribute);
+    ppgChangeDataEndian(mltAdrs, mltSize, ppg->pixel & 4, ppg->formARGB == 0x8888, bits.bitdepth, unused_s5);
+    bits.ptr = mltAdrs;
+    hnof->b16[0] = flCreateTextureHandle(&bits, attribute);
+    ppgPushDecBuff(mltAdrs);
 
-    if (hnof->b16[0] == -1) {
+    if (hnof->b16[0] == 0) {
         // Failed to acquire texture handle.
-        flLogOut("Failed to acquire texture handle.\n");
+        flLogOut("テクスチャハンドルの取得に失敗しました。\n");
         while (1) {}
     }
-    
-    sceKernelDcacheWritebackInvalidateRange(linear, linearSize);
 
     return 1;
 }

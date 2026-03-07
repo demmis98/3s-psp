@@ -59,7 +59,6 @@ static void matmul(MTX* dst, const MTX* a, const MTX* b) {
 }
 #endif
 
-s32 currentTexture = -1;
 
 void njUnitMatrix(MTX* mtx) {
     /*
@@ -167,10 +166,9 @@ void njTranslate(MTX* mtx, f32 x, f32 y, f32 z) {
 }
 
 void njSetBackColor(u32 c0, u32 c1, u32 c2) {
-    /*
     c0 = c0 | c1 | c2;
     flSetRenderState(FLRENDER_BACKCOLOR, NTH_BYTE(c0, 3) | NTH_BYTE(c0, 2) | NTH_BYTE(c0, 1) | NTH_BYTE(c0, 0));
-    */
+    
 }
 
 void njColorBlendingMode(s32 target, s32 mode) {
@@ -238,108 +236,55 @@ void njRotateZ(s32 /* unused */, s32 /* unused */) {
 }
 
 void njDrawTexture(Polygon* polygon, s32 unused0, s32 texture, s32 unused1) {
-    /*
-    float x0, y0, x1, y1;
-    float u0, v0, u1, v1;
-    int i_pol;
-    */
+    TexturePSP *tex = &texturesPSP[LO_16_BITS(texture) - 1];
+    FLTexture *lpflTexture = &flTexture[LO_16_BITS(texture) - 1];
 
     if(DEMMA_DEBUG){
-        flLogOut("njDrawTexture %d %x\n", texture, texturesPSP[texture]);
-        flLogOut("mode: %d data: %x width: %d height: %d\n", texturesPSP[texture].mode, texturesPSP[texture].data, texturesPSP[texture].width, texturesPSP[texture].height);
+        flLogOut("njDrawTexture %d %x\n", texture, tex);
+        flLogOut("mode: %d data: %x width: %d height: %d\n", tex->mode, tex->data, tex->width, tex->height);
         
-        //flLogOut("palette %d\n", currentPaletteIndex);
+        //flLogOut("palette %d\n", ppg_w.hanPal);
 
-        int loop = 0;
         for(int i = 0; i < 64; i++){
-            //flLogOut("%x ", ColorRAM[currentPaletteIndex][i]);
+            //flLogOut("%x ", ColorRAM[ppg_w.hanPal][i]);
         }
 
-        for(int i = 0; i < texturesPSP[texture].width * 0; i++){
-            //flLogOut("%x ", texturesPSP[texture].data[i]);
+        for(int i = 0; i < tex->width * 0; i++){
+            //flLogOut("%x ", tex->data[i]);
         }
     }
     if(texture >= 0){
-        /*
-        for(i_pol = 0; i_pol < 4; i_pol++){
-            if(polygon[i_pol].x > x1)
-                x1 = polygon[i_pol].x;
-
-            if(polygon[i_pol].y > y1)
-                y1 = polygon[i_pol].y;
-
-            if(polygon[i_pol].u > u1)
-                u1 = polygon[i_pol].u;
-
-            if(polygon[i_pol].v > v1)
-                v1 = polygon[i_pol].v;
-
-            if(polygon[i_pol].x < x0 || x0 == -999.0f)
-                x0 = polygon[i_pol].x;
-
-            if(polygon[i_pol].y < y0 || y0 == -999.0f)
-                y0 = polygon[i_pol].y;
-
-            if(polygon[i_pol].u < u0 || u0 == -999.0f)
-                u0 = polygon[i_pol].u;
-
-            if(polygon[i_pol].v < v0 || v0 == -999.0f)
-                v0 = polygon[i_pol].v;
-        }
-
-        u0 *= texturesPSP[texture].width;
-        v0 *= texturesPSP[texture].height;
-        u1 *= texturesPSP[texture].width;
-        v1 *= texturesPSP[texture].height;
-
-        if(DEMMA_DEBUG){
-            flLogOut("x0: %f y0: %f x1: %f y1: %f\n", x0, y0, x1, y1);
-            flLogOut("u0: %f v0: %f u1: %f v1: %f\n", u0, v0, u1, v1);
-        }
-
-        //while(1);
-        */
-        //drawRect(x0, y0, x1 - x0, y1 - y0, 0xFF00FFFF);
-        //drawRect(x0, y0, x1 - x0, y1 - y0, njdp2d_w.prim[i].col);
-
-        //drawRect(polygon[0].x, polygon[0].y, 10, 10, 0xFFFFFFFF);
-        //drawRect(polygon[1].x, polygon[1].y, 10, 10, 0xFFFF00FF);
-        //drawRect(polygon[2].x, polygon[2].y, 10, 10, 0xFFFF00FF);
-        //drawRect(polygon[3].x, polygon[3].y, 10, 10, 0xFFFF00FF);
-
-        //sceGuClutMode(GU_PSM_5551, 0, 0x3F, 0);
         sceGuClutMode(GU_PSM_5551, 0, 0xFF, 0);
         sceGuClutLoad(8, ColorRAM[ppg_w.hanPal]);
 
-        //drawTextureF(&texturesPSP[texture], x0, y0);
-        //drawTexture(&texturesPSP[texture], x0, y0, u0, v0, x1, y1, u1, v1, 0xFFFFFFFF);
         if(currentTexture != texture){
             currentTexture = texture;
-            setTexture(&texturesPSP[texture], GU_TFX_REPLACE);
+            setTexture(tex, GU_TFX_REPLACE);
         }
-        //drawTextureSet(x0, y0, u0, v0, x1, y1, u1, v1, 0xFFFFFFFF);
+        
         // draw directly bc what the hell
         TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(4 * sizeof(TextureVertex));
         for(int i = 0; i < 4; i++){
-            vertices[i].u = polygon[i].u * texturesPSP[texture].width;
-            vertices[i].v = polygon[i].v * texturesPSP[texture].height;
+            vertices[i].u = polygon[i].u * tex->width;
+            vertices[i].v = polygon[i].v * tex->height;
             vertices[i].colour = 0xFFFFFFFF;
             vertices[i].x = polygon[i].x;
             vertices[i].y = polygon[i].y;
             vertices[i].z = 0.0f;
         }
-        //sceGuDrawArray(GU_SPRITES, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
         sceGuDrawArray(GU_TRIANGLE_STRIP, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 4, 0, vertices);
     }
-    flLogOut("texture %d %x\n", texture, texturesPSP[texture].data);
-    while(DEMMA_DEBUG && texturesPSP[texture].data == 0);
+    flLogOut("lpflTexture %d %d %d\n", lpflTexture->wkVram, lpflTexture->width, lpflTexture->height);
+    flLogOut("texture %d %x\n", texture, tex->data);
+    while(DEMMA_DEBUG && tex->data == 0);
 }
 
 void njDrawSprite(Polygon* polygon, s32 unused0, s32 texture, s32 unused1){
     TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(2 * sizeof(TextureVertex));
+    TexturePSP *tex = &texturesPSP[LO_16_BITS(texture) - 1];
 
     if(DEMMA_DEBUG)
-        flLogOut("njDrawSprite %d %x\n", texture, texturesPSP[texture]);
+        flLogOut("njDrawSprite %d %x\n", texture, tex);
     if(texture >= 0){
         //if ((getCP3toFullScreenDrawFlag() != 0) &&
         if (
@@ -352,13 +297,13 @@ void njDrawSprite(Polygon* polygon, s32 unused0, s32 texture, s32 unused1){
 
         if(currentTexture != texture){
             currentTexture = texture;
-            setTexture(&texturesPSP[texture], GU_TFX_REPLACE);
+            setTexture(tex, GU_TFX_REPLACE);
         }
 
         for(int i = 0; i < 2; i++){
             vertices[i].x = polygon[i*3].x;
-            vertices[i].u = polygon[i*3].u * texturesPSP[texture].width;
-            vertices[i].v = polygon[i*3].v * texturesPSP[texture].height;
+            vertices[i].u = polygon[i*3].u * tex->width;
+            vertices[i].v = polygon[i*3].v * tex->height;
             vertices[i].colour = polygon[i*3].col;
             vertices[i].x = polygon[i*3].x;
             vertices[i].y = polygon[i*3].y;

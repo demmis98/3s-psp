@@ -5,6 +5,7 @@
 #include "types.h"
 
 #include "common/graphics.h"
+#include "psp/flps2etc.h"
 
 #define LOG_BUFFER_SIZE 512
 
@@ -32,11 +33,32 @@ s32 flUnlockPalette(u32 th);
 s32 flSetRenderState(enum _FLSETRENDERSTATE func, u32 value);
 
 // memory management
-void* flAllocMemory(s32 size);
-s32 flGetFrame(FMS_FRAME* frame);
-s32 flGetSpace();
-void* flAllocMemoryS(s32 size);
 s32 flInitialize(s32 /* unused */, s32 /* unused */);
 s32 system_work_init();
+
+// from modern port
+
+#define FL_PALETTE_MAX MAX_PALETTES
+#define FL_TEXTURE_MAX 256
+
+extern u32 flDebugStrCtr;
+extern u32 flDebugStrCol;
+extern u32 flDebugStrHan;
+extern s32 flVramStaticNum;
+extern FL_FMS flFMS;
+extern u32 flSystemRenderOperation;
+extern s32 flHeight;
+extern s32 flWidth;
+extern FLTexture flPalette[FL_PALETTE_MAX];
+extern FLTexture flTexture[FL_TEXTURE_MAX];
+extern FLPS2State flPs2State;
+
+u32 flPS2GetPaletteHandle();
+s32 flPS2CreatePaletteHandle(u32 ph, u32 flag);
+s32 flPS2GetPaletteInfoFromContext(plContext* bits, u32 ph, u32 flag);
+u32 flPS2GetTextureHandle();
+s32 flPS2CreateTextureHandle(u32 th, u32 flag);
+s32 flPS2GetTextureInfoFromContext(plContext* bits, s32 bnum, u32 th, u32 flag);
+s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture, u32 type);
 
 #endif  // FL_H_

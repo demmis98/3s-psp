@@ -92,6 +92,7 @@ CMakeFiles/3rd-strike.dir/src/Game/bg.c.obj: \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkdebug.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman_kernel.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/psp/flps2etc.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/color3rd.h \
  /home/demma/Documents/code/psp/3rd-strike/include/psp/MemMan.h \
  /home/demma/Documents/code/psp/3rd-strike/include/psp/PPGFile.h \

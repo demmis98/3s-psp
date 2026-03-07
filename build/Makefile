@@ -13137,6 +13137,30 @@ src/psp/fl.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/fl.c.s
 .PHONY : src/psp/fl.c.s
 
+src/psp/flps2etc.obj: src/psp/flps2etc.c.obj
+.PHONY : src/psp/flps2etc.obj
+
+# target to build an object file
+src/psp/flps2etc.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/flps2etc.c.obj
+.PHONY : src/psp/flps2etc.c.obj
+
+src/psp/flps2etc.i: src/psp/flps2etc.c.i
+.PHONY : src/psp/flps2etc.i
+
+# target to preprocess a source file
+src/psp/flps2etc.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/flps2etc.c.i
+.PHONY : src/psp/flps2etc.c.i
+
+src/psp/flps2etc.s: src/psp/flps2etc.c.s
+.PHONY : src/psp/flps2etc.s
+
+# target to generate assembly for a file
+src/psp/flps2etc.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/flps2etc.c.s
+.PHONY : src/psp/flps2etc.c.s
+
 src/psp/pspmain.obj: src/psp/pspmain.c.obj
 .PHONY : src/psp/pspmain.obj
 
@@ -14820,6 +14844,9 @@ help:
 	@echo "... src/psp/fl.obj"
 	@echo "... src/psp/fl.i"
 	@echo "... src/psp/fl.s"
+	@echo "... src/psp/flps2etc.obj"
+	@echo "... src/psp/flps2etc.i"
+	@echo "... src/psp/flps2etc.s"
 	@echo "... src/psp/pspmain.obj"
 	@echo "... src/psp/pspmain.i"
 	@echo "... src/psp/pspmain.s"

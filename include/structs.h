@@ -807,6 +807,22 @@ typedef struct {
 } WORK_Other_JUDGE;
 
 typedef struct {
+    s32 DispWidth;
+    s32 DispHeight;
+    f32 ZBuffMax;
+    u32 TextureStartAdrs;
+    u32 FrameClearColor;
+    u32 SystemStatus;
+    s32 SystemIndex;
+    uintptr_t system_memory_start;
+    s32 system_memory_size;
+    uintptr_t SystemTmpBuffStartAdrs;
+    uintptr_t SystemTmpBuffEndAdrs;
+    uintptr_t SystemTmpBuffNow;
+    u32 SystemTmpBuffHandle[2];
+} FLPS2State;
+
+typedef struct {
     // total size: 0xC
     u8 order;    // offset 0x0, size 0x1
     u8 kind_req; // offset 0x1, size 0x1
