@@ -53,30 +53,99 @@ ssize_t mmGetRemainderMin(_MEMMAN_OBJ* mmobj) {
 
 u8* mmAlloc(_MEMMAN_OBJ* mmobj, ssize_t size, s32 flag) {
     struct _MEMMAN_CELL* cell = mmAllocSub(mmobj, size, flag);
-    if (!cell)
-        return NULL;
 
-    // Return pointer **after header**
+    if (cell == NULL) {
+        return NULL;
+    }
+
+    mmobj->remainder -= cell->size;
+
+    if (mmobj->remainderMin > mmobj->remainder) {
+        mmobj->remainderMin = mmobj->remainder;
+    }
+
     return (u8*)cell + mmobj->ownUnit;
 }
 
 struct _MEMMAN_CELL* mmAllocSub(_MEMMAN_OBJ* mmobj, ssize_t size, s32 flag) {
-    if (size <= 0)
+    struct _MEMMAN_CELL* myself;
+    struct _MEMMAN_CELL* next;
+    struct _MEMMAN_CELL* cell;
+    ssize_t sizeTrue;
+    ptrdiff_t gap;
+    ptrdiff_t gapMin;
+
+    sizeTrue = mmobj->ownUnit + mmRoundUp(mmobj->ownUnit, size);
+    gapMin = 0x7FFFFFFF;
+    cell = NULL;
+
+    if (flag != 1) {
+        myself = mmobj->cell_1st;
+
+        do {
+            next = myself->next;
+            gap = (intptr_t)next - (intptr_t)myself - myself->size;
+
+            if (gap >= sizeTrue) {
+                if (gap == sizeTrue) {
+                    cell = myself;
+                    break;
+                } else {
+                    if ((gap - sizeTrue) < gapMin) {
+                        gapMin = gap - sizeTrue;
+                        cell = myself;
+                    }
+                }
+            }
+
+            myself = next;
+        } while (myself->next != NULL);
+
+        if (cell == NULL) {
+            return NULL;
+        }
+
+        myself = (struct _MEMMAN_CELL*)((uintptr_t)cell + cell->size);
+        myself->prev = cell;
+        myself->next = cell->next;
+        myself->size = sizeTrue;
+        cell->next->prev = myself;
+        cell->next = myself;
+        return myself;
+    }
+
+    myself = mmobj->cell_fin;
+
+    do {
+        next = myself->prev;
+        gap = (intptr_t)myself - (intptr_t)next - next->size;
+
+        if (gap >= sizeTrue) {
+            if (gap == sizeTrue) {
+                cell = myself;
+                break;
+            } else {
+                if ((gap - sizeTrue) < gapMin) {
+                    gapMin = gap - sizeTrue;
+                    cell = myself;
+                }
+            }
+        }
+
+        myself = next;
+    } while (myself->prev != NULL);
+
+    if (cell == NULL) {
         return NULL;
+    }
 
-    // compute total size including header + alignment
-    size_t totalSize = ALIGN16(size + mmobj->ownUnit);
-
-    // Use memalign to satisfy 16-byte alignment (important on PSP for GU/VFPU)
-    void* ptr = memalign(16, totalSize);
-    if (!ptr)
-        return NULL;
-
-    // store size in a fake "header" for bookkeeping
-    struct _MEMMAN_CELL* cell = (struct _MEMMAN_CELL*)ptr;
-    cell->size = (s32)totalSize;
-
-    return cell;
+    myself = (struct _MEMMAN_CELL*)((uintptr_t)cell - sizeTrue);
+    myself->prev = cell->prev;
+    myself->next = cell;
+    myself->size = sizeTrue;
+    cell->prev->next = myself;
+    cell->prev = myself;
+    return myself;
 }
 
 void mmFree(_MEMMAN_OBJ* mmobj, u8* adrs) {

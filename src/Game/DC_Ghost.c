@@ -235,84 +235,28 @@ void njRotateZ(s32 /* unused */, s32 /* unused */) {
     // Do nothing
 }
 
-void njDrawTexture(Polygon* polygon, s32 unused0, s32 texture, s32 unused1) {
-    TexturePSP *tex = &texturesPSP[LO_16_BITS(texture) - 1];
-    FLTexture *lpflTexture = &flTexture[LO_16_BITS(texture) - 1];
+void njDrawTexture(Polygon* polygon, s32 /* unused */, s32 tex, s32 /* unused */) {
+    Vertex vtx[4];
+    s32 i;
 
-    if(DEMMA_DEBUG){
-        flLogOut("njDrawTexture %d %x\n", texture, tex);
-        flLogOut("mode: %d data: %x width: %d height: %d\n", tex->mode, tex->data, tex->width, tex->height);
-        
-        //flLogOut("palette %d\n", ppg_w.hanPal);
-
-        for(int i = 0; i < 64; i++){
-            //flLogOut("%x ", ColorRAM[ppg_w.hanPal][i]);
-        }
-
-        for(int i = 0; i < tex->width * 0; i++){
-            //flLogOut("%x ", tex->data[i]);
-        }
+    for (i = 0; i < 4; i++) {
+        vtx[i] = ((_Polygon*)polygon)[i].v;
     }
-    if(texture >= 0){
-        sceGuClutMode(GU_PSM_5551, 0, 0xFF, 0);
-        sceGuClutLoad(8, ColorRAM[ppg_w.hanPal]);
 
-        if(currentTexture != texture){
-            currentTexture = texture;
-            setTexture(tex, GU_TFX_REPLACE);
-        }
-        
-        // draw directly bc what the hell
-        TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(4 * sizeof(TextureVertex));
-        for(int i = 0; i < 4; i++){
-            vertices[i].u = polygon[i].u * tex->width;
-            vertices[i].v = polygon[i].v * tex->height;
-            vertices[i].colour = 0xFFFFFFFF;
-            vertices[i].x = polygon[i].x;
-            vertices[i].y = polygon[i].y;
-            vertices[i].z = 0.0f;
-        }
-        sceGuDrawArray(GU_TRIANGLE_STRIP, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 4, 0, vertices);
-    }
-    flLogOut("lpflTexture %d %d %d\n", lpflTexture->wkVram, lpflTexture->width, lpflTexture->height);
-    flLogOut("texture %d %x\n", texture, tex->data);
-    while(DEMMA_DEBUG && tex->data == 0);
+    ppgWriteQuadWithST_B(vtx, polygon[0].col, NULL, tex, -1);
 }
 
-void njDrawSprite(Polygon* polygon, s32 unused0, s32 texture, s32 unused1){
-    TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(2 * sizeof(TextureVertex));
-    TexturePSP *tex = &texturesPSP[LO_16_BITS(texture) - 1];
+void njDrawSprite(Polygon* polygon, s32 /* unused */, s32 tex, s32 /* unused */) {
+    Vertex vtx[4];
 
-    if(DEMMA_DEBUG)
-        flLogOut("njDrawSprite %d %x\n", texture, tex);
-    if(texture >= 0){
-        //if ((getCP3toFullScreenDrawFlag() != 0) &&
-        if (
-            ((polygon[0].x >= 384.0f) || (polygon[3].x < 0.0f) || (polygon[0].y >= 224.0f) || (polygon[3].y < 0.0f))) {
-            return;
-        }
-
-        sceGuClutMode(GU_PSM_5551, 0, 0xFF, 0);
-        sceGuClutLoad(8, ColorRAM[ppg_w.hanPal]);
-
-        if(currentTexture != texture){
-            currentTexture = texture;
-            setTexture(tex, GU_TFX_REPLACE);
-        }
-
-        for(int i = 0; i < 2; i++){
-            vertices[i].x = polygon[i*3].x;
-            vertices[i].u = polygon[i*3].u * tex->width;
-            vertices[i].v = polygon[i*3].v * tex->height;
-            vertices[i].colour = polygon[i*3].col;
-            vertices[i].x = polygon[i*3].x;
-            vertices[i].y = polygon[i*3].y;
-            vertices[i].z = 0.0f;
-        }
-
-        sceGuDrawArray(GU_SPRITES, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
+    if ((polygon[0].x >= 384.0f) || (polygon[3].x < 0.0f) || (polygon[0].y >= 224.0f) || (polygon[3].y < 0.0f)) {
+        return;
     }
-    //njDrawTexture(polygon, unused0, texture, unused1);
+
+    vtx[0] = ((_Polygon*)polygon)[0].v;
+    vtx[3] = ((_Polygon*)polygon)[3].v;
+
+    ppgWriteQuadWithST_B2(vtx, polygon[0].col, 0, tex, -1);
 }
 
 void njdp2d_init() {

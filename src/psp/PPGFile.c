@@ -143,41 +143,47 @@ void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode) {
     TexturePSP *tex = &texturesPSP[texCode];
     s32 i;
 
-    flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
-    
+    flLogOut("ppgWriteQuadOnly %x %d %d %d\n", tex->data, tex->width, tex->height, texCode);
+
     for (i = 0; i < 4; i++) {
-        vertices[i].x = ((Vertex*)pos)[i].x;
-        vertices[i].y = ((Vertex*)pos)[i].y;
-        vertices[i].z = ((Vertex*)pos)[i].z;
-        vertices[i].u = ((Vertex*)pos)[i].u * tex->width;
-        vertices[i].v = ((Vertex*)pos)[i].v * tex->height;
+        flLogOut("x %f y %f u %f v %f\n",pos[i].x,pos[i].y,pos[i].u,pos[i].u);
+        vertices[i].x = pos[i].x;
+        vertices[i].y = pos[i].y;
+        vertices[i].z = pos[i].z;
+        vertices[i].u = pos[i].u * tex->width;
+        vertices[i].v = pos[i].v * tex->height;
         vertices[i].colour = 0xFFFFFFFF;
+
+        drawRect(vertices[i].x, vertices[i].y, 10, 10, 0xFFFF00FF);
     }
 
-    sceGuClutMode(GU_PSM_5551, 0, 0xFF, 0);
-    sceGuClutLoad(8, ColorRAM[ppg_w.hanPal]);
-
-    if(currentTexture != texCode){
-        currentTexture = texCode;
-        setTexture(tex, GU_TFX_REPLACE);
-    }
+    flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
 
     sceGuDrawArray(GU_TRIANGLE_STRIP, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 4, 0, vertices);
 }
 
 void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
-    Sprite prm;
+    TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(2 * sizeof(TextureVertex));
+    TexturePSP *tex = &texturesPSP[texCode];
+    s32 i;
+
+    flLogOut("ppgWriteQuadOnly2 %x %d %d %d\n", tex->data, tex->width, tex->height, texCode);
+
+    for (i = 0; i < 2; i++) {
+        flLogOut("x %f y %f u %f v %f\n",pos[i].x,pos[i].y,pos[i].u,pos[i].u);
+        vertices[i].x = pos[i*3].x;
+        vertices[i].y = pos[i*3].y;
+        vertices[i].z = pos[i*3].z;
+        vertices[i].u = pos[i*3].u * tex->width;
+        vertices[i].v = pos[i*3].v * tex->height;
+        vertices[i].colour = 0xFFFFFFFF;
+        drawRect(vertices[i].x, vertices[i].y, 8, 8, 0xFFFF0000);
+    }
 
     flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
-    //ps2SeqsRenderQuadInit_A();
 
-    prm.v[0] = ((_Vertex*)pos)[0].v;
-    prm.t[0] = ((_Vertex*)pos)[0].t;
-    prm.v[3] = ((_Vertex*)pos)[3].v;
-    prm.t[3] = ((_Vertex*)pos)[3].t;
+    sceGuDrawArray(GU_SPRITES, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
 
-    //ps2SeqsRenderQuad_A2(&prm, col);
-    //ps2SeqsRenderQuadEnd();
 }
 
 s32 ppgWriteQuadWithST_B(Vertex* pos, u32 col, PPGDataList* tb, s32 tix, s32 cix) {

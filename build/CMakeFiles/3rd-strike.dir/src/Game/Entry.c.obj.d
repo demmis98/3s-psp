@@ -114,4 +114,5 @@ CMakeFiles/3rd-strike.dir/src/Game/Entry.c.obj: \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspge.h \
  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
  /home/demma/Documents/code/psp/3rd-strike/include/psp/flps2etc.h \
- /home/demma/Documents/code/psp/3rd-strike/include/Game/color3rd.h
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/color3rd.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/psp/PPGFile.h

@@ -98,6 +98,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Sound3rd.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
  /home/demma/Documents/code/psp/3rd-strike/include/psp/flps2etc.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/color3rd.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/psp/PPGFile.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFECT.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/GD3rd.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/RAMCNT.h \

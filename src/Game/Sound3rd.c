@@ -189,7 +189,7 @@ void sndInitialLoad() {
     //cseMemMapInit(&SpuMap);
     //cseMemMapSetPhdAddr(0, *csePHDDataTable);
     //cseTsbSetBankAddr(0, *cseTSBDataTable);
-    load_any_color(109, 20); // This loads SE.bd (index 7)
+    //load_any_color(109, 20); // This loads SE.bd (index 7)
 }
 
 s32 cseMemMapInit(void* pSpuMemMap) {

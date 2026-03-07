@@ -1,5 +1,6 @@
 #include "fl.h"
 
+#include <malloc.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <assert.h>
@@ -48,8 +49,9 @@ s32 flLogOut(s8* format, ...){
         va_end(args);
 
         enableDebug();
-        flPrintColor(0xFFFFFFFF);
         pspDebugScreenPrintf("%s", buffer);
+
+        flPrintColor(0xFFFFFFFF);
     }
 }
 
@@ -101,11 +103,41 @@ u32 flCreateTextureHandle(plContext* bits, u32 flag) {
     lpflTexture = &flTexture[LO_16_BITS(th) - 1];
     flPS2GetTextureInfoFromContext(bits, 1, th, flag);
 
+    
     if (bits->ptr == NULL) {
-        lpflTexture->mem_handle = flPS2GetSystemMemoryHandle(lpflTexture->size, 2);
+        //lpflTexture->mem_handle = flPS2GetSystemMemoryHandle(lpflTexture->size, 2);
     } else {
+        lpflTexture->mem_handle = flPS2GetSystemMemoryHandle(lpflTexture->size, 2);
         flPS2ConvertTextureFromContext(bits, lpflTexture, 0);
         flPS2CreateTextureHandle(th, flag);
+        lpflTexture->wkVram = flPS2GetSystemBuffAdrs(lpflTexture->mem_handle);
+    }
+    
+    //lpflTexture->wkVram = bits->ptr;
+
+    TexturePSP* tex = &texturesPSP[LO_16_BITS(th) - 1];
+    tex->width = lpflTexture->width;
+    tex->height = lpflTexture->height;
+    tex->wRender = lpflTexture->width;
+    tex->hRender = lpflTexture->height;
+    tex->data = lpflTexture->wkVram;
+
+    switch (lpflTexture->format) {
+        case SCE_GS_PSMT8:
+            tex->mode = GU_PSM_T8;
+            break;
+
+        case SCE_GS_PSMT4:
+            tex->mode = GU_PSM_T4;
+            break;
+
+        case SCE_GS_PSMCT16:
+            tex->mode = GU_PSM_5551;
+            break;
+
+        default:
+            flLogOut("Unhandled pixel format: %d\n", lpflTexture->format);
+            return 0;
     }
 
     return th;
@@ -220,48 +252,8 @@ s32 flPS2GetTextureInfoFromContext(plContext* bits, s32 bnum, u32 th, u32 flag) 
     return 1;
 }
 
-s32 flPS2CreateTextureHandle(u32 th, u32 flag) {
-    int texture_index = LO_16_BITS(th) - 1;
-
-    FLTexture* fl_texture = &flTexture[texture_index];
-    TexturePSP* tex = &texturesPSP[texture_index];
-
-    void* pixels = flPS2GetSystemBuffAdrs(fl_texture->mem_handle);
-
-    if (!pixels) {
-        flLogOut("Texture has no pixel data\n");
-        return 0;
-    }
-
-    tex->data = pixels;
-    tex->width = fl_texture->width;
-    tex->height = fl_texture->height;
-
-    switch (fl_texture->format)
-    {
-        case SCE_GS_PSMT8:
-            tex->mode = GU_PSM_T8;
-            break;
-
-        case SCE_GS_PSMT4:
-            tex->mode = GU_PSM_T4;
-            break;
-
-        case SCE_GS_PSMCT16:
-            tex->mode = GU_PSM_5551;
-            break;
-
-        default:
-            flLogOut("Unhandled pixel format: %d\n", fl_texture->format);
-            return 0;
-    }
-
-    flLogOut("Created PSP texture %d (%dx%d) ptr=%x\n",
-        texture_index,
-        tex->width,
-        tex->height,
-        tex->data);
-
+s32 flPS2CreateTextureHandle(u32 th, u32 flag){
+    
     return 1;
 }
 
@@ -279,6 +271,8 @@ u32 flPS2GetTextureHandle() {
         flLogOut("ERROR flPS2GetTextureHandle flps2vram.c\n");
     }
 
+    flLogOut("flPS2GetTextureHandle %d\n", i);
+
     return i + 1;
 }
 
@@ -293,10 +287,16 @@ u32 flCreatePaletteHandle(plContext* lpcontext, u32 flag) {
     lpflPalette = &flPalette[HI_16_BITS(ph) - 1];
     flPS2GetPaletteInfoFromContext(lpcontext, ph, flag);
 
-    if (lpcontext->ptr == NULL) {
-        lpflPalette->mem_handle = flPS2GetSystemMemoryHandle(lpflPalette->size, 2);
-    } else {
+    if (lpcontext->ptr != NULL) {
         flPS2CreatePaletteHandle(ph, flag);
+        
+        int palette_index = ph >> 16;
+        u16* src = (u16*) lpcontext->ptr;
+        for(int i = 0; i < 64; i++){
+                ColorRAM[palette_index][i] = src[i] & 0x83D0;
+                ColorRAM[palette_index][i] += (src[i] & 0x001F) << 10;
+                ColorRAM[palette_index][i] += (src[i] & 0x7B00) >> 10;
+        }
     }
 
     return ph >> 16;
@@ -352,35 +352,6 @@ s32 flPS2GetPaletteInfoFromContext(plContext* bits, u32 ph, u32 flag) {
 }
 
 s32 flPS2CreatePaletteHandle(u32 ph, u32 flag) {
-    int palette_index = HI_16_BITS(ph) - 1;
-    FLTexture* fl_palette = &flPalette[palette_index];
-    const void* pixels = flPS2GetSystemBuffAdrs(fl_palette->mem_handle);
-    int color_count = fl_palette->width * fl_palette->height;
-    int color_size = 0;
-
-    switch (fl_palette->format)
-    {
-        case SCE_GS_PSMCT32:
-            color_size = 4;
-            break;
-
-        case SCE_GS_PSMCT16:
-            color_size = 2;
-            break;
-
-        default:
-            return 0;
-    }
-
-    u16* src = (u16*) pixels;
-
-    for(int i = 0; i < 64; i++){
-        ColorRAM[palette_index][i] = src[i] & 0x83D0;
-        ColorRAM[palette_index][i] += (src[i] & 0x001F) << 10;
-        ColorRAM[palette_index][i] += (src[i] & 0x7B00) >> 10;
-    }
-
-
     return 1;
 }
 
@@ -403,6 +374,8 @@ u32 flPS2GetPaletteHandle() {
 
 s32 flReleaseTextureHandle(u32 texture_handle) {
     FLTexture* lpflTexture = &flTexture[texture_handle - 1];
+
+    flLogOut("flReleaseTextureHandle\n");
 
     if ((texture_handle == 0) || (texture_handle > FL_TEXTURE_MAX) || (lpflTexture->be_flag == 0)) {
         flPrintColor(0xFFFF0000);
@@ -1112,17 +1085,49 @@ s32 flInitialize(s32 /* unused */, s32 /* unused */){
     return 1;
 }
 
-s32 flSetRenderState(enum _FLSETRENDERSTATE func, u32 value) {
-    u32 th;
+void flSetTexture(int th){
+    int texture_handle = LO_16_BITS(th);
+    TexturePSP *texture = &texturesPSP[texture_handle - 1];
+    int palette_handle = HI_16_BITS(th);
+    u16 *pal = ColorRAM[palette_handle - 1];
 
-    if(func == FLRENDER_BACKCOLOR)
+    sceGuClutMode(GU_PSM_5551, 0, 0xFF, 0);
+    sceGuClutLoad(8, pal);
+
+    if(currentTexture != texture_handle){
+        sceGuTexMode(texture->mode, 0, 0, GU_FALSE);
+        sceGuTexFunc(GU_TFX_REPLACE, GU_TCC_RGBA);
+        sceGuTexImage(0, texture->wRender, texture->hRender, texture->width, texture->data);
+
+        currentTexture = texture_handle;
+    }
+}
+
+s32 flSetRenderState(enum _FLSETRENDERSTATE func, u32 value) {
+    switch (func) {
+    case FLRENDER_TEXSTAGE0:
+    case FLRENDER_TEXSTAGE1:
+    case FLRENDER_TEXSTAGE2:
+    case FLRENDER_TEXSTAGE3:
+
+        if (func == FLRENDER_TEXSTAGE0) {
+            flSetTexture(value);
+        }
+
+        break;
+
+    case FLRENDER_BACKCOLOR:
         setBackGroundColor(value + 0xFF000000);
+        break;
+
+    default:
+        break;
+    }
 
     return 1;
 }
 
-
-s32 system_work_init() {
+static s32 system_work_init() {
     void* temp;
 
     flMemset(&flPs2State, 0, sizeof(FLPS2State));
@@ -1133,71 +1138,59 @@ s32 system_work_init() {
     }
 
     fmsInitialize(&flFMS, temp, 0x01800000, 0x40);
-    flPs2State.system_memory_size = 0xA00000;
-    temp = flAllocMemoryS(flPs2State.system_memory_size);
-    flPs2State.system_memory_start = (uintptr_t)temp;
-    mflInit(temp, flPs2State.system_memory_size, 0x40);
-
-    plmalloc = flAllocMemory;
-    plfree = free;
+    const int system_memory_size = 0xA00000;
+    temp = flAllocMemoryS(system_memory_size);
+    mflInit(temp, system_memory_size, 0x40);
 
     return 1;
 }
-s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture, u32 type) {
-    (void)type;
 
-    /* allocate system buffer */
-    lpflTexture->mem_handle = flPS2GetSystemMemoryHandle(lpflTexture->size, 2);
-    if (!lpflTexture->mem_handle)
+s32 flPS2ConvertTextureFromContext(plContext* ctx, FLTexture* tex, u32 type) {
+    tex->mem_handle = flPS2GetSystemMemoryHandle(tex->size, 2);
+    if (!tex->mem_handle)
         return 0;
 
-    u8* dst = flPS2GetSystemBuffAdrs(lpflTexture->mem_handle);
-    if (!dst)
-        return 0;
+    u8* dst = flPS2GetSystemBuffAdrs(tex->mem_handle);
+    u8* src = ctx->ptr;
 
-    s32 dw = lpflTexture->width;
-    s32 dh = lpflTexture->height;
+    int w = tex->width;
+    int h = tex->height;
 
-    for (int i = 0; i < lpflTexture->tex_num; i++)
+    for (int i = 0; i < tex->tex_num; i++)
     {
-        s32 tex_size;
+        int tex_size;
 
-        switch (lpflTexture->format)
+        switch (tex->format)
         {
             case SCE_GS_PSMT4:
-                tex_size = (dw * dh) >> 1;
+                tex_size = (w * h) >> 1;
                 break;
 
             case SCE_GS_PSMT8:
-                tex_size = dw * dh;
+                tex_size = w * h;
                 break;
 
             case SCE_GS_PSMCT16:
-                tex_size = dw * dh * 2;
+                tex_size = w * h * 2;
                 break;
 
             case SCE_GS_PSMCT24:
             case SCE_GS_PSMCT32:
-                tex_size = dw * dh * 4;
+                tex_size = w * h * 4;
                 break;
 
             default:
-                flLogOut("Unsupported format\n");
                 return 0;
         }
 
-        /* copy pixels exactly as they are */
-        memcpy(dst, lpcontext->ptr, tex_size);
+        memcpy(dst, src, tex_size);
 
         dst += tex_size;
-        dw >>= 1;
-        dh >>= 1;
-        lpcontext++;
-    }
+        src += tex_size;
 
-    sceKernelDcacheWritebackInvalidateAll();
+        w >>= 1;
+        h >>= 1;
+    }
 
     return 1;
 }
-
-s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture, u32 type);

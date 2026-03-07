@@ -4,6 +4,18 @@
 #include "structs.h"
 #include "types.h"
 
+
+typedef enum TaskID {
+    TASK_INIT = 0,
+    TASK_ENTRY = 1,
+    TASK_RESET = 2,
+    TASK_MENU = 3,
+    TASK_PAUSE = 4,
+    TASK_GAME = 5,
+    TASK_SAVER = 6,
+    TASK_DEBUG = 9,
+} TaskID;
+
 #define INIT_TASK_NUM 0
 #define ENTRY_TASK_NUM 1
 #define RESET_TASK_NUM 2

@@ -33,7 +33,6 @@ int setup_callbacks(void) {
 }
 
 int main(void)  {
-
     // Use above functions to make exiting possible
     setup_callbacks();
 

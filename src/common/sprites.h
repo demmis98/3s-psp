@@ -13,12 +13,6 @@
 extern "C" {
 #endif
 
-
-typedef struct {
-    unsigned short u, v;
-    short x, y, z;
-} Vertex;
-
 typedef struct {
     uint32_t colour;
     float x, y, z;

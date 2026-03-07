@@ -94,11 +94,12 @@ CMakeFiles/3rd-strike.dir/src/Game/OPENING.c.obj: \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspmodulemgr_kernel.h \
  /home/demma/Documents/code/psp/3rd-strike/include/psp/flps2etc.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/color3rd.h \
- /home/demma/Documents/code/psp/3rd-strike/include/psp/MemMan.h \
  /home/demma/Documents/code/psp/3rd-strike/include/psp/PPGFile.h \
  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
  /home/demma/.local/bin/pspdev/psp/include/malloc.h \
  /home/demma/.local/bin/pspdev/psp/include/machine/malloc.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/psp/MemMan.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/psp/PPGFile.h \
  /home/demma/Documents/code/psp/3rd-strike/include/psp/PPGWork.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/AcrUtil.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h \

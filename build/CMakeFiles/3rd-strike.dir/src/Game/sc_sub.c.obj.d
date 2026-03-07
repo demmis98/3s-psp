@@ -98,6 +98,7 @@ CMakeFiles/3rd-strike.dir/src/Game/sc_sub.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
  /home/demma/.local/bin/pspdev/psp/include/malloc.h \
  /home/demma/.local/bin/pspdev/psp/include/machine/malloc.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/psp/PPGFile.h \
  /home/demma/Documents/code/psp/3rd-strike/include/psp/PPGWork.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/AcrUtil.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/DC_Ghost.h \

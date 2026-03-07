@@ -63,13 +63,19 @@ u8 c = 0;
 void AcrMain() {
     u16 sw_buff;
     u32 sysinfodisp;
+    DEMMA_DEBUG = 1;
 
+    flLogOut("AcrMain -5\n");
     flInitialize(0, 0);
-    //flSetRenderState(FLRENDER_BACKCOLOR, 0);
+    flLogOut("AcrMain -4\n");
+    flSetRenderState(FLRENDER_BACKCOLOR, 0);
+    flLogOut("AcrMain -3\n");
     //flSetDebugMode(0);
     system_init_level = 0;
     ppgWorkInitializeApprication();
+    flLogOut("AcrMain -2\n");
     distributeScratchPadAddress();
+    flLogOut("AcrMain -1\n");
     njdp2d_init();
     flLogOut("AcrMain 0\n");
     njUserInit();
@@ -88,6 +94,9 @@ void AcrMain() {
     if(p1sw_buff != 0){
         DEMMA_DEBUG = 1;
         flLogOut("DEMMA_DEBUG = 1\n");
+    }
+    else{
+        DEMMA_DEBUG = 0;
     }
 
     while (1) {
@@ -326,14 +335,11 @@ void appCopyKeyData() {
 
 u8* mppMalloc(u32 size) {
     return flAllocMemory(size);
-    return NULL;
 }
 
 void njUserInit() {
     s32 i;
     u32 size;
-
-    flLogOut("njUserInit\n");
 
     sysFF = 1;
     mpp_w.sysStop = 0;
@@ -351,22 +357,13 @@ void njUserInit() {
     appViewSetItems(&mpp_w.vprm);
     appViewMatrix();
     mmSystemInitialize();
-    flLogOut("njUserInit 0\n");
     flGetFrame(&mpp_w.fmsFrame);
-    flLogOut("njUserInit 1\n");
     seqsInitialize(mppMalloc(seqsGetUseMemorySize()));
-    flLogOut("njUserInit 2\n");
     ppg_Initialize(mppMalloc(0x60000), 0x60000);
-    flLogOut("njUserInit 3\n");
     zlib_Initialize(mppMalloc(0x10000), 0x10000);
-    flLogOut("njUserInit 4\n");
     size = flGetSpace();
-    size = 0x20000;    //i suppose its ram(?)
-    flLogOut("njUserInit 5\n");
     mpp_w.ramcntBuff = mppMalloc(size);
-    flLogOut("njUserInit 6\n");
     Init_ram_control_work(mpp_w.ramcntBuff, size);
-    flLogOut("njUserInit 7\n");
 
     for (i = 0; i < 0x14; i++) {
         mpp_w.useChar[i] = 0;
@@ -391,7 +388,6 @@ void njUserInit() {
     Turbo_Timer = 1;
     Screen_Zoom_X = 1.0f;
     Screen_Zoom_Y = 1.0f;
-    flLogOut("njUserInit 8\n");
     Setup_Disp_Size(0);
     Correct_X[0] = 0;
     Correct_Y[0] = 0;
@@ -404,19 +400,12 @@ void njUserInit() {
     sys_w.pause = 0;
     sys_w.reset = 0;
 
-    flLogOut("njUserInit 9\n");
     Init_sound_system();
-    flLogOut("njUserInit 10\n");
     Init_bgm_work();
-    flLogOut("njUserInit 11\n");
     Setup_Directory_Record_Data();
-    flLogOut("njUserInit 12\n");
     sndInitialLoad();
-    flLogOut("njUserInit 13\n");
     cpInitTask();
-    flLogOut("njUserInit 14\n");
     cpReadyTask(INIT_TASK_NUM, Init_Task);
-    flLogOut("njUserInit 15\n");
 }
 
 s32 njUserMain() {

@@ -98,6 +98,7 @@ CMakeFiles/3rd-strike.dir/src/Game/texcash.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
  /home/demma/.local/bin/pspdev/psp/include/malloc.h \
  /home/demma/.local/bin/pspdev/psp/include/machine/malloc.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/psp/PPGFile.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFECT.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/MTRANS.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/RAMCNT.h \

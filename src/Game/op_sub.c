@@ -43,7 +43,7 @@ void TexRelease_OP() {
 }
 
 void put_chr2(OPTW* optw) {
-    Polygon tex[4];
+    Vertex tex[4];
 
     if (No_Trans) {
         return;
@@ -54,8 +54,7 @@ void put_chr2(OPTW* optw) {
     tex[3].x = Frame_Zoom_X * ((optw->off_x + 0x100) * optw->zx);
     tex[3].y = Frame_Zoom_Y * ((optw->off_y + 0x100) * optw->zy);
     tex[0].z = tex[3].z = PrioBase[optw->prio];
-    njDrawSprite(tex, 0, optw->col.full, 0);
-    //ppgWriteQuadUseTrans(tex, optw->col.full, NULL, optw->g_no, -1, optw->hv, 300);
+    ppgWriteQuadUseTrans(tex, optw->col.full, NULL, optw->g_no, -1, optw->hv, 300);
 }
 
 void opbg_trans(OPBW* opbw, s16 x, s16 y) {

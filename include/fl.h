@@ -13,6 +13,7 @@ extern int DEMMA_DEBUG;
 #define DEMMA_LOOPS 3600
 
 #include "Game/color3rd.h"
+#include "psp/PPGFile.h"
 
 s32 flLogOut(s8* format, ...);
 s32 flPrintL(s32 posi_x, s32 posi_y, const s8* format, ...);
@@ -34,12 +35,12 @@ s32 flSetRenderState(enum _FLSETRENDERSTATE func, u32 value);
 
 // memory management
 s32 flInitialize(s32 /* unused */, s32 /* unused */);
-s32 system_work_init();
+static s32 system_work_init();
 
 // from modern port
 
 #define FL_PALETTE_MAX MAX_PALETTES
-#define FL_TEXTURE_MAX 256
+#define FL_TEXTURE_MAX MAX_TEXTURES
 
 extern u32 flDebugStrCtr;
 extern u32 flDebugStrCol;

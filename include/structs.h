@@ -1395,6 +1395,15 @@ typedef struct {
 
 typedef struct {
     // total size: 0x14
+    f32 x; // offset 0x0, size 0x4
+    f32 y; // offset 0x4, size 0x4
+    f32 z; // offset 0x8, size 0x4
+    f32 u; // offset 0xC, size 0x4
+    f32 v; // offset 0x10, size 0x4
+} Vertex;
+
+typedef struct {
+    // total size: 0x14
     s8 be;        // offset 0x0, size 0x1
     u8 c_mode;    // offset 0x1, size 0x1
     u16 total;    // offset 0x2, size 0x2
