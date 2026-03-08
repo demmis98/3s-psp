@@ -15,11 +15,9 @@ typedef struct {
 } PPG_W;
 
 #define MAX_TEXTURES 256
-extern s32 currentTexture;
+extern void* currentTexture;
 
 extern s16* dctex_linear; // size: 0x4, address: 0x57A950
-extern TexturePSP texturesPSP[MAX_TEXTURES];    // textures
-extern bool texturesPSPUsed[MAX_TEXTURES];  // textures used
 extern PPG_W ppg_w;
 
 void ppg_Initialize(void* lcmAdrs, s32 lcmSize);

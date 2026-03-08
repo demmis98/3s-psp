@@ -2186,59 +2186,67 @@ const u8 scrnAddTex1UV[9][4] = { { 96, 0, 32, 32 },  { 63, 0, 32, 32 },  { 0, 96
                                  { 32, 96, 32, 32 }, { 32, 64, 32, 32 }, { 128, 0, 96, 128 } };
 
 void dispButtonImage(s32 px, s32 py, s32 pz, s32 sx, s32 sy, s32 cl, s32 ix) {
-    PAL_CURSOR_COL oricol;
-    Sprite prm;
+    TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(2 * sizeof(TextureVertex));
+    u32 texCode = ppgGetUsingTextureHandle(&ppgScrTex, 5) | (ppgGetUsingPaletteHandle(&ppgScrPalShot, 0) << 0x10);
+    int texture_handle = LO_16_BITS(texCode) - 1;
+    FLTexture *tex = &flTexture[texture_handle];
+    Vec3 vecs[2];
 
     if (No_Trans) {
         return;
     }
 
     setFilterMode(0);
-    oricol.color = -1;
-    oricol.argb.a = (0xFF - cl);
-    prm.texCode = ppgGetUsingTextureHandle(&ppgScrTex, 5) | (ppgGetUsingPaletteHandle(&ppgScrPalShot, 0) << 0x10);
-    prm.v[0].x = px;
-    prm.v[0].y = py;
-    prm.v[3].x = (px + sx);
-    prm.v[3].y = (py - sy);
-    njCalcPoint(NULL, &prm.v[0], &prm.v[0]);
-    njCalcPoint(NULL, &prm.v[3], &prm.v[3]);
-    prm.v[0].z = prm.v[3].z = PrioBase[pz];
-    prm.t[0].s = scrnAddTex1UV[ix][0] / 256.0f;
-    prm.t[3].s = (scrnAddTex1UV[ix][0] + scrnAddTex1UV[ix][2]) / 256.0f;
-    prm.t[0].t = scrnAddTex1UV[ix][1] / 128.0f;
-    prm.t[3].t = (scrnAddTex1UV[ix][1] + scrnAddTex1UV[ix][3]) / 128.0f;
-    flSetRenderState(FLRENDER_TEXSTAGE0, prm.texCode);
-    //ps2SeqsRenderQuadInit_A();
-    //ps2SeqsRenderQuad_A2(&prm, oricol.color);
-    //ps2SeqsRenderQuadEnd();
+    vertices[0].x = px;
+    vertices[0].y = py;
+    vertices[1].x = (px + sx);
+    vertices[1].y = (py - sy);
+    for(int i = 0; i < 2; i++){
+        vecs[i].x = vertices[i].x;
+        vecs[i].y = vertices[i].y;
+    }
+    njCalcPoint(NULL, &vecs[0], &vecs[0]);
+    njCalcPoint(NULL, &vecs[1], &vecs[1]);
+    for(int i = 0; i < 2; i++){
+        vertices[i].x = vecs[i].x;
+        vertices[i].y = vecs[i].y;
+    }
+    vertices[0].z = vertices[1].z = PrioBase[pz];
+    vertices[0].u = scrnAddTex1UV[ix][0];
+    vertices[1].u = (scrnAddTex1UV[ix][0] + scrnAddTex1UV[ix][2]);
+    vertices[0].v = scrnAddTex1UV[ix][1];
+    vertices[3].v = (scrnAddTex1UV[ix][1] + scrnAddTex1UV[ix][3]);
+    vertices[0].colour = vertices[1].colour = 0xFFFFFFFF - (cl << 24);
+
+    flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
+    
+    sceGuDrawArray(GU_SPRITES, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
 }
 
 void dispButtonImage2(s32 px, s32 py, s32 pz, s32 sx, s32 sy, s32 cl, s32 ix) {
-    PAL_CURSOR_COL oricol;
-    Sprite prm;
+    TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(2 * sizeof(TextureVertex));
+    u32 texCode = ppgGetUsingTextureHandle(&ppgScrTex, 5) | (ppgGetUsingPaletteHandle(&ppgScrPalShot, 0) << 0x10);
+    int texture_handle = LO_16_BITS(texCode) - 1;
+    FLTexture *tex = &flTexture[texture_handle];
 
     if (No_Trans) {
         return;
     }
 
     setFilterMode(0);
-    oricol.color = -1;
-    oricol.argb.a = (0xFF - cl);
-    prm.texCode = ppgGetUsingTextureHandle(&ppgScrTex, 5) | (ppgGetUsingPaletteHandle(&ppgScrPalShot, 0) << 0x10);
-    prm.v[0].x = px * Frame_Zoom_X;
-    prm.v[0].y = py * Frame_Zoom_Y;
-    prm.v[3].x = Frame_Zoom_X * (px + sx);
-    prm.v[3].y = Frame_Zoom_Y * (py + sy);
-    prm.v[0].z = prm.v[3].z = PrioBase[pz];
-    prm.t[0].s = scrnAddTex1UV[ix][0] / 256.0f;
-    prm.t[3].s = (scrnAddTex1UV[ix][0] + scrnAddTex1UV[ix][2]) / 256.0f;
-    prm.t[0].t = scrnAddTex1UV[ix][1] / 128.0f;
-    prm.t[3].t = (scrnAddTex1UV[ix][1] + scrnAddTex1UV[ix][3]) / 128.0f;
-    flSetRenderState(FLRENDER_TEXSTAGE0, prm.texCode);
-    //ps2SeqsRenderQuadInit_A();
-    //ps2SeqsRenderQuad_A2(&prm, oricol.color);
-    //ps2SeqsRenderQuadEnd();
+    vertices[0].x = px * Frame_Zoom_X;
+    vertices[0].y = py * Frame_Zoom_Y;
+    vertices[1].x = Frame_Zoom_X * (px + sx);
+    vertices[1].y = Frame_Zoom_Y * (py + sy);
+    vertices[0].z = vertices[1].z = PrioBase[pz];
+    vertices[0].u = scrnAddTex1UV[ix][0];
+    vertices[1].u = (scrnAddTex1UV[ix][0] + scrnAddTex1UV[ix][2]);
+    vertices[0].v = scrnAddTex1UV[ix][1];
+    vertices[1].v = (scrnAddTex1UV[ix][1] + scrnAddTex1UV[ix][3]);
+    vertices[0].colour = vertices[1].colour = 0xFFFFFFFF - (cl << 24);
+    flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
+    
+    sceGuDrawArray(GU_SPRITES, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
 }
 
 void dispSaveLoadTitle(void* ewk) {

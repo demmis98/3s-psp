@@ -21,7 +21,7 @@
 #define BTN_L2       0x0400
 #define BTN_R2       0x0800
 #define BTN_START    0x4000
-#define BTN_SELECT   0x2000
+#define BTN_SELECT   0x8000
 
 IO io_w;
 

@@ -229,7 +229,7 @@ void OPBG_Init() {
     Opening_Now = 1;
     make_texcash_work(9);
     flLogOut("test 1\n");
-    //mlt_obj_melt2(&mts[9], 0x8C40);
+    mlt_obj_melt2(&mts[9], 0x8C40);
     flLogOut("test 2\n");
     sound_trg_init();
     flLogOut("test 3\n");

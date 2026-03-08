@@ -90,9 +90,6 @@ void Entry_Task(struct _TASK* /* unused */) {
     s16 ix;
     s16 ff;
 
-    if(DEMMA_DEBUG)
-        flLogOut("Entry_Task\n");
-
     void (*Main_Jmp_Tbl[11])() = { Entry_00, Entry_01, Entry_02, Entry_03, Entry_04, Entry_03,
                                    Entry_06, Entry_07, Entry_08, Entry_03, Entry_10 };
 

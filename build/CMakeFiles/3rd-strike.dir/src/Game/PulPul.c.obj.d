@@ -38,6 +38,7 @@ CMakeFiles/3rd-strike.dir/src/Game/PulPul.c.obj: \
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/common.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/mlPAD.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/GD3rd.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/PLCNT.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/SYS_sub.h \

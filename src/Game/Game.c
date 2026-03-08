@@ -104,9 +104,6 @@ void Game_Task(struct _TASK* task_ptr) {
     s16 ix;
     s16 ff;
 
-    if(DEMMA_DEBUG)
-        flLogOut("Entry_Task\n");
-
     void (*Main_Jmp_Tbl[3])(struct _TASK*) = { Wait_Auto_Load, Loop_Demo, Game };
 
     init_color_trans_req();

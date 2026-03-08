@@ -1,6 +1,6 @@
 #include "Game/debug/Debug.h"
 #include "common.h"
-//#include "AcrSDK/common/mlPAD.h"
+#include "AcrSDK/common/mlPAD.h"
 //#include "sf33rd/AcrSDK/ps2/flps2debug.h"
 #include "fl.h"
 
@@ -78,11 +78,9 @@ void Debug_Init(struct _TASK* task_ptr) {
         ix += 1;
     }
 
-    /*
     if ((flpad_adr[0]->sw | flpad_adr[0][1].sw) & 0x4000) {
         Debug_w[0x2C] = 1;
     }
-    */
 }
 
 void Debug_1st(struct _TASK* task_ptr) {

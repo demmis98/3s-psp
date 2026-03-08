@@ -82,8 +82,7 @@ s32 flPrintColor(u32 col){
 s32 flFlip(u32 flag) {
     flFrame++;
 
-    if(DEMMA_DEBUG)
-        flLogOut("flFrame %d\n", flFrame);
+    //flLogOut("flFrame %d\n", flFrame);
 
     return 1;
 }
@@ -103,42 +102,25 @@ u32 flCreateTextureHandle(plContext* bits, u32 flag) {
     lpflTexture = &flTexture[LO_16_BITS(th) - 1];
     flPS2GetTextureInfoFromContext(bits, 1, th, flag);
 
-    
     if (bits->ptr == NULL) {
-        //lpflTexture->mem_handle = flPS2GetSystemMemoryHandle(lpflTexture->size, 2);
+        lpflTexture->wkVram = malloc(lpflTexture->size);
     } else {
-        lpflTexture->mem_handle = flPS2GetSystemMemoryHandle(lpflTexture->size, 2);
         flPS2ConvertTextureFromContext(bits, lpflTexture, 0);
         flPS2CreateTextureHandle(th, flag);
-        lpflTexture->wkVram = flPS2GetSystemBuffAdrs(lpflTexture->mem_handle);
     }
-    
-    //lpflTexture->wkVram = bits->ptr;
 
-    TexturePSP* tex = &texturesPSP[LO_16_BITS(th) - 1];
-    tex->width = lpflTexture->width;
-    tex->height = lpflTexture->height;
-    tex->wRender = lpflTexture->width;
-    tex->hRender = lpflTexture->height;
-    tex->data = lpflTexture->wkVram;
-
-    switch (lpflTexture->format) {
-        case SCE_GS_PSMT8:
-            tex->mode = GU_PSM_T8;
-            break;
-
-        case SCE_GS_PSMT4:
-            tex->mode = GU_PSM_T4;
-            break;
-
-        case SCE_GS_PSMCT16:
-            tex->mode = GU_PSM_5551;
-            break;
-
+    switch(bits->bitdepth)
+    {
+        case 0:  lpflTexture->format = GU_PSM_T4;    break;
+        case 1:  lpflTexture->format = GU_PSM_T8;    break;
+        case 2:  lpflTexture->format = GU_PSM_5551;  break;
+        case 3:
+        case 4:  lpflTexture->format = GU_PSM_8888;  break;
         default:
-            flLogOut("Unhandled pixel format: %d\n", lpflTexture->format);
             return 0;
     }
+
+    flLogOut("create tex texdata %x %d %x\n", lpflTexture->wkVram, th, lpflTexture);
 
     return th;
 }
@@ -252,7 +234,7 @@ s32 flPS2GetTextureInfoFromContext(plContext* bits, s32 bnum, u32 th, u32 flag) 
     return 1;
 }
 
-s32 flPS2CreateTextureHandle(u32 th, u32 flag){
+s32 flPS2CreateTextureHandle(u32 th, u32 flag) {
     
     return 1;
 }
@@ -279,6 +261,8 @@ u32 flPS2GetTextureHandle() {
 u32 flCreatePaletteHandle(plContext* lpcontext, u32 flag) {
     FLTexture* lpflPalette;
     u32 ph = flPS2GetPaletteHandle();
+
+    flLogOut("flCreatePaletteHandle\n");
 
     if (ph == 0) {
         return 0;
@@ -382,8 +366,9 @@ s32 flReleaseTextureHandle(u32 texture_handle) {
         flLogOut("ERROR flReleaseTextureHandle flps2vram.c\n");
     }
 
-    if (lpflTexture->mem_handle != 0) {
-        flPS2ReleaseSystemMemory(lpflTexture->mem_handle);
+    if (lpflTexture->wkVram != NULL) {
+        free(lpflTexture->wkVram);
+        lpflTexture->wkVram = NULL;
     }
 
     flMemset(lpflTexture, 0, sizeof(FLTexture));
@@ -392,17 +377,8 @@ s32 flReleaseTextureHandle(u32 texture_handle) {
 
 s32 flReleasePaletteHandle(u32 palette_handle) {
     FLTexture* lpflPalette = &flPalette[palette_handle - 1];
-
-    if ((palette_handle == 0) || (palette_handle > FL_PALETTE_MAX) || (lpflPalette->be_flag == 0)) {
-        flPrintColor(0xFFFF0000);
-        flLogOut(0, "ERROR flReleasePaletteHandle flps2vram.c\n");
-    }
-
-    if (lpflPalette->mem_handle != 0) {
-        flPS2ReleaseSystemMemory(lpflPalette->mem_handle);
-    }
-
-    flMemset(lpflPalette, 0, sizeof(FLTexture));
+    lpflPalette->be_flag = 0;
+    
     return 1;
 }
 
@@ -1086,20 +1062,28 @@ s32 flInitialize(s32 /* unused */, s32 /* unused */){
 }
 
 void flSetTexture(int th){
-    int texture_handle = LO_16_BITS(th);
-    TexturePSP *texture = &texturesPSP[texture_handle - 1];
-    int palette_handle = HI_16_BITS(th);
-    u16 *pal = ColorRAM[palette_handle - 1];
+    int texture_handle = LO_16_BITS(th) - 1;
+    FLTexture *flTex = &flTexture[texture_handle];
+    int palette_handle = HI_16_BITS(th) - 1;
+    u16 *pal = ColorRAM[palette_handle];
+
+    void *texData = flTex->wkVram;
+    flLogOut("set texture texdata %x %d %x\n", texData, texture_handle, flTex);
+
+    if(texData == NULL)
+        texData = flPS2GetSystemBuffAdrs(flTex->mem_handle);
+
+    flLogOut("set texture texdata %x %d\n", texData, texture_handle);
 
     sceGuClutMode(GU_PSM_5551, 0, 0xFF, 0);
     sceGuClutLoad(8, pal);
 
-    if(currentTexture != texture_handle){
-        sceGuTexMode(texture->mode, 0, 0, GU_FALSE);
+    if(currentTexture != texData){
+        sceGuTexMode(flTex->format, 0, 0, GU_FALSE);
         sceGuTexFunc(GU_TFX_REPLACE, GU_TCC_RGBA);
-        sceGuTexImage(0, texture->wRender, texture->hRender, texture->width, texture->data);
+        sceGuTexImage(0, flTex->width, flTex->height, flTex->width, texData);
 
-        currentTexture = texture_handle;
+        currentTexture = texData;
     }
 }
 
@@ -1145,52 +1129,8 @@ static s32 system_work_init() {
     return 1;
 }
 
-s32 flPS2ConvertTextureFromContext(plContext* ctx, FLTexture* tex, u32 type) {
-    tex->mem_handle = flPS2GetSystemMemoryHandle(tex->size, 2);
-    if (!tex->mem_handle)
-        return 0;
-
-    u8* dst = flPS2GetSystemBuffAdrs(tex->mem_handle);
-    u8* src = ctx->ptr;
-
-    int w = tex->width;
-    int h = tex->height;
-
-    for (int i = 0; i < tex->tex_num; i++)
-    {
-        int tex_size;
-
-        switch (tex->format)
-        {
-            case SCE_GS_PSMT4:
-                tex_size = (w * h) >> 1;
-                break;
-
-            case SCE_GS_PSMT8:
-                tex_size = w * h;
-                break;
-
-            case SCE_GS_PSMCT16:
-                tex_size = w * h * 2;
-                break;
-
-            case SCE_GS_PSMCT24:
-            case SCE_GS_PSMCT32:
-                tex_size = w * h * 4;
-                break;
-
-            default:
-                return 0;
-        }
-
-        memcpy(dst, src, tex_size);
-
-        dst += tex_size;
-        src += tex_size;
-
-        w >>= 1;
-        h >>= 1;
-    }
+s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture, u32 type) {
+    lpflTexture->wkVram = lpcontext->ptr;
 
     return 1;
 }

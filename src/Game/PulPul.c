@@ -1,7 +1,7 @@
 #include "Game/PulPul.h"
 #include "common.h"
 //#include "sdk/libvib.h"
-//#include "AcrSDK/common/mlPAD.h"
+#include "AcrSDK/common/mlPAD.h"
 //#include "sf33rd/AcrSDK/ps2/ps2PAD.h"
 #include "Game/GD3rd.h"
 #include "Game/PLCNT.h"
@@ -300,12 +300,10 @@ void move_pulpul_work() {
 }
 
 s32 chkVibUnit(s32 port) {
-    /*
     if (((flpad_adr)[0][port].kind == 0) || ((flpad_adr)[0][port].kind) == 0x8000)
         return 0;
 
     return (flpad_adr)[0][port].conn.gc.etc1;
-    */
     return 0;
 }
 

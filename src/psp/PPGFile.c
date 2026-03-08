@@ -26,10 +26,7 @@
 #define CODE_0(val) ((val & 0xF0) << 8) + ((val & 0xF) << 4)
 #define CODE_1(val) ((val & 0x38) << 0xA) + ((val & 7) << 5)
 
-TexturePSP texturesPSP[MAX_TEXTURES];
-bool texturesPSPUsed[MAX_TEXTURES];
-
-s32 currentTexture = -1;
+void* currentTexture = NULL;
 
 typedef struct {
     Vec3 v;
@@ -140,13 +137,14 @@ s32 ppgWriteQuadWithST_A2(Vertex* pos, u32 col) {
 
 void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode) {
     TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(4 * sizeof(TextureVertex));
-    TexturePSP *tex = &texturesPSP[texCode];
+    int texture_handle = LO_16_BITS(texCode) - 1;
+    FLTexture *tex = &flTexture[texture_handle];
     s32 i;
 
-    flLogOut("ppgWriteQuadOnly %x %d %d %d\n", tex->data, tex->width, tex->height, texCode);
+    flLogOut("ppgWriteQuadOnly %x %d %d %d\n", tex->wkVram, tex->width, tex->height, texCode);
 
     for (i = 0; i < 4; i++) {
-        flLogOut("x %f y %f u %f v %f\n",pos[i].x,pos[i].y,pos[i].u,pos[i].u);
+        //flLogOut("x %f y %f u %f v %f\n",pos[i].x,pos[i].y,pos[i].u,pos[i].u);
         vertices[i].x = pos[i].x;
         vertices[i].y = pos[i].y;
         vertices[i].z = pos[i].z;
@@ -154,7 +152,7 @@ void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode) {
         vertices[i].v = pos[i].v * tex->height;
         vertices[i].colour = 0xFFFFFFFF;
 
-        drawRect(vertices[i].x, vertices[i].y, 10, 10, 0xFFFF00FF);
+        //drawRect(vertices[i].x, vertices[i].y, 10, 10, 0xFFFF00FF);
     }
 
     flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
@@ -164,20 +162,21 @@ void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode) {
 
 void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
     TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(2 * sizeof(TextureVertex));
-    TexturePSP *tex = &texturesPSP[texCode];
+    int texture_handle = LO_16_BITS(texCode) - 1;
+    FLTexture *tex = &flTexture[texture_handle];
     s32 i;
 
-    flLogOut("ppgWriteQuadOnly2 %x %d %d %d\n", tex->data, tex->width, tex->height, texCode);
+    flLogOut("ppgWriteQuadOnly2 %x %d %d %d\n", tex->wkVram, tex->width, tex->height, texCode);
 
     for (i = 0; i < 2; i++) {
-        flLogOut("x %f y %f u %f v %f\n",pos[i].x,pos[i].y,pos[i].u,pos[i].u);
+        //flLogOut("x %f y %f u %f v %f\n",pos[i].x,pos[i].y,pos[i].u,pos[i].u);
         vertices[i].x = pos[i*3].x;
         vertices[i].y = pos[i*3].y;
         vertices[i].z = pos[i*3].z;
         vertices[i].u = pos[i*3].u * tex->width;
         vertices[i].v = pos[i*3].v * tex->height;
         vertices[i].colour = 0xFFFFFFFF;
-        drawRect(vertices[i].x, vertices[i].y, 8, 8, 0xFFFF0000);
+        //drawRect(vertices[i].x, vertices[i].y, 8, 8, 0xFFFF0000);
     }
 
     flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
@@ -1156,7 +1155,7 @@ s32 ppgSetupTexChunk_3rd(Texture* tch, s32 ixNum, u32 attribute) {
 
     if (tch->srcAdrs == NULL) {
         // Texture chunk data has already been lost.
-        flLogOut("テクスチャチャンクデータが既に失われています。\n");
+        flLogOut("Texture chunk data has already been lost.\n");
         while (1) {}
     }
 
@@ -1167,31 +1166,28 @@ s32 ppgSetupTexChunk_3rd(Texture* tch, s32 ixNum, u32 attribute) {
     cmpAdrs = (u8*)ppg + cmpSize;
     cmpSize = REVERT_U32(ppg->fileSize) - cmpSize;
     mltSize = bits.height * bits.pitch;
-    mltAdrs = ppgPullDecBuff(mltSize);
+    mltAdrs = memalign(16, mltSize);
 
     if (mltAdrs == NULL) {
         // Failed to allocate texture data expansion area.
-        flLogOut("テクスチャデータ展開領域が確保できませんでした。\n");
+        flLogOut("Failed to allocate texture data expansion area\n");
         while (1) {}
     }
 
     if (mltSize != ppgDecompress(koCmpr, cmpAdrs, cmpSize, mltAdrs, mltSize)) {
         // Failed to acquire sprite texture handle.
-        flLogOut("テクスチャデータの解凍に失敗しました。\n");
-        ppgPushDecBuff(mltAdrs);
+        flLogOut("Failed to acquire sprite texture handle\n");
+        free(mltAdrs);
         while (1) {}
     }
 
-    (bits.desc & 0x20) > 0;
-    unused_s5 = 0;
-    ppgChangeDataEndian(mltAdrs, mltSize, ppg->pixel & 4, ppg->formARGB == 0x8888, bits.bitdepth, unused_s5);
+    ppgChangeDataEndian(mltAdrs, mltSize, ppg->pixel & 4, ppg->formARGB == 0x8888, bits.bitdepth, 0);
     bits.ptr = mltAdrs;
     hnof->b16[0] = flCreateTextureHandle(&bits, attribute);
-    ppgPushDecBuff(mltAdrs);
 
     if (hnof->b16[0] == 0) {
         // Failed to acquire texture handle.
-        flLogOut("テクスチャハンドルの取得に失敗しました。\n");
+        flLogOut("Failed to acquire texture handle\n");
         while (1) {}
     }
 

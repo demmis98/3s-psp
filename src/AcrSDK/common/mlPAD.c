@@ -22,6 +22,7 @@ const u8 fllever_depth_flip_data[4][4] = {
 };
 
 FLPAD* flpad_adr[2];
+FLPAD flpad_adr_a[2];
 FLPAD_CONFIG flpad_config[2];
 u8 NumOfValidPads;
 
@@ -40,6 +41,9 @@ s32 flPADInitialize() {
     sceCtrlSetSamplingCycle(0);  // Sampling cycle (0: automatic, 1: manual)
     sceCtrlSetSamplingMode(PSP_CTRL_MODE_ANALOG);  // Set to analog mode
 
+    flpad_adr[0] = &flpad_adr_a[0];
+    flpad_adr[1] = &flpad_adr_a[1];
+
     return 1;  // Always returns 1 as success in PSP version
 }
 
@@ -57,26 +61,29 @@ void flPADConfigSet(const FLPAD_CONFIG* adrs, s32 padnum) {
 
 void flPADGetALL() {
     SceCtrlData padData;
+    u16 buttons;
+    int i = 0;
     sceCtrlPeekBufferPositive(&padData, 1); // read current controller state
+    buttons = padData.Buttons < 2;
 
-    for (int i = 0; i < 2; i++) {
-        // If you only have 1 PSP pad, just use i=0
-        io_w.data[i].state = padData.Buttons;
-        io_w.data[i].anstate = padData.Buttons; // for analog
-        io_w.data[i].kind = 1;           // assume digital pad connected
-        //io_w.data[i].conn = 1;
+    
+    // If you only have 1 PSP pad, just use i=0
+    io_w.data[i].state = buttons;
+    io_w.data[i].anstate = buttons; // for analog
+    io_w.data[i].kind = 1;           // assume digital pad connected
+    //io_w.data[i].conn = 1;
 
-        // Store analog sticks
-        io_w.data[i].stick[0].x = padData.Lx - 128;
-        io_w.data[i].stick[0].y = padData.Ly - 128;
-        io_w.data[i].stick[1].x = padData.Rx - 128; // PSP only has L stick, R stick fake?
-        io_w.data[i].stick[1].y = padData.Ry - 128;
+    // Store analog sticks
+    io_w.data[i].stick[0].x = padData.Lx - 128;
+    io_w.data[i].stick[0].y = padData.Ly - 128;
+    io_w.data[i].stick[1].x = padData.Rx - 128; // PSP only has L stick, R stick fake?
+    io_w.data[i].stick[1].y = padData.Ry - 128;
 
-        // Update raw button state
-        io_w.data[i].sw_new = padData.Buttons;// & 0xFFFF; // mask lower 16 bits
-        io_w.data[i].sw_old = io_w.data[i].sw;          // previous frame
-        io_w.data[i].sw = io_w.data[i].sw_new;
-    }
+    // Update raw button state
+    io_w.data[i].sw_new = padData.Buttons;// & 0xFFFF; // mask lower 16 bits
+    io_w.data[i].sw_old = io_w.data[i].sw;          // previous frame
+    io_w.data[i].sw = io_w.data[i].sw_new;
+
 }
 
 void flPADACRConf() {

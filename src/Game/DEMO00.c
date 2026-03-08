@@ -116,7 +116,7 @@ s32 Warning() {
 
 s32 CAPCOM_Logo() {
     
-    flLogOut("CAPCOM_Logo %d\n", D_No[1]);
+    //flLogOut("CAPCOM_Logo %d\n", D_No[1]);
 
     setTexAdrsMode(0);
     setFilterMode(0);
@@ -258,8 +258,7 @@ void Put_char(const f32* ptr, u32 indexG, u16 prio, s16 x, s16 y, f32 zx, f32 zy
     s16 off_x;
     s16 off_y;
 
-    if(DEMMA_DEBUG)
-        flLogOut("Put_char %d\n", No_Trans);
+    //flLogOut("Put_char %d\n", No_Trans);
 
     if (No_Trans) {
         return;
@@ -289,11 +288,7 @@ void Put_char(const f32* ptr, u32 indexG, u16 prio, s16 x, s16 y, f32 zx, f32 zy
         tex[1].y = tex[3].y = Frame_Zoom_Y * (y + (off_y * zy) + ((u32)*ptr++ * zy));
 
         for(int i = 0; i < 4 && DEMMA_DEBUG; i++){
-            flLogOut("tex %d ", i);
-            flLogOut("x: %f", tex[i].x);
-            flLogOut("y: %f", tex[i].y);
-            flLogOut("u: %d", tex[i].u);
-            flLogOut("v: %d\n", tex[i].v);
+            //flLogOut("tex %d x: %f y: %f u: %f v: %f \n", i, tex[i].x, tex[i].y, tex[i].u, tex[i].v);
         }
 
         njDrawTexture(tex, 4, indexG, 1);

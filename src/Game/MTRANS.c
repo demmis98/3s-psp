@@ -1620,7 +1620,20 @@ void seqsAfterProcess() {
                     flSetRenderState(FLRENDER_TEXSTAGE0, val);
                 }
 
+                TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(2 * sizeof(TextureVertex));
+                FLTexture *tex = &flTexture[LO_16_BITS(val) - 1];
+
+                for (int j = 0; j < 2; j++) {
+                    vertices[j].x = seqs_w.chip[i].v[j].x;
+                    vertices[j].y = seqs_w.chip[i].v[j].y;
+                    vertices[j].z = seqs_w.chip[i].v[j].z;
+                    vertices[j].u = seqs_w.chip[i].t[j].s * tex->width;
+                    vertices[j].v = seqs_w.chip[i].t[j].t * tex->height;
+                    vertices[j].z = seqs_w.chip[i].vtxColor;
+                }
                 //ps2SeqsRenderQuad_Ax(&seqs_w.chip[i]);
+                
+                sceGuDrawArray(GU_SPRITES, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
             }
         }
 

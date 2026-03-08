@@ -295,34 +295,6 @@ void njdp2d_draw() {
             prm[3] = njdp2d_w.prim[i].v[3];
             */
 
-            if(!DEMMA_DEBUG){
-                /*
-                for(i_prm = 0; i_prm < 4; i_prm++){
-                    if(prm.v[i_prm].x > x1)
-                        x1 = prm.v[i_prm].x;
-                    if(prm.v[i_prm].y > y1)
-                        y1 = prm.v[i_prm].y;
-
-                    if(prm.v[i_prm].x < x0 || x0 == -1)
-                        x0 = prm.v[i_prm].x;
-                    if(prm.v[i_prm].y < y0 || y0 == -1)
-                        y0 = prm.v[i_prm].y;
-                }
-                */
-                //drawRect(x0, y0, x1 - x0, y1 - y0, 0xFFFFFFFF);
-                //drawRect(x0, y0, x1 - x0, y1 - y0, njdp2d_w.prim[i].col);
-
-                //drawRect(prm.v[0].x, prm.v[0].y, 10, 10, 0xFFFFFFFF);
-                //drawRect(prm.v[1].x, prm.v[1].y, 10, 10, 0xFFFF0000);
-                //drawRect(prm.v[2].x, prm.v[2].y, 10, 10, 0xFF00FF00);
-                //drawRect(prm.v[3].x, prm.v[3].y, 10, 10, 0xFF0000FF);
-                //drawRect(prm.v[0].x, prm.v[0].y, prm.v[3].x - prm.v[0].x , prm.v[3].y - prm.v[0].y, 0xFFFFFFFF);
-
-            }
-            else{
-                flLogOut("drawrect %x\n", njdp2d_w.prim[0].col);
-            }
-
             //ps2SeqsRenderQuad_B(&prm, njdp2d_w.prim[i].col);
             break;
 

@@ -65,27 +65,17 @@ void AcrMain() {
     u32 sysinfodisp;
     DEMMA_DEBUG = 1;
 
-    flLogOut("AcrMain -5\n");
     flInitialize(0, 0);
-    flLogOut("AcrMain -4\n");
     flSetRenderState(FLRENDER_BACKCOLOR, 0);
-    flLogOut("AcrMain -3\n");
     //flSetDebugMode(0);
     system_init_level = 0;
     ppgWorkInitializeApprication();
-    flLogOut("AcrMain -2\n");
     distributeScratchPadAddress();
-    flLogOut("AcrMain -1\n");
     njdp2d_init();
-    flLogOut("AcrMain 0\n");
     njUserInit();
-    flLogOut("AcrMain 1\n");
     palCreateGhost();
-    flLogOut("AcrMain 2\n");
     ppgMakeConvTableTexDC();
-    flLogOut("AcrMain 3\n");
     appSetupBasePriority();
-    flLogOut("AcrMain 4\n");
     //MemcardInit();
 
     flPADGetALL();
@@ -100,7 +90,6 @@ void AcrMain() {
     }
 
     while (1) {
-        flLogOut("AcrMain loop\n");
         initRenderState(0);
         mpp_w.ds_h[0] = mpp_w.ds_h[1];
         mpp_w.ds_v[0] = mpp_w.ds_v[1];
@@ -116,19 +105,16 @@ void AcrMain() {
         appViewSetItems(&mpp_w.vprm);
         appViewMatrix();
         //flAdjustScreen(X_Adjust + Correct_X[0], Y_Adjust + Correct_Y[0]);
-        //setBackGroundColor(0xFF000000);
-        setBackGroundColor(0xFFFF0000);
-        flLogOut("AcrMain loop 0\n");
+        setBackGroundColor(0xFF000000);
+        //setBackGroundColor(0xFFFF0000);
         if (Debug_w[0x43]) {
             setBackGroundColor(0xFF0000FF);
         }
 
         appSetupTempPriority();
-        flLogOut("AcrMain loop 1\n");
 
         flPADGetALL();
         keyConvert();
-        flLogOut("AcrMain loop 2\n");
 
         if (((Usage == 7) || (Usage == 2)) && !test_flag) {
             if (mpp_w.sysStop) {
@@ -200,28 +186,19 @@ void AcrMain() {
             }
         }
 
-        flLogOut("AcrMain loop 3\n");
         appCopyKeyData();
-
-        flLogOut("test\n");
 
         render_start();
 
-        flLogOut("AcrMain loop 4\n");
         mpp_w.inGame = 0;
 
-        flLogOut("AcrMain loop 5\n");
         njUserMain();
 
         MaskScreenEdge();
 
-        flLogOut("AcrMain loop 6\n");
         seqsBeforeProcess();
-        flLogOut("AcrMain loop 7\n");
         njdp2d_draw();
-        flLogOut("AcrMain loop 8\n");
         seqsAfterProcess();
-        flLogOut("AcrMain loop 9\n");
 
         if (Debug_w[6] == 0) {
             //CP3toPS2Draw();
@@ -456,7 +433,7 @@ s32 njUserMain() {
 void cpLoopTask() {
     struct _TASK* task_ptr = task;
 
-    flLogOut("cpLoopTask\n");
+    //flLogOut("cpLoopTask\n");
 
     disp_ramcnt_free_area();
 
