@@ -141,7 +141,7 @@ void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode) {
     FLTexture *tex = &flTexture[texture_handle];
     s32 i;
 
-    flLogOut("ppgWriteQuadOnly %x %d %d %d\n", tex->wkVram, tex->width, tex->height, texCode);
+    //flLogOut("ppgWriteQuadOnly %x %d %d %d\n", tex->wkVram, tex->width, tex->height, texCode);
 
     for (i = 0; i < 4; i++) {
         //flLogOut("x %f y %f u %f v %f\n",pos[i].x,pos[i].y,pos[i].u,pos[i].u);
@@ -166,7 +166,7 @@ void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
     FLTexture *tex = &flTexture[texture_handle];
     s32 i;
 
-    flLogOut("ppgWriteQuadOnly2 %x %d %d %d\n", tex->wkVram, tex->width, tex->height, texCode);
+    //flLogOut("ppgWriteQuadOnly2 %x %d %d %d\n", tex->wkVram, tex->width, tex->height, texCode);
 
     for (i = 0; i < 2; i++) {
         //flLogOut("x %f y %f u %f v %f\n",pos[i].x,pos[i].y,pos[i].u,pos[i].u);

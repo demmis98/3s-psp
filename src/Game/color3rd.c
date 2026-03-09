@@ -231,9 +231,6 @@ void set_hitmark_color() {
 }
 
 void init_trans_color_ram(s16 id, s16 key, u8 type, u16 data) {
-#if defined(TARGET_PS2)
-    void metamor_color_store(s32 wkid);
-#endif
     u16* ldadrs;
     u16* tradrs;
     s16 i;

@@ -1638,32 +1638,11 @@ typedef struct {
     s32 align;         // offset 0x14, size 0x4
 } FL_FMS;
 
-typedef union {
-    u32 etc; // offset 0x0, size 0x4
-    struct /* @anon1 */ {
-        // total size: 0x4
-        u8 vib;  // offset 0x0, size 0x1
-        u8 etc0; // offset 0x1, size 0x1
-        u8 etc1; // offset 0x2, size 0x1
-        u8 etc2; // offset 0x3, size 0x1
-    } gc;        // offset 0x0, size 0x4
-    struct /* @anon4 */ {
-        // total size: 0x4
-        u8 port; // offset 0x0, size 0x1
-        u8 slot; // offset 0x1, size 0x1
-        u8 vib;  // offset 0x2, size 0x1
-        u8 etc;  // offset 0x3, size 0x1
-    } ps;        // offset 0x0, size 0x4
-    struct /* @anon6 */ {
-        // total size: 0x4
-        u8 socket1; // offset 0x0, size 0x1
-        u8 socket2; // offset 0x1, size 0x1
-        u16 etc;    // offset 0x2, size 0x2
-    } dc;           // offset 0x0, size 0x4
-    struct /* @anon8 */ {
-        // total size: 0x4
-        void* handle; // offset 0x0, size 0x4
-    } xbox;           // offset 0x0, size 0x4
+typedef struct {
+    u8 port;
+    u8 slot;
+    u8 vib;
+    u8 etc;
 } PAD_CONN;
 
 typedef struct {

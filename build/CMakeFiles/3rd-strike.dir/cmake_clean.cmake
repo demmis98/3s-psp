@@ -1087,6 +1087,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/3rd-strike.dir/src/psp/fl.c.obj.d"
   "CMakeFiles/3rd-strike.dir/src/psp/flps2etc.c.obj"
   "CMakeFiles/3rd-strike.dir/src/psp/flps2etc.c.obj.d"
+  "CMakeFiles/3rd-strike.dir/src/psp/pspPAD.c.obj"
+  "CMakeFiles/3rd-strike.dir/src/psp/pspPAD.c.obj.d"
   "CMakeFiles/3rd-strike.dir/src/psp/pspmain.c.obj"
   "CMakeFiles/3rd-strike.dir/src/psp/pspmain.c.obj.d"
   "CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj"

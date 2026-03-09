@@ -13161,6 +13161,30 @@ src/psp/flps2etc.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/flps2etc.c.s
 .PHONY : src/psp/flps2etc.c.s
 
+src/psp/pspPAD.obj: src/psp/pspPAD.c.obj
+.PHONY : src/psp/pspPAD.obj
+
+# target to build an object file
+src/psp/pspPAD.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/pspPAD.c.obj
+.PHONY : src/psp/pspPAD.c.obj
+
+src/psp/pspPAD.i: src/psp/pspPAD.c.i
+.PHONY : src/psp/pspPAD.i
+
+# target to preprocess a source file
+src/psp/pspPAD.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/pspPAD.c.i
+.PHONY : src/psp/pspPAD.c.i
+
+src/psp/pspPAD.s: src/psp/pspPAD.c.s
+.PHONY : src/psp/pspPAD.s
+
+# target to generate assembly for a file
+src/psp/pspPAD.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/psp/pspPAD.c.s
+.PHONY : src/psp/pspPAD.c.s
+
 src/psp/pspmain.obj: src/psp/pspmain.c.obj
 .PHONY : src/psp/pspmain.obj
 
@@ -14847,6 +14871,9 @@ help:
 	@echo "... src/psp/flps2etc.obj"
 	@echo "... src/psp/flps2etc.i"
 	@echo "... src/psp/flps2etc.s"
+	@echo "... src/psp/pspPAD.obj"
+	@echo "... src/psp/pspPAD.i"
+	@echo "... src/psp/pspPAD.s"
 	@echo "... src/psp/pspmain.obj"
 	@echo "... src/psp/pspmain.i"
 	@echo "... src/psp/pspmain.s"

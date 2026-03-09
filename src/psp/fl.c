@@ -20,6 +20,28 @@
 
 #include "sdk/libgraph.h"
 
+static const unsigned short testPalette[64] = {
+0x0001,0x0015,0x002B,0x003F,
+0x0281,0x0295,0x02AB,0x02BF,
+0x0541,0x0555,0x056B,0x057F,
+0x07C1,0x07D5,0x07EB,0x07FF,
+
+0x5001,0x5015,0x502B,0x503F,
+0x5281,0x5295,0x52AB,0x52BF,
+0x5541,0x5555,0x556B,0x557F,
+0x57C1,0x57D5,0x57EB,0x57FF,
+
+0xA801,0xA815,0xA82B,0xA83F,
+0xAA81,0xAA95,0xAAAB,0xAABF,
+0xAD41,0xAD55,0xAD6B,0xAD7F,
+0xAFC1,0xAFD5,0xAFEB,0xAFFF,
+
+0xF801,0xF815,0xF82B,0xF83F,
+0xFA81,0xFA95,0xFAAB,0xFABF,
+0xFD41,0xFD55,0xFD6B,0xFD7F,
+0xFFC1,0xFFD5,0xFFEB,0xFFFF
+};
+
 FLTexture flPalette[FL_PALETTE_MAX];
 FLTexture flTexture[FL_TEXTURE_MAX];
 FLPS2State flPs2State;
@@ -1072,18 +1094,15 @@ void flSetTexture(int th){
     u16 *pal = flPS2GetSystemBuffAdrs(flPal->mem_handle);
 
     void *texData = flTex->wkVram;
-    flLogOut("set texture texdata %x %d %x\n", texData, texture_handle, flTex);
-
+    
     if(texData == NULL)
         texData = flPS2GetSystemBuffAdrs(flTex->mem_handle);
-
-    flLogOut("set texture texdata %x %d\n", texData, texture_handle);
 
     if(flTex->format == GU_PSM_T4){
         sceGuClutMode(GU_PSM_5551, 0, 0xFF, 0);
         sceGuClutLoad(flPal->size / 8, pal);
     }
-    if(flTex->format == GU_PSM_T8){
+    else if(flTex->format == GU_PSM_T8){
         sceGuClutMode(GU_PSM_5551, 0, 0xFF, 0);
         sceGuClutLoad(flPal->size / 8, pal);
     }
@@ -1111,7 +1130,7 @@ s32 flSetRenderState(enum _FLSETRENDERSTATE func, u32 value) {
         break;
 
     case FLRENDER_BACKCOLOR:
-        setBackGroundColor(value + 0xFF000000);
+        setBackGroundColor(value | 0xFF000000);
         break;
 
     default:

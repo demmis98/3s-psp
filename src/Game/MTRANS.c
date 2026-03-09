@@ -1630,6 +1630,7 @@ void seqsAfterProcess() {
                     vertices[j].u = seqs_w.chip[i].t[j].s * tex->width;
                     vertices[j].v = seqs_w.chip[i].t[j].t * tex->height;
                     vertices[j].colour = seqs_w.chip[i].vtxColor;
+                    //drawRect(vertices[j].x, vertices[j].y, 8, 8, 0xFF00FFFF);
                 }
                 //ps2SeqsRenderQuad_Ax(&seqs_w.chip[i]);
                 
@@ -1994,10 +1995,7 @@ static void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len) {
     u32 tmp;
     u32 flg;
 
-    flLogOut("lz_ext_p6_fx\n");
-
     while (dstptr < endptr) {
-        flLogOut("lz_ext_p6_fx 0 %x %x\n", dstptr, endptr);
         tmp = *srcptr++;
 
         switch (tmp & 0xC0) {
@@ -2270,34 +2268,24 @@ void mlt_obj_melt2(MultiTexture* mt, u16 cg_number) {
         
 
         while (count != 0) {
-            flLogOut("mlt_obj_melt2 2.1 %d\n", count);
             attr = trsptr->attr;
 
             if (!(attr & 0x1000)) {
                 texptr = (TEX*)((uintptr_t)textbl + ((u32*)textbl)[trsptr->code]);
-                flLogOut("texptr %d %d\n", texptr, &((u8*)texptr)[1]);
-                //while(texptr == 0);
                 dd = (((texptr->wh & 0xE0) << 5) - 0x400) | (((texptr->wh & 0x1C) << 6) - 0x100);
                 wh = (texptr->wh & 3) + 1;
                 size = (wh * wh) << 6;
                 palt = attr & 3;
 
-                flLogOut("mlt_obj_melt2 2.2 %d\n", wh);
                 switch (wh) {
                 case 1:
                 case 2:
-                    flLogOut("mlt_obj_melt2 2.3 0\n");
-                    flLogOut("mlt_obj_melt2 2.3 lz %d %d %d\n", &((u8*)texptr)[1], mt->mltbuf, size);
                     lz_ext_p6_fx(&((u8*)texptr)[1], mt->mltbuf, size);
-                    flLogOut("mlt_obj_melt2 2.3 1\n");
                     njReLoadTexturePartNumG(mt->mltgidx16 + (cd16 >> 8), (s8*)mt->mltbuf, cd16 & 0xFF, size);
-                    flLogOut("mlt_obj_melt2 2.3 2\n");
                     attr = (attr & 0xC000) | 0x1000 | dd;
                     trsptr->attr |= 0x1000;
                     attr |= palt;
-                    flLogOut("mlt_obj_melt2 2.3 4\n");
                     search_trsptr(grplds->trans_table, i, n, trsptr->code, palt, cd16, attr);
-                    flLogOut("mlt_obj_melt2 2.3 4\n");
                     trsptr->code = cd16;
                     trsptr->attr = attr;
                     cd16 += 1;

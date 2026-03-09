@@ -81,7 +81,7 @@ void AcrMain() {
     flPADGetALL();
     keyConvert();
 
-    if(p1sw_buff != 0){
+    if(p1sw_buff){
         DEMMA_DEBUG = 1;
         flLogOut("DEMMA_DEBUG = 1\n");
     }
@@ -208,7 +208,7 @@ void AcrMain() {
 
         //KnjFlush();
 
-        drawRect(c, c, 10, 10, 0xFFFFFFFF);
+        //drawRect(c, c, 10, 10, 0xFFFFFFFF);
 
         render_end();
 

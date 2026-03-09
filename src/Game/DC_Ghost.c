@@ -267,35 +267,25 @@ void njdp2d_init() {
 void njdp2d_draw() {
     ColorVertex* vertices = (ColorVertex*) sceGuGetMemory(4 * sizeof(ColorVertex));
     s32 i;
-    /*
 
-    ps2SeqsRenderQuadInit_B();
-    setZ_Operation(1);
-    */
     for (i = njdp2d_w.ix1st; i != -1; i = njdp2d_w.prim[i].next) {
         switch (njdp2d_w.prim[i].type) {
         case 0:
             //Vertex vertices[2];
 
             for(int j = 0; j < 4; j++){
-                vertices[j].x = njdp2d_w.prim[j].v[j].x;
-                vertices[j].y = njdp2d_w.prim[j].v[j].y;
-                vertices[j].z = 0.0f;
-                vertices[j].colour = njdp2d_w.prim[j].col;
+                vertices[j].x = njdp2d_w.prim[i].v[j].x;
+                vertices[j].y = njdp2d_w.prim[i].v[j].y;
+                vertices[j].z = njdp2d_w.prim[i].v[j].z;
+                vertices[j].colour = njdp2d_w.prim[i].col;
+                //vertices[j].colour = 0xFFFFFFFF;
+                //drawRect(vertices[j].x, vertices[j].y, 8, 8, 0xFFFFFFFF);
             }
 
-            sceGuColor(njdp2d_w.prim[1].col); // colors are ABGR
             sceGuDisable(GU_TEXTURE_2D);
-            sceGuDrawArray(GU_TRIANGLE_FAN, GU_COLOR_5551 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 4, 0, vertices);
+            //sceGuDrawArray(GU_TRIANGLE_FAN, GU_COLOR_5551 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 4, 0, vertices);
+            sceGuDrawArray(GU_TRIANGLE_FAN, GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 4, 0, vertices);
             sceGuEnable(GU_TEXTURE_2D);
-            /*
-            prm[0] = njdp2d_w.prim[i].v[0];
-            prm[1] = njdp2d_w.prim[i].v[1];
-            prm[2] = njdp2d_w.prim[i].v[2];
-            prm[3] = njdp2d_w.prim[i].v[3];
-            */
-
-            //ps2SeqsRenderQuad_B(&prm, njdp2d_w.prim[i].col);
             break;
 
         case 1:
@@ -383,6 +373,7 @@ void njdp2d_sort(f32* pos, f32 pri, uintptr_t col, s32 flag) {
     }
 
     njdp2d_w.total += 1;
+    flLogOut("njdp2d_w.total %d\n", njdp2d_w.total);
 }
 
 void njDrawPolygon2D(PAL_CURSOR* p, s32 /* unused */, f32 pri, u32 attr) {

@@ -1,6 +1,6 @@
 #include "Game/Game.h"
 #include "common.h"
-//#include "Common/PPGWork.h"
+#include "psp/PPGWork.h"
 #include "Game/BBBSCOM.h"
 #include "Game/Continue.h"
 #include "Game/DC_Ghost.h"

@@ -1338,7 +1338,7 @@ void Save_Direction(struct _TASK* task_ptr) {
 
     case 1:
         if (Menu_Sub_case1(task_ptr) != 0) {
-            //SaveInit(1, 1);
+            SaveInit(1, 1);
         }
 
         break;
@@ -1348,12 +1348,10 @@ void Save_Direction(struct _TASK* task_ptr) {
         break;
 
     case 3:
-        /*
         if (SaveMove() <= 0) {
             IO_Result = 0x200;
             Load_Replay_MC_Sub(task_ptr, 0);
         }
-        */
 
         break;
     }
@@ -1380,7 +1378,7 @@ void Load_Direction(struct _TASK* task_ptr) {
 
     case 1:
         if (Menu_Sub_case1(task_ptr) != 0) {
-            //SaveInit(1, 0);
+            SaveInit(1, 0);
         }
 
         break;
@@ -1395,12 +1393,10 @@ void Load_Direction(struct _TASK* task_ptr) {
         break;
 
     case 3:
-        /*
         if (SaveMove() <= 0) {
             IO_Result = 0x200;
             Load_Replay_MC_Sub(task_ptr, 0);
         }
-        */
 
         break;
     }
@@ -1437,7 +1433,6 @@ void Load_Replay(struct _TASK* task_ptr) {
         break;
 
     case 3:
-        /*
         switch (SaveMove()) {
         case 0:
             Decide_ID = 0;
@@ -1455,7 +1450,6 @@ void Load_Replay(struct _TASK* task_ptr) {
             Load_Replay_MC_Sub(task_ptr, 0);
             break;
         }
-        */
 
         break;
 
@@ -2693,11 +2687,9 @@ void Save_Load_Menu(struct _TASK* task_ptr) {
         /* fallthrough */
 
     case 3:
-        /*
         if (SaveMove() <= 0) {
             Go_Back_MC(task_ptr);
         }
-        */
 
         break;
 
@@ -3447,7 +3439,7 @@ void DAS_2nd(struct _TASK* task_ptr) {
     if ((task_ptr->timer -= 1) == 0) {
         task_ptr->r_no[1]++;
         FadeInit();
-        //SaveInit(0, 3);
+        SaveInit(0, 3);
     }
 }
 
