@@ -176,27 +176,27 @@ s32 flPS2GetTextureInfoFromContext(plContext* bits, s32 bnum, u32 th, u32 flag) 
         return 0;
 
     case 0:
-        lpflTexture->format = SCE_GS_PSMT4;
+        lpflTexture->format = GU_PSM_T4;
         lpflTexture->bitdepth = 0;
         break;
 
     case 1:
-        lpflTexture->format = SCE_GS_PSMT8;
+        lpflTexture->format = GU_PSM_T8;
         lpflTexture->bitdepth = 1;
         break;
 
     case 2:
-        lpflTexture->format = SCE_GS_PSMCT16;
+        lpflTexture->format = GU_PSM_5551;
         lpflTexture->bitdepth = 2;
         break;
 
     case 3:
-        lpflTexture->format = SCE_GS_PSMCT24;
+        lpflTexture->format = GU_PSM_4444;
         lpflTexture->bitdepth = 3;
         break;
 
     case 4:
-        lpflTexture->format = SCE_GS_PSMCT32;
+        lpflTexture->format = GU_PSM_8888;
         lpflTexture->bitdepth = 4;
         break;
     }
@@ -271,16 +271,19 @@ u32 flCreatePaletteHandle(plContext* lpcontext, u32 flag) {
     lpflPalette = &flPalette[HI_16_BITS(ph) - 1];
     flPS2GetPaletteInfoFromContext(lpcontext, ph, flag);
 
+    lpflPalette->mem_handle = flPS2GetSystemMemoryHandle(lpflPalette->size, 2);
+
     if (lpcontext->ptr != NULL) {
-        flPS2CreatePaletteHandle(ph, flag);
-        
-        int palette_index = ph >> 16;
         u16* src = (u16*) lpcontext->ptr;
-        for(int i = 0; i < 64; i++){
-                ColorRAM[palette_index][i] = src[i] & 0x83D0;
-                ColorRAM[palette_index][i] += (src[i] & 0x001F) << 10;
-                ColorRAM[palette_index][i] += (src[i] & 0x7B00) >> 10;
+        u16* dest = (u16*) flPS2GetSystemBuffAdrs(lpflPalette->mem_handle);
+        
+        for(int i = 0; i < lpflPalette->size; i++){
+                dest[i] = src[i] & 0x83D0;
+                dest[i] += (src[i] & 0x001F) << 10;
+                dest[i] += (src[i] & 0x7B00) >> 10;
         }
+
+        flPS2CreatePaletteHandle(ph, flag);
     }
 
     return ph >> 16;
@@ -1065,7 +1068,8 @@ void flSetTexture(int th){
     int texture_handle = LO_16_BITS(th) - 1;
     FLTexture *flTex = &flTexture[texture_handle];
     int palette_handle = HI_16_BITS(th) - 1;
-    u16 *pal = ColorRAM[palette_handle];
+    FLTexture *flPal = &flPalette[palette_handle];
+    u16 *pal = flPS2GetSystemBuffAdrs(flPal->mem_handle);
 
     void *texData = flTex->wkVram;
     flLogOut("set texture texdata %x %d %x\n", texData, texture_handle, flTex);
@@ -1075,8 +1079,14 @@ void flSetTexture(int th){
 
     flLogOut("set texture texdata %x %d\n", texData, texture_handle);
 
-    sceGuClutMode(GU_PSM_5551, 0, 0xFF, 0);
-    sceGuClutLoad(8, pal);
+    if(flTex->format == GU_PSM_T4){
+        sceGuClutMode(GU_PSM_5551, 0, 0xFF, 0);
+        sceGuClutLoad(flPal->size / 8, pal);
+    }
+    if(flTex->format == GU_PSM_T8){
+        sceGuClutMode(GU_PSM_5551, 0, 0xFF, 0);
+        sceGuClutLoad(flPal->size / 8, pal);
+    }
 
     if(currentTexture != texData){
         sceGuTexMode(flTex->format, 0, 0, GU_FALSE);
@@ -1122,7 +1132,7 @@ static s32 system_work_init() {
     }
 
     fmsInitialize(&flFMS, temp, 0x01800000, 0x40);
-    const int system_memory_size = 0xA00000;
+    const int system_memory_size = 0xE00000;
     temp = flAllocMemoryS(system_memory_size);
     mflInit(temp, system_memory_size, 0x40);
 
@@ -1130,7 +1140,8 @@ static s32 system_work_init() {
 }
 
 s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture, u32 type) {
-    lpflTexture->wkVram = lpcontext->ptr;
+    lpflTexture->mem_handle = (u32)lpcontext->ptr;
+    lpflTexture->wkVram = NULL;
 
     return 1;
 }

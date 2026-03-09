@@ -40,6 +40,7 @@ void initGu(){
     // alpha blending
     sceGuEnable(GU_BLEND);
     sceGuBlendFunc(GU_ADD, GU_SRC_ALPHA, GU_ONE_MINUS_SRC_ALPHA, 0, 0);
+    //sceGuBlendFunc(GU_MAX, GU_SRC_ALPHA, GU_SRC_ALPHA, 0, 0);
 
 
     //Set up viewport

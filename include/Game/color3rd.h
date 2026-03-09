@@ -4,7 +4,7 @@
 #include "structs.h"
 #include "types.h"
 
-#define MAX_PALETTES 1024
+#define MAX_PALETTES 512
 
 extern u16 ColorRAM[MAX_PALETTES][64];
 extern bool ColorRAMUsed[MAX_PALETTES];

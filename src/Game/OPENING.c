@@ -241,7 +241,7 @@ void OPBG_Init() {
 s16 OPBG_Move(s32 /* unused */) {
     s16 flag = 0;
 
-    //flag = oh_opening_demo();
+    flag = oh_opening_demo();
     OPBG_Trans();
     return flag;
 }

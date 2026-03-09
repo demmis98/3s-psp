@@ -468,7 +468,7 @@ u32 flCreateTextureFromTim2_mem(void* mem, u32 flag) {
 
     flPS2CreateTextureHandle(th, flag);
 
-    if ((lpflTexture->format == SCE_GS_PSMT4) || (lpflTexture->format == SCE_GS_PSMT8)) {
+    if ((lpflTexture->format == GU_PSM_T4) || (lpflTexture->format == GU_PSM_T8)) {
         ph = flPS2GetPaletteHandle();
         lpflPalette = &flPalette[HI_16_BITS(ph) - 1];
         plTIM2SetPaletteContextFromImage(&pal_context, mem);

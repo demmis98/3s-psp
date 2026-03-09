@@ -64,8 +64,8 @@ void initRenderState(s32 flag) {
 }
 
 void setZ_Operation(s32 flag) {
-    //static u32 ope_mode[7] = { 0, 1, 2, 3, 4, 5, 6 };
-    //flSetRenderState(FLRENDER_ZOPE, ope_mode[flag]);
+    static u32 ope_mode[7] = { 0, 1, 2, 3, 4, 5, 6 };
+    flSetRenderState(FLRENDER_ZOPE, ope_mode[flag]);
 }
 
 void setFilterMode(s32 mode){
@@ -78,14 +78,14 @@ void setBlendMode(s32 ope, s32 src, s32 dst) {
 }
 
 void setBlendOperation(s32 ope) {
-    //static unsigned int ope_mode[3] = { 0, 0x400, 0x800 };
-    //flSetRenderState(FLRENDER_BLENDOPE, ope_mode[ope]);
+    static unsigned int ope_mode[3] = { 0, 0x400, 0x800 };
+    flSetRenderState(FLRENDER_BLENDOPE, ope_mode[ope]);
 }
 
 void setBlendSource(s32 src, s32 dst) {
-    //static u32 src_mode[10] = { 0x00, 0x01, 0x04, 0x05, 0x02, 0x03, 0x08, 0x09, 0x06, 0x07 };
-    //static u32 dst_mode[10] = { 0x00, 0x10, 0x40, 0x50, 0x20, 0x30, 0x80, 0x90, 0x60, 0x70 };
-    //flSetRenderState(FLRENDER_ALPHABLENDMODE, src_mode[src] | dst_mode[dst]);
+    static u32 src_mode[10] = { 0x00, 0x01, 0x04, 0x05, 0x02, 0x03, 0x08, 0x09, 0x06, 0x07 };
+    static u32 dst_mode[10] = { 0x00, 0x10, 0x40, 0x50, 0x20, 0x30, 0x80, 0x90, 0x60, 0x70 };
+    flSetRenderState(FLRENDER_ALPHABLENDMODE, src_mode[src] | dst_mode[dst]);
 }
 
 void setTexAdrsMode(s32 mode) {

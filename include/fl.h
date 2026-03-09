@@ -39,7 +39,7 @@ static s32 system_work_init();
 
 // from modern port
 
-#define FL_PALETTE_MAX MAX_PALETTES
+#define FL_PALETTE_MAX 1088
 #define FL_TEXTURE_MAX MAX_TEXTURES
 
 extern u32 flDebugStrCtr;

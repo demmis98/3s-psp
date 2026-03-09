@@ -1629,7 +1629,7 @@ void seqsAfterProcess() {
                     vertices[j].z = seqs_w.chip[i].v[j].z;
                     vertices[j].u = seqs_w.chip[i].t[j].s * tex->width;
                     vertices[j].v = seqs_w.chip[i].t[j].t * tex->height;
-                    vertices[j].z = seqs_w.chip[i].vtxColor;
+                    vertices[j].colour = seqs_w.chip[i].vtxColor;
                 }
                 //ps2SeqsRenderQuad_Ax(&seqs_w.chip[i]);
                 
@@ -1997,7 +1997,7 @@ static void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len) {
     flLogOut("lz_ext_p6_fx\n");
 
     while (dstptr < endptr) {
-        flLogOut("lz_ext_p6_fx 0 %x\n", dstptr);
+        flLogOut("lz_ext_p6_fx 0 %x %x\n", dstptr, endptr);
         tmp = *srcptr++;
 
         switch (tmp & 0xC0) {

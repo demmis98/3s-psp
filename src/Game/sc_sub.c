@@ -2250,10 +2250,12 @@ void dispButtonImage2(s32 px, s32 py, s32 pz, s32 sx, s32 sy, s32 cl, s32 ix) {
 }
 
 void dispSaveLoadTitle(void* ewk) {
+    TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(4 * sizeof(TextureVertex));
+    u32 texCode = ppgGetUsingTextureHandle(&ppgScrTex, 5) | (ppgGetUsingPaletteHandle(&ppgScrPalShot, 0) << 0x10);
+    int texture_handle = LO_16_BITS(texCode) - 1;
+    FLTexture *tex = &flTexture[texture_handle];
     WORK* wk;
-    PAL_CURSOR_COL oricol;
-    Sprite prm;
-    //FLVec3 pos[2];
+    Vec3 pos[4];
     f32 step_t;
     s32 i;
 
@@ -2261,41 +2263,42 @@ void dispSaveLoadTitle(void* ewk) {
         return;
     }
 
-    setFilterMode(0);
     wk = (WORK*)ewk;
     mlt_obj_matrix(wk, 0);
-    oricol.color = -1;
-    oricol.argb.a = (0xFF - wk->my_clear_level);
-    prm.texCode = ppgGetUsingTextureHandle(&ppgScrTex, 6) | (ppgGetUsingPaletteHandle(&ppgScrPalOpt, 0) << 0x10);
-    flSetRenderState(FLRENDER_TEXSTAGE0, prm.texCode);
-    prm.t[0].s = 0.0f;
-    prm.t[3].s = 1.0f;
-    prm.t[0].t = TO_UV_128(0.0f);
-    prm.t[3].t = TO_UV_128(36.0f);
-
-#if defined(TARGET_PS2)
-    step_t = 36.5f;
-#else
+    vertices[0].colour = vertices[1].colour = vertices[2].colour = vertices[3].colour = 0xFFFFFFFF - (wk->my_clear_level << 24);
+    flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
+    vertices[0].u = 0.0f;
+    vertices[3].u = tex->width;
+    vertices[0].v = TO_UV_128(0.0f) * tex->height;
+    vertices[3].v = TO_UV_128(36.0f) * tex->height;
     step_t = 36.0f;
-#endif
-    /*
     pos[0].x = -192.0f;
     pos[0].y = -12.0f;
     pos[1].x = -64.0f;
     pos[1].y = -48.0f;
     pos[0].z = pos[1].z = 0.0f;
 
+    int j;
     for (i = 0; i < 3; i++) {
-        njCalcPoint(NULL, (Vec3*)&pos[0], &prm.v[0]);
-        njCalcPoint(NULL, (Vec3*)&pos[1], &prm.v[3]);
-        //ps2SeqsRenderQuadInit_A();
-        //ps2SeqsRenderQuad_A2(&prm, oricol.color);
-  l      //ps2SeqsRenderQuadEnd();
+        for(j = 0; j < 2; j++){
+            pos[j + 2].x = vertices[j * 3].x;
+            pos[j + 2].y = vertices[j * 3].y;
+            pos[j + 2].z = vertices[j * 3].z;
+        }
+        njCalcPoint(NULL, &pos[0], &pos[2]);
+        njCalcPoint(NULL, &pos[1], &pos[3]);
+
+        for(j = 0; j < 2; j++){
+            vertices[j * 3].x = pos[j + 2].x;
+            vertices[j * 3].y = pos[j + 2].y;
+            vertices[j * 3].z = pos[j + 2].z;
+        }
+
+        sceGuDrawArray(GU_SPRITES, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
         step_t += 36.0f;
-        prm.t[0].v = prm.t[3].t;
-        prm.t[3].v = step_t / 128.0f;
+        vertices[0].v = vertices[3].v;
+        vertices[3].v = step_t / 128.0f * tex->height;
         pos[0].x += 128.0f;
         pos[1].x += 128.0f;
     }
-    */
 }

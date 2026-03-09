@@ -150,7 +150,7 @@ void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode) {
         vertices[i].z = pos[i].z;
         vertices[i].u = pos[i].u * tex->width;
         vertices[i].v = pos[i].v * tex->height;
-        vertices[i].colour = 0xFFFFFFFF;
+        vertices[i].colour = col;
 
         //drawRect(vertices[i].x, vertices[i].y, 10, 10, 0xFFFF00FF);
     }
@@ -175,7 +175,7 @@ void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
         vertices[i].z = pos[i*3].z;
         vertices[i].u = pos[i*3].u * tex->width;
         vertices[i].v = pos[i*3].v * tex->height;
-        vertices[i].colour = 0xFFFFFFFF;
+        vertices[i].colour = col;
         //drawRect(vertices[i].x, vertices[i].y, 8, 8, 0xFFFF0000);
     }
 
@@ -1166,7 +1166,8 @@ s32 ppgSetupTexChunk_3rd(Texture* tch, s32 ixNum, u32 attribute) {
     cmpAdrs = (u8*)ppg + cmpSize;
     cmpSize = REVERT_U32(ppg->fileSize) - cmpSize;
     mltSize = bits.height * bits.pitch;
-    mltAdrs = memalign(16, mltSize);
+    bits.ptr = (void *)flPS2GetSystemMemoryHandle(mltSize, 2);
+    mltAdrs = flPS2GetSystemBuffAdrs((u32)bits.ptr);
 
     if (mltAdrs == NULL) {
         // Failed to allocate texture data expansion area.
@@ -1177,12 +1178,12 @@ s32 ppgSetupTexChunk_3rd(Texture* tch, s32 ixNum, u32 attribute) {
     if (mltSize != ppgDecompress(koCmpr, cmpAdrs, cmpSize, mltAdrs, mltSize)) {
         // Failed to acquire sprite texture handle.
         flLogOut("Failed to acquire sprite texture handle\n");
-        free(mltAdrs);
+        flPS2ReleaseSystemMemory((u32)bits.ptr);
         while (1) {}
     }
 
     ppgChangeDataEndian(mltAdrs, mltSize, ppg->pixel & 4, ppg->formARGB == 0x8888, bits.bitdepth, 0);
-    bits.ptr = mltAdrs;
+    //bits.ptr = mltAdrs;
     hnof->b16[0] = flCreateTextureHandle(&bits, attribute);
 
     if (hnof->b16[0] == 0) {

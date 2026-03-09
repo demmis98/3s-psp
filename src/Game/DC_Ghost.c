@@ -174,7 +174,7 @@ void njSetBackColor(u32 c0, u32 c1, u32 c2) {
 void njColorBlendingMode(s32 target, s32 mode) {
     target = target;
     mode = mode;
-    //flSetRenderState(FLRENDER_ALPHABLENDMODE, 0x32);
+    flSetRenderState(FLRENDER_ALPHABLENDMODE, 0x32);
 }
 
 void njCalcPoint(MTX* mtx, Vec3* ps, Vec3* pd) {
