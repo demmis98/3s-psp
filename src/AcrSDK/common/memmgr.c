@@ -78,6 +78,7 @@ u32 plmemRegisterS(MEM_MGR* memmgr, s32 len) {
     MEM_BLOCK* now_block;
     MEM_BLOCK* next_block;
     u8* data_ptr;
+    
 
     size = ALIGN(NULL, len, memmgr->memalign);
     han = plmemPullHandle(memmgr);
@@ -154,7 +155,6 @@ u32 plmemRegisterS(MEM_MGR* memmgr, s32 len) {
             return han + 1;
         }
     }
-
     return plmemRegister(memmgr, len);
 }
 

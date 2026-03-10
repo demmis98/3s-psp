@@ -2212,11 +2212,11 @@ void dispButtonImage(s32 px, s32 py, s32 pz, s32 sx, s32 sy, s32 cl, s32 ix) {
         vertices[i].y = vecs[i].y;
     }
     vertices[0].z = vertices[1].z = PrioBase[pz];
-    vertices[0].u = scrnAddTex1UV[ix][0];
-    vertices[1].u = (scrnAddTex1UV[ix][0] + scrnAddTex1UV[ix][2]);
-    vertices[0].v = scrnAddTex1UV[ix][1];
-    vertices[3].v = (scrnAddTex1UV[ix][1] + scrnAddTex1UV[ix][3]);
-    vertices[0].colour = vertices[1].colour = 0xFFFFFFFF - (cl << 24);
+    vertices[0].u = (scrnAddTex1UV[ix][0] / 256.0f) * tex->width;
+    vertices[1].u = ((scrnAddTex1UV[ix][0] + scrnAddTex1UV[ix][2]) / 256.0f) * tex->width;
+    vertices[0].v = (scrnAddTex1UV[ix][1] / 128.0f) * tex->height;
+    vertices[1].v = ((scrnAddTex1UV[ix][1] + scrnAddTex1UV[ix][3]) / 128.0f) * tex->height;
+    vertices[0].colour = vertices[1].colour = 0xFFFFFFFF - (cl << 23);
 
     flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
     
@@ -2239,13 +2239,14 @@ void dispButtonImage2(s32 px, s32 py, s32 pz, s32 sx, s32 sy, s32 cl, s32 ix) {
     vertices[1].x = Frame_Zoom_X * (px + sx);
     vertices[1].y = Frame_Zoom_Y * (py + sy);
     vertices[0].z = vertices[1].z = PrioBase[pz];
-    vertices[0].u = scrnAddTex1UV[ix][0];
-    vertices[1].u = (scrnAddTex1UV[ix][0] + scrnAddTex1UV[ix][2]);
-    vertices[0].v = scrnAddTex1UV[ix][1];
-    vertices[1].v = (scrnAddTex1UV[ix][1] + scrnAddTex1UV[ix][3]);
-    vertices[0].colour = vertices[1].colour = 0xFFFFFFFF - (cl << 24);
+    vertices[0].u = (scrnAddTex1UV[ix][0] / 256.0f) * tex->width;
+    vertices[1].u = ((scrnAddTex1UV[ix][0] + scrnAddTex1UV[ix][2]) / 256.0f) * tex->width;
+    vertices[0].v = (scrnAddTex1UV[ix][1] / 128.0f) * tex->height;
+    vertices[1].v = ((scrnAddTex1UV[ix][1] + scrnAddTex1UV[ix][3]) / 128.0f) * tex->height;
+    vertices[0].colour = vertices[1].colour = 0xFFFFFFFF - (cl << 23);
     flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
-    //drawRect(vertices[0].x, vertices[0].y, 8, 8, 0xFF005F5F);
+    if(flPS2GetSystemBuffAdrs(tex->mem_handle) == NULL && tex->wkVram == NULL)
+        drawRect(vertices[0].x, vertices[0].y, 8, 8, 0xFF005F5F);
     sceGuDrawArray(GU_SPRITES, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
 }
 
@@ -2292,7 +2293,8 @@ void dispSaveLoadTitle(void* ewk) {
             vertices[j * 3].x = pos[j + 2].x;
             vertices[j * 3].y = pos[j + 2].y;
             vertices[j * 3].z = pos[j + 2].z;
-            //drawRect(vertices[j *3].x, vertices[j].y, 8, 8, 0xFF00005F);
+            if(flPS2GetSystemBuffAdrs(tex->mem_handle) == NULL && tex->wkVram == NULL)
+                drawRect(vertices[j *3].x, vertices[j].y, 8, 8, 0xFF00005F);
         }
 
         sceGuDrawArray(GU_SPRITES, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);

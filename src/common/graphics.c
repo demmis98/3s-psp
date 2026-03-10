@@ -10,6 +10,7 @@ static unsigned int __attribute__((aligned(64))) list[0x20000];
 
 static void * fbp0;
 static void * fbp1;
+static void * zBuff;
 
 static void * currentBuffer;
 
@@ -23,6 +24,7 @@ void initGu(){
 
 	fbp0 = guGetStaticVramBuffer(BUFFER_WIDTH,SCREEN_HEIGHT,GU_PSM_8888);
 	fbp1 = guGetStaticVramBuffer(BUFFER_WIDTH,SCREEN_HEIGHT,GU_PSM_8888);
+    zBuff = guGetStaticVramBuffer(BUFFER_WIDTH, SCREEN_HEIGHT, GU_PSM_4444);
 
     //Set up buffers
     sceGuStart(GU_DIRECT, list);
@@ -31,7 +33,9 @@ void initGu(){
     
     // We do not care about the depth buffer in this example
     //sceGuDepthBuffer(fbp0, 0); // Set depth buffer to a length of 0
-    sceGuDisable(GU_DEPTH_TEST); // Disable depth testing
+    sceGuDepthBuffer(zBuff, BUFFER_WIDTH);
+    sceGuEnable(GU_DEPTH_TEST); // Disable depth testing
+    sceGuDepthFunc(GU_GEQUAL);
 
     sceGuDisable(GU_CULL_FACE);
     sceGuDisable(GU_LIGHTING);
@@ -42,6 +46,8 @@ void initGu(){
     sceGuBlendFunc(GU_ADD, GU_SRC_ALPHA, GU_ONE_MINUS_SRC_ALPHA, 0, 0);
     //sceGuBlendFunc(GU_MAX, GU_SRC_ALPHA, GU_SRC_ALPHA, 0, 0);
 
+    sceGuEnable(GU_ALPHA_TEST);
+    sceGuAlphaFunc(GU_GREATER, 0x00, 0xFF);  // Only draw pixels with alpha > 0
 
     //Set up viewport
     sceGuOffset(2048 - (SCREEN_WIDTH / 2), 2048 - (SCREEN_HEIGHT / 2));
@@ -71,7 +77,8 @@ void endGu(){
 void startFrame(){
     sceGuStart(GU_DIRECT, list);
     sceGuClearColor(bg_color); // black background
-    sceGuClear(GU_COLOR_BUFFER_BIT);
+    sceGuClearDepth(0x0000);
+    sceGuClear(GU_COLOR_BUFFER_BIT | GU_DEPTH_BUFFER_BIT);
     sceGuEnable(GU_TEXTURE_2D);
 }
 

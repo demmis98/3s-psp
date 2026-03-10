@@ -16,6 +16,8 @@
 #include "Compress/zlibApp.h"
 //#include "sf33rd/Source/PS2/ps2Quad.h"
 #include "structs.h"
+#include <malloc.h>
+#include <string.h>
 
 #define MAGIC_TO_INT(str) ((str[0] << 0x18) | (str[1] << 0x10) | (str[2] << 0x8) | (str[3]))
 #define REVERT_U32(val)                                                                                                \
@@ -152,7 +154,8 @@ void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode) {
         vertices[i].v = pos[i].v * tex->height;
         vertices[i].colour = col;
 
-        //drawRect(vertices[i].x, vertices[i].y, 10, 10, 0xFFFF00FF);
+        if(flPS2GetSystemBuffAdrs(tex->mem_handle) == NULL && tex->wkVram == NULL)
+            drawRect(vertices[i].x, vertices[i].y, 10, 10, 0xFFFF00FF);
     }
 
     flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
@@ -176,7 +179,8 @@ void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
         vertices[i].u = pos[i*3].u * tex->width;
         vertices[i].v = pos[i*3].v * tex->height;
         vertices[i].colour = col;
-        //drawRect(vertices[i].x, vertices[i].y, 8, 8, 0xFFFF0000);
+        if(flPS2GetSystemBuffAdrs(tex->mem_handle) == NULL && tex->wkVram == NULL)
+            drawRect(vertices[i].x, vertices[i].y, 8, 8, 0xFFFF0000);
     }
 
     flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
@@ -787,7 +791,9 @@ s32 ppgSetupTexChunkSeqs(Texture* tch, PPGFileHeader* ppg, u8* adrs, s32 ixNum1s
     }
 
     for (i = 0; i < ixNums; i++) {
-        bits.ptr = adrs;
+        bits.ptr = (void*) flPS2GetSystemMemoryHandle(tch->srcSize, 2);
+        u8* p = flPS2GetSystemBuffAdrs((u32)bits.ptr);
+        memcpy(p, adrs, tch->srcSize);
         tch->handle[i].b16[1] = ci_flag;
         tch->handle[i].b16[0] = flCreateTextureHandle(&bits, attribute);
 
@@ -979,7 +985,7 @@ s32 ppgRenewTexChunkSeqs(Texture* tch) {
             flLockTexture(NULL, tch->handle[i].b16[0], &bits, 3);
             dstRam = bits.ptr;
             srcRam = (s32*)(tch->srcAdrs + tch->srcSize * i);
-            //flPS2_Mem_move64(srcRam, dstRam, tch->srcSize >> 6);
+            memmove(dstRam, srcRam, tch->srcSize);
             flUnlockTexture(tch->handle[i].b16[0]);
         }
     }
@@ -1166,29 +1172,31 @@ s32 ppgSetupTexChunk_3rd(Texture* tch, s32 ixNum, u32 attribute) {
     cmpAdrs = (u8*)ppg + cmpSize;
     cmpSize = REVERT_U32(ppg->fileSize) - cmpSize;
     mltSize = bits.height * bits.pitch;
-    bits.ptr = (void *)flPS2GetSystemMemoryHandle(mltSize, 2);
-    mltAdrs = flPS2GetSystemBuffAdrs((u32)bits.ptr);
+    bits.ptr = (void*) flPS2GetSystemMemoryHandle(mltSize, 2);
+    mltAdrs = flPS2GetSystemBuffAdrs((u32) bits.ptr);
 
     if (mltAdrs == NULL) {
         // Failed to allocate texture data expansion area.
-        flLogOut("Failed to allocate texture data expansion area\n");
+        flLogOut("Failed to allocate texture data expansion area. \n");
         while (1) {}
     }
 
     if (mltSize != ppgDecompress(koCmpr, cmpAdrs, cmpSize, mltAdrs, mltSize)) {
         // Failed to acquire sprite texture handle.
-        flLogOut("Failed to acquire sprite texture handle\n");
-        flPS2ReleaseSystemMemory((u32)bits.ptr);
+        flLogOut("Failed to acquire sprite texture handle.\n");
+        //ppgPushDecBuff(mltAdrs);
         while (1) {}
     }
 
-    ppgChangeDataEndian(mltAdrs, mltSize, ppg->pixel & 4, ppg->formARGB == 0x8888, bits.bitdepth, 0);
+    unused_s5 = 0;
+    ppgChangeDataEndian(mltAdrs, mltSize, ppg->pixel & 4, ppg->formARGB == 0x8888, bits.bitdepth, unused_s5);
     //bits.ptr = mltAdrs;
     hnof->b16[0] = flCreateTextureHandle(&bits, attribute);
+    //ppgPushDecBuff(mltAdrs);
 
     if (hnof->b16[0] == 0) {
         // Failed to acquire texture handle.
-        flLogOut("Failed to acquire texture handle\n");
+        flLogOut("Failed to acquire texture handle.\n");
         while (1) {}
     }
 

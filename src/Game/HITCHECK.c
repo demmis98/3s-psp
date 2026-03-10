@@ -1396,7 +1396,7 @@ void dm_status_copy(WORK* as, WORK* ds) {
     if (as->work_id == 1) {
         ds->dm_exdm_ix = ((PLW*)as)->exdm_ix;
         ds->dm_plnum = ((PLW*)as)->player_number;
-        //pp_pulpara_remake_at_hit(as);
+        pp_pulpara_remake_at_hit((PLW*)as);
     } else {
         ds->dm_plnum = ((PLW*)((WORK_Other*)as)->my_master)->player_number;
     }

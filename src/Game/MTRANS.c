@@ -1535,7 +1535,7 @@ void appSetupBasePriority() {
     s32 i;
 
     for (i = 0; i < PRIO_BASE_SIZE; i++) {
-        PrioBaseOriginal[i] = ((i * 512) + 1) / 65535.0f;
+        PrioBaseOriginal[i] = 0xFF - i;
     }
 }
 
@@ -1591,6 +1591,8 @@ void seqsAfterProcess() {
     s32 i;
     u32 keep = 0;
     u32 val = 0;
+    TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(2 * sizeof(TextureVertex));
+    FLTexture *tex = &flTexture[LO_16_BITS(val) - 1];
 
     if ((Debug_w[0x27] != 3) && (seqs_w.sprTotal != 0)) {
         for (i = 0; i < 24; i++) {
@@ -1615,13 +1617,10 @@ void seqsAfterProcess() {
             if (seqs_w.up[seqs_w.chip[i].id]) {
                 val = seqs_w.chip[i].texCode;
 
-                if (keep != val) {
-                    keep = val;
-                    flSetRenderState(FLRENDER_TEXSTAGE0, val);
-                }
+                flSetRenderState(FLRENDER_TEXSTAGE0, val);
 
-                TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(2 * sizeof(TextureVertex));
-                FLTexture *tex = &flTexture[LO_16_BITS(val) - 1];
+                vertices = (TextureVertex*)sceGuGetMemory(2 * sizeof(TextureVertex));
+                tex = &flTexture[LO_16_BITS(val) - 1];
 
                 for (int j = 0; j < 2; j++) {
                     vertices[j].x = seqs_w.chip[i].v[j].x;
@@ -1630,7 +1629,9 @@ void seqsAfterProcess() {
                     vertices[j].u = seqs_w.chip[i].t[j].s * tex->width;
                     vertices[j].v = seqs_w.chip[i].t[j].t * tex->height;
                     vertices[j].colour = seqs_w.chip[i].vtxColor;
-                    //drawRect(vertices[j].x, vertices[j].y, 8, 8, 0xFF00FFFF);
+                    if(flPS2GetSystemBuffAdrs(tex->mem_handle) == NULL && tex->wkVram == NULL)
+                        drawRect(vertices[j].x, vertices[j].y, 8, 8, 0xFF00FFFF);
+                    //drawRect(vertices[j].x, vertices[j].y, 8, 8, 0xFFFFFFFF);
                 }
                 //ps2SeqsRenderQuad_Ax(&seqs_w.chip[i]);
                 

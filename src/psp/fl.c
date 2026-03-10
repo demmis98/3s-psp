@@ -6,6 +6,7 @@
 #include <assert.h>
 
 #include <pspdebug.h>
+#include <string.h>
 
 #include "AcrSDK/common/fbms.h"
 #include "AcrSDK/common/mlPAD.h"
@@ -125,21 +126,10 @@ u32 flCreateTextureHandle(plContext* bits, u32 flag) {
     flPS2GetTextureInfoFromContext(bits, 1, th, flag);
 
     if (bits->ptr == NULL) {
-        lpflTexture->wkVram = malloc(lpflTexture->size);
+        lpflTexture->mem_handle = flPS2GetSystemMemoryHandle(lpflTexture->size, 0);
     } else {
         flPS2ConvertTextureFromContext(bits, lpflTexture, 0);
         flPS2CreateTextureHandle(th, flag);
-    }
-
-    switch(bits->bitdepth)
-    {
-        case 0:  lpflTexture->format = GU_PSM_T4;    break;
-        case 1:  lpflTexture->format = GU_PSM_T8;    break;
-        case 2:  lpflTexture->format = GU_PSM_5551;  break;
-        case 3:
-        case 4:  lpflTexture->format = GU_PSM_8888;  break;
-        default:
-            return 0;
     }
 
     flLogOut("create tex texdata %x %d %x\n", lpflTexture->wkVram, th, lpflTexture);
@@ -214,7 +204,7 @@ s32 flPS2GetTextureInfoFromContext(plContext* bits, s32 bnum, u32 th, u32 flag) 
 
     case 3:
         lpflTexture->format = GU_PSM_4444;
-        lpflTexture->bitdepth = 3;
+        lpflTexture->bitdepth = 2;
         break;
 
     case 4:
@@ -284,7 +274,7 @@ u32 flCreatePaletteHandle(plContext* lpcontext, u32 flag) {
     FLTexture* lpflPalette;
     u32 ph = flPS2GetPaletteHandle();
 
-    flLogOut("flCreatePaletteHandle\n");
+    flLogOut("flCreatePaletteHandle start\n");
 
     if (ph == 0) {
         return 0;
@@ -293,20 +283,26 @@ u32 flCreatePaletteHandle(plContext* lpcontext, u32 flag) {
     lpflPalette = &flPalette[HI_16_BITS(ph) - 1];
     flPS2GetPaletteInfoFromContext(lpcontext, ph, flag);
 
+    flLogOut("flCreatePaletteHandle 0\n");
     lpflPalette->mem_handle = flPS2GetSystemMemoryHandle(lpflPalette->size, 2);
+    //lpflPalette->wkVram = memalign(16, lpflPalette->size);
+    flLogOut("flCreatePaletteHandle 1\n");
 
     if (lpcontext->ptr != NULL) {
         u16* src = (u16*) lpcontext->ptr;
         u16* dest = (u16*) flPS2GetSystemBuffAdrs(lpflPalette->mem_handle);
+        //u16* dest = (u16*) lpflPalette->wkVram;
         
         for(int i = 0; i < lpflPalette->size; i++){
                 dest[i] = src[i] & 0x83D0;
-                dest[i] += (src[i] & 0x001F) << 10;
-                dest[i] += (src[i] & 0x7B00) >> 10;
+                dest[i] |= (src[i] & 0x001F) << 10;
+                dest[i] |= (src[i] & 0x7B00) >> 10;
         }
 
         flPS2CreatePaletteHandle(ph, flag);
     }
+
+    flLogOut("flCreatePaletteHandle end %d\n", ph >> 16);
 
     return ph >> 16;
 }
@@ -355,8 +351,7 @@ s32 flPS2GetPaletteInfoFromContext(plContext* bits, u32 ph, u32 flag) {
     lpflPalette->lock_ptr = 0;
     lpflPalette->lock_flag = 0;
     lpflPalette->tex_num = 1;
-    lpflPalette->size =
-        flPS2GetTextureSize(lpflPalette->format, lpflPalette->width, lpflPalette->height, lpflPalette->tex_num);
+    lpflPalette->size = flPS2GetTextureSize(lpflPalette->format, lpflPalette->width, lpflPalette->height, lpflPalette->tex_num);
     return 1;
 }
 
@@ -396,14 +391,33 @@ s32 flReleaseTextureHandle(u32 texture_handle) {
         lpflTexture->wkVram = NULL;
     }
 
+    if(lpflTexture->mem_handle != 0){
+        flPS2ReleaseSystemMemory(lpflTexture->mem_handle);
+        lpflTexture->mem_handle = 0;
+    }
+
     flMemset(lpflTexture, 0, sizeof(FLTexture));
     return 1;
 }
 
 s32 flReleasePaletteHandle(u32 palette_handle) {
     FLTexture* lpflPalette = &flPalette[palette_handle - 1];
-    lpflPalette->be_flag = 0;
-    
+
+    if ((palette_handle == 0) || (palette_handle > FL_PALETTE_MAX) || (lpflPalette->be_flag == 0)) {
+        flPrintColor(0xFFFF0000);
+        flLogOut("ERROR flReleasePaletteHandle flps2vram.c\n");
+    }
+
+    if (lpflPalette->wkVram != NULL) {
+        free(lpflPalette->wkVram);
+        lpflPalette->wkVram = NULL;
+    }
+
+    if (lpflPalette->mem_handle != 0) {
+        flPS2ReleaseSystemMemory(lpflPalette->mem_handle);
+    }
+
+    flMemset(lpflPalette, 0, sizeof(FLTexture));
     return 1;
 }
 
@@ -1091,27 +1105,26 @@ void flSetTexture(int th){
     FLTexture *flTex = &flTexture[texture_handle];
     int palette_handle = HI_16_BITS(th) - 1;
     FLTexture *flPal = &flPalette[palette_handle];
-    u16 *pal = flPS2GetSystemBuffAdrs(flPal->mem_handle);
+    u16 *pal = flPal->wkVram;
 
     void *texData = flTex->wkVram;
     
     if(texData == NULL)
         texData = flPS2GetSystemBuffAdrs(flTex->mem_handle);
 
-    if(flTex->format == GU_PSM_T4){
-        sceGuClutMode(GU_PSM_5551, 0, 0xFF, 0);
-        sceGuClutLoad(flPal->size / 8, pal);
-    }
-    else if(flTex->format == GU_PSM_T8){
-        sceGuClutMode(GU_PSM_5551, 0, 0xFF, 0);
-        sceGuClutLoad(flPal->size / 8, pal);
-    }
+    if(pal == NULL)
+        pal = flPS2GetSystemBuffAdrs(flPal->mem_handle);
+
+    
+    sceGuClutMode(GU_PSM_5551, 0, 0xFF, 0);
+    sceGuClutLoad(flPal->size / 8, pal);
 
     if(currentTexture != texData){
         sceGuTexMode(flTex->format, 0, 0, GU_FALSE);
         sceGuTexFunc(GU_TFX_REPLACE, GU_TCC_RGBA);
+        void *p = (void*) 0x4000;
         sceGuTexImage(0, flTex->width, flTex->height, flTex->width, texData);
-
+        //sceGuTexImage(0, flTex->width, flTex->height, flTex->width, p);
         currentTexture = texData;
     }
 }
@@ -1144,23 +1157,89 @@ static s32 system_work_init() {
     void* temp;
 
     flMemset(&flPs2State, 0, sizeof(FLPS2State));
-    temp = malloc(0x01800000);
+    int temp_size = 0x01C00000;
+    //int temp_size = 0x01C00000;
+    temp = malloc(temp_size);
 
     if (temp == NULL) {
+        flLogOut("system_work_init malloc failed\n");
+        while(1);
         return 0;
     }
 
-    fmsInitialize(&flFMS, temp, 0x01800000, 0x40);
-    const int system_memory_size = 0xE00000;
+    fmsInitialize(&flFMS, temp, temp_size, 0x16);
+    //const int system_memory_size = 0xA00000;
+    const int system_memory_size = 0x1000000;
     temp = flAllocMemoryS(system_memory_size);
-    mflInit(temp, system_memory_size, 0x40);
+    mflInit(temp, system_memory_size, 0x16);
 
     return 1;
 }
 
 s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture, u32 type) {
+    //lpflTexture->mem_handle = flPS2GetSystemMemoryHandle(lpflTexture->size, 2);
     lpflTexture->mem_handle = (u32)lpcontext->ptr;
     lpflTexture->wkVram = NULL;
+
+    //memcpy(lpflTexture->wkVram, lpcontext->ptr, lpflTexture->size);
+
+    u8 *dst_ptr = flPS2GetSystemBuffAdrs(lpflTexture->mem_handle);
+    s32 tex_size;
+    s32 dw = lpflTexture->width;
+    s32 dh = lpflTexture->height;
+    s32 lp0;
+
+    u16 color;
+    u16 *p_color_16;
+
+    for (lp0 = 0; lp0 < lpflTexture->tex_num; lp0++) {
+
+            switch (lpflTexture->format) {
+            default:
+                flLogOut("Not supported texture bit depth @flPS2ConvertTextureFromContext");
+                break;
+
+            case GU_PSM_T4:
+                tex_size = (dw * dh) >> 1;
+                break;
+            case GU_PSM_T8:
+                tex_size = dw * dh;
+                break;
+
+            case GU_PSM_5551:
+                tex_size = dw * dh * 2;
+                p_color_16 = (u16*) dst_ptr;
+                for(int i = 0; i < dw * dh; i++){
+                    color = p_color_16[i] & 0x8000;
+                    color |= p_color_16[i] & 0x03E0;
+                    color |= (p_color_16[i] & 0x7C00) >> 10;
+                    color |= (p_color_16[i] & 0x001F) << 10;
+                    p_color_16[i] = color;
+                }
+                break;
+
+            case GU_PSM_4444:
+                tex_size = dw * dh * 2;
+                p_color_16 = (u16*) dst_ptr;
+                for(int i = 0; i < dw * dh; i++){
+                    color = p_color_16[i] & 0x8000;
+                    color |= p_color_16[i] & 0x03E0;
+                    color |= (p_color_16[i] & 0x7C00) >> 10;
+                    color |= (p_color_16[i] & 0x001F) << 10;
+                    p_color_16[i] = color;
+                }
+                break;
+
+            case GU_PSM_8888:
+                tex_size = dw * dh * 4;
+                break;
+            }
+
+            dst_ptr = &dst_ptr[tex_size];
+            dw >>= 1;
+            dh >>= 1;
+            lpcontext++;
+        }
 
     return 1;
 }

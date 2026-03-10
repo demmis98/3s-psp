@@ -44,7 +44,6 @@ typedef struct {
 NJDP2D_W njdp2d_w;
 MTX cmtx;
 
-#if !defined(TARGET_PS2)
 static void matmul(MTX* dst, const MTX* a, const MTX* b) {
     MTX result;
 
@@ -57,102 +56,48 @@ static void matmul(MTX* dst, const MTX* a, const MTX* b) {
 
     memcpy(dst, &result, sizeof(MTX));
 }
-#endif
-
 
 void njUnitMatrix(MTX* mtx) {
-    /*
     if (mtx == NULL) {
         mtx = &cmtx;
     }
 
-    sceVu0UnitMatrix(mtx->a);
-    */
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            mtx->a[i][j] = (i == j);
+        }
+    }
 }
 
 void njGetMatrix(MTX* m) {
-    //*m = cmtx;
+    *m = cmtx;
 }
 
 void njSetMatrix(MTX* md, MTX* ms) {
-    /*
     if (md == NULL) {
         md = &cmtx;
     }
 
     *md = *ms;
-    */
 }
 
 void njScale(MTX* mtx, f32 x, f32 y, f32 z) {
-    /*
-    f32 v0[4];
-
-    v0[0] = x;
-    v0[1] = y;
-    v0[2] = z;
-    v0[3] = 1.0f;
-
     if (mtx == NULL) {
         mtx = &cmtx;
     }
 
-#if defined(TARGET_PS2)
-    __asm__ __volatile__("lqc2       vf8,  0x0(%0) \n"
-                         "lqc2       $vf4, 0x0(%1) \n"
-                         "lqc2       $vf5, 0x10(%1) \n"
-                         "lqc2       $vf6, 0x20(%1) \n"
-                         "lqc2       $vf7, 0x30(%1) \n"
-                         "vmulx.xyzw $vf4, $vf4, $vf8x \n"
-                         "vmuly.xyzw $vf5, $vf5, $vf8y \n"
-                         "vmulz.xyzw $vf6, $vf6, $vf8z \n"
-                         "sqc2       $vf4, 0x0(%1) \n"
-                         "sqc2       $vf5, 0x10(%1) \n"
-                         "sqc2       $vf6, 0x20(%1) \n"
-                         "sqc2       $vf7, 0x30(%1) \n"
-                         :
-                         : "r"(v0), "r"(mtx)
-                         : "memory");
-#else
     for (int i = 0; i < 4; i++) {
-        mtx->a[0][i] *= v0[0];
-        mtx->a[1][i] *= v0[1];
-        mtx->a[2][i] *= v0[2];
+        mtx->a[0][i] *= x;
+        mtx->a[1][i] *= y;
+        mtx->a[2][i] *= z;
     }
-#endif
-    */
 }
 
 void njTranslate(MTX* mtx, f32 x, f32 y, f32 z) {
-    /*
     if (mtx == NULL) {
         mtx = &cmtx;
     }
 
-#if defined(TARGET_PS2)
-    __asm__ __volatile__("mfc1       $t0, %1 \n"
-                         "mfc1       $t1, %3 \n"
-                         "pextlw     $t0, $t1, $t0 \n"
-
-                         "mfc1       $t1, %2 \n"
-                         "pextlw     $t0, $t1, $t0 \n"
-
-                         "qmtc2      $t0, $vf8 \n"
-                         "vmove.w    $vf8, $vf0 \n"
-
-                         "lqc2       $vf4, 0x0(%0) \n"
-                         "lqc2       $vf5, 0x10(%0) \n"
-                         "lqc2       $vf6, 0x20(%0) \n"
-                         "lqc2       $vf7, 0x30(%0) \n"
-                         "vmulax.xyzw $ACC, $vf4, $vf8x \n"
-                         "vmadday.xyzw $ACC, $vf5, $vf8y \n"
-                         "vmaddaz.xyzw $ACC, $vf6, $vf8z \n"
-                         "vmaddw.xyzw $vf9, $vf7, $vf8w \n"
-                         "sqc2       $vf9, 0x30(%0) \n"
-                         :
-                         : "r"(mtx), "f"(x), "f"(y), "f"(z)
-                         : "t0", "t1", "memory");
-#else
     MTX translation_matrix;
 
     njUnitMatrix(&translation_matrix);
@@ -161,8 +106,6 @@ void njTranslate(MTX* mtx, f32 x, f32 y, f32 z) {
     translation_matrix.a[3][2] = z;
 
     matmul(mtx, &translation_matrix, mtx);
-#endif
-    */
 }
 
 void njSetBackColor(u32 c0, u32 c1, u32 c2) {
@@ -265,26 +208,33 @@ void njdp2d_init() {
 }
 
 void njdp2d_draw() {
-    ColorVertex* vertices = (ColorVertex*) sceGuGetMemory(4 * sizeof(ColorVertex));
+    ColorVertex* vertices = (ColorVertex*) sceGuGetMemory(6 * sizeof(ColorVertex));
     s32 i;
+    s32 k;
 
     for (i = njdp2d_w.ix1st; i != -1; i = njdp2d_w.prim[i].next) {
         switch (njdp2d_w.prim[i].type) {
         case 0:
             //Vertex vertices[2];
 
-            for(int j = 0; j < 4; j++){
-                vertices[j].x = njdp2d_w.prim[i].v[j].x;
-                vertices[j].y = njdp2d_w.prim[i].v[j].y;
-                vertices[j].z = njdp2d_w.prim[i].v[j].z;
-                vertices[j].colour = njdp2d_w.prim[i].col;
+            for(int j = 0; j < 3; j++){
+                k = -j + 5;
+                vertices[k].x = vertices[j].x = njdp2d_w.prim[i].v[j].x;
+                vertices[k].y = vertices[j].y = njdp2d_w.prim[i].v[j].y;
+                vertices[k].z = vertices[j].z = njdp2d_w.prim[i].v[j].z;
+                vertices[k].colour = vertices[j].colour = njdp2d_w.prim[i].col;
                 //vertices[j].colour = 0xFFFFFFFF;
                 //drawRect(vertices[j].x, vertices[j].y, 8, 8, 0xFFFFFFFF);
             }
+            vertices[5].x = njdp2d_w.prim[i].v[3].x;
+            vertices[5].y = njdp2d_w.prim[i].v[3].y;
+            vertices[5].z = njdp2d_w.prim[i].v[3].z;
+            vertices[5].colour = njdp2d_w.prim[3].col;
 
             sceGuDisable(GU_TEXTURE_2D);
             //sceGuDrawArray(GU_TRIANGLE_FAN, GU_COLOR_5551 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 4, 0, vertices);
-            sceGuDrawArray(GU_TRIANGLE_FAN, GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 4, 0, vertices);
+            //sceGuDrawArray(GU_TRIANGLE_FAN, GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 4, 0, vertices);
+            sceGuDrawArray(GU_TRIANGLES, GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 6, 0, vertices);
             sceGuEnable(GU_TEXTURE_2D);
             break;
 

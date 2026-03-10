@@ -14,7 +14,6 @@ typedef struct {
     _MEMMAN_OBJ mm;   // offset 0x8, size 0x2C
 } PPG_W;
 
-#define MAX_TEXTURES 256
 extern void* currentTexture;
 
 extern s16* dctex_linear; // size: 0x4, address: 0x57A950

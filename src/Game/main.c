@@ -105,9 +105,9 @@ void AcrMain() {
         appViewSetItems(&mpp_w.vprm);
         appViewMatrix();
         //flAdjustScreen(X_Adjust + Correct_X[0], Y_Adjust + Correct_Y[0]);
-        //setBackGroundColor(0xFF000000);
-        setBackGroundColor(0xFFFF0000);
-        //setBackGroundColor(0x00000000);
+        setBackGroundColor(0xFF000000);
+        //setBackGroundColor(0xFFFF0000);
+
         if (Debug_w[0x43]) {
             setBackGroundColor(0xFF0000FF);
         }
@@ -197,9 +197,11 @@ void AcrMain() {
 
         MaskScreenEdge();
 
-        seqsBeforeProcess();
-        njdp2d_draw();
-        seqsAfterProcess();
+        if(!DEMMA_DEBUG){
+            seqsBeforeProcess();
+            njdp2d_draw();
+            seqsAfterProcess();
+        }
 
         if (Debug_w[6] == 0) {
             //CP3toPS2Draw();
@@ -209,7 +211,7 @@ void AcrMain() {
         //KnjFlush();
 
         //drawRect(c, c, 10, 10, 0xFFFFFFFF);
-
+        
         render_end();
 
         sysinfodisp = 0;

@@ -580,8 +580,6 @@ void palUpdateGhostDC() {
 }
 
 void palUpdateGhostCP3(s32 pal, s32 nums) {
-    // unused bc this was for ps2
-
     plContext bits;
     s32 i;
     u16* srcAdrs;
@@ -597,7 +595,13 @@ void palUpdateGhostCP3(s32 pal, s32 nums) {
 }
 
 void palConvRowTim2CI8Clut(u16* src, u16* dst, s32 size) {
-    //memcpy(dst, src, size * sizeof(u16));
+    s32 i;
+    static u8 clut_tbl[32] = { 0, 1, 2,  3,  4,  5,  6,  7,  16, 17, 18, 19, 20, 21, 22, 23,
+                               8, 9, 10, 11, 12, 13, 14, 15, 24, 25, 26, 27, 28, 29, 30, 31 };
+
+    for (i = 0; i < size; i++) {
+        dst[(i & 0xE0) + clut_tbl[i & 0x1F]] = src[i];
+    }
 }
 
 // rodata
