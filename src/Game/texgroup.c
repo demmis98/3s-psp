@@ -12,6 +12,8 @@
 #include "Game/texcash.h"
 #include "structs.h"
 
+#include "port/char_data.h"
+
 #if !defined(TARGET_PS2)
 #include <stdlib.h>
 #endif
@@ -323,6 +325,7 @@ void q_ldreq_texture_group(REQ* curr) {
                         trsptr[loop] = trsptr[loop + 1];
                     }
                 }
+                CharData_ApplyFixups(cit2, plt_req[curr->id]);
             }
 
             *curr->result |= lpr_wrdata[curr->id];

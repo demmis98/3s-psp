@@ -104,4 +104,5 @@ CMakeFiles/3rd-strike.dir/src/Game/texgroup.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/RAMCNT.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/chren3rd.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/main.h \
- /home/demma/Documents/code/psp/3rd-strike/include/Game/texcash.h
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/texcash.h \
+ /home/demma/Documents/code/psp/3rd-strike/src/port/char_data.h

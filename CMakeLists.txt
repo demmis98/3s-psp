@@ -13,6 +13,8 @@ file(GLOB compressC src/Compress/*.c)
 file(GLOB Lz77C src/Compress/Lz77/*.c)
 file(GLOB zlibC src/Compress/zlib/*.c)
 
+file(GLOB portC src/port/*.c)
+
 add_executable(${PROJECT_NAME}
 	${pspC}
 	${commonC}
@@ -24,6 +26,7 @@ add_executable(${PROJECT_NAME}
     ${compressC}
     ${Lz77C}
     ${zlibC}
+    ${portC}
 )
 
 target_include_directories(

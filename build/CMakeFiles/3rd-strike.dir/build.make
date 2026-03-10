@@ -7713,6 +7713,20 @@ CMakeFiles/3rd-strike.dir/src/Compress/zlib/zutil.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/3rd-strike.dir/src/Compress/zlib/zutil.c.s"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/demma/Documents/code/psp/3rd-strike/src/Compress/zlib/zutil.c -o CMakeFiles/3rd-strike.dir/src/Compress/zlib/zutil.c.s
 
+CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj: CMakeFiles/3rd-strike.dir/flags.make
+CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/port/char_data.c
+CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_547) "Building C object CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj"
+	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj -MF CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj.d -o CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/port/char_data.c
+
+CMakeFiles/3rd-strike.dir/src/port/char_data.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/3rd-strike.dir/src/port/char_data.c.i"
+	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/demma/Documents/code/psp/3rd-strike/src/port/char_data.c > CMakeFiles/3rd-strike.dir/src/port/char_data.c.i
+
+CMakeFiles/3rd-strike.dir/src/port/char_data.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/3rd-strike.dir/src/port/char_data.c.s"
+	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/demma/Documents/code/psp/3rd-strike/src/port/char_data.c -o CMakeFiles/3rd-strike.dir/src/port/char_data.c.s
+
 # Object files for target 3rd-strike
 3rd__strike_OBJECTS = \
 "CMakeFiles/3rd-strike.dir/src/psp/MemMan.c.obj" \
@@ -8260,7 +8274,8 @@ CMakeFiles/3rd-strike.dir/src/Compress/zlib/zutil.c.s: cmake_force
 "CMakeFiles/3rd-strike.dir/src/Compress/zlib/inflate.c.obj" \
 "CMakeFiles/3rd-strike.dir/src/Compress/zlib/inftrees.c.obj" \
 "CMakeFiles/3rd-strike.dir/src/Compress/zlib/infutil.c.obj" \
-"CMakeFiles/3rd-strike.dir/src/Compress/zlib/zutil.c.obj"
+"CMakeFiles/3rd-strike.dir/src/Compress/zlib/zutil.c.obj" \
+"CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj"
 
 # External object files for target 3rd-strike
 3rd__strike_EXTERNAL_OBJECTS =
@@ -8811,9 +8826,10 @@ CMakeFiles/3rd-strike.dir/src/Compress/zlib/zutil.c.s: cmake_force
 3rd-strike: CMakeFiles/3rd-strike.dir/src/Compress/zlib/inftrees.c.obj
 3rd-strike: CMakeFiles/3rd-strike.dir/src/Compress/zlib/infutil.c.obj
 3rd-strike: CMakeFiles/3rd-strike.dir/src/Compress/zlib/zutil.c.obj
+3rd-strike: CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj
 3rd-strike: CMakeFiles/3rd-strike.dir/build.make
 3rd-strike: CMakeFiles/3rd-strike.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_547) "Linking C executable 3rd-strike"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_548) "Linking C executable 3rd-strike"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/3rd-strike.dir/link.txt --verbose=$(VERBOSE)
 	/usr/bin/cmake -E cmake_echo_color --cyan Not\ stripping\ binary\ for\ target\ 3rd-strike,\ build\ type\ is\ .
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Calling psp-fixup-imports for target 3rd-strike"

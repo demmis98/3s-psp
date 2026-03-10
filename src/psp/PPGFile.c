@@ -29,6 +29,7 @@
 #define CODE_1(val) ((val & 0x38) << 0xA) + ((val & 7) << 5)
 
 void* currentTexture = NULL;
+s32 currentPalette = -1;
 
 typedef struct {
     Vec3 v;

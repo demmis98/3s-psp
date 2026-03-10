@@ -12993,6 +12993,30 @@ src/common/sprites.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/common/sprites.c.s
 .PHONY : src/common/sprites.c.s
 
+src/port/char_data.obj: src/port/char_data.c.obj
+.PHONY : src/port/char_data.obj
+
+# target to build an object file
+src/port/char_data.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj
+.PHONY : src/port/char_data.c.obj
+
+src/port/char_data.i: src/port/char_data.c.i
+.PHONY : src/port/char_data.i
+
+# target to preprocess a source file
+src/port/char_data.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/port/char_data.c.i
+.PHONY : src/port/char_data.c.i
+
+src/port/char_data.s: src/port/char_data.c.s
+.PHONY : src/port/char_data.s
+
+# target to generate assembly for a file
+src/port/char_data.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/port/char_data.c.s
+.PHONY : src/port/char_data.c.s
+
 src/psp/MemMan.obj: src/psp/MemMan.c.obj
 .PHONY : src/psp/MemMan.obj
 
@@ -14850,6 +14874,9 @@ help:
 	@echo "... src/common/sprites.obj"
 	@echo "... src/common/sprites.i"
 	@echo "... src/common/sprites.s"
+	@echo "... src/port/char_data.obj"
+	@echo "... src/port/char_data.i"
+	@echo "... src/port/char_data.s"
 	@echo "... src/psp/MemMan.obj"
 	@echo "... src/psp/MemMan.i"
 	@echo "... src/psp/MemMan.s"

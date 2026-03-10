@@ -292,11 +292,18 @@ u32 flCreatePaletteHandle(plContext* lpcontext, u32 flag) {
         u16* src = (u16*) lpcontext->ptr;
         u16* dest = (u16*) flPS2GetSystemBuffAdrs(lpflPalette->mem_handle);
         //u16* dest = (u16*) lpflPalette->wkVram;
+
+        int n = lpflPalette->size / 2;
         
-        for(int i = 0; i < lpflPalette->size; i++){
-                dest[i] = src[i] & 0x83D0;
-                dest[i] |= (src[i] & 0x001F) << 10;
-                dest[i] |= (src[i] & 0x7B00) >> 10;
+        for(int i = 0; i < n; i++){
+            u16 c = src[i];
+
+            u16 a = c & 0x8000;
+            u16 r = (c >> 10) & 0x1F;
+            u16 g = (c >> 5) & 0x1F;
+            u16 b = (c >> 0) & 0x1F;
+
+            dest[i] = a | (b << 10) | (g << 5) | r;
         }
 
         flPS2CreatePaletteHandle(ph, flag);
@@ -1115,11 +1122,15 @@ void flSetTexture(int th){
     if(pal == NULL)
         pal = flPS2GetSystemBuffAdrs(flPal->mem_handle);
 
-    
-    sceGuClutMode(GU_PSM_5551, 0, 0xFF, 0);
-    sceGuClutLoad(flPal->size / 8, pal);
+    if(currentPalette != palette_handle){
+        sceKernelDcacheWritebackRange(pal, flPal->size);
+        sceGuClutMode(GU_PSM_5551, 0, 255, 0);
+        sceGuClutLoad(flPal->size / 16, pal);
+        currentPalette = palette_handle;
+    }
 
     if(currentTexture != texData){
+        sceKernelDcacheWritebackRange(texData, flTex->size);
         sceGuTexMode(flTex->format, 0, 0, GU_FALSE);
         sceGuTexFunc(GU_TFX_REPLACE, GU_TCC_RGBA);
         void *p = (void*) 0x4000;
@@ -1157,9 +1168,10 @@ static s32 system_work_init() {
     void* temp;
 
     flMemset(&flPs2State, 0, sizeof(FLPS2State));
+    //int temp_size = 0x01800000;
     int temp_size = 0x01C00000;
-    //int temp_size = 0x01C00000;
-    temp = malloc(temp_size);
+
+    temp = memalign(16, temp_size);
 
     if (temp == NULL) {
         flLogOut("system_work_init malloc failed\n");

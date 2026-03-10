@@ -15,6 +15,7 @@ typedef struct {
 } PPG_W;
 
 extern void* currentTexture;
+extern s32 currentPalette;
 
 extern s16* dctex_linear; // size: 0x4, address: 0x57A950
 extern PPG_W ppg_w;

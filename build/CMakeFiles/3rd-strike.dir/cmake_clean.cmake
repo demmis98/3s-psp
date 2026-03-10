@@ -1073,6 +1073,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/3rd-strike.dir/src/common/math.c.obj.d"
   "CMakeFiles/3rd-strike.dir/src/common/sprites.c.obj"
   "CMakeFiles/3rd-strike.dir/src/common/sprites.c.obj.d"
+  "CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj"
+  "CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj.d"
   "CMakeFiles/3rd-strike.dir/src/psp/MemMan.c.obj"
   "CMakeFiles/3rd-strike.dir/src/psp/MemMan.c.obj.d"
   "CMakeFiles/3rd-strike.dir/src/psp/PPGFile.c.obj"
