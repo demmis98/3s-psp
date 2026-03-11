@@ -285,6 +285,7 @@ u32 flCreatePaletteHandle(plContext* lpcontext, u32 flag) {
 
     flLogOut("flCreatePaletteHandle 0\n");
     lpflPalette->mem_handle = flPS2GetSystemMemoryHandle(lpflPalette->size, 2);
+    lpflPalette->wkVram = NULL;
     //lpflPalette->wkVram = memalign(16, lpflPalette->size);
     flLogOut("flCreatePaletteHandle 1\n");
 
@@ -393,14 +394,14 @@ s32 flReleaseTextureHandle(u32 texture_handle) {
         flLogOut("ERROR flReleaseTextureHandle flps2vram.c\n");
     }
 
-    if (lpflTexture->wkVram != NULL) {
-        free(lpflTexture->wkVram);
-        lpflTexture->wkVram = NULL;
-    }
-
     if(lpflTexture->mem_handle != 0){
         flPS2ReleaseSystemMemory(lpflTexture->mem_handle);
         lpflTexture->mem_handle = 0;
+    }
+
+    else if (lpflTexture->wkVram != NULL) {
+        free(lpflTexture->wkVram);
+        lpflTexture->wkVram = NULL;
     }
 
     flMemset(lpflTexture, 0, sizeof(FLTexture));
@@ -415,13 +416,13 @@ s32 flReleasePaletteHandle(u32 palette_handle) {
         flLogOut("ERROR flReleasePaletteHandle flps2vram.c\n");
     }
 
-    if (lpflPalette->wkVram != NULL) {
-        free(lpflPalette->wkVram);
-        lpflPalette->wkVram = NULL;
-    }
-
     if (lpflPalette->mem_handle != 0) {
         flPS2ReleaseSystemMemory(lpflPalette->mem_handle);
+    }
+
+    else if (lpflPalette->wkVram != NULL) {
+        free(lpflPalette->wkVram);
+        lpflPalette->wkVram = NULL;
     }
 
     flMemset(lpflPalette, 0, sizeof(FLTexture));

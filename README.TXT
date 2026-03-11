@@ -5,18 +5,24 @@ $ make
 
 TO-DO:
 
-copy other structs
+src/Game/GD3rd.c:
+-forced Check_LDREQ_Clear() return 1
+
+src/Game/sel_pl.c:
+-commented anything involving Check_PL_Load() and others
+-commented if (Check_Exit_Check() == 0 && Debug_w[24] == 0xFF) {
+
+src/Game/Next_CPU.c:
+-comented out Check_PL_Load() on Wait_Load_Complete functions
+
+src/Game/DC_Ghost.c:
+-//sceGuDrawArray(GU_TRIANGLES, GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 6, 0, vertices);
 
 
 src/Game/color3rd.c:
 -plContext commented out
 -cseGetIdStoredBd commented
 -cseSendBd2SpuWithId commented
-
-
-src/Game/DEMO00.c:
--test flPs2State.DispWidth to SCREEN_WIDTH (and height equivalent)
-
 
 EFFnn.c effect_nn_init(), test if just changing data types worked
 
@@ -33,37 +39,6 @@ src/Game/init3rd.c:
 -src/Game/menu.c:
 -SaveMove()
 -SaveInit(,)
-
-
-src/Game/MTRANS.c:
--basically rewrite everything, specially anything involving MultiTexture
-*it handles textures i think
-
-
-src/Game/OPENING.c:
--ppg functions and variables
-
-src/Game/op_sub.c:
--ppg functions and variables
-
-src/Game/PulPul.c:
--i think it uses ps2 functions, on vibParamTrans
-
-flpad i think is the gamepad, and a lot of calls to it were commented out
-
-
-src/Game/RAMCNT.c:
--everything related to memory management
-
-
-src/Game/sc_sub.c:
--ppg, ps2, fl commented out
-
-
-src/Game/texcash.c:
-
-src/psp/MemMan.c:
--verify if it handles memory correctly
 
 
 src/Game/Sound3rd.c:

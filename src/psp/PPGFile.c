@@ -143,7 +143,8 @@ void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode) {
     int texture_handle = LO_16_BITS(texCode) - 1;
     FLTexture *tex = &flTexture[texture_handle];
     s32 i;
-
+    if(DEMMA_DEBUG)
+        return;
     //flLogOut("ppgWriteQuadOnly %x %d %d %d\n", tex->wkVram, tex->width, tex->height, texCode);
 
     for (i = 0; i < 4; i++) {
@@ -154,9 +155,6 @@ void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode) {
         vertices[i].u = pos[i].u * tex->width;
         vertices[i].v = pos[i].v * tex->height;
         vertices[i].colour = col;
-
-        if(flPS2GetSystemBuffAdrs(tex->mem_handle) == NULL && tex->wkVram == NULL)
-            drawRect(vertices[i].x, vertices[i].y, 10, 10, 0xFFFF00FF);
     }
 
     flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
@@ -169,7 +167,9 @@ void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
     int texture_handle = LO_16_BITS(texCode) - 1;
     FLTexture *tex = &flTexture[texture_handle];
     s32 i;
-
+    
+    if(DEMMA_DEBUG)
+        return;
     //flLogOut("ppgWriteQuadOnly2 %x %d %d %d\n", tex->wkVram, tex->width, tex->height, texCode);
 
     for (i = 0; i < 2; i++) {
@@ -180,8 +180,6 @@ void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
         vertices[i].u = pos[i*3].u * tex->width;
         vertices[i].v = pos[i*3].v * tex->height;
         vertices[i].colour = col;
-        if(flPS2GetSystemBuffAdrs(tex->mem_handle) == NULL && tex->wkVram == NULL)
-            drawRect(vertices[i].x, vertices[i].y, 8, 8, 0xFFFF0000);
     }
 
     flSetRenderState(FLRENDER_TEXSTAGE0, texCode);

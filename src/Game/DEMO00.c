@@ -287,10 +287,6 @@ void Put_char(const f32* ptr, u32 indexG, u16 prio, s16 x, s16 y, f32 zx, f32 zy
         tex[2].x = tex[3].x = Frame_Zoom_X * (x + (off_x * zx) + ((u32)*ptr++ * zx));
         tex[1].y = tex[3].y = Frame_Zoom_Y * (y + (off_y * zy) + ((u32)*ptr++ * zy));
 
-        for(int i = 0; i < 4 && DEMMA_DEBUG; i++){
-            //flLogOut("tex %d x: %f y: %f u: %f v: %f \n", i, tex[i].x, tex[i].y, tex[i].u, tex[i].v);
-        }
-
         njDrawTexture(tex, 4, indexG, 1);
     }
     //while(1);

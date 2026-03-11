@@ -1629,9 +1629,6 @@ void seqsAfterProcess() {
                     vertices[j].u = seqs_w.chip[i].t[j].s * tex->width;
                     vertices[j].v = seqs_w.chip[i].t[j].t * tex->height;
                     vertices[j].colour = seqs_w.chip[i].vtxColor;
-                    if(flPS2GetSystemBuffAdrs(tex->mem_handle) == NULL && tex->wkVram == NULL)
-                        drawRect(vertices[j].x, vertices[j].y, 8, 8, 0xFF00FFFF);
-                    //drawRect(vertices[j].x, vertices[j].y, 8, 8, 0xFFFFFFFF);
                 }
                 //ps2SeqsRenderQuad_Ax(&seqs_w.chip[i]);
                 

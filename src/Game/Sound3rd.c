@@ -712,8 +712,10 @@ s32 adx_now_playing() {
     if ((bgm_exe.state == ADXT_STAT_PLAYING) || (bgm_exe.state == ADXT_STAT_DECEND)) {
         return 1;
     }
-    */
+
     return 0;
+    */
+    return 1;
 }
 
 s32 adx_now_playend() {
@@ -723,8 +725,10 @@ s32 adx_now_playend() {
     if (bgm_exe.state == ADXT_STAT_PLAYEND) {
         return 1;
     }
-    */
+
     return 0;
+    */
+    return 1;
 }
 
 s32 bgm_play_status() {

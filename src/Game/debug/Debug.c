@@ -510,8 +510,8 @@ s32 Check_Exit_Check() {
     if (sw == 32) {
         return 1;
     }
-
-    return 0;
+    
+    return 1;
 }
 
 void Disp_Rec_Time(s16 PL_id, u32 time) {

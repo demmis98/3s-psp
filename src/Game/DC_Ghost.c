@@ -208,16 +208,18 @@ void njdp2d_init() {
 }
 
 void njdp2d_draw() {
-    ColorVertex* vertices = (ColorVertex*) sceGuGetMemory(6 * sizeof(ColorVertex));
+    ColorVertex* vertices;
     s32 i;
+    s32 j;
     s32 k;
 
-    for (i = njdp2d_w.ix1st; i != -1; i = njdp2d_w.prim[i].next) {
+    for (i = njdp2d_w.ix1st; i != -1 && !DEMMA_DEBUG; i = njdp2d_w.prim[i].next) {
         switch (njdp2d_w.prim[i].type) {
         case 0:
+            vertices = (ColorVertex*) sceGuGetMemory(6 * sizeof(ColorVertex));
             //Vertex vertices[2];
 
-            for(int j = 0; j < 3; j++){
+            for(j = 0; j < 3; j++){
                 k = -j + 5;
                 vertices[k].x = vertices[j].x = njdp2d_w.prim[i].v[j].x;
                 vertices[k].y = vertices[j].y = njdp2d_w.prim[i].v[j].y;
@@ -226,15 +228,13 @@ void njdp2d_draw() {
                 //vertices[j].colour = 0xFFFFFFFF;
                 //drawRect(vertices[j].x, vertices[j].y, 8, 8, 0xFFFFFFFF);
             }
-            vertices[5].x = njdp2d_w.prim[i].v[3].x;
-            vertices[5].y = njdp2d_w.prim[i].v[3].y;
-            vertices[5].z = njdp2d_w.prim[i].v[3].z;
-            vertices[5].colour = njdp2d_w.prim[3].col;
+            vertices[5].x = njdp2d_w.prim[i].v[j].x;
+            vertices[5].y = njdp2d_w.prim[i].v[j].y;
+            vertices[5].z = njdp2d_w.prim[i].v[j].z;
+            vertices[5].colour = njdp2d_w.prim[i].col;
 
             sceGuDisable(GU_TEXTURE_2D);
-            //sceGuDrawArray(GU_TRIANGLE_FAN, GU_COLOR_5551 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 4, 0, vertices);
-            //sceGuDrawArray(GU_TRIANGLE_FAN, GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 4, 0, vertices);
-            sceGuDrawArray(GU_TRIANGLES, GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 6, 0, vertices);
+            //sceGuDrawArray(GU_TRIANGLES, GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 6, 0, vertices);
             sceGuEnable(GU_TEXTURE_2D);
             break;
 
@@ -323,7 +323,6 @@ void njdp2d_sort(f32* pos, f32 pri, uintptr_t col, s32 flag) {
     }
 
     njdp2d_w.total += 1;
-    flLogOut("njdp2d_w.total %d\n", njdp2d_w.total);
 }
 
 void njDrawPolygon2D(PAL_CURSOR* p, s32 /* unused */, f32 pri, u32 attr) {

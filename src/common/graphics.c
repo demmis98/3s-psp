@@ -94,6 +94,10 @@ void endFrame(){
         pspDebugScreenSetBase(fbp0);
 }
 
+void endFrameDebug(){
+    sceDisplayWaitVblankStart();
+}
+
 uint32_t getBgColor(){
     return bg_color;
 }

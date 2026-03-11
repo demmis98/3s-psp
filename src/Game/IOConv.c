@@ -137,6 +137,5 @@ void keyConvert() {
     p1sw_buff = io_w.sw[0];
     p2sw_buff = io_w.sw[1];
 
-    flLogOut("p1sw_buff %x\n",p1sw_buff);
     //while(1);
 }

@@ -162,8 +162,6 @@ void Setup_Difficult_V() {
 }
 
 void Init_Task_Aload(struct _TASK* task_ptr) {
-    if(DEMMA_DEBUG)
-        flLogOut("Init_Task_Aload\n");
     switch (task_ptr->r_no[1]) {
     case 0:
     case 1:
@@ -187,9 +185,6 @@ void Init_Task_Aload(struct _TASK* task_ptr) {
 }
 
 void Init_Task_2nd(struct _TASK* task_ptr) {
-    if(DEMMA_DEBUG)
-        flLogOut("Init_Task_2nd\n");
-
     if (Warning() == 0) {
         return;
     }
@@ -202,9 +197,6 @@ void Init_Task_2nd(struct _TASK* task_ptr) {
 
 void Init_Task_Test1(struct _TASK* task_ptr) {
     u16 sw;
-
-    if(DEMMA_DEBUG)
-        flLogOut("Init_Task_Test1\n");
 
     switch (task_ptr->r_no[1]) {
     case 0:
@@ -279,9 +271,6 @@ void Init_Task_Test1(struct _TASK* task_ptr) {
 }
 
 void Init_Task_Test2(struct _TASK* task_ptr) {
-    if(DEMMA_DEBUG)
-        flLogOut("Init_Task_Test2\n");
-
     switch (task_ptr->r_no[1]) {
     case 0:
         task_ptr->r_no[1] += 1;
@@ -307,8 +296,6 @@ void Init_Task_Test2(struct _TASK* task_ptr) {
 }
 
 void Init_Task_End(struct _TASK* task_ptr) {
-    if(DEMMA_DEBUG)
-        flLogOut("Init_Task_End\n");
     cpReadyTask(GAME_TASK_NUM, Game_Task);
     task_ptr->r_no[0] += 1;
     task_ptr->r_no[1] = 0;

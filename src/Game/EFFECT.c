@@ -22,10 +22,11 @@ void move_effect_work(s16 index) {
     WORK* c_addr;
     s16 curr_ix;
     s16 next_ix;
-
+    flLogOut("move_effect_work\n");
     if (Debug_w[0x28]) {
         return;
     }
+    flLogOut("move_effect_work %d\n", index);
 
     exec_tm[index] += 1;
 

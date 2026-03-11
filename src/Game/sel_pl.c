@@ -153,7 +153,7 @@ s16 Select_Player() {
     Time_Over = 0;
 
     if (Check_Exit_Check() == 0 && Debug_w[24] == 0xFF) {
-        SEL_PL_X = 0;
+        //SEL_PL_X = 0;
     }
 
     return SEL_PL_X;
@@ -1675,6 +1675,7 @@ void Exit_5th() {
 }
 
 void Exit_6th() {
+    /*
     if (!Check_PL_Load()) {
         return;
     }
@@ -1690,10 +1691,11 @@ void Exit_6th() {
     if (!sndCheckVTransStatus(0)) {
         return;
     }
-
+*/
     if (Scene_Cut) {
         Exit_Timer = 1;
     }
+        
 
     if ((Exit_Timer -= 1) == 0) {
         Exit_No++;

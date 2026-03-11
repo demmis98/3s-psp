@@ -102,6 +102,7 @@ void AcrMain() {
         mpp_w.vprm.ne = -1.0f;
         mpp_w.vprm.fa = 1.0f;
 
+        flLogOut("AcrMain 0\n");
         appViewSetItems(&mpp_w.vprm);
         appViewMatrix();
         //flAdjustScreen(X_Adjust + Correct_X[0], Y_Adjust + Correct_Y[0]);
@@ -113,9 +114,12 @@ void AcrMain() {
         }
 
         appSetupTempPriority();
+        flLogOut("AcrMain 1\n");
 
         flPADGetALL();
         keyConvert();
+
+        flLogOut("AcrMain 2\n");
 
         if (((Usage == 7) || (Usage == 2)) && !test_flag) {
             if (mpp_w.sysStop) {
@@ -188,29 +192,34 @@ void AcrMain() {
         }
 
         appCopyKeyData();
+        flLogOut("AcrMain 3\n");
 
         render_start();
 
         mpp_w.inGame = 0;
-
+        flLogOut("AcrMain 3.1\n");
         njUserMain();
+        flLogOut("AcrMain 4\n");
 
         MaskScreenEdge();
 
-        if(!DEMMA_DEBUG){
-            seqsBeforeProcess();
-            njdp2d_draw();
-            seqsAfterProcess();
-        }
+        flLogOut("AcrMain 4.1\n");
+        seqsBeforeProcess();
+        flLogOut("AcrMain 5\n");
+        njdp2d_draw();
+
+        flLogOut("AcrMain 5.1\n");
+        seqsAfterProcess();
+        flLogOut("AcrMain 5.2\n");
 
         if (Debug_w[6] == 0) {
             //CP3toPS2Draw();
         }
 
-
+        flLogOut("AcrMain 6\n");
         //KnjFlush();
 
-        //drawRect(c, c, 10, 10, 0xFFFFFFFF);
+        drawRect(c, c, 10, 10, 0xFFFFFFFF);
         
         render_end();
 
@@ -236,6 +245,7 @@ void AcrMain() {
 
         //flSetDebugMode(sysinfodisp);
         disp_effect_work();
+        flLogOut("AcrMain 6\n");
         flFlip(0);
 
         Interrupt_Flag = 1;
@@ -244,11 +254,11 @@ void AcrMain() {
 
         Scrn_Renew();
         Irl_Family();
+        flLogOut("AcrMain 7\n");
         Irl_Scrn();
         BGM_Server();
         
         c++;
-        while(DEMMA_DEBUG && c > DEMMA_LOOPS);
     }
 }
 
@@ -396,17 +406,20 @@ s32 njUserMain() {
 
     Check_Replay_Status(0, Replay_Status[0]);
     Check_Replay_Status(1, Replay_Status[1]);
+    flLogOut("njUserMain\n");
 
     Frame_Zoom_X = Screen_Zoom_X + SA_Zoom_X;
     Frame_Zoom_Y = Screen_Zoom_Y + SA_Zoom_Y;
 
     if (sys_w.disp.now == sys_w.disp.new) {
+        flLogOut("njUserMain 0\n");
         cpLoopTask();
+        flLogOut("njUserMain 1\n");
 
         if ((Game_pause != 0x81) && (Mode_Type == 1) && (Play_Mode == 1)) {
             if ((plw[0].wu.operator == 0) && (CPU_Rec[0] == 0) && (Replay_Status[0] == 1)) {
                 p1sw_0 = 0;
-
+                flLogOut("njUserMain 2\n");
                 Check_Replay_Status(0, 1);
 
                 if (Debug_w[0x21]) {
@@ -417,7 +430,7 @@ s32 njUserMain() {
 
             if ((plw[1].wu.operator == 0) && (CPU_Rec[1] == 0) && (Replay_Status[1] == 1)) {
                 p2sw_0 = 0;
-
+                flLogOut("njUserMain 2\n");
                 Check_Replay_Status(1, 1);
 
                 if (Debug_w[0x21]) {
@@ -429,14 +442,13 @@ s32 njUserMain() {
     } else {
         sys_w.disp.now = sys_w.disp.new;
     }
+    flLogOut("njUserMain end\n");
 
     return sys_w.gd_error;
 }
 
 void cpLoopTask() {
     struct _TASK* task_ptr = task;
-
-    //flLogOut("cpLoopTask\n");
 
     disp_ramcnt_free_area();
 
@@ -448,6 +460,7 @@ void cpLoopTask() {
             Game_pause |= 0x80;
         }
     }
+    flLogOut("cpLoopTask 1\n");
 
     Process_Counter = 1;
 
@@ -457,6 +470,7 @@ void cpLoopTask() {
             Process_Counter = 2;
         }
     }
+    flLogOut("cpLoopTask 2\n");
 
     for (current_task_num = 0; current_task_num < 11; current_task_num++) {
         switch (task_ptr->condition) {

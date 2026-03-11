@@ -36,7 +36,9 @@ void render_start() {
 }
 
 void render_end() {
-    if(!DEMMA_DEBUG)
+    if(DEMMA_DEBUG)
+        endFrameDebug();
+    else
         endFrame();
 }
 

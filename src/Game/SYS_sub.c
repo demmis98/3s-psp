@@ -848,6 +848,7 @@ void BG_move_Ex(u8 ix) {
 }
 
 void Basic_Sub() {
+    flLogOut("Basic_Sub\n");
     bg_w.bgw[0].old_pos_x = bg_w.bgw[0].xy[0].disp.pos;
     move_effect_work(0);
     move_effect_work(1);
@@ -855,6 +856,7 @@ void Basic_Sub() {
     move_effect_work(3);
     move_effect_work(4);
     move_effect_work(5);
+    flLogOut("Basic_Sub 0\n");
 }
 
 void Basic_Sub_Ex() {

@@ -25,6 +25,7 @@ void endGu();
 
 void startFrame();
 void endFrame();
+void endFrameDebug();
 
 uint32_t getBgColor();
 void setBgColor(uint32_t color);

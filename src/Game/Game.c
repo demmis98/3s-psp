@@ -151,6 +151,7 @@ void Game_Task(struct _TASK* task_ptr) {
 }
 
 void Game(struct _TASK* /*unused*/) {
+    flLogOut("Game %d %d %d %d\n", G_No[0], G_No[1], G_No[2]);
     void (*Game_Jmp_Tbl[13])() = { Game00, Game01, Game02, Game03, Game04, Game05, Game06,
                                    Game07, Game08, Game09, Game10, Game11, Game12 };
 
@@ -159,7 +160,7 @@ void Game(struct _TASK* /*unused*/) {
     } else if (G_No[1] == 8) {
         Play_Game = 2;
     }
-
+    
     Game_Jmp_Tbl[G_No[1]]();
 }
 
@@ -485,6 +486,7 @@ void Game2_0() {
     clear_hit_queue();
     pcon_rno[0] = pcon_rno[1] = pcon_rno[2] = pcon_rno[3] = 0;
     ca_check_flag = 1;
+
     bg_work_clear();
     win_lose_work_clear();
     player_face_init();

@@ -184,8 +184,10 @@ s32 fsOpen(REQ* req) {
 }
 
 void fsClose(REQ* /* unused */) {
-    fclose(adxf);
-    adxf = NULL;
+    if(adxf != NULL){
+        fclose(adxf);
+        adxf = NULL;
+    }
 }
 
 u32 fsGetFileSize(u16 fnum) {
@@ -247,6 +249,7 @@ s32 fsRequestFileRead(REQ* /* unused */, u32 sec, void* buff) {
 }
 
 s32 fsCheckFileReaded(REQ* /* unused */) {
+    /*
     fsUpdateDiskDriveError();
 
     if (adxf == NULL) {
@@ -258,6 +261,7 @@ s32 fsCheckFileReaded(REQ* /* unused */) {
     }
 
     // Since stdio is synchronous, if we're here, read is complete
+    */
     return 1;
 }
 
@@ -512,7 +516,7 @@ s32 Push_LDREQ_Queue(REQ* ldreq) {
             break;
         }
 
-        *(u8*)(&q_ldreq[i].result)[0] &= ~masknum;
+        *q_ldreq[i].result &= ~masknum;
         return 1;
     }
 
@@ -565,6 +569,7 @@ void disp_ldreq_status() {
 }
 
 s32 Check_LDREQ_Clear() {
+    return 1;
     return q_ldreq->be == 0 && q_ldreq[1].be == 0;
 }
 
