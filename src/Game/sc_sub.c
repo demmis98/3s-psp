@@ -19,42 +19,144 @@
 //#include "PS2/ps2Quad.h"
 #include "structs.h"
 
-#if defined(TARGET_PS2)
-#define TO_UV_256(val) ((0.5f + (val)) / 256.0f)
-#define TO_UV_256_NEG(val) (((val) - 0.5f) / 256.0f)
-#define TO_UV_128(val) ((0.5f + (val)) / 128.0f)
-#else
+
 #define TO_UV_256(val) ((val) / 256.0f)
 #define TO_UV_256_NEG(val) (TO_UV_256(val))
 #define TO_UV_128(val) ((val) / 128.0f)
-#endif
 
-typedef struct {
-    // total size: 0x6
-    s16 fade;      // offset 0x0, size 0x2
-    s16 fade_kind; // offset 0x2, size 0x2
-    u8 fade_prio;  // offset 0x4, size 0x1
-} FadeData;
+/// Trim values for ASCII characters (high nibble = left trim, low nibble = right trim)
+const u8 ascProData[128] = {
+    0x00, // 0x00
+    0x12, // 0x01
+    0x00, // 0x02
+    0x00, // 0x03
+    0x00, // 0x04
+    0x00, // 0x05
+    0x00, // 0x06
+    0x00, // 0x07
+    0x00, // 0x08
+    0x00, // 0x09
+    0x00, // 0x0A
+    0x00, // 0x0B
+    0x00, // 0x0C
+    0x00, // 0x0D
+    0x00, // 0x0E
+    0x00, // 0x0F
+    0x00, // 0x10
+    0x00, // 0x11
+    0x00, // 0x12
+    0x00, // 0x13
+    0x00, // 0x14
+    0x00, // 0x15
+    0x00, // 0x16
+    0x00, // 0x17
+    0x00, // 0x18
+    0x00, // 0x19
+    0x00, // 0x1A
+    0x00, // 0x1B
+    0x00, // 0x1C
+    0x00, // 0x1D
+    0x00, // 0x1E
+    0x00, // 0x1F
+    0x22, // space
+    0x13, // !
+    0x12, // "
+    0x00, // #
+    0x00, // $
+    0x00, // %
+    0x00, // &
+    0x22, // '
+    0x22, // (
+    0x22, // )
+    0x01, // *
+    0x01, // +
+    0x22, // ,
+    0x01, // -
+    0x22, // .
+    0x00, // /
+    0x00, // 0
+    0x12, // 1
+    0x00, // 2
+    0x00, // 3
+    0x00, // 4
+    0x00, // 5
+    0x00, // 6
+    0x00, // 7
+    0x00, // 8
+    0x00, // 9
+    0x22, // :
+    0x22, // ;
+    0x11, // <
+    0x00, // =
+    0x11, // >
+    0x00, // ?
+    0x00, // @
+    0x00, // A
+    0x00, // B
+    0x00, // C
+    0x00, // D
+    0x00, // E
+    0x00, // F
+    0x00, // G
+    0x00, // H
+    0x22, // I
+    0x00, // J
+    0x00, // K
+    0x00, // L
+    0x00, // M
+    0x00, // N
+    0x00, // O
+    0x00, // P
+    0x00, // Q
+    0x00, // R
+    0x00, // S
+    0x00, // T
+    0x00, // U
+    0x00, // V
+    0x00, // W
+    0x00, // X
+    0x00, // Y
+    0x00, // Z
+    0x11, // [
+    0x00, // backslash
+    0x11, // ]
+    0x01, // ^
+    0x00, // _
+    0x22, // `
+    0x00, // a
+    0x00, // b
+    0x00, // c
+    0x00, // d
+    0x00, // e
+    0x00, // f
+    0x00, // g
+    0x00, // h
+    0x22, // i
+    0x02, // j
+    0x00, // k
+    0x22, // l
+    0x00, // m
+    0x00, // n
+    0x00, // o
+    0x00, // p
+    0x00, // q
+    0x10, // r
+    0x00, // s
+    0x00, // t
+    0x00, // u
+    0x00, // v
+    0x00, // w
+    0x00, // x
+    0x00, // y
+    0x00, // z
+    0x12, // {
+    0x23, // |
+    0x21, // }
+    0x00, // ~
+    0x21, // 0x7F
+};
 
-typedef struct {
-    // total size: 0x4
-    u8 atr;  // offset 0x0, size 0x1
-    u8 page; // offset 0x1, size 0x1
-    u8 cx;   // offset 0x2, size 0x1
-    u8 cy;   // offset 0x3, size 0x1
-} SAFrame;
-
-// sdata
-u8 ascProData[128] = { 0, 18, 0, 0, 0,  0, 0,  0,  0,  0, 0,  0, 0, 0,  0,  0,  0, 0, 0,  0,  0,  0,  0, 0,  0, 0,
-                       0, 0,  0, 0, 0,  0, 34, 19, 18, 0, 0,  0, 0, 34, 34, 34, 1, 1, 34, 1,  34, 0,  0, 18, 0, 0,
-                       0, 0,  0, 0, 0,  0, 34, 34, 17, 0, 17, 0, 0, 0,  0,  0,  0, 0, 0,  0,  0,  34, 0, 0,  0, 0,
-                       0, 0,  0, 0, 0,  0, 0,  0,  0,  0, 0,  0, 0, 17, 0,  17, 1, 0, 34, 0,  0,  0,  0, 0,  0, 0,
-                       0, 34, 2, 0, 34, 0, 0,  0,  0,  0, 16, 0, 0, 0,  0,  0,  0, 0, 0,  18, 35, 33, 0, 33 };
-
-// bss
 SAFrame sa_frame[3][48];
-
-// sbss
 Polygon scrscrntex[4];
 u8 WipeLimit;
 u8 FadeLimit;
@@ -83,7 +185,7 @@ void Scrscreen_Init() {
 
     if (loadSize == 0) {
         // Could not load texture for score screen.\n
-        flLogOut("Could not load texture for score screen.\n");
+        flLogOut("スコアスクリーン用のテクスチャが読み込めませんでした。\n");
         while (1) {
             // Do nothing
         }
@@ -183,10 +285,10 @@ void SSPutStrTexInput(u16 x, u16 y, const s8* str) {
     scrscrntex[3].u = TO_UV_256(u + 8);
     scrscrntex[0].v = TO_UV_256(v);
     scrscrntex[3].v = TO_UV_256(v + 8);
-    scrscrntex[0].x = x * Frame_Zoom_X;
-    scrscrntex[3].x = (x + 8) * Frame_Zoom_X;
-    scrscrntex[0].y = y * Frame_Zoom_Y;
-    scrscrntex[3].y = (y + 8) * Frame_Zoom_Y;
+    scrscrntex[0].x = x;
+    scrscrntex[3].x = (x + 8);
+    scrscrntex[0].y = y;
+    scrscrntex[3].y = (y + 8);
 }
 
 void SSPutStrTexInput2(u16 x, u16 y, u8 str) {
@@ -198,10 +300,10 @@ void SSPutStrTexInput2(u16 x, u16 y, u8 str) {
     scrscrntex[3].u = TO_UV_256(u + 8);
     scrscrntex[0].v = TO_UV_256(0.0f);
     scrscrntex[3].v = TO_UV_256(8.0f);
-    scrscrntex[0].x = x * Frame_Zoom_X;
-    scrscrntex[3].x = (x + 8) * Frame_Zoom_X;
-    scrscrntex[0].y = y * Frame_Zoom_Y;
-    scrscrntex[3].y = (y + 8) * Frame_Zoom_Y;
+    scrscrntex[0].x = x;
+    scrscrntex[3].x = (x + 8);
+    scrscrntex[0].y = y;
+    scrscrntex[3].y = (y + 8);
 }
 
 void SSPutStr(u16 x, u16 y, u8 atr, const s8* str) {
@@ -210,12 +312,10 @@ void SSPutStr(u16 x, u16 y, u8 atr, const s8* str) {
     }
 
     ppgSetupCurrentDataList(&ppgScrList);
-    setFilterMode(0);
     njColorBlendingMode(0, 1);
     scrscrntex[0].col = scrscrntex[3].col = 0xFFFFFFFF;
     scrscrntex[0].z = scrscrntex[3].z = PrioBase[2];
     njSetPaletteBankNumG(1, atr & 0x3F);
-
     x = x * 8;
     y = y * 8;
 
@@ -225,13 +325,14 @@ void SSPutStr(u16 x, u16 y, u8 atr, const s8* str) {
         } else {
             SSPutStrTexInput(x, y + 2, str);
         }
+
         njDrawSprite(scrscrntex, 4, 1, 1);
         x += 8;
         str++;
     }
 }
 
-s32 SSPutStrPro(u16 flag, u16 x, u16 y, u8 atr, u32 vtxcol, s8* str) {
+s32 SSPutStrPro(u16 flag, u16 x, u16 y, u8 atr, u32 vtxcol, const char* str) {
     s32 usex;
     s16 step;
 
@@ -240,7 +341,6 @@ s32 SSPutStrPro(u16 flag, u16 x, u16 y, u8 atr, u32 vtxcol, s8* str) {
     }
 
     ppgSetupCurrentDataList(&ppgScrList);
-    setFilterMode(0);
     njColorBlendingMode(0, 1);
     scrscrntex[0].col = scrscrntex[3].col = vtxcol;
     scrscrntex[0].z = scrscrntex[3].z = PrioBase[2];
@@ -252,14 +352,14 @@ s32 SSPutStrPro(u16 flag, u16 x, u16 y, u8 atr, u32 vtxcol, s8* str) {
 
     usex = x;
 
-    while (*str != 0) {
+    while (*str != '\0') {
         if (*str != ',') {
             step = SSPutStrTexInputPro(x, y, *str);
         } else {
             step = SSPutStrTexInputPro(x, y + 2, *str);
         }
 
-        str += 1;
+        str++;
         x += step;
         njDrawSprite(scrscrntex, 4, 1, 1);
     }
@@ -284,10 +384,10 @@ s16 SSPutStrTexInputPro(u16 x, u16 y, u16 ix) {
     scrscrntex[0].v = TO_UV_256(v);
     scrscrntex[3].v = TO_UV_256(v + 8);
     slide = (8 - sideL) - sideR;
-    scrscrntex[0].x = x * Frame_Zoom_X;
-    scrscrntex[3].x = Frame_Zoom_X * (x + slide);
-    scrscrntex[0].y = y * Frame_Zoom_Y;
-    scrscrntex[3].y = (y + 8) * Frame_Zoom_Y;
+    scrscrntex[0].x = x;
+    scrscrntex[3].x = (x + slide);
+    scrscrntex[0].y = y;
+    scrscrntex[3].y = (y + 8);
     return slide;
 }
 
@@ -310,7 +410,6 @@ void SSPutStr2(u16 x, u16 y, u8 atr, const s8* str) {
     }
 
     ppgSetupCurrentDataList(&ppgScrList);
-    setFilterMode(0);
     njColorBlendingMode(0, 1);
     scrscrntex[0].col = scrscrntex[3].col = -1;
     scrscrntex[0].z = scrscrntex[3].z = PrioBase[1];
@@ -334,10 +433,10 @@ void SSPutStrTexInputB(f32 x, f32 y, s8* str, f32 sc) {
     scrscrntex[2].u = scrscrntex[3].u = TO_UV_256(u + 8);
     scrscrntex[0].v = scrscrntex[2].v = TO_UV_256(v);
     scrscrntex[1].v = scrscrntex[3].v = TO_UV_256(v + 8);
-    scrscrntex[0].x = scrscrntex[1].x = x * Frame_Zoom_X;
-    scrscrntex[2].x = scrscrntex[3].x = Frame_Zoom_X * (x + (8.0f * sc));
-    scrscrntex[0].y = scrscrntex[2].y = y * Frame_Zoom_Y;
-    scrscrntex[1].y = scrscrntex[3].y = Frame_Zoom_Y * (y + (8.0f * sc));
+    scrscrntex[0].x = scrscrntex[1].x = x;
+    scrscrntex[2].x = scrscrntex[3].x = (x + (8.0f * sc));
+    scrscrntex[0].y = scrscrntex[2].y = y;
+    scrscrntex[1].y = scrscrntex[3].y = (y + (8.0f * sc));
 }
 
 void SSPutStrTexInputB2(f32 x, f32 y, s8 str) {
@@ -347,10 +446,10 @@ void SSPutStrTexInputB2(f32 x, f32 y, s8 str) {
     scrscrntex[2].u = scrscrntex[3].u = TO_UV_256(u + 11);
     scrscrntex[0].v = scrscrntex[2].v = TO_UV_256(200.0f);
     scrscrntex[1].v = scrscrntex[3].v = TO_UV_256(208.0f);
-    scrscrntex[0].x = scrscrntex[1].x = x * Frame_Zoom_X;
-    scrscrntex[2].x = scrscrntex[3].x = (11.0f + x) * Frame_Zoom_X;
-    scrscrntex[0].y = scrscrntex[2].y = y * Frame_Zoom_Y;
-    scrscrntex[1].y = scrscrntex[3].y = (8.0f + y) * Frame_Zoom_Y;
+    scrscrntex[0].x = scrscrntex[1].x = x;
+    scrscrntex[2].x = scrscrntex[3].x = (11.0f + x);
+    scrscrntex[0].y = scrscrntex[2].y = y;
+    scrscrntex[1].y = scrscrntex[3].y = (8.0f + y);
 }
 
 void SSPutStr_Bigger(u16 x, u16 y, u8 atr, s8* str, f32 sc, u8 gr, u16 priority) {
@@ -363,7 +462,6 @@ void SSPutStr_Bigger(u16 x, u16 y, u8 atr, s8* str, f32 sc, u8 gr, u16 priority)
     }
 
     ppgSetupCurrentDataList(&ppgScrList);
-    setFilterMode(0);
     njColorBlendingMode(0, 1);
 
     for (i = 0; i < 4; i++) {
@@ -405,12 +503,10 @@ void SSPutDec(u16 x, u16 y, u8 atr, u8 dec, u8 size) {
     }
 
     ppgSetupCurrentDataList(&ppgScrList);
-    setFilterMode(0);
     njColorBlendingMode(0, 1);
     scrscrntex[0].col = scrscrntex[3].col = -1;
     scrscrntex[0].z = scrscrntex[3].z = PrioBase[2];
     njSetPaletteBankNumG(1, atr & 0x3F);
-
     x = x * 8;
     y = y * 8;
     zero_sw = 0;
@@ -463,7 +559,6 @@ void SSPutDec3(u16 x, u16 y, u8 atr, s16 dec, u8 size, u8 gr, u16 priority) {
     }
 
     ppgSetupCurrentDataList(&ppgScrList);
-    setFilterMode(0);
     njColorBlendingMode(0, 1);
 
     for (i = 0; i < 4; i++) {
@@ -520,7 +615,6 @@ void scfont_put(u16 x, u16 y, u8 atr, u8 page, u8 cx, u8 cy, u16 priority) {
     }
 
     ppgSetupCurrentDataList(&ppgScrList);
-    setFilterMode(0);
     njColorBlendingMode(0, 1);
     scrscrntex[0].col = scrscrntex[3].col = -1;
     scrscrntex[0].z = scrscrntex[3].z = PrioBase[priority];
@@ -546,10 +640,10 @@ void scfont_put(u16 x, u16 y, u8 atr, u8 page, u8 cx, u8 cy, u16 priority) {
         scrscrntex[3].v = TO_UV_256(v + 8);
     }
 
-    scrscrntex[0].x = x * Frame_Zoom_X;
-    scrscrntex[3].x = (x + 8) * Frame_Zoom_X;
-    scrscrntex[0].y = y * Frame_Zoom_Y;
-    scrscrntex[3].y = (y + 8) * Frame_Zoom_Y;
+    scrscrntex[0].x = x;
+    scrscrntex[3].x = (x + 8);
+    scrscrntex[0].y = y;
+    scrscrntex[3].y = (y + 8);
     njDrawSprite(scrscrntex, 4, page, 1);
 }
 
@@ -571,7 +665,6 @@ void scfont_sqput(u16 x, u16 y, u8 atr, u8 page, u8 cx1, u8 cy1, u8 cx2, u8 cy2,
     }
 
     ppgSetupCurrentDataList(&ppgScrList);
-    setFilterMode(0);
     njColorBlendingMode(0, 1);
 
     scrscrntex[0].col = scrscrntex[3].col = -1;
@@ -600,10 +693,10 @@ void scfont_sqput(u16 x, u16 y, u8 atr, u8 page, u8 cx1, u8 cy1, u8 cx2, u8 cy2,
         scrscrntex[3].v = TO_UV_256(v2);
     }
 
-    scrscrntex[0].x = x * Frame_Zoom_X;
-    scrscrntex[3].x = Frame_Zoom_X * (x + (u2 - u1));
-    scrscrntex[0].y = y * Frame_Zoom_Y;
-    scrscrntex[3].y = Frame_Zoom_Y * (y + (v2 - v1));
+    scrscrntex[0].x = x;
+    scrscrntex[3].x = (x + (u2 - u1));
+    scrscrntex[0].y = y;
+    scrscrntex[3].y = (y + (v2 - v1));
     njDrawSprite(scrscrntex, 4, page, 1);
 }
 
@@ -644,7 +737,6 @@ void scfont_sqput3(u16 x, u16 y, u8 atr, u8 page, u16 cx1, u16 cy1, u16 cx2, u16
     }
 
     ppgSetupCurrentDataList(&ppgScrList);
-    setFilterMode(0);
     njColorBlendingMode(0, 1);
 
     for (i = 0; i < 4; i++) {
@@ -662,10 +754,10 @@ void scfont_sqput3(u16 x, u16 y, u8 atr, u8 page, u16 cx1, u16 cy1, u16 cx2, u16
     scrscrntex[2].u = scrscrntex[3].u = TO_UV_256(u2);
     scrscrntex[0].v = scrscrntex[2].v = TO_UV_256(v1);
     scrscrntex[1].v = scrscrntex[3].v = TO_UV_256(v2);
-    scrscrntex[0].x = scrscrntex[1].x = x * Frame_Zoom_X;
-    scrscrntex[2].x = scrscrntex[3].x = Frame_Zoom_X * (x + (u2 - u1));
-    scrscrntex[0].y = scrscrntex[2].y = y * Frame_Zoom_Y;
-    scrscrntex[1].y = scrscrntex[3].y = Frame_Zoom_Y * (y + (v2 - v1));
+    scrscrntex[0].x = scrscrntex[1].x = x;
+    scrscrntex[2].x = scrscrntex[3].x = (x + (u2 - u1));
+    scrscrntex[0].y = scrscrntex[2].y = y;
+    scrscrntex[1].y = scrscrntex[3].y = (y + (v2 - v1));
     njDrawTexture(scrscrntex, 4, page, 1);
 }
 
@@ -693,7 +785,6 @@ void vital_put(u8 Pl_Num, s8 atr, s16 vital, u8 kind, u16 priority) {
     }
 
     ppgSetupCurrentDataList(&ppgScrList);
-    setFilterMode(0);
 
     if (vital == -1) {
         vital = 0;
@@ -715,15 +806,15 @@ void vital_put(u8 Pl_Num, s8 atr, s16 vital, u8 kind, u16 priority) {
     }
 
     if (Pl_Num == 0) {
-        scrscrntex[0].x = (168 - vital) * Frame_Zoom_X;
-        scrscrntex[3].x = 168.0f * Frame_Zoom_X;
+        scrscrntex[0].x = (168 - vital);
+        scrscrntex[3].x = 168.0f;
     } else {
-        scrscrntex[0].x = 216.0f * Frame_Zoom_X;
-        scrscrntex[3].x = (vital + 216) * Frame_Zoom_X;
+        scrscrntex[0].x = 216.0f;
+        scrscrntex[3].x = (vital + 216);
     }
 
-    scrscrntex[0].y = 16.0f * Frame_Zoom_Y;
-    scrscrntex[3].y = 24.0f * Frame_Zoom_Y;
+    scrscrntex[0].y = 16.0f;
+    scrscrntex[3].y = 24.0f;
     njColorBlendingMode(0, 1);
     scrscrntex[0].col = scrscrntex[3].col = -1;
     njDrawSprite(scrscrntex, 4, 0, 1);
@@ -735,7 +826,6 @@ void silver_vital_put(u8 Pl_Num) {
     }
 
     ppgSetupCurrentDataList(&ppgScrList);
-    setFilterMode(0);
     scrscrntex[0].z = scrscrntex[3].z = PrioBase[2];
     njSetPaletteBankNumG(0, 9);
     scrscrntex[0].u = 224.0f / 256.0f;
@@ -744,15 +834,15 @@ void silver_vital_put(u8 Pl_Num) {
     scrscrntex[3].v = TO_UV_256(184.0f);
 
     if (Pl_Num == 0) {
-        scrscrntex[0].x = 8.0f * Frame_Zoom_X;
-        scrscrntex[3].x = 168.0f * Frame_Zoom_X;
+        scrscrntex[0].x = 8.0f;
+        scrscrntex[3].x = 168.0f;
     } else {
-        scrscrntex[0].x = 216.0f * Frame_Zoom_X;
-        scrscrntex[3].x = 376.0f * Frame_Zoom_X;
+        scrscrntex[0].x = 216.0f;
+        scrscrntex[3].x = 376.0f;
     }
 
-    scrscrntex[0].y = 16.0f * Frame_Zoom_Y;
-    scrscrntex[3].y = 24.0f * Frame_Zoom_Y;
+    scrscrntex[0].y = 16.0f;
+    scrscrntex[3].y = 24.0f;
     njColorBlendingMode(0, 1);
     scrscrntex[0].col = scrscrntex[3].col = -1;
     njDrawSprite(scrscrntex, 4, 0, 1);
@@ -773,15 +863,15 @@ void vital_base_put(u8 Pl_Num) {
     col.color = 0x40000000;
 
     if (Pl_Num == 0) {
-        pos[0].x = 8.0f * Frame_Zoom_X;
-        pos[3].x = 168.0f * Frame_Zoom_X;
+        pos[0].x = 8.0f;
+        pos[3].x = 168.0f;
     } else {
-        pos[0].x = 216.0f * Frame_Zoom_X;
-        pos[3].x = 376.0f * Frame_Zoom_X;
+        pos[0].x = 216.0f;
+        pos[3].x = 376.0f;
     }
 
-    pos[0].y = 18.0f * Frame_Zoom_Y;
-    pos[3].y = 23.0f * Frame_Zoom_Y;
+    pos[0].y = 18.0f;
+    pos[3].y = 23.0f;
     pos[1].x = pos[3].x;
     pos[1].y = pos[0].y;
     pos[2].x = pos[0].x;
@@ -812,15 +902,15 @@ void spgauge_base_put(u8 Pl_Num, s16 len) {
     col.color = 0x80000000;
 
     if (Pl_Num == 0) {
-        pos[0].x = 48.0f * Frame_Zoom_X;
-        pos[3].x = Frame_Zoom_X * ((len * 8) + 48);
+        pos[0].x = 48.0f;
+        pos[3].x = ((len * 8) + 48);
     } else {
-        pos[0].x = 336.0f * Frame_Zoom_X;
-        pos[3].x = Frame_Zoom_X * (336 - (len * 8));
+        pos[0].x = 336.0f;
+        pos[3].x = (336 - (len * 8));
     }
 
-    pos[0].y = 210.0f * Frame_Zoom_Y;
-    pos[3].y = 217.0f * Frame_Zoom_Y;
+    pos[0].y = 210.0f;
+    pos[3].y = 217.0f;
     pos[1].x = pos[3].x;
     pos[1].y = pos[0].y;
     pos[2].x = pos[0].x;
@@ -842,7 +932,6 @@ void stun_put(u8 Pl_Num, u8 stun) {
     }
 
     ppgSetupCurrentDataList(&ppgScrList);
-    setFilterMode(0);
     scrscrntex[0].z = scrscrntex[3].z = PrioBase[4];
     njSetPaletteBankNumG(0, 10);
     scrscrntex[0].u = 0.0f;
@@ -851,15 +940,15 @@ void stun_put(u8 Pl_Num, u8 stun) {
     scrscrntex[3].v = TO_UV_256(104.0f);
 
     if (Pl_Num == 0) {
-        scrscrntex[0].x = (168 - stun) * Frame_Zoom_X;
-        scrscrntex[3].x = 168.0f * Frame_Zoom_X;
+        scrscrntex[0].x = (168 - stun);
+        scrscrntex[3].x = 168.0f;
     } else {
-        scrscrntex[0].x = 216.0f * Frame_Zoom_X;
-        scrscrntex[3].x = (stun + 216) * Frame_Zoom_X;
+        scrscrntex[0].x = 216.0f;
+        scrscrntex[3].x = (stun + 216);
     }
 
-    scrscrntex[0].y = 24.0f * Frame_Zoom_Y;
-    scrscrntex[3].y = 32.0f * Frame_Zoom_Y;
+    scrscrntex[0].y = 24.0f;
+    scrscrntex[3].y = 32.0f;
     scrscrntex[0].col = scrscrntex[3].col = -1;
     njDrawSprite(scrscrntex, 4, 0, 0);
 }
@@ -879,15 +968,15 @@ void stun_base_put(u8 Pl_Num, s16 len) {
     col.color = 0x90000000;
 
     if (Pl_Num == 0) {
-        pos[0].x = Frame_Zoom_X * (168 - (len * 8));
-        pos[3].x = 168.0f * Frame_Zoom_X;
+        pos[0].x = (168 - (len * 8));
+        pos[3].x = 168.0f;
     } else {
-        pos[0].x = 216.0f * Frame_Zoom_X;
-        pos[3].x = Frame_Zoom_X * ((len * 8) + 216);
+        pos[0].x = 216.0f;
+        pos[3].x = ((len * 8) + 216);
     }
 
-    pos[0].y = 25.0f * Frame_Zoom_Y;
-    pos[3].y = 31.0f * Frame_Zoom_Y;
+    pos[0].y = 25.0f;
+    pos[3].y = 31.0f;
     pos[1].x = pos[3].x;
     pos[1].y = pos[0].y;
     pos[2].x = pos[0].x;
@@ -922,8 +1011,8 @@ s32 WipeOut(u8 type) {
             dmylim = WipeLimit;
         }
 
-        wipe_pc.p = &wipe_p[0];
-        wipe_pc.col = &wipe_col[0];
+        wipe_pc.p = wipe_p;
+        wipe_pc.col = wipe_col;
         wipe_pc.tex = 0;
         wipe_pc.num = 4;
         wipe_col[0].color = wipe_col[1].color = wipe_col[2].color = wipe_col[3].color = 0xFF000000;
@@ -1060,10 +1149,6 @@ s32 FadeIn(u8 type, u8 step, u8 priority) {
     Alpha = 0;
     flag = 0;
 
-    if (No_Trans) {
-        return 0;
-    }
-
     njColorBlendingMode(0, 1);
     fade_pc.p = fade_p;
     fade_pc.col = fade_col;
@@ -1085,7 +1170,9 @@ s32 FadeIn(u8 type, u8 step, u8 priority) {
         fade_col[i].color = Alpha;
     }
 
-    njDrawPolygon2D(&fade_pc, 4, PrioBase[priority], 0x60);
+    if (!No_Trans) {
+        njDrawPolygon2D(&fade_pc, 4, PrioBase[priority], 0x60);
+    }
 
     if (flag) {
         return 1;
@@ -1175,7 +1262,6 @@ void SF3_logo(u8 step) {
     }
 
     ppgSetupCurrentDataList(&ppgScrList);
-    setFilterMode(0);
     njColorBlendingMode(0, 1);
     njSetPaletteBankNumG(0, 29);
     pos[0].z = pos[1].z = pos[2].z = pos[3].z = PrioBase[2];
@@ -1217,8 +1303,8 @@ void SF3_logo(u8 step) {
 
         pos[0].y = pos[1].y = 80.0f;
         pos[2].x = pos[3].x = 256.0f;
-        pos[0].v = pos[1].v = TO_UV_256(192.0f);
-        pos[2].u = pos[3].u = TO_UV_256(256.0f);
+        pos[0].v = pos[1].u = TO_UV_256(192.0f);
+        pos[2].u = pos[3].v = TO_UV_256(256.0f);
 
         for (i = 0; i < 48; i += 8) {
             pos[0].x = i + 208;
@@ -1323,10 +1409,10 @@ void scfont_sqput_face(u16 x, u16 y, u16 atr, u8 page, u8 cx1, u8 cy1, u8 cx2, u
         scrscrntex[3].v = TO_UV_256(v2);
     }
 
-    scrscrntex[0].x = x * Frame_Zoom_X;
-    scrscrntex[3].x = Frame_Zoom_X * (x + (u2 - u1));
-    scrscrntex[0].y = y * Frame_Zoom_Y;
-    scrscrntex[3].y = Frame_Zoom_Y * (y + (v2 - v1));
+    scrscrntex[0].x = x;
+    scrscrntex[3].x = (x + (u2 - u1));
+    scrscrntex[0].y = y;
+    scrscrntex[3].y = (y + (v2 - v1));
     njDrawSprite(scrscrntex, 4, page, 1);
 }
 
@@ -1411,17 +1497,17 @@ void face_base_put() {
     vtx.p = pos;
     vtx.col = &col;
     col.color = 0x50000000;
-    pos[0].x = 5.6f * Frame_Zoom_X;
-    pos[3].x = 34.4f * Frame_Zoom_X;
-    pos[0].y = 25.0f * Frame_Zoom_Y;
-    pos[3].y = 45.0f * Frame_Zoom_Y;
+    pos[0].x = 5.6f;
+    pos[3].x = 34.4f;
+    pos[0].y = 25.0f;
+    pos[3].y = 45.0f;
     pos[1].x = pos[3].x;
     pos[1].y = pos[0].y;
     pos[2].x = pos[0].x;
     pos[2].y = pos[3].y;
     njDrawPolygon2D(&vtx, 4, PrioBase[4], 0x60);
-    pos[0].x = 348.8f * Frame_Zoom_X;
-    pos[3].x = 377.6f * Frame_Zoom_X;
+    pos[0].x = 348.8f;
+    pos[3].x = 377.6f;
     pos[1].x = pos[3].x;
     pos[2].x = pos[0].x;
     njDrawPolygon2D(&vtx, 4, PrioBase[4], 0x60);
@@ -1435,7 +1521,6 @@ void hnc_set(u8 num, u8 atr) {
     }
 
     ppgSetupCurrentDataList(&ppgScrList);
-    setFilterMode(0);
     scrscrntex[0].z = scrscrntex[3].z = PrioBase[2];
     njSetPaletteBankNumG(1, atr & 0x3F);
     njColorBlendingMode(0, 1);
@@ -1446,19 +1531,19 @@ void hnc_set(u8 num, u8 atr) {
             scrscrntex[3].u = TO_UV_256(num * 8);
             scrscrntex[0].v = TO_UV_256(96.0f);
             scrscrntex[3].v = TO_UV_256(120.0f);
-            scrscrntex[0].x = 184.0f * Frame_Zoom_X;
-            scrscrntex[3].x = Frame_Zoom_X * ((num + 23) * 8);
+            scrscrntex[0].x = 184.0f;
+            scrscrntex[3].x = ((num + 23) * 8);
         } else {
             scrscrntex[0].u = TO_UV_256((23 - num) * 8);
             scrscrntex[3].u = TO_UV_256(184.0f);
             scrscrntex[0].v = TO_UV_256(72.0f);
             scrscrntex[3].v = TO_UV_256(96.0f);
-            scrscrntex[0].x = Frame_Zoom_X * ((23 - num) * 8);
-            scrscrntex[3].x = 184.0f * Frame_Zoom_X;
+            scrscrntex[0].x = ((23 - num) * 8);
+            scrscrntex[3].x = 184.0f;
         }
 
-        scrscrntex[0].y = 88.0f * Frame_Zoom_Y;
-        scrscrntex[3].y = 112.0f * Frame_Zoom_Y;
+        scrscrntex[0].y = 88.0f;
+        scrscrntex[3].y = 112.0f;
         scrscrntex[0].col = scrscrntex[3].col = -1;
         njDrawSprite(scrscrntex, 4, 1, 1);
     }
@@ -1471,7 +1556,6 @@ void hnc_wipeinit(u8 atr) {
     u8 k;
 
     ppgSetupCurrentDataList(&ppgScrList);
-    setFilterMode(0);
     Hnc_Num = 0;
     scrscrntex[0].z = scrscrntex[1].z = scrscrntex[2].z = scrscrntex[3].z = PrioBase[2];
     njSetPaletteBankNumG(1, atr & 0x3F);
@@ -1483,8 +1567,8 @@ void hnc_wipeinit(u8 atr) {
             for (k = 0; k < 4; k++) {
                 scrscrntex[k].u = hnc_wipe_tbl1[j][k * 2] / 256.0f;
                 scrscrntex[k].v = ((i * 24) + hnc_wipe_tbl1[j][(k * 2) + 1]) / 256.0f;
-                scrscrntex[k].x = Frame_Zoom_X * ((i * 184) + hnc_wipe_tbl1[j][k * 2]);
-                scrscrntex[k].y = Frame_Zoom_Y * (hnc_wipe_tbl1[j][(k * 2) + 1] + 16);
+                scrscrntex[k].x = ((i * 184) + hnc_wipe_tbl1[j][k * 2]);
+                scrscrntex[k].y = (hnc_wipe_tbl1[j][(k * 2) + 1] + 16);
                 dmyvtx[k] = scrscrntex[k];
             }
 
@@ -1508,7 +1592,6 @@ s32 hnc_wipeout(u8 atr) {
 
     if (!No_Trans) {
         ppgSetupCurrentDataList(&ppgScrList);
-        setFilterMode(0);
         njSetPaletteBankNumG(1, atr & 0x3F);
         njColorBlendingMode(0, 1);
         vtx[0].z = vtx[1].z = vtx[2].z = vtx[3].z = PrioBase[2];
@@ -1535,8 +1618,6 @@ s32 hnc_wipeout(u8 atr) {
                 vtx[2].v = vtx[3].v = ipv + 24;
 
                 for (k = 0; k < 4; k++) {
-                    vtx[k].x *= Frame_Zoom_X;
-                    vtx[k].y *= Frame_Zoom_Y;
                     vtx[k].u /= 256.0f;
                     vtx[k].v /= 256.0f;
                 }
@@ -1569,8 +1650,6 @@ s32 hnc_wipeout(u8 atr) {
             vtx[2].v = vtx[3].v = vtx[0].v + (24 - (j * 12));
 
             for (k = 0; k < 4; k++) {
-                vtx[k].x *= Frame_Zoom_X;
-                vtx[k].y *= Frame_Zoom_Y;
                 vtx[k].u /= 256.0f;
                 vtx[k].v /= 256.0f;
             }
@@ -1829,7 +1908,6 @@ void silver_stun_put(u8 Pl_Num, s16 len) {
     }
 
     ppgSetupCurrentDataList(&ppgScrList);
-    setFilterMode(0);
     scrscrntex[0].z = scrscrntex[3].z = PrioBase[3];
     njSetPaletteBankNumG(0, 1);
 
@@ -1839,15 +1917,15 @@ void silver_stun_put(u8 Pl_Num, s16 len) {
     scrscrntex[3].v = TO_UV_256(184.0f);
 
     if (Pl_Num == 0) {
-        scrscrntex[0].x = Frame_Zoom_X * ((21 - len) * 8);
-        scrscrntex[3].x = 168.0f * Frame_Zoom_X;
+        scrscrntex[0].x = ((21 - len) * 8);
+        scrscrntex[3].x = 168.0f;
     } else {
-        scrscrntex[0].x = 216.0f * Frame_Zoom_X;
-        scrscrntex[3].x = Frame_Zoom_X * ((len + 27) * 8);
+        scrscrntex[0].x = 216.0f;
+        scrscrntex[3].x = ((len + 27) * 8);
     }
 
-    scrscrntex[0].y = 24.0f * Frame_Zoom_Y;
-    scrscrntex[3].y = 32.0f * Frame_Zoom_Y;
+    scrscrntex[0].y = 24.0f;
+    scrscrntex[3].y = 32.0f;
     njColorBlendingMode(0, 1);
     scrscrntex[0].col = scrscrntex[3].col = 0xFFFFFFFF;
     njDrawSprite(scrscrntex, 4, 0, 1);
@@ -1864,7 +1942,6 @@ void overwrite_panel(u32 color, u8 priority) {
     }
 
     ppgSetupCurrentDataList(&ppgScrList);
-    setFilterMode(0);
     njColorBlendingMode(0, 1);
     panel_pc.p = panel_p;
     panel_pc.col = panel_col;
@@ -1920,7 +1997,7 @@ void sc_ram_to_vram(s8 sc_num) {
 
     sc_tbl_ptr = (uintptr_t*)sc_ram_vram_tbl[sc_num];
     sc_pos_ptr = (u8*)*sc_tbl_ptr;
-    *sc_tbl_ptr++;
+    sc_tbl_ptr++;
     sc_uv_ptr = (u8*)*sc_tbl_ptr;
     loop = *sc_uv_ptr++;
 
@@ -1947,7 +2024,7 @@ void sc_ram_to_vram_opc(s8 sc_num, s8 x, s8 y, u16 atr) {
     ppgSetupCurrentDataList(&ppgScrList);
     sc_tbl_ptr = (uintptr_t*)sc_ram_vram_tbl[sc_num];
     sc_pos_ptr = (u8*)*sc_tbl_ptr;
-    *sc_tbl_ptr++;
+    sc_tbl_ptr++;
     sc_uv_ptr = (u8*)*sc_tbl_ptr;
     loop = *sc_uv_ptr++;
 
@@ -2186,6 +2263,9 @@ const u8 scrnAddTex1UV[9][4] = { { 96, 0, 32, 32 },  { 63, 0, 32, 32 },  { 0, 96
                                  { 32, 96, 32, 32 }, { 32, 64, 32, 32 }, { 128, 0, 96, 128 } };
 
 void dispButtonImage(s32 px, s32 py, s32 pz, s32 sx, s32 sy, s32 cl, s32 ix) {
+    if(DEMMA_DEBUG)
+        return;
+
     TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(2 * sizeof(TextureVertex));
     u32 texCode = ppgGetUsingTextureHandle(&ppgScrTex, 5) | (ppgGetUsingPaletteHandle(&ppgScrPalShot, 0) << 0x10);
     int texture_handle = LO_16_BITS(texCode) - 1;
@@ -2195,9 +2275,6 @@ void dispButtonImage(s32 px, s32 py, s32 pz, s32 sx, s32 sy, s32 cl, s32 ix) {
     if (No_Trans) {
         return;
     }
-
-    if(DEMMA_DEBUG)
-        return;
 
     setFilterMode(0);
     vertices[0].x = px;
@@ -2214,7 +2291,7 @@ void dispButtonImage(s32 px, s32 py, s32 pz, s32 sx, s32 sy, s32 cl, s32 ix) {
         vertices[i].x = vecs[i].x;
         vertices[i].y = vecs[i].y;
     }
-    vertices[0].z = vertices[1].z = PrioBase[pz];
+    vertices[0].z = vertices[1].z = PrioBase[pz] * 0xFFFF;
     vertices[0].u = (scrnAddTex1UV[ix][0] / 256.0f) * tex->width;
     vertices[1].u = ((scrnAddTex1UV[ix][0] + scrnAddTex1UV[ix][2]) / 256.0f) * tex->width;
     vertices[0].v = (scrnAddTex1UV[ix][1] / 128.0f) * tex->height;
@@ -2227,6 +2304,9 @@ void dispButtonImage(s32 px, s32 py, s32 pz, s32 sx, s32 sy, s32 cl, s32 ix) {
 }
 
 void dispButtonImage2(s32 px, s32 py, s32 pz, s32 sx, s32 sy, s32 cl, s32 ix) {
+    if(DEMMA_DEBUG)
+        return;
+
     TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(2 * sizeof(TextureVertex));
     u32 texCode = ppgGetUsingTextureHandle(&ppgScrTex, 5) | (ppgGetUsingPaletteHandle(&ppgScrPalShot, 0) << 0x10);
     int texture_handle = LO_16_BITS(texCode) - 1;
@@ -2235,15 +2315,13 @@ void dispButtonImage2(s32 px, s32 py, s32 pz, s32 sx, s32 sy, s32 cl, s32 ix) {
     if (No_Trans) {
         return;
     }
-    if(DEMMA_DEBUG)
-        return;
 
     setFilterMode(0);
-    vertices[0].x = px * Frame_Zoom_X;
-    vertices[0].y = py * Frame_Zoom_Y;
-    vertices[1].x = Frame_Zoom_X * (px + sx);
-    vertices[1].y = Frame_Zoom_Y * (py + sy);
-    vertices[0].z = vertices[1].z = PrioBase[pz];
+    vertices[0].x = px;
+    vertices[0].y = py;
+    vertices[1].x = (px + sx);
+    vertices[1].y = (py + sy);
+    vertices[0].z = vertices[1].z = PrioBase[pz] * 0xFFFF;
     vertices[0].u = (scrnAddTex1UV[ix][0] / 256.0f) * tex->width;
     vertices[1].u = ((scrnAddTex1UV[ix][0] + scrnAddTex1UV[ix][2]) / 256.0f) * tex->width;
     vertices[0].v = (scrnAddTex1UV[ix][1] / 128.0f) * tex->height;
@@ -2254,6 +2332,9 @@ void dispButtonImage2(s32 px, s32 py, s32 pz, s32 sx, s32 sy, s32 cl, s32 ix) {
 }
 
 void dispSaveLoadTitle(void* ewk) {
+    if(DEMMA_DEBUG)
+        return;
+
     TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(4 * sizeof(TextureVertex));
     u32 texCode = ppgGetUsingTextureHandle(&ppgScrTex, 5) | (ppgGetUsingPaletteHandle(&ppgScrPalShot, 0) << 0x10);
     int texture_handle = LO_16_BITS(texCode) - 1;
@@ -2266,8 +2347,6 @@ void dispSaveLoadTitle(void* ewk) {
     if (No_Trans) {
         return;
     }
-    if(DEMMA_DEBUG)
-        return;
 
     wk = (WORK*)ewk;
     mlt_obj_matrix(wk, 0);
@@ -2289,7 +2368,7 @@ void dispSaveLoadTitle(void* ewk) {
         for(j = 0; j < 2; j++){
             pos[j + 2].x = vertices[j * 3].x;
             pos[j + 2].y = vertices[j * 3].y;
-            pos[j + 2].z = vertices[j * 3].z;
+            pos[j + 2].z = vertices[j * 3].z * 0xFFFF;
         }
         njCalcPoint(NULL, &pos[0], &pos[2]);
         njCalcPoint(NULL, &pos[1], &pos[3]);
@@ -2297,7 +2376,7 @@ void dispSaveLoadTitle(void* ewk) {
         for(j = 0; j < 2; j++){
             vertices[j * 3].x = pos[j + 2].x;
             vertices[j * 3].y = pos[j + 2].y;
-            vertices[j * 3].z = pos[j + 2].z;
+            vertices[j * 3].z = pos[j + 2].z * 0xFFFF;
         }
 
         sceGuDrawArray(GU_SPRITES, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);

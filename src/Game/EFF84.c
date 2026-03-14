@@ -8,8 +8,7 @@
 
 const u8 Time_Data[5] = { 80, 90, 50, 50, 50 };
 
-void effect_84_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_84_move(WORK_Other* ewk) {
     if (Suicide[0]) {
         push_effect_work(&ewk->wu);
         return;
@@ -98,7 +97,7 @@ void effect_84_move(WORK* wkp, s32 /*unused*/) {
     }
 }
 
-s32 effect_84_init(WORK* /*unused*/, s32 /*unused*/) {
+s32 effect_84_init() {
     WORK_Other* ewk;
     s16 ix;
 

@@ -12,8 +12,7 @@
 #include "Game/texcash.h"
 #include "Game/workuser.h"
 
-void effect_78_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_78_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -178,7 +177,7 @@ void crow_fuss_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_78_init(WORK* /*unused*/, s32 /*unused*/) {
+s32 effect_78_init() {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

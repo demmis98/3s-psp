@@ -10,6 +10,8 @@
 #include "Game/debug/Debug.h"
 #include "Game/workuser.h"
 
+#include "fl.h"
+
 s16 frwctr;
 s16 frwctr_min;
 s16 head_ix[8];
@@ -19,14 +21,14 @@ uintptr_t frw[EFFECT_MAX][448];
 s16 frwque[EFFECT_MAX];
 
 void move_effect_work(s16 index) {
+    flLogOut("move_effect_work 0 %d\n", index);
     WORK* c_addr;
     s16 curr_ix;
     s16 next_ix;
-    flLogOut("move_effect_work\n");
+
     if (Debug_w[0x28]) {
         return;
     }
-    flLogOut("move_effect_work %d\n", index);
 
     exec_tm[index] += 1;
 
@@ -34,11 +36,13 @@ void move_effect_work(s16 index) {
         c_addr = (WORK*)frw[curr_ix];
         next_ix = c_addr->behind;
 
+        flLogOut("move_effect_work 1 %d %d\n", curr_ix, c_addr->id);
         if (c_addr->timing != exec_tm[index]) {
             c_addr->timing = exec_tm[index];
             effmovejptbl[c_addr->id](c_addr);
         }
     }
+    flLogOut("move_effect_work 2\n");
 }
 
 void disp_effect_work() {
@@ -56,13 +60,12 @@ void disp_effect_work() {
     px = 7;
     py = 15;
 
-
     for (index = 0; index <= 7; index += 1) {
         curr_ix = head_ix[index];
         px += 5;
         py = 14;
 
-        for (curr_ix; curr_ix != -1; curr_ix = next_ix) {
+        for (; curr_ix != -1; curr_ix = next_ix) {
             if (py > 49) {
                 py = 14;
                 px += 3;
@@ -80,7 +83,7 @@ void effect_work_init() {
     WORK* c_addr;
     s16 i;
 
-    work_init_zero((s32*)frw, sizeof(frw));
+    memset(frw, 0, sizeof(frw));
 
     for (i = 0; i < EFFECT_MAX; i++) {
         frwctr = (EFFECT_MAX - 1) - i;
@@ -99,10 +102,6 @@ void effect_work_init() {
 }
 
 void effect_work_quick_init() {
-#if defined(TARGET_PS2)
-    void effect_work_list_init(s32 lix, s16 iid);
-#endif
-
     s16 i;
 
     for (i = 0; i < 8; i += 1) {
@@ -251,7 +250,8 @@ void push_effect_work(WORK* wkhd) {
         break;
     }
 
-    work_init_zero((s32*)frw[qix], sizeof(frw[0]));
+    memset(&frw[qix], 0, sizeof(frw[qix]));
+
     c_addr->before = c_addr->behind = -1;
     frwque[frwctr++] = qix;
     c_addr->myself = qix;
@@ -279,27 +279,6 @@ void effect_work_kill(s16 index, s16 kill_id) {
         }
 
         aix = c_addr->behind;
-    }
-}
-
-void work_init_zero(s32* adrs_int, s32 xx) {
-    s32 i;
-    s32 surr;
-    s8* adrs_char;
-
-    surr = (u32)xx % 4;
-    xx /= 4;
-
-    for (i = 0; i < xx; i++) {
-        *adrs_int++ = 0;
-    }
-
-    if (surr != 0) {
-        adrs_char = (s8*)adrs_int;
-
-        for (i = 0; i < surr; i++) {
-            *adrs_char++ = 0;
-        }
     }
 }
 
@@ -371,9 +350,6 @@ void clear_my_shell_ix(WORK* wk) {
 }
 
 void setup_shell_hit_stop(WORK* wk, s16 tm, s16 fl) {
-#if defined(TARGET_PS2)
-    s32 get_my_shell_ix(WORK * wk, s32 ix, WORK * *tmw);
-#endif
     WORK* tmw;
     s32 i;
 
@@ -426,41 +402,37 @@ s32 shell_live_check(PLW* wk, s16 wix) {
     return 0;
 }
 
-s32 clear_caution_flag(WORK* wkp, s32 /* unused */) {
-    PLW* wk = (PLW*) wkp;
+s32 clear_caution_flag(PLW* wk, u8 /* unused */) {
     wk->caution_flag = 0;
     return 0;
 }
 
-s32 set_caution_flag(WORK* wkp, s32 /* unused */) {
-    PLW* wk = (PLW*) wkp;
+s32 set_caution_flag(PLW* wk, u8 /* unused */) {
     wk->caution_flag = 1;
     return 0;
 }
 
-s32 setup_status_flag(WORK* wk, s32 data) {
+s32 setup_status_flag(WORK* wk, u8 data) {
     wk->pat_status = data;
     return 0;
 }
 
-s32 reset_extra_bg_flag(WORK* wk, s32 /* unused */) {
+s32 reset_extra_bg_flag(WORK* wk, u8 /* unused */) {
     another_bg[wk->id] = 0;
     return 0;
 }
 
-s32 flip_my_rl_flag(WORK* wk, s32 /* unused */) {
+s32 flip_my_rl_flag(WORK* wk, u8 /* unused */) {
     wk->rl_flag = wk->rl_flag + 1U & 1;
     return 0;
 }
 
-s32 setup_meoshi_hit_flag(WORK* wk, s32 d) {
-    u8 data = (u8) d;
+s32 setup_meoshi_hit_flag(WORK* wk, u8 data) {
     wk->meoshi_hit_flag = data;
     return 0;
 }
 
-s32 exec_char_asxy(WORK* wk, s32 d) {
-    u8 data = (u8) d;
+s32 exec_char_asxy(WORK* wk, u8 data) {
     s16* from_rom2;
     s32 st;
     s16 ix = data;
@@ -482,62 +454,47 @@ s32 exec_char_asxy(WORK* wk, s32 d) {
     return 0;
 }
 
-s32 setup_my_clear_level(WORK* wk, s32 d) {
-    u8 data = (u8) d;
+s32 setup_my_clear_level(WORK* wk, u8 data) {
     wk->my_clear_level = data;
     return 0;
 }
 
-s32 setup_my_bright_level(WORK* wk, s32 d) {
-    u8 data = (u8) d;
+s32 setup_my_bright_level(WORK* wk, u8 data) {
     wk->my_bright_level = data;
     return 0;
 }
 
-s32 setup_free_program(WORK* /* unused */, s32 /* unused */) {
+s32 setup_free_program(s32 /* unused */, s32 /* unused */) {
     return 0;
 }
 
-s32 setup_bg_quake_x(WORK* /* unused */, s32 d) {
-    u8 data = (u8) d;
+s32 setup_bg_quake_x(s32 /* unused */, u8 data) {
     bg_w.quake_x_index = data;
     return 0;
 }
 
-s32 setup_bg_quake_y(WORK* /* unused */, s32 d) {
-    u8 data = (u8) d;
-#if defined(TARGET_PS2)
-    void pp_screen_quake(s32);
-#endif
-
+s32 setup_bg_quake_y(s32 /* unused */, u8 data) {
     bg_w.quake_y_index = data;
     pp_screen_quake(bg_w.quake_y_index);
     return 0;
 }
 
-s32 setup_exdm_ix(WORK* wkp, s32 d) {
-    PLW* wk = (PLW*) wkp;
-    u8 data = (u8) d;
+s32 setup_exdm_ix(PLW* wk, u8 data) {
     wk->exdm_ix = data;
     return 0;
 }
 
-s32 setup_dmv_use_flag(WORK* wkp, s32 d) {
-    PLW* wk = (PLW*) wkp;
-    u8 data = (u8) d;
+s32 setup_dmv_use_flag(PLW* wk, u8 data) {
     wk->dm_vital_use = data;
     return 0;
 }
 
-s32 setup_disp_flag(WORK* wk, s32 d) {
-    u8 data = (u8) d;
+s32 setup_disp_flag(WORK* wk, u8 data) {
     wk->disp_flag = data;
     return 0;
 }
 
-s32 setup_command_number(WORK* wkp, s32 d) {
-    PLW* wk = (PLW*) wkp;
-    u8 data = (u8) d;
+s32 setup_command_number(PLW* wk, u8 data) {
     wk->cmd_request = data;
     return 0;
 }
@@ -583,4 +540,25 @@ void set_init_A4_flag() {
     plw[1].init_E3_flag = 1;
     plw[0].init_E4_flag = 1;
     plw[1].init_E4_flag = 1;
+}
+
+void work_init_zero(s32* adrs_int, s32 xx) {
+    s32 i;
+    s32 surr;
+    s8* adrs_char;
+
+    surr = (u32)xx % 4;
+    xx /= 4;
+
+    for (i = 0; i < xx; i++) {
+        *adrs_int++ = 0;
+    }
+
+    if (surr != 0) {
+        adrs_char = (s8*)adrs_int;
+
+        for (i = 0; i < surr; i++) {
+            *adrs_char++ = 0;
+        }
+    }
 }

@@ -10,8 +10,7 @@ const s16 M3_bahn_data[5] = { 16, 10, 78, 0, -512 };
 
 void effM3_trans(WORK* ewk);
 
-void effect_M3_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_M3_move(WORK_Other* ewk) {
     switch (ewk->wu.routine_no[0]) {
     case 0:
         ewk->wu.routine_no[0] = 1;

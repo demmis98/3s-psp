@@ -221,10 +221,9 @@ const s16 k2_kidou[83][4] = {
     { 512, 0, 1280, -96 },    { 768, 0, 768, -96 },    { 128, 0, 1536, -96 }
 };
 
-void (*const effK2_main_process[9])(WORK_Other *, DADD *);
+void (*const effK2_main_process[9])();
 
-void effect_K2_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_K2_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -607,7 +606,7 @@ void effK2_parts_move_type_8(WORK_Other* ewk, DADD* hahen) {
                 ewk->wu.routine_no[2] = 1;
             }
 
-            sound_effect_request[0x3E4]((WORK*) ewk, 0x3E4);
+            sound_effect_request[0x3E4](ewk, 0x3E4);
         }
 
         if (screen_x_range_check(&ewk->wu)) {
@@ -699,7 +698,7 @@ s32 effect_K2_init(WORK_Other* wk, u32* dad) {
     ewk->wu.xyz[0].disp.pos = 448;
     ewk->wu.xyz[1].disp.pos = 0;
     *ewk->wu.char_table = _bonus_char_table;
-    effect_K2_move((WORK*) ewk, 0);
+    effect_K2_move(ewk);
     return 0;
 }
 
@@ -752,6 +751,6 @@ void illegal_setup_effK2(WORK* wk, s16 ix) {
     }
 }
 
-void (*const effK2_main_process[9])(WORK_Other *, DADD *) = { effK2_parts_move_type_0, effK2_parts_move_type_1, effK2_parts_move_type_2,
+void (*const effK2_main_process[9])() = { effK2_parts_move_type_0, effK2_parts_move_type_1, effK2_parts_move_type_2,
                                           effK2_parts_move_type_3, effK2_parts_move_type_4, effK2_parts_move_type_5,
                                           effK2_parts_move_type_6, effK2_parts_move_type_7, effK2_parts_move_type_8 };

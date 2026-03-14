@@ -9,10 +9,9 @@
 #include "Game/texcash.h"
 #include "Game/workuser.h"
 
-void (*const EFF75_Jmp_Tbl[5])(WORK_Other *);
+void (*const EFF75_Jmp_Tbl[5])();
 
-void effect_75_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_75_move(WORK_Other* ewk) {
     EFF75_Jmp_Tbl[ewk->wu.routine_no[0]](ewk);
 
     if (ewk->wu.be_flag != 0) {
@@ -99,4 +98,4 @@ s32 effect_75_init(s16 dir_old, s16 ID, s16 Target_BG) {
     return 0;
 }
 
-void (*const EFF75_Jmp_Tbl[5])(WORK_Other *) = { EFF75_WAIT, EFF75_SLIDE_IN, EFF75_CHAR_CHANGE, EFF75_SUDDENLY, EFF57_KILL };
+void (*const EFF75_Jmp_Tbl[5])() = { EFF75_WAIT, EFF75_SLIDE_IN, EFF75_CHAR_CHANGE, EFF75_SUDDENLY, EFF57_KILL };

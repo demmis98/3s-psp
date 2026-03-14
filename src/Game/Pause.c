@@ -10,11 +10,9 @@
 #include "Game/menu.h"
 #include "Game/sc_sub.h"
 #include "Game/workuser.h"
+#include "AcrSDK/common/pad.h"
 
-// sbss
 u8 PAUSE_X;
-u8 Stock_Turbo_Timer;
-u8 Stock_Process_Counter;
 
 void Pause_Task(struct _TASK* task_ptr);
 
@@ -40,7 +38,8 @@ s32 Check_Play_Status(s16 PL_id);
 void Pause_Task(struct _TASK* task_ptr) {
     void (*Main_Jmp_Tbl[4])(struct _TASK*) = { Pause_Check, Pause_Move, Pause_Sleep, Pause_Die };
 
-    if (!nowSoftReset() && Mode_Type != 2 && Mode_Type != 3 && Mode_Type != 4) {
+    if (!nowSoftReset() && Mode_Type != MODE_NETWORK && Mode_Type != MODE_NORMAL_TRAINING &&
+        Mode_Type != MODE_PARRY_TRAINING) {
         Main_Jmp_Tbl[task_ptr->r_no[0]](task_ptr);
         Flash_Pause(task_ptr);
     }
@@ -49,8 +48,8 @@ void Pause_Task(struct _TASK* task_ptr) {
 void Pause_Check(struct _TASK* task_ptr) {
     PAUSE_X = 0;
 
-    if (Check_Pause_Term(~(PLsw[0][1]) & (PLsw[0][0]), 0) == 0) {
-        Check_Pause_Term(~(PLsw[1][1]) & (PLsw[1][0]), 1);
+    if (Check_Pause_Term(~PLsw[0][1] & PLsw[0][0], 0) == 0) {
+        Check_Pause_Term(~PLsw[1][1] & PLsw[1][0], 1);
     }
 
     switch (PAUSE_X) {
@@ -65,8 +64,6 @@ void Pause_Check(struct _TASK* task_ptr) {
 }
 
 void Pause_Move(struct _TASK* task_ptr) {
-    u16 sw = ~PLsw[Pause_ID][1] & PLsw[Pause_ID][0];
-
     if (Exit_Menu) {
         Exit_Pause(task_ptr);
     }
@@ -156,7 +153,7 @@ s32 Check_Pause_Term(u16 sw, u8 PL_id) {
         return 0;
     }
 
-    if (sw & 0x4000) {
+    if (sw & SWK_START) {
         Pause_Type = 1;
         return PAUSE_X = 1;
     }
@@ -178,7 +175,7 @@ s32 Check_Pause_Term(u16 sw, u8 PL_id) {
 void Exit_Pause(struct _TASK* task_ptr) {
     u8 ix;
 
-    if (Present_Mode != 3 && Check_Pause_Term(0, (Pause_ID ^ 1))) {
+    if (Present_Mode != 3 && Check_Pause_Term(0, Pause_ID ^ 1)) {
         Exit_Menu = 0;
         return;
     }
@@ -187,8 +184,6 @@ void Exit_Pause(struct _TASK* task_ptr) {
     Game_pause = 0;
     Pause = 0;
     Pause_Down = 0;
-    Turbo_Timer = Stock_Turbo_Timer;
-    Process_Counter = Stock_Process_Counter;
 
     for (ix = 0; ix < 4; ix++) {
         task_ptr->r_no[ix] = 0;
@@ -200,8 +195,8 @@ void Exit_Pause(struct _TASK* task_ptr) {
     Menu_Suicide[2] = 1;
     Menu_Suicide[3] = 1;
     pulpul_request_again();
-    cpExitTask(6);
-    cpExitTask(3);
+    cpExitTask(TASK_SAVER);
+    cpExitTask(TASK_MENU);
     SsBgmHalfVolume(0);
 }
 
@@ -214,10 +209,8 @@ void Setup_Pause(struct _TASK* task_ptr) {
     task_ptr->r_no[0] = 1;
     task_ptr->r_no[2] = 1;
     task_ptr->free[0] = 1;
-    Stock_Turbo_Timer = Turbo_Timer;
-    Stock_Process_Counter = Process_Counter;
-    cpReadyTask(3U, Menu_Task);
-    task[3].r_no[0] = 1;
+    cpReadyTask(TASK_MENU, Menu_Task);
+    task[TASK_MENU].r_no[0] = 1;
     Exit_Menu = 0;
 
     for (ix = 0; ix < 4; ix++) {
@@ -240,10 +233,8 @@ void Setup_Come_Out(struct _TASK* task_ptr) {
     task_ptr->r_no[0] = 1;
     task_ptr->r_no[2] = 4;
     task_ptr->free[0] = 1;
-    Stock_Turbo_Timer = Turbo_Timer;
-    Stock_Process_Counter = Process_Counter;
-    cpReadyTask(3, Menu_Task);
-    task[3].r_no[0] = 1;
+    cpReadyTask(TASK_MENU, Menu_Task);
+    task[TASK_MENU].r_no[0] = 1;
     Exit_Menu = 0;
 
     for (ix = 0; ix < 4; ix++) {
@@ -258,7 +249,7 @@ void Setup_Come_Out(struct _TASK* task_ptr) {
 }
 
 s32 Check_Play_Status(s16 PL_id) {
-    if (Mode_Type != 1) {
+    if (Mode_Type != MODE_VERSUS) {
         return Round_Operator[PL_id];
     }
 

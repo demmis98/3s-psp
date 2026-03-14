@@ -11,10 +11,8 @@
 #include "Game/workuser.h"
 #include "structs.h"
 
-// sdata
 s16 eff_hit_data[4][4] = { { -67, 59, 13, 29 }, { 31, 95, 24, 15 }, { 4, 123, 28, 15 }, { 20, 15, 67, 37 } };
 
-// sbss
 s16 eff_hit_flag[11];
 
 s32 eff_hit_check_sub(WORK_Other* ewk, PLW* pl);
@@ -22,11 +20,6 @@ s32 eff_hit_check_sub2(WORK_Other* ewk, PLW* pl, s16 where_type);
 static s16 hit_check_subroutine_yu(WORK* tpl, WORK* tef, s16* hd1, s16* hd2);
 
 void sync_fam_set3(s16 my_fam) {
-#if defined(TARGET_PS2)
-    void Scrn_Move_Set(s32 bgnm, s32 x, s32 y);
-    void Family_Set_W(s32 fmnm, s32 x, s32 y);
-#endif
-
     s16 pos_work_x;
     s16 pos_work_y;
     s16 pos_x_w;
@@ -141,24 +134,24 @@ s32 range_y_check(WORK_Other* ewk) {
     return 1;
 }
 
-void add_x_sub(WORK_Other* ewk) {
-    ewk->wu.xyz[0].cal += ewk->wu.mvxy.a[0].sp;
-    ewk->wu.mvxy.a[0].sp += ewk->wu.mvxy.d[0].sp;
+void add_x_sub(WORK* wk) {
+    wk->xyz[0].cal += wk->mvxy.a[0].sp;
+    wk->mvxy.a[0].sp += wk->mvxy.d[0].sp;
 }
 
-void add_x_sub2(WORK_Other* ewk) {
-    ewk->wu.xyz[0].cal += ewk->wu.mvxy.a[0].sp;
-    ewk->wu.mvxy.a[0].sp += ewk->wu.mvxy.d[0].sp;
+void add_x_sub2(WORK* wk) {
+    wk->xyz[0].cal += wk->mvxy.a[0].sp;
+    wk->mvxy.a[0].sp += wk->mvxy.d[0].sp;
 }
 
-void add_y_sub(WORK_Other* ewk) {
-    ewk->wu.xyz[1].cal += ewk->wu.mvxy.a[1].sp;
-    ewk->wu.mvxy.a[1].sp += ewk->wu.mvxy.d[1].sp;
+void add_y_sub(WORK* wk) {
+    wk->xyz[1].cal += wk->mvxy.a[1].sp;
+    wk->mvxy.a[1].sp += wk->mvxy.d[1].sp;
 }
 
-void add_y_sub2(WORK_Other* ewk) {
-    ewk->wu.xyz[1].cal += ewk->wu.mvxy.a[1].sp;
-    ewk->wu.mvxy.a[1].sp += ewk->wu.mvxy.d[1].sp;
+void add_y_sub2(WORK* wk) {
+    wk->xyz[1].cal += wk->mvxy.a[1].sp;
+    wk->mvxy.a[1].sp += wk->mvxy.d[1].sp;
 }
 
 s32 obr_no_disp_check() {
@@ -259,8 +252,7 @@ s32 eff_hit_check_sub(WORK_Other* ewk, PLW* pl) {
             return 0;
         }
 
-        if (hit_check_subroutine(
-                &pl->wu, &ewk->wu, &pl_hit_eff[pl->player_number][0], &eff_hit_data[ewk->wu.type][0])) {
+        if (hit_check_subroutine(&pl->wu, &ewk->wu, pl_hit_eff[pl->player_number], eff_hit_data[ewk->wu.type])) {
             return 1;
         }
     }
@@ -361,16 +353,10 @@ s32 compel_dead_check(WORK_Other* ewk) {
 }
 
 void win_lose_work_clear() {
-    a_rno = 0;
-    lose_rno[2] = 0;
     win_rno[0] = 0;
     win_free[0] = 0;
-    lose_rno[0] = 0;
-    lose_free[0] = 0;
     win_rno[1] = 0;
     win_free[1] = 0;
-    lose_rno[1] = 0;
-    lose_free[1] = 0;
 }
 
 void cal_bg_speed_data_x(s16 bg_num, s16 tm, s16 unk) {

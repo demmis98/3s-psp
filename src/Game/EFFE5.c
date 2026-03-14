@@ -44,8 +44,7 @@ const u16 illusion_setup_table[13][2] = {
 s32 check_new_after_image(WORK_Other* ewk, PLW* mwk);
 void setup_illusion_data(WORK_Other* ewk, PLW* mwk);
 
-void effect_E5_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_E5_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     s32 effect_E8_init(WORK_Other * ek, PLW * mk, s32 data);
 #endif
@@ -227,8 +226,7 @@ s32 check_new_after_image(WORK_Other* ewk, PLW* mwk) {
     return 1;
 }
 
-s32 effect_E5_init(WORK* wkp, s32 /*unused*/) {
-    PLW* wk = (PLW*) wkp;
+s32 effect_E5_init(PLW* wk) {
     WORK_Other* ewk;
     s16 ix;
 
@@ -237,7 +235,6 @@ s32 effect_E5_init(WORK* wkp, s32 /*unused*/) {
     }
 
     ewk = (WORK_Other*)frw[ix];
-    wk->illusion_work = &ewk->wu;
     ewk->wu.be_flag = 1;
     ewk->wu.id = 145;
     ewk->wu.work_id = 16;
@@ -245,7 +242,7 @@ s32 effect_E5_init(WORK* wkp, s32 /*unused*/) {
     ewk->wu.cgromtype = wk->wu.cgromtype;
     ewk->wu.my_col_mode = wk->wu.my_col_mode;
     ewk->wu.my_col_code = wk->wu.my_col_code;
-    ewk->my_master = (u32*)wk;
+    ewk->my_master = wk;
     ewk->master_work_id = wk->wu.work_id;
     ewk->master_id = wk->wu.id;
     ewk->master_player = wk->player_number;
@@ -313,9 +310,7 @@ void get_attdata_of_illusion(WORK_Other* ewk) {
     }
 }
 
-s32 setup_after_images(WORK* wkp, s32 d) {
-    PLW* wk = (PLW*) wkp;
-    u8 ix = (u8) d;
+s32 setup_after_images(PLW* wk, u8 ix) {
     PLW* tk = (PLW*)wk->wu.target_adrs;
 
     switch (illusion_setup_table[ix][0]) {
@@ -338,9 +333,7 @@ s32 setup_after_images(WORK* wkp, s32 d) {
     return 0;
 }
 
-s32 erase_after_images(WORK* wkp, s32 d) {
-    PLW* wk = (PLW*) wkp;
-    u8 who = (u8) d;
+s32 erase_after_images(PLW* wk, u8 who) {
     PLW* tk = (PLW*)wk->wu.target_adrs;
 
     switch (who) {

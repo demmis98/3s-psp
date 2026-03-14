@@ -7,7 +7,6 @@
 #define MAX_PALETTES 512
 
 extern u16 ColorRAM[MAX_PALETTES][64];
-extern bool ColorRAMUsed[MAX_PALETTES];
 extern Col3rd_W col3rd_w;
 
 void q_ldreq_color_data(REQ* curr);

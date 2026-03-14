@@ -113,8 +113,7 @@ const s16 effe6_data_tbl[180][8] = {
     { 1, 0, 71, 256, 240, 82, 1, 32 },  { 1, 0, 72, 256, 240, 81, 1, 32 },  { 1, 0, 62, 512, 512, 80, 4, 0 }
 };
 
-void effect_E6_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_E6_move(WORK_Other* ewk) {
     void (*effe6_jp[34])(WORK_Other*) = { effe6_0000, effe6_0001, effe6_0002, effe6_0003, effe6_0004, effe6_0005,
                                           effe6_0006, effe6_0007, effe6_0007, effe6_0009, effe6_0010, effe6_0011,
                                           effe6_0012, effe6_0013, effe6_0014, effe6_0015, effe6_0016, effe6_0017,
@@ -1193,7 +1192,7 @@ void effe6_0027(WORK_Other* ewk) {
 
         if (ewk->wu.cg_type == 0xFF) {
             ewk->wu.routine_no[1]++;
-            effect_E6_init(NULL, 0xA7);
+            effect_E6_init(0xA7);
         }
 
         /* fallthrough */
@@ -1495,8 +1494,8 @@ void effe6_0032(WORK_Other* ewk) {
         if (ewk->wu.cg_type) {
             ewk->wu.routine_no[1]++;
             end_etc_flag = 1;
-            effect_E6_init(NULL, 177);
-            effect_E6_init(NULL, 178);
+            effect_E6_init(177);
+            effect_E6_init(178);
             ewk->wu.old_rno[5] = gill_time[9];
         }
 
@@ -1604,8 +1603,7 @@ void effe6_init_common(WORK_Other* ewk) {
     set_char_move_init2(&ewk->wu, 0, ewk->wu.old_rno[4], ewk->wu.char_index, 0);
 }
 
-s32 effect_E6_init(WORK* /*unused*/, s32 d) {
-    u8 char_num = (u8) d;
+s32 effect_E6_init(u8 char_num) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

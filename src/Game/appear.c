@@ -124,14 +124,7 @@ void Appear_00000(PLW* wk) {
 }
 
 void Appear_01000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     s16 work;
-    s16 id_w;
-
-    id_w = wk->wu.id ^ 1;
 
     switch (wk->wu.routine_no[3]) {
     case 0:
@@ -188,10 +181,6 @@ void Appear_01000(PLW* wk) {
 }
 
 void Appear_03000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     switch (wk->wu.routine_no[3]) {
     case 0:
         wk->wu.routine_no[3]++;
@@ -255,8 +244,8 @@ void Appear_04000(PLW* wk) {
             return;
         }
 
-        add_x_sub((WORK_Other*)wk);
-        add_y_sub((WORK_Other*)wk);
+        add_x_sub(&wk->wu);
+        add_y_sub(&wk->wu);
         break;
 
     case 3:
@@ -314,7 +303,7 @@ void Appear_05000(PLW* wk) {
             return;
         }
 
-        add_x_sub((WORK_Other*)&wk->wu);
+        add_x_sub(&wk->wu);
         break;
 
     case 3:
@@ -349,13 +338,13 @@ void Appear_06000(PLW* wk) {
         wk->wu.routine_no[3]++;
         switch (wk->wu.routine_no[4]) {
         case 6:
-            effect_C5_init((WORK*) wk, 0);
+            effect_C5_init(wk, 0);
             break;
         case 27:
-            effect_C5_init((WORK*) wk, 1);
+            effect_C5_init(wk, 1);
             break;
         case 40:
-            effect_M5_init((WORK*) wk, 0);
+            effect_M5_init(wk);
             break;
         }
         wk->wu.disp_flag = 0;
@@ -398,8 +387,8 @@ void Appear_06000(PLW* wk) {
             set_char_move_init(&wk->wu, 9, 0x10);
             Appear_end++;
         } else {
-            add_x_sub((WORK_Other*)&wk->wu);
-            add_y_sub((WORK_Other*)&wk->wu);
+            add_x_sub(&wk->wu);
+            add_y_sub(&wk->wu);
         }
         break;
 
@@ -464,7 +453,7 @@ void Appear_07000(PLW* wk) {
             wk->wu.routine_no[3] = 3;
         } else {
             set_char_move_init(&wk->wu, 9, 8);
-            effect_C8_init((WORK*) wk, 0);
+            effect_C8_init(wk);
 
             if (Appear_flag[wk->wu.id]) {
                 wk->wu.routine_no[3]++;
@@ -503,7 +492,7 @@ void Appear_07000(PLW* wk) {
         case 2:
         case 3:
             char_move(&wk->wu);
-            add_y_sub((WORK_Other*)wk);
+            add_y_sub(&wk->wu);
             if (wk->wu.xyz[1].disp.pos < 0) {
                 wk->wu.xyz[1].disp.pos = wk->wu.position_y = 0;
                 wk->wu.xyz[1].disp.low = 0;
@@ -611,7 +600,7 @@ void Appear_09000(PLW* wk) {
 
     case 3:
         char_move(&wk->wu);
-        add_y_sub((WORK_Other*)&wk->wu);
+        add_y_sub(&wk->wu);
 
         if (wk->wu.xyz[1].disp.pos <= 0) {
             wk->wu.routine_no[3]++;
@@ -652,7 +641,7 @@ void Appear_10000(PLW* wk) {
 
     case 1:
         char_move(&wk->wu);
-        add_x_sub((WORK_Other*)&wk->wu);
+        add_x_sub(&wk->wu);
 
         if (wk->wu.id) {
             if (!(wk->wu.xyz[0].disp.pos <= bg_w.bgw[1].pos_x_work + 0x58)) {
@@ -735,8 +724,8 @@ void Appear_12000(PLW* wk) {
             return;
         }
 
-        add_x_sub((WORK_Other*)&wk->wu);
-        add_y_sub((WORK_Other*)&wk->wu);
+        add_x_sub(&wk->wu);
+        add_y_sub(&wk->wu);
         return;
 
     case 2:
@@ -767,7 +756,7 @@ void Appear_13000(PLW* wk) {
 
     case 2:
         char_move(&wk->wu);
-        add_y_sub((WORK_Other*)&wk->wu);
+        add_y_sub(&wk->wu);
 
         if (wk->wu.xyz[1].disp.pos < 0) {
             wk->wu.routine_no[3]++;
@@ -792,10 +781,6 @@ void Appear_13000(PLW* wk) {
 }
 
 void Appear_14000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init2(WORK * wk, s16 koc, s32 index, s32 ip, s16 scf);
-#endif
-
     s16 work;
     s16 id_w = wk->wu.id ^ 1;
 
@@ -847,7 +832,7 @@ void Appear_15000(PLW* wk) {
         bg_app_stop = 1;
         wk->wu.disp_flag = 1;
         set_char_move_init(&wk->wu, 9, 8);
-        effect_97_init((WORK*) wk, 0);
+        effect_97_init(wk);
         break;
 
     case 1:
@@ -874,10 +859,6 @@ void Appear_15000(PLW* wk) {
 }
 
 void Appear_16000(PLW* wk) {
-    s16 id_w;
-
-    id_w = wk->wu.id ^ 1;
-
     switch (wk->wu.routine_no[3]) {
     case 0:
         wk->wu.routine_no[3]++;
@@ -991,10 +972,6 @@ void Appear_17000(PLW* wk) {
 }
 
 void Appear_18000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     s16 work;
 
     switch (wk->wu.routine_no[3]) {
@@ -1068,8 +1045,8 @@ void Appear_18000(PLW* wk) {
             return;
         }
 
-        add_x_sub((WORK_Other*)&wk->wu);
-        add_y_sub((WORK_Other*)&wk->wu);
+        add_x_sub(&wk->wu);
+        add_y_sub(&wk->wu);
         return;
 
     case 3:
@@ -1153,8 +1130,8 @@ void Appear_19000(PLW* wk) {
             return;
         }
 
-        add_x_sub((WORK_Other*)&wk->wu);
-        add_y_sub((WORK_Other*)&wk->wu);
+        add_x_sub(&wk->wu);
+        add_y_sub(&wk->wu);
         break;
 
     case 3:
@@ -1191,9 +1168,6 @@ void Appear_20000(PLW* wk) {
 }
 
 void Appear_21000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
     s16 work;
 
     switch (wk->wu.routine_no[3]) {
@@ -1249,10 +1223,6 @@ void Appear_22000(PLW* wk) {
 }
 
 void Appear_23000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     s16 work;
     switch (wk->wu.routine_no[3]) {
     case 0:
@@ -1341,8 +1311,8 @@ void Appear_26000(PLW* wk) {
     case 2:
         char_move(&wk->wu);
         appear_work[wk->wu.id]--;
-        add_x_sub((WORK_Other*)wk);
-        add_y_sub((WORK_Other*)wk);
+        add_x_sub(&wk->wu);
+        add_y_sub(&wk->wu);
 
         if (wk->wu.xyz[1].disp.pos < 0x41) {
             wk->wu.routine_no[3]++;
@@ -1375,8 +1345,8 @@ void Appear_26000(PLW* wk) {
             set_char_move_init2(&wk->wu, 9, 0x10, 3, 0);
             wk->wu.xyz[1].cal = 0;
         } else {
-            add_x_sub((WORK_Other*)wk);
-            add_y_sub((WORK_Other*)wk);
+            add_x_sub(&wk->wu);
+            add_y_sub(&wk->wu);
         }
 
         break;
@@ -1538,7 +1508,7 @@ void Appear_29000(PLW* wk) {
 
     case 2:
         char_move(&wk->wu);
-        add_x_sub((WORK_Other*)&wk->wu);
+        add_x_sub(&wk->wu);
 
         if (wk->wu.id) {
             if (!(wk->wu.xyz[0].disp.pos <= (bg_w.bgw[1].pos_x_work + 0x58))) {
@@ -1571,8 +1541,8 @@ void Appear_29000(PLW* wk) {
             set_char_move_init2(&wk->wu, 9, 0xb, 5, 0);
             wk->wu.xyz[1].disp.pos = 0;
         } else {
-            add_x_sub((WORK_Other*)&wk->wu);
-            add_y_sub((WORK_Other*)&wk->wu);
+            add_x_sub(&wk->wu);
+            add_y_sub(&wk->wu);
         }
 
         break;
@@ -1591,10 +1561,6 @@ void Appear_29000(PLW* wk) {
 }
 
 void animal_decide(PLW* wk) {
-#if defined(TARGET_PS2)
-    s32 effect_M0_init(u8 pl_rl, u8 animal_type);
-#endif
-
     u8 work2;
     s16 work = random_16();
 
@@ -1619,26 +1585,20 @@ void animal_decide(PLW* wk) {
 }
 
 void don_appear_check(PLW* wk) {
-#if defined(TARGET_PS2)
-    s32 effect_M0_init(u8 pl_rl, u8 animal_type);
-#endif
-
     s16 id_w = wk->wu.id ^ 1;
+
     if (plw[id_w].player_number == 7) {
         effect_M0_init(wk->wu.rl_flag, 6);
     }
 }
 
 void Appear_30000(PLW* wk) {
-    s16 work;
-
     switch (wk->wu.routine_no[3]) {
     case 0:
         wk->wu.routine_no[3]++;
         wk->wu.disp_flag = 1;
         bg_app_stop = 1;
-        work = random_16();
-        work &= 3;
+        random_16(); // Although the result is unused, I'm keeping the call, because it changes RNG state
         appear_data_set(wk, (APPEAR_DATA*)appear_data + 24);
         set_char_move_init(&wk->wu, 9, 0xE);
         break;
@@ -1683,11 +1643,8 @@ void Appear_31000(PLW* wk) {
 }
 
 void Appear_32000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     s16 work;
+
     switch (wk->wu.routine_no[3]) {
     case 0:
         wk->wu.routine_no[3] += 1;
@@ -1738,8 +1695,8 @@ void Appear_33000(PLW* wk) {
             return;
         }
 
-        add_x_sub((WORK_Other*)wk);
-        add_y_sub((WORK_Other*)wk);
+        add_x_sub(&wk->wu);
+        add_y_sub(&wk->wu);
         break;
 
     case 2:
@@ -1754,10 +1711,6 @@ void Appear_33000(PLW* wk) {
 }
 
 void Appear_34000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     s16 work;
 
     switch (wk->wu.routine_no[3]) {
@@ -1838,7 +1791,7 @@ void Appear_36000(PLW* wk) {
             set_char_move_init2(&wk->wu, 9, 0x11, 0x0A, 0);
             wk->wu.next_z = wk->wu.my_priority;
         } else {
-            add_x_sub((WORK_Other*)wk);
+            add_x_sub(&wk->wu);
         }
 
         break;
@@ -1868,7 +1821,7 @@ void Appear_37000(PLW* wk) {
         set_char_move_init(&wk->wu, 9, 0x11);
         bg_app_stop = 1;
         wk->wu.cmwk[0] = 0;
-        effect_M1_init(&wk->wu, 0);
+        effect_M1_init(&wk->wu);
         break;
 
     case 1:
@@ -1941,7 +1894,7 @@ void Appear_37000(PLW* wk) {
             wk->wu.routine_no[3] = 0;
             Appear_end++;
         } else {
-            add_x_sub((WORK_Other*)&wk->wu);
+            add_x_sub(&wk->wu);
         }
 
         break;
@@ -2036,7 +1989,7 @@ void Appear_41000(PLW* wk) {
         bg_app_stop = 1;
         set_char_move_init(&wk->wu, 0, 0);
         app_counter[wk->wu.id] = 0x78;
-        effect_M7_init((WORK*) wk, 0);
+        effect_M7_init(wk);
         break;
 
     case 1:

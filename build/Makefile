@@ -10257,30 +10257,6 @@ src/Game/debug/Debug.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/Debug.c.s
 .PHONY : src/Game/debug/Debug.c.s
 
-src/Game/debug/Debug_ID.obj: src/Game/debug/Debug_ID.c.obj
-.PHONY : src/Game/debug/Debug_ID.obj
-
-# target to build an object file
-src/Game/debug/Debug_ID.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.obj
-.PHONY : src/Game/debug/Debug_ID.c.obj
-
-src/Game/debug/Debug_ID.i: src/Game/debug/Debug_ID.c.i
-.PHONY : src/Game/debug/Debug_ID.i
-
-# target to preprocess a source file
-src/Game/debug/Debug_ID.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.i
-.PHONY : src/Game/debug/Debug_ID.c.i
-
-src/Game/debug/Debug_ID.s: src/Game/debug/Debug_ID.c.s
-.PHONY : src/Game/debug/Debug_ID.s
-
-# target to generate assembly for a file
-src/Game/debug/Debug_ID.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.s
-.PHONY : src/Game/debug/Debug_ID.c.s
-
 src/Game/debug/Nakai.obj: src/Game/debug/Nakai.c.obj
 .PHONY : src/Game/debug/Nakai.obj
 
@@ -10352,6 +10328,30 @@ src/Game/debug/OTESTDAT.s: src/Game/debug/OTESTDAT.c.s
 src/Game/debug/OTESTDAT.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/OTESTDAT.c.s
 .PHONY : src/Game/debug/OTESTDAT.c.s
+
+src/Game/debug/debug_config.obj: src/Game/debug/debug_config.c.obj
+.PHONY : src/Game/debug/debug_config.obj
+
+# target to build an object file
+src/Game/debug/debug_config.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/debug_config.c.obj
+.PHONY : src/Game/debug/debug_config.c.obj
+
+src/Game/debug/debug_config.i: src/Game/debug/debug_config.c.i
+.PHONY : src/Game/debug/debug_config.i
+
+# target to preprocess a source file
+src/Game/debug/debug_config.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/debug_config.c.i
+.PHONY : src/Game/debug/debug_config.c.i
+
+src/Game/debug/debug_config.s: src/Game/debug/debug_config.c.s
+.PHONY : src/Game/debug/debug_config.s
+
+# target to generate assembly for a file
+src/Game/debug/debug_config.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/debug/debug_config.c.s
+.PHONY : src/Game/debug/debug_config.c.s
 
 src/Game/eff05.obj: src/Game/eff05.c.obj
 .PHONY : src/Game/eff05.obj
@@ -12513,6 +12513,30 @@ src/Game/sel_pl.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/sel_pl.c.s
 .PHONY : src/Game/sel_pl.c.s
 
+src/Game/select_timer.obj: src/Game/select_timer.c.obj
+.PHONY : src/Game/select_timer.obj
+
+# target to build an object file
+src/Game/select_timer.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/select_timer.c.obj
+.PHONY : src/Game/select_timer.c.obj
+
+src/Game/select_timer.i: src/Game/select_timer.c.i
+.PHONY : src/Game/select_timer.i
+
+# target to preprocess a source file
+src/Game/select_timer.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/select_timer.c.i
+.PHONY : src/Game/select_timer.c.i
+
+src/Game/select_timer.s: src/Game/select_timer.c.s
+.PHONY : src/Game/select_timer.s
+
+# target to generate assembly for a file
+src/Game/select_timer.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3rd-strike.dir/build.make CMakeFiles/3rd-strike.dir/src/Game/select_timer.c.s
+.PHONY : src/Game/select_timer.c.s
+
 src/Game/spgauge.obj: src/Game/spgauge.c.obj
 .PHONY : src/Game/spgauge.obj
 
@@ -14532,9 +14556,6 @@ help:
 	@echo "... src/Game/debug/Debug.obj"
 	@echo "... src/Game/debug/Debug.i"
 	@echo "... src/Game/debug/Debug.s"
-	@echo "... src/Game/debug/Debug_ID.obj"
-	@echo "... src/Game/debug/Debug_ID.i"
-	@echo "... src/Game/debug/Debug_ID.s"
 	@echo "... src/Game/debug/Nakai.obj"
 	@echo "... src/Game/debug/Nakai.i"
 	@echo "... src/Game/debug/Nakai.s"
@@ -14544,6 +14565,9 @@ help:
 	@echo "... src/Game/debug/OTESTDAT.obj"
 	@echo "... src/Game/debug/OTESTDAT.i"
 	@echo "... src/Game/debug/OTESTDAT.s"
+	@echo "... src/Game/debug/debug_config.obj"
+	@echo "... src/Game/debug/debug_config.i"
+	@echo "... src/Game/debug/debug_config.s"
 	@echo "... src/Game/eff05.obj"
 	@echo "... src/Game/eff05.i"
 	@echo "... src/Game/eff05.s"
@@ -14814,6 +14838,9 @@ help:
 	@echo "... src/Game/sel_pl.obj"
 	@echo "... src/Game/sel_pl.i"
 	@echo "... src/Game/sel_pl.s"
+	@echo "... src/Game/select_timer.obj"
+	@echo "... src/Game/select_timer.i"
+	@echo "... src/Game/select_timer.s"
 	@echo "... src/Game/spgauge.obj"
 	@echo "... src/Game/spgauge.i"
 	@echo "... src/Game/spgauge.s"

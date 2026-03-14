@@ -12,8 +12,7 @@
 const s16 EFF91_Pos_Data[2][3][2] = { { { -88, 95 }, { -94, 71 }, { -88, 47 } },
                                       { { 104, 95 }, { 98, 71 }, { 104, 47 } } };
 
-void effect_91_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_91_move(WORK_Other* ewk) {
     if (Menu_Suicide[ewk->master_player]) {
         push_effect_work(&ewk->wu);
         return;

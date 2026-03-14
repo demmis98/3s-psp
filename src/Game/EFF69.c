@@ -13,10 +13,9 @@
 
 void Setup_Clear_OBJ(WORK_Other* ewk);
 
-void (*const EFF69_Jmp_Tbl[5])(WORK_Other *);
+void (*const EFF69_Jmp_Tbl[5])();
 
-void effect_69_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_69_move(WORK_Other* ewk) {
     EFF69_Jmp_Tbl[ewk->wu.routine_no[0]](ewk);
 
     if (ewk->wu.be_flag != 0) {
@@ -196,4 +195,4 @@ void Setup_Clear_OBJ(WORK_Other* ewk) {
     }
 }
 
-void (*const EFF69_Jmp_Tbl[5])(WORK_Other *) = { EFF69_WAIT, EFF69_SLIDE_IN, EFF69_SLIDE_OUT, EFF69_SUDDENLY, EFF57_KILL };
+void (*const EFF69_Jmp_Tbl[5])() = { EFF69_WAIT, EFF69_SLIDE_IN, EFF69_SLIDE_OUT, EFF69_SUDDENLY, EFF57_KILL };

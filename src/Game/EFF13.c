@@ -18,24 +18,6 @@
 #include "Game/bg_sub.h"
 #include "Game/workuser.h"
 
-void kotp_00000(WORK_Other*, TAMA*);
-void kotp_01000(WORK_Other*, TAMA*);
-void kotp_02000(WORK_Other*, TAMA*);
-void kotp_03000(WORK_Other*, TAMA*);
-void kotp_04000(WORK_Other*, TAMA*);
-void kotp_05000(WORK_Other*, TAMA*);
-void kotp_06000(WORK_Other*, TAMA*);
-void kotp_07000(WORK_Other*, TAMA*);
-void kotp_08000(WORK_Other*, TAMA*);
-void kotp_09000(WORK_Other*, TAMA*);
-void kotp_10000(WORK_Other*, TAMA*);
-void kotp_11000(WORK_Other*, TAMA*);
-void kotp_12000(WORK_Other*, TAMA*);
-void kotp_13000(WORK_Other*, TAMA*);
-void kotp_14000(WORK_Other*, TAMA*);
-void kotp_15000(WORK_Other*, TAMA*);
-void kotp_16000(WORK_Other*, TAMA*);
-
 void tama_display(WORK* wk);
 void set_tengu_init_pos(WORK* ewk, WORK* mwk);
 void set_tengu_my_home(WORK* ewk, WORK* mwk);
@@ -46,14 +28,13 @@ void make_speed_xy_back(WORK* ewk, WORK* mwk, TAMA* twk);
 const s16 kotp_07_dm_vital[4];
 const TAMA tama_data[243];
 const s16 tcct[36];
-void (*const kind_of_tama_process[17])(WORK_Other*, TAMA*);
+void (*const kind_of_tama_process[17])();
 const s16 kage_tbl[6][4];
 const s16 homing_empos_hos[1][20][2];
 const s16 enemy_pos_hos[1][20][2];
 const s16 X_F_L_A_T_pos_hos[1][20][2];
 
-void effect_13_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_13_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init2(WORK * wk, s16 koc, s32 index, s32 ip, s16 scf);
     s32 erase_my_shell_ix(WORK * wk, s32 ix);
@@ -160,7 +141,7 @@ void effect_13_move(WORK* wkp, s32 /*unused*/) {
         }
 
         tama_display(&ewk->wu);
-        effect_00_init(&ewk->wu, 0);
+        effect_00_init(&ewk->wu);
         break;
 
     case 1:
@@ -1884,8 +1865,7 @@ void kotp_16000(WORK_Other* ewk, TAMA* twk) {
     }
 }
 
-s32 effect_13_init(WORK* wk, s32 d) {
-    u8 data = (u8) d;
+s32 effect_13_init(WORK* wk, u8 data) {
 #if defined(TARGET_PS2)
     void write_my_shell_ix(WORK * wk, s32 ix);
 #endif
@@ -2194,7 +2174,7 @@ const s16 tcct[36] = { 8192, 8192, 8192, 8208, 8192, 8192, 8192, 8208, 8192, 820
                        8212, 8196, 8212, 8196, 8212, 8196, 8212, 8196, 8212, 8196, 8212, 8196,
                        8212, 8196, 8212, 8192, 8196, 8212, 8198, 8214, 8196, 8212, 8196, 8212 };
 
-void (*const kind_of_tama_process[17])(WORK_Other*, TAMA*) = { kotp_00000, kotp_01000, kotp_02000, kotp_03000, kotp_04000, kotp_05000,
+void (*const kind_of_tama_process[17])() = { kotp_00000, kotp_01000, kotp_02000, kotp_03000, kotp_04000, kotp_05000,
                                              kotp_06000, kotp_07000, kotp_08000, kotp_09000, kotp_10000, kotp_11000,
                                              kotp_12000, kotp_13000, kotp_14000, kotp_15000, kotp_16000 };
 

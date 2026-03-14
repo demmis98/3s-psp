@@ -21,8 +21,7 @@ const u8 D8_Priority_Data[4] = { 55, 55, 52, 53 };
 
 // Funcs
 
-void effect_D8_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_D8_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
     void set_char_move_init2(WORK * wk, s16 koc, s32 index, s32 ip, s16 scf);

@@ -37,8 +37,10 @@ CMakeFiles/3rd-strike.dir/src/Game/SYS_sub.c.obj: \
  /home/demma/.local/bin/pspdev/psp/include/sys/sched.h \
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdbool.h \
  /home/demma/Documents/code/psp/3rd-strike/include/common.h \
  /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/mlPAD.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/pad.h \
  /home/demma/Documents/code/psp/3rd-strike/include/fl.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
@@ -121,6 +123,7 @@ CMakeFiles/3rd-strike.dir/src/Game/SYS_sub.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/bg.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/bg_sub.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/debug/Debug.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/debug/debug_config.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/main.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/menu.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/sc_sub.h \

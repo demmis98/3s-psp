@@ -1,10 +1,12 @@
 #ifndef DEBUG_H
 #define DEBUG_H
 
+#include "Game/debug/debug_config.h"
 #include "structs.h"
 #include "types.h"
 
-extern s8 Debug_w[72];
+extern bool debug_menu_active;
+extern u8 Debug_ID;
 extern s8 Debug_Index;
 extern u8 Deley_Debug_No;
 extern u8 Deley_Debug_Timer;

@@ -7,7 +7,7 @@
 extern const s16 eff25_data_0000[16];
 extern const s16* scr_obj_data25[1];
 
-void effect_25_move(WORK* wkp, s32 /*unused*/);
+void effect_25_move(WORK_Other* ewk);
 void eff25_char_set(WORK_Other* ewk);
 void piece_set(WORK_Other* ewk);
 void eff25_00(WORK_Other* ewk);

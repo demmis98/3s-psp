@@ -16,8 +16,7 @@ void hukuromoji_move(WORK_Other* ewk);
 
 // Funcs
 
-void effect_L5_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_L5_move(WORK_Other* ewk) {
     WORK_Other* oya_ptr = (WORK_Other*)ewk->my_master;
 
     switch (oya_ptr->wu.routine_no[0]) {
@@ -99,8 +98,7 @@ void hukuromoji_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_L5_init(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* oya = (WORK_Other*) wkp;
+s32 effect_L5_init(WORK_Other* oya) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

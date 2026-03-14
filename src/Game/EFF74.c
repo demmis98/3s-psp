@@ -12,10 +12,9 @@ const s16 EFF74_Pos_Data[3][2][2] = { { { 0, 148 }, { 0, 116 } },
                                       { { -48, 104 }, { 48, 104 } },
                                       { { -48, 80 }, { 48, 80 } } };
 
-void (*const EFF74_Jmp_Tbl[5])(WORK_Other *);
+void (*const EFF74_Jmp_Tbl[5])();
 
-void effect_74_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_74_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init2(WORK * wk, s32 koc, s32 index, s32 ip, s32 scf);
 #endif
@@ -92,4 +91,4 @@ void EFF74_SUDDENLY(WORK_Other* ewk) {
     }
 }
 
-void (*const EFF74_Jmp_Tbl[5])(WORK_Other *) = { EFF74_WAIT, EFF74_SUDDENLY, EFF74_SUDDENLY, EFF74_SUDDENLY, EFF57_KILL };
+void (*const EFF74_Jmp_Tbl[5])() = { EFF74_WAIT, EFF74_SUDDENLY, EFF74_SUDDENLY, EFF74_SUDDENLY, EFF57_KILL };

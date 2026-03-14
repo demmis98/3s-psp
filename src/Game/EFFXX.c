@@ -210,23 +210,20 @@
 #include "Game/effl6.h"
 #include "Game/effl8.h"
 
-s32 effect_dummy_init(WORK* /*unused*/, s32 /*unused*/) {
+s32 effect_dummy_init() {
     return -1;
 }
 
-void effect_dummy_move(WORK* /*unused*/, s32 /*unused*/) {
+void effect_dummy_move() {
     // Do nothing
 }
 
-#if defined(TARGET_PS2)
-INCLUDE_RODATA("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFFXX", effmovejptbl);
-#else
-const void (*effmovejptbl[229])(WORK *, s32) = {
+const void (*effmovejptbl[229])() = {
     effect_00_move,    effect_01_move,    effect_02_move,    effect_03_move,    effect_04_move,    effect_05_move,
     effect_06_move,    effect_07_move,    effect_08_move,    effect_09_move,    effect_10_move,    effect_11_move,
     effect_12_move,    effect_13_move,    effect_14_move,    effect_15_move,    effect_16_move,    effect_17_move,
     effect_18_move,    effect_19_move,    effect_20_move,    effect_21_move,    effect_22_move,    effect_23_move,
-    effect_24_move,    effect_25_move,    effect_26_move,    effect_27_move,    effect_28_move,    effect_29_move,
+    effect_24_move,    effect_25_move,    effect_26_move,    effect_27_move,    effect_dummy_move, effect_29_move,
     effect_30_move,    effect_31_move,    effect_32_move,    effect_33_move,    effect_34_move,    effect_35_move,
     effect_36_move,    effect_37_move,    effect_38_move,    effect_39_move,    effect_40_move,    effect_41_move,
     effect_42_move,    effect_43_move,    effect_44_move,    effect_45_move,    effect_46_move,    effect_47_move,
@@ -236,10 +233,10 @@ const void (*effmovejptbl[229])(WORK *, s32) = {
     effect_66_move,    effect_67_move,    effect_68_move,    effect_69_move,    effect_70_move,    effect_71_move,
     effect_72_move,    effect_73_move,    effect_74_move,    effect_75_move,    effect_76_move,    effect_77_move,
     effect_78_move,    effect_79_move,    effect_80_move,    effect_81_move,    effect_82_move,    effect_83_move,
-    effect_84_move,    effect_85_move,    effect_86_move,    effect_87_move,    effect_dummy_move, effect_dummy_move,
+    effect_84_move,    effect_85_move,    effect_86_move,    effect_dummy_move, effect_dummy_move, effect_dummy_move,
     effect_90_move,    effect_91_move,    effect_92_move,    effect_93_move,    effect_94_move,    effect_95_move,
     effect_96_move,    effect_97_move,    effect_98_move,    effect_99_move,    effect_A0_move,    effect_A1_move,
-    effect_A2_move,    effect_A3_move,    effect_dummy_move, effect_A5_move,    effect_A6_move,    effect_A7_move,
+    effect_A2_move,    effect_A3_move,    effect_dummy_move, effect_dummy_move, effect_A6_move,    effect_A7_move,
     effect_A8_move,    effect_A9_move,    effect_B0_move,    effect_B1_move,    effect_B2_move,    effect_B3_move,
     effect_B4_move,    effect_B5_move,    effect_B6_move,    effect_B7_move,    effect_B8_move,    effect_B9_move,
     effect_C0_move,    effect_C1_move,    effect_C2_move,    effect_C3_move,    effect_C4_move,    effect_C5_move,
@@ -247,7 +244,7 @@ const void (*effmovejptbl[229])(WORK *, s32) = {
     effect_dummy_move, effect_D3_move,    effect_D4_move,    effect_D5_move,    effect_D6_move,    effect_D7_move,
     effect_D8_move,    effect_D9_move,    effect_E0_move,    effect_E1_move,    effect_E2_move,    effect_E3_move,
     effect_E4_move,    effect_E5_move,    effect_E6_move,    effect_E7_move,    effect_E8_move,    effect_E9_move,
-    effect_F0_move,    effect_dummy_move, effect_F2_move,    effect_dummy_move, effect_F4_move,    effect_F5_move,
+    effect_F0_move,    effect_dummy_move, effect_F2_move,    effect_dummy_move, effect_dummy_move, effect_F5_move,
     effect_F6_move,    effect_dummy_move, effect_F8_move,    effect_F9_move,    effect_G0_move,    effect_dummy_move,
     effect_dummy_move, effect_G3_move,    effect_G4_move,    effect_G5_move,    effect_G6_move,    effect_G7_move,
     effect_G8_move,    effect_G9_move,    effect_H0_move,    effect_H1_move,    effect_H2_move,    effect_dummy_move,
@@ -262,12 +259,8 @@ const void (*effmovejptbl[229])(WORK *, s32) = {
     effect_M2_move,    effect_M3_move,    effect_dummy_move, effect_M5_move,    effect_M6_move,    effect_M7_move,
     effect_M8_move,
 };
-#endif
 
-#if defined(TARGET_PS2)
-INCLUDE_RODATA("asm/anniversary/nonmatchings/sf33rd/Source/Game/EFFXX", effinitjptbl);
-#else
-const s32 (*effinitjptbl[59])(WORK *, s32) = {
+const s32 (*effinitjptbl[59])() = {
     NULL,
     effect_03_init,
     effect_13_init,
@@ -277,7 +270,7 @@ const s32 (*effinitjptbl[59])(WORK *, s32) = {
     effect_C7_init,
     effect_D0_init,
     effect_D1_init,
-    effect_F4_init,
+    effect_dummy_init,
     effect_34_init,
     effect_37_init,
     effect_09_init2,
@@ -328,4 +321,3 @@ const s32 (*effinitjptbl[59])(WORK *, s32) = {
     effect_M8_init,
     effect_F0_init,
 };
-#endif

@@ -129,7 +129,7 @@ void end_200_1000() {
 
         if (bgw_ptr->xy[0].disp.pos < 193) {
             bgw_ptr->r_no_1++;
-            effect_E6_init(NULL, 0x7C);
+            effect_E6_init(0x7C);
         }
 
         bgw_ptr->abs_x = bgw_ptr->xy[0].disp.pos;
@@ -148,8 +148,8 @@ void end_200_2000() {
         Rewrite_End_Message(3);
         bgw_ptr->abs_x = 512;
         bgw_ptr->abs_y = 0;
-        effect_E6_init(NULL, 0x7D);
-        effect_E6_init(NULL, 0x7E);
+        effect_E6_init(0x7D);
+        effect_E6_init(0x7E);
         break;
 
     case 1:
@@ -253,7 +253,7 @@ void end_202_1000() {
         bgw_ptr->xy[1].disp.pos = end_2_pos[end_w.r_no_2][1];
         bgw_ptr->abs_x = bgw_ptr->xy[0].disp.pos;
         bgw_ptr->speed_x = 0xC000;
-        effect_E6_init(NULL, 0x7B);
+        effect_E6_init(0x7B);
         break;
 
     case 1:
@@ -277,7 +277,7 @@ void end_202_3000() {
         bgw_ptr->r_no_1++;
         bgw_ptr->xy[0].disp.pos = 512;
         bgw_ptr->xy[1].disp.pos = end_2_pos[end_w.r_no_2][1];
-        effect_E6_init(NULL, 0x7F);
+        effect_E6_init(0x7F);
         bgw_ptr->speed_x = 0x8000;
         bgw_ptr->abs_x = bgw_ptr->xy[0].disp.pos;
         break;
@@ -303,7 +303,7 @@ void end_202_4000() {
         bgw_ptr->r_no_1++;
         bgw_ptr->xy[0].disp.pos = end_2_pos[end_w.r_no_2][0];
         bgw_ptr->xy[1].disp.pos = end_2_pos[end_w.r_no_2][1];
-        effect_E6_init(NULL, 0x80);
+        effect_E6_init(0x80);
         break;
 
     case 1:

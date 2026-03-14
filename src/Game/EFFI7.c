@@ -26,8 +26,7 @@ const s16 ex_sign_data[69][4] = {
     { -56, 65, 121, 0 }, { -37, 78, 121, 1 }, { -18, 58, 121, 1 },  { -42, 84, 121, 1 }
 };
 
-void effect_I7_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_I7_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -97,9 +96,7 @@ void effI7_pos_hosei(WORK_Other* ewk, WORK* mwk) {
     ewk->wu.position_y = mwk->position_y + ex_sign_data[ewk->wu.type][1];
 }
 
-s32 effect_I7_init(WORK* wkp, s32 d) {
-    PLW* wk = (PLW*) wkp;
-    u8 data = (u8) d;
+s32 effect_I7_init(PLW* wk, u8 data) {
     WORK_Other* ewk;
     s16 ix;
 

@@ -65,25 +65,21 @@ s16 remake_sa_gauge_len(s16 ix, s16 gauge_len);
 void clear_super_arts_point(PLW* wk);
 void set_scrrrl();
 
-// bss
 PLW plw[2];
-ComboType combo_type[2];
 ZanzouTableEntry zanzou_table[2][48];
-ComboType remake_power[2];
-
-// sbss
-s16 pcon_rno[4];
-s16 appear_type;
-u8 round_slow_flag;
-u8 pcon_dp_flag;
-u8 win_sp_flag;
-char dead_voice_flag;
 SA_WORK super_arts[2];
 PiyoriType piyori_type[2];
-RAMBOD rambod[2];
-RAMHAN ramhan[2];
-u32 omop_spmv_ng_table[2];
-u32 omop_spmv_ng_table2[2];
+AppearanceType appear_type;
+s16 pcon_rno[4];
+bool round_slow_flag;
+bool pcon_dp_flag;
+u8 win_sp_flag;
+bool dead_voice_flag;
+
+UNK_1 rambod[2];
+UNK_2 ramhan[2];
+u32 omop_spmv_ng_table[2];  // FIXME: might not be necessary to put in GameState
+u32 omop_spmv_ng_table2[2]; // FIXME: might not be necessary to put in GameState
 u16 vital_inc_timer;
 u16 vital_dec_timer;
 char cmd_sel[2];
@@ -346,7 +342,7 @@ void Player_control() {
         if (Game_pause || EXE_flag) {
             goto end;
         } else {
-            if (pcon_dp_flag == 0) {
+            if (!pcon_dp_flag) {
                 if (--vital_inc_timer > 50) {
                     vital_inc_timer = 50;
                 }
@@ -371,11 +367,11 @@ void Player_control() {
     set_quake(&plw[0]);
     set_quake(&plw[1]);
 
-    if ((plw[0].zuru_flag == 0) && (plw[0].zettai_muteki_flag == 0)) {
+    if (!plw[0].zuru_flag && !plw[0].zettai_muteki_flag) {
         hit_push_request(&plw[0].wu);
     }
 
-    if ((plw[1].zuru_flag == 0) && (plw[1].zettai_muteki_flag == 0)) {
+    if (!plw[1].zuru_flag && !plw[1].zettai_muteki_flag) {
         hit_push_request(&plw[1].wu);
     }
 
@@ -408,9 +404,9 @@ void init_app_10000() {
     case 0:
         pli_0000();
         pcon_rno[1] = 2;
-        pcon_dp_flag = 0;
-        round_slow_flag = 0;
-        dead_voice_flag = 0;
+        pcon_dp_flag = false;
+        round_slow_flag = false;
+        dead_voice_flag = false;
         another_bg[0] = another_bg[1] = 0;
         plw[0].scr_pos_set_flag = plw[1].scr_pos_set_flag = 1;
 
@@ -421,7 +417,6 @@ void init_app_10000() {
 
             if (plw[1].wu.operator) {
                 mpp_w.useChar[My_char[1]]++;
-                return;
             }
         }
 
@@ -442,10 +437,10 @@ void init_app_10000() {
 
         if (plw[1].wu.operator) {
             paring_ctr_vs[0][1] = paring_ctr_ori[1];
-            return;
+        } else {
+            paring_ctr_vs[0][1] = 0;
         }
 
-        paring_ctr_vs[0][1] = 0;
         break;
 
     case 3:
@@ -461,9 +456,9 @@ void init_app_20000() {
     switch (pcon_rno[1]) {
     case 0:
         pcon_rno[1]++;
-        round_slow_flag = 0;
-        dead_voice_flag = 0;
-        pcon_dp_flag = 0;
+        round_slow_flag = false;
+        dead_voice_flag = false;
+        pcon_dp_flag = false;
         another_bg[0] = another_bg[1] = 0;
 
         for (i = 0; i < 8; i++) {
@@ -487,8 +482,8 @@ void init_app_30000() {
     switch (pcon_rno[1]) {
     case 0:
         pcon_rno[1]++;
-        round_slow_flag = 0;
-        dead_voice_flag = 0;
+        round_slow_flag = false;
+        dead_voice_flag = false;
 
         for (i = 1; i < 8; i++) {
             plw[0].wu.routine_no[i] = plw[1].wu.routine_no[i] = 0;
@@ -510,19 +505,19 @@ void init_app_30000() {
         pcon_rno[1] = 3;
         pcon_rno[2] = 1;
         setup_EJG_index();
-        effect_C9_init((WORK*) plw, 0);
-        effect_C9_init((WORK*) plw, 1);
-        effect_C9_init((WORK*) plw, 2);
+        effect_C9_init(plw, 0);
+        effect_C9_init(plw, 1);
+        effect_C9_init(plw, 2);
         load_any_color(0x3F, 0);
         load_any_texture_patnum(0x71E0, 0xE, 0);
         effect_work_kill(4, 0xD9);
 
         if (plw[0].player_number == 6) {
-            effect_33_init(&plw[0].wu, 0);
+            effect_33_init(&plw[0].wu);
         }
 
         if (plw[1].player_number == 6) {
-            effect_33_init(&plw[1].wu, 0);
+            effect_33_init(&plw[1].wu);
         }
 
         break;
@@ -557,28 +552,32 @@ void pli_1000() {
     ca_check_flag = 1;
 }
 
-void pli_0002() {}
+void pli_0002() {
+    // Do nothing
+}
 
 void plcnt_move() {
     if (time_over_check() != 0) {
         return;
     }
 
-    if (Debug_w[0x1B]) {
+#if defined(DEBUG)
+    if (DebugConfig_Get(DEBUG_PLAYER_1_INVINCIBLE)) {
         plw[0].wu.dm_vital = 0;
     }
 
-    if (Debug_w[0x1C]) {
+    if (DebugConfig_Get(DEBUG_PLAYER_2_INVINCIBLE)) {
         plw[1].wu.dm_vital = 0;
     }
 
-    if (Debug_w[0x19]) {
+    if (DebugConfig_Get(DEBUG_PLAYER_1_NO_LIFE)) {
         plw[0].wu.vital_new = 0;
     }
 
-    if (Debug_w[0x1A]) {
+    if (DebugConfig_Get(DEBUG_PLAYER_2_NO_LIFE)) {
         plw[1].wu.vital_new = 0;
     }
+#endif
 
     if (No_Death) {
         plw[0].wu.dm_vital = plw[1].wu.dm_vital = 0;
@@ -588,7 +587,7 @@ void plcnt_move() {
         plw[0].wu.dm_vital = plw[1].wu.dm_vital = 0;
     }
 
-    if (Mode_Type == 3 && Training->contents[0][1][3] == 0) {
+    if (Mode_Type == MODE_NORMAL_TRAINING && Training->contents[0][1][3] == 0) {
         plw[0].wu.dm_nodeathattack = 1;
         plw[1].wu.dm_nodeathattack = 1;
     }
@@ -617,9 +616,9 @@ void plcnt_move() {
     if (pcon_rno[0] == 2) {
         if (Round_Result & 0x980) {
             if ((Round_Result & 0x800) && gouki_wins) {
-                effect_D3_init(NULL, 1);
+                effect_D3_init(1);
             } else {
-                effect_D3_init(NULL, 0);
+                effect_D3_init(0);
             }
         }
 
@@ -646,11 +645,6 @@ void plcnt_die() {
 }
 
 void settle_type_00000() {
-#if defined(TARGET_PS2)
-    s16 nekorobi_check(s32 ix);
-    s16 footwork_check(s32 ix);
-#endif
-
     switch (pcon_rno[2]) {
     case 0:
         plw[Winner_id].wu.dir_timer = 60;
@@ -780,35 +774,33 @@ void settle_type_30000() {
 }
 
 void settle_type_40000() {
-#if defined(TARGET_PS2)
-    s16 nekorobi_check(s32 ix);
-    s16 footwork_check(s32 ix);
-#endif
-
     switch (pcon_rno[2]) {
     case 0:
         plw[Winner_id].wkey_flag = 1;
-        pcon_rno[2]++;
+        pcon_rno[2] += 1;
         /* fallthrough */
 
     case 1:
-        if (nekorobi_check(Loser_id) != 0) {
+        if (nekorobi_check(Loser_id) == 0) {
+            break;
+        }
+
+        pcon_rno[2] += 1;
+        /* fallthrough */
+
+    case 2:
+        if (footwork_check(Winner_id)) {
             pcon_rno[2]++;
-        case 2:
-            if (footwork_check(Winner_id)) {
-                pcon_rno[2]++;
-                plw[Winner_id].wu.routine_no[2] = 40;
-                plw[Winner_id].wu.routine_no[3] = 0;
-                plw[Loser_id].wu.routine_no[1] = 0;
-                plw[Loser_id].wu.routine_no[2] = 41;
-                plw[Loser_id].wu.routine_no[3] = 0;
-                plw[Winner_id].wu.cg_type = 0;
-                grade_set_round_result(Winner_id + 0);
-                plw[0].image_setup_flag = plw[1].image_setup_flag = 0;
-                plw[Winner_id].wu.dir_timer = 60;
-                set_conclusion_slow();
-                return;
-            }
+            plw[Winner_id].wu.routine_no[2] = 40;
+            plw[Winner_id].wu.routine_no[3] = 0;
+            plw[Loser_id].wu.routine_no[1] = 0;
+            plw[Loser_id].wu.routine_no[2] = 41;
+            plw[Loser_id].wu.routine_no[3] = 0;
+            plw[Winner_id].wu.cg_type = 0;
+            grade_set_round_result(Winner_id + 0);
+            plw[0].image_setup_flag = plw[1].image_setup_flag = 0;
+            plw[Winner_id].wu.dir_timer = 60;
+            set_conclusion_slow();
         }
 
         break;
@@ -816,14 +808,14 @@ void settle_type_40000() {
     case 3:
         if (--plw[Winner_id].wu.dir_timer <= 0) {
             complete_victory_pause();
-            pcon_rno[2]++;
+            pcon_rno[2] += 1;
         }
 
         break;
 
     case 4:
         if (plw[Winner_id].wu.routine_no[3] == 9) {
-            pcon_rno[2]++;
+            pcon_rno[2] += 1;
         }
 
         break;
@@ -893,11 +885,6 @@ void move_player_work() {
 }
 
 void move_P1_move_P2() {
-#if defined(TARGET_PS2)
-    void Player_move(PLW * wk, u32 lv_data);
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-#endif
-
     if (plw[0].do_not_move == 0) {
         Player_move(&plw[0], processed_lvbt(Convert_User_Setting(0)));
     }
@@ -916,11 +903,6 @@ void move_P1_move_P2() {
 }
 
 void move_P2_move_P1() {
-#if defined(TARGET_PS2)
-    void Player_move(PLW * wk, u32 lv_data);
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-#endif
-
     if (plw[1].do_not_move == 0) {
         Player_move(&plw[1], processed_lvbt(Convert_User_Setting(1)));
     }
@@ -982,10 +964,6 @@ void check_damage_hosei() {
 }
 
 void check_damage_hosei_nage(PLW* as, PLW* ds) {
-#if defined(TARGET_PS2)
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-#endif
-
     if (as->kind_of_catch) {
         if (ds->hosei_amari != 0) {
             as->wu.xyz[0].disp.pos += ds->hosei_amari;
@@ -1015,7 +993,7 @@ void check_damage_hosei_dageki(PLW* w1, PLW* w2) {
 }
 
 s32 time_over_check() {
-    if ((will_die() != 0) && (round_timer.size.full == 0)) {
+    if ((will_die() != 0) && (round_timer == 0)) {
         Winner_id = 0;
         Loser_id = 1;
 
@@ -1057,24 +1035,22 @@ void setup_settle_rno(s16 kos) {
     pcon_rno[1] = kos;
     pcon_rno[2] = 0;
     ca_check_flag = 0;
-    pcon_dp_flag = 1;
+    pcon_dp_flag = true;
 }
 
 void settle_check() {
     while (1) {
         switch ((plw[0].dead_flag) + (plw[1].dead_flag * 2)) {
         case 1:
-            if (1) {
-                Winner_id = 1;
-                Loser_id = 0;
-            } else {
-                /* fallthrough */
+            Winner_id = 1;
+            Loser_id = 0;
+            goto jump;
 
-            case 2:
-                Winner_id = 0;
-                Loser_id = 1;
-            }
+        case 2:
+            Winner_id = 0;
+            Loser_id = 1;
 
+        jump:
             if (check_sa_resurrection(&plw[Loser_id]) == 0) {
                 setup_gouki_wins();
                 Round_Result |= plw[Loser_id].wu.dm_koa;
@@ -1133,7 +1109,7 @@ s32 check_sa_resurrection(PLW* wk) {
 }
 
 s32 check_sa_type_rebirth(PLW* wk) {
-    if ((wk->spmv_ng_flag & 0x40000000) || (wk->spmv_ng_flag & 0x80000000)) {
+    if ((wk->spmv_ng_flag & DIP_UNKNOWN_30) || (wk->spmv_ng_flag & DIP_UNKNOWN_31)) {
         return 0;
     }
 
@@ -1224,10 +1200,10 @@ void setup_base_and_other_data() {
     setup_other_data(&plw[1]);
     effect_work_list_init(6, 0xC5);
     plw[0].gill_ccch_go = plw[1].gill_ccch_go = 0;
-    effect_J7_init((WORK*) &plw[0], 0);
-    effect_J7_init((WORK*) &plw[1], 0);
-    effect_E5_init((WORK*) &plw[0], 0);
-    effect_E5_init((WORK*) &plw[1], 0);
+    effect_J7_init(&plw[0]);
+    effect_J7_init(&plw[1]);
+    effect_E5_init(&plw[0]);
+    effect_E5_init(&plw[1]);
 
     if (plw[0].wu.my_priority == plw[1].wu.my_priority) {
         plw[0].the_same_players = plw[1].the_same_players = 1;
@@ -1236,11 +1212,11 @@ void setup_base_and_other_data() {
     poison_flag[0] = 0;
     poison_flag[1] = 0;
 
-    if (Mode_Type == 3 || Mode_Type == 4) {
-        effect_E3_init((WORK*) &plw[0], 0);
-        effect_E3_init((WORK*) &plw[1], 0);
-        effect_E4_init((WORK*) &plw[0], 0);
-        effect_E4_init((WORK*) &plw[1], 0);
+    if (Mode_Type == MODE_NORMAL_TRAINING || Mode_Type == MODE_PARRY_TRAINING) {
+        effect_E3_init(&plw[0]);
+        effect_E3_init(&plw[1]);
+        effect_E4_init(&plw[0]);
+        effect_E4_init(&plw[1]);
     }
 }
 
@@ -1251,10 +1227,10 @@ void setup_any_data() {
     setup_other_data(&plw[1]);
     effect_work_list_init(6, 0xC5);
     plw[0].gill_ccch_go = plw[1].gill_ccch_go = 0;
-    effect_J7_init((WORK*) &plw[0], 0);
-    effect_J7_init((WORK*) &plw[1], 0);
-    effect_E5_init((WORK*) &plw[0], 0);
-    effect_E5_init((WORK*) &plw[1], 0);
+    effect_J7_init(&plw[0]);
+    effect_J7_init(&plw[1]);
+    effect_E5_init(&plw[0]);
+    effect_E5_init(&plw[1]);
 
     if (plw[0].wu.my_priority == plw[1].wu.my_priority) {
         plw[0].the_same_players = plw[1].the_same_players = 1;
@@ -1271,13 +1247,11 @@ void set_base_data(PLW* wk, s16 ix) {
     wk->wu.charset_id = plid_data[My_char[ix]];
     wk->wkey_flag = wk->dead_flag = 0;
     set_char_base_data(&wk->wu);
-    wk->wu.target_adrs = (u32*)&plw[(ix + 1) & 1];
+    wk->wu.target_adrs = &plw[(ix + 1) & 1];
     wk->player_number = My_char[ix];
     wk->wu.hit_adrs = wk->wu.target_adrs;
     wk->wu.dmg_adrs = wk->wu.target_adrs;
     cmd_init(wk);
-    wk->cb = &combo_type[ix];
-    wk->rp = &remake_power[ix];
 
     if (ix) {
         wk->wu.my_col_code |= 0x10;
@@ -1334,14 +1308,9 @@ void set_player_shadow(PLW* wk) {
 }
 
 void setup_other_data(PLW* wk) {
-#if defined(TARGET_PS2)
-    s32 effect_01_init(WORK * wk, u32 koolc);
-#endif
-
     s16 i;
 
     if (wk->player_number == 0) {
-        (Introduce_Boss[wk->wu.id][1] & 0x80) == 0;
         setup_GILL_exsa_obj();
     }
 
@@ -1349,8 +1318,8 @@ void setup_other_data(PLW* wk) {
         effect_01_init(&wk->wu, i);
     }
 
-    effect_K5_init((WORK*) wk, 0);
-    effect_00_init(&wk->wu, 0);
+    effect_K5_init(wk);
+    effect_00_init(&wk->wu);
 }
 
 void clear_chainex_check(s16 ix) {
@@ -1389,11 +1358,6 @@ void clear_kizetsu_point(PLW* wk) {
 }
 
 void set_super_arts_status(s16 ix) {
-#if defined(TARGET_PS2)
-    s16 remake_sa_store_max(s32 ix, s32 store_max);
-    s16 remake_sa_gauge_len(s32 ix, s32 gauge_len);
-#endif
-
     const SA_DATA* saptr;
 
     if (cmd_sel[ix] || no_sa[ix]) {
@@ -1452,11 +1416,6 @@ s16 remake_sa_gauge_len(s16 ix, s16 gauge_len) {
 }
 
 void set_super_arts_status_dc(s16 ix) {
-#if defined(TARGET_PS2)
-    s16 remake_sa_store_max(s32 ix, s32 store_max);
-    s16 remake_sa_gauge_len(s32 ix, s32 gauge_len);
-#endif
-
     const SA_DATA* saptr;
 
     if (cmd_sel[ix] || no_sa[ix]) {

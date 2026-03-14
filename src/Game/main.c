@@ -58,7 +58,7 @@ void cpInitTask();
 void cpReadyTask(u16 num, void* func_adrs);
 void cpExitTask(u16 num);
 
-u8 c = 0;
+int c_x, c_y, c_v_x = 1, c_v_y = 1;
 
 void AcrMain() {
     u16 sw_buff;
@@ -102,7 +102,6 @@ void AcrMain() {
         mpp_w.vprm.ne = -1.0f;
         mpp_w.vprm.fa = 1.0f;
 
-        flLogOut("AcrMain 0\n");
         appViewSetItems(&mpp_w.vprm);
         appViewMatrix();
         //flAdjustScreen(X_Adjust + Correct_X[0], Y_Adjust + Correct_Y[0]);
@@ -114,12 +113,9 @@ void AcrMain() {
         }
 
         appSetupTempPriority();
-        flLogOut("AcrMain 1\n");
 
         flPADGetALL();
         keyConvert();
-
-        flLogOut("AcrMain 2\n");
 
         if (((Usage == 7) || (Usage == 2)) && !test_flag) {
             if (mpp_w.sysStop) {
@@ -172,8 +168,6 @@ void AcrMain() {
             }
         }
 
-        Interrupt_Flag = 0;
-
         if ((Play_Mode != 3 && Play_Mode != 1) || (Game_pause != 0x81)) {
             p1sw_1 = p1sw_0;
             p2sw_1 = p2sw_0;
@@ -192,34 +186,26 @@ void AcrMain() {
         }
 
         appCopyKeyData();
-        flLogOut("AcrMain 3\n");
 
         render_start();
 
         mpp_w.inGame = 0;
-        flLogOut("AcrMain 3.1\n");
+
         njUserMain();
-        flLogOut("AcrMain 4\n");
 
         MaskScreenEdge();
 
-        flLogOut("AcrMain 4.1\n");
         seqsBeforeProcess();
-        flLogOut("AcrMain 5\n");
         njdp2d_draw();
-
-        flLogOut("AcrMain 5.1\n");
         seqsAfterProcess();
-        flLogOut("AcrMain 5.2\n");
 
         if (Debug_w[6] == 0) {
             //CP3toPS2Draw();
         }
 
-        flLogOut("AcrMain 6\n");
-        //KnjFlush();
-
-        drawRect(c, c, 10, 10, 0xFFFFFFFF);
+        
+        if(!DEMMA_DEBUG)
+            drawRect(c_x, c_y, 10, 10, 0xFFFFFFFF);
         
         render_end();
 
@@ -245,20 +231,29 @@ void AcrMain() {
 
         //flSetDebugMode(sysinfodisp);
         disp_effect_work();
-        flLogOut("AcrMain 6\n");
         flFlip(0);
 
-        Interrupt_Flag = 1;
         Interrupt_Timer += 1;
         Record_Timer += 1;
 
         Scrn_Renew();
         Irl_Family();
-        flLogOut("AcrMain 7\n");
         Irl_Scrn();
         BGM_Server();
-        
-        c++;
+
+        c_x += c_v_x;
+        c_y += c_v_y;
+
+
+        if(c_x == 0)
+            c_v_x = 1;
+        else if(c_x == SCREEN_WIDTH)
+            c_v_x = -1;
+
+        if(c_y == 0)
+            c_v_y = 1;
+        else if(c_y == SCREEN_HEIGHT)
+            c_v_y = -1;
     }
 }
 
@@ -332,20 +327,9 @@ void njUserInit() {
     u32 size;
 
     sysFF = 1;
-    mpp_w.sysStop = 0;
-    mpp_w.inGame = 0;
-    mpp_w.ctrDemo = 0;
+    mpp_w.sysStop = false;
+    mpp_w.inGame = false;
     mpp_w.language = 0;
-    mpp_w.langload = -1;
-    mpp_w.pal50Hz = 0;
-    mpp_w.vprm.x0 = 0.0f;
-    mpp_w.vprm.y0 = 0.0f;
-    mpp_w.vprm.x1 = 384.0f;
-    mpp_w.vprm.y1 = 224.0f;
-    mpp_w.vprm.ne = -1.0f;
-    mpp_w.vprm.fa = 1.0f;
-    appViewSetItems(&mpp_w.vprm);
-    appViewMatrix();
     mmSystemInitialize();
     flGetFrame(&mpp_w.fmsFrame);
     seqsInitialize(mppMalloc(seqsGetUseMemorySize()));
@@ -360,42 +344,19 @@ void njUserInit() {
     }
 
     Interrupt_Timer = 0;
-    SA_Zoom_X = 0.0f;
-    SA_Zoom_Y = 0.0f;
     Disp_Size_H = 100;
     Disp_Size_V = 100;
-    mpp_w.ds_h[0] = mpp_w.ds_h[1] = Disp_Size_H;
-    mpp_w.ds_v[0] = mpp_w.ds_v[1] = Disp_Size_V;
-    Country = 0;
     Country = 4;
-    Screen_PAL = 0;
-    Turbo = 0;
 
     if (Country == 0) {
         while (1) {}
     }
 
-    Turbo_Timer = 1;
-    Screen_Zoom_X = 1.0f;
-    Screen_Zoom_Y = 1.0f;
-    Setup_Disp_Size(0);
-    Correct_X[0] = 0;
-    Correct_Y[0] = 0;
-    Frame_Zoom_X = Screen_Zoom_X + SA_Zoom_X;
-    Frame_Zoom_Y = Screen_Zoom_Y + SA_Zoom_Y;
-    Zoom_Base_Position_X = 0;
-    Zoom_Base_Position_Y = 0;
-    Zoom_Base_Position_Z = 0;
-    sys_w.disp.now = sys_w.disp.new = 1;
-    sys_w.pause = 0;
-    sys_w.reset = 0;
-
     Init_sound_system();
     Init_bgm_work();
-    Setup_Directory_Record_Data();
     sndInitialLoad();
     cpInitTask();
-    cpReadyTask(INIT_TASK_NUM, Init_Task);
+    cpReadyTask(TASK_INIT, Init_Task);
 }
 
 s32 njUserMain() {
@@ -407,9 +368,6 @@ s32 njUserMain() {
     Check_Replay_Status(0, Replay_Status[0]);
     Check_Replay_Status(1, Replay_Status[1]);
     flLogOut("njUserMain\n");
-
-    Frame_Zoom_X = Screen_Zoom_X + SA_Zoom_X;
-    Frame_Zoom_Y = Screen_Zoom_Y + SA_Zoom_Y;
 
     if (sys_w.disp.now == sys_w.disp.new) {
         flLogOut("njUserMain 0\n");
@@ -448,10 +406,9 @@ s32 njUserMain() {
 }
 
 void cpLoopTask() {
-    struct _TASK* task_ptr = task;
-
     disp_ramcnt_free_area();
 
+#if defined(DEBUG)
     if (sysSLOW) {
         if (--Slow_Timer == 0) {
             sysSLOW = 0;
@@ -460,19 +417,11 @@ void cpLoopTask() {
             Game_pause |= 0x80;
         }
     }
-    flLogOut("cpLoopTask 1\n");
+#endif
 
-    Process_Counter = 1;
+    for (int i = 0; i < 11; i++) {
+        struct _TASK* task_ptr = &task[i];
 
-    if (Turbo && (Game_pause != 0x81)) {
-        if (--Turbo_Timer == 0) {
-            Turbo_Timer = Turbo;
-            Process_Counter = 2;
-        }
-    }
-    flLogOut("cpLoopTask 2\n");
-
-    for (current_task_num = 0; current_task_num < 11; current_task_num++) {
         switch (task_ptr->condition) {
         case 1:
             task_ptr->func_adrs(task_ptr);
@@ -485,8 +434,6 @@ void cpLoopTask() {
         case 3:
             break;
         }
-
-        task_ptr += 1;
     }
 }
 

@@ -45,8 +45,7 @@ const CONN bbbs_score[4][8] = { { { -64, 164, 0, 32474 },
 void eff16_trans(WORK* ewk);
 static s16 score_bunkai_eff16(WORK_Other_CONN* ewk, u32 tsc);
 
-void effect_16_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_16_move(WORK_Other* ewk) {
     switch (ewk->wu.routine_no[0]) {
     case 0:
         switch (ewk->wu.routine_no[1]) {
@@ -135,9 +134,7 @@ s16 score_bunkai_eff16(WORK_Other_CONN* ewk, u32 tsc) {
     return noobjans;
 }
 
-s32 effect_16_init(WORK* wkp, s32 d) {
-    PLW* wk = (PLW*) wkp;
-    s16 flag = (s16) d;
+s32 effect_16_init(PLW* wk, s16 flag) {
     WORK_Other_CONN* ewk;
     s16 ix;
     s16 i;

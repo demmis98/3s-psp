@@ -4,7 +4,7 @@
 #include "structs.h"
 #include "types.h"
 
-void effect_C5_move(WORK* wkp, s32 /*unused*/);
-s32 effect_C5_init(WORK* wkp, s32 d);
+void effect_C5_move(WORK_Other* ewk);
+s32 effect_C5_init(PLW* oya, s16 reverse_f);
 
 #endif

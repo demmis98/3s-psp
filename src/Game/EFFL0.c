@@ -4,8 +4,7 @@
 #include "Game/SLOWF.h"
 #include "Game/workuser.h"
 
-void effect_L0_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_L0_move(WORK_Other* ewk) {
     PLW* mwk = (PLW*)ewk->my_master;
 
     switch (ewk->wu.routine_no[0]) {
@@ -64,8 +63,7 @@ void effect_L0_move(WORK* wkp, s32 /*unused*/) {
     }
 }
 
-s32 effect_L0_init(WORK* wk, s32 d) {
-    s16 data = (s16) d;
+s32 effect_L0_init(WORK* wk, s16 data) {
     WORK_Other* ewk;
     s16 ix;
 
@@ -83,6 +81,6 @@ s32 effect_L0_init(WORK* wk, s32 d) {
     ewk->wu.my_col_code = wk->my_col_code;
     ewk->wu.now_koc = wk->now_koc;
     ewk->wu.char_index = wk->char_index;
-    effect_L0_move((WORK*) ewk, 0);
+    effect_L0_move(ewk);
     return 0;
 }

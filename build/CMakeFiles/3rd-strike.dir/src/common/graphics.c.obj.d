@@ -75,6 +75,7 @@ CMakeFiles/3rd-strike.dir/src/common/graphics.c.obj: \
  /home/demma/.local/bin/pspdev/psp/include/stdlib.h \
  /home/demma/.local/bin/pspdev/psp/include/machine/stdlib.h \
  /home/demma/.local/bin/pspdev/psp/include/alloca.h \
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdbool.h \
  /home/demma/Documents/code/psp/3rd-strike/src/common/math.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkernel.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_kernel.h \

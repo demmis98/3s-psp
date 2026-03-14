@@ -23,7 +23,6 @@
 #include "Game/bg_data.h"
 #include "Game/color3rd.h"
 #include "Game/debug/Debug.h"
-#include "Game/effect_init.h"
 #include "Game/op_sub.h"
 #include "Game/sc_sub.h"
 #include "Game/texcash.h"
@@ -31,16 +30,9 @@
 
 typedef const f32* ro_f32_ptr;
 
-#if defined(TARGET_PS2)
-static const f32 title00[25] = { 0.0009765625f, 0.001953125f, 0.7509765625f, 0.751953125f, -192.0f, -96.0f, 384.0f,
-                                 192.0f,        -1.0f,        0.0f,          0.0f,         0.0f,    0.0f,   0.0f,
-                                 0.0f,          0.0f,         0.0f,          0.0f,         0.0f,    0.0f,   0.0f,
-                                 0.0f,          0.0f,         0.0f,          0.0f };
-#else
 static const f32 title00[25] = { 0.0f, 0.0f, 0.75f, 0.75f, -192.0f, -96.0f, 384.0f, 192.0f, -1.0f,
                                  0.0f, 0.0f, 0.0f,  0.0f,  0.0f,    0.0f,   0.0f,   0.0f,   0.0f,
                                  0.0f, 0.0f, 0.0f,  0.0f,  0.0f,    0.0f,   0.0f };
-#endif
 
 static ro_f32_ptr title[2] = { title00, title00 };
 
@@ -130,7 +122,7 @@ void TITLE_Init() {
 
     if (loadSize == 0) {
         // Main title texture could not be loaded.
-        flLogOut("Main title texture could not be loaded.\n");
+        flLogOut("メインタイトルのテクスチャが読み込めませんでした。\n");
         while (1) {}
     }
 
@@ -144,13 +136,7 @@ void TITLE_Init() {
 }
 
 s16 TITLE_Move(u16 type) {
-#if defined(TARGET_PS2)
-    void Frame_Up(u16 x, u16 y, s32 add);
-#endif
-
     ppgSetupCurrentDataList(&ppgTitleList);
-    setTexAdrsMode(0);
-    setFilterMode(0);
 
     switch (type) {
     case 0:
@@ -213,7 +199,7 @@ void OPBG_Init() {
 
     if ((key = Search_ramcnt_type(0x1D)) == 0) {
         // Opening demo texture has not been loaded.
-        flLogOut("Opening demo texture has not been loaded.\n");
+        flLogOut("オープニングデモテクスチャが読み込まれていません。\n");
         while (1) {}
     }
 
@@ -225,17 +211,13 @@ void OPBG_Init() {
         ppgSetupTexChunk_2nd(NULL, i + 602);
         ppgSetupTexChunk_3rd(NULL, i + 602, 1);
     }
-    flLogOut("test 0\n");
+
     Opening_Now = 1;
     make_texcash_work(9);
-    flLogOut("test 1\n");
     mlt_obj_melt2(&mts[9], 0x8C40);
-    flLogOut("test 2\n");
     sound_trg_init();
-    flLogOut("test 3\n");
     opening_init();
     Zoom_Value_Set(0x40);
-    flLogOut("test 4\n");
 }
 
 s16 OPBG_Move(s32 /* unused */) {
@@ -299,8 +281,6 @@ void OPBG_Trans() {
         return;
     }
 
-    setTexAdrsMode(1);
-    setFilterMode(0);
     ppgSetupCurrentDataList(&ppgOpnBgList);
     Scrn_Renew();
     Irl_Family();
@@ -499,10 +479,6 @@ void opning_init_00000() {
 }
 
 void opning_init_01000() {
-#if defined(TARGET_PS2)
-    void Scrn_Move_Set(s32 bgnm, s32 x, s32 y);
-#endif
-
     op_w.r_no_1++;
     Bg_Off_R(0xF);
     Bg_Off_W(0xF);
@@ -512,10 +488,6 @@ void opning_init_01000() {
 }
 
 void opning_init_02000() {
-#if defined(TARGET_PS2)
-    void Scrn_Move_Set(s32 bgnm, s32 x, s32 y);
-#endif
-
     op_w.free_work--;
 
     if (op_w.free_work < 0) {
@@ -1866,7 +1838,6 @@ void op_116_move() {
         op_w.r_no_2 += 1;
         op_work_clear();
         op_w.index = 91;
-        setup_pos_remake_key(2);
         op_bg_move(91);
         effect_36_init(17);
         effect_36_init(28);
@@ -2021,10 +1992,6 @@ void op_bg0_0000(s16 /* unused */) {
 }
 
 void op_bg0_0001(s16 r_index) {
-#if defined(TARGET_PS2)
-    void Bg_On_W(s32 s_prm);
-#endif
-
     switch (opw_ptr->r_no_0) {
     case 0:
         opw_ptr->r_no_0 += 1;
@@ -2196,9 +2163,9 @@ void op_bg0_0002(s16 r_index) {
     beta_poly.num = 4;
     beta_col[0].color = beta_col[1].color = beta_col[2].color = beta_col[3].color = 0xFF000000;
     beta_p[0].x = beta_p[2].x = 0.0f;
-    beta_p[1].x = beta_p[3].x = 384.0f * Frame_Zoom_X;
+    beta_p[1].x = beta_p[3].x = 384.0f;
     beta_p[0].y = beta_p[1].y = 0.0f;
-    beta_p[2].y = beta_p[3].y = 224.0f * Frame_Zoom_Y;
+    beta_p[2].y = beta_p[3].y = 224.0f;
 
     switch (opw_ptr->r_no_0) {
     case 0:
@@ -2231,10 +2198,6 @@ void op_bg0_0002(s16 r_index) {
 }
 
 void op_bg0_0003(s16 r_index) {
-#if defined(TARGET_PS2)
-    void Bg_On_W(s32 s_prm);
-#endif
-
     switch (opw_ptr->r_no_0) {
     case 0:
         opw_ptr->r_no_0 += 1;
@@ -2297,9 +2260,9 @@ void op_bg0_0004(s16 r_index) {
     beta_poly.num = 4;
     beta_col[0].color = beta_col[1].color = beta_col[2].color = beta_col[3].color = 0xFF000000;
     beta_p[0].x = beta_p[2].x = 0.0f;
-    beta_p[1].x = beta_p[3].x = 384.0f * Frame_Zoom_X;
+    beta_p[1].x = beta_p[3].x = 384.0f;
     beta_p[0].y = beta_p[1].y = 0.0f;
-    beta_p[2].y = beta_p[3].y = 224.0f * Frame_Zoom_Y;
+    beta_p[2].y = beta_p[3].y = 224.0f;
 
     switch (opw_ptr->r_no_0) {
     case 0:
@@ -2369,11 +2332,6 @@ const s16 op_bg0_0005_tbl[16] = { 0x0008, 0xFFF8, 0x0007, 0xFFF9, 0x0005, 0xFFFB
                                   0x0002, 0xFFFE, 0x0001, 0xFFFF, 0x0000, 0x0000, 0x0000, 0x0000 };
 
 void op_bg0_0005(s16 /* unused */) {
-#if defined(TARGET_PS2)
-    void Frame_Up(u16 x, u16 y, s32 add);
-    void Bg_On_W(s32 s_prm);
-#endif
-
     switch (opw_ptr->r_no_0) {
     case 0:
         opw_ptr->r_no_0 += 1;
@@ -2422,10 +2380,6 @@ void op_bg0_0005(s16 /* unused */) {
 }
 
 void op_bg0_0006(s16 /* unused */) {
-#if defined(TARGET_PS2)
-    void Bg_On_W(s32 s_prm);
-#endif
-
     switch (opw_ptr->r_no_0) {
     case 0:
         opw_ptr->r_no_0 += 1;
@@ -2452,10 +2406,6 @@ void op_bg0_0006(s16 /* unused */) {
 }
 
 void op_bg0_0007(s16 /* unused */) {
-#if defined(TARGET_PS2)
-    void Bg_On_W(s32 s_prm);
-#endif
-
     switch (opw_ptr->r_no_0) {
     case 0:
         opw_ptr->r_no_0 += 1;
@@ -2488,10 +2438,6 @@ void op_bg0_0007(s16 /* unused */) {
 }
 
 void op_bg0_0008(s16 /* unused */) {
-#if defined(TARGET_PS2)
-    void Bg_On_W(s32 s_prm);
-#endif
-
     switch (opw_ptr->r_no_0) {
     case 0:
         opw_ptr->r_no_0 += 1;
@@ -2524,11 +2470,6 @@ void op_bg0_0008(s16 /* unused */) {
 }
 
 void op_bg0_0010(s16 /* unused */) {
-#if defined(TARGET_PS2)
-    void Frame_Up(u16 x, u16 y, s32 add);
-    void Bg_On_W(s32 s_prm);
-#endif
-
     switch (opw_ptr->r_no_0) {
     case 0:
         opw_ptr->r_no_0 += 1;
@@ -2558,11 +2499,6 @@ void op_bg0_0010(s16 /* unused */) {
 }
 
 void op_bg0_0011(s16 /* unused */) {
-#if defined(TARGET_PS2)
-    void Frame_Up(u16 x, u16 y, s32 add);
-    void Bg_On_W(s32 s_prm);
-#endif
-
     switch (opw_ptr->r_no_0) {
     case 0:
         opw_ptr->r_no_0 += 1;
@@ -2599,10 +2535,6 @@ void op_bg0_0011(s16 /* unused */) {
 }
 
 void op_bg0_0012(s16 /* unused */) {
-#if defined(TARGET_PS2)
-    void Bg_On_W(s32 s_prm);
-#endif
-
     switch (opw_ptr->r_no_0) {
     case 0:
         opw_ptr->r_no_0 += 1;
@@ -2666,10 +2598,6 @@ void op_bg0_0014(s16 r_index) {
 const s32 ot_bg0_0015_tbl[6] = { 0xFF00A0B0, 0xFF005888, 0xFF00A0B0, 0xFF005888, 0xFF000058, 0xFF000000 };
 
 void op_bg0_0015(s16 r_index) {
-#if defined(TARGET_PS2)
-    void Bg_On_W(s32 s_prm);
-#endif
-
     switch (opw_ptr->r_no_0) {
     case 0:
         opw_ptr->r_no_0 += 1;
@@ -2724,11 +2652,6 @@ void op_bg0_0015(s16 r_index) {
 }
 
 void op_bg0_0016(s16 /* unused */) {
-#if defined(TARGET_PS2)
-    void Frame_Up(u16 x, u16 y, s32 add);
-    void Bg_On_W(s32 s_prm);
-#endif
-
     switch (opw_ptr->r_no_0) {
     case 0:
         opw_ptr->r_no_0 += 1;
@@ -2811,10 +2734,6 @@ void op_bg1_0000(s16 /* unused */) {
 }
 
 void op_bg1_0001(s16 r_index) {
-#if defined(TARGET_PS2)
-    void Bg_On_W(s32 s_prm);
-#endif
-
     switch (opw_ptr->r_no_0) {
     case 0:
         opw_ptr->r_no_0 += 1;
@@ -2842,10 +2761,6 @@ void op_bg1_0001(s16 r_index) {
 }
 
 void op_bg1_0002(s16 r_index) {
-#if defined(TARGET_PS2)
-    void Bg_On_W(s32 s_prm);
-#endif
-
     switch (opw_ptr->r_no_0) {
     case 0:
         opw_ptr->r_no_0 += 1;
@@ -2885,10 +2800,6 @@ void op_bg1_0002(s16 r_index) {
 }
 
 void op_bg1_0003(s16 r_index) {
-#if defined(TARGET_PS2)
-    void Bg_On_W(s32 s_prm);
-#endif
-
     switch (opw_ptr->r_no_0) {
     case 0:
         opw_ptr->r_no_0 += 1;
@@ -3028,7 +2939,6 @@ void opening_title() {
     switch (op_w.r_no_1) {
     case 0:
         op_w.r_no_1 += 1;
-        opening_title_00();
         break;
 
     case 1:
@@ -3046,16 +2956,7 @@ void opening_title() {
     }
 }
 
-void opening_title_00() {
-    // Do nothing
-}
-
 void opening_title_01() {
-#if defined(TARGET_PS2)
-    void Scrn_Move_Set(s32 bgnm, s32 x, s32 y);
-    void Family_Set_W(s32 fmnm, s32 x, s32 y);
-#endif
-
     s16 pos_work_x;
     s16 pos_work_y;
 
@@ -3082,20 +2983,12 @@ void opening_title_01() {
 }
 
 void op_scrn_pos_set2(s16 bg_no) {
-#if defined(TARGET_PS2)
-    void Scrn_Move_Set(s32 bgnm, s32 x, s32 y);
-#endif
-
     s16 pos_x = bg_w.bgw[bg_no].wxy[0].disp.pos;
     s16 pos_y = bg_w.bgw[bg_no].xy[1].disp.pos;
     Scrn_Move_Set(bg_no, pos_x - bg_w.pos_offset, pos_y);
 }
 
 void Bg_Family_Set_op() {
-#if defined(TARGET_PS2)
-    void Family_Set_W(s32 fmnm, s32 x, s32 y);
-#endif
-
     s16 pos_work_x;
     s16 pos_work_y;
     s16 i;

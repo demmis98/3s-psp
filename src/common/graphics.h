@@ -30,7 +30,6 @@ void endFrameDebug();
 uint32_t getBgColor();
 void setBgColor(uint32_t color);
 int getGuInit();
-void* getBuffer();
 
 // end c++ guard
 #ifdef __cplusplus

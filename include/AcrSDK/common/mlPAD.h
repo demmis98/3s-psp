@@ -1,6 +1,8 @@
 #ifndef MLPAD_H
 #define MLPAD_H
 
+#include "AcrSDK/common/pad.h"
+
 #include "structs.h"
 #include "types.h"
 

@@ -10,8 +10,7 @@
 
 const s16 eff71_time_tbl[8] = { 2, 8, 12, 9, 4, 6, 50, 3 };
 
-void effect_71_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_71_move(WORK_Other* ewk) {
     s16 work;
 
     if (obr_no_disp_check()) {
@@ -27,8 +26,8 @@ void effect_71_move(WORK* wkp, s32 /*unused*/) {
                 ewk->wu.routine_no[0]++;
                 ewk->wu.disp_flag = 1;
                 ewk->wu.old_rno[1] = 0;
-                effect_72_init((WORK*) ewk, 0);
-                effect_72_init((WORK*) ewk, 1);
+                effect_72_init(ewk, 0);
+                effect_72_init(ewk, 1);
             }
         }
 
@@ -52,7 +51,7 @@ void effect_71_move(WORK* wkp, s32 /*unused*/) {
     }
 }
 
-s32 effect_71_init(WORK* /*unused*/, s32 /*unused*/) {
+s32 effect_71_init() {
     WORK_Other* ewk;
     s16 ix;
 

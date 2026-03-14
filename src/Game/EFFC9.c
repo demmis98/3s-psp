@@ -24,14 +24,12 @@ const s16 judge_gals_kage_tbl[8][4];
 const u8 ag_sel_table[22][4][4];
 u32* ag_char_table[];
 
-void effect_C9_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_C9_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     s32 effect_37_init(WORK * wk, u32 gal, u32 ohen);
 #endif
 
     s16 scrc;
-    u8 list_u8[2];
 
     switch (ewk->wu.routine_no[0]) {
     case 0:
@@ -109,7 +107,7 @@ void effect_C9_move(WORK* wkp, s32 /*unused*/) {
                             ewk->wu.mvxy.a[1].sp = 0;
                             ewk->wu.mvxy.kop[0] = 1;
                             effect_03_init(&ewk->wu, 110);
-                            sound_effect_request[309]((WORK*) ewk, 309);
+                            sound_effect_request[309](ewk, 309);
                             char_move_z(&ewk->wu);
                         }
 
@@ -133,9 +131,7 @@ void effect_C9_move(WORK* wkp, s32 /*unused*/) {
                 if (ewk->wu.cg_type == 0xFF) {
                     ewk->wu.routine_no[1] += 1;
                     set_char_move_init(&ewk->wu, 0, 2);
-                    list_u8[0] = ewk->wu.charset_id;
-                    list_u8[1] = EJG_index[ewk->wu.type];
-                    effect_37_init(&ewk->wu, (s32) list_u8);
+                    effect_37_init(&ewk->wu, ewk->wu.charset_id, EJG_index[ewk->wu.type]);
                 }
 
                 break;
@@ -165,8 +161,7 @@ void effect_C9_move(WORK* wkp, s32 /*unused*/) {
     }
 }
 
-s32 effect_C9_init(WORK* arg0, s32 d) {
-    u8 data = (u8) d;
+s32 effect_C9_init(PLW* arg0, u8 data) {
     WORK_Other* ewk;
     s16 ix;
 

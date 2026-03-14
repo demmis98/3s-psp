@@ -16,8 +16,7 @@ const CONN bbbs_ball[4][3] = {
 void effH9_trans(WORK* ewk);
 void nokori_ball_effH9(WORK_Other_CONN* ewk, s16 num);
 
-void effect_H9_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other_CONN* ewk = (WORK_Other_CONN*) wkp;
+void effect_H9_move(WORK_Other_CONN* ewk) {
 #if defined(TARGET_PS2)
     void nokori_ball_effH9(WORK_Other_CONN * ewk, s32 num);
 #endif
@@ -92,8 +91,7 @@ void nokori_ball_effH9(WORK_Other_CONN* ewk, s16 num) {
     ewk->conn[1].chr = (num / 10) + 32464;
 }
 
-s32 effect_H9_init(WORK* wkp, s32 /*unused*/) {
-    PLW* wk = (PLW*) wkp;
+s32 effect_H9_init(PLW* wk) {
     WORK_Other_CONN* ewk;
     s16 ix;
     s16 i;

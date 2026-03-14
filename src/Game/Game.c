@@ -42,7 +42,6 @@
 #include "Game/color3rd.h"
 #include "Game/count.h"
 #include "Game/debug/Debug.h"
-#include "Game/effect_init.h"
 #include "Game/end_main.h"
 #include "Game/main.h"
 #include "Game/menu.h"
@@ -54,13 +53,15 @@
 #include "Game/ta_sub.h"
 #include "Game/texcash.h"
 #include "Game/workuser.h"
+#include "Game/select_timer.h"
+#include "AcrSDK/common/pad.h"
 #include "structs.h"
 
 #include "fl.h"
 
 void Wait_Auto_Load(struct _TASK* /* unused */);
 void Loop_Demo(struct _TASK* /* unused */);
-void Game(struct _TASK* /*unused*/);
+void Game();
 void Game00();
 void Game01();
 void Game02();
@@ -106,23 +107,19 @@ void Game_Task(struct _TASK* task_ptr) {
 
     void (*Main_Jmp_Tbl[3])(struct _TASK*) = { Wait_Auto_Load, Loop_Demo, Game };
 
-    init_color_trans_req();
-    ff = Process_Counter;
-
-    if ((Usage == 7) && !Turbo) {
-        ff = sysFF;
+    if (!No_Trans) {
+        init_color_trans_req();
     }
 
-    for (ix = 0; ix < ff; ix++) {
-        if (ix == ff - 1) {
-            No_Trans = 0;
+    ff = sysFF;
 
-            if (Turbo != 0 && (Process_Counter > 1) && (Turbo_Timer != 5)) {
-                Play_Game = 0;
-                break;
+    for (ix = 0; ix < ff; ix++) {
+        if (!No_Trans) {
+            if (ix == ff - 1) {
+                No_Trans = 0;
+            } else {
+                No_Trans = 1;
             }
-        } else {
-            No_Trans = 1;
         }
 
         Play_Game = 0;
@@ -141,7 +138,6 @@ void Game_Task(struct _TASK* task_ptr) {
         seqsAfterProcess();
         texture_cash_update();
         move_pulpul_work();
-        Check_Off_Vib();
         Check_LDREQ_Queue();
     }
 
@@ -150,17 +146,17 @@ void Game_Task(struct _TASK* task_ptr) {
     Disp_Sound_Code();
 }
 
-void Game(struct _TASK* /*unused*/) {
-    flLogOut("Game %d %d %d %d\n", G_No[0], G_No[1], G_No[2]);
+void Game() {
     void (*Game_Jmp_Tbl[13])() = { Game00, Game01, Game02, Game03, Game04, Game05, Game06,
                                    Game07, Game08, Game09, Game10, Game11, Game12 };
 
+    flLogOut("Game %d %d %d\n", G_No[0], G_No[1], G_No[2]);
     if (G_No[1] == 2 || G_No[1] == 9) {
         Play_Game = 1;
     } else if (G_No[1] == 8) {
         Play_Game = 2;
     }
-    
+
     Game_Jmp_Tbl[G_No[1]]();
 }
 
@@ -234,7 +230,7 @@ void Game0_2() {
         G_No[1] = 0xC;
         G_No[2] = 0;
         G_No[3] = 0;
-        cpReadyTask(MENU_TASK_NUM, Menu_Task);
+        cpReadyTask(TASK_MENU, Menu_Task);
         break;
     }
 }
@@ -248,12 +244,13 @@ void Check_Back_Demo() {
         return;
     }
 
-    TexRelease(0x259);
+    TexRelease(601);
     title_tex_flag = 0;
     Next_Demo_Loop();
     effect_work_init();
 }
 
+/// Screen transition to character select
 void Game12() {
     void (*Game12_Jmp_Tbl[3])() = { Game12_0, Game12_1, Game12_2 };
 
@@ -280,21 +277,27 @@ void Game12_1() {
 }
 
 void Game12_2() {
-    if (Switch_Screen(1) != 0) {
-        G_No[1] = 1;
-        G_No[2] = 0;
-        G_No[3] = 0;
-        Control_Time = 481;
-        Cover_Timer = 23;
-        effect_work_init();
-        cpExitTask(3);
+    if (!Switch_Screen(1)) {
+        // Transition is still running, can't proceed
+        return;
     }
+
+    // Proceed to character select
+    G_No[1] = 1;
+    G_No[2] = 0;
+    G_No[3] = 0;
+    Control_Time = 481;
+    Cover_Timer = 23;
+    effect_work_init();
+    cpExitTask(TASK_MENU);
 }
 
+/// Character select
 void Game01() {
     BG_Draw_System();
     Basic_Sub();
     Setup_Play_Type();
+    SelectTimer_Run();
 
     switch (G_No[2]) {
     case 0:
@@ -306,7 +309,7 @@ void Game01() {
         S_No[3] = 0;
         SsBgmHalfVolume(0);
 
-        if (Mode_Type == 0) {
+        if (Mode_Type == MODE_ARCADE) {
             BGM_Request(53);
         } else {
             BGM_Request(66);
@@ -315,7 +318,7 @@ void Game01() {
         Break_Into = 0;
         Stop_Combo = 0;
 
-        if (Mode_Type != 2) {
+        if (Mode_Type != MODE_NETWORK) {
             Random_ix32 = Interrupt_Timer;
             Random_ix32_ex = Interrupt_Timer;
         } else {
@@ -349,7 +352,7 @@ void Game01() {
         if (Switch_Screen(0) != 0) {
             Game01_Sub();
             Cover_Timer = 5;
-            appear_type = 1;
+            appear_type = APPEAR_TYPE_ANIMATED;
             set_hitmark_color();
 
             if (Debug_w[0x1D]) {
@@ -421,13 +424,13 @@ void Game2_0() {
     System_all_clear_Level_B();
 
     switch (Mode_Type) {
-    case 0:
+    case MODE_ARCADE:
         Play_Mode = 0;
         Replay_Status[0] = 0;
         Replay_Status[1] = 0;
         break;
 
-    case 1:
+    case MODE_VERSUS:
         for (ix = 0; ix < 2; ix++) {
             if (save_w[1].Partner_Type[ix]) {
                 plw[ix].wu.operator = 0;
@@ -435,19 +438,23 @@ void Game2_0() {
             }
         }
 
-        cpExitTask(1);
+        cpExitTask(TASK_ENTRY);
         /* fallthrough */
 
-    case 2:
+    case MODE_NETWORK:
         Play_Mode = 1;
         All_Clear_Random_ix();
         All_Clear_Timer();
         All_Clear_ETC();
         break;
 
-    case 5:
+    case MODE_REPLAY:
         Play_Mode = 3;
         All_Clear_Timer();
+        break;
+
+    default:
+        // Do nothing
         break;
     }
 
@@ -486,27 +493,25 @@ void Game2_0() {
     clear_hit_queue();
     pcon_rno[0] = pcon_rno[1] = pcon_rno[2] = pcon_rno[3] = 0;
     ca_check_flag = 1;
-
     bg_work_clear();
     win_lose_work_clear();
     player_face_init();
-    setup_pos_remake_key(3);
 }
 
 void Game2_1() {
-    mpp_w.inGame = 1;
+    mpp_w.inGame = true;
 
     if (Game_pause != 0x81) {
         Game_timer += 1;
     }
 
     set_EXE_flag();
-    //ppgPurgeFromVRAM(5);
+    ppgPurgeFromVRAM(5);
     Player_control();
     TATE00();
     Game_Management();
     BG_Draw_System();
-    //ppgPurgeFromVRAM(4);
+    ppgPurgeFromVRAM(4);
     reqPlayerDraw();
     Basic_Sub_Ex();
 
@@ -524,15 +529,11 @@ void Game2_1() {
         Disp_Win_Record();
     }
 
-    //ppgPurgeFromVRAM(0);
+    ppgPurgeFromVRAM(0);
     hit_check_main_process();
 }
 
 void Game2_2() {
-#if defined(TARGET_PS2)
-    void Bg_On_R(s32 s_prm);
-#endif
-
     s16 i;
 
     BG_Draw_System();
@@ -577,7 +578,7 @@ void Game2_2() {
     win_lose_work_clear();
     player_face_init();
     Game01_Sub();
-    appear_type = 1;
+    appear_type = APPEAR_TYPE_ANIMATED;
     TATE00();
 
     for (i = 0; i < 3; i++) {
@@ -628,7 +629,7 @@ void Game2_5() {
         pcon_rno[1] = 0;
         pcon_rno[2] = 0;
         pcon_rno[3] = 0;
-        appear_type = 0;
+        appear_type = APPEAR_TYPE_NON_ANIMATED;
         erase_extra_plef_work();
         compel_bg_init_position();
         win_lose_work_clear();
@@ -704,114 +705,118 @@ void Game03() {
 
     switch (G_No[2]) {
     case 0:
-        if (Winner_Scene() != 0) {
-            switch (Mode_Type) {
-            case 1:
-                G_No[2] += 1;
-                Rep_Game_Infor[10].play_type = 1;
-                Rep_Game_Infor[10].winner = Winner_id;
-                Switch_Screen_Init(0);
+        if (!Winner_Scene()) {
+            break;
+        }
 
-                if (Country == 3) {
-                    if (Screen_PAL == 8) {
-                        Rep_Game_Infor[10].play_type = 3;
-                    } else {
-                        Rep_Game_Infor[10].play_type = 4;
-                    }
-                }
+        switch (Mode_Type) {
+        case MODE_VERSUS:
+        case MODE_NETWORK:
+            G_No[2] += 1;
+            Rep_Game_Infor[10].play_type = 1;
+            Rep_Game_Infor[10].winner = Winner_id;
+            Switch_Screen_Init(0);
 
-                break;
-
-            case 2:
-                G_No[2] = 3;
-                Rep_Game_Infor[10].play_type = 2;
-                Rep_Game_Infor[10].winner = Winner_id;
-                Champion = Winner_id;
-                New_Challenger = Loser_id;
-                Switch_Screen_Init(0);
-                break;
-
-            case 5:
-                G_No[2] = 5;
-                cpReadyTask(MENU_TASK_NUM, Menu_Task);
-                task[3].r_no[0] = 8;
-                break;
-
-            default:
-                G_No[1] = 5;
-                G_No[2] = 0;
-                G_No[3] = 0;
-                E_No[0] = 9;
-                E_No[1] = 0;
-                E_No[2] = 0;
-                E_No[3] = 0;
-
-                if (Battle_Q[WINNER]) {
-                    G_No[1] = 0xB;
-                    G_No[2] = 3;
-                    G_No[3] = 0;
-                }
-
-                Cover_Timer = 24;
-
-                if (Round_Operator[LOSER]) {
-                    E_Number[LOSER][0] = 1;
-                    E_Number[LOSER][1] = 0;
-                    E_Number[LOSER][2] = 0;
-                    E_Number[LOSER][3] = 0;
-                }
-
-                break;
+            if (Country == 3) {
+                Rep_Game_Infor[10].play_type = 4;
             }
+
+            break;
+
+            // case MODE_NETWORK:
+            // G_No[2] = 3;
+            // Rep_Game_Infor[10].play_type = 2;
+            // Rep_Game_Infor[10].winner = Winner_id;
+            // Champion = Winner_id;
+            // New_Challenger = Loser_id;
+            // Switch_Screen_Init(0);
+            // break;
+
+        case MODE_REPLAY:
+            G_No[2] = 5;
+            cpReadyTask(TASK_MENU, Menu_Task);
+            task[TASK_MENU].r_no[0] = 8;
+            break;
+
+        default:
+            G_No[1] = 5;
+            G_No[2] = 0;
+            G_No[3] = 0;
+            E_No[0] = 9;
+            E_No[1] = 0;
+            E_No[2] = 0;
+            E_No[3] = 0;
+
+            if (Battle_Q[WINNER]) {
+                G_No[1] = 11;
+                G_No[2] = 3;
+                G_No[3] = 0;
+            }
+
+            Cover_Timer = 24;
+
+            if (Round_Operator[LOSER]) {
+                E_Number[LOSER][0] = 1;
+                E_Number[LOSER][1] = 0;
+                E_Number[LOSER][2] = 0;
+                E_Number[LOSER][3] = 0;
+            }
+
+            break;
         }
 
         break;
 
     case 1:
-        if (Switch_Screen(1) != 0) {
-            G_No[2] += 1;
-            E_No[0] = 1;
-            E_No[1] = 2;
-            E_No[2] = 2;
-            E_No[3] = 0;
-            Request_E_No = 0;
-            cpReadyTask(MENU_TASK_NUM, Menu_Task);
-            task[3].r_no[1] = 16;
-            Cursor_Y_Pos[0][0] = 0;
-            Cursor_Y_Pos[1][0] = 0;
-            G_Timer = 4;
+        if (!Switch_Screen(1)) {
+            break;
         }
 
+        G_No[2] += 1;
+        E_No[0] = 1;
+        E_No[1] = 2;
+        E_No[2] = 2;
+        E_No[3] = 0;
+        Request_E_No = 0;
+        cpReadyTask(TASK_MENU, Menu_Task);
+        task[TASK_MENU].r_no[1] = 16;
+        Cursor_Y_Pos[0][0] = 0;
+        Cursor_Y_Pos[1][0] = 0;
+        G_Timer = 4;
         break;
 
     case 2:
         Switch_Screen(1);
 
-        if (--G_Timer == 0) {
-            Cover_Timer = 10;
-            G_No[1] = 12;
-            G_No[2] = 0;
-            G_No[3] = 0;
+        if (--G_Timer) {
+            break;
         }
+
+        Cover_Timer = 10;
+        G_No[1] = 12;
+        G_No[2] = 0;
+        G_No[3] = 0;
 
         break;
 
     case 3:
-        if (Switch_Screen(1) != 0) {
-            G_No[2] += 1;
-            task[7].r_no[0] = 1;
-            G_Timer = 4;
+        if (!Switch_Screen(1)) {
+            break;
         }
 
+        G_No[2] += 1;
+        task[7].r_no[0] = 1;
+        G_Timer = 4;
         break;
 
     case 4:
         Switch_Screen(1);
 
-        if (--G_Timer == 0) {
-            // Do nothing
+        if (--G_Timer) {
+            break;
         }
 
+        // Do nothing
         break;
 
     case 5:
@@ -834,8 +839,8 @@ void Game04() {
         if (Loser_Scene() != 0) {
             if (Mode_Type == 5) {
                 G_No[2] = 5;
-                cpReadyTask(MENU_TASK_NUM, Menu_Task);
-                task[3].r_no[0] = 8;
+                cpReadyTask(TASK_MENU, Menu_Task);
+                task[TASK_MENU].r_no[0] = 8;
             } else {
                 G_No[1] = 7;
                 G_No[2] = 0;
@@ -1020,16 +1025,16 @@ void Game06() {
                     G_No[3] = 0;
                     G_Timer = 4;
                     Pause_ID = Player_id;
-                    cpReadyTask(MENU_TASK_NUM, Menu_Task);
+                    cpReadyTask(TASK_MENU, Menu_Task);
                     System_all_clear_Level_B();
-                    Menu_Init(&task[3]);
-                    task[3].r_no[0] = 9;
-                    task[3].r_no[1] = 0;
+                    Menu_Init(&task[TASK_MENU]);
+                    task[TASK_MENU].r_no[0] = 9;
+                    task[TASK_MENU].r_no[1] = 0;
                     Forbid_Reset = 1;
                     make_texcash_work(12);
                     Unsubstantial_BG[0] = 1;
                     Copy_Check_w();
-                    cpExitTask(SAVER_TASK_NUM);
+                    cpExitTask(TASK_SAVER);
                 } else {
                     G_No[2] = 6;
                 }
@@ -1064,7 +1069,7 @@ void Game06() {
             D_No[3] = 0;
             Get_Demo_Index = 0;
             Combo_Demo_Flag = 0;
-            cpReadyTask(ENTRY_TASK_NUM, Entry_Task);
+            cpReadyTask(TASK_ENTRY, Entry_Task);
             Purge_mmtm_area(5);
             Make_texcash_of_list(5);
             System_all_clear_Level_B();
@@ -1213,8 +1218,8 @@ void Game08() {
         grade_final_grade_bonus();
         WGJ_Score = Continue_Coin[WINNER] + Score[WINNER][0];
         Purge_mmtm_area(6);
-        cpExitTask(MENU_TASK_NUM);
-        cpExitTask(PAUSE_TASK_NUM);
+        cpExitTask(TASK_MENU);
+        cpExitTask(TASK_PAUSE);
         break;
 
     case 1:
@@ -1311,7 +1316,7 @@ void Game09() {
                 if (Bonus_Type == 0x15) {
                     makeup_bonus_game_level(COM_id);
                     effect_35_init(0x3C, 5);
-                    effect_J2_init(NULL, 0x78);
+                    effect_J2_init(0x78);
                     effect_35_init(0xB4, 7);
                     effect_58_init(6, 0xB4, 0xA1);
                 } else {
@@ -1387,7 +1392,7 @@ void Game09() {
 s16 Bonus_Sub() {
     s16 x;
 
-    mpp_w.inGame = 1;
+    mpp_w.inGame = true;
     Scene_Cut = Cut_Cut_Cut();
     Bonus_Game_Complete = 0;
 
@@ -1559,7 +1564,7 @@ void Loop_Demo(struct _TASK* /* unused */) {
         D_No[1] = 0;
         D_No[2] = 0;
         D_No[3] = 0;
-        E_No[1] = 0x63;
+        E_No[1] = 99;
         Demo_PL_Index = 0;
         Demo_Stage_Index = 0;
         Select_Demo_Index = 0;
@@ -1618,7 +1623,6 @@ void Loop_Demo(struct _TASK* /* unused */) {
         if (Ranking() != 0) {
             Switch_Screen(1);
             Loop_Demo_Sub();
-            setup_pos_remake_key(3);
             return;
         }
 
@@ -1646,7 +1650,7 @@ void Loop_Demo(struct _TASK* /* unused */) {
             Purge_mmtm_area(6);
             Game_pause = 0;
             G_No[1] = 1;
-            E_No[1] = 0x63;
+            E_No[1] = 99;
             return;
         }
 
@@ -1672,7 +1676,7 @@ void Next_Demo_Loop() {
     D_No[2] = 0;
     D_No[3] = 0;
     E_No[0] = 0;
-    E_No[1] = 0x63;
+    E_No[1] = 99;
     E_No[2] = 0;
     E_No[3] = 0;
     Demo_PL_Index = 0;
@@ -1704,7 +1708,7 @@ void Loop_Demo_Sub() {
 void Next_Title_Sub() {
     s16 ix;
 
-    if (G_No[1] != 0x63) {
+    if (G_No[1] != 99) {
         SsAllNoteOff();
     }
 
@@ -1712,7 +1716,7 @@ void Next_Title_Sub() {
         SsRequest(106);
     }
 
-    TexRelease(0x258);
+    TexRelease(600);
     TexRelease_OP();
     System_all_clear_Level_B();
     Purge_mmtm_area(6);
@@ -1723,12 +1727,12 @@ void Next_Title_Sub() {
         G_No[ix] = 0;
         E_No[ix] = 0;
         D_No[ix] = 0;
-        task->r_no[ix] = 0;
+        task[TASK_INIT].r_no[ix] = 0;
     }
 
     G_No[0] = 2;
     E_No[0] = 1;
-    task->r_no[0] = 1;
+    task[TASK_INIT].r_no[0] = 1;
     Demo_Flag = 1;
     Game_pause = 0;
     judge_flag = 0;
@@ -1741,8 +1745,7 @@ void Next_Title_Sub() {
     Present_Mode = 1;
     Insert_Y = 23;
     Before_Select_Sub();
-    cpReadyTask(ENTRY_TASK_NUM, Entry_Task);
-    setup_pos_remake_key(2);
+    cpReadyTask(TASK_ENTRY, Entry_Task);
 }
 
 void Time_Control() {
@@ -1772,9 +1775,9 @@ s16 Ck_Coin() {
     case 0:
         PL_id = -1;
 
-        if (~p1sw_1 & p1sw_0 & 0x4000) {
+        if (~p1sw_1 & p1sw_0 & SWK_START) {
             PL_id = 0;
-        } else if (~p2sw_1 & p2sw_0 & 0x4000) {
+        } else if (~p2sw_1 & p2sw_0 & SWK_START) {
             PL_id = 1;
         }
 
@@ -1841,7 +1844,7 @@ void Before_Select_Sub() {
     Round_Level = 3;
     Time_in_Time = 60;
 
-    if (Mode_Type != 2) {
+    if (Mode_Type != MODE_NETWORK) {
         xx = system_timer;
         Random_ix16 = xx & 0x3F;
         Random_ix32 = xx & 0x7F;

@@ -59,7 +59,6 @@ void Ending_init() {
     end_no_cut = 0;
     staff_r_no = 0;
     end_staff_flag = 0;
-    setup_pos_remake_key(6);
 }
 
 s8 Ending_main(s16 pl_num) {
@@ -167,7 +166,6 @@ void normal_ending(s16 pl_num) {
 
     case 8:
         if (end_fade_complete()) {
-            setup_pos_remake_key(7);
             end_w.r_no_0++;
             end_no_cut = 0;
             Bg_Close();
@@ -236,10 +234,6 @@ void fadeout_to_staff_roll() {
 }
 
 void common_end_init00(s16 pl_num) {
-#if defined(TARGET_PS2)
-    void Bg_Texture_Load_Ending(s32 type);
-#endif
-
     s16 i;
 
     Family_Init();
@@ -279,11 +273,6 @@ void common_end_init00(s16 pl_num) {
 }
 
 void common_end_init01() {
-#if defined(TARGET_PS2)
-    void Scrn_Move_Set(s8 bgnm, s32 x, s32 y);
-    void effect_F9_init(s32 END_PL_NO);
-#endif
-
     bg_w.scr_stop = 0;
     bg_w.frame_flag = 0;
     bg_w.bg_f_x = 9;
@@ -301,15 +290,11 @@ void common_end_init01() {
     bg_w.bgw[3].position_y = 0;
     end_fam_set(3);
     Scrn_Move_Set(3, bg_w.bgw[3].position_x, bg_w.bgw[3].position_y);
-    effect_E9_init(NULL, 0);
-    effect_F9_init(NULL, end_w.type);
+    effect_E9_init();
+    effect_F9_init(end_w.type);
 }
 
 void end_fam_set(s16 i) {
-#if defined(TARGET_PS2)
-    void Family_Set_W(s32 fmnm, s32 x, s32 y);
-#endif
-
     s16 pos_work_x = bg_w.bgw[i].position_x;
     s16 pos_work_y = bg_w.bgw[i].position_y;
 
@@ -320,10 +305,6 @@ void end_fam_set(s16 i) {
 }
 
 void end_fam_set2() {
-#if defined(TARGET_PS2)
-    void Family_Set_W(s32 fmnm, s32 x, s32 y);
-#endif
-
     s16 i;
     s16 pos_work_x;
     s16 pos_work_y;
@@ -359,10 +340,6 @@ void end_bg_pos_hosei2() {
 }
 
 void end_scn_pos_set2() {
-#if defined(TARGET_PS2)
-    void Scrn_Move_Set(s32 bgnm, s32 x, s32 y);
-#endif
-
     s16 bg_no;
 
     for (bg_no = 0; bg_no < bg_w.scno; bg_no++) {
@@ -385,10 +362,6 @@ void end_reset_etc() {
 }
 
 void end_X_com01() {
-#if defined(TARGET_PS2)
-    void Bg_Off_W(u32 s_prm);
-#endif
-
     switch (bgw_ptr->r_no_1) {
     case 0:
         bgw_ptr->r_no_1++;

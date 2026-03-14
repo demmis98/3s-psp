@@ -27,18 +27,16 @@ typedef struct {
 
 // `col` needs to be `uintptr_t` because it sometimes stores a pointer to `WORK`
 typedef struct {
-    // total size: 0x3C
-    Vec3 v[4];     // offset 0x0, size 0x30
-    uintptr_t col; // offset 0x30, size 0x4
-    u32 type;      // offset 0x34, size 0x4
-    s32 next;      // offset 0x38, size 0x4
+    Vec3 v[4];
+    uintptr_t col;
+    u32 type;
+    s32 next;
 } NJDP2D_PRIM;
 
 typedef struct {
-    // total size: 0x1774
-    s16 ix1st;             // offset 0x0, size 0x2
-    s16 total;             // offset 0x2, size 0x2
-    NJDP2D_PRIM prim[100]; // offset 0x4, size 0x1770
+    s16 ix1st;
+    s16 total;
+    NJDP2D_PRIM prim[100];
 } NJDP2D_W;
 
 NJDP2D_W njdp2d_w;
@@ -111,55 +109,25 @@ void njTranslate(MTX* mtx, f32 x, f32 y, f32 z) {
 void njSetBackColor(u32 c0, u32 c1, u32 c2) {
     c0 = c0 | c1 | c2;
     flSetRenderState(FLRENDER_BACKCOLOR, NTH_BYTE(c0, 3) | NTH_BYTE(c0, 2) | NTH_BYTE(c0, 1) | NTH_BYTE(c0, 0));
-    
 }
 
 void njColorBlendingMode(s32 target, s32 mode) {
-    target = target;
-    mode = mode;
     flSetRenderState(FLRENDER_ALPHABLENDMODE, 0x32);
 }
 
 void njCalcPoint(MTX* mtx, Vec3* ps, Vec3* pd) {
-    f32 v0[4];
-
     if (mtx == NULL) {
         mtx = &cmtx;
     }
 
-#if defined(TARGET_PS2)
-    v0[0] = ps->x;
-    v0[1] = ps->y;
-    v0[2] = ps->z;
-    v0[3] = 1.0f;
-
-    __asm__ __volatile__("lqc2    $vf8, 0(%1) \n"
-                         "lqc2    $vf4, 0(%0) \n"
-                         "lqc2    $vf5, 0x10(%0) \n"
-                         "lqc2    $vf6, 0x20(%0) \n"
-                         "lqc2    $vf7, 0x30(%0) \n"
-                         "vmulax.xyz $ACC, $vf4, $vf8x \n"
-                         "vmadday.xyz $ACC, $vf5, $vf8y \n"
-                         "vmaddaz.xyz $ACC, $vf6, $vf8z \n"
-                         "vmaddw.xyz $vf9, $vf7, $vf8w \n"
-                         "sqc2 $vf9, 0(%1) \n"
-                         :
-                         : "r"(mtx), "r"(v0), "f"(pd)
-                         : "memory");
-
-    pd->x = v0[0];
-    pd->y = v0[1];
-    pd->z = v0[2];
-#else
-    f32 x = ps->x;
-    f32 y = ps->y;
-    f32 z = ps->z;
-    f32 w = 1.0f;
+    const f32 x = ps->x;
+    const f32 y = ps->y;
+    const f32 z = ps->z;
+    const f32 w = 1.0f;
 
     pd->x = x * mtx->a[0][0] + y * mtx->a[1][0] + z * mtx->a[2][0] + w * mtx->a[3][0];
     pd->y = x * mtx->a[0][1] + y * mtx->a[1][1] + z * mtx->a[2][1] + w * mtx->a[3][1];
     pd->z = x * mtx->a[0][2] + y * mtx->a[1][2] + z * mtx->a[2][2] + w * mtx->a[3][2];
-#endif
 }
 
 void njCalcPoints(MTX* mtx, Vec3* ps, Vec3* pd, s32 num) {
@@ -172,10 +140,6 @@ void njCalcPoints(MTX* mtx, Vec3* ps, Vec3* pd, s32 num) {
     for (i = 0; i < num; i++) {
         njCalcPoint(mtx, ps++, pd++);
     }
-}
-
-void njRotateZ(s32 /* unused */, s32 /* unused */) {
-    // Do nothing
 }
 
 void njDrawTexture(Polygon* polygon, s32 /* unused */, s32 tex, s32 /* unused */) {
@@ -213,9 +177,11 @@ void njdp2d_draw() {
     s32 j;
     s32 k;
 
-    for (i = njdp2d_w.ix1st; i != -1 && !DEMMA_DEBUG; i = njdp2d_w.prim[i].next) {
+    for (i = njdp2d_w.ix1st; i != -1; i = njdp2d_w.prim[i].next) {
         switch (njdp2d_w.prim[i].type) {
         case 0:
+            if(DEMMA_DEBUG)
+                break;
             vertices = (ColorVertex*) sceGuGetMemory(6 * sizeof(ColorVertex));
             //Vertex vertices[2];
 
@@ -223,14 +189,14 @@ void njdp2d_draw() {
                 k = -j + 5;
                 vertices[k].x = vertices[j].x = njdp2d_w.prim[i].v[j].x;
                 vertices[k].y = vertices[j].y = njdp2d_w.prim[i].v[j].y;
-                vertices[k].z = vertices[j].z = njdp2d_w.prim[i].v[j].z;
+                vertices[k].z = vertices[j].z = njdp2d_w.prim[i].v[j].z * 0xFFFF;
                 vertices[k].colour = vertices[j].colour = njdp2d_w.prim[i].col;
                 //vertices[j].colour = 0xFFFFFFFF;
                 //drawRect(vertices[j].x, vertices[j].y, 8, 8, 0xFFFFFFFF);
             }
             vertices[5].x = njdp2d_w.prim[i].v[j].x;
             vertices[5].y = njdp2d_w.prim[i].v[j].y;
-            vertices[5].z = njdp2d_w.prim[i].v[j].z;
+            vertices[5].z = njdp2d_w.prim[i].v[j].z * 0xFFFF;
             vertices[5].colour = njdp2d_w.prim[i].col;
 
             sceGuDisable(GU_TEXTURE_2D);
@@ -243,9 +209,7 @@ void njdp2d_draw() {
             break;
         }
     }
-
     njdp2d_init();
-    //ps2SeqsRenderQuadEnd();
 }
 
 // `col` needs to be `uintptr_t` because it sometimes stores a pointer to `WORK`
@@ -255,18 +219,8 @@ void njdp2d_sort(f32* pos, f32 pri, uintptr_t col, s32 flag) {
     s32 prev;
 
     if (ix >= 100) {
-        // Have to write the string as raw bytes here.
-        // Otherwise MWCC removes a single byte for some reason
-        //
-        // Original:
-         flLogOut("The 2D polygon display request has exceeded the buffer\n");
-
         // The 2D polygon display request has exceeded the buffer\n
-        /*
-        flLogOut(
-            "\x82\x51\x82\x63\x83\x7C\x83\x8A\x83\x53\x83\x93\x82\xCC\x95\x5C\x8E\xA6\x97\x76\x8B\x81\x82\xAA\x83\x6F"
-            "\x83\x62\x83\x74\x83\x40\x82\xF0\x83\x49\x81\x5B\x83\x6F\x81\x5B\x82\xB5\x82\xDC\x82\xB5\x82\xBD\xA");
-        */
+        flLogOut("The 2D polygon display request has exceeded the buffer\n");
         return;
     }
 
@@ -332,12 +286,7 @@ void njDrawPolygon2D(PAL_CURSOR* p, s32 /* unused */, f32 pri, u32 attr) {
 }
 
 void njSetPaletteBankNumG(u32 globalIndex, s32 bank) {
-    globalIndex = globalIndex;
     ppgSetupCurrentPaletteNumber(0, bank);
-}
-
-void njSetPaletteMode(u32 mode) {
-    mode = mode;
 }
 
 void njSetPaletteData(s32 offset, s32 count, void* data) {

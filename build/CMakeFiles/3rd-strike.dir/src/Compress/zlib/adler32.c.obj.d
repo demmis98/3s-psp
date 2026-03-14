@@ -1,35 +1,4 @@
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/adler32.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/src/Compress/zlib/adler32.c \
- /home/demma/.local/bin/pspdev/psp/include/zlib.h \
- /home/demma/.local/bin/pspdev/psp/include/zconf.h \
- /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stddef.h \
- /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/limits.h \
- /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/syslimits.h \
- /home/demma/.local/bin/pspdev/psp/include/limits.h \
- /home/demma/.local/bin/pspdev/psp/include/newlib.h \
- /home/demma/.local/bin/pspdev/psp/include/_newlib_version.h \
- /home/demma/.local/bin/pspdev/psp/include/sys/cdefs.h \
- /home/demma/.local/bin/pspdev/psp/include/machine/_default_types.h \
- /home/demma/.local/bin/pspdev/psp/include/sys/features.h \
- /home/demma/.local/bin/pspdev/psp/include/sys/syslimits.h \
- /home/demma/.local/bin/pspdev/psp/include/sys/types.h \
- /home/demma/.local/bin/pspdev/psp/include/_ansi.h \
- /home/demma/.local/bin/pspdev/psp/include/sys/config.h \
- /home/demma/.local/bin/pspdev/psp/include/machine/ieeefp.h \
- /home/demma/.local/bin/pspdev/psp/include/machine/_types.h \
- /home/demma/.local/bin/pspdev/psp/include/sys/_types.h \
- /home/demma/.local/bin/pspdev/psp/include/sys/_stdint.h \
- /home/demma/.local/bin/pspdev/psp/include/machine/endian.h \
- /home/demma/.local/bin/pspdev/psp/include/machine/_endian.h \
- /home/demma/.local/bin/pspdev/psp/include/sys/select.h \
- /home/demma/.local/bin/pspdev/psp/include/sys/_sigset.h \
- /home/demma/.local/bin/pspdev/psp/include/sys/_timeval.h \
- /home/demma/.local/bin/pspdev/psp/include/sys/timespec.h \
- /home/demma/.local/bin/pspdev/psp/include/sys/_timespec.h \
- /home/demma/.local/bin/pspdev/psp/include/sys/_pthreadtypes.h \
- /home/demma/.local/bin/pspdev/psp/include/bits/posix_opt.h \
- /home/demma/.local/bin/pspdev/psp/include/sys/sched.h \
- /home/demma/.local/bin/pspdev/psp/include/machine/types.h \
- /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdarg.h \
- /home/demma/.local/bin/pspdev/psp/include/unistd.h \
- /home/demma/.local/bin/pspdev/psp/include/sys/unistd.h
+ /home/demma/Documents/code/psp/3rd-strike/include/Compress/zlib/zlib.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Compress/zlib/zconf.h

@@ -28,7 +28,7 @@ void effL1_suuchi_bunkai_sub(WORK_Other_CONN* ewk, u32 tsc);
 
 const u32 bunkai_table_l1[8] = { 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000 };
 
-void (*const effL1_item_init[20])(WORK_Other_CONN *) = {
+void (*const effL1_item_init[20])() = {
     effL1_w_win_init,    effL1_w_grade_init,  effL1_w_score_init,   effL1_w_graph_init,   effL1_w_graph_init,
     effL1_w_graph_init,  effL1_w_graph_init,  effL1_f_stage_p_init, effL1_f_stage_r_init, effL1_f_grade_init,
     effL1_f_mk_spp_init, effL1_f_mk_all_init, effL1_f_kz_cont_init, effL1_f_kz_spp_init,  effL1_f_score_init,
@@ -133,8 +133,7 @@ const s16 gj_loser_face[20] = { 0x6EC3, 0x6EC4, 0x6EC5, 0x6EC6, 0x6EC7, 0x6EC8, 
 const CONN gj_bar2[6] = { { -123, 164, 0, 0x6F50 }, { -113, 164, 0, 0x6F50 }, { -103, 164, 0, 0x6F50 },
                           { -93, 164, 0, 0x6F50 },  { -83, 164, 0, 0x6F50 },  { -73, 164, 0, 0x6F6F } };
 
-void effect_L1_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other_CONN* ewk = (WORK_Other_CONN*) wkp;
+void effect_L1_move(WORK_Other_CONN* ewk) {
     s16 i;
 
     switch (ewk->wu.routine_no[0]) {

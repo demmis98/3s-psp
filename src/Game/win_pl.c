@@ -49,7 +49,6 @@ void bonus_game_win_pause(PLW* wk);
 void meta_win_pause(PLW* wk);
 
 s16 win_rno[2];
-s16 a_rno;
 s16 win_free[2];
 s16 poison_flag[2];
 
@@ -85,10 +84,6 @@ void Win_00000(PLW* wk) {
 const s16 win_10000_tbl[2][8] = { { 32, 33, 34, 32, 36, 37, 38, 33 }, { 35, 39, 34, 35, 36, 37, 38, 39 } };
 
 void Win_01000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     s16 work;
 
     bg_app_stop = 1;
@@ -315,11 +310,6 @@ void jijii_full(PLW* wk) {
 const s16 win_2000_tbl[18] = { 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1 };
 
 void Win_02000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-#endif
-
     s16 work;
 
     bg_app_stop = 1;
@@ -361,11 +351,6 @@ const s16 Win_3000_tbl[16] = { 42, 34, 33, 42, 32, 42, 32, 35, 42, 34, 33, 42, 3
 const s8 Win_3001_tbl[16] = { 36, 40, 41, 40, 41, 38, 40, 39, 36, 40, 41, 39, 41, 37, 39, 40 };
 
 void Win_03000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-#endif
-
     s16 work;
 
     bg_app_stop = 1;
@@ -417,12 +402,6 @@ void Win_03000(PLW* wk) {
 }
 
 void Win_04000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-    void set_char_move_init2(WORK * wk, s32 koc, s32 index, s32 ip, s32 scf);
-#endif
-
     s16 work;
     s16 work2;
 
@@ -473,11 +452,6 @@ void Win_04000(PLW* wk) {
 }
 
 void Normal_normal_Winner(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-#endif
-
     s16 work;
 
     bg_app_stop = 1;
@@ -501,11 +475,6 @@ void Normal_normal_Winner(PLW* wk) {
 }
 
 void Judge_normal_winner(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-#endif
-
     s16 work;
 
     bg_app_stop = 1;
@@ -530,11 +499,6 @@ void Judge_normal_winner(PLW* wk) {
 }
 
 void Win_05000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-#endif
-
     s16 work;
 
     bg_app_stop = 1;
@@ -598,11 +562,6 @@ void Win_05000(PLW* wk) {
 }
 
 void Win_06000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-#endif
-
     s16 work;
 
     bg_app_stop = 1;
@@ -634,13 +593,6 @@ void Win_06000(PLW* wk) {
 }
 
 void Win_07000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-    s32 effect_82_init(WORK * wk);
-    s32 effect_83_init(WORK * wk);
-#endif
-
     s16 work;
 
     bg_app_stop = 1;
@@ -661,7 +613,7 @@ void Win_07000(PLW* wk) {
                     break;
                 }
 
-                effect_82_init(&wk->wu, 0);
+                effect_82_init(&wk->wu);
                 win_rno[0] = 1;
                 set_char_move_init(&wk->wu, 9, 60);
                 wk->wu.cmwk[1] = 0;
@@ -674,7 +626,7 @@ void Win_07000(PLW* wk) {
                 break;
             }
 
-            effect_83_init(&wk->wu, 0);
+            effect_83_init(&wk->wu);
             win_rno[0] = 2;
             set_char_move_init(&wk->wu, 9, 60);
             wk->wu.cmwk[1] = 0;
@@ -720,11 +672,6 @@ void Win_07000(PLW* wk) {
 }
 
 void Win_08000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-#endif
-
     s16 work;
 
     bg_app_stop = 1;
@@ -758,11 +705,6 @@ void Win_08000(PLW* wk) {
 }
 
 void Win_09000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-#endif
-
     s16 work;
 
     bg_app_stop = 1;
@@ -794,15 +736,15 @@ void Win_09000(PLW* wk) {
             break;
 
         case 3:
-            effect_30_init(&wk->wu, 0);
+            effect_30_init(&wk->wu);
             break;
 
         case 4:
-            effect_31_init(&wk->wu, 0);
+            effect_31_init(&wk->wu);
             break;
 
         case 5:
-            effect_32_init(&wk->wu, 0);
+            effect_32_init(&wk->wu);
             break;
 
         case 7:
@@ -846,11 +788,6 @@ void Win_09000(PLW* wk) {
 }
 
 void Win_10000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-#endif
-
     s16 work;
     s16 work2;
     s16 id_w;
@@ -1152,11 +1089,6 @@ void q_leave_after_action(PLW* wk) {
 }
 
 void Win_11000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-#endif
-
     s16 work;
 
     bg_app_stop = 1;
@@ -1172,7 +1104,7 @@ void Win_11000(PLW* wk) {
             if (Perfect_Flag) {
                 win_rno[0] = 1;
                 set_char_move_init(&wk->wu, 9, 38);
-                effect_L3_init((WORK*) wk, 0);
+                effect_L3_init(wk);
             } else {
                 set_char_move_init(&wk->wu, 9, work + 36);
                 switch (work) {
@@ -1184,7 +1116,7 @@ void Win_11000(PLW* wk) {
                     break;
 
                 default:
-                    effect_L3_init((WORK*) wk, 0);
+                    effect_L3_init(wk);
                     win_rno[0] = 1;
                     break;
                 }
@@ -1269,10 +1201,6 @@ void twelve_win_away(PLW* wk) {
 }
 
 void twelve_win_backjump(PLW* wk) {
-#if defined(TARGET_PS2)
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-#endif
-
     switch (win_rno[1]) {
     case 0:
         char_move(&wk->wu);
@@ -1337,11 +1265,6 @@ void twelve_win_backjump(PLW* wk) {
 }
 
 void Win_12000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-#endif
-
     s16 work;
 
     bg_app_stop = 1;
@@ -1371,11 +1294,6 @@ void Win_12000(PLW* wk) {
 }
 
 void Win_13000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-#endif
-
     s16 work;
 
     bg_app_stop = 1;
@@ -1417,11 +1335,6 @@ void Win_13000(PLW* wk) {
 }
 
 void Win_14000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-#endif
-
     s16 work;
 
     bg_app_stop = 1;
@@ -1563,11 +1476,6 @@ void urien_dash(PLW* wk) {
 const s16 Win_15000_tbl[8] = { 38, 37, 40, 39, 38, 40, 39, 36 };
 
 void Win_15000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-#endif
-
     s16 work;
 
     bg_app_stop = 1;
@@ -1605,10 +1513,6 @@ s16 win_select(PLW* /* unused */, s16 num) {
 }
 
 void bonus_game_win_pause(PLW* wk) {
-#if defined(TARGET_PS2)
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s32 ix);
-#endif
-
     bg_app_stop = 1;
 
     switch (wk->wu.routine_no[3]) {
@@ -1684,11 +1588,6 @@ void bonus_game_win_pause(PLW* wk) {
 const s16 meta_win_tbl[20] = { 33, 32, 32, 32, 32, 32, 33, 32, 32, 37, 32, 32, 32, 32, 34, 32, 32, 32, 32, 32 };
 
 void meta_win_pause(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    s32 set_field_hosei_flag(PLW * pl, s32 pos, s16 ix);
-#endif
-
     bg_app_stop = 1;
 
     switch (wk->wu.routine_no[3]) {

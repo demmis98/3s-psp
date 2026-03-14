@@ -6,7 +6,7 @@
 
 extern s16 rf_b2_flag;
 
-void effect_B2_move(WORK* wkp, s32 /*unused*/);
-s32 effect_B2_init(WORK* /*unused*/, s32 /*unused*/);
+void effect_B2_move(WORK_Other* ewk);
+s32 effect_B2_init();
 
 #endif

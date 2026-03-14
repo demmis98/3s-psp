@@ -190,7 +190,7 @@ void end_1600_3000() {
         bgw_ptr->r_no_1++;
         bgw_ptr->xy[0].disp.pos = end_16_pos[end_w.r_no_2][0];
         bgw_ptr->xy[1].disp.pos = end_16_pos[end_w.r_no_2][1];
-        effect_E6_init(NULL, 0x56);
+        effect_E6_init(0x56);
         Rewrite_End_Message(3);
         bgw_ptr->l_limit2 = 2;
         bgw_ptr->l_limit = 0;
@@ -209,7 +209,7 @@ void end_1600_3100() {
         bgw_ptr->r_no_1++;
         bgw_ptr->xy[0].disp.pos = end_16_pos[end_w.r_no_2][0];
         bgw_ptr->xy[1].disp.pos = end_16_pos[end_w.r_no_2][1];
-        effect_E6_init(NULL, 0x57);
+        effect_E6_init(0x57);
         Rewrite_End_Message(4);
         c_kakikae = 2;
         break;
@@ -227,7 +227,7 @@ void end_1600_5000() {
         c_kakikae = 0;
         bgw_ptr->xy[0].disp.pos = end_16_pos[end_w.r_no_2][0];
         bgw_ptr->xy[1].disp.pos = end_16_pos[end_w.r_no_2][1];
-        effect_E6_init(NULL, 0x58);
+        effect_E6_init(0x58);
         Rewrite_End_Message(5);
         bgw_ptr->free = 2;
         bgw_ptr->rewrite_flag = 0;

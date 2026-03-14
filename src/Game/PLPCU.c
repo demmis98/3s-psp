@@ -29,10 +29,6 @@ void (*const setup_cu_dm_init_data[20])(PLW* wk);
 void (*const plpcu_lv_00[4])(PLW*, PLW*);
 
 void Player_caught(PLW* wk) {
-#if defined(TARGET_PS2)
-    void clear_chainex_check(s32 ix);
-#endif
-
     PLW* emwk = (PLW*)wk->wu.dmg_adrs;
 
     setup_caught_process_flags(wk);
@@ -54,8 +50,8 @@ void setup_caught_process_flags(PLW* wk) {
     wk->running_f = 0;
     wk->guard_flag = 3;
     wk->guard_chuu = 0;
-    wk->tsukami_f = 0;
-    wk->tsukamare_f = 1;
+    wk->tsukami_f = false;
+    wk->tsukamare_f = true;
     wk->scr_pos_set_flag = 0;
     wk->dm_hos_flag = 0;
     wk->zuru_timer = 0;
@@ -78,11 +74,6 @@ void setup_caught_process_flags(PLW* wk) {
 void Caught_00000(PLW* /* unused */, PLW* /* unused */) {}
 
 void Caught_01000(PLW* wk, PLW* emwk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    void char_move_index(WORK * wk, s32 ix);
-#endif
-
     switch (wk->wu.routine_no[3]) {
     case 0:
         wk->wu.routine_no[3]++;
@@ -128,11 +119,6 @@ void Caught_01000(PLW* wk, PLW* emwk) {
 }
 
 void Caught_02000(PLW* wk, PLW* emwk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    void char_move_index(WORK * wk, s32 ix);
-#endif
-
     switch (wk->wu.routine_no[3]) {
     case 0:
         wk->wu.routine_no[3]++;
@@ -188,7 +174,7 @@ void caught_cg_type_check(PLW* wk, PLW* emwk) {
         break;
 
     case 3:
-        effect_A7_init((WORK*) wk, 0);
+        effect_A7_init(wk);
         wk->wu.cg_type = 0;
         break;
 
@@ -231,7 +217,7 @@ void caught_cg_type_check(PLW* wk, PLW* emwk) {
 }
 
 s32 check_tsukamare_keizoku_check(PLW* wk, PLW* emwk) {
-    if (emwk->tsukami_f == 0) {
+    if (!emwk->tsukami_f) {
         wk->wu.routine_no[1] = 1;
         wk->wu.routine_no[2] = 88;
         wk->wu.routine_no[3] = 0;
@@ -250,21 +236,16 @@ s32 check_tsukamare_keizoku_check(PLW* wk, PLW* emwk) {
 }
 
 void scdmd_12000(PLW* wk) {
-#if defined(TARGET_PS2)
-    s32 setup_accessories(PLW*, u32 data);
-    s32 effect_D9_init(PLW * wk, u32 data);
-#endif
-
     wk->dm_step_tbl = _dm_step_data[_select_hit_dsd[wk->wu.dm_impact][get_weight_point(&wk->wu)]];
 
     if (!wk->wu.dm_attribute) {
         return;
     }
 
-    setup_accessories((WORK*) wk, wk->wu.pat_status);
+    setup_accessories(wk, wk->wu.pat_status);
 
     if (wk->wu.dm_attribute != 2) {
-        effect_D9_init((WORK*) wk, (u8)wk->wu.dm_attribute);
+        effect_D9_init(wk, (u8)wk->wu.dm_attribute);
     }
 }
 
@@ -284,11 +265,6 @@ void scdmd_17000(PLW* wk) {
 }
 
 void scdmd_18000(PLW* wk) {
-#if defined(TARGET_PS2)
-    s32 setup_accessories(PLW*, u32 data);
-    s32 effect_D9_init(PLW * wk, u32 data);
-#endif
-
     setup_butt_own_data(&wk->wu);
     cal_initial_speed_y(&wk->wu, _buttobi_time_table[wk->wu.char_index][wk->wu.dm_attlv], wk->wu.xyz[1].disp.pos);
 
@@ -296,10 +272,10 @@ void scdmd_18000(PLW* wk) {
         return;
     }
 
-    setup_accessories((WORK*) wk, wk->wu.pat_status);
+    setup_accessories(wk, wk->wu.pat_status);
 
     if (wk->wu.dm_attribute != 2) {
-        effect_D9_init((WORK*) wk, (u8)wk->wu.dm_attribute);
+        effect_D9_init(wk, (u8)wk->wu.dm_attribute);
     }
 }
 

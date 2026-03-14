@@ -44,8 +44,8 @@ void end_13000(s16 pl_num) {
             end_w.r_no_2++;
 
             if (end_w.r_no_2 == 1) {
-                effect_E6_init(NULL, 0x32);
-                effect_E6_init(NULL, 0x33);
+                effect_E6_init(0x32);
+                effect_E6_init(0x33);
             }
 
             if (end_w.r_no_2 >= 8) {
@@ -83,10 +83,6 @@ void end_d00_move() {
 }
 
 void end_d00_1000() {
-#if defined(TARGET_PS2)
-    void Bg_On_W(u32 s_prm);
-#endif
-
     switch (bgw_ptr->r_no_1) {
     case 0:
         bgw_ptr->r_no_1++;
@@ -101,7 +97,7 @@ void end_d00_1000() {
             break;
 
         case 1:
-            effect_E6_init(NULL, 0x34);
+            effect_E6_init(0x34);
             break;
 
         case 5:
@@ -151,7 +147,7 @@ void end_d00_3000() {
         overwrite_panel(0xFFFFFFFF, 0x17);
         bgw_ptr->xy[0].disp.pos = end_d_pos[end_w.r_no_2][0];
         bgw_ptr->xy[1].disp.pos = end_d_pos[end_w.r_no_2][1];
-        effect_E6_init(NULL, 0x35);
+        effect_E6_init(0x35);
         /* fallthrough */
 
     case 1:
@@ -176,10 +172,6 @@ void end_d00_3000() {
 }
 
 void end_d00_4000() {
-#if defined(TARGET_PS2)
-    void Bg_On_W(u32 s_prm);
-#endif
-
     switch (bgw_ptr->r_no_1) {
     case 0:
         bgw_ptr->r_no_1++;
@@ -188,8 +180,8 @@ void end_d00_4000() {
         bgw_ptr->xy[1].disp.pos = end_d_pos[end_w.r_no_2][1];
         bgw_ptr->abs_x = bgw_ptr->xy[0].disp.pos;
         Rewrite_End_Message(2);
-        effect_E6_init(NULL, 0x36);
-        effect_E6_init(NULL, 0x37);
+        effect_E6_init(0x36);
+        effect_E6_init(0x37);
         break;
 
     case 1:
@@ -210,10 +202,6 @@ void end_d00_4000() {
 }
 
 void end_d00_6000() {
-#if defined(TARGET_PS2)
-    void Bg_On_W(u32 s_prm);
-#endif
-
     switch (bgw_ptr->r_no_1) {
     case 0:
         bgw_ptr->r_no_1++;
@@ -222,7 +210,7 @@ void end_d00_6000() {
         bgw_ptr->xy[1].disp.pos = end_d_pos[end_w.r_no_2][1];
         bgw_ptr->abs_x = 512;
         bgw_ptr->abs_y = 0;
-        effect_E6_init(NULL, 0x4A);
+        effect_E6_init(0x4A);
         bgw_ptr->free = 0x3C;
         Rewrite_End_Message(0);
         break;
@@ -233,7 +221,7 @@ void end_d00_6000() {
         if (bgw_ptr->free <= 0) {
             bgw_ptr->r_no_1++;
             end_etc_flag = 0;
-            effect_E6_init(NULL, 0x4B);
+            effect_E6_init(0x4B);
             bgw_ptr->free = 0;
         }
 

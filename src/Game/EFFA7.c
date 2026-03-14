@@ -12,8 +12,7 @@
 #include "Game/bg.h"
 #include "Game/workuser.h"
 
-void effect_A7_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_A7_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void pp_screen_quake(s32 ix);
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
@@ -30,7 +29,7 @@ void effect_A7_move(WORK* wkp, s32 /*unused*/) {
 
         if (tad->hits == 0) {
             if (tad->se) {
-                sound_effect_request[tad->se]((WORK*) ewk, tad->se);
+                sound_effect_request[tad->se](ewk, tad->se);
                 Last_Called_SE = tad->se;
             } else {
                 Last_Called_SE = 0;
@@ -66,7 +65,7 @@ void effect_A7_move(WORK* wkp, s32 /*unused*/) {
         }
 
         if (tad->se) {
-            sound_effect_request[tad->se]((WORK*) ewk, tad->se);
+            sound_effect_request[tad->se](ewk, tad->se);
             Last_Called_SE = tad->se;
         } else {
             Last_Called_SE = 0;
@@ -168,8 +167,7 @@ void effect_A7_move(WORK* wkp, s32 /*unused*/) {
     }
 }
 
-s32 effect_A7_init(WORK* wkp, s32 /*unused*/) {
-    PLW* wk = (PLW*) wkp;
+s32 effect_A7_init(PLW* wk) {
     WORK_Other* ewk;
     PLW* twk;
     s16 ix;

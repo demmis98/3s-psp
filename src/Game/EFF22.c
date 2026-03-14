@@ -65,8 +65,7 @@ const s32 snow_sp[4][12][4] = { { { 0x200, 0, -0x2000, 0 },
                                   { -0x80, 0, -0x1800, 0 },
                                   { 0, 0, -0x2000, 0 } } };
 
-void effect_22_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_22_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -129,7 +128,7 @@ void effect_22_move(WORK* wkp, s32 /*unused*/) {
 s32 effect_22_init(s32 /* unused */) {
     s16 get_my_trans_mode(s32 curr);
 #else
-s32 effect_22_init(WORK* /*unused*/, s32 /*unused*/) {
+s32 effect_22_init() {
 #endif
 
     s16 ix;

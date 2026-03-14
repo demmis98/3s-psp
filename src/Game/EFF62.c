@@ -7,8 +7,7 @@
 
 const s16 EFF62_Correct_Data[1][2] = { { 0, 0 } };
 
-void effect_62_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_62_move(WORK_Other* ewk) {
     WORK_Other* mwk = (WORK_Other*)ewk->my_master;
 
     if (mwk->wu.be_flag == 0) {
@@ -22,9 +21,7 @@ void effect_62_move(WORK* wkp, s32 /*unused*/) {
     sort_push_requestA(&ewk->wu);
 }
 
-s32 effect_62_init(WORK* wkp, s32 d) {
-    WORK_Other* mwk = (WORK_Other*) wkp;
-    s16 ID = (s16) d;
+s32 effect_62_init(WORK_Other* mwk, s16 ID) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

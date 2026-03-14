@@ -12,8 +12,7 @@
 
 void fall_data_set(WORK_Other* ewk);
 
-void effect_D1_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_D1_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -135,8 +134,7 @@ void fall_data_set(WORK_Other* ewk) {
     cal_all_speed_data(&ewk->wu, ewk->wu.old_rno[0], ewk->wu.old_rno[1], ewk->wu.old_rno[2], 2, 1);
 }
 
-s32 effect_D1_init(WORK* wkp, s32 /* unused */) {
-    WORK_Other* oya = (WORK_Other*) wkp;
+s32 effect_D1_init(WORK_Other* oya, s32 /* unused */) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

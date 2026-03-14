@@ -145,8 +145,7 @@ s16 keep_mes_no;
 
 s32 Rewrite();
 
-void effect_F9_move(WORK* wkp, s32/*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_F9_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void get_message_conn_data(WORK_Other_CONN * ewk, s32 kind, s32 pl, s32 msg);
 #endif
@@ -236,8 +235,7 @@ void effect_F9_move(WORK* wkp, s32/*unused*/) {
     }
 }
 
-void effect_F9_init(WORK* /*unused*/, s32 d) {
-    s16 END_PL_NO = (s16) d;
+void effect_F9_init(s16 END_PL_NO) {
     mes_already = 0;
     efff9_suicide = 0;
     efff9_txt_point = 0;

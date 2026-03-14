@@ -4,15 +4,15 @@
 #include "structs.h"
 #include "types.h"
 
-extern void (*const Passive_jmp_tbl[21])(PLW* wk);
-extern s32 (*const Passive_AS_tbl[20])(PLW* wk);
-extern s32 (*const Passive_A_tbl[20])(PLW* wk);
-extern s32 (*const Passive_BS_tbl[20])(PLW* wk);
-extern s32 (*const Passive_B_tbl[20])(PLW* wk);
-extern s32 (*const Passive_CS_tbl[20])(PLW* wk);
-extern s32 (*const Passive_C_tbl[20])(PLW* wk);
-extern s32 (*const Passive_DS_tbl[20])(PLW* wk);
-extern s32 (*const Passive_D_tbl[20])(PLW* wk);
+extern void (*const Passive_jmp_tbl[21])();
+extern s32 (*const Passive_AS_tbl[20])();
+extern s32 (*const Passive_A_tbl[20])();
+extern s32 (*const Passive_BS_tbl[20])();
+extern s32 (*const Passive_B_tbl[20])();
+extern s32 (*const Passive_CS_tbl[20])();
+extern s32 (*const Passive_C_tbl[20])();
+extern s32 (*const Passive_DS_tbl[20])();
+extern s32 (*const Passive_D_tbl[20])();
 
 extern s8 PASSIVE_X;
 

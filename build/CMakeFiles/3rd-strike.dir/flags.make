@@ -6,5 +6,5 @@ C_DEFINES = -DPSP -D_PSP_FW_VERSION=600 -D__PSP__
 
 C_INCLUDES = -I/home/demma/Documents/code/psp/3rd-strike/src -I/home/demma/Documents/code/psp/3rd-strike/3rd-strike -I/home/demma/Documents/code/psp/3rd-strike/include -I/home/demma/Documents/code/psp/3rd-strike/include/Compress/zlib
 
-C_FLAGS = -I/home/demma/.local/bin/pspdev/psp/include -I/home/demma/.local/bin/pspdev/psp/sdk/include -DPSP
+C_FLAGS = -I/home/demma/.local/bin/pspdev/psp/include -I/home/demma/.local/bin/pspdev/psp/sdk/include -DPSP -Wall -fno-strict-aliasing -Wno-unused-but-set-variable -Wno-pointer-sign -Wno-parentheses -Wno-incompatible-pointer-types -Wno-discarded-qualifiers -Wno-format-overflow -Wno-comment -Wno-maybe-uninitialized -Wno-array-bounds -Wno-aggressive-loop-optimizations -Wno-stringop-overflow -Wno-restrict -Wno-stringop-truncation -Wno-unused-variable -Wno-unused-const-variable -Wno-strict-prototypes -Wno-old-style-definition -Wno-implicit-function-declaration -Wno-int-conversion -std=gnu11
 

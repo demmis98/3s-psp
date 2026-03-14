@@ -37,6 +37,7 @@ CMakeFiles/3rd-strike.dir/src/psp/fl.c.obj: \
  /home/demma/.local/bin/pspdev/psp/include/sys/sched.h \
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdbool.h \
  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
  /home/demma/.local/bin/pspdev/psp/include/memory.h \
  /home/demma/.local/bin/pspdev/psp/include/string.h \
@@ -99,6 +100,7 @@ CMakeFiles/3rd-strike.dir/src/psp/fl.c.obj: \
  /home/demma/.local/bin/pspdev/psp/include/assert.h \
  /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/fbms.h \
  /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/mlPAD.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/pad.h \
  /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/prilay.h \
  /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h \
  /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/memfound.h \

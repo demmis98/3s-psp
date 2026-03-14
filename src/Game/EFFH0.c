@@ -10,8 +10,7 @@ const CONN bbbs_nando_small[2][2] = { { { 176, -16, 0, 32490 }, { 132, -16, 0, 3
 
 void effH0_trans(WORK* ewk);
 
-void effect_H0_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other_CONN* ewk = (WORK_Other_CONN*) wkp;
+void effect_H0_move(WORK_Other_CONN* ewk) {
     switch (ewk->wu.routine_no[0]) {
     case 0:
         switch (ewk->wu.routine_no[1]) {
@@ -63,7 +62,7 @@ void effH0_trans(WORK* ewk) {
     sort_push_request3(ewk);
 }
 
-s32 effect_H0_init(WORK* wk, s32 /*unused*/) {
+s32 effect_H0_init(WORK* wk) {
     WORK_Other_CONN* ewk;
     s16 ix;
 

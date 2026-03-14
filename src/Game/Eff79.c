@@ -30,8 +30,7 @@ u8 Extra_Counter[2];
 
 const s32 Pos_Z_Data_79[3] = { 0, 5, 10 };
 
-void effect_79_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_79_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
     void set_char_move_init2(WORK * wk, s32 koc, s32 index, s32 ip, s32 scf);

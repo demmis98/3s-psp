@@ -17,8 +17,7 @@
 #include "Game/texcash.h"
 #include "Game/workuser.h"
 
-void effect_M5_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_M5_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -126,8 +125,7 @@ void effect_M5_move(WORK* wkp, s32 /*unused*/) {
     }
 }
 
-s32 effect_M5_init(WORK* wkp, s32 /*unused*/) {
-    PLW* oya = (PLW*) wkp;
+s32 effect_M5_init(PLW* oya) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif
@@ -177,6 +175,6 @@ s32 effect_M5_init(WORK* wkp, s32 /*unused*/) {
     suzi_offset_set(ewk);
     ewk->wu.my_mts = 14;
     ewk->wu.my_trans_mode = get_my_trans_mode(ewk->wu.my_mts);
-    effect_M6_init((WORK*) ewk, 0);
+    effect_M6_init(ewk);
     return 0;
 }

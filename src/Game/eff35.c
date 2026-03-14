@@ -31,8 +31,7 @@ const s16 eff35_03_b[4] = { 180, 120, 240, 60 };
 
 const s16 eff35_03_s[4] = { 190, 130, 220, 60 };
 
-void effect_35_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_35_move(WORK_Other* ewk) {
     void (*eff35_jp[7])(WORK_Other*) = { eff35_0000, eff35_0001, eff35_0002, eff35_0003,
                                          eff35_0004, eff35_0005, eff35_0006 };
 

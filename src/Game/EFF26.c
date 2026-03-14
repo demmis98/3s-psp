@@ -18,8 +18,7 @@ const s16 eff26_num[1] = { 1 };
 
 const s16 eff26_data_0000[1] = { 0 };
 
-void effect_26_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_26_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -237,7 +236,7 @@ void eff26_03(WORK_Other* ewk) {
     case 4:
         if (eff_hit_check(ewk, ewk->wu.old_rno[4])) {
             if (ewk->wu.old_rno[2] & 1 && ewk->wu.old_rno[5] > 0) {
-                effect_27_init((WORK*) ewk, ewk->wu.old_rno[5]);
+                effect_27_init(ewk, ewk->wu.old_rno[5]);
             }
 
             ewk->wu.routine_no[0] = 2;
@@ -301,7 +300,7 @@ void eff26_04(WORK_Other* ewk) {
             ewk->wu.routine_no[1]++;
 
             if (ewk->wu.old_rno[2] & 1 && ewk->wu.old_rno[5] > 0) {
-                effect_27_init((WORK*) ewk, ewk->wu.old_rno[5]);
+                effect_27_init(ewk, ewk->wu.old_rno[5]);
             }
 
             set_char_move_init(&ewk->wu, 0, ewk->wu.old_rno[3]);
@@ -387,7 +386,7 @@ void eff26_05(WORK_Other* ewk) {
         ewk->wu.routine_no[1]++;
 
         if (ewk->wu.old_rno[2] & 1 && ewk->wu.old_rno[5] > 0) {
-            effect_27_init((WORK*) ewk, ewk->wu.old_rno[5]);
+            effect_27_init(ewk, ewk->wu.old_rno[5]);
         }
 
         set_char_move_init(&ewk->wu, 0, ewk->wu.old_rno[3]);
@@ -417,9 +416,7 @@ void (*eff26_jp_tbl[6])(WORK_Other*) = { eff26_00, eff26_01, eff26_02, eff26_03,
 
 const s16* scr_obj_data26[1] = { eff26_data_0000 };
 
-s32 effect_26_init(WORK* wkp, s32 d) {
-    WORK_Other* oya = (WORK_Other*) wkp;
-    s16 type26 = (s16) d;
+s32 effect_26_init(WORK_Other* oya, s16 type26) {
     WORK_Other* ewk;
     s16 ix;
     s16 lp_cnt = eff26_num[type26];

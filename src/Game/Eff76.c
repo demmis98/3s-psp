@@ -17,7 +17,7 @@
 #include "Game/texcash.h"
 #include "Game/workuser.h"
 
-void effect_76_move(WORK* wkp, s32 /*unused*/);
+void effect_76_move(WORK_Other* ewk);
 void EFF76_WAIT(WORK_Other* ewk);
 void EFF76_WAIT_BREAK_INTO(WORK_Other* ewk);
 void EFF76_SLIDE_IN(WORK_Other* ewk);
@@ -30,11 +30,10 @@ void Setup_Char_76(WORK_Other* ewk);
 s16 Check_Range_Out(WORK_Other* ewk);
 void Setup_Color_76(WORK_Other* ewk);
 
-void (*const EFF76_Jmp_Tbl[8])(WORK_Other*) = { EFF76_WAIT, EFF76_SLIDE_IN, EFF76_SLIDE_OUT,       EFF76_SUDDENLY,
+void (*const EFF76_Jmp_Tbl[8])() = { EFF76_WAIT, EFF76_SLIDE_IN, EFF76_SLIDE_OUT,       EFF76_SUDDENLY,
                                      EFF57_KILL, EFF76_SHIFT,    EFF76_WAIT_BREAK_INTO, EFF76_BEFORE };
 
-void effect_76_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_76_move(WORK_Other* ewk) {
     EFF76_Jmp_Tbl[ewk->wu.routine_no[0]](ewk);
 
     if (ewk->wu.be_flag == 0) {
@@ -519,7 +518,7 @@ void Setup_Char_76(WORK_Other* ewk) {
         ewk->wu.char_index = 4;
         ewk->wu.dir_step = 2;
         ewk->wu.direction = 3;
-        effect_A6_init((WORK*) ewk, 0);
+        effect_A6_init(ewk);
         break;
 
     case 0x2E:

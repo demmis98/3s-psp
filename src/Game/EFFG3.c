@@ -7,8 +7,7 @@
 #include "Game/aboutspr.h"
 #include "Game/workuser.h"
 
-void effect_G3_move(WORK* wkp, s32/*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_G3_move(WORK_Other* ewk) {
     WORK_Other* mwk;
     PLW* pwk = (PLW*)ewk->wu.target_adrs;
     s16 adjust;
@@ -76,8 +75,7 @@ void effect_G3_move(WORK* wkp, s32/*unused*/) {
     }
 }
 
-s32 effect_G3_init(WORK* wk, s32 d) {
-    u8 data = (u8) d;
+s32 effect_G3_init(WORK* wk, u8 data) {
     WORK_Other* ewk;
     WORK_Other* ewk2;
     s16 ix;

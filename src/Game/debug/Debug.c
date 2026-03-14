@@ -11,7 +11,6 @@
 #include "Game/SYS_sub.h"
 #include "Game/WORK_SYS.h"
 #include "Game/bg.h"
-#include "Game/debug/Deb_Data.h"
 #include "Game/debug/Debug_ID.h"
 #include "Game/debug/Nakai.h"
 #include "Game/debug/OBJTEST.h"
@@ -23,7 +22,8 @@
 #define COLOR_YELLOW 0xFFFFFF00
 
 // sbss
-s8 Debug_w[72];
+bool debug_menu_active;
+u8 Debug_ID;
 s8 Debug_Index;
 u8 Deley_Debug_No;
 u8 Deley_Debug_Timer;
@@ -46,7 +46,7 @@ u8 time_check_ix;
 extern s8* cpu_data[];
 
 void Debug_Task(struct _TASK* task_ptr) {
-    void (*Main_Jmp_Tbl[3])(struct _TASK*) = { Debug_Init, Debug_1st, Debug_2nd };
+    void (*Main_Jmp_Tbl[3])() = { Debug_Init, Debug_1st, Debug_2nd };
 
     Main_Jmp_Tbl[(task_ptr->r_no[0])](task_ptr);
 
@@ -63,20 +63,14 @@ void Debug_Task(struct _TASK* task_ptr) {
 }
 
 void Debug_Init(struct _TASK* task_ptr) {
-    u8* ptr;
-    u16 ix;
-    u8* assignement_var;
-
     task_ptr->r_no[0] += 1;
     Debug_Index = 0;
     Debug_Pause = 0;
-    ptr = (u8*)NAKAI_debug_data;
-    Debug_Index = NAKAI_debug_data[72];
 
-    for (ix = 0; ix < 72; assignement_var = ptr++) {
-        Debug_w[ix] = *ptr;
-        ix += 1;
-    }
+#if defined(DEBUG)
+    // Initialize debug configuration to defaults
+    DebugConfig_Init();
+#endif
 
     if ((flpad_adr[0]->sw | flpad_adr[0][1].sw) & 0x4000) {
         Debug_w[0x2C] = 1;
@@ -84,96 +78,90 @@ void Debug_Init(struct _TASK* task_ptr) {
 }
 
 void Debug_1st(struct _TASK* task_ptr) {
-    struct _TASK* ptr;
-    u16 sw;
-
-    if (0) {
-        sw = 0;
-        ptr = task_ptr;
-    }
-
+    task_ptr->r_no[0] += 1; // Progress to Debug_2nd
     sysFF = 1;
     return;
 }
 
 void Debug_2nd(struct _TASK* task_ptr) {
-#if defined(TARGET_PS2)
-    void Debug_Menu_Disp(s16, s16);
+#if defined(DEBUG)
+    // Check for toggle: right stick click to show/hide debug menu
+    if ((io_w.data[0].sw_new & SWK_RIGHT_STICK) || (io_w.data[1].sw_new & SWK_RIGHT_STICK)) {
+        debug_menu_active = !debug_menu_active;
+    }
+
+    // Only show and interact with debug menu when active
+    if (debug_menu_active) {
+        u16 sw;
+        s16 offset_y[4];
+
+        offset_y[0] = 2;
+        offset_y[1] = 6;
+        offset_y[2] = 2;
+        flPrintColor(-256);
+        flPrintL(1, 1, "[DEBUG MODE]");
+        flPrintL(14, 1, (s8*)debug_profile_name_data[Debug_ID]);
+
+        if ((sw = Debug_Menu_Shot())) {
+            if (sw == 256) {
+                Debug_w[Debug_Index] = 0;
+            }
+
+            if ((sw == 32) && (--Debug_w[Debug_Index] < 0)) {
+                Debug_w[Debug_Index] = debug_string_data[Debug_Index].max;
+            }
+
+            if ((sw == 16) && (++Debug_w[Debug_Index] > debug_string_data[Debug_Index].max)) {
+                Debug_w[Debug_Index] = 0;
+            }
+        } else {
+            sw = Debug_Menu_Lever();
+            Debug_Move_Sub(sw);
+        }
+
+        Debug_Menu_Disp(offset_y[1], offset_y[2]);
+    }
 #endif
-
-    u16 sw;
-    s16 offset_y[4];
-
-    offset_y[0] = 2;
-    offset_y[1] = 6;
-    offset_y[2] = 2;
-    flPrintColor(-256);
-    flPrintL(1, 1, "[DEBUG MODE]");
-    flPrintL(14, 1, (s8*)debug_name_data[Debug_ID]);
-
-    if ((sw = Debug_Menu_Shot())) {
-        if (sw == 256) {
-            Debug_w[Debug_Index] = 0;
-        }
-
-        if ((sw == 32) && (--Debug_w[Debug_Index] < 0)) {
-            Debug_w[Debug_Index] = debug_string_data[Debug_Index].max;
-        }
-
-        if ((sw == 16) && (++Debug_w[Debug_Index] > debug_string_data[Debug_Index].max)) {
-            Debug_w[Debug_Index] = 0;
-        }
-    } else {
-        sw = Debug_Menu_Lever();
-        Debug_Move_Sub(sw);
-    }
-
-    Debug_Menu_Disp(offset_y[1], offset_y[2]);
-
-    if (io_w.data[1].sw_new & 0x1000) {
-        mpp_w.sysStop = 1;
-        task_ptr->r_no[0] = 1;
-        cpRevivalTask();
-    }
 }
 
 void Debug_Menu_Disp(u32 /* unused */, u32 /* unused */) {
+#if defined(DEBUG)
     s16 side;
     s16 ix;
     s16 i;
     s16 x;
     s16 y;
-    s16 assignment_var;
-    s16 assignment_var2;
-    s16 assignment_var3;
 
     side = 0;
     ix = 0;
     x = 1;
-    assignment_var = y = 3;
+    y = 3;
 
     for (; side < 3;) {
         for (i = 0; i < 24;) {
             if (Debug_Index != ix) {
                 flPrintColor(COLOR_WHITE);
+                flPrintL(x, y, " ");
             } else {
                 flPrintColor(COLOR_YELLOW);
+                flPrintL(x, y, ">"); // Arrow indicator for selected item
             }
 
-            flPrintL(x, y, debug_string_data[ix].name);
+            flPrintL(x + 1, y, debug_string_data[ix].name);
             flPrintL(x + 18, y, "%2X", Debug_w[ix]);
             i += 1;
             y += 2;
-            assignment_var2 = ix++;
+            ix++;
         }
 
         y = 3;
         side += 1;
-        assignment_var3 = x += 21;
+        x += 21;
     }
 
     flPrintColor(COLOR_WHITE);
     flPrintL(1, 52, "SPR-MAX : %d", seqsGetSprMax());
+#endif
 }
 
 void Debug_Move_Sub(u16 sw) {
@@ -243,14 +231,14 @@ s32 Debug_Menu_Lever() {
     u16 lever;
     u16 ix;
 
-    lever = io_w.data[1].sw & 0xF;
-    sw = io_w.data[1].sw_new;
+    lever = (io_w.data[0].sw | io_w.data[1].sw) & SWK_DIRECTIONS;
+    sw = io_w.data[0].sw_new | io_w.data[1].sw_new;
 
-    if (sw & 0x130) {
+    if (sw & (SWK_WEST | SWK_NORTH | SWK_SOUTH)) {
         return sw;
     }
 
-    sw &= 0xF;
+    sw &= SWK_DIRECTIONS;
 
     if (sw) {
         return sw;
@@ -267,10 +255,10 @@ s32 Debug_Menu_Lever() {
             Deley_Debug_No = 2;
         }
 
-        if (lever & 3) {
+        if (lever & (SWK_UP | SWK_DOWN)) {
             ix = 0;
         } else {
-            ix = 3 & 0xFFFF;
+            ix = 3;
         }
 
         Deley_Debug_Timer = Debug_Deley_Time[Deley_Debug_No + ix];
@@ -286,18 +274,18 @@ u16 Debug_Menu_Shot() {
     u16 sw;
     u16 shot;
 
-    shot = io_w.data[1].sw & 0x130;
-    sw = io_w.data[1].sw_new;
+    shot = (io_w.data[0].sw | io_w.data[1].sw) & (SWK_WEST | SWK_NORTH | SWK_SOUTH);
+    sw = io_w.data[0].sw_new | io_w.data[1].sw_new;
 
-    if (sw & 16) {
+    if (sw & SWK_WEST) {
         return sw;
     }
 
-    if (sw & 32) {
+    if (sw & SWK_NORTH) {
         return sw;
     }
 
-    if (sw & 256) {
+    if (sw & SWK_SOUTH) {
         return sw;
     }
 
@@ -322,20 +310,20 @@ u16 Debug_Menu_Shot() {
 void Check_Check_Screen() {
     s16 ix;
 
-    if ((test_flag) || (Debug_w[70] != 240)) {
+    if ((test_flag) || (Debug_w[70] != -16)) {
         return;
     }
 
     switch (check_screen_S) {
     case 0:
-        if (~(p1sw_1) & (p1sw_0) & 0x40) {
+        if (~p1sw_1 & p1sw_0 & SWK_RIGHT_SHOULDER) {
             check_screen_S += 1;
         }
 
         break;
 
     case 1:
-        if (~(p1sw_1) & (p1sw_0) & 0x40) {
+        if (~p1sw_1 & p1sw_0 & SWK_RIGHT_SHOULDER) {
             check_screen_S += 1;
             check_time_S = 10;
         } else {
@@ -369,7 +357,7 @@ void Check_Check_Screen() {
 
     switch (check_screen_L) {
     case 0:
-        if (~(p1sw_1) & (p1sw_0) & 0x400) {
+        if (~p1sw_1 & p1sw_0 & SWK_RIGHT_TRIGGER) {
             check_screen_L += 1;
             return;
         }
@@ -377,7 +365,7 @@ void Check_Check_Screen() {
         break;
 
     case 1:
-        if (~(p1sw_1) & (p1sw_0) & 0x400) {
+        if (~p1sw_1 & p1sw_0 & SWK_RIGHT_TRIGGER) {
             check_screen_L += 1;
             check_time_L = 10;
             return;
@@ -510,8 +498,8 @@ s32 Check_Exit_Check() {
     if (sw == 32) {
         return 1;
     }
-    
-    return 1;
+
+    return 0;
 }
 
 void Disp_Rec_Time(s16 PL_id, u32 time) {
@@ -554,8 +542,6 @@ void Disp_Mode(PLW* wk) {
             x = 1;
         }
 
-        "%3d";
-
         flPrintL(x, offset_y + 16, "%3X", Control_Time);
         flPrintL(x + 1, offset_y + 17, cpu_data[CP_No[wk->wu.id][0]]);
         flPrintL(x, offset_y + 18, "%3d", Pattern_Index[wk->wu.id]);
@@ -583,11 +569,10 @@ void Disp_Random() {
         flPrintL(14, offset_y + 33, "%4X", Random_ix32);
         flPrintL(14, offset_y + 34, "%4X", Random_ix16_ex);
         flPrintL(14, offset_y + 35, "%4X", Random_ix32_ex);
-        flPrintL(20, offset_y + 32, "%4X", plw->wu.position_x);
-        flPrintL(20, offset_y + 33, "%4X", plw->wu.position_y);
+        flPrintL(20, offset_y + 32, "%4X", plw[0].wu.position_x);
+        flPrintL(20, offset_y + 33, "%4X", plw[0].wu.position_y);
         flPrintL(20, offset_y + 34, "%4X", plw[1].wu.position_x);
         flPrintL(20, offset_y + 35, "%4X", plw[1].wu.position_y);
-        flPrintL(26, offset_y + 32, "%4X", Turbo_Timer);
         flPrintL(26, offset_y + 33, "%4X", players_timer);
         flPrintL(26, offset_y + 34, "%4X", system_timer);
         flPrintL(26, offset_y + 35, "%4X", Game_timer);

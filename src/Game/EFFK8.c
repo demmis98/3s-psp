@@ -11,8 +11,7 @@
 #include "Game/color3rd.h"
 #include "Game/workuser.h"
 
-void effect_K8_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_K8_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void push_color_trans_req(s32 from_col, s32 to_col);
 #endif
@@ -68,8 +67,7 @@ void effect_K8_move(WORK* wkp, s32 /*unused*/) {
     }
 }
 
-s32 effect_K8_init(WORK* wk, s32 d) {
-    u8 data = (u8) d;
+s32 effect_K8_init(WORK* wk, u8 data) {
     WORK_Other* ewk;
     s16 ix;
 

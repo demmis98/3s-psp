@@ -11,7 +11,6 @@
 #include "Game/bg_data.h"
 #include "Game/bg_sub.h"
 #include "Game/debug/Debug.h"
-#include "Game/effect_init.h"
 #include "Game/texgroup.h"
 #include "Game/workuser.h"
 

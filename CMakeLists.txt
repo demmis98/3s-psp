@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.11)
 
 project(3rd-strike)
 
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+
 file(GLOB pspC src/psp/*.c)
 file(GLOB commonC src/common/*.c)
 file(GLOB gameC src/Game/*.c)
@@ -47,6 +50,38 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     pspatrac3
 )
 
+# from 3sx CMakeLists
+set(DISABLED_WARNINGS
+    -Wno-unused-but-set-variable
+    -Wno-pointer-sign
+    -Wno-parentheses
+    -Wno-incompatible-pointer-types
+    -Wno-discarded-qualifiers
+    -Wno-format-overflow
+    -Wno-comment
+    -Wno-maybe-uninitialized
+    -Wno-array-bounds
+    -Wno-aggressive-loop-optimizations
+    -Wno-stringop-overflow
+    -Wno-restrict
+    -Wno-stringop-truncation
+    -Wno-unused-variable
+    -Wno-unused-const-variable
+    -Wno-strict-prototypes
+    -Wno-old-style-definition
+    -Wno-implicit-function-declaration
+    -Wno-int-conversion
+)
+
+target_compile_options(${PROJECT_NAME}  PRIVATE
+    -Wall
+
+    -fno-strict-aliasing
+
+    ${DISABLED_WARNINGS}
+)
+
+
 # Create an EBOOT.PBP file
 create_pbp_file(
     TARGET ${PROJECT_NAME}
@@ -56,3 +91,4 @@ create_pbp_file(
     TITLE ${PROJECT_NAME}
     VERSION 00.01
 )
+

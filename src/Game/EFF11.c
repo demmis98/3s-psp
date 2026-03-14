@@ -33,8 +33,7 @@ const s32 eff11_quake_speed_y_tbl2[2][4] = { { 0x30000, 0x20000, 0x18000, 0x1000
 const s32 eff11_quake_speed_x_tbl[2][8] = { { 0xC000, 0xC000, 0xA000, 0xA000, 0x8000, 0x6000, 0xA000, 0xC000 },
                                             { 0xA000, 0xA000, 0xC000, 0xC000, 0x10000, 0xA000, 0xA000, 0x8000 } };
 
-void effect_11_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_11_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -285,7 +284,7 @@ void quake_level_large(WORK_Other* ewk) {
     }
 }
 
-s32 effect_11_init(WORK* /*unused*/, s32 /*unused*/) {
+s32 effect_11_init() {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

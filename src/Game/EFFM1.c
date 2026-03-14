@@ -14,8 +14,7 @@
 
 void effm1_move(WORK_Other* ewk);
 
-void effect_M1_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_M1_move(WORK_Other* ewk) {
     switch (ewk->wu.routine_no[0]) {
     case 0:
         ewk->wu.routine_no[0]++;
@@ -93,7 +92,7 @@ void effm1_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_M1_init(WORK* wk, s32 /*unused*/) {
+s32 effect_M1_init(WORK* wk) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

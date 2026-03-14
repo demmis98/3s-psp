@@ -1000,7 +1000,6 @@ s32 VS_DUDLEY_AS(PLW* wk) {
 }
 
 s32 VS_NECRO_AS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
@@ -1141,7 +1140,6 @@ s32 VS_GOUKI_AS(PLW* wk) {
 }
 
 s32 VS_CHUN_LI_AS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
@@ -1628,7 +1626,6 @@ s32 VS_DUDLEY_BS(PLW* wk) {
 }
 
 s32 VS_NECRO_BS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
@@ -1823,7 +1820,6 @@ s32 VS_Q_BS(PLW* wk) {
 }
 
 s32 VS_NO12_BS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
@@ -2326,7 +2322,6 @@ s32 VS_DUDLEY_CS(PLW* wk) {
 }
 
 s32 VS_NECRO_CS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
@@ -2499,12 +2494,10 @@ s32 VS_MAKOTO_CS(PLW* wk) {
 }
 
 s32 VS_Q_CS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_NO12_CS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
@@ -2881,12 +2874,10 @@ static s32 Check_PL_Unit_DS(PLW* wk) {
 }
 
 s32 VS_GILL_DS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_ALEX_DS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
@@ -2901,27 +2892,22 @@ s32 VS_RYU_DS(PLW* wk) {
 }
 
 s32 VS_YUN_DS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_DUDLEY_DS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_NECRO_DS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_IBUKI_DS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_HUGO_DS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
@@ -2936,42 +2922,34 @@ s32 VS_ELENA_DS(PLW* wk) {
 }
 
 s32 VS_ORO_DS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_KEN_DS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_SEAN_DS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_URIEN_DS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_GOUKI_DS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_CHUN_LI_DS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_MAKOTO_DS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_Q_DS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
@@ -2987,7 +2965,6 @@ s32 VS_NO12_DS(PLW* wk) {
 }
 
 s32 VS_REMY_DS(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
@@ -2996,12 +2973,10 @@ static s32 Check_PL_Unit_D(PLW* wk) {
 }
 
 s32 VS_GILL_D(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_ALEX_D(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
@@ -3016,27 +2991,22 @@ s32 VS_RYU_D(PLW* wk) {
 }
 
 s32 VS_YUN_D(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_DUDLEY_D(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_NECRO_D(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_HUGO_D(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_IBUKI_D(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
@@ -3051,17 +3021,14 @@ s32 VS_ELENA_D(PLW* wk) {
 }
 
 s32 VS_ORO_D(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_KEN_D(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_SEAN_D(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
@@ -3076,22 +3043,18 @@ s32 VS_URIEN_D(PLW* wk) {
 }
 
 s32 VS_GOUKI_D(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_CHUN_LI_D(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_MAKOTO_D(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
 s32 VS_Q_D(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
@@ -3110,11 +3073,10 @@ s32 VS_NO12_D(PLW* wk) {
 }
 
 s32 VS_REMY_D(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     return 0;
 }
 
-void (*const Passive_jmp_tbl[21])(PLW* wk) = { GILL_vs, KEN_vs, KEN_vs, KEN_vs, KEN_vs, KEN_vs, HUGO_vs,
+void (*const Passive_jmp_tbl[21])() = { GILL_vs, KEN_vs, KEN_vs, KEN_vs, KEN_vs, KEN_vs, HUGO_vs,
                                         KEN_vs,  KEN_vs, KEN_vs, KEN_vs, KEN_vs, KEN_vs, KEN_vs,
                                         KEN_vs,  KEN_vs, KEN_vs, KEN_vs, KEN_vs, KEN_vs, KEN_vs };
 

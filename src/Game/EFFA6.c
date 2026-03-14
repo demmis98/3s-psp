@@ -76,8 +76,7 @@ s32 check2_A6_shortcut() {
     return 0;
 }
 
-void effect_A6_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other_CONN* ewk = (WORK_Other_CONN*) wkp;
+void effect_A6_move(WORK_Other_CONN* ewk) {
 #if defined(TARGET_PS2)
     void get_message_conn_data(WORK_Other_CONN * ewk, s32 kind, s32 pl, s32 msg);
 #endif
@@ -220,8 +219,7 @@ void effect_A6_move(WORK* wkp, s32 /*unused*/) {
     }
 }
 
-s32 effect_A6_init(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* mwk = (WORK_Other*) wkp;
+s32 effect_A6_init(WORK_Other* mwk) {
     WORK_Other_CONN* ewk;
     s16 ix;
 

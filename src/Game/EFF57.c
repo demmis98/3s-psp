@@ -11,10 +11,9 @@
 #include "Game/texcash.h"
 #include "Game/workuser.h"
 
-void (*const EFF57_Jmp_Tbl[6])(WORK_Other *);
+void (*const EFF57_Jmp_Tbl[6])();
 
-void effect_57_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_57_move(WORK_Other* ewk) {
     if (ewk->wu.routine_no[0] != Order[ewk->wu.dir_old]) {
         ewk->wu.routine_no[0] = Order[ewk->wu.dir_old];
         ewk->wu.routine_no[1] = 0;
@@ -202,12 +201,12 @@ s32 effect_57_init(s16 dir_old, s16 ID, s16 Target_BG, s16 char_ix, s16 option) 
         break;
 
     case 2:
-        effect_62_init((WORK*)ewk, 0);
+        effect_62_init(ewk, 0);
         break;
     }
 
     return 0;
 }
 
-void (*const EFF57_Jmp_Tbl[6])(WORK_Other *) = { EFF57_WAIT,     EFF57_SLIDE_IN, EFF57_CHAR_CHANGE,
+void (*const EFF57_Jmp_Tbl[6])() = { EFF57_WAIT,     EFF57_SLIDE_IN, EFF57_CHAR_CHANGE,
                                      EFF57_SUDDENLY, EFF57_KILL,     EFF57_WALL };

@@ -12,8 +12,7 @@
 #include "Game/texcash.h"
 #include "Game/workuser.h"
 
-void effect_J8_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_J8_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -523,7 +522,7 @@ void dragonfly_move_next(WORK_Other* ewk) {
     ewk->wu.routine_no[3] = 0;
 }
 
-s32 effect_J8_init(WORK* /*unused*/, s32 /*unused*/) {
+s32 effect_J8_init() {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

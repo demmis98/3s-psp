@@ -11,8 +11,7 @@
 
 const s16 paring_b_mark_data[3][20][2];
 
-void effect_F8_move(WORK* wkp, s32/*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_F8_move(WORK_Other* ewk) {
     WORK* mwk = (WORK*)ewk->my_master;
 
     switch (ewk->wu.routine_no[0]) {
@@ -67,9 +66,7 @@ void effect_F8_move(WORK* wkp, s32/*unused*/) {
     }
 }
 
-s32 effect_F8_init(WORK* wkp, s32 d) {
-    PLW* wk = (PLW*) wkp;
-    u8 data = (u8) d;
+s32 effect_F8_init(PLW* wk, u8 data) {
     WORK_Other* ewk;
     s16 ix;
 

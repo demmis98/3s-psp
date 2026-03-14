@@ -12,8 +12,7 @@
 const s8 effl2_dir_tbl[2][16] = { { 0, 0, 0, 1, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4 },
                                   { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 3 } };
 
-void effect_L2_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_L2_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -84,7 +83,7 @@ void effl2_dir_check(WORK_Other* ewk) {
     }
 }
 
-s32 effect_L2_init(WORK* /*unused*/, s32 /*unused*/) {
+s32 effect_L2_init() {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

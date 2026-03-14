@@ -184,12 +184,12 @@ void drawRect(float x, float y, float w, float h, uint32_t color) {
 
     vertices[0].x = x;
     vertices[0].y = y;
-    vertices[0].z = 9999.0f;
+    vertices[0].z = 0.0f;
     vertices[0].colour = color;    
 
     vertices[1].x = x + w;
     vertices[1].y = y + h;
-    vertices[1].z = 9999.0f;
+    vertices[1].z = 0.0f;
     vertices[1].colour = color;
 
     sceGuColor(color); // colors are ABGR

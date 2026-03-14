@@ -11,6 +11,7 @@
 #include "Game/workuser.h"
 
 #include <string.h>
+
 // bss
 CMST_BUFF cmst_buff[2][5];
 
@@ -57,8 +58,8 @@ void combo_cont_init() {
         cmb_calc_now[i] = 0;
         cst_read[i] = 0;
         cst_write[i] = 0;
-        work_init_zero((s32*)&combo_type[i], sizeof(ComboType));
-        work_init_zero((s32*)&remake_power[i], sizeof(ComboType));
+        work_init_zero((s32*)&plw[i].combo_type, sizeof(ComboType));
+        work_init_zero((s32*)&plw[i].remake_power, sizeof(ComboType));
         memset(calc_hit[i], 0, sizeof(calc_hit[0]));
         memset(score_calc[i], 0, sizeof(score_calc[0]));
     }
@@ -126,20 +127,20 @@ void combo_control(s8 PL) {
             reversal_continue_check(PL);
         }
 
-        if (!paring_check(PL) && plw[PL].cb->total) {
+        if (!paring_check(PL) && plw[PL].combo_type.total) {
             if (first_attack == 0) {
                 first_attack = plw[PL].wu.id + 1;
                 combo_window_push(PL, 4);
                 return;
             }
 
-            if (pcon_dp_flag == 1 && last_hit_time == 0) {
+            if (pcon_dp_flag && last_hit_time == 0) {
                 super_arts_last_check(PL);
             }
 
             if (cmb_flag != 0) {
                 return;
-            } else if (plw[PL].cb->total == 1) {
+            } else if (plw[PL].combo_type.total == 1) {
                 training_disp_data_set(PL, 1);
                 super_arts_finish_check(PL);
                 combo_hensuu_clear(PL);
@@ -161,7 +162,7 @@ void check_and_set_combo(s8 PL) {
         PLS = 0;
     }
 
-    hit_num = plw[PL].cb->total;
+    hit_num = plw[PL].combo_type.total;
 
     if (hit_num > 99) {
         hit_num = 99;
@@ -182,12 +183,12 @@ void check_and_set_combo(s8 PL) {
 }
 
 void combo_hensuu_clear(s8 PL) {
-    work_init_zero((s32*)plw[PL].cb, sizeof(ComboType));
+    work_init_zero((s32*)&plw[PL].combo_type, sizeof(ComboType));
     combo_rp_clear_check(PL);
     memset(calc_hit[PL], 0, sizeof(calc_hit[0]));
     memset(score_calc[PL], 0, sizeof(score_calc[0]));
     bonus_pts[PL] = 0;
-    plw[PL].cb->total = 0;
+    plw[PL].combo_type.total = 0;
     hit_num = 0;
     tr_data[PL].total_damage = 0;
 }
@@ -195,13 +196,13 @@ void combo_hensuu_clear(s8 PL) {
 void combo_rp_clear_check(s8 PL) {
     if (plw[PL].wu.routine_no[1] != 1 || plw[PL].wu.routine_no[2] != 17 || plw[PL].wu.routine_no[3] == 0 ||
         plw[PL].wu.routine_no[3] == 3) {
-        work_init_zero((s32*)plw[PL].rp, sizeof(ComboType));
+        work_init_zero((s32*)&plw[PL].remake_power, sizeof(ComboType));
     }
 }
 
 void super_arts_finish_check(s8 PL) {
     if (arts_finish_check2(PL) != 0) {
-        if ((plw[PL].cb->new_dm & 0x3F) < 48) {
+        if ((plw[PL].combo_type.new_dm & 0x3F) < 48) {
             sa_kind = 2;
         } else {
             sa_kind = 3;
@@ -212,7 +213,7 @@ void super_arts_finish_check(s8 PL) {
 }
 
 void super_arts_last_check(s8 PL) {
-    if ((plw[PL].cb->new_dm & 0x3F) >= 0x20) {
+    if ((plw[PL].combo_type.new_dm & 0x3F) >= 0x20) {
         sarts_finish_flag[PL] = 1;
     } else {
         sarts_finish_flag[PL] = 0;
@@ -235,7 +236,7 @@ s32 reversal_check(s8 PL) {
         return 0;
     }
 
-    if (plw[PL].wu.routine_no[1] == 4 && plw[PL].wu.old_rno[1] == 1 && pcon_dp_flag == 0 &&
+    if (plw[PL].wu.routine_no[1] == 4 && plw[PL].wu.old_rno[1] == 1 && !pcon_dp_flag &&
         plw[PL].wu.routine_no[2] >= 0x10) {
         rever_attack[PL] = 1;
 
@@ -286,7 +287,7 @@ s32 paring_check(s8 PL) {
 }
 
 void hit_combo_check(s8 PL) {
-    s32* sa_ptr = (s32*)plw[PL].cb->kind_of[4][0];
+    s32* sa_ptr = (s32*)plw[PL].combo_type.kind_of[4][0];
     s8 lpx;
 
     for (lpx = 0; lpx < 20; lpx++) {
@@ -321,7 +322,7 @@ s32 arts_finish_check(s8 PL) {
 }
 
 s32 arts_finish_check2(u8 PL) {
-    if (Conclusion_Flag && Conclusion_Type == 0 && Loser_id == PL && (plw[PL].cb->new_dm & 0x3F) >= 32) {
+    if (Conclusion_Flag && Conclusion_Type == 0 && Loser_id == PL && (plw[PL].combo_type.new_dm & 0x3F) >= 32) {
         return 1;
     }
 
@@ -339,7 +340,7 @@ u32 SCORE_CALCULATION(s8 PL) {
     u32 score;
     s8 last;
 
-    k_ptr = plw[PL].cb->kind_of[0][0];
+    k_ptr = plw[PL].combo_type.kind_of[0][0];
     c_ptr = &calc_hit[PL][1];
     s_ptr = score_calc[PL];
 
@@ -390,18 +391,11 @@ void SCORE_PLUS(s8 PL, u32 PTS) {
 }
 
 void combo_window_push(s8 PL, s8 KIND) {
-#if defined(TARGET_PS2)
-    void grade_max_combo_check(s32 ix, s32 num);
-#endif
-
     u32 score;
     s8 PLS;
     u32 Pts_Buff;
     s32 xx;
     s16 i;
-
-    s32 assign1;
-    s32 assign2;
 
     if (KIND < 3) {
         score = SCORE_CALCULATION(PL);
@@ -448,7 +442,7 @@ void combo_window_push(s8 PL, s8 KIND) {
 
         SCORE_PLUS(PLS, score);
 
-        if (Mode_Type == 1) {
+        if (Mode_Type == MODE_VERSUS) {
             Score_Sub();
         } else if (plw[PLS].wu.operator) {
             Score_Sub();
@@ -462,7 +456,7 @@ void combo_window_push(s8 PL, s8 KIND) {
         cmst_buff[PL][cst_write[PL]].hit_low = (u8)hit_num - (cmst_buff[PL][cst_write[PL]].hit_hi * 10);
         cmst_buff[PL][cst_write[PL]].kind = KIND;
 
-        if (Mode_Type == 1) {
+        if (Mode_Type == MODE_VERSUS) {
             cmst_buff[PL][cst_write[PL]].pts_flag = 1;
         } else if (Mode_Type == 5) {
             cmst_buff[PL][cst_write[PL]].pts_flag = 1;
@@ -516,7 +510,7 @@ void combo_window_push(s8 PL, s8 KIND) {
         i = 3;
         xx = 100000;
 
-        assign1 = cmst_buff[PL][cst_write[PL]].first_digit = -1;
+        cmst_buff[PL][cst_write[PL]].first_digit = -1;
 
         while (i >= 0) {
             cmst_buff[PL][cst_write[PL]].pts_digit[i] = Pts_Buff / xx & 0xFF;
@@ -527,7 +521,7 @@ void combo_window_push(s8 PL, s8 KIND) {
             }
 
             i--;
-            assign2 = xx /= 10;
+            xx /= 10;
         }
 
         cmst_buff[PL][cst_write[PL]].move[1] = cmst_buff[PL][cst_write[PL]].first_digit + 6;
@@ -544,7 +538,7 @@ void combo_window_trans(s8 PL) {
     s8 PLS;
 
     if (cmb_stock[PL] != 0) {
-        if (Mode_Type == 3 && Training_ID == PL) {
+        if (Mode_Type == MODE_NORMAL_TRAINING && Training_ID == PL) {
             cmb_stock[PL]--;
             return;
         }
@@ -633,7 +627,7 @@ void combo_window_trans(s8 PL) {
 
                     SCORE_PLUS(PLS, cmst_buff[PL][cst_read[PL]].pts);
 
-                    if (Mode_Type == 1) {
+                    if (Mode_Type == MODE_VERSUS) {
                         Score_Sub();
                         return;
                     }

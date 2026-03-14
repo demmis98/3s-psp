@@ -93,7 +93,7 @@ void end_C00_0000() {
     case 1:
         if (bgw_ptr->xy[1].disp.pos > 304) {
             bgw_ptr->r_no_1++;
-            effect_F2_init(NULL, 0);
+            effect_F2_init();
         }
 
         /* fallthrough */
@@ -122,7 +122,7 @@ void end_C00_1000() {
         bgw_ptr->xy[1].disp.pos = end_c_pos[end_w.r_no_2][1];
         bgw_ptr->abs_x = 512;
         bgw_ptr->abs_y = 0;
-        effect_E6_init(NULL, 0x39);
+        effect_E6_init(0x39);
         Rewrite_End_Message(2);
         bgw_ptr->free = 0;
         bgw_ptr->l_limit = 3;
@@ -195,7 +195,7 @@ void end_C00_4000() {
         bgw_ptr->r_no_1++;
         bgw_ptr->xy[0].disp.pos = end_c_pos[end_w.r_no_2][0];
         bgw_ptr->xy[1].disp.pos = end_c_pos[end_w.r_no_2][1];
-        effect_E6_init(NULL, 0x3B);
+        effect_E6_init(0x3B);
         Rewrite_End_Message(4);
         bgw_ptr->free = 0;
         bgw_ptr->l_limit = 3;
@@ -212,8 +212,8 @@ void end_C00_5000() {
         bgw_ptr->r_no_1++;
         bgw_ptr->xy[0].disp.pos = end_c_pos[end_w.r_no_2][0];
         bgw_ptr->xy[1].disp.pos = end_c_pos[end_w.r_no_2][1];
-        effect_E6_init(NULL, 0x3C);
-        effect_E6_init(NULL, 0x99);
+        effect_E6_init(0x3C);
+        effect_E6_init(0x99);
         Rewrite_End_Message(5);
         break;
 
@@ -239,7 +239,7 @@ void end_C00_6000() {
 
         if (bgw_ptr->free <= 0) {
             bgw_ptr->r_no_1++;
-            effect_E6_init(NULL, 0x3D);
+            effect_E6_init(0x3D);
         }
 
         break;

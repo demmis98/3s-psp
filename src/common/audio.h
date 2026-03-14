@@ -7,6 +7,8 @@ extern "C" {
 #endif
 
 #include <pspuser.h>
+#include <stdbool.h>
+
 
 #define PBP_SIGNATURE   0x50425000
 #define RIFF_SIGNATURE  0x46464952

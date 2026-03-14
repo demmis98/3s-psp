@@ -3,7 +3,6 @@
 #include "Game/bg.h"
 #include "Game/bg_data.h"
 #include "Game/debug/Debug.h"
-#include "Game/effect_init.h"
 #include "Game/workuser.h"
 
 u8 CONTINUE_X; // size: 0x1, address: 0x578E50

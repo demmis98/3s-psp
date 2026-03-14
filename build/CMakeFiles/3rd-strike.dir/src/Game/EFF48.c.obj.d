@@ -37,6 +37,7 @@ CMakeFiles/3rd-strike.dir/src/Game/EFF48.c.obj: \
  /home/demma/.local/bin/pspdev/psp/include/sys/sched.h \
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdbool.h \
  /home/demma/Documents/code/psp/3rd-strike/include/bin2obj/char_table.h \
  /home/demma/Documents/code/psp/3rd-strike/include/common.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/CALDIR.h \
@@ -44,6 +45,7 @@ CMakeFiles/3rd-strike.dir/src/Game/EFF48.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFFECT.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/OPENING.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/debug/Debug.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/debug/debug_config.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/eff36.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/op_sub.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/ta_sub.h \

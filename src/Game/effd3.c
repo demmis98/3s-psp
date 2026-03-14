@@ -18,8 +18,7 @@
 const s16 ake_timer_tbl[13];
 const u32 ake_color[13];
 
-void effect_D3_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_D3_move(WORK_Other* ewk) {
     if (ewk->wu.type == 0) {
         akebono_finish(ewk);
     } else {
@@ -79,7 +78,7 @@ void akebono_finish(WORK_Other* ewk) {
                 ewk->wu.dir_timer = ake_timer_tbl[ewk->wu.old_rno[1]];
             } else {
                 ewk->wu.routine_no[0] += 1;
-                effect_G8_init(NULL, 0);
+                effect_G8_init();
             }
         }
 
@@ -177,9 +176,9 @@ void syungoku_finish(WORK_Other* ewk) {
         if (ewk->wu.dir_timer <= 0) {
             ewk->wu.routine_no[0] += 1;
             ewk->wu.old_rno[0] = 0;
-            effect_20_init((WORK*) ewk, 0);
-            effect_L9_init((WORK*) ewk, 0);
-            effect_L9_init((WORK*) ewk, 1);
+            effect_20_init(ewk);
+            effect_L9_init(ewk, 0);
+            effect_L9_init(ewk, 1);
         }
 
         overwrite_panel(0xFF000000, 70);
@@ -229,8 +228,7 @@ void syungoku_finish(WORK_Other* ewk) {
     }
 }
 
-s32 effect_D3_init(WORK* /*unused*/, s32 d) {
-    u8 ake_type = (u8) d;
+s32 effect_D3_init(u8 ake_type) {
     WORK_Other* ewk;
     s16 ix;
 

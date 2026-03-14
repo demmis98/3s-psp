@@ -4,7 +4,7 @@
 #include "structs.h"
 #include "types.h"
 
-void effect_F5_move(WORK* wkp, s32 /*unused*/);
-s32 effect_F5_init(WORK* /*unused*/, s32 /* unused */);
+void effect_F5_move(WORK_Other* ewk);
+s32 effect_F5_init(s16 /* unused */);
 
 #endif

@@ -60,6 +60,7 @@ CMakeFiles/3rd-strike.dir/src/psp/pspmain.c.obj: \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman.h \
  /home/demma/Documents/code/psp/3rd-strike/src/common/audio.h \
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdbool.h \
  /home/demma/Documents/code/psp/3rd-strike/src/common/graphics.h \
  /home/demma/.local/bin/pspdev/psp/include/memory.h \
  /home/demma/.local/bin/pspdev/psp/include/string.h \

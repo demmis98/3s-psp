@@ -17,8 +17,7 @@
 // forward declaration
 const s16 effl7_data_tbl[16];
 
-void effect_L7_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_L7_move(WORK_Other* ewk) {
     WORK* oya_ptr = (WORK*)ewk->my_master;
 
     if (Suicide[0] || (ewk->wu.dead_f)) {

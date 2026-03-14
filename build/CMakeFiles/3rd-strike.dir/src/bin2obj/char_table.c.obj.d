@@ -2,6 +2,7 @@ CMakeFiles/3rd-strike.dir/src/bin2obj/char_table.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/src/bin2obj/char_table.c \
  /home/demma/Documents/code/psp/3rd-strike/include/bin2obj/common.h \
  /home/demma/Documents/code/psp/3rd-strike/include/common.h \
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdbool.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/psptypes.h \
  /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdint.h \

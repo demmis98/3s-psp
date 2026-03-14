@@ -10,13 +10,13 @@
 #include "Game/Sound3rd.h"
 #include "Game/WORK_SYS.h"
 #include "Game/debug/Debug.h"
-#include "Game/effect_init.h"
 #include "Game/end_data.h"
 #include "Game/main.h"
 #include "Game/n_input.h"
 #include "Game/sc_sub.h"
 #include "Game/workuser.h"
 #include "structs.h"
+#include "AcrSDK/common/pad.h"
 
 #include "psp/PPGFile.h"
 
@@ -97,17 +97,15 @@ void Entry_Task(struct _TASK* /* unused */) {
         return;
     }
 
-    ff = 1;
-
-    if ((Usage == 7) && !Turbo) {
-        ff = sysFF;
-    }
+    ff = sysFF;
 
     for (ix = 0; ix < ff; ix++) {
-        if (ix == (ff - 1)) {
-            No_Trans = 0;
-        } else {
-            No_Trans = 1;
+        if (!No_Trans) {
+            if (ix == (ff - 1)) {
+                No_Trans = 0;
+            } else {
+                No_Trans = 1;
+            }
         }
 
         letter_counter = 0;
@@ -175,14 +173,10 @@ void Entry_01() {
     case 1:
         Entry_00();
 
-        if (~p1sw_1 & p1sw_0 & 0x4000) {
+        if (~p1sw_1 & p1sw_0 & SWK_START) {
             Entry_01_Sub(0);
-            return;
-        }
-
-        if (~p2sw_1 & p2sw_0 & 0x4000) {
+        } else if (~p2sw_1 & p2sw_0 & SWK_START) {
             Entry_01_Sub(1);
-            return;
         }
 
         break;
@@ -190,7 +184,6 @@ void Entry_01() {
     case 2:
         if (Request_E_No) {
             E_No[2] += 1;
-            return;
         }
 
         break;
@@ -202,10 +195,6 @@ void Entry_01() {
 }
 
 void Entry_01_Sub(s16 PL_id) {
-#if defined(TARGET_PS2)
-    void grade_check_work_1st_init(s32 ix, s32 ix2);
-#endif
-
     E_No[2] += 1;
     Request_G_No = 1;
     plw[PL_id].wu.operator = 1;
@@ -640,7 +629,7 @@ void Entry_08_2nd() {
 
 void Entry_10() {
     if ((E_Number[0][0] == 0x63) && (E_Number[1][0] == 0x63)) {
-        cpExitTask(1);
+        cpExitTask(TASK_ENTRY);
         return;
     }
 
@@ -1363,8 +1352,8 @@ void Break_Into_02(s16 /* unused */) {
         grade_check_work_1st_init(New_Challenger, 0);
     }
 
-    Select_Timer = 48;
-    Unit_Of_Timer = 50;
+    Select_Timer = 0x30;
+    Unit_Of_Timer = 60;
 }
 
 void Break_Into_04(s16 /* unused */) {
@@ -1414,7 +1403,7 @@ void Break_Into_05(s16 PL_id) {
     }
 
     Stop_Update_Score = 1;
-    cpExitTask(4);
+    cpExitTask(TASK_PAUSE);
 }
 
 void Break_Into_07(s16 PL_id) {

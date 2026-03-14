@@ -15,8 +15,7 @@
 void effl6_flont(WORK_Other* ewk);
 void effl6_back(WORK_Other* ewk);
 
-void effect_L6_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_L6_move(WORK_Other* ewk) {
     WORK* oya_ptr = (WORK*)ewk->my_master;
 
     switch (ewk->wu.routine_no[0]) {

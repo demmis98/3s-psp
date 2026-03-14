@@ -83,28 +83,28 @@ void end_1800_0001() {
         switch (end_w.r_no_2) {
         case 1:
             Bg_On_W(1);
-            effect_E6_init(NULL, 0x6F);
-            effect_E6_init(NULL, 0x74);
+            effect_E6_init(0x6F);
+            effect_E6_init(0x74);
             bgw_ptr->l_limit = 0;
             bgw_ptr->free = 3;
             Rewrite_End_Message(2);
             break;
 
         case 2:
-            effect_E6_init(NULL, 0x70);
+            effect_E6_init(0x70);
             break;
 
         case 3:
-            effect_E6_init(NULL, 0x71);
+            effect_E6_init(0x71);
             break;
 
         case 4:
-            effect_E6_init(NULL, 0x72);
+            effect_E6_init(0x72);
             break;
 
         case 7:
-            effect_E6_init(NULL, 0x77);
-            effect_E6_init(NULL, 0x7A);
+            effect_E6_init(0x77);
+            effect_E6_init(0x7A);
             Rewrite_End_Message(4);
             bgw_ptr->l_limit = 0;
             bgw_ptr->free = 3;
@@ -132,8 +132,8 @@ void end_1800_0005() {
         Bg_On_W(1);
         bgw_ptr->xy[0].disp.pos = end_18_pos[end_w.r_no_2][0];
         bgw_ptr->xy[1].disp.pos = end_18_pos[end_w.r_no_2][1];
-        effect_E6_init(NULL, 0x73);
-        effect_E6_init(NULL, 0x75);
+        effect_E6_init(0x73);
+        effect_E6_init(0x75);
 
         if (end_w.r_no_2) {
             Rewrite_End_Message(3);
@@ -163,7 +163,7 @@ void end_1800_0006() {
         bgw_ptr->r_no_1++;
         bgw_ptr->xy[0].disp.pos = end_18_pos[end_w.r_no_2][0];
         bgw_ptr->xy[1].disp.pos = end_18_pos[end_w.r_no_2][1];
-        effect_E6_init(NULL, 0x76);
+        effect_E6_init(0x76);
         Rewrite_End_Message(6);
         break;
 
@@ -185,7 +185,7 @@ void end_1800_0008() {
         bgw_ptr->r_no_1++;
         bgw_ptr->xy[0].disp.pos = end_18_pos[end_w.r_no_2][0];
         bgw_ptr->xy[1].disp.pos = end_18_pos[end_w.r_no_2][1];
-        effect_E6_init(NULL, 0x78);
+        effect_E6_init(0x78);
         Rewrite_End_Message(5);
         break;
 
@@ -231,8 +231,8 @@ void end_1800_0010() {
         bgw_ptr->r_no_1++;
         bgw_ptr->xy[0].disp.pos = end_18_pos[end_w.r_no_2][0];
         bgw_ptr->xy[1].disp.pos = end_18_pos[end_w.r_no_2][1];
-        effect_E6_init(NULL, 0x79);
-        effect_E6_init(NULL, 0xA2);
+        effect_E6_init(0x79);
+        effect_E6_init(0xA2);
         bgw_ptr->free = 1;
         bgw_ptr->l_limit = 0;
         end_fade_flag = 1;

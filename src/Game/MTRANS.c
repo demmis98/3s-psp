@@ -19,6 +19,13 @@
 
 #define PRIO_BASE_SIZE 128
 
+typedef struct {
+    Sprite2* chip;
+    u16 sprTotal;
+    u16 sprMax;
+    s8 up[24];
+} SpriteChipSet;
+
 // sbss
 s32 curr_bright;
 SpriteChipSet seqs_w;
@@ -164,7 +171,7 @@ void mlt_obj_disp(MultiTexture* mt, WORK* wk, s32 base_y) {
 
     if (texgrplds[i].ok == 0) {
         // The trans data is not valid. Group number: %d\n
-        flLogOut("The trans data is not valid. Group number:%d\n", i);
+        flLogOut("disp The trans data is not valid. Group number: %d\n", i);
         while (1) {}
     }
 
@@ -265,7 +272,7 @@ void mlt_obj_disp_rgb(MultiTexture* mt, WORK* wk, s32 base_y) {
 
     if (texgrplds[i].ok == 0) {
         // The trans data is not valid. Group number: %d\n
-        flLogOut("The trans data is not valid. Group number:%d\n", i);
+        flLogOut("disp_rgb The trans data is not valid. Group number: %d\n", i);
         while (1) {}
     }
 
@@ -405,7 +412,7 @@ void mlt_obj_trans_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
 
     if (texgrplds[i].ok == 0) {
         // The trans data is not valid. Group number: %d\n
-        flLogOut("The trans data is not valid. Group number:%d\n", i);
+        flLogOut("_ext The trans data is not valid. Group number: %d\n", i);
         while (1) {}
     }
 
@@ -450,7 +457,7 @@ void mlt_obj_trans_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
             cp->cg.code = cc.code;
             cp->x16 = 0;
             cp->x32 = 0;
-            work_init_zero((s32*)&cp->map, sizeof(PatternMap));
+            memset(&cp->map, 0, sizeof(PatternMap));
             cc.parts.group = i;
 
             while (count--) {
@@ -532,7 +539,6 @@ void mlt_obj_trans_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
     }
 
     {
-        s32 size;
         s32 code;
         s32 wh;
         s32 dw;
@@ -565,7 +571,6 @@ void mlt_obj_trans_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
             dw = (texptr->wh & 0xE0) >> 2;
             dh = (texptr->wh & 0x1C) * 2;
             wh = (texptr->wh & 3) + 1;
-            size = (wh * wh) << 6;
             cc.parts.offset = trsptr->code;
 
             switch (wh) {
@@ -655,7 +660,7 @@ void mlt_obj_trans(MultiTexture* mt, WORK* wk, s32 base_y) {
 
     if (texgrplds[i].ok == 0) {
         // The trans data is not valid. Group number: %d\n
-        flLogOut("The trans data is not valid. Group number: %d\n", i);
+        flLogOut("_ The trans data is not valid. Group number: %d\n", i);
         while (1) {}
     }
 
@@ -780,7 +785,7 @@ void mlt_obj_trans_cp3_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
 
     if (texgrplds[i].ok == 0) {
         // The trans data is not valid. Group number: %d\n
-        flLogOut("The trans data is not valid. Group number: %d\n", i);
+        flLogOut("cp3_ext The trans data is not valid. Group number: %d\n", i);
         while (1) {}
     }
 
@@ -827,7 +832,7 @@ void mlt_obj_trans_cp3_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
             cp->cg.code = cc.code;
             cp->x16 = 0;
             cp->x32 = 0;
-            work_init_zero((s32*)&cp->map, sizeof(PatternMap));
+            memset(&cp->map, 0, sizeof(PatternMap));
             cc.parts.group = i;
 
             while (count--) {
@@ -913,7 +918,6 @@ void mlt_obj_trans_cp3_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
     }
 
     {
-        s32 size;
         s32 code;
         s32 wh;
         s32 dw;
@@ -947,7 +951,6 @@ void mlt_obj_trans_cp3_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
             dw = (texptr->wh & 0xE0) >> 2;
             dh = (texptr->wh & 0x1C) * 2;
             wh = (texptr->wh & 3) + 1;
-            size = (wh * wh) << 6;
             attr = trsptr->attr;
             palt = (attr & 0x1FF) + palo;
             attr = (attr ^ flip) & 0xC000;
@@ -1029,6 +1032,7 @@ void mlt_obj_trans_cp3(MultiTexture* mt, WORK* wk, s32 base_y) {
     ppgSetupCurrentDataList(&mt->texList);
 
     if (mt->ext) {
+        flLogOut("in cp3\n");
         mlt_obj_trans_cp3_ext(mt, wk, base_y);
         return;
     }
@@ -1042,7 +1046,7 @@ void mlt_obj_trans_cp3(MultiTexture* mt, WORK* wk, s32 base_y) {
 
     if (texgrplds[i].ok == 0) {
         // The trans data is not valid. Group number: %d\n
-        flLogOut("The trans data is not valid. Group number: %d\n", i);
+        flLogOut("cp3 The trans data is not valid. Group number: %d\n", i);
         while (1) {}
     }
 
@@ -1144,9 +1148,6 @@ void mlt_obj_trans_cp3(MultiTexture* mt, WORK* wk, s32 base_y) {
     appRenewTempPriority(wk->position_z);
 }
 
-#if defined(TARGET_PS2)
-INCLUDE_ASM("asm/anniversary/nonmatchings/sf33rd/Source/Game/MTRANS", mlt_obj_trans_rgb_ext);
-#else
 void mlt_obj_trans_rgb_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
     u32* textbl;
     u16* trsbas;
@@ -1175,7 +1176,7 @@ void mlt_obj_trans_rgb_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
 
     if (texgrplds[i].ok == 0) {
         // The trans data is not valid. Group number: %d\n
-        flLogOut("The trans data is not valid. Group number: %d\n", i);
+        flLogOut("rgb_ext The trans data is not valid. Group number: %d\n", i);
         while (1) {}
     }
 
@@ -1219,7 +1220,7 @@ void mlt_obj_trans_rgb_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
             cp->cg.code = cc.code;
             cp->x16 = 0;
             cp->x32 = 0;
-            work_init_zero((s32*)&cp->map, sizeof(PatternMap));
+            memset(&cp->map, 0, sizeof(PatternMap));
             cc.parts.group = i;
 
             while (count--) {
@@ -1297,7 +1298,6 @@ void mlt_obj_trans_rgb_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
     }
 
     {
-        s32 size;
         s32 code;
         s32 attr;
         s32 palt;
@@ -1328,7 +1328,6 @@ void mlt_obj_trans_rgb_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
             dw = (texptr->wh & 0xE0) >> 2;
             dh = (texptr->wh & 0x1C) * 2;
             wh = (texptr->wh & 3) + 1;
-            size = (wh * wh) << 6;
             attr = trsptr->attr;
             palt = (attr & 0x1FF) + palo;
             attr = (attr ^ flip) & 0xC000;
@@ -1376,7 +1375,6 @@ void mlt_obj_trans_rgb_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
         appRenewTempPriority(wk->position_z);
     }
 }
-#endif
 
 void mlt_obj_trans_rgb(MultiTexture* mt, WORK* wk, s32 base_y) {
     u32* textbl;
@@ -1416,7 +1414,7 @@ void mlt_obj_trans_rgb(MultiTexture* mt, WORK* wk, s32 base_y) {
 
     if (texgrplds[i].ok == 0) {
         // The trans data is not valid. Group number: %d\n
-        flLogOut("The trans data is not valid. Group number: %d\n", i);
+        flLogOut("rgb The trans data is not valid. Group number: %d\n", i);
         while (1) {}
     }
 
@@ -1517,25 +1515,13 @@ void mlt_obj_matrix(WORK* wk, s32 base_y) {
     if (wk->my_mr_flag) {
         njScale(NULL, (1.0f / 64.0f) * (wk->my_mr.size.x + 1), (1.0f / 64.0f) * (wk->my_mr.size.y + 1), 1.0f);
     }
-
-    if (wk->my_roll_flag) {
-        njScale(NULL, 0.6f, 7.0f / 15.0f, 1.0f);
-
-        if (!wk->rl_flag) {
-            njRotateZ(0, -wk->my_roll.now);
-        } else {
-            njRotateZ(0, wk->my_roll.now);
-        }
-
-        njScale(NULL, 5.0f / 3.0f, 15.0f / 7.0f, 1.0f);
-    }
 }
 
 void appSetupBasePriority() {
     s32 i;
 
     for (i = 0; i < PRIO_BASE_SIZE; i++) {
-        PrioBaseOriginal[i] = 0xFF - i;
+        PrioBaseOriginal[i] = ((i * 512) + 1) / 65535.0f;
     }
 }
 
@@ -1591,7 +1577,7 @@ void seqsAfterProcess() {
     s32 i;
     u32 keep = 0;
     u32 val = 0;
-    TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(2 * sizeof(TextureVertex));
+    TextureVertex *vertices;
     FLTexture *tex = &flTexture[LO_16_BITS(val) - 1];
 
     if ((Debug_w[0x27] != 3) && (seqs_w.sprTotal != 0)) {
@@ -1611,11 +1597,14 @@ void seqsAfterProcess() {
             seqs_w.sprMax = seqs_w.sprTotal;
         }
 
+        if(DEMMA_DEBUG)
+            return;
+
         //ps2SeqsRenderQuadInit_A();
 
         for (i = 0; i < seqs_w.sprTotal; i++) {
             if (seqs_w.up[seqs_w.chip[i].id]) {
-                val = seqs_w.chip[i].texCode;
+                val = seqs_w.chip[i].tex_code;
 
                 flSetRenderState(FLRENDER_TEXSTAGE0, val);
 
@@ -1625,10 +1614,10 @@ void seqsAfterProcess() {
                 for (int j = 0; j < 2; j++) {
                     vertices[j].x = seqs_w.chip[i].v[j].x;
                     vertices[j].y = seqs_w.chip[i].v[j].y;
-                    vertices[j].z = seqs_w.chip[i].v[j].z;
+                    vertices[j].z = seqs_w.chip[i].v[j].z * 0xFFFF;
                     vertices[j].u = seqs_w.chip[i].t[j].s * tex->width;
                     vertices[j].v = seqs_w.chip[i].t[j].t * tex->height;
-                    vertices[j].colour = seqs_w.chip[i].vtxColor;
+                    vertices[j].colour = seqs_w.chip[i].vertex_color;
                 }
                 //ps2SeqsRenderQuad_Ax(&seqs_w.chip[i]);
                 
@@ -1645,13 +1634,8 @@ s32 seqsStoreChip(f32 x, f32 y, s32 w, s32 h, s32 gix, s32 code, s32 attr, s32 a
     s32 u;
     s32 v;
 
-#if defined(TARGET_PS2)
-    f32 dx;
-    f32 dy;
-#else
     const f32 dx = 0;
     const f32 dy = 0;
-#endif
 
     chip = &seqs_w.chip[seqs_w.sprTotal];
     chip->v[0].x = x;
@@ -1669,53 +1653,42 @@ s32 seqsStoreChip(f32 x, f32 y, s32 w, s32 h, s32 gix, s32 code, s32 attr, s32 a
     if (!(attr & 0x2000)) {
         u = (code & 0xF) * 16;
         v = code & 0xF0;
-        chip->texCode = ppgGetUsingTextureHandle(NULL, gix + (code >> 8));
+        chip->tex_code = ppgGetUsingTextureHandle(NULL, gix + (code >> 8));
     } else {
         u = (code & 7) * 32;
         v = (code & 0x38) * 4;
-        chip->texCode = ppgGetUsingTextureHandle(NULL, gix + (code >> 6));
+        chip->tex_code = ppgGetUsingTextureHandle(NULL, gix + (code >> 6));
     }
 
     appRenewTempPriority_1_Chip();
 
     if (attr & 0x8000) {
-#if defined(TARGET_PS2)
-        dx = (((chip->v[1].x - chip->v[0].x) / w) > 1.5f) ? 0.34f : 0.68f;
-#endif
         chip->t[1].s = (u - dx) / 256.0f;
         chip->t[0].s = (u + w - dx) / 256.0f;
     } else {
-#if defined(TARGET_PS2)
-        dx = (((chip->v[1].x - chip->v[0].x) / w) > 1.0f) ? 0.0f : 0.5f;
-#endif
         chip->t[0].s = (u + dx) / 256.0f;
         chip->t[1].s = (u + w + dx) / 256.0f;
     }
 
     if (attr & 0x4000) {
-#if defined(TARGET_PS2)
-        dy = (((chip->v[1].y - chip->v[0].y) / h) > 1.5f) ? 0.34f : 0.68f;
-#endif
         chip->t[1].t = (v - dy) / 256.0f;
         chip->t[0].t = (v + h - dy) / 256.0f;
     } else {
-#if defined(TARGET_PS2)
-        dy = (((chip->v[1].y - chip->v[0].y) / h) > 1.0f) ? 0.0f : 0.5f;
-#endif
         chip->t[0].t = (v + dy) / 256.0f;
         chip->t[1].t = (v + h + dy) / 256.0f;
     }
 
-    chip->texCode |= ppgGetUsingPaletteHandle(NULL, attr & 0x1FF) << 16;
-    chip->vtxColor = curr_bright | ((0xFF - alpha) << 24);
+    chip->tex_code |= ppgGetUsingPaletteHandle(NULL, attr & 0x1FF) << 16;
+    chip->vertex_color = curr_bright | ((0xFF - alpha) << 24);
     chip->id = id;
     seqs_w.sprTotal += 1;
 
     if (seqs_w.sprTotal > 0x400) {
         // The number of OBJ fragments has exceeded the planned number
-        flLogOut("The number of OBJ fragments has exceeded the planned number");
+        flLogOut("The number of OBJ fragments has exceeded the planned number\n");
         while (1) {}
     }
+
     return 1;
 }
 
@@ -1751,7 +1724,7 @@ static s32 get_mltbuf16(MultiTexture* mt, u32 code, u32 palt, s32* ret) {
             }
 
             // CG cache is full. 16x16: %d\n
-            flLogOut("CG cache is full. 16x16:  : %d\n", mt->id);
+            flLogOut("CG cache is full. 16x16: %d\n", mt->id);
             while (1) {}
         }
     }
@@ -1789,7 +1762,7 @@ static s32 get_mltbuf32(MultiTexture* mt, u32 code, u32 palt, s32* ret) {
             }
 
             // CG cache is full. 32x32 : %d\n
-            flLogOut("CG cache is full. 32x32 :  : %d\n", mt->id);
+            flLogOut("CG cache is full. 32x32 : %d\n", mt->id);
             while (1) {}
         }
     }
@@ -1880,7 +1853,7 @@ static s32 get_mltbuf16_ext(MultiTexture* mt, u32 code, u32 palt) {
         }
     }
 
-    flLogOut("CG development error 16x16\n");
+    flLogOut("ＣＧ展開エラー　１６×１６\n");
     while (1) {}
 }
 
@@ -1894,7 +1867,7 @@ static s32 get_mltbuf32_ext(MultiTexture* mt, u32 code, u32 palt) {
         }
     }
 
-    flLogOut("CG development error 32x32\n");
+    flLogOut("ＣＧ展開エラー　３２×３２\n");
     while (1) {}
 }
 
@@ -1983,7 +1956,7 @@ static s32 get_free_patcash_index(PatternCollection* padr) {
         }
     }
 
-    flLogOut("The CG cache buffer is full.\n");
+    flLogOut("ＣＧキャッシュバッファが一杯になりました。\n");
     while (1) {}
 }
 
@@ -2237,33 +2210,25 @@ void mlt_obj_melt2(MultiTexture* mt, u16 cg_number) {
     s32 wh;
     s32 dd;
 
-    u16* spA4;
-
-
-    flLogOut("mlt_obj_melt2\n");
-
     ppgSetupCurrentDataList(&mt->texList);
-    flLogOut("mlt_obj_melt2 0\n");
     grplds = &texgrplds[obj_group_table[cg_number]];
 
     if (grplds->ok == 0) {
         // The trans data is not valid. Group number: %d\n
-        flLogOut("The trans data is not valid. Group number: %d\n", obj_group_table[cg_number]);
+        flLogOut("melt2 The trans data is not valid. Group number: %d\n", obj_group_table[cg_number]);
         while (1) {}
     }
-    flLogOut("mlt_obj_melt2 1\n");
+
     n = *(u32*)grplds->trans_table / 4;
     textbl = (u32*)grplds->texture_table;
     cd16 = 0;
     cd32 = 0;
 
     for (i = 0; i < n; i++) {
-        flLogOut("mlt_obj_melt2 2 %d\n", i);
         trsbas = (u16*)(grplds->trans_table + ((u32*)grplds->trans_table)[i]);
         count = *trsbas;
         trsbas++;
         trsptr = (TileMapEntry*)trsbas;
-        
 
         while (count != 0) {
             attr = trsptr->attr;
@@ -2304,11 +2269,9 @@ void mlt_obj_melt2(MultiTexture* mt, u16 cg_number) {
             }
 
             count -= 1;
-            spA4 = (u16*)trsptr++;
+            trsptr++;
         }
     }
-    flLogOut("mlt_obj_melt2 3\n");
 
     ppgRenewTexChunkSeqs(NULL);
-    flLogOut("mlt_obj_melt2 4\n");
 }

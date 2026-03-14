@@ -70,7 +70,7 @@ void end_8000_0000() {
     case 0:
         bgw_ptr->r_no_1++;
         Bg_On_W(1);
-        effect_E6_init(NULL, 0x46);
+        effect_E6_init(0x46);
         bgw_ptr->xy[0].disp.pos = end_8_pos[end_w.r_no_2][0];
         bgw_ptr->xy[1].disp.pos = end_8_pos[end_w.r_no_2][1];
         bgw_ptr->abs_x = bgw_ptr->xy[0].disp.pos;
@@ -135,8 +135,8 @@ void end_8000_0002() {
             break;
 
         case 3:
-            effect_E6_init(NULL, 0x47);
-            effect_E6_init(NULL, 0x48);
+            effect_E6_init(0x47);
+            effect_E6_init(0x48);
             end_fade_flag = 1;
             end_fade_timer = timer_8_tbl[end_w.r_no_2] - 120;
             Rewrite_End_Message(4);

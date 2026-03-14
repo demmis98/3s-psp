@@ -11,8 +11,7 @@
 void K7_move_type_0(WORK_Other* ewk, PLW* mwk);
 s16 K7_mt0_rebirth_check(PLW* mwk);
 
-void effect_K7_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_K7_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void metamor_color_restore(s32 wkid);
 #endif
@@ -191,8 +190,7 @@ void K7_muriyari_metamor_rebirth(PLW* wk) {
     wk->metamorphose = 0;
 }
 
-s32 effect_K7_init(WORK* wkp, s32 /*unused*/) {
-    PLW* wk = (PLW*) wkp;
+s32 effect_K7_init(PLW* wk) {
     WORK_Other* ewk;
     s16 ix;
 

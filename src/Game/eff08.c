@@ -31,8 +31,7 @@ const u8 Rewrite_Color_Data_08[2][13][2] = { { { 30, 2 },
                                                { 0, 0 },
                                                { 0, 0 } } };
 
-void effect_08_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_08_move(WORK_Other* ewk) {
     if (Suicide[5] & 0x80) {
         push_effect_work(&ewk->wu);
         return;
@@ -87,6 +86,6 @@ s32 effect_08_init(s8 sc_num, s8 x, s8 y, u16 atr, s16 color_type) {
     ewk->wu.position_y = y;
     ewk->wu.my_col_code = atr;
     ewk->master_priority = color_type;
-    effect_08_move((WORK*)ewk, 0);
+    effect_08_move((WORK_Other*)ewk);
     return 0;
 }

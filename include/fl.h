@@ -35,7 +35,6 @@ s32 flSetRenderState(enum _FLSETRENDERSTATE func, u32 value);
 
 // memory management
 s32 flInitialize(s32 /* unused */, s32 /* unused */);
-static s32 system_work_init();
 
 // from modern port
 

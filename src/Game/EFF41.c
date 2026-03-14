@@ -36,10 +36,9 @@ const s16 sa_sign_data[69][5] = {
     { 14, 56, 158, 1, 0 }
 };
 
-void (*const eff41_main_process[2])(WORK_Other *, PLW *) = { eff41_process_00, eff41_process_01 };
+void (*const eff41_main_process[2])() = { eff41_process_00, eff41_process_01 };
 
-void effect_41_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_41_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
     void push_color_trans_req(s32 from_col, s16 to_col);
@@ -86,7 +85,7 @@ void effect_41_move(WORK* wkp, s32 /*unused*/) {
 
         if (ewk->wu.cg_type == 4) {
             ewk->wu.cg_type = 0;
-            effect_D9_init((WORK*) mwk, 7);
+            effect_D9_init(mwk, 7);
         }
 
         if (ewk->wu.cg_type == 0xFF) {
@@ -189,9 +188,7 @@ void gauge_minus(WORK_Other* ewk, PLW* mwk) {
     }
 }
 
-s32 effect_41_init(WORK* wkp, s32 d) {
-    PLW* wk = (PLW*) wkp;
-    u8 data = (u8) d;
+s32 effect_41_init(PLW* wk, u8 data) {
 #if defined(TARGET_PS2)
     void write_my_shell_ix(WORK * wk, s32 ix);
 #endif

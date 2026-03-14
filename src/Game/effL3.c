@@ -29,8 +29,7 @@ const s16 effl3_data_tbl[112] = { -272, -8,  -1, 1, 18, -32, -8, 0, 272,  -8,  -
                                   272,  2,   1,  0, 17, 192, 2,  0, 272,  128, 1,  0, 17, 160,  2,  1,
                                   -272, 2,   1,  0, 17, 16,  2,  0, 272,  128, 1,  0, 17, 32,   2,  1 };
 
-void effect_L3_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_L3_move(WORK_Other* ewk) {
     void (*effl3_jp[3])(WORK_Other*) = { effl3_0000, effl3_0001, effl3_0002 };
 
     switch (ewk->wu.routine_no[0]) {
@@ -262,8 +261,7 @@ void effl3_kie(WORK_Other* ewk) {
     }
 }
 
-s32 effect_L3_init(WORK* wkp, s32 /*unused*/) {
-    PLW* oya = (PLW*) wkp;
+s32 effect_L3_init(PLW* oya) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

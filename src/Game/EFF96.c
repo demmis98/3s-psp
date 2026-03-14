@@ -7,8 +7,7 @@
 #include "Game/aboutspr.h"
 #include "Game/workuser.h"
 
-void effect_96_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_96_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif

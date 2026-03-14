@@ -14,6 +14,10 @@ void (*scr_x_mv_jp[35])() = { scr_10_20,   scr_10_21,   scr_10_22,   scr_x_dummy
                               scr_x_dummy, scr_x_dummy, scr_x_dummy, scr_x_dummy, scr_x_dummy, scr_x_dummy, scr_x_dummy,
                               scr_x_dummy, scr_x_dummy, scr_x_dummy, scr_x_dummy, scr_12_20,   scr_12_21,   scr_12_22 };
 
+// Forward decls
+static s16 remake_x_mvstep(s16 mvstep);
+static s32 suzi_offset_set_sub(WORK_Other* ewk);
+
 void check_cg_zoom() {
     s16 i;
     s16 zoom_wk;
@@ -47,8 +51,8 @@ void check_cg_zoom() {
             plw[i].wu.scr_mv_x = plw[i].wu.xyz[0].disp.pos;
             plw[i].wu.scr_mv_y = plw[i].wu.xyz[1].disp.pos;
         } else if (plw[i].tsukamare_f) {
-            plw[i].wu.scr_mv_x = plw[i + 1 & 1].wu.xyz[0].disp.pos;
-            plw[i].wu.scr_mv_y = plw[i + 1 & 1].wu.xyz[1].disp.pos;
+            plw[i].wu.scr_mv_x = plw[(i + 1) & 1].wu.xyz[0].disp.pos;
+            plw[i].wu.scr_mv_y = plw[(i + 1) & 1].wu.xyz[1].disp.pos;
         }
     }
 
@@ -266,11 +270,6 @@ void bg_chase_move() {
 }
 
 void chase_start_check() {
-#if defined(TARGET_PS2)
-    void cal_bg_speed_data_x(s32 /* unused */, s32 bg_num, s32 tm);
-    void cal_bg_speed_data_y(s32 /* unused */, s32 bg_num, s32 tm);
-#endif
-
     s16 work;
     s16 work2;
 
@@ -752,11 +751,6 @@ void bg_y_move_check() {
 }
 
 void zoom_ud_check() {
-#if defined(TARGET_PS2)
-    void Frame_Up(u32 x, u32 y, u16 add);
-    void Frame_Down(u32 x, u32 y, u16 add);
-#endif
-
     s16 work;
     s16 work2;
     s16 pos_w;
@@ -883,11 +877,6 @@ void suzi_sync_pos_set(WORK_Other* ewk) {
 }
 
 void Bg_Family_Set() {
-#if defined(TARGET_PS2)
-    void Scrn_Move_Set(s32 bgnm, s32 x, s32 y);
-    void Family_Set_W(s32 fmnm, s32 x, s32 y);
-#endif
-
     s8 i;
     s16 x;
     s16 y;
@@ -903,11 +892,6 @@ void Bg_Family_Set() {
 }
 
 void Bg_Family_Set_appoint(s32 num_of_bg) {
-#if defined(TARGET_PS2)
-    void Scrn_Move_Set(s32 bgnm, s32 x, s32 y);
-    void Family_Set_W(s32 fmnm, s32 x, s32 y);
-#endif
-
     s16 x = bg_w.bgw[num_of_bg].position_x;
     s16 y = bg_w.bgw[num_of_bg].position_y;
 
@@ -918,11 +902,6 @@ void Bg_Family_Set_appoint(s32 num_of_bg) {
 }
 
 void Bg_Family_Set_2() {
-#if defined(TARGET_PS2)
-    void Scrn_Move_Set(s32 bgnm, s32 x, s32 y);
-    void Family_Set_W(s32 fmnm, s32 x, s32 y);
-#endif
-
     s8 i;
     s16 x;
     s16 y;
@@ -939,11 +918,6 @@ void Bg_Family_Set_2() {
 }
 
 void Bg_Family_Set_2_appoint(s32 num_of_bg) {
-#if defined(TARGET_PS2)
-    void Scrn_Move_Set(s32 bgnm, s32 x, s32 y);
-    void Family_Set_W(s32 fmnm, s32 x, s32 y);
-#endif
-
     s16 x;
     s16 y;
 
@@ -957,11 +931,6 @@ void Bg_Family_Set_2_appoint(s32 num_of_bg) {
 }
 
 void ake_Family_Set2() {
-#if defined(TARGET_PS2)
-    void Scrn_Move_Set(s32 bgnm, s32 x, s32 y);
-    void Family_Set_W(s32 fmnm, s32 x, s32 y);
-#endif
-
     s16 x = bg_w.bgw[3].position_x;
     s16 y = bg_w.bgw[3].position_y;
 
@@ -1142,7 +1111,7 @@ void bg_initialize() {
     y_sitei_pos = 0;
 
     if (G_No[0] != 2 || G_No[1] != 2 || G_No[2] != 2) {
-        Bg_Texture_Load_EX();
+        //Bg_Texture_Load_EX();
     }
 
     Bg_Kakikae_Set();
@@ -1217,10 +1186,6 @@ void akebono_initialize() {
 }
 
 void bg_etc_write(s16 type) {
-#if defined(TARGET_PS2)
-    void Bg_Texture_Load2(u32 type);
-#endif
-
     u8 i;
 
     Family_Init();

@@ -11,8 +11,7 @@
 
 const s32 effc8_data_tbl[4] = { 0x30000, 0x200, 0, -0x1800 };
 
-void effect_C8_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_C8_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init2(WORK * wk, s32 koc, s32 index, s32 ip, s32 scf);
 #endif
@@ -102,8 +101,7 @@ void effect_C8_move(WORK* wkp, s32 /*unused*/) {
     }
 }
 
-s32 effect_C8_init(WORK* wkp, s32 /*unused*/) {
-    PLW* wk = (PLW*) wkp;
+s32 effect_C8_init(PLW* wk) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

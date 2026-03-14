@@ -169,10 +169,6 @@ const u16 exdm_ix_data[2][20][5] = {
 };
 
 void Player_damage(PLW* wk) {
-#if defined(TARGET_PS2)
-    void clear_chainex_check(s32 ix);
-#endif
-
     setup_damage_process_flags(wk);
 
     if (wk->wu.routine_no[3] == 0) {
@@ -204,8 +200,8 @@ void setup_damage_process_flags(PLW* wk) {
     wk->running_f = 0;
     wk->guard_flag = 3;
     wk->guard_chuu = 0;
-    wk->tsukami_f = 0;
-    wk->tsukamare_f = 0;
+    wk->tsukami_f = false;
+    wk->tsukamare_f = false;
     wk->scr_pos_set_flag = 1;
     wk->dm_hos_flag = 0;
     wk->caution_flag = 0;
@@ -225,10 +221,6 @@ void setup_damage_process_flags(PLW* wk) {
 }
 
 void Damage_00000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     wk->wu.next_z = 30;
 
     switch (wk->wu.routine_no[3]) {
@@ -246,18 +238,15 @@ void Damage_00000(PLW* wk) {
             wk->wu.routine_no[3]++;
         }
 
-        /* fallthrough */
+        break;
 
     case 2:
+        // Do nothing
         break;
     }
 }
 
 void Damage_01000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     switch (wk->wu.routine_no[3]) {
     case 0:
         wk->wu.routine_no[3] = 1;
@@ -302,10 +291,6 @@ void Damage_01000(PLW* wk) {
 }
 
 void Damage_04000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     wk->guard_flag = 0;
     wk->guard_chuu = guard_kind[wk->wu.routine_no[2] - 4];
     set_dm_hos_flag_grd(wk);
@@ -351,10 +336,6 @@ void Damage_04000(PLW* wk) {
     }
 }
 void Damage_07000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     wk->guard_flag = 0;
     wk->guard_chuu = guard_kind[wk->wu.routine_no[2] - 4];
 
@@ -425,7 +406,6 @@ void Damage_07000(PLW* wk) {
 
 s32 remake_initial_speeds(WORK* wk) {
     s16 ix;
-    s16 ix2;
     s32 ay = wk->mvxy.a[1].sp;
     s32 dy = wk->mvxy.d[1].sp;
 
@@ -435,7 +415,6 @@ s32 remake_initial_speeds(WORK* wk) {
 
     setup_butt_own_data(wk);
     ix = dir32_guard_air[cal_move_dir_forecast(wk, 5)];
-    ix2 = ris_data_table[ix][wk->dm_attlv];
 
     if (wk->dm_attlv) {
         switch (ix) {
@@ -491,12 +470,6 @@ s32 remake_initial_speeds(WORK* wk) {
 }
 
 void Damage_12000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    s32 setup_accessories(PLW*, u32 data);
-    s32 effect_D9_init(PLW * wk, u32 data);
-#endif
-
     set_dm_hos_flag_grd(wk);
 
     switch (wk->wu.routine_no[3]) {
@@ -510,10 +483,10 @@ void Damage_12000(PLW* wk) {
         wk->zuru_ix_counter = 0;
 
         if (wk->wu.dm_attribute) {
-            setup_accessories((WORK*) wk, wk->wu.pat_status);
+            setup_accessories(wk, wk->wu.pat_status);
 
             if (wk->wu.dm_attribute != 2) {
-                effect_D9_init((WORK*) wk, (u8)wk->wu.dm_attribute);
+                effect_D9_init(wk, (u8)wk->wu.dm_attribute);
             }
         }
 
@@ -558,10 +531,6 @@ void Damage_12000(PLW* wk) {
 }
 
 void Damage_14000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     switch (wk->wu.routine_no[3]) {
     case 0:
         wk->wu.routine_no[3]++;
@@ -593,10 +562,6 @@ void Damage_14000(PLW* wk) {
 }
 
 void Damage_16000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     switch (wk->wu.routine_no[3]) {
     case 0:
         wk->wu.routine_no[3]++;
@@ -630,11 +595,6 @@ void Damage_16000(PLW* wk) {
 }
 
 void Damage_17000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    void exset_char_move_init(WORK * wk, s32 koc, s32 index);
-#endif
-
     switch (wk->wu.routine_no[3]) {
     case 0:
         wk->wu.routine_no[3]++;
@@ -672,7 +632,7 @@ void Damage_17000(PLW* wk) {
             char_move_wca(&wk->wu);
         }
 
-        if (!(wk->spmv_ng_flag & 0x200000) && wk->wu.mvxy.a[1].real.h < -2) {
+        if (!(wk->spmv_ng_flag & DIP_AUTO_AIR_RECOVERY_DISABLED) && wk->wu.mvxy.a[1].real.h < -2) {
             wk->wu.routine_no[1] = 0;
             wk->wu.routine_no[2] = 23;
             wk->wu.routine_no[3] = 1;
@@ -690,12 +650,6 @@ void Damage_17000(PLW* wk) {
 }
 
 void Damage_18000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    s32 setup_accessories(PLW*, u32 data);
-    s32 effect_D9_init(PLW * wk, u32 data);
-#endif
-
     switch (wk->wu.routine_no[3]) {
     case 0:
         wk->wu.routine_no[3]++;
@@ -708,10 +662,10 @@ void Damage_18000(PLW* wk) {
         get_sky_dm_timer(wk);
 
         if (wk->wu.dm_attribute) {
-            setup_accessories((WORK*) wk, wk->wu.pat_status);
+            setup_accessories(wk, wk->wu.pat_status);
 
             if (wk->wu.dm_attribute != 2) {
-                effect_D9_init((WORK*) wk, (u8)wk->wu.dm_attribute);
+                effect_D9_init(wk, (u8)wk->wu.dm_attribute);
             }
         }
 
@@ -739,10 +693,6 @@ void Damage_18000(PLW* wk) {
 }
 
 void Damage_19000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     switch (wk->wu.routine_no[3]) {
     case 0:
         wk->wu.routine_no[3]++;
@@ -778,10 +728,6 @@ void Damage_19000(PLW* wk) {
 }
 
 void Damage_20000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     switch (wk->wu.routine_no[3]) {
     case 0:
         wk->wu.routine_no[3]++;
@@ -812,10 +758,6 @@ void Damage_20000(PLW* wk) {
 }
 
 void Damage_21000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     switch (wk->wu.routine_no[3]) {
     case 0:
         wk->wu.routine_no[3]++;
@@ -847,10 +789,6 @@ void Damage_21000(PLW* wk) {
 }
 
 void Damage_23000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     switch (wk->wu.routine_no[3]) {
     case 0:
         wk->wu.routine_no[3]++;
@@ -881,10 +819,6 @@ void Damage_23000(PLW* wk) {
 }
 
 void Damage_24000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     switch (wk->wu.routine_no[3]) {
     case 0:
         wk->wu.routine_no[3]++;
@@ -932,12 +866,6 @@ void Damage_24000(PLW* wk) {
 }
 
 void Damage_25000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    void grade_add_em_stun(s32 ix);
-    void pulpul_request(s32 id, s16 ix);
-#endif
-
     s16 i;
     s16 hok;
 
@@ -949,7 +877,7 @@ void Damage_25000(PLW* wk) {
         wk->py->time = kizetsu_timer_table[(wk->kizetsu_kow & 0xF8) / 8][(wk->kizetsu_kow & 7) / 2][random_16()];
         wk->zuru_timer = 0;
         wk->zuru_ix_counter = 0;
-        work_init_zero((s32*)wk->rp, sizeof(ComboType));
+        work_init_zero(&wk->remake_power, sizeof(ComboType));
         check_em_tk_power_off(wk, (PLW*)wk->wu.target_adrs);
         grade_add_em_stun((wk->wu.id + 1) & 1);
         break;
@@ -982,10 +910,6 @@ void Damage_25000(PLW* wk) {
 }
 
 void Damage_26000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     switch (wk->wu.routine_no[3]) {
     case 0:
         wk->wu.routine_no[3]++;
@@ -1035,10 +959,6 @@ void Damage_26000(PLW* wk) {
 }
 
 void Damage_27000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     switch (wk->wu.routine_no[3]) {
     case 0:
         wk->wu.routine_no[3]++;
@@ -1063,10 +983,6 @@ void Damage_27000(PLW* wk) {
 }
 
 void Damage_28000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     switch (wk->wu.routine_no[3]) {
     case 0:
         wk->wu.routine_no[3]++;
@@ -1090,10 +1006,6 @@ void Damage_28000(PLW* wk) {
 }
 
 void Damage_29000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-#endif
-
     PLW* twk = (PLW*)wk->wu.target_adrs;
     const u16* datadrs;
 
@@ -1153,13 +1065,6 @@ void Damage_29000(PLW* wk) {
 }
 
 void Damage_30000(PLW* wk) {
-#if defined(TARGET_PS2)
-    void set_char_move_init(WORK * wk, s16 koc, s32 index);
-    s32 setup_accessories(PLW*, u32 data);
-    s32 effect_D9_init(PLW * wk, u32 data);
-    void pp_screen_quake(s32 ix);
-#endif
-
     switch (wk->wu.routine_no[3]) {
     case 0:
         wk->wu.routine_no[3]++;
@@ -1198,10 +1103,10 @@ void Damage_30000(PLW* wk) {
         get_sky_dm_timer(wk);
 
         if (wk->wu.dm_attribute) {
-            setup_accessories((WORK*) wk, wk->wu.pat_status);
+            setup_accessories(wk, wk->wu.pat_status);
 
             if (wk->wu.dm_attribute != 2) {
-                effect_D9_init((WORK*) wk, (u8)wk->wu.dm_attribute);
+                effect_D9_init(wk, (u8)wk->wu.dm_attribute);
             }
         }
 
@@ -1281,10 +1186,6 @@ void Damage_31000(PLW* wk) {
 }
 
 void first_flight_union(PLW* wk, s16 num, s16 dv) {
-#if defined(TARGET_PS2)
-    void jumping_union_process(WORK * wk, s32 num);
-#endif
-
     jumping_union_process(&wk->wu, num);
 
     if (wk->wu.routine_no[3] != num) {
@@ -1302,7 +1203,7 @@ void first_flight_union(PLW* wk, s16 num, s16 dv) {
     }
 
     subtract_cu_vital(wk);
-    effect_A7_init((WORK*) wk, 0);
+    effect_A7_init(wk);
     buttobi_chakuchi_cg_type_check(wk);
 
     if (wk->ukemi_ok_timer != 0 && wk->ukemi_success == 0) {
@@ -1325,7 +1226,7 @@ void first_TtktV_union(PLW* wk, s16 num, s16 dv) {
         }
 
         subtract_cu_vital(wk);
-        effect_A7_init((WORK*) wk, 0);
+        effect_A7_init(wk);
         buttobi_chakuchi_cg_type_check(wk);
 
         if (wk->ukemi_ok_timer != 0 && wk->ukemi_success == 0) {
@@ -1338,10 +1239,6 @@ void first_TtktV_union(PLW* wk, s16 num, s16 dv) {
 }
 
 void buttobi_chakuchi_cg_type_check(PLW* wk) {
-#if defined(TARGET_PS2)
-    void grade_add_quick_stand(s32 ix);
-#endif
-
     switch (wk->wu.cg_type) {
     case 9:
         break;
@@ -1363,8 +1260,8 @@ void buttobi_chakuchi_cg_type_check(PLW* wk) {
         break;
 
     case 5:
-        if (!(wk->spmv_ng_flag2 & 0x200) && wk->ukemi_success && (wk->dead_flag == 0) && (wk->py->flag == 0) &&
-            (wk->wu.vital_new > 0) && (pcon_dp_flag == 0)) {
+        if (!(wk->spmv_ng_flag2 & DIP2_QUICK_STAND_DISABLED) && wk->ukemi_success && (wk->dead_flag == 0) &&
+            (wk->py->flag == 0) && (wk->wu.vital_new > 0) && (pcon_dp_flag == 0)) {
             wk->wu.routine_no[2] = oki_select_table2[wk->wu.rl_waza + (wk->wu.rl_flag * 2)];
             wk->wu.routine_no[3] = 0;
             add_sp_arts_gauge_ukemi(wk);
@@ -1393,10 +1290,6 @@ void buttobi_add_y_check(PLW* wk) {
 }
 
 void setup_smoke_type(PLW* wk) {
-#if defined(TARGET_PS2)
-    s32 effect_G6_init(WORK * wk, u32 dat);
-#endif
-
     s8* step_tbl;
     u8 ix;
     s16 i;
@@ -1563,15 +1456,15 @@ void subtract_dm_vital(PLW* wk) {
         if (wk->wu.vital_new < 0) {
             wk->wu.vital_new = -1;
             wk->dead_flag = 1;
-            dead_voice_flag = 1;
+            dead_voice_flag = true;
 
             if (wk->wu.dm_guard_success != -1) {
                 wk->kezurijini_flag = 1;
             }
 
-            if (round_slow_flag == 0) {
+            if (!round_slow_flag) {
                 set_conclusion_slow();
-                round_slow_flag = 1;
+                round_slow_flag = true;
             }
         } else if (wk->py->flag == 0) {
             wk->py->now.quantity.h += wk->wu.dm_piyo;
@@ -1600,7 +1493,7 @@ void subtract_dm_vital(PLW* wk) {
         }
     }
 
-    if (Mode_Type == 3 && (Training_ID != wk->wu.id)) {
+    if (Mode_Type == MODE_NORMAL_TRAINING && (Training_ID != wk->wu.id)) {
         Training_Damage_Set(wk->wu.dm_vital, wk->wu.dm_piyo, wk->wu.kezurare_flag);
     }
 
@@ -1639,15 +1532,15 @@ void subtract_dm_vital_aiuchi(PLW* wk) {
         if (wk->wu.vital_new < 0) {
             wk->wu.vital_new = -1;
             wk->dead_flag = 1;
-            dead_voice_flag = 1;
+            dead_voice_flag = true;
 
             if (wk->wu.dm_guard_success != -1) {
                 wk->kezurijini_flag = 1;
             }
 
-            if (round_slow_flag == 0) {
+            if (!round_slow_flag) {
                 set_conclusion_slow();
-                round_slow_flag = 1;
+                round_slow_flag = true;
             }
         } else if (wk->py->flag == 0) {
             wk->py->now.quantity.h += wk->wu.dm_piyo;
@@ -1661,7 +1554,7 @@ void subtract_dm_vital_aiuchi(PLW* wk) {
 
     pp_pulpara_remake_dm_all(&wk->wu);
 
-    if (Mode_Type == 3 && (Training_ID != wk->wu.id)) {
+    if (Mode_Type == MODE_NORMAL_TRAINING && (Training_ID != wk->wu.id)) {
         Training_Damage_Set(wk->wu.dm_vital, wk->wu.dm_piyo, wk->wu.kezurare_flag);
     }
 
@@ -1686,7 +1579,7 @@ void get_damage_reaction_data(PLW* wk) {
         wk->wu.routine_no[2] = 91;
     }
 
-    if (!(((PLW*)wk->wu.target_adrs)->spmv_ng_flag & 0x2000000) && wk->wu.routine_no[2] == 88) {
+    if (!(((PLW*)wk->wu.target_adrs)->spmv_ng_flag & DIP_AIR_KNOCKDOWNS_DISABLED) && wk->wu.routine_no[2] == 88) {
         wk->wu.routine_no[2] = 91;
     }
 

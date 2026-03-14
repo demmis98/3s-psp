@@ -1,6 +1,7 @@
 #ifndef COMMON_H
 #define COMMON_H
 
+#include <stdbool.h>
 #include "types.h"
 
 //#define NULL 0

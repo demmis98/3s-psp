@@ -135,7 +135,6 @@ void Pattern_Insurance(PLW* wk, s16 Kind_Of_Insurance, s16 Forced_Number);
 const u16 Correct_Lv_Data[16] = { 0, 1, 2, 2, 4, 5, 6, 5, 8, 9, 10, 9, 8, 5, 10, 0 };
 
 u16 cpu_algorithm(PLW* wk) {
-    WORK* em = (WORK*)wk->wu.target_adrs;
     u16 sw = CPU_Sub(wk);
 
     if (Play_Mode == 1 && Replay_Status[wk->wu.id] != 99) {
@@ -164,13 +163,9 @@ u16 cpu_algorithm(PLW* wk) {
 }
 
 static u16 CPU_Sub(PLW* wk) {
-#if defined(TARGET_PS2)
-    u16 check_illegal_lever_data(u32 data);
-#endif
-
     WORK* em = (WORK*)wk->wu.target_adrs;
 
-    if (Allow_a_battle_f == 0 || pcon_dp_flag == 1) {
+    if (Allow_a_battle_f == 0 || pcon_dp_flag) {
         return 0;
     }
 
@@ -367,7 +362,6 @@ void Com_Before_Passive(PLW* wk) {
 
 void Com_Guard(PLW* wk) {
     WORK* em;
-    u16 xx;
 
     if (Check_Damage(wk)) {
         return;
@@ -387,8 +381,6 @@ void Com_Guard(PLW* wk) {
     }
 
     em = (WORK*)wk->wu.target_adrs;
-    xx = Hit_Range_Data[em->hit_range];
-    xx += Com_Width_Data[wk->wu.id];
 
     if (Ck_Exit_Guard(wk, em)) {
         Check_Guard_Type(wk, em);
@@ -416,13 +408,11 @@ void Com_Guard(PLW* wk) {
 
 static s32 Check_Counter_Attack(PLW* wk) {
     s16 xx;
-    WORK* em;
 
     if (Area_Number[wk->wu.id] >= 3) {
         return 0;
     }
 
-    em = (WORK*)wk->wu.target_adrs;
     xx = Type_of_Attack[wk->wu.id] & 0xF8;
 
     if (xx == 8) {
@@ -479,7 +469,6 @@ static s16 Check_Hamari(PLW* wk) {
 
 void Com_Guard_VS_Shell(PLW* wk) {
     WORK_Other* tmw;
-    WORK* em = (WORK*)wk->wu.target_adrs;
 
     if (Check_Caught(wk)) {
         return;
@@ -794,13 +783,7 @@ void Damage_1st(PLW* wk) {
         CP_No[wk->wu.id][2] = 0;
 
         if (Get_Up_Action_Check_Data[wk->player_number][CP_No[wk->wu.id][1] - 1][Area_Number[wk->wu.id]] == -1) {
-#if defined(TARGET_PS2)
-            CP_No[wk->wu.id][1] = Get_Up_Action_Check_Data[wk->player_number][CP_No[wk->wu.id][1]][5];
-#else
-            // TODO: Check if this behavior is consistent with final release of the Anniversary Collection PS2 build (If
-            // not implement whatever change was made)
-            CP_No[wk->wu.id][1] = *(((u8*)Get_Up_Action_Check_Data[wk->player_number][CP_No[wk->wu.id][1]]) + 5);
-#endif
+            CP_No[wk->wu.id][1] = Get_Up_Action_Check_Data[wk->player_number][CP_No[wk->wu.id][1]][4];
         }
 
         if (CP_No[wk->wu.id][1] != 0) {
@@ -922,11 +905,7 @@ void Damage_6th(PLW* wk) {
 
         if (wk->wu.cg_type == 12) {
             if (Get_Up_Action_Check_Data[wk->player_number][CP_No[wk->wu.id][1] - 1][Area_Number[wk->wu.id]] == -1) {
-#if defined(TARGET_PS2)
-                CP_No[wk->wu.id][1] = Get_Up_Action_Check_Data[wk->player_number][CP_No[wk->wu.id][1]][5];
-#else
-                CP_No[wk->wu.id][1] = *(((u8*)Get_Up_Action_Check_Data[wk->player_number][CP_No[wk->wu.id][1]]) + 5);
-#endif
+                CP_No[wk->wu.id][1] = Get_Up_Action_Check_Data[wk->player_number][CP_No[wk->wu.id][1]][4];
             }
 
             CP_No[wk->wu.id][2]++;
@@ -954,7 +933,8 @@ void Damage_6th(PLW* wk) {
 
                 if (plw[wk->wu.id].sa->ok &&
                     Arts_Super_Name_Data[wk->player_number][plw[wk->wu.id].sa->kind_of_arts] != -1) {
-                    CP_Index[wk->wu.id][0] = Arts_Super_Name_Data[wk->player_number][plw[wk->wu.id].sa->kind_of_arts];
+                    CP_Index[wk->wu.id][0] =
+                        Arts_Super_Name_Data[wk->player_number][plw[wk->wu.id].sa->kind_of_arts];
                 }
             }
         }
@@ -1251,14 +1231,9 @@ void Flip_1st(PLW* wk) {
 }
 
 void Flip_2nd(PLW* wk) {
-    PLW* em;
-
     if (PL_Damage_Data[wk->wu.routine_no[2]] != 0) {
         return;
     }
-
-    em = (PLW*)wk->wu.target_adrs;
-    wk->player_number << 0;
 
     if (Check_Flip_Attack(wk) != 0) {
         if (Select_Passive(wk) == -1) {
@@ -1397,7 +1372,7 @@ static s32 Check_Shell_Flip(PLW* wk) {
 
         res = 1;
         shell = (WORK*)Shell_Address[wk->wu.id];
-        wk->wu.dmg_adrs = (u32*)shell;
+        wk->wu.dmg_adrs = shell;
     }
 
     Rnd = random_32_com();

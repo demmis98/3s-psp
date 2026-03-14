@@ -8,8 +8,7 @@
 #include "Game/bg.h"
 #include "Game/workuser.h"
 
-void effect_65_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_65_move(WORK_Other* ewk) {
     ewk->wu.my_clear_level = 0x80;
 
     if (Menu_Suicide[ewk->master_player]) {

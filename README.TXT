@@ -10,13 +10,19 @@ src/Game/GD3rd.c:
 
 src/Game/sel_pl.c:
 -commented anything involving Check_PL_Load() and others
--commented if (Check_Exit_Check() == 0 && Debug_w[24] == 0xFF) {
+-commented if (Check_Exit_Check() == 0 && Debug_w[24] == 0xFF)
 
 src/Game/Next_CPU.c:
 -comented out Check_PL_Load() on Wait_Load_Complete functions
 
 src/Game/DC_Ghost.c:
 -//sceGuDrawArray(GU_TRIANGLES, GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 6, 0, vertices);
+
+src/Gamr/bg_sub.c
+-commented Bg_Texture_Load_EX()
+
+src/Game/MTRANS.c
+-mlt_obj_trans_cp3_ext() return if fail
 
 
 src/Game/color3rd.c:

@@ -9,8 +9,7 @@ u32 spmv_ng_save[2];
 
 const s16 pl17_0_00[12];
 
-void effect_L8_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_L8_move(WORK_Other* ewk) {
     PLW* mwk = (PLW*)ewk->my_master;
     s16* save_old_col_ptr = (s16*)&ewk->wu.zu_flag;
 
@@ -80,8 +79,7 @@ void load_old_color_data(s16* wram, s16* tram) {
     }
 }
 
-s32 effect_L8_init(WORK* wkp, s32 /*unused*/) {
-    PLW* wk = (PLW*) wkp;
+s32 effect_L8_init(PLW* wk) {
     WORK_Other* ewk;
     s16 ix;
 

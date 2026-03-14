@@ -142,8 +142,7 @@ const s16 thunder_set_pos_SKB[20][4] = { { 2, 5, 1, 23 }, { 2, 5, 1, 23 }, { 2, 
 void effE2_sort_push(WORK* ewk, WORK* mwk);
 void effe2_erase_or_die(WORK* wk);
 
-void effect_E2_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_E2_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -335,9 +334,7 @@ s32 effect_E2_init(PLW* wk, const s16* data, s16 color_code, u8 ff) {
     return 0;
 }
 
-s32 setup_accessories(WORK* wkp, s32 d) {
-    PLW* wk = (PLW*) wkp;
-    u8 data = (u8) d;
+s32 setup_accessories(PLW* wk, u8 data) {
     s16 i;
 
     if (wk->wu.work_id != 1) {

@@ -11,8 +11,7 @@
 
 const s16 eff53_vanish_time[8] = { 480, 600, 900, 1440, 480, 1080, 1500, 600 };
 
-void effect_53_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_53_move(WORK_Other* ewk) {
     s16 work;
 
     if (obr_no_disp_check()) {
@@ -70,7 +69,7 @@ void effect_53_move(WORK* wkp, s32 /*unused*/) {
     }
 }
 
-s32 effect_53_init(WORK* /*unused*/, s32 /*unused*/) {
+s32 effect_53_init() {
     WORK_Other* ewk;
     s16 ix;
 
@@ -85,6 +84,6 @@ s32 effect_53_init(WORK* /*unused*/, s32 /*unused*/) {
     ewk->wu.cgromtype = 1;
     ewk->wu.disp_flag = 0;
     ewk->wu.old_rno[2] = 0;
-    effect_54_init((WORK*) ewk, 0);
+    effect_54_init(ewk);
     return 0;
 }

@@ -9,8 +9,7 @@
 void Setup_Pos_18(WORK_Other_CONN* ewk);
 void Check_TenTen(WORK_Other_CONN* ewk);
 
-void effect_18_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other_CONN* ewk = (WORK_Other_CONN*) wkp;
+void effect_18_move(WORK_Other_CONN* ewk) {
     if (Menu_Suicide[ewk->master_player]) {
         push_effect_work(&ewk->wu);
         return;

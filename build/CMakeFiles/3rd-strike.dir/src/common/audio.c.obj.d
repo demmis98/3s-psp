@@ -60,6 +60,7 @@ CMakeFiles/3rd-strike.dir/src/common/audio.c.obj: \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkerror.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspstdio.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspintrman.h \
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdbool.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspkernel.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspiofilemgr_kernel.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/psploadcore.h \

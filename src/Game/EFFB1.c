@@ -25,8 +25,7 @@ void effB1_trans(WORK* ewk);
 void effB1_mark_change(WORK_Other_CONN* ewk);
 void effB1_mark_exchange(WORK_Other_CONN* ewk);
 
-void effect_B1_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other_CONN* ewk = (WORK_Other_CONN*) wkp;
+void effect_B1_move(WORK_Other_CONN* ewk) {
     s16 i;
 
     switch (ewk->wu.routine_no[0]) {
@@ -63,7 +62,7 @@ void effect_B1_move(WORK* wkp, s32 /*unused*/) {
             }
 
             if (ewk->wu.kage_prio) {
-                sound_effect_request[167]((WORK*) ewk, 167);
+                sound_effect_request[167](ewk, 167);
             }
 
             ewk->wu.dir_timer = 3;
@@ -196,8 +195,7 @@ void effB1_mark_exchange(WORK_Other_CONN* ewk) {
     }
 }
 
-s32 effect_B1_init(WORK* wkp, s32 flag) {
-    PLW* wk = (PLW*) wkp;
+s32 effect_B1_init(PLW* wk, s32 flag) {
     WORK_Other_CONN* ewk;
     s16 ix;
     s16 i;

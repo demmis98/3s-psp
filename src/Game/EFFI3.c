@@ -7,8 +7,7 @@
 
 const I3_Data i3_data[6] = { { 3, 2, 0 }, { 1, 1, 0 }, { 2, 0, 0 }, { 2, 0, 0 }, { 2, 0, 0 }, { 2, 0, 0 } };
 
-void effect_I3_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_I3_move(WORK_Other* ewk) {
     WORK* mwk = (WORK*)ewk->my_master;
 
     switch (ewk->wu.routine_no[0]) {
@@ -61,8 +60,7 @@ void effect_I3_move(WORK* wkp, s32 /*unused*/) {
     }
 }
 
-s32 effect_I3_init(WORK* wk, s32 d) {
-    u8 tix = (u8) d;
+s32 effect_I3_init(WORK* wk, u8 tix) {
     WORK_Other* ewk;
     s16 ix;
 

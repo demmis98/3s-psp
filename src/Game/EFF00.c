@@ -4,6 +4,8 @@
 #include "Game/aboutspr.h"
 #include "Game/debug/Debug.h"
 
+#include "fl.h"
+
 const u16 jdb[16] = { 0x8000, 0x80FF, 0xBC00, 0xBCFF, 0x8300, 0x83FF, 0xBF00, 0xBFFF,
                       0xC000, 0xC0FF, 0xFC00, 0xFCFF, 0xC300, 0xC3FF, 0xFF00, 0xFFFF };
 
@@ -12,13 +14,7 @@ s32 get_dip_modoki2(s16 from, s8 fl);
 void renewal_table_address(WORK_Other_JUDGE* ewk, WORK* twk);
 void renewal_table_data(WORK_Other_JUDGE* ewk);
 
-void effect_00_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other_JUDGE* ewk = (WORK_Other_JUDGE*) wkp;
-#if defined(TARGET_PS2)
-    s32 get_dip_modoki(s16 from, s32 fl);
-    s32 get_dip_modoki2(s16 from, s32 fl);
-#endif
-
+void effect_00_move(WORK_Other_JUDGE* ewk) {
     u16 dip;
     u16 dip2;
 
@@ -174,7 +170,7 @@ void renewal_table_data(WORK_Other_JUDGE* ewk) {
     }
 }
 
-s32 effect_00_init(WORK* wk, s32 /*unused*/) {
+s32 effect_00_init(WORK* wk) {
     WORK_Other_JUDGE* ewk;
     s16 ix;
 
@@ -191,7 +187,7 @@ s32 effect_00_init(WORK* wk, s32 /*unused*/) {
     ewk->wu.id = 0;
     ewk->wu.work_id = 128;
     ewk->wu.my_family = wk->my_family;
-    ewk->my_master = (u32*)wk;
+    ewk->my_master = wk;
     ewk->master_work_id = wk->work_id;
     ewk->master_id = wk->id;
     wk->waku_work_index = ewk->wu.myself;

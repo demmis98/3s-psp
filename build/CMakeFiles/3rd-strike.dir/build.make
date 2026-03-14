@@ -6271,10 +6271,24 @@ CMakeFiles/3rd-strike.dir/src/Game/sel_pl.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/3rd-strike.dir/src/Game/sel_pl.c.s"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/demma/Documents/code/psp/3rd-strike/src/Game/sel_pl.c -o CMakeFiles/3rd-strike.dir/src/Game/sel_pl.c.s
 
+CMakeFiles/3rd-strike.dir/src/Game/select_timer.c.obj: CMakeFiles/3rd-strike.dir/flags.make
+CMakeFiles/3rd-strike.dir/src/Game/select_timer.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/select_timer.c
+CMakeFiles/3rd-strike.dir/src/Game/select_timer.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_444) "Building C object CMakeFiles/3rd-strike.dir/src/Game/select_timer.c.obj"
+	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/select_timer.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/select_timer.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/select_timer.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/select_timer.c
+
+CMakeFiles/3rd-strike.dir/src/Game/select_timer.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/3rd-strike.dir/src/Game/select_timer.c.i"
+	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/demma/Documents/code/psp/3rd-strike/src/Game/select_timer.c > CMakeFiles/3rd-strike.dir/src/Game/select_timer.c.i
+
+CMakeFiles/3rd-strike.dir/src/Game/select_timer.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/3rd-strike.dir/src/Game/select_timer.c.s"
+	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/demma/Documents/code/psp/3rd-strike/src/Game/select_timer.c -o CMakeFiles/3rd-strike.dir/src/Game/select_timer.c.s
+
 CMakeFiles/3rd-strike.dir/src/Game/spgauge.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/spgauge.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/spgauge.c
 CMakeFiles/3rd-strike.dir/src/Game/spgauge.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_444) "Building C object CMakeFiles/3rd-strike.dir/src/Game/spgauge.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_445) "Building C object CMakeFiles/3rd-strike.dir/src/Game/spgauge.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/spgauge.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/spgauge.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/spgauge.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/spgauge.c
 
 CMakeFiles/3rd-strike.dir/src/Game/spgauge.c.i: cmake_force
@@ -6288,7 +6302,7 @@ CMakeFiles/3rd-strike.dir/src/Game/spgauge.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/staff.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/staff.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/staff.c
 CMakeFiles/3rd-strike.dir/src/Game/staff.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_445) "Building C object CMakeFiles/3rd-strike.dir/src/Game/staff.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_446) "Building C object CMakeFiles/3rd-strike.dir/src/Game/staff.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/staff.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/staff.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/staff.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/staff.c
 
 CMakeFiles/3rd-strike.dir/src/Game/staff.c.i: cmake_force
@@ -6302,7 +6316,7 @@ CMakeFiles/3rd-strike.dir/src/Game/staff.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/stun.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/stun.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/stun.c
 CMakeFiles/3rd-strike.dir/src/Game/stun.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_446) "Building C object CMakeFiles/3rd-strike.dir/src/Game/stun.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_447) "Building C object CMakeFiles/3rd-strike.dir/src/Game/stun.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/stun.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/stun.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/stun.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/stun.c
 
 CMakeFiles/3rd-strike.dir/src/Game/stun.c.i: cmake_force
@@ -6316,7 +6330,7 @@ CMakeFiles/3rd-strike.dir/src/Game/stun.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/ta_sub.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/ta_sub.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/ta_sub.c
 CMakeFiles/3rd-strike.dir/src/Game/ta_sub.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_447) "Building C object CMakeFiles/3rd-strike.dir/src/Game/ta_sub.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_448) "Building C object CMakeFiles/3rd-strike.dir/src/Game/ta_sub.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/ta_sub.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/ta_sub.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/ta_sub.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/ta_sub.c
 
 CMakeFiles/3rd-strike.dir/src/Game/ta_sub.c.i: cmake_force
@@ -6330,7 +6344,7 @@ CMakeFiles/3rd-strike.dir/src/Game/ta_sub.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/texcash.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/texcash.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/texcash.c
 CMakeFiles/3rd-strike.dir/src/Game/texcash.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_448) "Building C object CMakeFiles/3rd-strike.dir/src/Game/texcash.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_449) "Building C object CMakeFiles/3rd-strike.dir/src/Game/texcash.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/texcash.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/texcash.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/texcash.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/texcash.c
 
 CMakeFiles/3rd-strike.dir/src/Game/texcash.c.i: cmake_force
@@ -6344,7 +6358,7 @@ CMakeFiles/3rd-strike.dir/src/Game/texcash.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/texgroup.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/texgroup.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/texgroup.c
 CMakeFiles/3rd-strike.dir/src/Game/texgroup.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_449) "Building C object CMakeFiles/3rd-strike.dir/src/Game/texgroup.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_450) "Building C object CMakeFiles/3rd-strike.dir/src/Game/texgroup.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/texgroup.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/texgroup.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/texgroup.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/texgroup.c
 
 CMakeFiles/3rd-strike.dir/src/Game/texgroup.c.i: cmake_force
@@ -6358,7 +6372,7 @@ CMakeFiles/3rd-strike.dir/src/Game/texgroup.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/vm.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/vm.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/vm.c
 CMakeFiles/3rd-strike.dir/src/Game/vm.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_450) "Building C object CMakeFiles/3rd-strike.dir/src/Game/vm.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_451) "Building C object CMakeFiles/3rd-strike.dir/src/Game/vm.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/vm.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/vm.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/vm.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/vm.c
 
 CMakeFiles/3rd-strike.dir/src/Game/vm.c.i: cmake_force
@@ -6372,7 +6386,7 @@ CMakeFiles/3rd-strike.dir/src/Game/vm.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/vs_shell.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/vs_shell.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/vs_shell.c
 CMakeFiles/3rd-strike.dir/src/Game/vs_shell.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_451) "Building C object CMakeFiles/3rd-strike.dir/src/Game/vs_shell.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_452) "Building C object CMakeFiles/3rd-strike.dir/src/Game/vs_shell.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/vs_shell.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/vs_shell.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/vs_shell.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/vs_shell.c
 
 CMakeFiles/3rd-strike.dir/src/Game/vs_shell.c.i: cmake_force
@@ -6386,7 +6400,7 @@ CMakeFiles/3rd-strike.dir/src/Game/vs_shell.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/win_pl.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/win_pl.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/win_pl.c
 CMakeFiles/3rd-strike.dir/src/Game/win_pl.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_452) "Building C object CMakeFiles/3rd-strike.dir/src/Game/win_pl.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_453) "Building C object CMakeFiles/3rd-strike.dir/src/Game/win_pl.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/win_pl.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/win_pl.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/win_pl.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/win_pl.c
 
 CMakeFiles/3rd-strike.dir/src/Game/win_pl.c.i: cmake_force
@@ -6400,7 +6414,7 @@ CMakeFiles/3rd-strike.dir/src/Game/win_pl.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/workuser.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/workuser.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/workuser.c
 CMakeFiles/3rd-strike.dir/src/Game/workuser.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_453) "Building C object CMakeFiles/3rd-strike.dir/src/Game/workuser.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_454) "Building C object CMakeFiles/3rd-strike.dir/src/Game/workuser.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/workuser.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/workuser.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/workuser.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/workuser.c
 
 CMakeFiles/3rd-strike.dir/src/Game/workuser.c.i: cmake_force
@@ -6414,7 +6428,7 @@ CMakeFiles/3rd-strike.dir/src/Game/workuser.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/debug/Deb_Data.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/debug/Deb_Data.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/debug/Deb_Data.c
 CMakeFiles/3rd-strike.dir/src/Game/debug/Deb_Data.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_454) "Building C object CMakeFiles/3rd-strike.dir/src/Game/debug/Deb_Data.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_455) "Building C object CMakeFiles/3rd-strike.dir/src/Game/debug/Deb_Data.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/debug/Deb_Data.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/debug/Deb_Data.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/debug/Deb_Data.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/debug/Deb_Data.c
 
 CMakeFiles/3rd-strike.dir/src/Game/debug/Deb_Data.c.i: cmake_force
@@ -6428,7 +6442,7 @@ CMakeFiles/3rd-strike.dir/src/Game/debug/Deb_Data.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/debug/Debug.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/debug/Debug.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/debug/Debug.c
 CMakeFiles/3rd-strike.dir/src/Game/debug/Debug.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_455) "Building C object CMakeFiles/3rd-strike.dir/src/Game/debug/Debug.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_456) "Building C object CMakeFiles/3rd-strike.dir/src/Game/debug/Debug.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/debug/Debug.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/debug/Debug.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/debug/Debug.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/debug/Debug.c
 
 CMakeFiles/3rd-strike.dir/src/Game/debug/Debug.c.i: cmake_force
@@ -6438,20 +6452,6 @@ CMakeFiles/3rd-strike.dir/src/Game/debug/Debug.c.i: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/debug/Debug.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/3rd-strike.dir/src/Game/debug/Debug.c.s"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/demma/Documents/code/psp/3rd-strike/src/Game/debug/Debug.c -o CMakeFiles/3rd-strike.dir/src/Game/debug/Debug.c.s
-
-CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.obj: CMakeFiles/3rd-strike.dir/flags.make
-CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/debug/Debug_ID.c
-CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_456) "Building C object CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.obj"
-	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/debug/Debug_ID.c
-
-CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.i"
-	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/demma/Documents/code/psp/3rd-strike/src/Game/debug/Debug_ID.c > CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.i
-
-CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.s"
-	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/demma/Documents/code/psp/3rd-strike/src/Game/debug/Debug_ID.c -o CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.s
 
 CMakeFiles/3rd-strike.dir/src/Game/debug/Nakai.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/debug/Nakai.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/debug/Nakai.c
@@ -6495,10 +6495,24 @@ CMakeFiles/3rd-strike.dir/src/Game/debug/OTESTDAT.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/3rd-strike.dir/src/Game/debug/OTESTDAT.c.s"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/demma/Documents/code/psp/3rd-strike/src/Game/debug/OTESTDAT.c -o CMakeFiles/3rd-strike.dir/src/Game/debug/OTESTDAT.c.s
 
+CMakeFiles/3rd-strike.dir/src/Game/debug/debug_config.c.obj: CMakeFiles/3rd-strike.dir/flags.make
+CMakeFiles/3rd-strike.dir/src/Game/debug/debug_config.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/debug/debug_config.c
+CMakeFiles/3rd-strike.dir/src/Game/debug/debug_config.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_460) "Building C object CMakeFiles/3rd-strike.dir/src/Game/debug/debug_config.c.obj"
+	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/debug/debug_config.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/debug/debug_config.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/debug/debug_config.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/debug/debug_config.c
+
+CMakeFiles/3rd-strike.dir/src/Game/debug/debug_config.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/3rd-strike.dir/src/Game/debug/debug_config.c.i"
+	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/demma/Documents/code/psp/3rd-strike/src/Game/debug/debug_config.c > CMakeFiles/3rd-strike.dir/src/Game/debug/debug_config.c.i
+
+CMakeFiles/3rd-strike.dir/src/Game/debug/debug_config.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/3rd-strike.dir/src/Game/debug/debug_config.c.s"
+	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/demma/Documents/code/psp/3rd-strike/src/Game/debug/debug_config.c -o CMakeFiles/3rd-strike.dir/src/Game/debug/debug_config.c.s
+
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00End_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00End_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL00End_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00End_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_460) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00End_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_461) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00End_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00End_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00End_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00End_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL00End_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00End_usa.c.i: cmake_force
@@ -6512,7 +6526,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00End_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Tlk_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL00Tlk_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_461) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Tlk_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_462) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Tlk_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Tlk_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Tlk_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Tlk_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL00Tlk_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Tlk_usa.c.i: cmake_force
@@ -6526,7 +6540,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Tlk_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Win_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Win_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL00Win_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Win_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_462) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Win_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_463) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Win_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Win_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Win_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Win_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL00Win_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Win_usa.c.i: cmake_force
@@ -6540,7 +6554,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Win_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01End_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01End_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL01End_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01End_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_463) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01End_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_464) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01End_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01End_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01End_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01End_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL01End_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01End_usa.c.i: cmake_force
@@ -6554,7 +6568,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01End_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Tlk_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL01Tlk_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_464) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Tlk_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_465) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Tlk_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Tlk_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Tlk_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Tlk_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL01Tlk_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Tlk_usa.c.i: cmake_force
@@ -6568,7 +6582,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Tlk_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Win_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Win_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL01Win_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Win_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_465) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Win_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_466) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Win_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Win_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Win_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Win_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL01Win_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Win_usa.c.i: cmake_force
@@ -6582,7 +6596,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL01Win_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02End_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02End_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL02End_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02End_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_466) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02End_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_467) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02End_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02End_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02End_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02End_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL02End_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02End_usa.c.i: cmake_force
@@ -6596,7 +6610,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02End_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Tlk_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL02Tlk_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_467) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Tlk_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_468) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Tlk_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Tlk_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Tlk_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Tlk_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL02Tlk_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Tlk_usa.c.i: cmake_force
@@ -6610,7 +6624,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Tlk_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Win_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Win_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL02Win_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Win_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_468) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Win_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_469) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Win_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Win_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Win_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Win_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL02Win_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Win_usa.c.i: cmake_force
@@ -6624,7 +6638,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL02Win_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03End_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03End_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL03End_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03End_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_469) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03End_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_470) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03End_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03End_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03End_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03End_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL03End_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03End_usa.c.i: cmake_force
@@ -6638,7 +6652,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03End_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Tlk_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL03Tlk_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_470) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Tlk_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_471) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Tlk_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Tlk_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Tlk_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Tlk_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL03Tlk_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Tlk_usa.c.i: cmake_force
@@ -6652,7 +6666,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Tlk_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Win_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Win_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL03Win_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Win_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_471) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Win_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_472) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Win_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Win_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Win_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Win_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL03Win_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Win_usa.c.i: cmake_force
@@ -6666,7 +6680,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL03Win_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04End_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04End_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL04End_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04End_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_472) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04End_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_473) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04End_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04End_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04End_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04End_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL04End_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04End_usa.c.i: cmake_force
@@ -6680,7 +6694,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04End_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Tlk_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL04Tlk_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_473) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Tlk_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_474) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Tlk_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Tlk_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Tlk_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Tlk_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL04Tlk_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Tlk_usa.c.i: cmake_force
@@ -6694,7 +6708,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Tlk_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Win_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Win_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL04Win_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Win_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_474) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Win_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_475) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Win_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Win_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Win_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Win_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL04Win_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Win_usa.c.i: cmake_force
@@ -6708,7 +6722,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL04Win_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05End_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05End_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL05End_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05End_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_475) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05End_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_476) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05End_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05End_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05End_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05End_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL05End_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05End_usa.c.i: cmake_force
@@ -6722,7 +6736,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05End_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Tlk_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL05Tlk_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_476) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Tlk_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_477) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Tlk_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Tlk_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Tlk_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Tlk_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL05Tlk_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Tlk_usa.c.i: cmake_force
@@ -6736,7 +6750,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Tlk_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Win_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Win_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL05Win_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Win_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_477) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Win_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_478) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Win_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Win_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Win_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Win_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL05Win_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Win_usa.c.i: cmake_force
@@ -6750,7 +6764,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL05Win_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06End_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06End_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL06End_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06End_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_478) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06End_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_479) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06End_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06End_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06End_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06End_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL06End_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06End_usa.c.i: cmake_force
@@ -6764,7 +6778,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06End_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Tlk_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL06Tlk_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_479) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Tlk_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_480) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Tlk_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Tlk_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Tlk_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Tlk_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL06Tlk_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Tlk_usa.c.i: cmake_force
@@ -6778,7 +6792,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Tlk_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Win_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Win_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL06Win_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Win_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_480) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Win_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_481) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Win_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Win_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Win_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Win_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL06Win_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Win_usa.c.i: cmake_force
@@ -6792,7 +6806,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL06Win_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07End_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07End_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL07End_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07End_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_481) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07End_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_482) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07End_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07End_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07End_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07End_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL07End_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07End_usa.c.i: cmake_force
@@ -6806,7 +6820,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07End_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Tlk_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL07Tlk_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_482) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Tlk_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_483) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Tlk_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Tlk_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Tlk_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Tlk_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL07Tlk_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Tlk_usa.c.i: cmake_force
@@ -6820,7 +6834,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Tlk_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Win_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Win_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL07Win_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Win_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_483) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Win_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_484) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Win_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Win_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Win_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Win_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL07Win_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Win_usa.c.i: cmake_force
@@ -6834,7 +6848,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL07Win_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08End_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08End_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL08End_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08End_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_484) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08End_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_485) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08End_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08End_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08End_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08End_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL08End_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08End_usa.c.i: cmake_force
@@ -6848,7 +6862,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08End_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Tlk_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL08Tlk_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_485) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Tlk_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_486) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Tlk_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Tlk_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Tlk_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Tlk_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL08Tlk_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Tlk_usa.c.i: cmake_force
@@ -6862,7 +6876,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Tlk_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Win_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Win_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL08Win_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Win_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_486) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Win_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_487) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Win_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Win_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Win_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Win_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL08Win_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Win_usa.c.i: cmake_force
@@ -6876,7 +6890,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL08Win_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09End_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09End_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL09End_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09End_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_487) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09End_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_488) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09End_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09End_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09End_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09End_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL09End_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09End_usa.c.i: cmake_force
@@ -6890,7 +6904,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09End_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Tlk_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL09Tlk_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_488) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Tlk_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_489) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Tlk_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Tlk_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Tlk_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Tlk_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL09Tlk_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Tlk_usa.c.i: cmake_force
@@ -6904,7 +6918,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Tlk_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Win_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Win_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL09Win_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Win_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_489) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Win_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_490) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Win_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Win_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Win_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Win_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL09Win_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Win_usa.c.i: cmake_force
@@ -6918,7 +6932,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL09Win_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10End_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10End_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL10End_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10End_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_490) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10End_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_491) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10End_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10End_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10End_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10End_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL10End_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10End_usa.c.i: cmake_force
@@ -6932,7 +6946,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10End_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Tlk_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL10Tlk_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_491) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Tlk_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_492) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Tlk_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Tlk_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Tlk_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Tlk_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL10Tlk_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Tlk_usa.c.i: cmake_force
@@ -6946,7 +6960,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Tlk_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Win_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Win_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL10Win_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Win_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_492) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Win_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_493) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Win_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Win_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Win_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Win_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL10Win_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Win_usa.c.i: cmake_force
@@ -6960,7 +6974,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL10Win_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11End_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11End_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL11End_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11End_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_493) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11End_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_494) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11End_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11End_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11End_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11End_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL11End_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11End_usa.c.i: cmake_force
@@ -6974,7 +6988,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11End_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Tlk_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL11Tlk_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_494) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Tlk_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_495) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Tlk_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Tlk_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Tlk_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Tlk_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL11Tlk_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Tlk_usa.c.i: cmake_force
@@ -6988,7 +7002,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Tlk_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Win_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Win_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL11Win_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Win_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_495) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Win_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_496) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Win_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Win_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Win_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Win_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL11Win_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Win_usa.c.i: cmake_force
@@ -7002,7 +7016,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL11Win_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12End_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12End_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL12End_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12End_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_496) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12End_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_497) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12End_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12End_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12End_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12End_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL12End_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12End_usa.c.i: cmake_force
@@ -7016,7 +7030,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12End_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Tlk_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL12Tlk_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_497) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Tlk_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_498) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Tlk_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Tlk_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Tlk_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Tlk_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL12Tlk_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Tlk_usa.c.i: cmake_force
@@ -7030,7 +7044,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Tlk_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Win_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Win_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL12Win_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Win_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_498) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Win_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_499) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Win_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Win_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Win_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Win_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL12Win_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Win_usa.c.i: cmake_force
@@ -7044,7 +7058,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL12Win_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13End_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13End_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL13End_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13End_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_499) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13End_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_500) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13End_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13End_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13End_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13End_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL13End_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13End_usa.c.i: cmake_force
@@ -7058,7 +7072,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13End_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Tlk_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL13Tlk_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_500) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Tlk_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_501) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Tlk_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Tlk_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Tlk_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Tlk_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL13Tlk_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Tlk_usa.c.i: cmake_force
@@ -7072,7 +7086,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Tlk_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Win_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Win_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL13Win_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Win_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_501) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Win_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_502) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Win_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Win_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Win_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Win_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL13Win_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Win_usa.c.i: cmake_force
@@ -7086,7 +7100,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL13Win_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14End_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14End_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL14End_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14End_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_502) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14End_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_503) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14End_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14End_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14End_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14End_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL14End_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14End_usa.c.i: cmake_force
@@ -7100,7 +7114,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14End_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14Win_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14Win_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL14Win_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14Win_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_503) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14Win_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_504) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14Win_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14Win_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14Win_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14Win_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL14Win_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14Win_usa.c.i: cmake_force
@@ -7114,7 +7128,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL14Win_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15End_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15End_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL15End_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15End_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_504) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15End_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_505) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15End_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15End_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15End_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15End_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL15End_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15End_usa.c.i: cmake_force
@@ -7128,7 +7142,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15End_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Tlk_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL15Tlk_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_505) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Tlk_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_506) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Tlk_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Tlk_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Tlk_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Tlk_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL15Tlk_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Tlk_usa.c.i: cmake_force
@@ -7142,7 +7156,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Tlk_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Win_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Win_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL15Win_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Win_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_506) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Win_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_507) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Win_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Win_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Win_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Win_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL15Win_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Win_usa.c.i: cmake_force
@@ -7156,7 +7170,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL15Win_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16End_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16End_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL16End_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16End_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_507) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16End_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_508) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16End_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16End_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16End_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16End_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL16End_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16End_usa.c.i: cmake_force
@@ -7170,7 +7184,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16End_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Tlk_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL16Tlk_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_508) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Tlk_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_509) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Tlk_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Tlk_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Tlk_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Tlk_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL16Tlk_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Tlk_usa.c.i: cmake_force
@@ -7184,7 +7198,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Tlk_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Win_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Win_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL16Win_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Win_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_509) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Win_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_510) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Win_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Win_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Win_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Win_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL16Win_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Win_usa.c.i: cmake_force
@@ -7198,7 +7212,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL16Win_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17End_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17End_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL17End_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17End_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_510) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17End_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_511) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17End_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17End_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17End_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17End_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL17End_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17End_usa.c.i: cmake_force
@@ -7212,7 +7226,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17End_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17Win_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17Win_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL17Win_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17Win_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_511) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17Win_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_512) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17Win_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17Win_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17Win_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17Win_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL17Win_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17Win_usa.c.i: cmake_force
@@ -7226,7 +7240,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL17Win_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18End_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18End_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL18End_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18End_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_512) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18End_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_513) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18End_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18End_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18End_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18End_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL18End_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18End_usa.c.i: cmake_force
@@ -7240,7 +7254,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18End_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Tlk_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL18Tlk_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_513) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Tlk_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_514) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Tlk_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Tlk_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Tlk_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Tlk_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL18Tlk_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Tlk_usa.c.i: cmake_force
@@ -7254,7 +7268,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Tlk_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Win_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Win_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL18Win_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Win_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_514) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Win_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_515) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Win_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Win_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Win_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Win_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL18Win_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Win_usa.c.i: cmake_force
@@ -7268,7 +7282,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL18Win_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19End_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19End_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL19End_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19End_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_515) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19End_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_516) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19End_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19End_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19End_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19End_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL19End_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19End_usa.c.i: cmake_force
@@ -7282,7 +7296,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19End_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Tlk_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL19Tlk_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Tlk_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_516) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Tlk_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_517) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Tlk_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Tlk_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Tlk_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Tlk_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL19Tlk_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Tlk_usa.c.i: cmake_force
@@ -7296,7 +7310,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Tlk_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Win_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Win_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL19Win_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Win_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_517) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Win_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_518) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Win_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Win_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Win_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Win_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL19Win_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Win_usa.c.i: cmake_force
@@ -7310,7 +7324,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL19Win_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgExtra_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgExtra_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/msgExtra_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgExtra_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_518) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgExtra_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_519) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgExtra_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgExtra_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgExtra_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgExtra_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/msgExtra_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgExtra_usa.c.i: cmake_force
@@ -7324,7 +7338,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgExtra_usa.c.s: cmake_forc
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgMenu_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgMenu_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/msgMenu_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgMenu_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_519) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgMenu_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_520) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgMenu_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgMenu_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgMenu_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgMenu_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/msgMenu_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgMenu_usa.c.i: cmake_force
@@ -7338,7 +7352,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgMenu_usa.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgSysDir_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgSysDir_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/msgSysDir_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgSysDir_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_520) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgSysDir_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_521) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgSysDir_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgSysDir_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgSysDir_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgSysDir_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/msgSysDir_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgSysDir_usa.c.i: cmake_force
@@ -7352,7 +7366,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgSysDir_usa.c.s: cmake_for
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgTable_usa.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgTable_usa.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/msgTable_usa.c
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgTable_usa.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_521) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgTable_usa.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_522) "Building C object CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgTable_usa.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgTable_usa.c.obj -MF CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgTable_usa.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgTable_usa.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/msgTable_usa.c
 
 CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgTable_usa.c.i: cmake_force
@@ -7366,7 +7380,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/msgTable_usa.c.s: cmake_forc
 CMakeFiles/3rd-strike.dir/src/bin2obj/asstbl.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/bin2obj/asstbl.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/bin2obj/asstbl.c
 CMakeFiles/3rd-strike.dir/src/bin2obj/asstbl.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_522) "Building C object CMakeFiles/3rd-strike.dir/src/bin2obj/asstbl.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_523) "Building C object CMakeFiles/3rd-strike.dir/src/bin2obj/asstbl.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/bin2obj/asstbl.c.obj -MF CMakeFiles/3rd-strike.dir/src/bin2obj/asstbl.c.obj.d -o CMakeFiles/3rd-strike.dir/src/bin2obj/asstbl.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/bin2obj/asstbl.c
 
 CMakeFiles/3rd-strike.dir/src/bin2obj/asstbl.c.i: cmake_force
@@ -7380,7 +7394,7 @@ CMakeFiles/3rd-strike.dir/src/bin2obj/asstbl.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/bin2obj/buttobi.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/bin2obj/buttobi.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/bin2obj/buttobi.c
 CMakeFiles/3rd-strike.dir/src/bin2obj/buttobi.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_523) "Building C object CMakeFiles/3rd-strike.dir/src/bin2obj/buttobi.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_524) "Building C object CMakeFiles/3rd-strike.dir/src/bin2obj/buttobi.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/bin2obj/buttobi.c.obj -MF CMakeFiles/3rd-strike.dir/src/bin2obj/buttobi.c.obj.d -o CMakeFiles/3rd-strike.dir/src/bin2obj/buttobi.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/bin2obj/buttobi.c
 
 CMakeFiles/3rd-strike.dir/src/bin2obj/buttobi.c.i: cmake_force
@@ -7394,7 +7408,7 @@ CMakeFiles/3rd-strike.dir/src/bin2obj/buttobi.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/bin2obj/char_table.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/bin2obj/char_table.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/bin2obj/char_table.c
 CMakeFiles/3rd-strike.dir/src/bin2obj/char_table.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_524) "Building C object CMakeFiles/3rd-strike.dir/src/bin2obj/char_table.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_525) "Building C object CMakeFiles/3rd-strike.dir/src/bin2obj/char_table.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/bin2obj/char_table.c.obj -MF CMakeFiles/3rd-strike.dir/src/bin2obj/char_table.c.obj.d -o CMakeFiles/3rd-strike.dir/src/bin2obj/char_table.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/bin2obj/char_table.c
 
 CMakeFiles/3rd-strike.dir/src/bin2obj/char_table.c.i: cmake_force
@@ -7408,7 +7422,7 @@ CMakeFiles/3rd-strike.dir/src/bin2obj/char_table.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/bin2obj/etc.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/bin2obj/etc.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/bin2obj/etc.c
 CMakeFiles/3rd-strike.dir/src/bin2obj/etc.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_525) "Building C object CMakeFiles/3rd-strike.dir/src/bin2obj/etc.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_526) "Building C object CMakeFiles/3rd-strike.dir/src/bin2obj/etc.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/bin2obj/etc.c.obj -MF CMakeFiles/3rd-strike.dir/src/bin2obj/etc.c.obj.d -o CMakeFiles/3rd-strike.dir/src/bin2obj/etc.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/bin2obj/etc.c
 
 CMakeFiles/3rd-strike.dir/src/bin2obj/etc.c.i: cmake_force
@@ -7422,7 +7436,7 @@ CMakeFiles/3rd-strike.dir/src/bin2obj/etc.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/bin2obj/exchange.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/bin2obj/exchange.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/bin2obj/exchange.c
 CMakeFiles/3rd-strike.dir/src/bin2obj/exchange.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_526) "Building C object CMakeFiles/3rd-strike.dir/src/bin2obj/exchange.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_527) "Building C object CMakeFiles/3rd-strike.dir/src/bin2obj/exchange.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/bin2obj/exchange.c.obj -MF CMakeFiles/3rd-strike.dir/src/bin2obj/exchange.c.obj.d -o CMakeFiles/3rd-strike.dir/src/bin2obj/exchange.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/bin2obj/exchange.c
 
 CMakeFiles/3rd-strike.dir/src/bin2obj/exchange.c.i: cmake_force
@@ -7436,7 +7450,7 @@ CMakeFiles/3rd-strike.dir/src/bin2obj/exchange.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/bin2obj/gauge.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/bin2obj/gauge.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/bin2obj/gauge.c
 CMakeFiles/3rd-strike.dir/src/bin2obj/gauge.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_527) "Building C object CMakeFiles/3rd-strike.dir/src/bin2obj/gauge.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_528) "Building C object CMakeFiles/3rd-strike.dir/src/bin2obj/gauge.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/bin2obj/gauge.c.obj -MF CMakeFiles/3rd-strike.dir/src/bin2obj/gauge.c.obj.d -o CMakeFiles/3rd-strike.dir/src/bin2obj/gauge.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/bin2obj/gauge.c
 
 CMakeFiles/3rd-strike.dir/src/bin2obj/gauge.c.i: cmake_force
@@ -7450,7 +7464,7 @@ CMakeFiles/3rd-strike.dir/src/bin2obj/gauge.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/fbms.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/fbms.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/AcrSDK/common/fbms.c
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/fbms.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_528) "Building C object CMakeFiles/3rd-strike.dir/src/AcrSDK/common/fbms.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_529) "Building C object CMakeFiles/3rd-strike.dir/src/AcrSDK/common/fbms.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/AcrSDK/common/fbms.c.obj -MF CMakeFiles/3rd-strike.dir/src/AcrSDK/common/fbms.c.obj.d -o CMakeFiles/3rd-strike.dir/src/AcrSDK/common/fbms.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/AcrSDK/common/fbms.c
 
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/fbms.c.i: cmake_force
@@ -7464,7 +7478,7 @@ CMakeFiles/3rd-strike.dir/src/AcrSDK/common/fbms.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/memfound.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/memfound.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/AcrSDK/common/memfound.c
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/memfound.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_529) "Building C object CMakeFiles/3rd-strike.dir/src/AcrSDK/common/memfound.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_530) "Building C object CMakeFiles/3rd-strike.dir/src/AcrSDK/common/memfound.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/AcrSDK/common/memfound.c.obj -MF CMakeFiles/3rd-strike.dir/src/AcrSDK/common/memfound.c.obj.d -o CMakeFiles/3rd-strike.dir/src/AcrSDK/common/memfound.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/AcrSDK/common/memfound.c
 
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/memfound.c.i: cmake_force
@@ -7478,7 +7492,7 @@ CMakeFiles/3rd-strike.dir/src/AcrSDK/common/memfound.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/memmgr.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/memmgr.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/AcrSDK/common/memmgr.c
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/memmgr.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_530) "Building C object CMakeFiles/3rd-strike.dir/src/AcrSDK/common/memmgr.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_531) "Building C object CMakeFiles/3rd-strike.dir/src/AcrSDK/common/memmgr.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/AcrSDK/common/memmgr.c.obj -MF CMakeFiles/3rd-strike.dir/src/AcrSDK/common/memmgr.c.obj.d -o CMakeFiles/3rd-strike.dir/src/AcrSDK/common/memmgr.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/AcrSDK/common/memmgr.c
 
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/memmgr.c.i: cmake_force
@@ -7492,7 +7506,7 @@ CMakeFiles/3rd-strike.dir/src/AcrSDK/common/memmgr.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/mlPAD.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/mlPAD.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/AcrSDK/common/mlPAD.c
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/mlPAD.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_531) "Building C object CMakeFiles/3rd-strike.dir/src/AcrSDK/common/mlPAD.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_532) "Building C object CMakeFiles/3rd-strike.dir/src/AcrSDK/common/mlPAD.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/AcrSDK/common/mlPAD.c.obj -MF CMakeFiles/3rd-strike.dir/src/AcrSDK/common/mlPAD.c.obj.d -o CMakeFiles/3rd-strike.dir/src/AcrSDK/common/mlPAD.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/AcrSDK/common/mlPAD.c
 
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/mlPAD.c.i: cmake_force
@@ -7506,7 +7520,7 @@ CMakeFiles/3rd-strike.dir/src/AcrSDK/common/mlPAD.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plapx.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plapx.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/AcrSDK/common/plapx.c
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plapx.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_532) "Building C object CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plapx.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_533) "Building C object CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plapx.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plapx.c.obj -MF CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plapx.c.obj.d -o CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plapx.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/AcrSDK/common/plapx.c
 
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plapx.c.i: cmake_force
@@ -7520,7 +7534,7 @@ CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plapx.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plbmp.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plbmp.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/AcrSDK/common/plbmp.c
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plbmp.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_533) "Building C object CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plbmp.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_534) "Building C object CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plbmp.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plbmp.c.obj -MF CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plbmp.c.obj.d -o CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plbmp.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/AcrSDK/common/plbmp.c
 
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plbmp.c.i: cmake_force
@@ -7534,7 +7548,7 @@ CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plbmp.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plpic.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plpic.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/AcrSDK/common/plpic.c
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plpic.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_534) "Building C object CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plpic.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_535) "Building C object CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plpic.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plpic.c.obj -MF CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plpic.c.obj.d -o CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plpic.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/AcrSDK/common/plpic.c
 
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plpic.c.i: cmake_force
@@ -7548,7 +7562,7 @@ CMakeFiles/3rd-strike.dir/src/AcrSDK/common/plpic.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/pltim2.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/pltim2.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/AcrSDK/common/pltim2.c
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/pltim2.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_535) "Building C object CMakeFiles/3rd-strike.dir/src/AcrSDK/common/pltim2.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_536) "Building C object CMakeFiles/3rd-strike.dir/src/AcrSDK/common/pltim2.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/AcrSDK/common/pltim2.c.obj -MF CMakeFiles/3rd-strike.dir/src/AcrSDK/common/pltim2.c.obj.d -o CMakeFiles/3rd-strike.dir/src/AcrSDK/common/pltim2.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/AcrSDK/common/pltim2.c
 
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/pltim2.c.i: cmake_force
@@ -7562,7 +7576,7 @@ CMakeFiles/3rd-strike.dir/src/AcrSDK/common/pltim2.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/prilay.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/prilay.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/AcrSDK/common/prilay.c
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/prilay.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_536) "Building C object CMakeFiles/3rd-strike.dir/src/AcrSDK/common/prilay.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_537) "Building C object CMakeFiles/3rd-strike.dir/src/AcrSDK/common/prilay.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/AcrSDK/common/prilay.c.obj -MF CMakeFiles/3rd-strike.dir/src/AcrSDK/common/prilay.c.obj.d -o CMakeFiles/3rd-strike.dir/src/AcrSDK/common/prilay.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/AcrSDK/common/prilay.c
 
 CMakeFiles/3rd-strike.dir/src/AcrSDK/common/prilay.c.i: cmake_force
@@ -7576,7 +7590,7 @@ CMakeFiles/3rd-strike.dir/src/AcrSDK/common/prilay.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Compress/zlibApp.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Compress/zlibApp.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Compress/zlibApp.c
 CMakeFiles/3rd-strike.dir/src/Compress/zlibApp.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_537) "Building C object CMakeFiles/3rd-strike.dir/src/Compress/zlibApp.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_538) "Building C object CMakeFiles/3rd-strike.dir/src/Compress/zlibApp.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Compress/zlibApp.c.obj -MF CMakeFiles/3rd-strike.dir/src/Compress/zlibApp.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Compress/zlibApp.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Compress/zlibApp.c
 
 CMakeFiles/3rd-strike.dir/src/Compress/zlibApp.c.i: cmake_force
@@ -7590,7 +7604,7 @@ CMakeFiles/3rd-strike.dir/src/Compress/zlibApp.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Compress/Lz77/Lz77Dec.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Compress/Lz77/Lz77Dec.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Compress/Lz77/Lz77Dec.c
 CMakeFiles/3rd-strike.dir/src/Compress/Lz77/Lz77Dec.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_538) "Building C object CMakeFiles/3rd-strike.dir/src/Compress/Lz77/Lz77Dec.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_539) "Building C object CMakeFiles/3rd-strike.dir/src/Compress/Lz77/Lz77Dec.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Compress/Lz77/Lz77Dec.c.obj -MF CMakeFiles/3rd-strike.dir/src/Compress/Lz77/Lz77Dec.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Compress/Lz77/Lz77Dec.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Compress/Lz77/Lz77Dec.c
 
 CMakeFiles/3rd-strike.dir/src/Compress/Lz77/Lz77Dec.c.i: cmake_force
@@ -7604,7 +7618,7 @@ CMakeFiles/3rd-strike.dir/src/Compress/Lz77/Lz77Dec.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/adler32.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/adler32.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Compress/zlib/adler32.c
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/adler32.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_539) "Building C object CMakeFiles/3rd-strike.dir/src/Compress/zlib/adler32.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_540) "Building C object CMakeFiles/3rd-strike.dir/src/Compress/zlib/adler32.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Compress/zlib/adler32.c.obj -MF CMakeFiles/3rd-strike.dir/src/Compress/zlib/adler32.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Compress/zlib/adler32.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Compress/zlib/adler32.c
 
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/adler32.c.i: cmake_force
@@ -7618,7 +7632,7 @@ CMakeFiles/3rd-strike.dir/src/Compress/zlib/adler32.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/infblock.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/infblock.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Compress/zlib/infblock.c
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/infblock.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_540) "Building C object CMakeFiles/3rd-strike.dir/src/Compress/zlib/infblock.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_541) "Building C object CMakeFiles/3rd-strike.dir/src/Compress/zlib/infblock.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Compress/zlib/infblock.c.obj -MF CMakeFiles/3rd-strike.dir/src/Compress/zlib/infblock.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Compress/zlib/infblock.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Compress/zlib/infblock.c
 
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/infblock.c.i: cmake_force
@@ -7632,7 +7646,7 @@ CMakeFiles/3rd-strike.dir/src/Compress/zlib/infblock.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/infcodes.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/infcodes.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Compress/zlib/infcodes.c
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/infcodes.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_541) "Building C object CMakeFiles/3rd-strike.dir/src/Compress/zlib/infcodes.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_542) "Building C object CMakeFiles/3rd-strike.dir/src/Compress/zlib/infcodes.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Compress/zlib/infcodes.c.obj -MF CMakeFiles/3rd-strike.dir/src/Compress/zlib/infcodes.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Compress/zlib/infcodes.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Compress/zlib/infcodes.c
 
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/infcodes.c.i: cmake_force
@@ -7646,7 +7660,7 @@ CMakeFiles/3rd-strike.dir/src/Compress/zlib/infcodes.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/inffast.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/inffast.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Compress/zlib/inffast.c
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/inffast.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_542) "Building C object CMakeFiles/3rd-strike.dir/src/Compress/zlib/inffast.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_543) "Building C object CMakeFiles/3rd-strike.dir/src/Compress/zlib/inffast.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Compress/zlib/inffast.c.obj -MF CMakeFiles/3rd-strike.dir/src/Compress/zlib/inffast.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Compress/zlib/inffast.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Compress/zlib/inffast.c
 
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/inffast.c.i: cmake_force
@@ -7660,7 +7674,7 @@ CMakeFiles/3rd-strike.dir/src/Compress/zlib/inffast.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/inflate.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/inflate.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Compress/zlib/inflate.c
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/inflate.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_543) "Building C object CMakeFiles/3rd-strike.dir/src/Compress/zlib/inflate.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_544) "Building C object CMakeFiles/3rd-strike.dir/src/Compress/zlib/inflate.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Compress/zlib/inflate.c.obj -MF CMakeFiles/3rd-strike.dir/src/Compress/zlib/inflate.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Compress/zlib/inflate.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Compress/zlib/inflate.c
 
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/inflate.c.i: cmake_force
@@ -7674,7 +7688,7 @@ CMakeFiles/3rd-strike.dir/src/Compress/zlib/inflate.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/inftrees.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/inftrees.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Compress/zlib/inftrees.c
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/inftrees.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_544) "Building C object CMakeFiles/3rd-strike.dir/src/Compress/zlib/inftrees.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_545) "Building C object CMakeFiles/3rd-strike.dir/src/Compress/zlib/inftrees.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Compress/zlib/inftrees.c.obj -MF CMakeFiles/3rd-strike.dir/src/Compress/zlib/inftrees.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Compress/zlib/inftrees.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Compress/zlib/inftrees.c
 
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/inftrees.c.i: cmake_force
@@ -7688,7 +7702,7 @@ CMakeFiles/3rd-strike.dir/src/Compress/zlib/inftrees.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/infutil.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/infutil.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Compress/zlib/infutil.c
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/infutil.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_545) "Building C object CMakeFiles/3rd-strike.dir/src/Compress/zlib/infutil.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_546) "Building C object CMakeFiles/3rd-strike.dir/src/Compress/zlib/infutil.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Compress/zlib/infutil.c.obj -MF CMakeFiles/3rd-strike.dir/src/Compress/zlib/infutil.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Compress/zlib/infutil.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Compress/zlib/infutil.c
 
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/infutil.c.i: cmake_force
@@ -7702,7 +7716,7 @@ CMakeFiles/3rd-strike.dir/src/Compress/zlib/infutil.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/zutil.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/zutil.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Compress/zlib/zutil.c
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/zutil.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_546) "Building C object CMakeFiles/3rd-strike.dir/src/Compress/zlib/zutil.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_547) "Building C object CMakeFiles/3rd-strike.dir/src/Compress/zlib/zutil.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/Compress/zlib/zutil.c.obj -MF CMakeFiles/3rd-strike.dir/src/Compress/zlib/zutil.c.obj.d -o CMakeFiles/3rd-strike.dir/src/Compress/zlib/zutil.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/Compress/zlib/zutil.c
 
 CMakeFiles/3rd-strike.dir/src/Compress/zlib/zutil.c.i: cmake_force
@@ -7716,7 +7730,7 @@ CMakeFiles/3rd-strike.dir/src/Compress/zlib/zutil.c.s: cmake_force
 CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj: CMakeFiles/3rd-strike.dir/flags.make
 CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/port/char_data.c
 CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj: CMakeFiles/3rd-strike.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_547) "Building C object CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_548) "Building C object CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj"
 	/home/demma/.local/bin/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj -MF CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj.d -o CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj -c /home/demma/Documents/code/psp/3rd-strike/src/port/char_data.c
 
 CMakeFiles/3rd-strike.dir/src/port/char_data.c.i: cmake_force
@@ -8172,6 +8186,7 @@ CMakeFiles/3rd-strike.dir/src/port/char_data.c.s: cmake_force
 "CMakeFiles/3rd-strike.dir/src/Game/sc_data.c.obj" \
 "CMakeFiles/3rd-strike.dir/src/Game/sc_sub.c.obj" \
 "CMakeFiles/3rd-strike.dir/src/Game/sel_pl.c.obj" \
+"CMakeFiles/3rd-strike.dir/src/Game/select_timer.c.obj" \
 "CMakeFiles/3rd-strike.dir/src/Game/spgauge.c.obj" \
 "CMakeFiles/3rd-strike.dir/src/Game/staff.c.obj" \
 "CMakeFiles/3rd-strike.dir/src/Game/stun.c.obj" \
@@ -8184,10 +8199,10 @@ CMakeFiles/3rd-strike.dir/src/port/char_data.c.s: cmake_force
 "CMakeFiles/3rd-strike.dir/src/Game/workuser.c.obj" \
 "CMakeFiles/3rd-strike.dir/src/Game/debug/Deb_Data.c.obj" \
 "CMakeFiles/3rd-strike.dir/src/Game/debug/Debug.c.obj" \
-"CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.obj" \
 "CMakeFiles/3rd-strike.dir/src/Game/debug/Nakai.c.obj" \
 "CMakeFiles/3rd-strike.dir/src/Game/debug/OBJTEST.c.obj" \
 "CMakeFiles/3rd-strike.dir/src/Game/debug/OTESTDAT.c.obj" \
+"CMakeFiles/3rd-strike.dir/src/Game/debug/debug_config.c.obj" \
 "CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00End_usa.c.obj" \
 "CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Tlk_usa.c.obj" \
 "CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Win_usa.c.obj" \
@@ -8723,6 +8738,7 @@ CMakeFiles/3rd-strike.dir/src/port/char_data.c.s: cmake_force
 3rd-strike: CMakeFiles/3rd-strike.dir/src/Game/sc_data.c.obj
 3rd-strike: CMakeFiles/3rd-strike.dir/src/Game/sc_sub.c.obj
 3rd-strike: CMakeFiles/3rd-strike.dir/src/Game/sel_pl.c.obj
+3rd-strike: CMakeFiles/3rd-strike.dir/src/Game/select_timer.c.obj
 3rd-strike: CMakeFiles/3rd-strike.dir/src/Game/spgauge.c.obj
 3rd-strike: CMakeFiles/3rd-strike.dir/src/Game/staff.c.obj
 3rd-strike: CMakeFiles/3rd-strike.dir/src/Game/stun.c.obj
@@ -8735,10 +8751,10 @@ CMakeFiles/3rd-strike.dir/src/port/char_data.c.s: cmake_force
 3rd-strike: CMakeFiles/3rd-strike.dir/src/Game/workuser.c.obj
 3rd-strike: CMakeFiles/3rd-strike.dir/src/Game/debug/Deb_Data.c.obj
 3rd-strike: CMakeFiles/3rd-strike.dir/src/Game/debug/Debug.c.obj
-3rd-strike: CMakeFiles/3rd-strike.dir/src/Game/debug/Debug_ID.c.obj
 3rd-strike: CMakeFiles/3rd-strike.dir/src/Game/debug/Nakai.c.obj
 3rd-strike: CMakeFiles/3rd-strike.dir/src/Game/debug/OBJTEST.c.obj
 3rd-strike: CMakeFiles/3rd-strike.dir/src/Game/debug/OTESTDAT.c.obj
+3rd-strike: CMakeFiles/3rd-strike.dir/src/Game/debug/debug_config.c.obj
 3rd-strike: CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00End_usa.c.obj
 3rd-strike: CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Tlk_usa.c.obj
 3rd-strike: CMakeFiles/3rd-strike.dir/src/Game/Message3rd/C_USA/PL00Win_usa.c.obj
@@ -8829,7 +8845,7 @@ CMakeFiles/3rd-strike.dir/src/port/char_data.c.s: cmake_force
 3rd-strike: CMakeFiles/3rd-strike.dir/src/port/char_data.c.obj
 3rd-strike: CMakeFiles/3rd-strike.dir/build.make
 3rd-strike: CMakeFiles/3rd-strike.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_548) "Linking C executable 3rd-strike"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/demma/Documents/code/psp/3rd-strike/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_549) "Linking C executable 3rd-strike"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/3rd-strike.dir/link.txt --verbose=$(VERBOSE)
 	/usr/bin/cmake -E cmake_echo_color --cyan Not\ stripping\ binary\ for\ target\ 3rd-strike,\ build\ type\ is\ .
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Calling psp-fixup-imports for target 3rd-strike"

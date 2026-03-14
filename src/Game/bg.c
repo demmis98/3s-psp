@@ -72,11 +72,7 @@ void Bg_TexInit() {
 
 void Bg_Kakikae_Set() {
     u8 i;
-#if defined(TARGET_PS2)
-    const u32* rwtbl_ptr;
-#else
     const bgrw_data_tbl_elem* rwtbl_ptr;
-#endif
     s8 rw;
 
     switch (bg_w.stage) {
@@ -96,18 +92,10 @@ void Bg_Kakikae_Set() {
         for (i = 0; i < 4; i++) {
             rw = bgrw_on[bg_w.stage][i];
 
-#if defined(TARGET_PS2)
-            rwtbl_ptr = bgrw_data_tbl[rw];
-            rw_dat[i + 1].bg_num = *rwtbl_ptr++;
-            rw_dat[i + 1].rwgbix = *rwtbl_ptr++;
-            rw_dat[i + 1].rwd_ptr = rw_dat[i + 1].brw_ptr = (s16*)rwtbl_ptr[0];
-#else
             rwtbl_ptr = &bgrw_data_tbl[rw];
             rw_dat[i + 1].bg_num = rwtbl_ptr->bg_num;
             rw_dat[i + 1].rwgbix = rwtbl_ptr->rwgbix;
             rw_dat[i + 1].rwd_ptr = rw_dat[i + 1].brw_ptr = rwtbl_ptr->rw_ptr;
-#endif
-
             rw_dat[i + 1].rw_cnt = *rw_dat[i + 1].rwd_ptr++;
             rw_dat[i + 1].gbix = *rw_dat[i + 1].rwd_ptr++;
         }
@@ -133,18 +121,10 @@ void Bg_Kakikae_Set() {
 
         rw = bgrw_on[bg_w.stage][0];
 
-#if defined(TARGET_PS2)
-        rwtbl_ptr = bgrw_data_tbl[rw];
-        rw_dat[1].bg_num = *rwtbl_ptr++;
-        rw_dat[1].rwgbix = *rwtbl_ptr++;
-        rw_dat[1].rwd_ptr = rw_dat[1].brw_ptr = (s16*)rwtbl_ptr[0];
-#else
         rwtbl_ptr = &bgrw_data_tbl[rw];
         rw_dat[1].bg_num = rwtbl_ptr->bg_num;
         rw_dat[1].rwgbix = rwtbl_ptr->rwgbix;
         rw_dat[1].rwd_ptr = rw_dat[1].brw_ptr = rwtbl_ptr->rw_ptr;
-#endif
-
         rw_dat[1].rw_cnt = *rw_dat[1].rwd_ptr++;
         rw_dat[1].gbix = *rw_dat[1].rwd_ptr++;
         break;
@@ -171,20 +151,11 @@ void Bg_Kakikae_Set() {
 
             rw_num += 1;
 
-#if defined(TARGET_PS2)
-            rwtbl_ptr = bgrw_data_tbl[rw];
-            rw_dat[i].bg_num = *rwtbl_ptr++;
-            rw_bg_flag[rw_dat[i].bg_num] = 1;
-            rw_dat[i].rwgbix = *rwtbl_ptr++;
-            rw_dat[i].rwd_ptr = rw_dat[i].brw_ptr = (s16*)rwtbl_ptr[0];
-#else
             rwtbl_ptr = &bgrw_data_tbl[rw];
             rw_dat[i].bg_num = rwtbl_ptr->bg_num;
             rw_bg_flag[rw_dat[i].bg_num] = 1;
             rw_dat[i].rwgbix = rwtbl_ptr->rwgbix;
             rw_dat[i].rwd_ptr = rw_dat[i].brw_ptr = rwtbl_ptr->rw_ptr;
-#endif
-
             rw_dat[i].rw_cnt = *rw_dat[i].rwd_ptr++;
             rw_dat[i].gbix = *rw_dat[i].rwd_ptr++;
         }
@@ -195,7 +166,6 @@ void Bg_Kakikae_Set() {
 
 void Ed_Kakikae_Set(s16 type) {
     u8 i;
-    const u32* rwtbl_ptr;
     s8 rw;
 
     rw_num = 0;
@@ -207,18 +177,18 @@ void Ed_Kakikae_Set(s16 type) {
     switch (type) {
     case 14:
         for (i = 0; i < 20; i++) {
-            rwtbl_ptr = &gedrw_data_tbl[i][0];
-            rw_dat[i].rwgbix = *rwtbl_ptr++;
-            rw_dat[i].rwd_ptr = rw_dat[i].brw_ptr = (s16*)rwtbl_ptr[0];
+            const gedrw_data* gedrw_data_ptr = &gedrw_data_tbl[i];
+            rw_dat[i].rwgbix = gedrw_data_ptr->rwgbix;
+            rw_dat[i].rwd_ptr = rw_dat[i].brw_ptr = gedrw_data_ptr->rw_ptr;
         }
 
         break;
 
     case 15:
         for (i = 0; i < 16; i++) {
-            rwtbl_ptr = &cedrw_data_tbl[i][0];
-            rw_dat[i].rwgbix = *rwtbl_ptr++;
-            rw_dat[i].rwd_ptr = rw_dat[i].brw_ptr = (s16*)rwtbl_ptr[0];
+            const cedrw_data* cedrw_data_ptr = &cedrw_data_tbl[i];
+            rw_dat[i].rwgbix = cedrw_data_ptr->rwgbix;
+            rw_dat[i].rwd_ptr = rw_dat[i].brw_ptr = cedrw_data_ptr->rw_ptr;
         }
 
         break;
@@ -228,12 +198,12 @@ void Ed_Kakikae_Set(s16 type) {
             rw = edrw_num[type][0];
 
             for (i = 0; i < edrw_num[type][1]; i++) {
+                const edrw_data* edrw_data_ptr = &edrw_data_tbl[rw + i];
                 rw_num += 1;
-                rwtbl_ptr = &edrw_data_tbl[rw + i][0];
-                rw_dat[i].bg_num = *rwtbl_ptr++;
+                rw_dat[i].bg_num = edrw_data_ptr->bg_num;
                 rw_bg_flag[rw_dat[i].bg_num] = 1;
-                rw_dat[i].rwgbix = *rwtbl_ptr++;
-                rw_dat[i].rwd_ptr = rw_dat[i].brw_ptr = (s16*)rwtbl_ptr[0];
+                rw_dat[i].rwgbix = edrw_data_ptr->rwgbix;
+                rw_dat[i].rwd_ptr = rw_dat[i].brw_ptr = edrw_data_ptr->rw_ptr;
                 rw_dat[i].rw_cnt = *rw_dat[i].rwd_ptr++;
                 rw_dat[i].gbix = *rw_dat[i].rwd_ptr++;
             }
@@ -258,17 +228,12 @@ void Bg_Close() {
     ppgReleasePaletteHandle(&ppgAkePal, -1);
     ppgReleaseTextureHandle(&ppgAkaneTex, -1);
     ppgReleasePaletteHandle(&ppgAkanePal, -1);
-    
     Screen_Switch = 0;
     Screen_Switch_Buffer = 0;
     bg_disp_off = 0;
 }
 
 void Bg_Texture_Load_EX() {
-#if defined(TARGET_PS2)
-    void Bg_On_R(u32 s_prm);
-#endif
-
     void* loadAdrs;
     u32 loadSize;
     u32 tgbix;
@@ -291,6 +256,7 @@ void Bg_Texture_Load_EX() {
     u8 assign3;
 
     mmDebWriteTag("\nSTAGE\n\n");
+    flLogOut("Bg_Texture_Load_EX 0\n");
     Bg_TexInit();
 
     for (i = 0; i < 8; i++) {
@@ -320,8 +286,11 @@ void Bg_Texture_Load_EX() {
     }
 
     key1 = Search_ramcnt_type(0x12);
+    flLogOut("Bg_Texture_Load_EX 1\n");
     loadAdrs = (void*)Get_ramcnt_address(key1);
+    flLogOut("Bg_Texture_Load_EX 2\n");
     loadSize = Get_size_data_ramcnt_key(key1);
+    flLogOut("Bg_Texture_Load_EX 3\n");
     pmask = 0xFF000000;
     shift = 0x18;
 
@@ -338,7 +307,6 @@ void Bg_Texture_Load_EX() {
     for (j = 0; j < bg_w.scrno; j++, assign3 = stg++) {
         tgbix = bgtex_stage_gbix[bg_w.stage][j];
         mask = 0x80000000;
-        
         ppgSetupCurrentDataList(&ppgBgList[stg]);
         ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, (stg * 64) + 0x84, 32, 0, 0);
         ppgSetupTexChunk_1st_Accnum(0, accnum);
@@ -382,7 +350,6 @@ void Bg_Texture_Load_EX() {
         akeKey = Search_ramcnt_type(0x1F);
         akeSize = Get_size_data_ramcnt_key(akeKey);
         akeAdrs = (u8*)Get_ramcnt_address(akeKey);
-        
         ppgSetupCurrentDataList(&ppgAkeList);
         ppgSetupPalChunk(NULL, akeAdrs, akeSize, 0, 0, 1);
         ppgSetupTexChunk_1st(NULL, akeAdrs, akeSize, 0, 3, 0, 0);
@@ -397,10 +364,6 @@ void Bg_Texture_Load_EX() {
 }
 
 void Bg_Texture_Load2(u8 type) {
-#if defined(TARGET_PS2)
-    void Bg_On_R(u32 s_prm);
-#endif
-
     void* loadAdrs;
     u32 loadSize;
     s16 key;
@@ -435,7 +398,7 @@ void Bg_Texture_Load2(u8 type) {
     key = Search_ramcnt_type(0x18);
 
     if (key == 0) {
-        flLogOut("The background texture was not loaded.\n");
+        flLogOut("背景用テクスチャが読み込まれていませんでした。\n");
         while (!NULL) {};
     }
 
@@ -464,10 +427,6 @@ void Bg_Texture_Load2(u8 type) {
 }
 
 void Bg_Texture_Load_Ending(s16 type) {
-#if defined(TARGET_PS2)
-    void Ed_Kakikae_Set(s32 type);
-#endif
-
     void* loadAdrs;
     u32 loadSize;
     u16 accnum;
@@ -509,11 +468,9 @@ void Bg_Texture_Load_Ending(s16 type) {
         tgbix[0] = bgtex_ending_gbix[type][j * 2];
         tgbix[1] = bgtex_ending_gbix[type][(j * 2) + 1];
         mask = 0x80000000;
-
         ppgSetupCurrentDataList(&ppgBgList[j]);
         ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, (j * 64) + 100, 64, 0, 0);
         ppgSetupTexChunk_1st_Accnum(0, accnum);
-        
 
         for (k = 0; k < 2; k++) {
             for (i = 0; i < 32; i++, assign2 = mask >>= 1) {
@@ -568,7 +525,6 @@ void Bg_Texture_Load_Ending(s16 type) {
 
     case 19:
         tokusyu_stage = 7;
-        
         ppgSetupCurrentDataList(&ppgAkeList);
         ppgSetupPalChunk(NULL, loadAdrs, loadSize, 0, 0, 1);
         ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, 0xE4, 1, 0, 0);
@@ -584,7 +540,6 @@ void Bg_Texture_Load_Ending(s16 type) {
 
     Push_ramcnt_key(key1);
     Ed_Kakikae_Set(type);
-    
     ppgSourceDataReleased(&ppgBgList[0]);
     ppgSourceDataReleased(&ppgBgList[1]);
     ppgSourceDataReleased(&ppgBgList[2]);
@@ -606,7 +561,6 @@ void scr_trans(u8 bgnm) {
     u32 vtxColor;
     s32 suzi_pos;
 
-    setFilterMode(0);
     njUnitMatrix(0);
     njScale(0, 1.0f, -1.0f, 1.0f);
     njTranslate(0, 0.0f, -1024.0f, 0.0f);
@@ -614,7 +568,6 @@ void scr_trans(u8 bgnm) {
     njScale(0, 1.0f, -1.0f, 1.0f);
     njTranslate(0, 0.0f, -224.0f, 0.0f);
     njScale(0, 1.0f / scr_sc, 1.0f / scr_sc, 1.0f);
-    njScale(0, 1.0f / Frame_Zoom_X, 1.0f / Frame_Zoom_Y, 1.0f);
     point[0].x = 0.0f;
     point[0].y = 0.0f;
     point[0].z = 00.f;
@@ -646,7 +599,6 @@ void scr_trans(u8 bgnm) {
     }
 
     njUnitMatrix(0);
-    njScale(0, Frame_Zoom_X, Frame_Zoom_Y, 1.0);
     njScale(0, scr_sc, scr_sc, 1.0);
     njTranslate(0, 0, 224.0, 0);
     njScale(0, 1.0, -1.0, 1.0);
@@ -688,7 +640,6 @@ void scr_trans(u8 bgnm) {
                     for (i = 0; i < 4; i++) {
                         if (global_index_real == rw_dat[i + 1].rwgbix) {
                             global_index_real = rw_dat[i + 1].gbix;
-                            
                             if (ppgCheckTextureNumber(0, global_index_real) == 0) {
                                 ppgSetupCurrentDataList(&ppgRwBgList);
                             }
@@ -700,7 +651,7 @@ void scr_trans(u8 bgnm) {
                         if (global_index_real == rw_gbix[i]) {
                             global_index_real = *(rw_dat[0].rwd_ptr + i + 1);
                             vtxColor = *rw3col_ptr;
-                            
+
                             if (ppgCheckTextureNumber(0, global_index_real) == 0) {
                                 ppgSetupCurrentDataList(&ppgRwBgList);
                             }
@@ -806,6 +757,7 @@ void scr_trans(u8 bgnm) {
                 if (bgnm == 1) {
                     global_index_real += yang_ix_plus;
                 }
+
                 if (ppgCheckTextureNumber(0, global_index_real) == 0) {
                     ppgSetupCurrentDataList(&ppgRwBgList);
                 }
@@ -846,7 +798,7 @@ void scr_trans(u8 bgnm) {
                 if (bgnm == 1) {
                     if (rw_dat[1].rwgbix == global_index_real) {
                         global_index_real = rw_dat[1].gbix;
-                        
+
                         if (!ppgCheckTextureNumber(0, global_index_real)) {
                             ppgSetupCurrentDataList(&ppgRwBgList);
                         }
@@ -854,10 +806,11 @@ void scr_trans(u8 bgnm) {
                         for (i = 0; i < 4; i++) {
                             if (global_index_real == rw_gbix[i]) {
                                 global_index_real = *(rw_dat[0].rwd_ptr + i + 1);
-                                
+
                                 if (!ppgCheckTextureNumber(0, global_index_real)) {
                                     ppgSetupCurrentDataList(&ppgRwBgList);
                                 }
+
                                 break;
                             }
                         }
@@ -952,6 +905,7 @@ void scr_trans(u8 bgnm) {
                                     ppgSetupCurrentDataList(&ppgAkeList);
                                 }
                             }
+
                             break;
                         }
                     }
@@ -962,7 +916,7 @@ void scr_trans(u8 bgnm) {
                         for (i = 0; i < 12; i++) {
                             if (global_index_real == rw_dat[i].rwgbix) {
                                 global_index_real = rw_dat[i].rwd_ptr[g_number[0]];
-                                
+
                                 if (ppgCheckTextureNumber(0, global_index_real) == 0) {
                                     if (ppgCheckTextureNumber(&ppgRwBgTex, global_index_real)) {
                                         ppgSetupCurrentDataList(&ppgRwBgList);
@@ -970,6 +924,7 @@ void scr_trans(u8 bgnm) {
                                         ppgSetupCurrentDataList(&ppgAkeList);
                                     }
                                 }
+
                                 break;
                             }
                         }
@@ -979,6 +934,7 @@ void scr_trans(u8 bgnm) {
                         for (i = 12; i < 20; i++) {
                             if (global_index_real == rw_dat[i].rwgbix) {
                                 global_index_real = rw_dat[i].rwd_ptr[g_number[1]];
+
                                 if (!ppgCheckTextureNumber(0, global_index_real)) {
                                     if (ppgCheckTextureNumber(&ppgRwBgTex, global_index_real)) {
                                         ppgSetupCurrentDataList(&ppgRwBgList);
@@ -986,6 +942,7 @@ void scr_trans(u8 bgnm) {
                                         ppgSetupCurrentDataList(&ppgAkeList);
                                     }
                                 }
+
                                 break;
                             }
                         }
@@ -1011,10 +968,11 @@ void scr_trans(u8 bgnm) {
                         for (i = 0; i < 8; i++) {
                             if (global_index_real == rw_dat[i].rwgbix) {
                                 global_index_real = rw_dat[i].rwd_ptr[c_number];
-                                
+
                                 if (!ppgCheckTextureNumber(0, global_index_real)) {
                                     ppgSetupCurrentDataList(&ppgRwBgList);
                                 }
+
                                 break;
                             }
                         }
@@ -1025,9 +983,11 @@ void scr_trans(u8 bgnm) {
                         for (i = 8; i < 16; i++) {
                             if (global_index_real == rw_dat[i].rwgbix) {
                                 global_index_real = rw_dat[i].rwd_ptr[c_number];
+
                                 if (!ppgCheckTextureNumber(0, global_index_real)) {
                                     ppgSetupCurrentDataList(&ppgRwBgList);
                                 }
+
                                 break;
                             }
                         }
@@ -1134,16 +1094,15 @@ void bgDrawOneScreen(s32 bgnum, s32 gixbase, s32* xx, s32* yy, s32 /* unused */,
 }
 
 void bgDrawOneChip(s32 x, s32 y, s32 xs, s32 ys, s32 gbix, u32 vtxCol, s32 ofsPal) {
-    s32 i;
-
-    if (No_Trans == 0 && ppgCheckTextureNumber(0, gbix)) {
+    if ((No_Trans == 0) && ppgCheckTextureNumber(0, gbix)) {
         ppgCalScrPosition(x, y, xs, ys);
-        if (!(scrDrawPos->x < 384.0f && !(scrDrawPos[3].x < 0.0f) && (scrDrawPos->y < 224.0f) &&
-              !(scrDrawPos[3].y < 0.0f))) {
+
+        if ((scrDrawPos->x >= 384.0f) || (scrDrawPos[3].x < 0.0f) || (scrDrawPos->y >= 224.0f) ||
+            (scrDrawPos[3].y < 0.0f)) {
             return;
-        } else {
-            ppgWriteQuadUseTrans(scrDrawPos, vtxCol, 0, gbix, 0, 0, ofsPal);
         }
+
+        ppgWriteQuadUseTrans(scrDrawPos, vtxCol, 0, gbix, 0, 0, ofsPal);
     }
 }
 
@@ -1181,18 +1140,10 @@ void ppgCalScrPosition(s32 x, s32 y, s32 xs, s32 ys) {
     scrDrawPos[2].y = scrDrawPos[3].y = point[1].y;
     scrDrawPos[0].z = scrDrawPos[1].z = scrDrawPos[2].z = scrDrawPos[3].z = point[0].z;
 
-#if defined(TARGET_PS2)
-    scrDrawPos[0].s = (0.5f + (f32)(x & 0x7F)) / 128.0f;
-    scrDrawPos[0].t = (0.5f + (f32)(y & 0x7F)) / 128.0f;
-    scrDrawPos[3].s = (0.5f + (f32)((x & 0x7F) + xs)) / 128.0f;
-    scrDrawPos[3].t = (0.5f + (f32)((y & 0x7F) + ys)) / 128.0f;
-#else
     scrDrawPos[0].u = (f32)(x & 0x7F) / 128.0f;
     scrDrawPos[0].v = (f32)(y & 0x7F) / 128.0f;
     scrDrawPos[3].u = (f32)((x & 0x7F) + xs) / 128.0f;
     scrDrawPos[3].v = (f32)((y & 0x7F) + ys) / 128.0f;
-#endif
-
     scrDrawPos[1].u = scrDrawPos[3].u;
     scrDrawPos[2].u = scrDrawPos[0].u;
     scrDrawPos[1].v = scrDrawPos[0].v;
@@ -1240,7 +1191,6 @@ void scr_trans_sub2(s32 x, s32 y, s32 suzi) {
 
 void scr_calc(u8 bgnm) {
     njUnitMatrix(NULL);
-    njScale(NULL, Frame_Zoom_X, Frame_Zoom_Y, 1.0f);
     njScale(NULL, scr_sc, scr_sc, 1.0f);
     njTranslate(NULL, 0.0f, 224.0f, 0.0f);
     njScale(NULL, 1.0f, -1.0f, 1.0f);
@@ -1250,7 +1200,6 @@ void scr_calc(u8 bgnm) {
 
 void scr_calc2(u8 bgnm) {
     njUnitMatrix(NULL);
-    njScale(NULL, Frame_Zoom_X, Frame_Zoom_Y, 1.0f);
     njScale(NULL, scr_sc, scr_sc, 1.0f);
     njTranslate(NULL, 0.0f, 224.0f, 0.0f);
     njScale(NULL, 1.0f, -1.0f, 1.0f);
@@ -1260,7 +1209,6 @@ void scr_calc2(u8 bgnm) {
 
 void Pause_Family_On() {
     njUnitMatrix(0);
-    njScale(0, Frame_Zoom_X, Frame_Zoom_Y, 1);
     njTranslate(0, 0, 224, 0);
     njScale(0, 1, -1, 1);
     njGetMatrix(&BgMATRIX[8]);
@@ -1269,8 +1217,6 @@ void Pause_Family_On() {
 void Zoomf_Init() {
     zoom_add = 64;
     scr_sc = 1.0f;
-    sca_x = 0;
-    sca_y = 1023;
     scrn_adgjust_x = 0;
     scrn_adgjust_y = 0;
 }
@@ -1297,10 +1243,6 @@ void Zoom_Value_Set(u16 zadd) {
 }
 
 void Frame_Up(u16 x, u16 y, u16 add) {
-#if defined(TARGET_PS2)
-    void Frame_Adgjust(u32 pos_x, u32 pos_y);
-#endif
-
     if (zoom_add < 2) {
         scr_sc = 64.0f;
         return;
@@ -1312,10 +1254,6 @@ void Frame_Up(u16 x, u16 y, u16 add) {
 }
 
 void Frame_Down(u16 x, u16 y, u16 add) {
-#if defined(TARGET_PS2)
-    void Frame_Adgjust(u32 pos_x, u32 pos_y);
-#endif
-
     if (zoom_add >= 0xFFC0) {
         scr_sc = 0.0009775171f;
         return;
@@ -1394,25 +1332,25 @@ void Family_Init() {
     u8 i;
 
     for (i = 0; i < 8; i++) {
-        fm_pos[i].scr_x.long_pos = 0;
-        fm_pos[i].scr_y.long_pos = 0;
-        fm_pos[i].scr_x_buff.long_pos = 0;
-        fm_pos[i].scr_y_buff.long_pos = 0;
+        fm_pos[i].family_x.long_pos = 0;
+        fm_pos[i].family_y.long_pos = 0;
+        fm_pos[i].family_x_buff.long_pos = 0;
+        fm_pos[i].family_y_buff.long_pos = 0;
     }
 }
 
 void Family_Set_R(s8 fmnm, s16 x, s16 y) {
-    fm_pos[fmnm].scr_x.word_pos.h = x;
-    fm_pos[fmnm].scr_y.word_pos.h = y;
-    fm_pos[fmnm].scr_x_buff.word_pos.h = x;
-    fm_pos[fmnm].scr_y_buff.word_pos.h = y;
+    fm_pos[fmnm].family_x.word_pos.h = x;
+    fm_pos[fmnm].family_y.word_pos.h = y;
+    fm_pos[fmnm].family_x_buff.word_pos.h = x;
+    fm_pos[fmnm].family_y_buff.word_pos.h = y;
 }
 
 void Family_Set_W(s8 fmnm, s16 x, s16 y) {
-    fm_pos[fmnm].scr_x.word_pos.h = x;
-    fm_pos[fmnm].scr_y.word_pos.h = y;
-    fm_pos[fmnm].scr_x_buff.word_pos.h = x;
-    fm_pos[fmnm].scr_y_buff.word_pos.h = y;
+    fm_pos[fmnm].family_x.word_pos.h = x;
+    fm_pos[fmnm].family_y.word_pos.h = y;
+    fm_pos[fmnm].family_x_buff.word_pos.h = x;
+    fm_pos[fmnm].family_y_buff.word_pos.h = y;
 }
 
 void Bg_On_R(u16 s_prm) {
@@ -1445,8 +1383,8 @@ void Irl_Family() {
     u8 i;
 
     for (i = 0; i < 8; i++) {
-        fm_pos[i].scr_x_buff.long_pos = fm_pos[i].scr_x.long_pos;
-        fm_pos[i].scr_y_buff.long_pos = fm_pos[i].scr_y.long_pos;
+        fm_pos[i].family_x_buff.long_pos = fm_pos[i].family_x.long_pos;
+        fm_pos[i].family_y_buff.long_pos = fm_pos[i].family_y.long_pos;
         bg_pos[i].scr_x_buff.long_pos = bg_pos[i].scr_x.long_pos;
         bg_pos[i].scr_y_buff.long_pos = bg_pos[i].scr_y.long_pos;
     }
@@ -1457,13 +1395,9 @@ void Irl_Scrn() {
 
     for (i = 0; i < 8; i++) {
         bg_prm[i].bg_h_shift = scrn_adgjust_x + bg_pos[i].scr_x_buff.word_pos.h;
-        bg_prm[i].bg_h_shift;
-        end_prm[i].bg_h_shift = scrn_adgjust_x + fm_pos[i].scr_x_buff.word_pos.h;
-        end_prm[i].bg_h_shift;
+        end_prm[i].bg_h_shift = scrn_adgjust_x + fm_pos[i].family_x_buff.word_pos.h;
         bg_prm[i].bg_v_shift = bg_pos[i].scr_y_buff.word_pos.h - scrn_adgjust_y;
-        bg_prm[i].bg_v_shift;
-        end_prm[i].bg_v_shift = fm_pos[i].scr_y_buff.word_pos.h - scrn_adgjust_y;
-        end_prm[i].bg_v_shift;
+        end_prm[i].bg_v_shift = fm_pos[i].family_y_buff.word_pos.h - scrn_adgjust_y;
     }
 }
 

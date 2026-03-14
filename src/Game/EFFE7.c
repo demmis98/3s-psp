@@ -9,8 +9,7 @@
 
 void effe7_get_zanzou_data(WORK_Other* ewk);
 
-void effect_E7_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_E7_move(WORK_Other* ewk) {
     PLW* mwk = (PLW*)ewk->my_master;
     s16 pricol;
 

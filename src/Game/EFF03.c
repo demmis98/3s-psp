@@ -93,8 +93,7 @@ const PLEF plef_data[165] = { { 0, 0, -1, 0, 1, 0, 0, 1, 0, 0, 0 },       { 13, 
                               { 16, -4, -1, 0, 0, 32, 1, 1, 1, 0, 57 },   { -37, 4, -1, 0, 0, 32, 1, 1, 1, 0, 58 },
                               { 44, 1, -1, 0, 0, 32, 1, 1, 1, 0, 58 } };
 
-void effect_03_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_03_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -205,8 +204,7 @@ void eff03_disp_pos(WORK* ewk, WORK* mwk) {
     ewk->position_y = ewk->xyz[1].disp.pos;
 }
 
-s32 effect_03_init(WORK* wk, s32 d) {
-    u8 data = (u8) d;
+s32 effect_03_init(WORK* wk, u8 data) {
     WORK_Other* ewk;
     s16 ix;
 

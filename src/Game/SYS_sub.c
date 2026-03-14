@@ -30,6 +30,7 @@
 #include "Game/menu.h"
 #include "Game/sc_sub.h"
 #include "Game/workuser.h"
+#include "AcrSDK/common/pad.h"
 #include <memory.h>
 
 u8 Candidate_Buff[16];
@@ -103,37 +104,37 @@ u16 Convert_User_Setting(s16 PL_id) {
         sw = p2sw_0;
     }
 
-    answer = sw & 0x400F;
+    answer = sw & (SWK_DIRECTIONS | SWK_START);
 
-    if (sw & 0x10) {
+    if (sw & SWK_WEST) {
         answer |= Convert_Data[save_w[Present_Mode].Pad_Infor[PL_id].Shot[0]];
     }
 
-    if (sw & 0x20) {
+    if (sw & SWK_NORTH) {
         answer |= Convert_Data[save_w[Present_Mode].Pad_Infor[PL_id].Shot[1]];
     }
 
-    if (sw & 0x40) {
+    if (sw & SWK_RIGHT_SHOULDER) {
         answer |= Convert_Data[save_w[Present_Mode].Pad_Infor[PL_id].Shot[2]];
     }
 
-    if (sw & 0x80) {
+    if (sw & SWK_LEFT_SHOULDER) {
         answer |= Convert_Data[save_w[Present_Mode].Pad_Infor[PL_id].Shot[3]];
     }
 
-    if (sw & 0x100) {
+    if (sw & SWK_SOUTH) {
         answer |= Convert_Data[save_w[Present_Mode].Pad_Infor[PL_id].Shot[4]];
     }
 
-    if (sw & 0x200) {
+    if (sw & SWK_EAST) {
         answer |= Convert_Data[save_w[Present_Mode].Pad_Infor[PL_id].Shot[5]];
     }
 
-    if (sw & 0x400) {
+    if (sw & SWK_RIGHT_TRIGGER) {
         answer |= Convert_Data[save_w[Present_Mode].Pad_Infor[PL_id].Shot[6]];
     }
 
-    if (sw & 0x800) {
+    if (sw & SWK_LEFT_TRIGGER) {
         answer |= Convert_Data[save_w[Present_Mode].Pad_Infor[PL_id].Shot[7]];
     }
 
@@ -168,7 +169,6 @@ void Clear_Personal_Data(s16 PL_id) {
     Sel_PL_Complete[PL_id] = 0;
     Sel_Arts_Complete[PL_id] = 0;
     Sel_EM_Complete[PL_id] = 0;
-    Personal_Continue_Flag[PL_id] = 0;
     Last_Player_id = -1;
     Last_Super_Arts[PL_id] = 0;
     Last_My_char[PL_id] = -1;
@@ -232,23 +232,22 @@ void Setup_Play_Type() {
 void Clear_Flash_No() {
     F_No0[0] = F_No1[0] = F_No2[0] = F_No3[0] = 0;
     F_No0[1] = F_No1[1] = F_No2[1] = F_No3[1] = 0;
-    Personal_Disp_Flag = 0;
 }
 
-s32 Cut_Cut_Cut() {
+bool Cut_Cut_Cut() {
     if (Demo_Flag == 0) {
-        return 0;
+        return false;
     }
 
-    if (plw[0].wu.operator && (p1sw_0 & 0xFF0)) {
-        return 1;
+    if (plw[0].wu.operator && (p1sw_0 & SWK_ATTACKS)) {
+        return true;
     }
 
-    if (plw[1].wu.operator && (p2sw_0 & 0xFF0)) {
-        return 1;
+    if (plw[1].wu.operator && (p2sw_0 & SWK_ATTACKS)) {
+        return true;
     }
 
-    return 0;
+    return false;
 }
 
 void Score_Sub() {
@@ -264,7 +263,7 @@ void Score_Sub() {
     s32 assign2;
     s8 assign3;
 
-    if (Mode_Type == 3 || Mode_Type == 4) {
+    if (Mode_Type == MODE_NORMAL_TRAINING || Mode_Type == MODE_PARRY_TRAINING) {
         return;
     }
 
@@ -273,7 +272,7 @@ void Score_Sub() {
     }
 
     for (PL_id = 0; PL_id < 2; PL_id++) {
-        if ((Mode_Type != 1 && Mode_Type != 5) && plw[PL_id].wu.operator == 0) {
+        if ((Mode_Type != MODE_VERSUS && Mode_Type != MODE_REPLAY) && plw[PL_id].wu.operator == 0) {
             continue;
         }
 
@@ -315,7 +314,7 @@ void Disp_Win_Record() {
     }
 
     switch (Mode_Type) {
-    case 0:
+    case MODE_ARCADE:
         if (Play_Type == 1) {
             if (Win_Record[0] != 0 || Win_Record[1] != 0) {
                 if (Win_Record[0]) {
@@ -343,8 +342,8 @@ void Disp_Win_Record() {
         Disp_Win_Record_Sub(Win_Record[PL_id], zz);
         break;
 
-    case 1:
-    case 2:
+    case MODE_VERSUS:
+    case MODE_NETWORK:
         if (VS_Win_Record[0] > 0) {
             Disp_Win_Record_Sub(VS_Win_Record[0], 5);
         }
@@ -353,6 +352,10 @@ void Disp_Win_Record() {
             Disp_Win_Record_Sub(VS_Win_Record[1], 43);
         }
 
+        break;
+
+    default:
+        // Do nothing
         break;
     }
 }
@@ -527,12 +530,14 @@ void Game_Data_Init() {
     s32 ix;
 
     Setup_Default_Game_Option();
-    mpp_w.cutAnalogStickData = 0;
+    mpp_w.cutAnalogStickData = false;
+
     if ((flpad_adr[0][0].sw & 0x330) == 0x330) {
-        mpp_w.cutAnalogStickData = 1;
+        mpp_w.cutAnalogStickData = true;
     } else if ((flpad_adr[0][1].sw & 0x330) == 0x330) {
-        mpp_w.cutAnalogStickData = 1;
+        mpp_w.cutAnalogStickData = true;
     }
+
     if (mpp_w.cutAnalogStickData) {
         for (ix = 0; ix < 6; ix++) {
             save_w[ix].AnalogStick = 0;
@@ -755,10 +760,10 @@ void cpRevivalTask() {
 }
 
 s32 Check_Menu_Task() {
-    struct _TASK* task_ptr = &task[3];
+    struct _TASK* task_ptr = &task[TASK_MENU];
 
-    if (Mode_Type == 3 || Mode_Type == 4) {
-        if (task[3].r_no[0] == 7 && task[3].r_no[1] == 7) {
+    if (Mode_Type == MODE_NORMAL_TRAINING || Mode_Type == MODE_PARRY_TRAINING) {
+        if (task[TASK_MENU].r_no[0] == 7 && task[TASK_MENU].r_no[1] == 7) {
             return 1;
         }
 
@@ -829,10 +834,6 @@ void Setup_Virtual_BG(s16 BG_INDEX, s16 X, s16 Y) {
 }
 
 void BG_move() {
-#if defined(TARGET_PS2)
-    void bg_pos_hosei_sub2(s32 bg_no);
-#endif
-
     s16 ix;
 
     for (ix = 0; ix < 4; ix++) {
@@ -848,7 +849,6 @@ void BG_move_Ex(u8 ix) {
 }
 
 void Basic_Sub() {
-    flLogOut("Basic_Sub\n");
     bg_w.bgw[0].old_pos_x = bg_w.bgw[0].xy[0].disp.pos;
     move_effect_work(0);
     move_effect_work(1);
@@ -856,7 +856,6 @@ void Basic_Sub() {
     move_effect_work(3);
     move_effect_work(4);
     move_effect_work(5);
-    flLogOut("Basic_Sub 0\n");
 }
 
 void Basic_Sub_Ex() {
@@ -877,10 +876,6 @@ s32 Check_PL_Load() {
 }
 
 void BG_Draw_System() {
-#if defined(TARGET_PS2)
-    void scr_trans(u32 bgnm);
-#endif
-
     u8 i;
     u16 mask = 1 & 0xFFFF;
     u16 s2;
@@ -935,6 +930,7 @@ u16 Check_Demo_Data(s16 PL_id) {
 void System_all_clear_Level_B() {
     Bg_Close();
     effect_work_init();
+    SelectTimer_Finish();
 }
 
 s16 Cut_Cut_C_Timer() {
@@ -957,27 +953,27 @@ s32 Cut_Cut_Sub(s16 xx) {
         return 1;
     }
 
-    if (plw[0].wu.operator && (p1sw_0 & 0xFF0)) {
+    if (plw[0].wu.operator && (p1sw_0 & SWK_ATTACKS)) {
         return xx;
     }
 
-    if (plw[1].wu.operator && (p2sw_0 & 0xFF0)) {
+    if (plw[1].wu.operator && (p2sw_0 & SWK_ATTACKS)) {
         return xx;
     }
 
     return 1;
 }
 
-s32 Cut_Cut_Loser() {
-    if (Round_Operator[0] && (p1sw_0 & 0xFF0)) {
-        return 1;
+bool Cut_Cut_Loser() {
+    if (Round_Operator[0] && (p1sw_0 & SWK_ATTACKS)) {
+        return true;
     }
 
-    if (Round_Operator[1] && (p2sw_0 & 0xFF0)) {
-        return 1;
+    if (Round_Operator[1] && (p2sw_0 & SWK_ATTACKS)) {
+        return true;
     }
 
-    return 0;
+    return false;
 }
 
 void njWaitVSync_with_N() {
@@ -989,12 +985,12 @@ void Soft_Reset_Sub() {
     sound_all_off();
     SsBgmHalfVolume(0);
 
-    if (task[5].condition == 0) {
-        cpReadyTask(5, Game_Task);
+    if (task[TASK_GAME].condition == 0) {
+        cpReadyTask(TASK_GAME, Game_Task);
     }
 
-    if (Usage == 7 && task[9].condition == 0) {
-        cpReadyTask(9, Debug_Task);
+    if (task[TASK_DEBUG].condition == 0) {
+        cpReadyTask(TASK_DEBUG, Debug_Task);
     }
 
     Next_Title_Sub();
@@ -1005,15 +1001,14 @@ void Soft_Reset_Sub() {
     init_pulpul_work();
     pp_operator_check_flag(1);
     Init_Load_Request_Queue_1st();
-    cpExitTask(3);
-    cpExitTask(6);
-    cpExitTask(4);
-    setup_pos_remake_key(2);
+    cpExitTask(TASK_MENU);
+    cpExitTask(TASK_SAVER);
+    cpExitTask(TASK_PAUSE);
     Reset_Sub0();
-    task->r_no[0] = 1;
-    task->r_no[1] = 0;
-    task->r_no[2] = 0;
-    task->r_no[3] = 0;
+    task[TASK_INIT].r_no[0] = 1;
+    task[TASK_INIT].r_no[1] = 0;
+    task[TASK_INIT].r_no[2] = 0;
+    task[TASK_INIT].r_no[3] = 0;
     vm_w.Request = 0;
     vm_w.Access = 0;
 }
@@ -1024,7 +1019,7 @@ void Reset_Sub0() {
     Play_Game = 0;
     Forbid_Break = 0;
     Extra_Break = 0;
-    Mode_Type = 0;
+    Mode_Type = MODE_ARCADE;
     Present_Mode = 1;
     Play_Mode = 0;
     Replay_Status[0] = 0;
@@ -1040,7 +1035,6 @@ void Check_Replay() {
 
     switch (Play_Mode) {
     case 1:
-        Turbo_Timer = 1;
         Replay_Status[0] = 1;
         Replay_Status[1] = 1;
 
@@ -1058,7 +1052,7 @@ void Check_Replay() {
         Condense_Buff[1] = 0xFFFF;
         memset(&Replay_w, 0, sizeof(Replay_w));
 
-        if (Mode_Type == 3 || Mode_Type == 4) {
+        if (Mode_Type == MODE_NORMAL_TRAINING || Mode_Type == MODE_PARRY_TRAINING) {
             for (ix = 0; ix < 0x1C1E; ix++) {
                 Replay_w.io_unit.key_buff[0][ix] = 0xF000;
                 Replay_w.io_unit.key_buff[1][ix] = 0xF000;
@@ -1077,7 +1071,6 @@ void Check_Replay() {
         break;
 
     case 3:
-        Turbo_Timer = 1;
         Replay_Status[0] = 3;
         Replay_Status[1] = 3;
         CP_No[0][0] = 0;
@@ -1259,10 +1252,10 @@ void Replay(s16 PL_id) {
         Replay_Status[0] = 2;
         Replay_Status[1] = 2;
 
-        if (Mode_Type == 5) {
-            cpExitTask(4);
-            cpReadyTask(3, Menu_Task);
-            task[3].r_no[0] = 13;
+        if (Mode_Type == MODE_REPLAY) {
+            cpExitTask(TASK_PAUSE);
+            cpReadyTask(TASK_MENU, Menu_Task);
+            task[TASK_MENU].r_no[0] = 13;
         }
 
         Demo_Time_Stop = 1;
@@ -1856,10 +1849,6 @@ void Clear_Break_Com(s16 PL_id) {
     for (x = 0; x <= 19; x++) {
         Break_Com[PL_id][x] = 0;
     }
-}
-
-void Check_Off_Vib() {
-    // Do nothing
 }
 
 s32 Flash_Violent(WORK_Other* /* unused */, s32 /* unused */) {

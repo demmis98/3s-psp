@@ -75,8 +75,7 @@ void set_1st_Bonus_Game_result(WORK* wk);
 void set_bs2_floor(WORK_Other* wk);
 void send_to_shizumi_guai(WORK* wk);
 
-void effect_C2_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_C2_move(WORK_Other* ewk) {
     bs2_status_disp(ewk);
 
     switch (ewk->wu.routine_no[0]) {
@@ -94,21 +93,21 @@ void effect_C2_move(WORK* wkp, s32 /*unused*/) {
         ewk->wu.position_x = ewk->wu.xyz[0].disp.pos;
         ewk->wu.position_y = ewk->wu.xyz[1].disp.pos;
         ewk->wu.cg_number = 9;
-        effect_C3_init((WORK*) ewk, 3);
-        effect_C3_init((WORK*) ewk, 4);
-        effect_C3_init((WORK*) ewk, 5);
-        effect_C3_init((WORK*) ewk, 6);
-        effect_C3_init((WORK*) ewk, 7);
-        effect_C3_init((WORK*) ewk, 1);
-        effect_C3_init((WORK*) ewk, 2);
-        effect_00_init((WORK*) &ewk->wu, 0);
+        effect_C3_init(ewk, 3);
+        effect_C3_init(ewk, 4);
+        effect_C3_init(ewk, 5);
+        effect_C3_init(ewk, 6);
+        effect_C3_init(ewk, 7);
+        effect_C3_init(ewk, 1);
+        effect_C3_init(ewk, 2);
+        effect_00_init(&ewk->wu);
         clear_attack_num(&ewk->wu);
         ewk->wu.dir_old = 0;
         ewk->wu.direction = 0;
         ewk->wu.dir_timer = 0;
         ewk->wu.routine_no[1] = 0;
         ewk->wu.routine_no[2] = 0;
-        effect_J9_init((WORK*) ewk, 8);
+        effect_J9_init(ewk, 8);
         break;
 
     case 1:
@@ -927,8 +926,7 @@ void send_to_shizumi_guai(WORK* wk) {
     ((WORK*)wk->target_adrs)->next_y = shizumi_guai[((WORK*)wk->my_effadrs)->old_pos[0]][0];
 }
 
-s32 effect_C2_init(WORK* wk, s32 d) {
-    u8 data = (u8) d;
+s32 effect_C2_init(WORK* wk, u8 data) {
     WORK_Other* ewk;
     s16 ix;
 
@@ -948,6 +946,6 @@ s32 effect_C2_init(WORK* wk, s32 d) {
     ewk->master_work_id = wk->work_id;
     wk->my_effadrs = (u32*)ewk;
     ewk->wu.my_effadrs = (u32*)ewk;
-    effect_C2_move((WORK*) ewk, 0);
+    effect_C2_move(ewk);
     return 0;
 }

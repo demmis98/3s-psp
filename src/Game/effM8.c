@@ -19,8 +19,7 @@ const s8 effm8_random_tbl[16] = { 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1
 
 const s16 effm8_timer_tbl[4] = { 24, 56, 72, 112 };
 
-void effect_M8_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_M8_move(WORK_Other* ewk) {
     switch (ewk->wu.routine_no[0]) {
     case 0:
         if (!EXE_flag && !Game_pause) {
@@ -113,8 +112,7 @@ void effm8_move_win(WORK_Other* ewk) {
     }
 }
 
-s32 effect_M8_init(WORK* oya, s32 d) {
-    u8 data = (u8) d;
+s32 effect_M8_init(WORK* oya, u8 data) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

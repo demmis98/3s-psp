@@ -4,6 +4,7 @@
 // libraries
 #include <pspuser.h>
 #include <stb_image.h>
+#include <stdbool.h>
 
 // custom
 #include "math.h"

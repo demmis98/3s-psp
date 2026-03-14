@@ -37,6 +37,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Entry.c.obj: \
  /home/demma/.local/bin/pspdev/psp/include/sys/sched.h \
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdbool.h \
  /home/demma/Documents/code/psp/3rd-strike/include/common.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/GD3rd.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/Grade.h \
@@ -48,13 +49,14 @@ CMakeFiles/3rd-strike.dir/src/Game/Entry.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/Sound3rd.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/WORK_SYS.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/debug/Debug.h \
- /home/demma/Documents/code/psp/3rd-strike/include/Game/effect_init.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/debug/debug_config.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/end_data.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/main.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/n_input.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/sc_sub.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/workuser.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/pad.h \
  /home/demma/Documents/code/psp/3rd-strike/include/psp/PPGFile.h \
  /home/demma/Documents/code/psp/3rd-strike/src/common/sprites.h \
  /home/demma/.local/bin/pspdev/psp/sdk/include/pspuser.h \

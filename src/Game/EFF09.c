@@ -65,8 +65,7 @@ void jijii_win_tama_sub(WORK_Other* ewk);
 
 void (*eff09_tbl[28])(WORK_Other*);
 
-void effect_09_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_09_move(WORK_Other* ewk) {
     if (compel_dead_check(ewk)) {
         ewk->wu.disp_flag = 0;
         ewk->wu.routine_no[1] = 99;
@@ -267,7 +266,7 @@ void eff09_2000(WORK_Other* ewk) {
                 ball_bound_set(ewk);
                 set_char_move_init2(&hit_pl->wu, 9, 63, 1, 0);
                 Appear_free[ewk->master_id] = 2;
-                effect_B4_init((WORK*) ewk, 0);
+                effect_B4_init(ewk);
                 work = random_16();
                 work &= 7;
                 add_super_arts_gauge(
@@ -1847,8 +1846,7 @@ void eff09_27000(WORK_Other* ewk) {
     }
 }
 
-s32 effect_09_init(WORK* wk, s32 d) {
-    u8 data = (u8) d;
+s32 effect_09_init(WORK* wk, u8 data) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif
@@ -1889,8 +1887,7 @@ s32 effect_09_init(WORK* wk, s32 d) {
     return 0;
 }
 
-s32 effect_09_init2(WORK* wk, s32 d) {
-    u8 data = (u8) d;
+s32 effect_09_init2(WORK* wk, u8 data) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

@@ -97,9 +97,10 @@ const s16 dir32_grddm[32] = { 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 91, 39, 39
 const u8 convert_saishin_lvdir[2][16] = { { 0, 0, 0, 0, 1, 1, 1, 0, 2, 2, 2, 0, 0, 0, 0, 0 },
                                           { 0, 0, 0, 0, 2, 2, 2, 0, 1, 1, 1, 0, 0, 0, 0, 0 } };
 
-const s16 dead_voice_table[20][2] = { 864, 865, 928, 929, 512, 513, 608, 609, 896, 897, 800, 801, 832, 833,
-                                      352, 353, 672, 673, 576, 577, 640, 641, 384, 385, 480, 481, 736, 737,
-                                      704, 705, 416, 417, 448, 449, 768, 769, 960, 961, 544, 545 };
+const s16 dead_voice_table[20][2] = { { 864, 865 }, { 928, 929 }, { 512, 513 }, { 608, 609 }, { 896, 897 },
+                                      { 800, 801 }, { 832, 833 }, { 352, 353 }, { 672, 673 }, { 576, 577 },
+                                      { 640, 641 }, { 384, 385 }, { 480, 481 }, { 736, 737 }, { 704, 705 },
+                                      { 416, 417 }, { 448, 449 }, { 768, 769 }, { 960, 961 }, { 544, 545 } };
 
 void add_to_mvxy_data(WORK* wk, u16 ix) {
     s16* adrs;
@@ -279,11 +280,8 @@ void remake_mvxy_PoGR(WORK* wk) {
     }
 }
 
+/// Check player push box collision and push them if needed
 void check_body_touch() {
-#if defined(TARGET_PS2)
-    s16 meri_case_switch(s32 meri);
-#endif
-
     PLW* p1w = &plw[0];
     PLW* p2w = &plw[1];
     s16 meri;
@@ -351,12 +349,6 @@ s16 meri_case_switch(s16 meri) {
 }
 
 void check_body_touch2() {
-#if defined(TARGET_PS2)
-    s16 hoseishitemo_eenka(WORK * wk, s32 tx);
-    s16 meri_case_switch(s32 meri);
-    s16 check_work_position_bonus(WORK * hm, s32 tx);
-#endif
-
     PLW* hmw;
     PLW* cmw;
     WORK* efw;
@@ -594,7 +586,7 @@ s16 check_work_position(WORK* p1, WORK* p2) {
 s32 random_32() {
     Random_ix32++;
 
-    if (Debug_w[0x3B] == 0xE0) {
+    if (Debug_w[0x3B] == -32) {
         Random_ix32 = 0;
     }
 
@@ -605,7 +597,7 @@ s32 random_32() {
 s32 random_16() {
     Random_ix16++;
 
-    if (Debug_w[0x3B] == 0xE0) {
+    if (Debug_w[0x3B] == -32) {
         Random_ix16 = 0;
     }
 
@@ -616,7 +608,7 @@ s32 random_16() {
 s32 random_32_ex() {
     Random_ix32_ex++;
 
-    if (Debug_w[0x3B] == 0xE0) {
+    if (Debug_w[0x3B] == -32) {
         Random_ix32_ex = 0;
     }
 
@@ -627,7 +619,7 @@ s32 random_32_ex() {
 s32 random_16_ex() {
     Random_ix16_ex++;
 
-    if (Debug_w[0x3B] == 0xE0) {
+    if (Debug_w[0x3B] == -32) {
         Random_ix16_ex = 0;
     }
 
@@ -642,7 +634,7 @@ s32 random_32_com() {
 
     Random_ix32_com++;
 
-    if (Debug_w[0x3B] == 0xE0) {
+    if (Debug_w[0x3B] == -32) {
         Random_ix32_com = 0;
     }
 
@@ -657,7 +649,7 @@ s32 random_16_com() {
 
     Random_ix16_com++;
 
-    if (Debug_w[0x3B] == 0xE0) {
+    if (Debug_w[0x3B] == -32) {
         Random_ix16_com = 0;
     }
 
@@ -672,7 +664,7 @@ s32 random_32_ex_com() {
 
     Random_ix32_ex_com++;
 
-    if (Debug_w[0x3B] == 0xE0) {
+    if (Debug_w[0x3B] == -32) {
         Random_ix32_ex_com = 0;
     }
 
@@ -687,7 +679,7 @@ s32 random_16_ex_com() {
 
     Random_ix16_ex_com++;
 
-    if (Debug_w[0x3B] == 0xE0) {
+    if (Debug_w[0x3B] == -32) {
         Random_ix16_ex_com = 0;
     }
 
@@ -698,7 +690,7 @@ s32 random_16_ex_com() {
 s32 random_16_bg() {
     Random_ix16_bg++;
 
-    if (Debug_w[0x3B] == 0xE0) {
+    if (Debug_w[0x3B] == -32) {
         Random_ix16_bg = 0;
     }
 
@@ -795,7 +787,7 @@ void setup_vitality(WORK* wk, s16 pno) {
     wk->vitality = wk->vital_new = wk->vital_old = Max_vitality;
     wk->dm_vital = 0;
 
-    if (Mode_Type != 0) {
+    if (Mode_Type != MODE_ARCADE) {
         wk->vital_new = wk->vital_new * (Vital_Handicap[Present_Mode][wk->id] + 1) / 8;
         wk->vital_old = wk->vital_new;
     }
@@ -843,31 +835,23 @@ void set_hit_stop_hit_quake(WORK* wk) {
 }
 
 void add_sp_arts_gauge_init(PLW* wk) {
-#if defined(TARGET_PS2)
-    void add_super_arts_gauge(SA_WORK * wk, s32 ix, s32 asag, u16 mf);
-#endif
-
     PLW* mwk;
     s16 asag;
 
     if (wk->wu.work_id != 1) {
         mwk = (PLW*)wk->cp;
 
-        if ((mwk->wu.work_id == 1) && !(mwk->spmv_ng_flag2 & 0x20000000)) {
+        if ((mwk->wu.work_id == 1) && !(mwk->spmv_ng_flag2 & DIP2_WHIFFED_NORMALS_BUILD_SA_GAUGE_DISABLED)) {
             asag = _add_arts_gauge[mwk->player_number][wk->wu.add_arts_point][0];
             add_super_arts_gauge(mwk->sa, mwk->wu.id, asag, mwk->metamorphose);
         }
-    } else if (!(wk->spmv_ng_flag2 & 0x20000000)) {
+    } else if (!(wk->spmv_ng_flag2 & DIP2_WHIFFED_NORMALS_BUILD_SA_GAUGE_DISABLED)) {
         asag = _add_arts_gauge[wk->player_number][wk->wu.add_arts_point][0];
         add_super_arts_gauge(wk->sa, wk->wu.id, asag, wk->metamorphose);
     }
 }
 
 void add_sp_arts_gauge_guard(PLW* wk) {
-#if defined(TARGET_PS2)
-    void add_super_arts_gauge(SA_WORK * wk, s32 ix, s32 asag, u32 mf);
-#endif
-
     PLW* mwk;
     s16 asag;
 
@@ -885,11 +869,6 @@ void add_sp_arts_gauge_guard(PLW* wk) {
 }
 
 void add_sp_arts_gauge_hit_dm(PLW* wk) {
-#if defined(TARGET_PS2)
-    void add_super_arts_gauge(SA_WORK * wk, s32 ix, s32 asag, u32 mf);
-    s16 cal_sa_gauge_waribiki(PLW * wk, s32 asag);
-#endif
-
     PLW* emwk;
     s16 asag;
 
@@ -926,11 +905,11 @@ void add_sp_arts_gauge_hit_dm(PLW* wk) {
 s16 cal_sa_gauge_waribiki(PLW* wk, s16 asag) {
     s16 num;
 
-    if (wk->cb->total < 2) {
+    if (wk->combo_type.total < 2) {
         return asag;
     }
 
-    num = 32 - (wk->cb->total - 1) * 2;
+    num = 32 - (wk->combo_type.total - 1) * 2;
 
     if (num <= 0) {
         num = 1;
@@ -946,10 +925,6 @@ s16 cal_sa_gauge_waribiki(PLW* wk, s16 asag) {
 }
 
 void add_sp_arts_gauge_paring(PLW* wk) {
-#if defined(TARGET_PS2)
-    void add_super_arts_gauge(SA_WORK * wk, s32 ix, s32 asag, u16 mf);
-#endif
-
     PLW* emwk;
     s16 asag;
 
@@ -980,10 +955,6 @@ void add_sp_arts_gauge_paring(PLW* wk) {
 }
 
 void add_sp_arts_gauge_tokushu(PLW* wk) {
-#if defined(TARGET_PS2)
-    void add_super_arts_gauge(SA_WORK * wk, s32 ix, s32 asag, u16 mf);
-#endif
-
     s16 asag;
 
     if (wk->wu.work_id != 1) {
@@ -1008,10 +979,6 @@ void add_sp_arts_gauge_tokushu(PLW* wk) {
 }
 
 void add_sp_arts_gauge_ukemi(PLW* wk) {
-#if defined(TARGET_PS2)
-    void add_super_arts_gauge(SA_WORK * wk, s32 ix, s32 asag, u32 mf);
-#endif
-
     s16 asag;
 
     if (wk->wu.work_id != 1) {
@@ -1036,10 +1003,6 @@ void add_sp_arts_gauge_ukemi(PLW* wk) {
 }
 
 void add_sp_arts_gauge_nagenuke(PLW* wk) {
-#if defined(TARGET_PS2)
-    void add_super_arts_gauge(SA_WORK * wk, s32 ix, s32 asag, u16 mf);
-#endif
-
     s16 asag;
 
     if (wk->wu.work_id != 1) {
@@ -1064,10 +1027,6 @@ void add_sp_arts_gauge_nagenuke(PLW* wk) {
 }
 
 void add_sp_arts_gauge_maxbit(PLW* wk) {
-#if defined(TARGET_PS2)
-    void add_super_arts_gauge(SA_WORK * wk, s32 ix, s32 asag, u16 mf);
-#endif
-
     if (pcon_rno[0] != 1) {
         return;
     }
@@ -1105,10 +1064,10 @@ void add_super_arts_gauge(SA_WORK* wk, s16 ix, s16 asag, u8 mf) {
 
         if (!pcon_dp_flag && !Bonus_Game_Flag && (sa_gauge_omake[omop_sa_gauge_ix[ix]] != 0) && (asag > 0) &&
             (wk->store != wk->store_max)) {
-            asag = asag * 0x78 / 100;
+            asag = asag * 120 / 100;
 
             if (save_w[Present_Mode].Battle_Number[Play_Type] == 0) {
-                asag = asag * 0x96 / 100;
+                asag = asag * 150 / 100;
             }
 
             asag = asag * sa_gauge_omake[omop_sa_gauge_ix[ix]] / 32;
@@ -1165,7 +1124,7 @@ void setup_saishin_lvdir(PLW* ds, s8 gddir) {
         ds->saishin_lvdir = convert_saishin_lvdir[0][ds->cp->sw_lvbt & 0xC];
     }
 
-    if (!(ds->spmv_ng_flag & 0x2000) && (ds->guard_chuu != 0) && ((ds->guard_chuu) < 5)) {
+    if (!(ds->spmv_ng_flag & DIP_ABSOLUTE_GUARD_DISABLED) && (ds->guard_chuu != 0) && ((ds->guard_chuu) < 5)) {
         ds->saishin_lvdir = gddir;
     }
 }
@@ -1190,7 +1149,7 @@ void dead_voice_request() {
         }
     }
 
-    dead_voice_flag = 0;
+    dead_voice_flag = false;
 }
 
 void dead_voice_request2(PLW* wk) {
@@ -1206,9 +1165,9 @@ void dead_voice_request2(PLW* wk) {
     secd2 = dead_voice_table[wk->player_number][1];
 
     if ((wk->wu.routine_no[1] == 1) && atsagct[wk->wu.routine_no[2]] & 0x10) {
-        sound_effect_request[secd2]((WORK*) wk, secd2 + ks);
+        sound_effect_request[secd2](wk, secd2 + ks);
         return;
     }
 
-    sound_effect_request[secd1]((WORK*) wk, secd1 + ks);
+    sound_effect_request[secd1](wk, secd1 + ks);
 }

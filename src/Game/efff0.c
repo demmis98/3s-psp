@@ -4,8 +4,7 @@
 #include "Game/aboutspr.h"
 #include "Game/texcash.h"
 
-void effect_F0_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_F0_move(WORK_Other* ewk) {
     WORK* mwk = (WORK*)ewk->my_master;
 
     if (!ewk->wu.routine_no[0]) {
@@ -29,7 +28,7 @@ void effect_F0_move(WORK* wkp, s32 /*unused*/) {
     push_effect_work(&ewk->wu);
 }
 
-s32 effect_F0_init(WORK* wk, s32 /*unused*/) {
+s32 effect_F0_init(WORK* wk) {
     WORK_Other* ewk;
     s16 ix;
 #if defined(TARGET_PS2)
@@ -53,6 +52,6 @@ s32 effect_F0_init(WORK* wk, s32 /*unused*/) {
     ewk->wu.my_trans_mode = get_my_trans_mode(ewk->wu.my_mts);
     ewk->wu.disp_flag = 0;
     ewk->wu.dir_old = wk->now_koc;
-    effect_F0_move((WORK*) ewk, 0);
+    effect_F0_move(ewk);
     return 0;
 }

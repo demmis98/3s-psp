@@ -17,8 +17,7 @@ const s16 koishi_app_area[8][16];
 const s16 koishi_speed_x[5][8];
 const s16 koishi_speed_y[5][8];
 
-void effect_I0_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_I0_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -114,8 +113,7 @@ s32 effect_I0_init(WORK* wk, s16 hsx, s16 hsy, s16 spx, s16 spy, s16 nxy) {
     return 0;
 }
 
-s32 setup_koishi_extra(WORK* wk, s32 d) {
-    u8 num = (u8) d;
+s32 setup_koishi_extra(WORK* wk, u8 num) {
     s16* dix;
     s16 i;
     s16 hsx;

@@ -4,6 +4,15 @@
 #include "Game/cmd_data.h"
 #include "types.h"
 
+typedef enum ModeType {
+    MODE_ARCADE,
+    MODE_VERSUS,
+    MODE_NETWORK,
+    MODE_NORMAL_TRAINING,
+    MODE_PARRY_TRAINING,
+    MODE_REPLAY,
+} ModeType;
+
 // bss
 extern u8 Order[148];
 extern u8 Order_Timer[148];

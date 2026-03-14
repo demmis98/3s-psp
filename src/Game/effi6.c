@@ -13,8 +13,7 @@ void effi6_line_move(WORK_Other* ewk);
 
 // Funcs
 
-void effect_I6_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_I6_move(WORK_Other* ewk) {
     WORK_Other* oya_ptr = (WORK_Other*)ewk->my_master;
 
     switch (oya_ptr->wu.routine_no[0]) {
@@ -58,8 +57,7 @@ void effi6_line_move(WORK_Other* ewk) {
     }
 }
 
-s32 effect_I6_init(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* oya = (WORK_Other*) wkp;
+s32 effect_I6_init(WORK_Other* oya) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

@@ -9,10 +9,7 @@
 static unsigned int __attribute__((aligned(64))) list[0x20000];
 
 static void * fbp0;
-static void * fbp1;
 static void * zBuff;
-
-static void * currentBuffer;
 
 //variables
 static uint32_t bg_color = 0xFF000000;
@@ -23,19 +20,18 @@ void initGu(){
     sceGuInit();
 
 	fbp0 = guGetStaticVramBuffer(BUFFER_WIDTH,SCREEN_HEIGHT,GU_PSM_8888);
-	fbp1 = guGetStaticVramBuffer(BUFFER_WIDTH,SCREEN_HEIGHT,GU_PSM_8888);
     zBuff = guGetStaticVramBuffer(BUFFER_WIDTH, SCREEN_HEIGHT, GU_PSM_4444);
 
     //Set up buffers
     sceGuStart(GU_DIRECT, list);
     sceGuDrawBuffer(GU_PSM_8888, fbp0, BUFFER_WIDTH);
-    sceGuDispBuffer(SCREEN_WIDTH,SCREEN_HEIGHT,fbp1, BUFFER_WIDTH);
+    sceGuDispBuffer(SCREEN_WIDTH,SCREEN_HEIGHT,fbp0, BUFFER_WIDTH);
     
     // We do not care about the depth buffer in this example
     //sceGuDepthBuffer(fbp0, 0); // Set depth buffer to a length of 0
     sceGuDepthBuffer(zBuff, BUFFER_WIDTH);
     sceGuEnable(GU_DEPTH_TEST); // Disable depth testing
-    sceGuDepthFunc(GU_GEQUAL);
+    sceGuDepthFunc(GU_LEQUAL);
 
     sceGuDisable(GU_CULL_FACE);
     sceGuDisable(GU_LIGHTING);
@@ -77,7 +73,7 @@ void endGu(){
 void startFrame(){
     sceGuStart(GU_DIRECT, list);
     sceGuClearColor(bg_color); // black background
-    sceGuClearDepth(0x0000);
+    sceGuClearDepth(0xFFFF);
     sceGuClear(GU_COLOR_BUFFER_BIT | GU_DEPTH_BUFFER_BIT);
     sceGuEnable(GU_TEXTURE_2D);
 }
@@ -86,15 +82,11 @@ void endFrame(){
     sceGuFinish();
     sceGuSync(GU_SYNC_FINISH, GU_SYNC_WHAT_DONE);
     sceDisplayWaitVblankStart();
-    currentBuffer = sceGuSwapBuffers();
-
-    if(currentBuffer == fbp0)
-        pspDebugScreenSetBase(fbp1);
-    else
-        pspDebugScreenSetBase(fbp0);
 }
 
 void endFrameDebug(){
+    sceGuFinish();
+    sceGuSync(GU_SYNC_FINISH, GU_SYNC_WHAT_DONE);
     sceDisplayWaitVblankStart();
 }
 
@@ -108,8 +100,4 @@ void setBgColor(uint32_t color){
 
 int getGuInit(){
     return my_gu_init;
-}
-
-void* getBuffer(){
-    return currentBuffer;
 }

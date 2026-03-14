@@ -8,8 +8,7 @@
 #include "Game/ta_sub.h"
 #include "Game/texcash.h"
 
-void effect_G7_move(WORK* wkp, s32/*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_G7_move(WORK_Other* ewk) {
     if (ewk->wu.old_rno[0] < end_w.r_no_2) {
         ewk->wu.routine_no[0] = 99;
     }
@@ -39,7 +38,7 @@ void effect_G7_move(WORK* wkp, s32/*unused*/) {
     }
 }
 
-s32 effect_G7_init(WORK* /* unused */, s32 /* unused */) {
+s32 effect_G7_init(s32 /* unused */, s32 /* unused */) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

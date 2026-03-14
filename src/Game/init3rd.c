@@ -56,24 +56,14 @@ void Init_Task(struct _TASK* task_ptr) {
 void Init_Task_1st(struct _TASK* task_ptr) {
     s16 ix;
 
-    flLogOut("Init_Task_1st\n");
-
     task_ptr->r_no[0] = 1;
     init_texcash_1st();
-    flLogOut("Init_Task_1st 0\n");
     Init_texgrplds_work();
-    flLogOut("Init_Task_1st 1\n");
     Init_load_on_memory_data();
-    flLogOut("Init_Task_1st 2\n");
     Pause_Family_On();
-    flLogOut("Init_Task_1st 3\n");
     Bg_TexInit();
-    flLogOut("Init_Task_1st 4\n");
     Scrscreen_Init();
-    flLogOut("Init_Task_1st 5\n");
     effect_work_init();
-    flLogOut("Init_Task_1st 6\n");
-    Usage = 7;
     Max_vitality = 160;
     reset_NG_flag = 0;
     Break_Into = 0;
@@ -114,13 +104,9 @@ void Init_Task_1st(struct _TASK* task_ptr) {
         system_dir[ix] = Dir_Default_Data;
         permission_player[ix] = Permission_PL_Data;
 
-#if defined(TARGET_PS2)
-        save_w[ix].extra_option.contents = save_w[0].extra_option.contents;
-#else
         memcpy(&save_w[ix].extra_option.contents,
                &save_w[0].extra_option.contents,
                sizeof(save_w[ix].extra_option.contents));
-#endif
 
         Direction_Working[ix] = 0;
         Vital_Handicap[ix][0] = 7;
@@ -137,15 +123,13 @@ void Init_Task_1st(struct _TASK* task_ptr) {
     save_w[5].Time_Limit = -1;
     Setup_Difficult_V();
     Setup_Limit_Time();
-    Keep_Zoom_X = Screen_Zoom_X;
     Reset_Bootrom = 1;
-    cpReadyTask(RESET_TASK_NUM, Reset_Task);
+    cpReadyTask(TASK_RESET, Reset_Task);
     Switch_Type = 0;
     Reset_Status[0] = 0;
     Reset_Status[1] = 0;
     pulpul_stop();
     Warning_Init();
-    //CP3toPS2DrawOff();
 }
 
 void Setup_Difficult_V() {
@@ -190,109 +174,12 @@ void Init_Task_2nd(struct _TASK* task_ptr) {
     }
 
     task_ptr->r_no[0] += 1;
-    Setup_Disp_Size(0);
-    Screen_Zoom_X = Keep_Zoom_X;
-    //CP3toPS2DrawOn();
 }
 
 void Init_Task_Test1(struct _TASK* task_ptr) {
-    u16 sw;
-
-    switch (task_ptr->r_no[1]) {
-    case 0:
-        task_ptr->r_no[1] += 1;
-        task_ptr->timer = 1800;
-        Test_Cursor = 1;
-        /* fallthrough */
-
-    case 1:
-        sw = ~p1sw_1 & p1sw_0;
-
-        if (--task_ptr->timer <= 0) {
-            sw = 0x100;
-            Test_Cursor = 1;
-        }
-
-        switch (sw) {
-        case 1:
-            Test_Cursor -= 1;
-
-            if (Test_Cursor < 0) {
-                Test_Cursor = 0;
-            } else {
-                SE_cursor_move();
-            }
-
-            break;
-
-        case 2:
-            Test_Cursor += 1;
-
-            if (Test_Cursor > 2) {
-                Test_Cursor = 2;
-            } else {
-                SE_cursor_move();
-            }
-
-            break;
-
-        case 0x100:
-            if (Test_Cursor == 0) {
-                task_ptr->r_no[0] = 4;
-                task_ptr->r_no[1] = 0;
-            } else {
-                task_ptr->r_no[1] += 1;
-            }
-
-            SE_selected();
-            break;
-        }
-
-        break;
-
-    case 2:
-        if (Test_Cursor == 2) {
-            Turbo = 0;
-            Screen_PAL = 0;
-            Warning_Init();
-        } else {
-            Turbo = 5;
-            Turbo_Timer = 1;
-            Screen_PAL = 8;
-            Warning_Init();
-        }
-
-        task_ptr->r_no[0] = 1;
-        return;
-    }
-
-    Pal_Cursor_Put(Test_Cursor);
-    Put_Warning(2);
 }
 
 void Init_Task_Test2(struct _TASK* task_ptr) {
-    switch (task_ptr->r_no[1]) {
-    case 0:
-        task_ptr->r_no[1] += 1;
-        task_ptr->timer = 300;
-        Turbo = 0;
-        Screen_PAL = 0;
-        Warning_Init();
-        return;
-
-    case 1:
-        if (--task_ptr->timer <= 0) {
-            task_ptr->r_no[0] = 3;
-            task_ptr->r_no[1] = 0;
-            Screen_PAL = 8;
-            Warning_Init();
-            return;
-        }
-
-    default:
-        Put_Warning(3);
-        return;
-    }
 }
 
 void Init_Task_End(struct _TASK* task_ptr) {

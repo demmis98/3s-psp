@@ -11,8 +11,7 @@ const s16 Pos_Data_A0[4][3] = { { -52, 148, 69 }, { 140, 148, 69 }, { -52, 131, 
 
 void Setup_A0_Sub(WORK_Other_CONN* ewk, s16 old_rno, s16 zero);
 
-void effect_A0_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other_CONN* ewk = (WORK_Other_CONN*) wkp;
+void effect_A0_move(WORK_Other_CONN* ewk) {
     if (Menu_Suicide[ewk->master_player]) {
         push_effect_work(&ewk->wu);
         return;

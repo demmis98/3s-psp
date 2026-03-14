@@ -13,10 +13,9 @@
 void Setup_Char_52(WORK_Other* ewk);
 void Setup_Pos_52(WORK_Other* ewk);
 
-void (*const EFF52_Jmp_Tbl[5])(WORK_Other*);
+void (*const EFF52_Jmp_Tbl[5])();
 
-void effect_52_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_52_move(WORK_Other* ewk) {
     EFF52_Jmp_Tbl[ewk->wu.routine_no[0]](ewk);
 
     if (ewk->wu.be_flag != 0) {
@@ -243,4 +242,4 @@ void Setup_Pos_52(WORK_Other* ewk) {
     }
 }
 
-void (*const EFF52_Jmp_Tbl[5])(WORK_Other*) = { EFF52_WAIT, EFF52_SLIDE_IN, EFF52_SLIDE_OUT, EFF52_SUDDENLY, EFF52_KILL };
+void (*const EFF52_Jmp_Tbl[5])() = { EFF52_WAIT, EFF52_SLIDE_IN, EFF52_SLIDE_OUT, EFF52_SUDDENLY, EFF52_KILL };

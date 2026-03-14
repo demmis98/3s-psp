@@ -11,8 +11,7 @@
 
 void Setup_Eff70(WORK_Other* ewk);
 
-void effect_70_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_70_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
     void set_char_move_init2(WORK * wk, s32 koc, s32 index, s32 ip, s32 scf);

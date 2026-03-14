@@ -38,6 +38,7 @@ CMakeFiles/3rd-strike.dir/src/AcrSDK/common/prilay.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
  /home/demma/Documents/code/psp/3rd-strike/include/AcrSDK/common/plcommon.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdbool.h \
  /home/demma/Documents/code/psp/3rd-strike/include/common.h \
  /home/demma/.local/bin/pspdev/psp/include/stdio.h \
  /home/demma/.local/bin/pspdev/psp/include/_ansi.h \

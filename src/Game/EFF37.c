@@ -14,8 +14,7 @@ const s16 panel_pos_hosei[8][4][2] = {
     { { -23, 112 }, { 0, 0 }, { 0, 0 }, { -23, 112 } }, { { -86, 60 }, { 0, 0 }, { 0, 0 }, { -86, 60 } }
 };
 
-void effect_37_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_37_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init2(WORK * wk, s16 koc, s32 index, s32 ip, s16 scf);
     s32 effect_H2_init(WORK * wk, u32 gal, u32 ohen);
@@ -79,10 +78,7 @@ void effect_37_move(WORK* wkp, s32 /*unused*/) {
     }
 }
 
-s32 effect_37_init(WORK* wk, s32 d) {
-    u8* list_u8 = (u8*) d;
-    u8 gal = list_u8[0];
-    u8 ohen = list_u8[1];
+s32 effect_37_init(WORK* wk, u8 gal, u8 ohen) {
     WORK_Other* ewk;
     s16 ix;
 

@@ -76,6 +76,8 @@ s32 flLogOut(s8* format, ...){
 
         flPrintColor(0xFFFFFFFF);
     }
+
+    return 1;
 }
 
 s32 flPrintL(s32 posi_x, s32 posi_y, const s8* format, ...) {
@@ -93,6 +95,8 @@ s32 flPrintL(s32 posi_x, s32 posi_y, const s8* format, ...) {
         pspDebugScreenSetXY(posi_x, posi_y);
         pspDebugScreenPrintf("%s", buffer);
     }
+
+    return 1;
 }
 
 s32 flPrintColor(u32 col){
@@ -100,6 +104,8 @@ s32 flPrintColor(u32 col){
         enableDebug();
         pspDebugScreenSetTextColor(col);
     }
+
+    return 1;
 }
 
 s32 flFlip(u32 flag) {
@@ -110,9 +116,11 @@ s32 flFlip(u32 flag) {
     return 1;
 }
 
+// forward decls
 u32 flPS2GetTextureSize(u32 format, s32 dw, s32 dh, s32 bnum);
 s32 flPS2LockTexture(Rect* /* unused */, FLTexture* lpflTexture, plContext* lpcontext, u32 flag, s32 /* unused */);
 s32 flPS2UnlockTexture(FLTexture*);
+static s32 system_work_init();
 
 u32 flCreateTextureHandle(plContext* bits, u32 flag) {
     FLTexture* lpflTexture;

@@ -18,8 +18,7 @@ const s16 eff73_vanish_tbl[8] = { 0x003C, 0x0018, 0x0026, 0x000E, 0x0016, 0x001C
 
 const s16 eff73_survive_tbl[8] = { 0x0000, 0x0001, 0x0002, 0x0003, 0x0003, 0x0002, 0x0001, 0x0000 };
 
-void effect_73_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_73_move(WORK_Other* ewk) {
     if (obr_no_disp_check()) {
         return;
     }
@@ -91,8 +90,7 @@ void effect_73_move(WORK* wkp, s32 /*unused*/) {
     }
 }
 
-s32 effect_73_init(WORK* wk, s32 /*unused*/) {
-    WORK_Other* oya = (WORK_Other*) wk;
+s32 effect_73_init(WORK_Other* oya) {
     WORK_Other* ewk;
     s16 ix;
     s16 i;

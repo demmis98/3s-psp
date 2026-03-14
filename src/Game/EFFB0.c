@@ -13,8 +13,7 @@ const s16 effb0_timer_tbl[8] = { 60, 30, 120, 150, 8, 20, 10, 90 };
 const s16 effb0_data_tbl[8][2] = { { 656, 112 }, { 328, 96 },  { 352, 224 }, { 688, 144 },
                                    { 344, 128 }, { 640, 224 }, { 336, 176 }, { 672, 72 } };
 
-void effect_B0_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_B0_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -63,7 +62,7 @@ void effect_B0_move(WORK* wkp, s32 /*unused*/) {
     }
 }
 
-s32 effect_B0_init(WORK* /*unused*/, s32 /*unused*/) {
+s32 effect_B0_init() {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

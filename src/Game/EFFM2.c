@@ -17,8 +17,7 @@ void effm2_move2(WORK_Other* ewk);
 
 const s16 effm2_char_tbl[4] = { 50, 50, 29, 46 };
 
-void effect_M2_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_M2_move(WORK_Other* ewk) {
     switch (ewk->wu.routine_no[0]) {
     case 0:
         ewk->wu.routine_no[0]++;
@@ -175,8 +174,7 @@ void effm2_move2(WORK_Other* ewk) {
     }
 }
 
-s32 effect_M2_init(WORK* wk, s32 d) {
-    u8 data = (u8) d;
+s32 effect_M2_init(WORK* wk, u8 data) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

@@ -38,7 +38,6 @@
 #include "Game/count.h"
 #include "Game/debug/Debug.h"
 #include "Game/eff91.h"
-#include "Game/effect_init.h"
 #include "Game/main.h"
 #include "Game/sc_sub.h"
 #include "Game/texgroup.h"
@@ -46,6 +45,7 @@
 //#include "PS2/mc/savesub.h"
 #include "psp/savesub.h"
 //#include "PS2/reboot.h"
+#include "AcrSDK/common/pad.h"
 #include "structs.h"
 
 void Default_Training_Option();
@@ -73,8 +73,8 @@ void In_Game(struct _TASK* task_ptr);
 void Wait_Load_Save(struct _TASK* task_ptr);
 void Wait_Replay_Check(struct _TASK* task_ptr);
 void Disp_Auto_Save(struct _TASK* task_ptr);
-void Suspend_Menu(struct _TASK* task_ptr);
-void Wait_Replay_Load(struct _TASK* task_ptr);
+void Suspend_Menu();
+void Wait_Replay_Load();
 void Training_Menu(struct _TASK* task_ptr);
 void After_Replay(struct _TASK* task_ptr);
 void Disp_Auto_Save2(struct _TASK* task_ptr);
@@ -171,9 +171,8 @@ s32 VS_Result_Select_Sub(struct _TASK* task_ptr, s16 PL_id);
 typedef void (*MenuFunc)(struct _TASK*);
 
 typedef struct {
-    // total size: 0x8
-    s16 pos_x; // offset 0x0, size 0x2
-    s8* menu;  // offset 0x4, size 0x4
+    s16 pos_x;
+    s8* menu;
 } LetterData;
 
 const MenuFunc Menu_Jmp_Tbl[14] = {
@@ -213,7 +212,7 @@ void Setup_Pad_or_Stick() {
 }
 
 void After_Title(struct _TASK* task_ptr) {
-    void (*AT_Jmp_Tbl[21])(struct _TASK*) = { Menu_Init,        Mode_Select,   Option_Select, Option_Select,  Training_Mode,
+    void (*AT_Jmp_Tbl[21])() = { Menu_Init,        Mode_Select,   Option_Select, Option_Select,  Training_Mode,
                                  System_Direction, Load_Replay,   Option_Select, toSelectGame,   Game_Option,
                                  Button_Config,    Screen_Adjust, Sound_Test,    Memory_Card,    Extra_Option,
                                  Option_Select,    VS_Result,     Save_Replay,   Direction_Menu, Save_Direction,
@@ -264,10 +263,9 @@ void Menu_Init(struct _TASK* task_ptr) {
         Order_Timer[0x4E] = 1;
         effect_57_init(0x4E, 0, 0, 0x45, fade_on);
         load_any_texture_patnum(0x7F30, 0xC, 0);
-        setup_pos_remake_key(0);
     }
 
-    cpReadyTask(SAVER_TASK_NUM, Saver_Task);
+    cpReadyTask(TASK_SAVER, Saver_Task);
 }
 
 void Mode_Select(struct _TASK* task_ptr) {
@@ -280,15 +278,15 @@ void Mode_Select(struct _TASK* task_ptr) {
         FadeOut(1, 0xFF, 8);
         task_ptr->r_no[2] += 1;
         task_ptr->timer = 5;
-        Mode_Type = 0;
+        Mode_Type = MODE_ARCADE;
         Present_Mode = 1;
 
-        if (task[1].condition != 1) {
+        if (task[TASK_ENTRY].condition != 1) {
             E_No[0] = 1;
             E_No[1] = 2;
             E_No[2] = 2;
             E_No[3] = 0;
-            cpReadyTask(ENTRY_TASK_NUM, Entry_Task);
+            cpReadyTask(TASK_ENTRY, Entry_Task);
         }
 
         Menu_Common_Init();
@@ -370,23 +368,24 @@ void Mode_Select(struct _TASK* task_ptr) {
             switch (Menu_Cursor_Y[0]) {
             case 0:
                 G_No[2] += 1;
-                Mode_Type = 0;
+                Mode_Type = MODE_ARCADE;
                 task_ptr->r_no[0] = 5;
-                cpExitTask(SAVER_TASK_NUM);
+                cpExitTask(TASK_SAVER);
                 Decide_PL(PL_id);
                 break;
 
             case 1:
                 Setup_VS_Mode(task_ptr);
-                G_No[1] = 0xC;
+                G_No[1] = 12;
                 G_No[2] = 1;
-                Mode_Type = 1;
-                cpExitTask(MENU_TASK_NUM);
+                Mode_Type = MODE_VERSUS;
+                cpExitTask(TASK_MENU);
                 break;
+
+            case 4:
 
             case 2:
             case 3:
-            case 4:
             case 5:
             case 6:
                 task_ptr->r_no[2] += 1;
@@ -412,8 +411,8 @@ void Mode_Select(struct _TASK* task_ptr) {
 
 void Setup_VS_Mode(struct _TASK* task_ptr) {
     task_ptr->r_no[0] = 5;
-    cpExitTask(SAVER_TASK_NUM);
-    plw->wu.operator = 1;
+    cpExitTask(TASK_SAVER);
+    plw[0].wu.operator = 1;
     plw[1].wu.operator = 1;
     Operator_Status[0] = 1;
     Operator_Status[1] = 1;
@@ -476,11 +475,11 @@ void toSelectGame(struct _TASK* task_ptr) {
     case 3:
         imgSelectGameButton();
         sw = (~plsw_01[0] & plsw_00[0]) | (~plsw_01[1] & plsw_00[1]); // potential macro
-        sw &= 0x300;
+        sw &= (SWK_SOUTH | SWK_EAST);
 
         if (sw != 0) {
-            if (sw != 0x300) {
-                if (sw & 0x100) {
+            if (sw != (SWK_SOUTH | SWK_EAST)) {
+                if (sw & SWK_SOUTH) {
                     task_ptr->free[0] = 1;
                 }
 
@@ -526,13 +525,9 @@ void toSelectGame(struct _TASK* task_ptr) {
         break;
 
     default:
-        jmpRebootProgram();
+        
         break;
     }
-}
-
-void jmpRebootProgram() {
-    //Reboot_Program("cdrom0:\\SLUS_209.49;1");
 }
 
 void imgSelectGameButton() {
@@ -545,13 +540,10 @@ void Training_Mode(struct _TASK* task_ptr) {
     s16 char_index;
     s16 PL_id;
 
-    s16 unused_s4;
-    s16 unused_s3;
-
     switch (task_ptr->r_no[2]) {
     case 0:
         Menu_in_Sub(task_ptr);
-        mpp_w.initTrainingData = 1;
+        mpp_w.initTrainingData = true;
         effect_57_init(0x6F, 0xB, 0, 0x3F, 2);
         Order[0x6F] = 1;
         Order_Dir[0x6F] = 8;
@@ -559,7 +551,7 @@ void Training_Mode(struct _TASK* task_ptr) {
         effect_04_init(1, 5, 0, 0x48);
 
         ix = 0;
-        unused_s4 = char_index = 0x35;
+        char_index = 0x35;
 
         while (ix < 3) {
             effect_61_init(0, ix + 0x50, 0, 1, char_index, ix, 0x7047);
@@ -567,7 +559,7 @@ void Training_Mode(struct _TASK* task_ptr) {
             Order_Dir[ix + 0x50] = 4;
             Order_Timer[ix + 0x50] = ix + 0x14;
             ix++;
-            unused_s3 = char_index++;
+            char_index++;
         }
 
         Menu_Cursor_Move = 3;
@@ -621,22 +613,22 @@ void Training_Mode(struct _TASK* task_ptr) {
         Decide_ID = PL_id;
 
         if (Menu_Cursor_Y[0] == 0) {
-            Mode_Type = 3;
+            Mode_Type = MODE_NORMAL_TRAINING;
             Present_Mode = 4;
         } else {
-            Mode_Type = 4;
+            Mode_Type = MODE_PARRY_TRAINING;
             Present_Mode = 5;
         }
 
         Setup_VS_Mode(task_ptr);
         G_No[2] += 1;
         task_ptr->r_no[0] = 5;
-        cpExitTask(SAVER_TASK_NUM);
+        cpExitTask(TASK_SAVER);
         Champion = PL_id;
         Pause_ID = PL_id;
         Training_ID = PL_id;
         New_Challenger = PL_id ^ 1;
-        cpExitTask(ENTRY_TASK_NUM);
+        cpExitTask(TASK_ENTRY);
 
         break;
     }
@@ -645,11 +637,6 @@ void Training_Mode(struct _TASK* task_ptr) {
 void Option_Select(struct _TASK* task_ptr) {
     s16 ix;
     s16 char_index;
-
-    s16 unused_s5;
-    s16 unused_s4;
-    s16 unused_s3;
-    s16 unused_s2;
 
     switch (task_ptr->r_no[2]) {
     case 0:
@@ -666,7 +653,7 @@ void Option_Select(struct _TASK* task_ptr) {
             effect_04_init(1, 4, 0, 0x48);
 
             ix = 0;
-            unused_s5 = char_index = 0x2F;
+            char_index = 0x2F;
 
             while (ix < 6) {
                 effect_61_init(0, ix + 0x50, 0, 1, char_index, ix, 0x7047);
@@ -674,7 +661,7 @@ void Option_Select(struct _TASK* task_ptr) {
                 Order_Dir[ix + 0x50] = 4;
                 Order_Timer[ix + 0x50] = ix + 0x14;
                 ix++;
-                unused_s4 = char_index++;
+                char_index++;
             }
 
             Menu_Cursor_Move = 6;
@@ -684,7 +671,7 @@ void Option_Select(struct _TASK* task_ptr) {
         effect_04_init(1, 1, 0, 0x48);
 
         ix = 0;
-        unused_s3 = char_index = 7;
+        char_index = 7;
 
         while (ix < 7) {
             effect_61_init(0, ix + 0x50, 0, 1, char_index, ix, 0x7047);
@@ -692,7 +679,7 @@ void Option_Select(struct _TASK* task_ptr) {
             Order_Dir[ix + 0x50] = 4;
             Order_Timer[ix + 0x50] = ix + 0x14;
             ix++;
-            unused_s2 = char_index++;
+            char_index++;
         }
 
         Menu_Cursor_Move = 7;
@@ -766,12 +753,6 @@ void Option_Select(struct _TASK* task_ptr) {
         Y_Adjust_Buff[0] = Y_Adjust;
         Y_Adjust_Buff[1] = Y_Adjust;
         Y_Adjust_Buff[2] = Y_Adjust;
-        Correct_X[1] = Correct_X[0];
-        Correct_X[2] = Correct_X[0];
-        Correct_X[3] = Correct_X[0];
-        Correct_Y[1] = Correct_Y[0];
-        Correct_Y[2] = Correct_Y[0];
-        Correct_Y[3] = Correct_Y[0];
         break;
 
     default:
@@ -783,9 +764,6 @@ void Option_Select(struct _TASK* task_ptr) {
 void System_Direction(struct _TASK* task_ptr) {
     s16 ix;
     s16 char_index;
-
-    s16 unused_s3;
-    s16 unused_s2;
 
     switch (task_ptr->r_no[2]) {
     case 0:
@@ -805,7 +783,7 @@ void System_Direction(struct _TASK* task_ptr) {
         Order_Timer[0x61] = 0x14;
 
         ix = 0;
-        unused_s3 = char_index = 0x2B;
+        char_index = 0x2B;
 
         while (ix < 4) {
             effect_61_init(0, ix + 0x50, 0, 1, char_index, ix + 1, 0x7047);
@@ -813,7 +791,7 @@ void System_Direction(struct _TASK* task_ptr) {
             Order_Dir[ix + 0x50] = 4;
             Order_Timer[ix + 0x50] = ix + 0x15;
             ix++;
-            unused_s2 = char_index++;
+            char_index++;
         }
 
         Menu_Cursor_Move = 4;
@@ -1220,10 +1198,6 @@ void Dir_Move_Sub_LR(u16 sw, s16 /* unused */) {
 }
 
 void Setup_Next_Page(struct _TASK* task_ptr, u8 /* unused */) {
-#if defined(TARGET_PS2)
-    s32 effect_18_init(s32 disp_index, s32 cursor_id, s16 sync_bg, s16 master_player);
-#endif
-
     s16 ix;
     s16 disp_index;
     s16 mode_type;
@@ -1466,7 +1440,7 @@ void Load_Replay_Sub(struct _TASK* task_ptr) {
     case 0:
         task_ptr->r_no[3] += 1;
         Rep_Game_Infor[0xA] = Replay_w.game_infor;
-        cpExitTask(ENTRY_TASK_NUM);
+        cpExitTask(TASK_ENTRY);
         Play_Mode = 3;
         break;
 
@@ -1474,9 +1448,8 @@ void Load_Replay_Sub(struct _TASK* task_ptr) {
         task_ptr->r_no[3] += 1;
         FadeInit();
         FadeOut(0, 0xFF, 8);
-        setup_pos_remake_key(5);
         Play_Type = 1;
-        Mode_Type = 5;
+        Mode_Type = MODE_REPLAY;
         Present_Mode = 3;
         Bonus_Game_Flag = 0;
 
@@ -1503,7 +1476,7 @@ void Load_Replay_Sub(struct _TASK* task_ptr) {
         save_w[3].Pad_Infor[1] = Replay_w.mini_save_w.Pad_Infor[1];
         save_w[3].Pad_Infor[0].Vibration = 0;
         save_w[3].Pad_Infor[1].Vibration = 0;
-        cpExitTask(SAVER_TASK_NUM);
+        cpExitTask(TASK_SAVER);
         break;
 
     case 2:
@@ -1583,7 +1556,7 @@ void Load_Replay_Sub(struct _TASK* task_ptr) {
         if (Switch_Screen(0) != 0) {
             Game01_Sub();
             Cover_Timer = 5;
-            appear_type = 1;
+            appear_type = APPEAR_TYPE_ANIMATED;
             set_hitmark_color();
             Purge_texcash_of_list(3);
             Make_texcash_of_list(3);
@@ -1604,7 +1577,7 @@ void Load_Replay_Sub(struct _TASK* task_ptr) {
             }
 
             task_ptr->r_no[2] = 0;
-            cpExitTask(MENU_TASK_NUM);
+            cpExitTask(TASK_MENU);
         }
 
         break;
@@ -1886,10 +1859,6 @@ void Button_Config_Sub(s16 PL_id) {
 }
 
 void Button_Move_Sub_LR(u16 sw, s16 cursor_id) {
-#if defined(TARGET_PS2)
-    void pulpul_stop2(s32 ix);
-    void pp_vib_on(s32 id);
-#endif
     s16 max;
 
     switch (Menu_Cursor_Y[cursor_id]) {
@@ -2065,12 +2034,6 @@ void Screen_Adjust(struct _TASK* task_ptr) {
     Y_Adjust = Y_Adjust_Buff[0];
     Y_Adjust_Buff[0] = Y_Adjust_Buff[1];
     Y_Adjust_Buff[1] = Y_Adjust_Buff[2];
-    Correct_X[0] = Correct_X[1];
-    Correct_X[1] = Correct_X[2];
-    Correct_X[2] = Correct_X[3];
-    Correct_Y[0] = Correct_Y[1];
-    Correct_Y[1] = Correct_Y[2];
-    Correct_Y[2] = Correct_Y[3];
 
     switch (task_ptr->r_no[2]) {
     case 0:
@@ -2162,12 +2125,6 @@ void Screen_Exit_Check(struct _TASK* task_ptr, s16 PL_id) {
         SE_selected();
         Menu_Suicide[1] = 0;
         Menu_Suicide[2] = 1;
-        Correct_X[0] = Correct_X[3];
-        Correct_X[1] = Correct_X[3];
-        Correct_X[2] = Correct_X[3];
-        Correct_Y[0] = Correct_Y[3];
-        Correct_Y[1] = Correct_Y[3];
-        Correct_Y[2] = Correct_Y[3];
         X_Adjust = X_Adjust_Buff[2];
         Y_Adjust = Y_Adjust_Buff[2];
         Return_Option_Mode_Sub(task_ptr);
@@ -2192,7 +2149,6 @@ void Screen_Exit_Check(struct _TASK* task_ptr, s16 PL_id) {
         Y_Adjust_Buff[2] = 0;
         Disp_Size_H = 100;
         Disp_Size_V = 100;
-        Setup_Disp_Size(0);
         sys_w.screen_mode = 1;
     }
 }
@@ -2233,7 +2189,6 @@ void Screen_Move_Sub_LR(u16 sw) {
                 flag = 1;
             }
 
-            Setup_Disp_Size(1);
             break;
 
         case 3:
@@ -2245,7 +2200,6 @@ void Screen_Move_Sub_LR(u16 sw) {
                 flag = 1;
             }
 
-            Setup_Disp_Size(1);
             break;
 
         case 4:
@@ -2286,7 +2240,6 @@ void Screen_Move_Sub_LR(u16 sw) {
                 flag = 1;
             }
 
-            Setup_Disp_Size(1);
             break;
 
         case 3:
@@ -2298,7 +2251,6 @@ void Screen_Move_Sub_LR(u16 sw) {
                 flag = 1;
             }
 
-            Setup_Disp_Size(1);
             break;
 
         case 4:
@@ -2317,10 +2269,6 @@ void Screen_Move_Sub_LR(u16 sw) {
 }
 
 void Sound_Test(struct _TASK* task_ptr) {
-#if defined(TARGET_PS2)
-    void setSeVolume(u8);
-#endif
-
     s16 char_index;
     s16 ix;
     u8 last_mode;
@@ -2346,7 +2294,7 @@ void Sound_Test(struct _TASK* task_ptr) {
             Convert_Buff[3][1][0] = 1;
         }
 
-        if (sys_w.bgm_type == 0) {
+        if (sys_w.bgm_type == BGM_ARRANGED) {
             Convert_Buff[3][1][3] = 0;
         } else {
             Convert_Buff[3][1][3] = 1;
@@ -2864,7 +2812,7 @@ u16 MC_Move_Sub(u16 sw, s16 cursor_id, s16 menu_max, s16 cansel_menu) {
     }
 
     switch (sw) {
-    case 0x1:
+    case SWK_UP:
         Menu_Cursor_Y[cursor_id] -= 1;
 
         if (Menu_Cursor_Y[cursor_id] < 0) {
@@ -2876,9 +2824,9 @@ u16 MC_Move_Sub(u16 sw, s16 cursor_id, s16 menu_max, s16 cansel_menu) {
         }
 
         SE_cursor_move();
-        return IO_Result = 1;
+        return IO_Result = SWK_UP;
 
-    case 0x2:
+    case SWK_DOWN:
         Menu_Cursor_Y[cursor_id] += 1;
 
         if (Menu_Cursor_Y[cursor_id] > menu_max) {
@@ -2890,37 +2838,37 @@ u16 MC_Move_Sub(u16 sw, s16 cursor_id, s16 menu_max, s16 cansel_menu) {
         }
 
         SE_cursor_move();
-        return IO_Result = 2;
+        return IO_Result = SWK_DOWN;
 
-    case 0x10:
-        return IO_Result = 0x10;
+    case SWK_WEST:
+        return IO_Result = SWK_WEST;
 
-    case 0x100:
-        return IO_Result = 0x100;
+    case SWK_SOUTH:
+        return IO_Result = SWK_SOUTH;
 
-    case 0x200:
-        return IO_Result = 0x200;
+    case SWK_EAST:
+        return IO_Result = SWK_EAST;
 
-    case 0x400:
-        return IO_Result = 0x400;
+    case SWK_RIGHT_TRIGGER:
+        return IO_Result = SWK_RIGHT_TRIGGER;
 
-    case 0x4000:
-        return IO_Result = 0x4000;
+    case SWK_START:
+        return IO_Result = SWK_START;
 
     default:
         return IO_Result = 0;
 
-    case 0x20:
-        return IO_Result = 0x20;
+    case SWK_NORTH:
+        return IO_Result = SWK_NORTH;
 
-    case 0x40:
-        return IO_Result = 0x40;
+    case SWK_RIGHT_SHOULDER:
+        return IO_Result = SWK_RIGHT_SHOULDER;
 
-    case 0x80:
-        return IO_Result = 0x80;
+    case SWK_LEFT_SHOULDER:
+        return IO_Result = SWK_LEFT_SHOULDER;
 
-    case 0x800:
-        return IO_Result = 0x800;
+    case SWK_LEFT_TRIGGER:
+        return IO_Result = SWK_LEFT_TRIGGER;
     }
 }
 
@@ -2932,16 +2880,18 @@ s32 Exit_Sub(struct _TASK* task_ptr, s16 cursor_ix, s16 next_routine) {
         /* fallthrough */
 
     case 1:
-        if (FadeOut(1, 0x19, 8) != 0) {
-            task_ptr->r_no[1] = next_routine;
-            task_ptr->r_no[2] = 0;
-            task_ptr->r_no[3] = 0;
-            task_ptr->free[0] = 0;
-            Cursor_Y_Pos[0][cursor_ix] = Menu_Cursor_Y[0];
-            Cursor_Y_Pos[1][cursor_ix] = Menu_Cursor_Y[1];
-            pulpul_stop();
-            return 1;
+        if (!FadeOut(1, 25, 8)) {
+            return 0;
         }
+
+        task_ptr->r_no[1] = next_routine;
+        task_ptr->r_no[2] = 0;
+        task_ptr->r_no[3] = 0;
+        task_ptr->free[0] = 0;
+        Cursor_Y_Pos[0][cursor_ix] = Menu_Cursor_Y[0];
+        Cursor_Y_Pos[1][cursor_ix] = Menu_Cursor_Y[1];
+        pulpul_stop();
+        return 1;
 
     default:
         return 0;
@@ -2973,13 +2923,13 @@ u16 Check_Menu_Lever(u8 PL_id, s16 type) {
         sw = ~PLsw[PL_id][1] & PLsw[PL_id][0];
     }
 
-    lever = plsw_00[PL_id] & 0xF;
+    lever = plsw_00[PL_id] & SWK_DIRECTIONS;
 
-    if (sw & 0x4FF0) {
+    if (sw & (SWK_ATTACKS | SWK_START)) {
         return sw;
     }
 
-    sw &= 0xF;
+    sw &= SWK_DIRECTIONS;
 
     if (sw) {
         return sw;
@@ -2996,7 +2946,7 @@ u16 Check_Menu_Lever(u8 PL_id, s16 type) {
             Deley_Shot_No[PL_id] = 2;
         }
 
-        if (lever & 3) {
+        if (lever & (SWK_UP | SWK_DOWN)) {
             ix = 0;
         } else {
             ix = 3;
@@ -3009,16 +2959,17 @@ u16 Check_Menu_Lever(u8 PL_id, s16 type) {
     return 0;
 }
 
-void Suspend_Menu(struct _TASK* /* unused */) {}
+void Suspend_Menu(struct _TASK* /* unused */) {
+    // Do nothing
+}
 
 void In_Game(struct _TASK* task_ptr) {
-    void (*In_Game_Jmp_Tbl[5])(struct _TASK* task_ptr) = { Menu_Init, Menu_Select, Button_Config_in_Game, Character_Change, Pad_Come_Out };
+    void (*In_Game_Jmp_Tbl[5])() = { Menu_Init, Menu_Select, Button_Config_in_Game, Character_Change, Pad_Come_Out };
     In_Game_Jmp_Tbl[task_ptr->r_no[1]](task_ptr);
 }
 
 void Menu_Select(struct _TASK* task_ptr) {
     s16 ix;
-    s16 oldy;
 
     if (Check_Pad_in_Pause(task_ptr) != 0) {
         return;
@@ -3038,12 +2989,13 @@ void Menu_Select(struct _TASK* task_ptr) {
         Menu_Suicide[2] = 0;
         effect_10_init(0, 0, 0, 0, 0, 0x14, 0xC);
         effect_10_init(0, 0, 2, 2, 0, 0x16, 0x10);
+
         switch (Mode_Type) {
-        case 1:
+        case MODE_VERSUS:
             effect_10_init(0, 0, 1, 5, 0, 0x10, 0xE);
             break;
 
-        case 5:
+        case MODE_REPLAY:
             effect_10_init(0, 0, 1, 4, 0, 0x15, 0xE);
             break;
 
@@ -3051,10 +3003,10 @@ void Menu_Select(struct _TASK* task_ptr) {
             effect_10_init(0, 0, 1, 1, 0, 0x11, 0xE);
             break;
         }
+
         break;
 
     case 2:
-        oldy = Menu_Cursor_Y[0];
         IO_Result = MC_Move_Sub(Check_Menu_Lever(Pause_ID, 0), 0, 2, 0xFF);
         switch (IO_Result) {
 
@@ -3075,9 +3027,9 @@ void Menu_Select(struct _TASK* task_ptr) {
 
             case 1:
                 SE_selected();
-                switch (Mode_Type) {
 
-                case 1:
+                switch (Mode_Type) {
+                case MODE_VERSUS:
                     task_ptr->r_no[1] = 3;
                     task_ptr->r_no[2] = 0;
                     task_ptr->r_no[3] = 0;
@@ -3086,12 +3038,12 @@ void Menu_Select(struct _TASK* task_ptr) {
                         Menu_Suicide[ix] = 1;
                     }
 
-                    cpExitTask(SAVER_TASK_NUM);
-                    cpExitTask(PAUSE_TASK_NUM);
+                    cpExitTask(TASK_SAVER);
+                    cpExitTask(TASK_PAUSE);
                     BGM_Stop();
                     break;
 
-                case 5:
+                case MODE_REPLAY:
                     task_ptr->r_no[0] = 0xC;
                     task_ptr->r_no[1] = 0;
                     break;
@@ -3102,10 +3054,11 @@ void Menu_Select(struct _TASK* task_ptr) {
                     Menu_Suicide[2] = 1;
                     Menu_Suicide[3] = 0;
                     task_ptr->r_no[1]++;
-                    task_ptr->r_no[2] = 0U;
-                    task[4].r_no[2] = 3;
+                    task_ptr->r_no[2] = 0;
+                    task[TASK_PAUSE].r_no[2] = 3;
                     break;
                 }
+
                 break;
 
             case 2:
@@ -3118,8 +3071,10 @@ void Menu_Select(struct _TASK* task_ptr) {
                 SE_selected();
                 break;
             }
+
             break;
         }
+
         break;
 
     case 3:
@@ -3172,8 +3127,6 @@ s32 Yes_No_Cursor_Move_Sub(struct _TASK* task_ptr) {
 }
 
 void Button_Config_in_Game(struct _TASK* task_ptr) {
-    s16 ix;
-
     if (Check_Pad_in_Pause(task_ptr) != 0) {
         Order[0x8A] = 3;
         Order_Timer[0x8A] = 1;
@@ -3210,10 +3163,6 @@ void Button_Config_in_Game(struct _TASK* task_ptr) {
 }
 
 void Setup_Button_Sub(s16 x, s16 y, s16 master_player) {
-#if defined(TARGET_PS2)
-    s32 effect_10_init(s16 id, u8 Type, u32 Type_in_Type, u32 dir_step, u32 Death_Type, s32 pos_x, s32 pos_y);
-#endif
-
     s16 ix;
     s16 s1;
 
@@ -3262,8 +3211,8 @@ void Return_Pause_Sub(struct _TASK* task_ptr) {
     Menu_Suicide[1] = 0;
     Menu_Suicide[2] = 0;
     Menu_Suicide[3] = 1;
-    task[4].r_no[2] = 2;
-    task[4].free[0] = 1;
+    task[TASK_PAUSE].r_no[2] = 2;
+    task[TASK_PAUSE].free[0] = 1;
     task_ptr->r_no[1] = 1;
     task_ptr->r_no[2] = 1;
     Cursor_Y_Pos[0][0] = 1;
@@ -3275,7 +3224,7 @@ void Return_Pause_Sub(struct _TASK* task_ptr) {
 s32 Check_Pad_in_Pause(struct _TASK* task_ptr) {
     if (Interface_Type[Pause_ID] == 0) {
         task_ptr->r_no[1] = 4;
-        task[4].r_no[2] = 4;
+        task[TASK_PAUSE].r_no[2] = 4;
         Menu_Suicide[0] = 1;
         Menu_Suicide[1] = 1;
         Menu_Suicide[2] = 0;
@@ -3417,7 +3366,7 @@ void Wait_Load_Save(struct _TASK* task_ptr) {
 }
 
 void Disp_Auto_Save(struct _TASK* task_ptr) {
-    void (*Auto_Save_Jmp_Tbl[4])(struct _TASK* task_ptr) = { DAS_1st, DAS_2nd, DAS_3rd, DAS_4th };
+    void (*Auto_Save_Jmp_Tbl[4])() = { DAS_1st, DAS_2nd, DAS_3rd, DAS_4th };
     Auto_Save_Jmp_Tbl[task_ptr->r_no[1]](task_ptr);
 }
 
@@ -3460,15 +3409,15 @@ void DAS_4th(struct _TASK* task_ptr) {
 }
 
 void Disp_Auto_Save2(struct _TASK* task_ptr) {
-    void (*Auto_Save2_Jmp_Tbl[4])(struct _TASK* task_ptr) = { DAS_1st, DAS_2nd, DAS_3rd, DAS2_4th };
+    void (*Auto_Save2_Jmp_Tbl[4])() = { DAS_1st, DAS_2nd, DAS_3rd, DAS2_4th };
     Auto_Save2_Jmp_Tbl[task_ptr->r_no[1]](task_ptr);
 }
 
 void DAS2_4th(struct _TASK* task_ptr) {
     if (SaveMove() <= 0) {
         G_No[2] = 6;
-        cpExitTask(MENU_TASK_NUM);
-        task[1].condition = 1;
+        cpExitTask(TASK_MENU);
+        task[TASK_ENTRY].condition = 1;
     }
 }
 
@@ -3629,7 +3578,8 @@ void VS_Result(struct _TASK* task_ptr) {
             Setup_VS_Mode(task_ptr);
             G_No[1] = 12;
             G_No[2] = 1;
-            Mode_Type = 1;
+            // We should leave Mode_Type be, no need to reset it
+            // Mode_Type = MODE_VERSUS;
             break;
         }
 
@@ -3637,6 +3587,8 @@ void VS_Result(struct _TASK* task_ptr) {
 
     case 7:
     default:
+        //Netplay_HandleMenuExit();
+
         if (Exit_Sub(task_ptr, 0, 0)) {
             System_all_clear_Level_B();
             BGM_Request_Code_Check(65);
@@ -3681,8 +3633,8 @@ s32 VS_Result_Select_Sub(struct _TASK* task_ptr, s16 PL_id) {
             Pause_ID = PL_id;
             return 1;
         }
-    } else if (sw == 0x200) {
-        IO_Result = 0x200;
+    } else if (sw == SWK_EAST) {
+        IO_Result = SWK_EAST;
         VS_Result_Move_Sub(task_ptr, PL_id);
     }
 
@@ -3692,17 +3644,18 @@ s32 VS_Result_Select_Sub(struct _TASK* task_ptr, s16 PL_id) {
 u16 After_VS_Move_Sub(u16 sw, s16 cursor_id, s16 menu_max) {
     s16 skip;
 
-    if (plw[0].wu.operator == 0 || plw[1].wu.operator == 0) {
+    if (plw[0].wu.operator == 0 || plw[1].wu.operator == 0 || Mode_Type == MODE_NETWORK) {
         skip = 1;
     } else {
         skip = 99;
     }
+
     if (Debug_w[49]) {
         skip = 99;
     }
 
     switch (sw) {
-    case 1:
+    case SWK_UP:
         Menu_Cursor_Y[cursor_id]--;
 
         if (Menu_Cursor_Y[cursor_id] < 0) {
@@ -3714,9 +3667,9 @@ u16 After_VS_Move_Sub(u16 sw, s16 cursor_id, s16 menu_max) {
         }
 
         SE_cursor_move();
-        return IO_Result = 1;
+        return IO_Result = SWK_UP;
 
-    case 2:
+    case SWK_DOWN:
         Menu_Cursor_Y[cursor_id]++;
 
         if (Menu_Cursor_Y[cursor_id] > menu_max) {
@@ -3728,43 +3681,43 @@ u16 After_VS_Move_Sub(u16 sw, s16 cursor_id, s16 menu_max) {
         }
 
         SE_cursor_move();
-        return IO_Result = 2;
+        return IO_Result = SWK_DOWN;
 
-    case 0x10:
-        return IO_Result = 0x10;
+    case SWK_WEST:
+        return IO_Result = SWK_WEST;
 
-    case 0x100:
-        return IO_Result = 0x100;
+    case SWK_SOUTH:
+        return IO_Result = SWK_SOUTH;
 
-    case 0x200:
-        return IO_Result = 0x200;
+    case SWK_EAST:
+        return IO_Result = SWK_EAST;
 
-    case 0x400:
-        return IO_Result = 0x400;
+    case SWK_RIGHT_TRIGGER:
+        return IO_Result = SWK_RIGHT_TRIGGER;
 
-    case 0x4000:
-        return IO_Result = 0x4000;
+    case SWK_START:
+        return IO_Result = SWK_START;
 
     default:
         return IO_Result = 0;
 
-    case 0x20:
-        return IO_Result = 0x20;
+    case SWK_NORTH:
+        return IO_Result = SWK_NORTH;
 
-    case 0x40:
-        return IO_Result = 0x40;
+    case SWK_RIGHT_SHOULDER:
+        return IO_Result = SWK_RIGHT_SHOULDER;
 
-    case 0x80:
-        return IO_Result = 0x80;
+    case SWK_LEFT_SHOULDER:
+        return IO_Result = SWK_LEFT_SHOULDER;
 
-    case 0x800:
-        return IO_Result = 0x800;
+    case SWK_LEFT_TRIGGER:
+        return IO_Result = SWK_LEFT_TRIGGER;
     }
 }
 
 s32 VS_Result_Move_Sub(struct _TASK* task_ptr, s16 PL_id) {
     switch (IO_Result) {
-    case 0x100:
+    case SWK_SOUTH:
         switch (Menu_Cursor_Y[PL_id]) {
         case 0:
             SE_selected();
@@ -3796,7 +3749,7 @@ s32 VS_Result_Move_Sub(struct _TASK* task_ptr, s16 PL_id) {
 
         break;
 
-    case 0x200:
+    case SWK_EAST:
         SE_selected();
 
         if (Menu_Cursor_X[PL_id]) {
@@ -3947,10 +3900,6 @@ void Exit_Replay_Save(struct _TASK* task_ptr) {
 }
 
 void Decide_PL(s16 PL_id) {
-#if defined(TARGET_PS2)
-    void grade_check_work_1st_init(s32 ix, s32 ix2);
-#endif
-
     plw[PL_id].wu.operator = 1;
     Operator_Status[PL_id] = 1;
     Champion = PL_id;
@@ -4112,7 +4061,7 @@ void Next_Be_Tr_Menu(struct _TASK* task_ptr) {
 }
 
 s32 Check_Pause_Term_Tr(s16 PL_id) {
-    if (Mode_Type == 4) {
+    if (Mode_Type == MODE_PARRY_TRAINING) {
         if (PL_id == Champion) {
             return 1;
         }
@@ -4144,7 +4093,7 @@ s32 Pause_Check_Tr(s16 PL_id) {
 
     sw = ~(PLsw[PL_id][1]) & PLsw[PL_id][0];
 
-    if (sw & 0x4000) {
+    if (sw & SWK_START) {
         Pause_ID = PL_id;
         return 1;
     }
@@ -4231,23 +4180,23 @@ s32 Pause_in_Normal_Tr(struct _TASK* task_ptr) {
         if (Pause_Down) {
             IO_Result = MC_Move_Sub(Check_Menu_Lever(Pause_ID, 0), 0, 2, 0xFF);
         } else {
-            sw = ~(PLsw[Pause_ID][1]) & PLsw[Pause_ID][0];
+            sw = ~PLsw[Pause_ID][1] & PLsw[Pause_ID][0];
 
-            if (sw & 0xFF0) {
-                IO_Result = 0x10;
+            if (sw & SWK_ATTACKS) {
+                IO_Result = SWK_WEST;
             } else {
                 return 3;
             }
         }
 
         switch (IO_Result) {
-        case 0x200:
+        case SWK_EAST:
             task_ptr->r_no[2] = 0;
             Menu_Suicide[0] = 1;
             SE_selected();
             break;
 
-        case 0x100:
+        case SWK_SOUTH:
             switch (Menu_Cursor_Y[0]) {
             case 0:
                 task_ptr->r_no[2] = 0;
@@ -4297,9 +4246,10 @@ s32 Pause_1st_Sub(struct _TASK* task_ptr) {
         SSPutStr2(18, 14, 9, "TO PAUSE MENU");
     }
 
-    if (sw & 0x4000) {
-        if (((Mode_Type == 3) || (Mode_Type == 4)) && (Check_Pause_Term_Tr(Pause_ID ^ 1) != 0) &&
-            plw[Pause_ID ^ 1].wu.operator && (Interface_Type[Pause_ID ^ 1] == 0)) {
+    if (sw & SWK_START) {
+        if (((Mode_Type == MODE_NORMAL_TRAINING) || (Mode_Type == MODE_PARRY_TRAINING)) &&
+            (Check_Pause_Term_Tr(Pause_ID ^ 1) != 0) && plw[Pause_ID ^ 1].wu.operator &&
+            (Interface_Type[Pause_ID ^ 1] == 0)) {
             Pause_ID = Pause_ID ^ 1;
             return 0;
         }
@@ -4310,7 +4260,7 @@ s32 Pause_1st_Sub(struct _TASK* task_ptr) {
         return 1;
     }
 
-    if (sw & 0x100) {
+    if (sw & SWK_SOUTH) {
         task_ptr->r_no[2] += 1;
         Cursor_Y_Pos[0][0] = 0;
         SE_selected();
@@ -4427,14 +4377,14 @@ void Reset_Replay(struct _TASK* task_ptr) {
         Suicide[0] = 1;
         Suicide[6] = 1;
         judge_flag = 0;
-        cpExitTask(4);
+        cpExitTask(TASK_PAUSE);
         break;
 
     default:
         Switch_Screen(0);
 
         if (--task_ptr->timer == 0) {
-            cpExitTask(3);
+            cpExitTask(TASK_MENU);
         }
 
         break;
@@ -4442,7 +4392,7 @@ void Reset_Replay(struct _TASK* task_ptr) {
 }
 
 void Training_Menu(struct _TASK* task_ptr) {
-    void (*Training_Jmp_Tbl[8])(struct _TASK*) = { Training_Init,   Normal_Training,  Blocking_Training, Dummy_Setting,
+    void (*Training_Jmp_Tbl[8])() = { Training_Init,   Normal_Training,  Blocking_Training, Dummy_Setting,
                                       Training_Option, Button_Config_Tr, Character_Change,  Blocking_Tr_Option };
     Training_Jmp_Tbl[task_ptr->r_no[1]](task_ptr);
     Akaobi();
@@ -4460,7 +4410,7 @@ void Training_Init(struct _TASK* task_ptr) {
     Demo_Time_Stop = 0;
     Disp_Cockpit = 0;
 
-    if (Mode_Type == 3) {
+    if (Mode_Type == MODE_NORMAL_TRAINING) {
         control_player = Champion;
         control_pl_rno = 0x63;
     } else {
@@ -4764,7 +4714,7 @@ void Button_Exit_Check_in_Tr(struct _TASK* task_ptr, s16 PL_id) {
         task_ptr->r_no[2] = 0;
         task_ptr->r_no[3] = 0;
 
-        if (Mode_Type == 3) {
+        if (Mode_Type == MODE_NORMAL_TRAINING) {
             task_ptr->r_no[1] = 1;
         } else {
             task_ptr->r_no[1] = 2;
@@ -4888,7 +4838,7 @@ void Training_Option(struct _TASK* task_ptr) {
 }
 
 void Training_Disp_Sub(struct _TASK* task_ptr) {
-    if (Mode_Type == 3) {
+    if (Mode_Type == MODE_NORMAL_TRAINING) {
         task_ptr->r_no[1] = 1;
         Training_Index = 0;
         return;
@@ -5255,7 +5205,7 @@ void Character_Change(struct _TASK* task_ptr) {
                     Operator_Status[ix] = 1;
                 }
 
-                cpExitTask(MENU_TASK_NUM);
+                cpExitTask(TASK_MENU);
             }
             break;
         }
@@ -5268,10 +5218,11 @@ void Default_Training_Data(s32 flag) {
     s16 ix3;
 
     if (flag == 0) {
-        if (mpp_w.initTrainingData == 0) {
+        if (!mpp_w.initTrainingData) {
             return;
         }
-        mpp_w.initTrainingData = 0;
+
+        mpp_w.initTrainingData = false;
     }
 
     for (ix = 0; ix < 2; ix++) {
@@ -5480,7 +5431,7 @@ void Back_to_Mode_Select(struct _TASK* task_ptr) {
 
     FadeOut(1, 0xFF, 8);
     G_No[0] = 2;
-    G_No[1] = 0xC;
+    G_No[1] = 12;
     G_No[2] = 0;
     G_No[3] = 0;
     E_No[0] = 1;

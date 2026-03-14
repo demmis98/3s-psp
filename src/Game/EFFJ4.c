@@ -7,8 +7,7 @@
 #include "Game/bg_data.h"
 #include "Game/workuser.h"
 
-void effect_J4_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_J4_move(WORK_Other* ewk) {
     switch (ewk->wu.routine_no[0]) {
     case 0:
         ewk->wu.routine_no[0]++;
@@ -66,8 +65,7 @@ void effect_J4_move(WORK* wkp, s32 /*unused*/) {
     }
 }
 
-s32 effect_J4_init(WORK* /*unused*/, s32 d) {
-    u8 data2 = (u8) d;
+s32 effect_J4_init(u8 data2) {
     WORK_Other* ewk;
     s16 ix;
 
@@ -91,8 +89,7 @@ s32 effect_J4_init(WORK* /*unused*/, s32 d) {
     return 0;
 }
 
-s32 setup_sa_shadow(WORK* /* unused */, s32 d) {
-    u8 data = (u8) d;
+s32 setup_sa_shadow(u8 /* unused */, u8 data) {
 #if defined(TARGET_PS2)
     s32 effect_J4_init(u32 data2);
 #endif
@@ -101,5 +98,5 @@ s32 setup_sa_shadow(WORK* /* unused */, s32 d) {
         return -1;
     }
 
-    return effect_J4_init(NULL, data);
+    return effect_J4_init(data);
 }

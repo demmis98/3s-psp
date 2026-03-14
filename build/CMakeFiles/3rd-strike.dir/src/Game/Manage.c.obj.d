@@ -35,6 +35,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Manage.c.obj: \
  /home/demma/.local/bin/pspdev/psp/include/sys/sched.h \
  /home/demma/.local/bin/pspdev/psp/include/machine/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/common.h \
+ /home/demma/.local/bin/pspdev/lib/gcc/psp/15.2.0/include/stdbool.h \
  /home/demma/Documents/code/psp/3rd-strike/include/types.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/EFF56.h \
  /home/demma/Documents/code/psp/3rd-strike/include/structs.h \
@@ -65,6 +66,7 @@ CMakeFiles/3rd-strike.dir/src/Game/Manage.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/cmb_win.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/count.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/debug/Debug.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/debug/debug_config.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/eff08.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/eff14.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/eff35.h \

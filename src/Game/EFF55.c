@@ -10,8 +10,7 @@
 #include "Game/texcash.h"
 #include "Game/workuser.h"
 
-void effect_55_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_55_move(WORK_Other* ewk) {
     if (obr_no_disp_check()) {
         return;
     }
@@ -80,7 +79,7 @@ void effect_55_move(WORK* wkp, s32 /*unused*/) {
     }
 }
 
-s32 effect_55_init(WORK* /*unused*/, s32 /*unused*/) {
+s32 effect_55_init() {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

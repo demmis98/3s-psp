@@ -11,8 +11,7 @@
 #include "Game/texcash.h"
 #include "Game/workuser.h"
 
-void effect_I4_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_I4_move(WORK_Other* ewk) {
 #if defined(TARGET_PS2)
     void set_char_move_init(WORK * wk, s16 koc, s32 index);
 #endif
@@ -143,7 +142,7 @@ void effi4_up_to_down(WORK_Other* ewk) {
     }
 }
 
-s32 effect_I4_init(WORK* /*unused*/, s32 /*unused*/) {
+s32 effect_I4_init() {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif
@@ -174,6 +173,6 @@ s32 effect_I4_init(WORK* /*unused*/, s32 /*unused*/) {
     ewk->wu.my_priority = ewk->wu.position_z = 72;
     ewk->wu.char_index = 5;
     ewk->wu.routine_no[1] = 0;
-    effect_J6_init((WORK*)ewk, 0);
+    effect_J6_init(ewk);
     return 0;
 }

@@ -11,8 +11,7 @@
 
 const s32 effg8_sp_tbl[28][4];
 
-void effect_G8_move(WORK* wkp, s32/*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_G8_move(WORK_Other* ewk) {
     if (!akebono_flag) {
         ewk->wu.routine_no[0] = 99;
     }
@@ -98,7 +97,7 @@ s16 effg8_range_check(WORK_Other* ewk) {
     return 0;
 }
 
-s32 effect_G8_init(WORK* /*unused*/, s32 /*unused*/) {
+s32 effect_G8_init() {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

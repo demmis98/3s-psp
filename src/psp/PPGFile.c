@@ -139,19 +139,21 @@ s32 ppgWriteQuadWithST_A2(Vertex* pos, u32 col) {
 }
 
 void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode) {
+
+    if(DEMMA_DEBUG)
+        return;
+
     TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(4 * sizeof(TextureVertex));
     int texture_handle = LO_16_BITS(texCode) - 1;
     FLTexture *tex = &flTexture[texture_handle];
     s32 i;
-    if(DEMMA_DEBUG)
-        return;
-    //flLogOut("ppgWriteQuadOnly %x %d %d %d\n", tex->wkVram, tex->width, tex->height, texCode);
+    flLogOut("ppgWriteQuadOnly %x %d %d %d\n", tex->wkVram, tex->width, tex->height, texCode);
 
     for (i = 0; i < 4; i++) {
-        //flLogOut("x %f y %f u %f v %f\n",pos[i].x,pos[i].y,pos[i].u,pos[i].u);
+        flLogOut("x %f y %f z %f u %f v %f\n",pos[i].x,pos[i].y,pos[i].z,pos[i].u,pos[i].u);
         vertices[i].x = pos[i].x;
         vertices[i].y = pos[i].y;
-        vertices[i].z = pos[i].z;
+        vertices[i].z = pos[i].z * 0xFFFF;
         vertices[i].u = pos[i].u * tex->width;
         vertices[i].v = pos[i].v * tex->height;
         vertices[i].colour = col;
@@ -163,20 +165,22 @@ void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode) {
 }
 
 void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
+
+    if(DEMMA_DEBUG)
+        return;
+
     TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(2 * sizeof(TextureVertex));
     int texture_handle = LO_16_BITS(texCode) - 1;
     FLTexture *tex = &flTexture[texture_handle];
     s32 i;
     
-    if(DEMMA_DEBUG)
-        return;
     //flLogOut("ppgWriteQuadOnly2 %x %d %d %d\n", tex->wkVram, tex->width, tex->height, texCode);
 
     for (i = 0; i < 2; i++) {
         //flLogOut("x %f y %f u %f v %f\n",pos[i].x,pos[i].y,pos[i].u,pos[i].u);
         vertices[i].x = pos[i*3].x;
         vertices[i].y = pos[i*3].y;
-        vertices[i].z = pos[i*3].z;
+        vertices[i].z = pos[i*3].z  * 0xFFFF;
         vertices[i].u = pos[i*3].u * tex->width;
         vertices[i].v = pos[i*3].v * tex->height;
         vertices[i].colour = col;

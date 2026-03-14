@@ -21,8 +21,7 @@ const s16 paring_mark_data[3][20][2] = {
       { 28, 76 }, { 25, 77 }, { 34, 79 }, { 47, 74 }, { 21, 84 }, { 22, 73 } }
 };
 
-void effect_C7_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_C7_move(WORK_Other* ewk) {
     WORK* mwk = (WORK*)ewk->my_master;
 
     switch (ewk->wu.routine_no[0]) {
@@ -84,9 +83,7 @@ void effc7_sort_push(WORK* ewk, WORK* /* unused */) {
     sort_push_request8(ewk);
 }
 
-s32 effect_C7_init(WORK* wkp, s32 d) {
-    PLW* wk = (PLW*) wkp;
-    u8 data = (u8) d;
+s32 effect_C7_init(PLW* wk, u8 data) {
     WORK_Other* ewk;
     s16 ix;
 

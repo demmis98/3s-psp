@@ -18,8 +18,7 @@ void eff36_move04(WORK_Other* ewk);
 void eff36_move05(WORK_Other* ewk);
 void eff36_move06(WORK_Other* ewk);
 
-void effect_36_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_36_move(WORK_Other* ewk) {
     switch (ewk->wu.routine_no[0]) {
     case 0:
         if (ewk->wu.old_rno[1] <= op_w.index) {
@@ -387,6 +386,6 @@ s32 effect_36_init(u8 typenum) {
     ewk->wu.char_index = *data_ptr++;
     ewk->wu.old_rno[2] = *data_ptr++;
     ewk->wu.old_rno[1] = *data_ptr++;
-    effect_36_move((WORK*) ewk, 0);
+    effect_36_move(ewk);
     return 0;
 }

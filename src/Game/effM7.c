@@ -12,8 +12,7 @@
 
 void effm7_move(WORK_Other* ewk);
 
-void effect_M7_move(WORK* wkp, s32 /*unused*/) {
-    WORK_Other* ewk = (WORK_Other*) wkp;
+void effect_M7_move(WORK_Other* ewk) {
     switch (ewk->wu.routine_no[0]) {
     case 0:
         if (!EXE_flag && !Game_pause) {
@@ -125,8 +124,7 @@ const s16 effm7_data_tbl[42] = {
     -64, 2,  1,  1, 17, 24, 96, -112, -8, -1, 1, 18, 8,  102, -224, 2,  1,  1, 17, 10, 106
 };
 
-s32 effect_M7_init(WORK* wkp, s32 /*unused*/) {
-    PLW* oya = (PLW*) wkp;
+s32 effect_M7_init(PLW* oya) {
 #if defined(TARGET_PS2)
     s16 get_my_trans_mode(s32 curr);
 #endif

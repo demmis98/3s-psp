@@ -39,8 +39,6 @@ s16 picon_no;
 f32 picon_level;
 
 s32 Warning() {
-    setTexAdrsMode(0);
-    setFilterMode(1);
     Next_Demo = 0;
 
     switch (D_No[1]) {
@@ -64,7 +62,7 @@ s32 Warning() {
         break;
 
     case 6:
-        if ((Usage == 7) && (((p1sw_0 & 0x4FF0) | (p2sw_0 & 0x4FF0)) != 0)) {
+        if (((p1sw_0 & 0x4FF0) | (p2sw_0 & 0x4FF0)) != 0) {
             D_Timer = 2;
             D_No[1] = 7;
             FadeInit();
@@ -115,11 +113,6 @@ s32 Warning() {
 }
 
 s32 CAPCOM_Logo() {
-    
-    //flLogOut("CAPCOM_Logo %d\n", D_No[1]);
-
-    setTexAdrsMode(0);
-    setFilterMode(0);
     ppgSetupCurrentDataList(&ppgCapLogoList);
     Next_Demo = 0;
 
@@ -132,7 +125,6 @@ s32 CAPCOM_Logo() {
 
     case 1:
         D_No[1] += 1;
-        setup_pos_remake_key(1);
         Standby_BGM(67);
         CAPLOGO_Init();
         Push_LDREQ_Queue_Direct(0x16, 2);
@@ -216,7 +208,7 @@ void CAPLOGO_Init() {
     loadSize = load_it_use_any_key2(75, &loadAdrs, &key, 2, 1); // CapLogo.ppg
 
     if (loadSize == 0) {
-        flLogOut("The CapLogo texture could not be loaded.\n");
+        flLogOut("カプロゴのテクスチャが読み込めませんでした。\n");
         while (1) {}
     }
 
@@ -230,8 +222,6 @@ void CAPLOGO_Init() {
 
 s16 CAPLOGO_Move(u16 type) {
     s16 rnum = 0;
-
-    flLogOut("CAPLOGO_Move %d\n", type);
 
     switch (type) {
     case 0:
@@ -258,8 +248,6 @@ void Put_char(const f32* ptr, u32 indexG, u16 prio, s16 x, s16 y, f32 zx, f32 zy
     s16 off_x;
     s16 off_y;
 
-    //flLogOut("Put_char %d\n", No_Trans);
-
     if (No_Trans) {
         return;
     }
@@ -268,28 +256,18 @@ void Put_char(const f32* ptr, u32 indexG, u16 prio, s16 x, s16 y, f32 zx, f32 zy
     tex[0].z = tex[1].z = tex[2].z = tex[3].z = PrioBase[prio];
 
     while (*ptr != -1.0f) {
-
         tex[0].u = tex[1].u = *ptr++;
         tex[0].v = tex[2].v = *ptr++;
         tex[2].u = tex[3].u = *ptr++;
         tex[1].v = tex[3].v = *ptr++;
-
-#if defined(TARGET_PS2)
-        off_x = (u32)*ptr++;
-        off_y = (u32)*ptr++;
-#else
         off_x = *ptr++;
         off_y = *ptr++;
-#endif
-
-        tex[0].x = tex[1].x = Frame_Zoom_X * (x + off_x * zx);
-        tex[0].y = tex[2].y = Frame_Zoom_Y * (y + off_y * zy);
-        tex[2].x = tex[3].x = Frame_Zoom_X * (x + (off_x * zx) + ((u32)*ptr++ * zx));
-        tex[1].y = tex[3].y = Frame_Zoom_Y * (y + (off_y * zy) + ((u32)*ptr++ * zy));
-
+        tex[0].x = tex[1].x = (x + off_x * zx);
+        tex[0].y = tex[2].y = (y + off_y * zy);
+        tex[2].x = tex[3].x = (x + (off_x * zx) + ((u32)*ptr++ * zx));
+        tex[1].y = tex[3].y = (y + (off_y * zy) + ((u32)*ptr++ * zy));
         njDrawTexture(tex, 4, indexG, 1);
     }
-    //while(1);
 }
 
 void Warning_Init() {
@@ -307,7 +285,7 @@ void Warning_Init() {
     loadSize = load_it_use_any_key2(12, &loadAdrs, &key, 2, 1); // Warning.ppg
 
     if (loadSize == 0) {
-        flLogOut("The warning message texture could not be loaded.\n");
+        flLogOut("警告文のテクスチャが読み込めませんでした。\n");
         while (1) {}
     }
 
@@ -324,6 +302,7 @@ void Warning_Init() {
     ppgSourceDataReleased(0);
     picon_no = 0;
 }
+
 
 void Put_Warning(s16 type) {
     Polygon tex[4];
@@ -385,11 +364,11 @@ void Put_Warning(s16 type) {
 void Pal_Cursor_Put(s16 type) {
     PAL_CURSOR_TBL pal_cursor_tbl[3] = {
         { { { 48.0f, 64.0f }, { 48.0f, 99.0f }, { 144.0f, 99.0f }, { 144.0f, 64.0f } },
-          { 0xA0FF0000, 0xA0FF0000, 0xA0FF0000, 0xA0FF0000 } },
+          { { 0xA0FF0000 }, { 0xA0FF0000 }, { 0xA0FF0000 }, { 0xA0FF0000 } } },
         { { { 48.0f, 296.0f }, { 48.0f, 332.0f }, { 286.0f, 332.0f }, { 286.0f, 296.0f } },
-          { 0xA0FF0000, 0xA0FF0000, 0xA0FF0000, 0xA0FF0000 } },
+          { { 0xA0FF0000 }, { 0xA0FF0000 }, { 0xA0FF0000 }, { 0xA0FF0000 } } },
         { { { 48.0f, 379.0f }, { 48.0f, 415.0f }, { 286.0f, 415.0f }, { 286.0f, 379.0f } },
-          { 0xA0FF0000, 0xA0FF0000, 0xA0FF0000, 0xA0FF0000 } }
+          { { 0xA0FF0000 }, { 0xA0FF0000 }, { 0xA0FF0000 }, { 0xA0FF0000 } } }
     };
 
     f32 pal_alpha_tbl[4] = { 255.0f, 48.0f, 178.5f, 48.0f };
