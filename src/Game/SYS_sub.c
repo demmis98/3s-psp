@@ -868,6 +868,7 @@ void Basic_Sub_Ex() {
 }
 
 s32 Check_PL_Load() {
+    flLogOut("Check_PL_Load %d %d\n", Check_LDREQ_Queue_Player(0), Check_LDREQ_Queue_Player(1));
     if (!Check_LDREQ_Queue_Player(0) || !Check_LDREQ_Queue_Player(1)) {
         return 0;
     }

@@ -786,7 +786,6 @@ void mlt_obj_trans_cp3_ext(MultiTexture* mt, WORK* wk, s32 base_y) {
     if (texgrplds[i].ok == 0) {
         // The trans data is not valid. Group number: %d\n
         flLogOut("cp3_ext The trans data is not valid. Group number: %d\n", i);
-        return;
         while (1) {}
     }
 

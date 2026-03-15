@@ -279,7 +279,7 @@ u32 flPS2GetTextureHandle() {
 }
 
 u32 flCreatePaletteHandle(plContext* lpcontext, u32 flag) {
-    FLTexture* lpflPalette;
+        FLTexture* lpflPalette;
     u32 ph = flPS2GetPaletteHandle();
 
     flLogOut("flCreatePaletteHandle start\n");
@@ -1131,6 +1131,9 @@ void flSetTexture(int th){
     if(pal == NULL)
         pal = flPS2GetSystemBuffAdrs(flPal->mem_handle);
 
+    flLogOut("flSetTexture %d %d\n", texData, pal);
+    //while(1);
+
     if(currentPalette != palette_handle){
         sceKernelDcacheWritebackRange(pal, flPal->size);
         sceGuClutMode(GU_PSM_5551, 0, 255, 0);
@@ -1177,8 +1180,8 @@ static s32 system_work_init() {
     void* temp;
 
     flMemset(&flPs2State, 0, sizeof(FLPS2State));
-    //int temp_size = 0x01800000;
-    int temp_size = 0x01C00000;
+    int temp_size = 0x01800000;
+    //int temp_size = 0x01C00000;
 
     temp = memalign(16, temp_size);
 
@@ -1189,8 +1192,8 @@ static s32 system_work_init() {
     }
 
     fmsInitialize(&flFMS, temp, temp_size, 0x16);
-    //const int system_memory_size = 0xA00000;
-    const int system_memory_size = 0x1000000;
+    const int system_memory_size = 0xA00000;
+    //const int system_memory_size = 0x1000000;
     temp = flAllocMemoryS(system_memory_size);
     mflInit(temp, system_memory_size, 0x16);
 

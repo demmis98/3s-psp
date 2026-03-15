@@ -288,18 +288,27 @@ void Warning_Init() {
         flLogOut("警告文のテクスチャが読み込めませんでした。\n");
         while (1) {}
     }
+    flLogOut("war -2\n");
 
     ppgSetupPalChunk(&ppgWarPal, loadAdrs, loadSize, 0, 0, 1);
+    flLogOut("war -2.1\n");
     ppgSetupPalChunk(&ppgAdxPal, loadAdrs, loadSize, 0, 1, 1);
+    flLogOut("war -2.2\n");
     ppgSetupTexChunk_1st(0, loadAdrs, loadSize, 590, 4, 0, 0);
 
+    flLogOut("war -1\n");
     for (i = 0; i < ppgWarTex.textures; i++) {
+        flLogOut("war 0.1 %d\n", i);
         ppgSetupTexChunk_2nd(0, i + 590);
         ppgSetupTexChunk_3rd(0, i + 590, 1);
     }
 
+    flLogOut("war 0\n");
+
     Push_ramcnt_key(key);
+    flLogOut("war 1\n");
     ppgSourceDataReleased(0);
+    flLogOut("war 2\n");
     picon_no = 0;
 }
 

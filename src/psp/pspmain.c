@@ -1,5 +1,5 @@
 #include <pspuser.h>
-
+#include <psppower.h>
 
 #include "common/audio.h"
 #include "common/graphics.h"
@@ -35,6 +35,8 @@ int setup_callbacks(void) {
 int main(void)  {
     // Use above functions to make exiting possible
     setup_callbacks();
+
+    scePowerSetClockFrequency(333, 333, 166);
 
     initGu();
 

@@ -40,6 +40,10 @@ uintptr_t mmRoundOff(s32 unit, uintptr_t num) {
 void mmDebWriteTag(s8* tag) {
     // Do nothing
     flPrintColor(0xFFFF00FF);
+    for(char *c = tag; *c != '\0'; c++){
+        if(*c == '\n')
+            *c = ' ';
+    }
     flPrintL(15, 0, "mmDebWriteTag %s\n", tag);
 }
 

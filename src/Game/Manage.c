@@ -147,7 +147,6 @@ s32 Game_Management() {
                                          Game_Manage_9th, Game_Manage_10th, Game_Manage_11th, Game_Manage_12th,
                                          Game_Manage_13th };
 
-    flLo
     if (Break_Into) {
         return 0;
     }
@@ -400,7 +399,6 @@ void Game_Manage_2_2() {
 }
 
 void Game_Manage_2_3() {
-    /*
     if (Appear_end < 2) {
         return;
     }
@@ -419,8 +417,6 @@ void Game_Manage_2_3() {
     if (pcon_rno[1] != 1) {
         return;
     }
-    */
-    win_sp_flag = 0;
 
     C_No[1]++;
     effect_B2_init();

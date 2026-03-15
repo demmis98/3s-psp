@@ -287,10 +287,6 @@ void Bg_Texture_Load_EX() {
 
     key1 = Search_ramcnt_type(0x12);
     flLogOut("Bg_Texture_Load_EX 1 %d\n", key1);
-    if(key1 == 0){
-        Debug_w[DEBUG_BG_DRAW_OFF] = 1;
-        return;
-    }
     loadAdrs = (void*)Get_ramcnt_address(key1);
     flLogOut("Bg_Texture_Load_EX 2\n");
     loadSize = Get_size_data_ramcnt_key(key1);

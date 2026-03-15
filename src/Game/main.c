@@ -82,7 +82,8 @@ void AcrMain() {
     keyConvert();
 
     if(p1sw_buff){
-        DEMMA_DEBUG = 1;
+        //DEMMA_DEBUG = 1;
+        DEMMA_DEBUG = 0;
         flLogOut("DEMMA_DEBUG = 1\n");
     }
     else{
@@ -204,8 +205,8 @@ void AcrMain() {
         }
 
         
-        if(!DEMMA_DEBUG)
-            drawRect(c_x, c_y, 10, 10, 0xFFFFFFFF);
+        //if(!DEMMA_DEBUG)
+            //drawRect(c_x, c_y, 10, 10, 0xFFFFFFFF);
         
         render_end();
 

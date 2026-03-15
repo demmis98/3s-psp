@@ -1672,15 +1672,15 @@ void Exit_5th() {
 
 void Exit_6th() {
     if (!Check_PL_Load()) {
-        //return;
+        return;
     }
 
     if (!Check_LDREQ_Queue_BG(bg_w.stage + 0)) {
-        //return;
+        return;
     }
 
     if (!sndCheckVTransStatus(0)) {
-        //return;
+        return;
     }
 
     // We shouldn't skip VS screen in network mode, because that can lead to IO race conditions

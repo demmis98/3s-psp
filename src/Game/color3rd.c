@@ -69,6 +69,7 @@ s32 palFormConv;
 s32 cseTsbSetBankAddr(u32 bank, SoundEvent* addr) ;
 s32 cseMemMapSetPhdAddr(u32 bank, void* addr);
 
+int cseSendBd2SpuWithId(...) { return 0; }
 // forward decls
 void palConvRowTim2CI8Clut(u16* src, u16* dst, s32 size);
 const u16 hitmark_color[128];
@@ -93,13 +94,11 @@ void q_ldreq_color_data(REQ* curr) {
             if (sndCheckVTransStatus(0) == 0) {
                 break;
             }
-            /*
-            if (cfn->data + 1 == cseGetIdStoredBd(curr->id + 1)) {
+            //if (cfn->data + 1 == cseGetIdStoredBd(curr->id + 1)) {
                 *curr->result |= lpr_wrdata[curr->id];
                 curr->be = 0;
                 break;
-            }
-            */
+            //}
         }
 
         curr->rno = 1;
@@ -143,12 +142,10 @@ void q_ldreq_color_data(REQ* curr) {
         case 1:
             if (cfn->type == 10) {
                 fsClose(curr);
-                /*
                 cseSendBd2SpuWithId((void*)Get_ramcnt_address(curr->key),
                                     Get_size_data_ramcnt_key(curr->key),
                                     curr->id + 1,
                                     cfn->data + 1);
-                */
                 curr->rno = 5;
             } else {
                 init_trans_color_ram(curr->id, curr->key, cfn->type, cfn->data);
@@ -407,22 +404,20 @@ void init_trans_color_ram(s16 id, s16 key, u8 type, u16 data) {
     }
     case 8:
         //cseSendBd2SpuWithId((void*)Get_ramcnt_address(key), Get_size_data_ramcnt_key(key), 0, 0);
-        /*
+        
         while (!sndCheckVTransStatus(1)) {
             waitVsyncDummy();
         }
-        */
 
         Push_ramcnt_key(key);
         break;
 
     case 10:
         //cseSendBd2SpuWithId((void*)Get_ramcntl_address(key), Get_size_data_ramcnt_key(key), id + 1, data + 1);
-        /*
+    
         while (!sndCheckVTransStatus(1)) {
             waitVsyncDummy();
         }
-        */
 
         cseMemMapSetPhdAddr(id + 1, csePHDDataTable[data + 1]);
         cseTsbSetBankAddr(id + 1, cseTSBDataTable[data + 1]);

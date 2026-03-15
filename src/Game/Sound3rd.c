@@ -182,7 +182,7 @@ s32 sndCheckVTransStatus(s32 type) {
         break;
     }
     */
-    return rnum;
+    return 1;
 }
 
 void sndInitialLoad() {

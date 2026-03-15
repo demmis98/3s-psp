@@ -38,13 +38,13 @@ void tarPADRead() {
     if (pad.Buttons & PSP_CTRL_DOWN) sw |= 0x0002;
     if (pad.Buttons & PSP_CTRL_LEFT) sw |= 0x0004;
 
-    if (pad.Buttons & PSP_CTRL_TRIANGLE) sw |= 0x1000;
+    if (pad.Buttons & PSP_CTRL_TRIANGLE) sw |= 0x0200;
     if (pad.Buttons & PSP_CTRL_CIRCLE) sw |= 0x0020;
     if (pad.Buttons & PSP_CTRL_CROSS) sw |= 0x0010;
-    if (pad.Buttons & PSP_CTRL_SQUARE) sw |= 0x0200;
+    if (pad.Buttons & PSP_CTRL_SQUARE) sw |= 0x0100;
 
-    if (pad.Buttons & PSP_CTRL_LTRIGGER) sw |= 0x0100;
-    if (pad.Buttons & PSP_CTRL_RTRIGGER) sw |= 0x2000;
+    if (pad.Buttons & PSP_CTRL_LTRIGGER) sw |= 0x0400;
+    if (pad.Buttons & PSP_CTRL_RTRIGGER) sw |= 0x0040;
 
     if (pad.Buttons & PSP_CTRL_START) sw |= 0x8000;
     if (pad.Buttons & PSP_CTRL_SELECT) sw |= 0x4000;

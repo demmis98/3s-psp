@@ -9,6 +9,7 @@
 static unsigned int __attribute__((aligned(64))) list[0x20000];
 
 static void * fbp0;
+static void * fbp1;
 static void * zBuff;
 
 //variables
@@ -20,12 +21,13 @@ void initGu(){
     sceGuInit();
 
 	fbp0 = guGetStaticVramBuffer(BUFFER_WIDTH,SCREEN_HEIGHT,GU_PSM_8888);
+    fbp1 = guGetStaticVramBuffer(BUFFER_WIDTH,SCREEN_HEIGHT,GU_PSM_8888);
     zBuff = guGetStaticVramBuffer(BUFFER_WIDTH, SCREEN_HEIGHT, GU_PSM_4444);
 
     //Set up buffers
     sceGuStart(GU_DIRECT, list);
     sceGuDrawBuffer(GU_PSM_8888, fbp0, BUFFER_WIDTH);
-    sceGuDispBuffer(SCREEN_WIDTH,SCREEN_HEIGHT,fbp0, BUFFER_WIDTH);
+    sceGuDispBuffer(SCREEN_WIDTH,SCREEN_HEIGHT,fbp1, BUFFER_WIDTH);
     
     // We do not care about the depth buffer in this example
     //sceGuDepthBuffer(fbp0, 0); // Set depth buffer to a length of 0
@@ -82,6 +84,7 @@ void endFrame(){
     sceGuFinish();
     sceGuSync(GU_SYNC_FINISH, GU_SYNC_WHAT_DONE);
     sceDisplayWaitVblankStart();
+    sceGuSwapBuffers();
 }
 
 void endFrameDebug(){

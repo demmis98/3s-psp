@@ -605,17 +605,12 @@ void Game2_2() {
 }
 
 void Game2_3() {
-    flLogOut("Game2_3 0\n");
-    //Game2_1();
-    flLogOut("Game2_3 1\n");
+    Game2_1();
 
-    G_No[2] = 1;
     if (--G_Timer == 0) {
         G_No[2] = 1;
-        flLogOut("Game2_3 2\n");
         Clear_Flash_No();
     }
-    flLogOut("Game2_3 3\n");
 }
 
 void Game2_4() {

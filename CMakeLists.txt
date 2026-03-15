@@ -44,6 +44,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     pspge
     pspgu
     pspctrl
+    psppower
     
     pspaudio
     pspaudiolib
