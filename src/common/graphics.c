@@ -1,11 +1,6 @@
 #include "graphics.h"
 
 // variables
-//static unsigned int list[0x40000] __attribute__((aligned(64)));
-//char list[0x20000] __attribute__((aligned(64)));
-//static unsigned int __attribute__((aligned(16))) list[262144];
-//static unsigned int __attribute__((aligned(16))) list[0x40000];
-//static unsigned int __attribute__((aligned(16))) list[0x20000];
 static unsigned int __attribute__((aligned(64))) list[0x20000];
 
 static void * fbp0;
@@ -56,6 +51,8 @@ void initGu(){
     sceGuScissor(0, 0, 384, 224);
     sceGuEnable(GU_SCISSOR_TEST);
     //sceGuDisable(GU_SCISSOR_TEST);
+
+    sceGuTexFunc(GU_TFX_REPLACE, GU_TCC_RGBA);
 
     // Start a new frame and enable the display
     sceGuEnable(GU_TEXTURE_2D);

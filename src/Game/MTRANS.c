@@ -1601,29 +1601,42 @@ void seqsAfterProcess() {
 
         //ps2SeqsRenderQuadInit_A();
 
+        vertices = (TextureVertex*)sceGuGetMemory(2 * seqs_w.sprTotal * sizeof(TextureVertex));
+        int k, j, w = 0;
+        //flSetRenderState(FLRENDER_TEXSTAGE0, val);
+        u32 val_temp = -1;
+
         for (i = 0; i < seqs_w.sprTotal; i++) {
             if (seqs_w.up[seqs_w.chip[i].id]) {
                 val = seqs_w.chip[i].tex_code;
 
-                flSetRenderState(FLRENDER_TEXSTAGE0, val);
-
-                vertices = (TextureVertex*)sceGuGetMemory(2 * sizeof(TextureVertex));
+                //vertices = (TextureVertex*)sceGuGetMemory(2 * sizeof(TextureVertex));
                 //static TextureVertex vertices[2];
                 tex = &flTexture[LO_16_BITS(val) - 1];
 
-                for (int j = 0; j < 2; j++) {
-                    vertices[j].x = seqs_w.chip[i].v[j].x;
-                    vertices[j].y = seqs_w.chip[i].v[j].y;
-                    vertices[j].z = seqs_w.chip[i].v[j].z * 0xFFFF;
-                    vertices[j].u = (short) (seqs_w.chip[i].t[j].s * tex->width);
-                    vertices[j].v = (short) (seqs_w.chip[i].t[j].t * tex->height);
-                    vertices[j].colour = seqs_w.chip[i].vertex_color;
+                k = (i*2);
+
+                for (j = 0; j < 2; j++) {
+                    vertices[j + k].x = seqs_w.chip[i].v[j].x;
+                    vertices[j + k].y = seqs_w.chip[i].v[j].y;
+                    vertices[j + k].z = seqs_w.chip[i].v[j].z * 0xFFFF;
+                    vertices[j + k].u = (short) (seqs_w.chip[i].t[j].s * tex->width);
+                    vertices[j + k].v = (short) (seqs_w.chip[i].t[j].t * tex->height);
+                    vertices[j + k].colour = seqs_w.chip[i].vertex_color;
                 }
                 //ps2SeqsRenderQuad_Ax(&seqs_w.chip[i]);
                 
-                sceGuDrawArray(GU_SPRITES, GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
+                //sceGuDrawArray(GU_SPRITES, GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
+                if(val != val_temp){
+                    sceGuDrawArray(GU_SPRITES, GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2 * (i - w), 0, &vertices[w * 2]);
+                    w = i;
+                    val_temp = val;
+                    flSetRenderState(FLRENDER_TEXSTAGE0, val);
+                }
             }
         }
+        sceGuDrawArray(GU_SPRITES, GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2 * (i - w), 0, &vertices[w * 2]);
+        //sceGuDrawArray(GU_SPRITES, GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2 * seqs_w.sprTotal, 0, vertices);
 
         //ps2SeqsRenderQuadEnd();
     }

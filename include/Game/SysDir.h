@@ -63,6 +63,7 @@ typedef enum Dipswitch2 {
     DIP2_WHIFFED_NORMALS_BUILD_SA_GAUGE_DISABLED = 1 << 29
 } Dipswitch2;
 
+
 extern const s16 use_ex_gauge[4];
 extern const s16 guard_distance[4];
 extern const s16 sa_gauge_omake[4];

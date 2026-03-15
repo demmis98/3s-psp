@@ -31,8 +31,9 @@ s32 flFrame;
 
 int debug_mode = 0;
 
-#define MAX_BG_BUFFER 12
-#define BG_BUFF_SIZE 512
+#define MAX_BG_BUFFER 4
+#define BG_BUFF_SIZE_X 256
+#define BG_BUFF_SIZE_Y 128
 static void *bg_buffer[MAX_BG_BUFFER];
 static bool bg_used[MAX_BG_BUFFER];
 
@@ -1104,7 +1105,7 @@ s32 flInitialize(s32 /* unused */, s32 /* unused */){
     }
 
     for(int i = 0; i < MAX_BG_BUFFER; i++){
-        bg_buffer[i] = guGetStaticVramTexture(BG_BUFF_SIZE, BG_BUFF_SIZE, GU_PSM_T8);
+        bg_buffer[i] = guGetStaticVramTexture(BG_BUFF_SIZE_X, BG_BUFF_SIZE_Y, GU_PSM_T8);
         if(bg_buffer[i] == NULL)
             bg_used[i] = true;
     }
@@ -1143,8 +1144,6 @@ void flSetTexture(int th){
     if(currentTexture != texData){
         sceKernelDcacheWritebackRange(texData, flTex->size);
         sceGuTexMode(flTex->format, 0, 0, GU_FALSE);
-        sceGuTexFunc(GU_TFX_REPLACE, GU_TCC_RGBA);
-        void *p = (void*) 0x4000;
         sceGuTexImage(0, flTex->width, flTex->height, flTex->width, texData);
         //sceGuTexImage(0, flTex->width, flTex->height, flTex->width, p);
         currentTexture = texData;
@@ -1263,14 +1262,14 @@ s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture,
         lpcontext++;
     }
 
-    if(lpflTexture->width == BG_BUFF_SIZE && lpflTexture->height == BG_BUFF_SIZE && lpflTexture->format == GU_PSM_T8){
+    if(lpflTexture->width == BG_BUFF_SIZE_X && lpflTexture->height == BG_BUFF_SIZE_Y && lpflTexture->format == GU_PSM_T8){
         int i;
         for(i = 0; i < MAX_BG_BUFFER; i++){
             if(!bg_used[i])
                 break;
         }
         if(i != MAX_BG_BUFFER){
-            memcpy(bg_buffer[i], dst_ptr, BG_BUFF_SIZE*BG_BUFF_SIZE);
+            memcpy(bg_buffer[i], dst_ptr, BG_BUFF_SIZE_X*BG_BUFF_SIZE_Y);
             lpflTexture->wkVram = bg_buffer[i];
             flPS2ReleaseSystemMemory(lpflTexture->mem_handle);
             lpflTexture->mem_handle = 0;

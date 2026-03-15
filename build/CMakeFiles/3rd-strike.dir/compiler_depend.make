@@ -1110,7 +1110,8 @@ CMakeFiles/3rd-strike.dir/src/Game/CHARSET.c.obj: /home/demma/Documents/code/psp
   /home/demma/Documents/code/psp/3rd-strike/include/Game/Se_Data.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/bg.h \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h \
-  /home/demma/Documents/code/psp/3rd-strike/include/Game/workuser.h
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/workuser.h \
+  /home/demma/Documents/code/psp/3rd-strike/include/Game/SysDir.h
 
 CMakeFiles/3rd-strike.dir/src/Game/CMD_MAIN.c.obj: /home/demma/Documents/code/psp/3rd-strike/src/Game/CMD_MAIN.c \
   /home/demma/Documents/code/psp/3rd-strike/include/Game/CMD_MAIN.h \
@@ -29839,6 +29840,8 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 
 /home/demma/Documents/code/psp/3rd-strike/include/Game/bg.h:
 
+/home/demma/Documents/code/psp/3rd-strike/include/Game/EFF66.h:
+
 /home/demma/Documents/code/psp/3rd-strike/src/Game/CMD_MAIN.c:
 
 /home/demma/Documents/code/psp/3rd-strike/include/Game/EFF71.h:
@@ -29870,8 +29873,6 @@ CMakeFiles/3rd-strike.dir/src/psp/savesub.c.obj: /home/demma/Documents/code/psp/
 /home/demma/Documents/code/psp/3rd-strike/src/Game/Message3rd/C_USA/PL07Tlk_usa.c:
 
 /home/demma/Documents/code/psp/3rd-strike/include/Game/debug/Debug_ID.h:
-
-/home/demma/Documents/code/psp/3rd-strike/include/Game/EFF66.h:
 
 /home/demma/Documents/code/psp/3rd-strike/include/Game/DEMO00.h:
 

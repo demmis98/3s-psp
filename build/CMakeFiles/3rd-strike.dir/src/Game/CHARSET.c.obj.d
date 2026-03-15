@@ -51,4 +51,5 @@ CMakeFiles/3rd-strike.dir/src/Game/CHARSET.c.obj: \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/Se_Data.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/bg.h \
  /home/demma/Documents/code/psp/3rd-strike/include/Game/cmd_data.h \
- /home/demma/Documents/code/psp/3rd-strike/include/Game/workuser.h
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/workuser.h \
+ /home/demma/Documents/code/psp/3rd-strike/include/Game/SysDir.h
