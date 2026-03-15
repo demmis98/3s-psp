@@ -18,12 +18,18 @@ src/Game/Next_CPU.c:
 src/Game/DC_Ghost.c:
 -//sceGuDrawArray(GU_TRIANGLES, GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 6, 0, vertices);
 
-src/Gamr/bg_sub.c
--commented Bg_Texture_Load_EX()
+src/Game/bg.c
+-Bg_Texture_Load_EX() if fail Search_ramcnt_type(0x12) DEBUG_BG_DRAW_OFF and return
 
 src/Game/MTRANS.c
 -mlt_obj_trans_cp3_ext() return if fail
 
+src/Game/Game.c
+-Game2_3 commented out Game2_1 and forced G_no[2] = 1;
+-Game2_1 forces Allow_a_battle_f = 1;
+
+src/Game/Manage.c
+-Game_Manage_2_3 commented out conditions
 
 src/Game/color3rd.c:
 -plContext commented out

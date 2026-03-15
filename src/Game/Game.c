@@ -406,9 +406,14 @@ void Game01() {
 void Game02() {
     void (*Game02_Jmp_Tbl[8])() = { Game2_0, Game2_1, Game2_2, Game2_3, Game2_4, Game2_5, Game2_6, Game2_7 };
 
+    flLogOut("Game02 0 %d\n", G_No[2]);
+
     Scene_Cut = Cut_Cut_Cut();
+    flLogOut("Game02 1 %d\n", G_No[2]);
     Game02_Jmp_Tbl[G_No[2]]();
+    flLogOut("Game02 2 %d\n", G_No[2]);
     BG_move_Ex(3);
+    flLogOut("Game02 3 %d\n", G_No[2]);
 }
 
 void Game2_0() {
@@ -499,6 +504,7 @@ void Game2_0() {
 }
 
 void Game2_1() {
+    flLogOut("Game2_1 0\n");
     mpp_w.inGame = true;
 
     if (Game_pause != 0x81) {
@@ -508,12 +514,15 @@ void Game2_1() {
     set_EXE_flag();
     ppgPurgeFromVRAM(5);
     Player_control();
+    flLogOut("Game2_1 3\n");
     TATE00();
     Game_Management();
     BG_Draw_System();
     ppgPurgeFromVRAM(4);
     reqPlayerDraw();
     Basic_Sub_Ex();
+
+    flLogOut("Game2_1 4\n");
 
     if (Disp_Cockpit) {
         Time_Control();
@@ -531,6 +540,7 @@ void Game2_1() {
 
     ppgPurgeFromVRAM(0);
     hit_check_main_process();
+    flLogOut("Game2_1 9\n");
 }
 
 void Game2_2() {
@@ -595,12 +605,17 @@ void Game2_2() {
 }
 
 void Game2_3() {
-    Game2_1();
+    flLogOut("Game2_3 0\n");
+    //Game2_1();
+    flLogOut("Game2_3 1\n");
 
+    G_No[2] = 1;
     if (--G_Timer == 0) {
         G_No[2] = 1;
+        flLogOut("Game2_3 2\n");
         Clear_Flash_No();
     }
+    flLogOut("Game2_3 3\n");
 }
 
 void Game2_4() {

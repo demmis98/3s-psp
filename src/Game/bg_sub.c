@@ -1111,7 +1111,7 @@ void bg_initialize() {
     y_sitei_pos = 0;
 
     if (G_No[0] != 2 || G_No[1] != 2 || G_No[2] != 2) {
-        //Bg_Texture_Load_EX();
+        Bg_Texture_Load_EX();
     }
 
     Bg_Kakikae_Set();
