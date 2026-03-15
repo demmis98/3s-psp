@@ -20,12 +20,18 @@ extern s32 currentPalette;
 extern s16* dctex_linear; // size: 0x4, address: 0x57A950
 extern PPG_W ppg_w;
 
+extern TextureVertex *bg2_vertices;
+extern u32 bg2_tex;
+
+extern bool experimental_bg;
+
 void ppg_Initialize(void* lcmAdrs, s32 lcmSize);
 void ppgSourceDataReleased(PPGDataList* dlist);
 void ppgSetupCurrentDataList(PPGDataList* dlist);
 void ppgSetupCurrentPaletteNumber(Palette* pal, s32 num);
 s32 ppgWriteQuadWithST_B(Vertex* pos, u32 col, PPGDataList* tb, s32 tix, s32 cix);
 s32 ppgWriteQuadWithST_B2(Vertex* pos, u32 col, PPGDataList* tb, s32 tix, s32 cix);
+void quadOnly2DrawLast(u32 texCode);
 s32 ppgSetupPalChunk(Palette* pch, u8* adrs, s32 size, s32 ixNum1st, s32 num, s32 /* unused */);
 void ppgRenewDotDataSeqs(Texture* tch, u32 gix, u32* srcRam, u32 code, u32 size);
 void ppgMakeConvTableTexDC();

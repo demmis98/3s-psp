@@ -79,7 +79,9 @@ void startFrame(){
     sceGuStart(GU_DIRECT, list);
     sceGuClearColor(bg_color); // black background
     sceGuClearDepth(0xFFFF);
+    sceGuDisable(GU_SCISSOR_TEST);
     sceGuClear(GU_COLOR_BUFFER_BIT | GU_DEPTH_BUFFER_BIT);
+    sceGuEnable(GU_SCISSOR_TEST);
     sceGuEnable(GU_TEXTURE_2D);
 }
 

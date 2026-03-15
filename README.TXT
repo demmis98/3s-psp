@@ -6,6 +6,10 @@ $ make
 
 then extract the files on SF33RD.AFS and place them in resources/ next to the EBOOT
 
+CONFIGS:
+-press start at boot to disable backgrounds
+-press select at boot to enable experimental background cashing
+
 TO-DO:
 
 -src/Game/menu.c:

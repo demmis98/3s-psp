@@ -41,6 +41,14 @@ const u8 pplColorModeWidth[4] = { 0xF, 0x3F, 0xFF, 0 };
 PPG_W ppg_w;
 s16* dctex_linear;
 
+#define BG2_MAX 1024
+TextureVertex *bg2_vertices = NULL;
+u32 bg2_i = 0;
+u32 bg2_s = 0;
+u32 bg2_tex = -1;
+
+bool experimental_bg = false;
+
 s32 ppgCheckPaletteDataBe(Palette* pch);
 void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode);
 void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode);
@@ -159,7 +167,6 @@ void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode) {
     }
 
     flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
-
     sceGuDrawArray(GU_TRIANGLE_STRIP, GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 4, 0, vertices);
 }
 
@@ -168,7 +175,23 @@ void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
     if(DEMMA_DEBUG)
         return;
 
-    TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(2 * sizeof(TextureVertex));
+    if(bg2_i >= BG2_MAX)
+        return;
+
+    TextureVertex *vertices;
+    if(experimental_bg){
+        if(bg2_vertices == NULL){
+            bg2_vertices = sceGuGetMemory(BG2_MAX * sizeof(TextureVertex));
+            bg2_i = 0;
+            bg2_s = 0;
+            bg2_tex = -1;
+        }
+
+        vertices = &bg2_vertices[bg2_i];
+    }
+    else
+        vertices = sceGuGetMemory(2 * sizeof(TextureVertex));
+    
     //TextureVertex vertices[2];
     int texture_handle = LO_16_BITS(texCode) - 1;
     FLTexture *tex = &flTexture[texture_handle];
@@ -186,10 +209,26 @@ void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
         vertices[i].colour = col;
     }
 
-    flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
+    if(experimental_bg){
+        if(texCode != bg2_tex){
+            quadOnly2DrawLast(texCode);
+        }
+        bg2_i += 2;
+    }
+    else{
+        flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
+        sceGuDrawArray(GU_SPRITES, GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
+    }
+}
 
-    sceGuDrawArray(GU_SPRITES, GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
-
+void quadOnly2DrawLast(u32 texCode){
+    if(bg2_tex == -1)
+        bg2_tex = texCode;
+    flSetRenderState(FLRENDER_TEXSTAGE0, bg2_tex);
+    if(bg2_i < BG2_MAX && bg2_i > bg2_s)
+        sceGuDrawArray(GU_SPRITES, GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, bg2_i - bg2_s, 0, &bg2_vertices[bg2_s]);
+    bg2_s = bg2_i;
+    bg2_tex = texCode;
 }
 
 s32 ppgWriteQuadWithST_B(Vertex* pos, u32 col, PPGDataList* tb, s32 tix, s32 cix) {
