@@ -177,7 +177,7 @@ void njdp2d_draw() {
     s32 j;
     s32 k;
 
-
+    sceGuDisable(GU_TEXTURE_2D);
     for (i = njdp2d_w.ix1st; i != -1; i = njdp2d_w.prim[i].next) {
         switch (njdp2d_w.prim[i].type) {
         case 0:
@@ -199,9 +199,7 @@ void njdp2d_draw() {
             vertices[5].y = njdp2d_w.prim[i].v[j].y;
             vertices[5].z = njdp2d_w.prim[i].v[j].z * 0xFFFF;
             vertices[5].colour = njdp2d_w.prim[i].col;
-            sceGuDisable(GU_TEXTURE_2D);
             sceGuDrawArray(GU_TRIANGLES, GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 6, 0, vertices);
-            sceGuEnable(GU_TEXTURE_2D);
             break;
 
         case 1:
@@ -209,6 +207,7 @@ void njdp2d_draw() {
             break;
         }
     }
+    sceGuEnable(GU_TEXTURE_2D);
     njdp2d_init();
 }
 

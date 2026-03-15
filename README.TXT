@@ -9,10 +9,6 @@ TO-DO:
 
 EFFnn.c effect_nn_init(), test if just changing data types worked
 
-src/Game/init3rd.c:
--CP3toPS2DrawOn()
--CP3toPS2DrawOff()
-
 -src/Game/menu.c:
 -SaveMove()
 -SaveInit(,)

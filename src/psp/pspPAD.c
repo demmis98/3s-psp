@@ -33,10 +33,10 @@ void tarPADRead() {
 
     u32 sw = 0;
 
-    if (pad.Buttons & PSP_CTRL_UP) sw |= 0x0001;
-    if (pad.Buttons & PSP_CTRL_RIGHT) sw |= 0x0008;
-    if (pad.Buttons & PSP_CTRL_DOWN) sw |= 0x0002;
-    if (pad.Buttons & PSP_CTRL_LEFT) sw |= 0x0004;
+    if (pad.Buttons & PSP_CTRL_UP || pad.Ly < 0x40) sw |= 0x0001;
+    if (pad.Buttons & PSP_CTRL_RIGHT || pad.Lx > 0xC0) sw |= 0x0008;
+    if (pad.Buttons & PSP_CTRL_DOWN || pad.Ly > 0xC0) sw |= 0x0002;
+    if (pad.Buttons & PSP_CTRL_LEFT || pad.Lx < 0x40) sw |= 0x0004;
 
     if (pad.Buttons & PSP_CTRL_TRIANGLE) sw |= 0x0200;
     if (pad.Buttons & PSP_CTRL_CIRCLE) sw |= 0x0020;
@@ -51,8 +51,8 @@ void tarPADRead() {
 
     tp->sw = sw;
 
-    tp->stick[0].x = pad.Lx - 128;
-    tp->stick[0].y = pad.Ly - 128;
+    //tp->stick[0].x = pad.Lx - 128;
+    //tp->stick[0].y = pad.Ly - 128;
 
     tp->stick[1].x = 0;
     tp->stick[1].y = 0;

@@ -21,7 +21,6 @@ uintptr_t frw[EFFECT_MAX][448];
 s16 frwque[EFFECT_MAX];
 
 void move_effect_work(s16 index) {
-    flLogOut("move_effect_work 0 %d\n", index);
     WORK* c_addr;
     s16 curr_ix;
     s16 next_ix;
@@ -36,13 +35,11 @@ void move_effect_work(s16 index) {
         c_addr = (WORK*)frw[curr_ix];
         next_ix = c_addr->behind;
 
-        flLogOut("move_effect_work 1 %d %d\n", curr_ix, c_addr->id);
         if (c_addr->timing != exec_tm[index]) {
             c_addr->timing = exec_tm[index];
             effmovejptbl[c_addr->id](c_addr);
         }
     }
-    flLogOut("move_effect_work 2\n");
 }
 
 void disp_effect_work() {

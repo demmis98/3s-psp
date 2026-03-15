@@ -84,10 +84,12 @@ void AcrMain() {
     if(p1sw_buff){
         //DEMMA_DEBUG = 1;
         DEMMA_DEBUG = 0;
-        flLogOut("DEMMA_DEBUG = 1\n");
     }
     else{
         DEMMA_DEBUG = 0;
+    }
+    if(p1sw_buff & 0x4000){
+        Debug_w[DEBUG_BG_DRAW_OFF] = 1;
     }
 
     while (1) {
@@ -368,17 +370,13 @@ s32 njUserMain() {
 
     Check_Replay_Status(0, Replay_Status[0]);
     Check_Replay_Status(1, Replay_Status[1]);
-    flLogOut("njUserMain\n");
 
     if (sys_w.disp.now == sys_w.disp.new) {
-        flLogOut("njUserMain 0\n");
         cpLoopTask();
-        flLogOut("njUserMain 1\n");
 
         if ((Game_pause != 0x81) && (Mode_Type == 1) && (Play_Mode == 1)) {
             if ((plw[0].wu.operator == 0) && (CPU_Rec[0] == 0) && (Replay_Status[0] == 1)) {
                 p1sw_0 = 0;
-                flLogOut("njUserMain 2\n");
                 Check_Replay_Status(0, 1);
 
                 if (Debug_w[0x21]) {
@@ -389,7 +387,6 @@ s32 njUserMain() {
 
             if ((plw[1].wu.operator == 0) && (CPU_Rec[1] == 0) && (Replay_Status[1] == 1)) {
                 p2sw_0 = 0;
-                flLogOut("njUserMain 2\n");
                 Check_Replay_Status(1, 1);
 
                 if (Debug_w[0x21]) {
@@ -401,7 +398,6 @@ s32 njUserMain() {
     } else {
         sys_w.disp.now = sys_w.disp.new;
     }
-    flLogOut("njUserMain end\n");
 
     return sys_w.gd_error;
 }

@@ -147,10 +147,8 @@ void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode) {
     int texture_handle = LO_16_BITS(texCode) - 1;
     FLTexture *tex = &flTexture[texture_handle];
     s32 i;
-    flLogOut("ppgWriteQuadOnly %x %d %d %d\n", tex->wkVram, tex->width, tex->height, texCode);
 
     for (i = 0; i < 4; i++) {
-        flLogOut("x %f y %f z %f u %f v %f\n",pos[i].x,pos[i].y,pos[i].z,pos[i].u,pos[i].u);
         vertices[i].x = pos[i].x;
         vertices[i].y = pos[i].y;
         vertices[i].z = pos[i].z * 0xFFFF;
@@ -161,7 +159,7 @@ void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode) {
 
     flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
 
-    sceGuDrawArray(GU_TRIANGLE_STRIP, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 4, 0, vertices);
+    sceGuDrawArray(GU_TRIANGLE_STRIP, GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 4, 0, vertices);
 }
 
 void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
@@ -188,7 +186,7 @@ void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
 
     flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
 
-    sceGuDrawArray(GU_SPRITES, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
+    sceGuDrawArray(GU_SPRITES, GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
 
 }
 

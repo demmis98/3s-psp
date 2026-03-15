@@ -21,28 +21,6 @@
 
 #include "sdk/libgraph.h"
 
-static const unsigned short testPalette[64] = {
-0x0001,0x0015,0x002B,0x003F,
-0x0281,0x0295,0x02AB,0x02BF,
-0x0541,0x0555,0x056B,0x057F,
-0x07C1,0x07D5,0x07EB,0x07FF,
-
-0x5001,0x5015,0x502B,0x503F,
-0x5281,0x5295,0x52AB,0x52BF,
-0x5541,0x5555,0x556B,0x557F,
-0x57C1,0x57D5,0x57EB,0x57FF,
-
-0xA801,0xA815,0xA82B,0xA83F,
-0xAA81,0xAA95,0xAAAB,0xAABF,
-0xAD41,0xAD55,0xAD6B,0xAD7F,
-0xAFC1,0xAFD5,0xAFEB,0xAFFF,
-
-0xF801,0xF815,0xF82B,0xF83F,
-0xFA81,0xFA95,0xFAAB,0xFABF,
-0xFD41,0xFD55,0xFD6B,0xFD7F,
-0xFFC1,0xFFD5,0xFFEB,0xFFFF
-};
-
 FLTexture flPalette[FL_PALETTE_MAX];
 FLTexture flTexture[FL_TEXTURE_MAX];
 FLPS2State flPs2State;
@@ -52,6 +30,11 @@ FL_FMS flFMS;
 s32 flFrame;
 
 int debug_mode = 0;
+
+#define MAX_BG_BUFFER 12
+#define BG_BUFF_SIZE 512
+static void *bg_buffer[MAX_BG_BUFFER];
+static bool bg_used[MAX_BG_BUFFER];
 
 void enableDebug(){
     if(debug_mode == 0){
@@ -408,7 +391,17 @@ s32 flReleaseTextureHandle(u32 texture_handle) {
     }
 
     else if (lpflTexture->wkVram != NULL) {
-        free(lpflTexture->wkVram);
+        int i;
+        for(i = 0; i < MAX_BG_BUFFER; i++){
+            if(bg_buffer[i] == lpflTexture->wkVram)
+                break;
+        }
+        if(i == MAX_BG_BUFFER){
+            free(lpflTexture->wkVram);
+        }
+        else{
+            bg_used[i] = false;
+        }
         lpflTexture->wkVram = NULL;
     }
 
@@ -1110,6 +1103,12 @@ s32 flInitialize(s32 /* unused */, s32 /* unused */){
         return 0;
     }
 
+    for(int i = 0; i < MAX_BG_BUFFER; i++){
+        bg_buffer[i] = guGetStaticVramTexture(BG_BUFF_SIZE, BG_BUFF_SIZE, GU_PSM_T8);
+        if(bg_buffer[i] == NULL)
+            bg_used[i] = true;
+    }
+
     flPS2SystemTmpBuffInit();
     flPADInitialize();
 
@@ -1217,53 +1216,66 @@ s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture,
     u16 *p_color_16;
 
     for (lp0 = 0; lp0 < lpflTexture->tex_num; lp0++) {
+        switch (lpflTexture->format) {
+        default:
+            flLogOut("Not supported texture bit depth @flPS2ConvertTextureFromContext");
+            break;
 
-            switch (lpflTexture->format) {
-            default:
-                flLogOut("Not supported texture bit depth @flPS2ConvertTextureFromContext");
-                break;
+        case GU_PSM_T4:
+            tex_size = (dw * dh) >> 1;
+            break;
+        case GU_PSM_T8:
+            tex_size = dw * dh;
+            break;
 
-            case GU_PSM_T4:
-                tex_size = (dw * dh) >> 1;
-                break;
-            case GU_PSM_T8:
-                tex_size = dw * dh;
-                break;
-
-            case GU_PSM_5551:
-                tex_size = dw * dh * 2;
-                p_color_16 = (u16*) dst_ptr;
-                for(int i = 0; i < dw * dh; i++){
-                    color = p_color_16[i] & 0x8000;
-                    color |= p_color_16[i] & 0x03E0;
-                    color |= (p_color_16[i] & 0x7C00) >> 10;
-                    color |= (p_color_16[i] & 0x001F) << 10;
-                    p_color_16[i] = color;
-                }
-                break;
-
-            case GU_PSM_4444:
-                tex_size = dw * dh * 2;
-                p_color_16 = (u16*) dst_ptr;
-                for(int i = 0; i < dw * dh; i++){
-                    color = p_color_16[i] & 0x8000;
-                    color |= p_color_16[i] & 0x03E0;
-                    color |= (p_color_16[i] & 0x7C00) >> 10;
-                    color |= (p_color_16[i] & 0x001F) << 10;
-                    p_color_16[i] = color;
-                }
-                break;
-
-            case GU_PSM_8888:
-                tex_size = dw * dh * 4;
-                break;
+        case GU_PSM_5551:
+            tex_size = dw * dh * 2;
+            p_color_16 = (u16*) dst_ptr;
+            for(int i = 0; i < dw * dh; i++){
+                color = p_color_16[i] & 0x8000;
+                color |= p_color_16[i] & 0x03E0;
+                color |= (p_color_16[i] & 0x7C00) >> 10;
+                color |= (p_color_16[i] & 0x001F) << 10;
+                p_color_16[i] = color;
             }
+            break;
 
-            dst_ptr = &dst_ptr[tex_size];
-            dw >>= 1;
-            dh >>= 1;
-            lpcontext++;
+        case GU_PSM_4444:
+            tex_size = dw * dh * 2;
+            p_color_16 = (u16*) dst_ptr;
+            for(int i = 0; i < dw * dh; i++){
+                color = p_color_16[i] & 0x8000;
+                color |= p_color_16[i] & 0x03E0;
+                color |= (p_color_16[i] & 0x7C00) >> 10;
+                color |= (p_color_16[i] & 0x001F) << 10;
+                p_color_16[i] = color;
+            }
+            break;
+
+        case GU_PSM_8888:
+            tex_size = dw * dh * 4;
+            break;
         }
 
+        dst_ptr = &dst_ptr[tex_size];
+        dw >>= 1;
+        dh >>= 1;
+        lpcontext++;
+    }
+
+    if(lpflTexture->width == BG_BUFF_SIZE && lpflTexture->height == BG_BUFF_SIZE && lpflTexture->format == GU_PSM_T8){
+        int i;
+        for(i = 0; i < MAX_BG_BUFFER; i++){
+            if(!bg_used[i])
+                break;
+        }
+        if(i != MAX_BG_BUFFER){
+            memcpy(bg_buffer[i], dst_ptr, BG_BUFF_SIZE*BG_BUFF_SIZE);
+            lpflTexture->wkVram = bg_buffer[i];
+            flPS2ReleaseSystemMemory(lpflTexture->mem_handle);
+            lpflTexture->mem_handle = 0;
+            bg_used[i] = true;
+        }
+    }
     return 1;
 }

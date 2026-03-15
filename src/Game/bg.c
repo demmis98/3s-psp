@@ -256,7 +256,6 @@ void Bg_Texture_Load_EX() {
     u8 assign3;
 
     mmDebWriteTag("\nSTAGE\n\n");
-    flLogOut("Bg_Texture_Load_EX 0\n");
     Bg_TexInit();
 
     for (i = 0; i < 8; i++) {
@@ -286,11 +285,8 @@ void Bg_Texture_Load_EX() {
     }
 
     key1 = Search_ramcnt_type(0x12);
-    flLogOut("Bg_Texture_Load_EX 1 %d\n", key1);
     loadAdrs = (void*)Get_ramcnt_address(key1);
-    flLogOut("Bg_Texture_Load_EX 2\n");
     loadSize = Get_size_data_ramcnt_key(key1);
-    flLogOut("Bg_Texture_Load_EX 3\n");
     pmask = 0xFF000000;
     shift = 0x18;
 
@@ -361,7 +357,6 @@ void Bg_Texture_Load_EX() {
 
         ppgSourceDataReleased(&ppgAkeList);
     }
-    flLogOut("Bg_Texture_Load_EX 4\n");
 }
 
 void Bg_Texture_Load2(u8 type) {

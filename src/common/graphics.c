@@ -32,7 +32,7 @@ void initGu(){
     // We do not care about the depth buffer in this example
     //sceGuDepthBuffer(fbp0, 0); // Set depth buffer to a length of 0
     sceGuDepthBuffer(zBuff, BUFFER_WIDTH);
-    sceGuEnable(GU_DEPTH_TEST); // Disable depth testing
+    sceGuEnable(GU_DEPTH_TEST);
     sceGuDepthFunc(GU_LEQUAL);
 
     sceGuDisable(GU_CULL_FACE);
@@ -49,8 +49,10 @@ void initGu(){
 
     //Set up viewport
     sceGuOffset(2048 - (SCREEN_WIDTH / 2), 2048 - (SCREEN_HEIGHT / 2));
-    sceGuViewport(2048, 2048, SCREEN_WIDTH, SCREEN_HEIGHT);
+    //sceGuViewport(2048, 2048, SCREEN_WIDTH, SCREEN_HEIGHT);
+    sceGuViewport(2048, 2048, 384, 224);
     sceGuScissor(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    //sceGuScissor(0, 0, 384, 224);
     sceGuEnable(GU_SCISSOR_TEST);
 
     // Start a new frame and enable the display
@@ -61,6 +63,8 @@ void initGu(){
     sceDisplayWaitVblankStart();
 
     sceGuDisplay(GU_TRUE);
+
+    sceGuTexFilter(GU_NEAREST, GU_NEAREST);
 
     my_gu_init = 1;
 }

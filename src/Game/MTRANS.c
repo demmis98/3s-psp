@@ -1032,7 +1032,6 @@ void mlt_obj_trans_cp3(MultiTexture* mt, WORK* wk, s32 base_y) {
     ppgSetupCurrentDataList(&mt->texList);
 
     if (mt->ext) {
-        flLogOut("in cp3\n");
         mlt_obj_trans_cp3_ext(mt, wk, base_y);
         return;
     }
@@ -1621,7 +1620,7 @@ void seqsAfterProcess() {
                 }
                 //ps2SeqsRenderQuad_Ax(&seqs_w.chip[i]);
                 
-                sceGuDrawArray(GU_SPRITES, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
+                sceGuDrawArray(GU_SPRITES, GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
             }
         }
 
