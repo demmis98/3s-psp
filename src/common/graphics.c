@@ -48,12 +48,14 @@ void initGu(){
     sceGuAlphaFunc(GU_GREATER, 0x00, 0xFF);  // Only draw pixels with alpha > 0
 
     //Set up viewport
-    sceGuOffset(2048 - (SCREEN_WIDTH / 2), 2048 - (SCREEN_HEIGHT / 2));
+    sceGuOffset(2048 - (SCREEN_WIDTH / 2) + 10, 2048 - (SCREEN_HEIGHT / 2) + 10);
+    //sceGuOffset(2048 - (SCREEN_WIDTH / 2) + 7, 2048 - (SCREEN_HEIGHT / 2));
     //sceGuViewport(2048, 2048, SCREEN_WIDTH, SCREEN_HEIGHT);
     sceGuViewport(2048, 2048, 384, 224);
-    sceGuScissor(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    //sceGuScissor(0, 0, 384, 224);
+    //sceGuScissor(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    sceGuScissor(0, 0, 384, 224);
     sceGuEnable(GU_SCISSOR_TEST);
+    //sceGuDisable(GU_SCISSOR_TEST);
 
     // Start a new frame and enable the display
     sceGuEnable(GU_TEXTURE_2D);

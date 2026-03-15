@@ -2292,10 +2292,10 @@ void dispButtonImage(s32 px, s32 py, s32 pz, s32 sx, s32 sy, s32 cl, s32 ix) {
         vertices[i].y = vecs[i].y;
     }
     vertices[0].z = vertices[1].z = PrioBase[pz] * 0xFFFF;
-    vertices[0].u = (scrnAddTex1UV[ix][0] / 256.0f) * tex->width;
-    vertices[1].u = ((scrnAddTex1UV[ix][0] + scrnAddTex1UV[ix][2]) / 256.0f) * tex->width;
-    vertices[0].v = (scrnAddTex1UV[ix][1] / 128.0f) * tex->height;
-    vertices[1].v = ((scrnAddTex1UV[ix][1] + scrnAddTex1UV[ix][3]) / 128.0f) * tex->height;
+    vertices[0].u = (short) ((scrnAddTex1UV[ix][0] / 256.0f) * tex->width);
+    vertices[1].u = (short) (((scrnAddTex1UV[ix][0] + scrnAddTex1UV[ix][2]) / 256.0f) * tex->width);
+    vertices[0].v = (short) ((scrnAddTex1UV[ix][1] / 128.0f) * tex->height);
+    vertices[1].v = (short) (((scrnAddTex1UV[ix][1] + scrnAddTex1UV[ix][3]) / 128.0f) * tex->height);
     vertices[0].colour = vertices[1].colour = 0xFFFFFFFF - (cl << 23);
 
     flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
@@ -2322,10 +2322,10 @@ void dispButtonImage2(s32 px, s32 py, s32 pz, s32 sx, s32 sy, s32 cl, s32 ix) {
     vertices[1].x = (px + sx);
     vertices[1].y = (py + sy);
     vertices[0].z = vertices[1].z = PrioBase[pz] * 0xFFFF;
-    vertices[0].u = (scrnAddTex1UV[ix][0] / 256.0f) * tex->width;
-    vertices[1].u = ((scrnAddTex1UV[ix][0] + scrnAddTex1UV[ix][2]) / 256.0f) * tex->width;
-    vertices[0].v = (scrnAddTex1UV[ix][1] / 128.0f) * tex->height;
-    vertices[1].v = ((scrnAddTex1UV[ix][1] + scrnAddTex1UV[ix][3]) / 128.0f) * tex->height;
+    vertices[0].u = (short) ((scrnAddTex1UV[ix][0] / 256.0f) * tex->width);
+    vertices[1].u = (short) (((scrnAddTex1UV[ix][0] + scrnAddTex1UV[ix][2]) / 256.0f) * tex->width);
+    vertices[0].v = (short) ((scrnAddTex1UV[ix][1] / 128.0f) * tex->height);
+    vertices[1].v = (short) (((scrnAddTex1UV[ix][1] + scrnAddTex1UV[ix][3]) / 128.0f) * tex->height);
     vertices[0].colour = vertices[1].colour = 0xFFFFFFFF - (cl << 24);
     flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
     sceGuDrawArray(GU_SPRITES, GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
@@ -2352,10 +2352,10 @@ void dispSaveLoadTitle(void* ewk) {
     mlt_obj_matrix(wk, 0);
     vertices[0].colour = vertices[1].colour = vertices[2].colour = vertices[3].colour = 0xFFFFFFFF - (wk->my_clear_level << 24);
     flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
-    vertices[0].u = 0.0f;
-    vertices[3].u = tex->width;
-    vertices[0].v = TO_UV_128(0.0f) * tex->height;
-    vertices[3].v = TO_UV_128(36.0f) * tex->height;
+    vertices[0].u = (short) 0.0f;
+    vertices[3].u = (short) tex->width;
+    vertices[0].v = (short) (TO_UV_128(0.0f) * tex->height);
+    vertices[3].v = (short) (TO_UV_128(36.0f) * tex->height);
     step_t = 36.0f;
     pos[0].x = -192.0f;
     pos[0].y = -12.0f;
@@ -2382,7 +2382,7 @@ void dispSaveLoadTitle(void* ewk) {
         sceGuDrawArray(GU_SPRITES, GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
         step_t += 36.0f;
         vertices[0].v = vertices[3].v;
-        vertices[3].v = step_t / 128.0f * tex->height;
+        vertices[3].v = (short) step_t / 128.0f * tex->height;
         pos[0].x += 128.0f;
         pos[1].x += 128.0f;
     }

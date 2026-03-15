@@ -144,6 +144,7 @@ void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode) {
         return;
 
     TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(4 * sizeof(TextureVertex));
+    //static TextureVertex vertices[4];
     int texture_handle = LO_16_BITS(texCode) - 1;
     FLTexture *tex = &flTexture[texture_handle];
     s32 i;
@@ -152,8 +153,8 @@ void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode) {
         vertices[i].x = pos[i].x;
         vertices[i].y = pos[i].y;
         vertices[i].z = pos[i].z * 0xFFFF;
-        vertices[i].u = pos[i].u * tex->width;
-        vertices[i].v = pos[i].v * tex->height;
+        vertices[i].u = (short) (pos[i].u * tex->width);
+        vertices[i].v = (short) (pos[i].v * tex->height);
         vertices[i].colour = col;
     }
 
@@ -168,6 +169,7 @@ void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
         return;
 
     TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(2 * sizeof(TextureVertex));
+    //TextureVertex vertices[2];
     int texture_handle = LO_16_BITS(texCode) - 1;
     FLTexture *tex = &flTexture[texture_handle];
     s32 i;
@@ -179,8 +181,8 @@ void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
         vertices[i].x = pos[i*3].x;
         vertices[i].y = pos[i*3].y;
         vertices[i].z = pos[i*3].z  * 0xFFFF;
-        vertices[i].u = pos[i*3].u * tex->width;
-        vertices[i].v = pos[i*3].v * tex->height;
+        vertices[i].u = (short) (pos[i*3].u * tex->width);
+        vertices[i].v = (short) (pos[i*3].v * tex->height);
         vertices[i].colour = col;
     }
 

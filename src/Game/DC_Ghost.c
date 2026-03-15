@@ -185,6 +185,7 @@ void njdp2d_draw() {
                 break;
             vertices = (ColorVertex*) sceGuGetMemory(6 * sizeof(ColorVertex));
             //Vertex vertices[2];
+            //static ColorVertex vertices[6];
 
             for(j = 0; j < 3; j++){
                 k = -j + 5;
