@@ -1,12 +1,7 @@
 #include "Game/color3rd.h"
 #include "common.h"
-/*
-#include "sf33rd/AcrSDK/MiddleWare/PS2/CapSndEng/cse.h"
 #include "sf33rd/AcrSDK/MiddleWare/PS2/CapSndEng/emlMemMap.h"
 #include "sf33rd/AcrSDK/MiddleWare/PS2/CapSndEng/emlTSB.h"
-
-#include "sf33rd/AcrSDK/ps2/flps2vram.h"
-*/
 #include "AcrSDK/common/plcommon.h"
 #include "psp/PPGFile.h"
 #include "Game/DC_Ghost.h"
@@ -17,6 +12,8 @@
 #include "Game/workuser.h"
 
 #include "fl.h"
+#include "port/sound/spu.h"
+#include "sf33rd/AcrSDK/MiddleWare/PS2/CapSndEng/eflSpuMap.h"
 
 typedef struct {
     // total size: 0x1C00
@@ -69,7 +66,11 @@ s32 palFormConv;
 s32 cseTsbSetBankAddr(u32 bank, SoundEvent* addr) ;
 s32 cseMemMapSetPhdAddr(u32 bank, void* addr);
 
-int cseSendBd2SpuWithId(...) { return 0; }
+int cseSendBd2SpuWithId(void* data, u32 size, u32 id, u32 bankIndex) {
+    u32 bankAddr = flSpuMapGetBankAddr(bankIndex);
+    SPU_Upload(bankAddr, data, size);
+    return 0;
+}
 // forward decls
 void palConvRowTim2CI8Clut(u16* src, u16* dst, s32 size);
 const u16 hitmark_color[128];
@@ -179,13 +180,11 @@ void q_ldreq_color_data(REQ* curr) {
 }
 
 s32 cseTsbSetBankAddr(u32 bank, SoundEvent* addr) {
-    //return mlTsbSetBankAddr(bank, addr);
-    return 0;
+    return mlTsbSetBankAddr(bank, addr);
 }
 
 s32 cseMemMapSetPhdAddr(u32 bank, void* addr) {
-    //return mlMemMapSetPhdAddr(bank, addr);
-    return 0;
+    return mlMemMapSetPhdAddr(bank, addr);
 }
 
 void load_any_color(u16 ix, u8 kokey) {
@@ -400,7 +399,7 @@ void init_trans_color_ram(s16 id, s16 key, u8 type, u16 data) {
         break;
     }
     case 8:
-        //cseSendBd2SpuWithId((void*)Get_ramcnt_address(key), Get_size_data_ramcnt_key(key), 0, 0);
+        cseSendBd2SpuWithId((void*)Get_ramcnt_address(key), Get_size_data_ramcnt_key(key), 0, 0);
         
         while (!sndCheckVTransStatus(1)) {
             waitVsyncDummy();
@@ -410,7 +409,7 @@ void init_trans_color_ram(s16 id, s16 key, u8 type, u16 data) {
         break;
 
     case 10:
-        //cseSendBd2SpuWithId((void*)Get_ramcntl_address(key), Get_size_data_ramcnt_key(key), id + 1, data + 1);
+        cseSendBd2SpuWithId((void*)Get_ramcnt_address(key), Get_size_data_ramcnt_key(key), id + 1, data + 1);
     
         while (!sndCheckVTransStatus(1)) {
             waitVsyncDummy();

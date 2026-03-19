@@ -65,7 +65,7 @@ bool fps_30 = 0;
 void AcrMain() {
     u16 sw_buff;
     u32 sysinfodisp;
-    DEMMA_DEBUG = 1;
+    DEMMA_DEBUG = 0;
 
     flInitialize(0, 0);
     flSetRenderState(FLRENDER_BACKCOLOR, 0);
@@ -85,10 +85,8 @@ void AcrMain() {
 
     if(p1sw_buff){
         //DEMMA_DEBUG = 1;
-        DEMMA_DEBUG = 0;
     }
     else{
-        DEMMA_DEBUG = 0;
     }
     if(p1sw_buff & 0x4000){
         Debug_w[DEBUG_BG_DRAW_OFF] = 1;

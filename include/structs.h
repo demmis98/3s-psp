@@ -2460,4 +2460,165 @@ typedef union {
     } o;
 } SEA_WORK;
 
+
+
+// RESTORED PARTIAL SOUND ENGINE TYPES
+
+typedef struct {
+    s16 ptix;
+    s16 bank;
+    s16 port;
+    u16 code;
+} SoundRequestData;
+
+typedef struct {
+    u32 tag;
+    u32 chunkSize;
+    u32 version;
+    u32 headerSize;
+    u32 bodySize;
+    u32 progChunkOffset;
+    u32 smplChunkOffset;
+    u32 vagiChunkOffset;
+} _ps2_head_chunk;
+
+typedef struct {
+    u32 vagOffset;
+    u32 vagSize;
+    s32 loopFlag;
+    s32 sampleRate;
+} _ps2_vagi_param;
+
+typedef union {
+    u8 core_0;
+    u8 core_1;
+    u8 core;
+} _ps2_effect;
+
+typedef struct {
+    u8 prio;
+    _ps2_effect effect;
+    u8 lowKey;
+    u8 highKey;
+    u16 bendLow;
+    u16 bendHigh;
+    s8 vol;
+    s8 pan;
+    s8 trans;
+    s8 fine;
+    u16 sampleIndex;
+} _ps2_split_block;
+
+typedef struct {
+    u8 nSplit;
+    _ps2_effect effect;
+    s8 vol;
+    s8 pan;
+    s8 trans;
+    s8 fine;
+    u16 reserved;
+    _ps2_split_block splitBlock[0];
+} _ps2_prog_param;
+
+typedef struct {
+    u32 tag;
+    u32 chunkSize;
+    u32 maxProgNum;
+    u32 reserved;
+    u32 progParamOffset[0];
+} _ps2_prog_chunk;
+
+typedef struct {
+    u16 ADSR1;
+    u16 ADSR2;
+    _ps2_effect effect;
+    u8 base;
+    s8 vol;
+    s8 pan;
+    s8 trans;
+    s8 fine;
+    u16 vagiIndex;
+} _ps2_smpl_param;
+
+typedef struct {
+    u32 tag;
+    u32 chunkSize;
+    u32 maxVagInfoNum;
+    u32 reserved;
+    _ps2_vagi_param vagiParam[0];
+} _ps2_vagi_chunk;
+
+typedef struct {
+    u32 tag;
+    u32 chunkSize;
+    u32 maxSmplNum;
+    u32 reserved;
+    _ps2_smpl_param smplParam[0];
+} _ps2_smpl_chunk;
+
+typedef struct {
+    u16 flags;
+    u8 prio;
+    u8 id1;
+    u8 id2;
+} CSE_COND;
+
+typedef struct {
+    _ps2_prog_param* pPprm;
+    _ps2_split_block* pSblk;
+    _ps2_smpl_param* pSprm;
+    _ps2_vagi_param* pVprm;
+} CSE_PHDPADDR;
+
+typedef struct {
+    s32 result;
+    u32 guid;
+    u8 data[0];
+} CSE_RPCQUEUE_RESULT;
+
+typedef struct {
+    u16 BeFlag;
+    u8 Bank;
+    u8 Code;
+    u16 Interval;
+    u16 Times;
+    u16 VolDec1st;
+    u16 VolDec;
+    u16 CurrInterval;
+    u16 CurrTimes;
+    s32 Rtpc[10];
+} CSE_ECHOWORK;
+
+typedef struct {
+    u16 flags;
+    u8 attr;
+    u8 prio;
+    u8 bank;
+    u8 note;
+    u8 id1;
+    u8 id2;
+    s16 vol;
+    s16 pan;
+    s16 pitch;
+    s16 bend;
+    u8 limit;
+    u8 ___dummy___0;
+    u8 ___dummy___1;
+    u8 ___dummy___2;
+    u32 kofftime;
+    u32 guid;
+} CSE_REQP;
+
+typedef struct {
+    u8 vol;
+    u8 pan;
+    s16 pitch;
+    u16 bendLow;
+    u16 bendHigh;
+    u16 adsr1;
+    u16 adsr2;
+    u32 freq;
+    u32 s_addr;
+} CSE_PHDP;
+
 #endif

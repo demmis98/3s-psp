@@ -65,6 +65,7 @@ s32 flLogOut(s8* format, ...){
 
         enableDebug();
         pspDebugScreenPrintf("%s", buffer);
+        printf("%s", buffer);
 
         flPrintColor(0xFFFFFFFF);
     }

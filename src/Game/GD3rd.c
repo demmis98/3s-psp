@@ -7,6 +7,8 @@
 //#include "sf33rd/AcrSDK/ps2/foundaps2.h"
 //#include "Common/FileSizeAFS.h"
 #include "psp/files.h"
+#include <pspdisplay.h>
+#include <pspkernel.h>
 
 #include "Game/RAMCNT.h"
 #include "Game/WORK_SYS.h"
@@ -46,7 +48,7 @@ u16 DskDrvErrRetry;
 PS2CDReadMode ps2CdReadMode;
 s16 plt_req[2]; // size: 0x4, address: 0x579084
 u8 ldreq_break;
-FILE* adxf = NULL;
+SceUID adxf = -1;
 u8 sf3ptinfo[3352];
 REQ q_ldreq[16];      // size: 0x280, address: 0x5E1DD0
 u8 ldreq_result[294]; // size: 0x126, address: 0x5E1CA0
@@ -158,25 +160,28 @@ void fsUpdateDiskDriveError() {
 }
 
 s32 fsOpen(REQ* req) {
-    flLogOut("fsOpen\n");
     if (req->fnum >= AFS_FILE_COUNT) {
+        flLogOut("fsOpen ERROR: invalid fnum %d\n", req->fnum);
         return 0;
     }
 
     if (fsGetFileSize(req->fnum) == 0) {
+        flLogOut("fsOpen ERROR: size 0 for file %s\n", getFile(req->fnum));
         return 0;
     }
 
-    if (adxf != NULL) {
-        fclose(adxf);
+    if (adxf >= 0) {
+        sceIoClose(adxf);
     }
 
-    adxf = fopen(getFile(req->fnum),"rb");
-    flLogOut("opened: %s\n", getFile(req->fnum));
+    adxf = sceIoOpen(getFile(req->fnum), PSP_O_RDONLY, 0777);
 
-    if (adxf == NULL) {
+    if (adxf < 0) {
+        flLogOut("fsOpen ERROR: sceIoOpen failed for %s\n", getFile(req->fnum));
         return 0;
     }
+    
+    flLogOut("fsOpen SUCCESS: %s\n", getFile(req->fnum));
 
     req->info.number = 1;
     req->info.size = fsGetFileSize(req->fnum);
@@ -184,9 +189,9 @@ s32 fsOpen(REQ* req) {
 }
 
 void fsClose(REQ* /* unused */) {
-    if(adxf != NULL){
-        fclose(adxf);
-        adxf = NULL;
+    if(adxf >= 0){
+        sceIoClose(adxf);
+        adxf = -1;
     }
 }
 
@@ -219,7 +224,7 @@ s32 fsCansel(REQ* /* unused */) {
 }
 
 s32 fsCheckCommandExecuting() {
-    if (adxf == NULL) {
+    if (adxf < 0) {
         return 0;
     }
 
@@ -233,16 +238,15 @@ s32 fsCheckCommandExecuting() {
 }
 
 s32 fsRequestFileRead(REQ* /* unused */, u32 sec, void* buff) {
-    if (adxf == NULL || buff == NULL)
+    if (adxf < 0 || buff == NULL)
         return 0; // error
 
     size_t bytes = sec * SECTOR_SIZE;
 
-    size_t read = fread(buff, 1, bytes, adxf);
+    int read = sceIoRead(adxf, buff, bytes);
 
-    if (read != bytes){
-        if (ferror(adxf))
-            return 0; // read error
+    if (read < 0){
+        return 0; // read error
     }
 
     return 1;
@@ -288,15 +292,11 @@ s32 fsFileReadSync(REQ* req, u32 sec, void* buff) {
 }
 
 void waitVsyncDummy() {
-    //ADXM_ExecMain();
-    //cseExecServer();
-
 #if defined(TARGET_PS2)
     sceGsSyncV(0);
 #else
-    //begin_interrupt();
-    //ADXPS2_ExecVint(0);
-    //end_interrupt();
+    sceDisplayWaitVblankStart();
+    sceKernelDelayThread(10000);
 #endif
 }
 
@@ -349,13 +349,16 @@ s32 load_it_use_this_key(u16 fnum, s16 key) {
 
     req.fnum = fnum;
 
-    flLogOut("load_it_use_this_key\n");
+    flLogOut("load_it_use_this_key: fnum=%d\n", fnum);
 
     while (1) {
         err = fsOpen(&req);
 
         if (err == 0) {
-            continue;
+            flLogOut("FATAL: load_it_use_this_key could not open file.\n");
+            // Break the tight loop to allow emulator to breathe and see the error
+            flFlip(0);
+            while(1) { waitVsyncDummy(); }
         }
 
         req.size = fsGetFileSize(req.fnum);

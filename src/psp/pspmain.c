@@ -2,6 +2,7 @@
 #include <psppower.h>
 
 #include "common/audio.h"
+#include <pspaudiolib.h>
 #include "common/graphics.h"
 
 #include "Game/main.h"
@@ -41,7 +42,7 @@ int main(void)  {
 
     initGu();
 
-    initMusic();
+    pspAudioInit();
 
     AcrMain();
 

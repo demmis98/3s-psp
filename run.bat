@@ -1,0 +1,3 @@
+@echo off
+echo Starting PPSSPP...
+start "" "C:\Program Files\PPSSPP\PPSSPPWindows64.exe" "%~dp0build\EBOOT.PBP"
