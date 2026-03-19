@@ -38,11 +38,11 @@ static void pool_free(void* ptr) {
     free(ptr);
 }
 
-#define SAMPLE_RATE 48000
+#define PSP_OUTPUT_RATE 44100
 #define N_CHANNELS 2
 #define BYTES_PER_SAMPLE 2
 #define MIN_QUEUED_DATA_MS 400
-#define MIN_QUEUED_DATA (int)((float)SAMPLE_RATE * MIN_QUEUED_DATA_MS / 1000 * N_CHANNELS * BYTES_PER_SAMPLE)
+#define MIN_QUEUED_DATA (int)((float)PSP_OUTPUT_RATE * MIN_QUEUED_DATA_MS / 1000 * N_CHANNELS * BYTES_PER_SAMPLE)
 #define TRACKS_MAX 10
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
@@ -81,6 +81,8 @@ static int adx_ring_head = 0;
 static int adx_ring_tail = 0;
 static bool adx_paused = false;
 static float current_gain = 1.0f;
+static int adx_source_rate = 44100;  // Detected from ADX file header
+static uint32_t adx_resample_frac = 0;  // Fractional accumulator for resampling
 
 static int stream_queued() {
     int count = adx_ring_tail - adx_ring_head;
@@ -107,20 +109,48 @@ static void stream_clear() {
     adx_ring_head = adx_ring_tail = 0;
 }
 
+// Read one stereo sample (4 bytes) from the ring buffer
+static inline void stream_read_sample(int16_t* left, int16_t* right) {
+    uint8_t b1 = adx_ring[adx_ring_head];
+    adx_ring_head = (adx_ring_head + 1) % ADX_RING_SIZE;
+    uint8_t b2 = adx_ring[adx_ring_head];
+    adx_ring_head = (adx_ring_head + 1) % ADX_RING_SIZE;
+    *left = (int16_t)(b1 | (b2 << 8));
+    uint8_t b3 = adx_ring[adx_ring_head];
+    adx_ring_head = (adx_ring_head + 1) % ADX_RING_SIZE;
+    uint8_t b4 = adx_ring[adx_ring_head];
+    adx_ring_head = (adx_ring_head + 1) % ADX_RING_SIZE;
+    *right = (int16_t)(b3 | (b4 << 8));
+}
+
 void ADX_PSP_CB(void* buf, unsigned int reqn, void* pdata) {
     int16_t* out = (int16_t*)buf;
-    int samples = reqn * 2;
-    if (adx_paused || stream_queued() < samples * 2) {
-        memset(buf, 0, samples * 2);
+    int out_frames = reqn;  // reqn = number of stereo frames
+    int bytes_per_frame = N_CHANNELS * BYTES_PER_SAMPLE;  // 4 bytes per stereo frame
+
+    if (adx_paused || stream_queued() < bytes_per_frame * 2) {
+        memset(buf, 0, out_frames * bytes_per_frame);
         return;
     }
-    for (int i=0; i<samples; i++) {
-        uint8_t b1 = adx_ring[adx_ring_head];
-        adx_ring_head = (adx_ring_head + 1) % ADX_RING_SIZE;
-        uint8_t b2 = adx_ring[adx_ring_head];
-        adx_ring_head = (adx_ring_head + 1) % ADX_RING_SIZE;
-        int16_t s = (int16_t)(b1 | (b2 << 8));
-        out[i] = (int16_t)(s * current_gain);
+
+    // Resample from adx_source_rate to PSP_OUTPUT_RATE using fractional accumulator
+    // step = source_rate / output_rate, stored as 16.16 fixed-point
+    uint32_t step = ((uint32_t)adx_source_rate << 16) / PSP_OUTPUT_RATE;
+    static int16_t last_l = 0, last_r = 0;
+
+    for (int i = 0; i < out_frames; i++) {
+        // Accumulate fractional position
+        adx_resample_frac += step;
+
+        // Consume source samples as needed (integer part of accumulator)
+        while (adx_resample_frac >= 0x10000) {
+            if (stream_queued() < bytes_per_frame) break;
+            stream_read_sample(&last_l, &last_r);
+            adx_resample_frac -= 0x10000;
+        }
+
+        out[i * 2]     = (int16_t)(last_l * current_gain);
+        out[i * 2 + 1] = (int16_t)(last_r * current_gain);
     }
 }
 
@@ -255,6 +285,9 @@ static void track_init(ADXTrack* track, int file_id, void* buf, size_t buf_size,
         track->should_free_data_after_use = false;
     }
     if (ADX_InitContext(&track->ctx, track->data, track->size) < 0) return;
+    adx_source_rate = track->ctx.sample_rate;  // Use file's native sample rate for resampling
+    printf("[ADX] source_rate=%d channels=%d\n", adx_source_rate, track->ctx.channels);
+    adx_resample_frac = 0;  // Reset resampler state
     track->used_bytes = track->ctx.data_offset;
     track->processed_samples = 0;
     if (looping_allowed) loop_info_init(&track->loop_info, track->data);

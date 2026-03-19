@@ -186,7 +186,9 @@ static int GetLfoVal(struct LFO* lfo) {
 }
 
 static void workTick() {
-    struct VWork* i;
+    struct VWork *i, *n;
+
+    SPU_Lock();
 
     list_for_each (i, &active_voices, list) {
         i->tick++;
@@ -200,7 +202,15 @@ static void workTick() {
         UpdateVolPanPitch(i);
     }
 
-    gcVoices();
+    // Inline gcVoices to avoid double-acquire on non-recursive semaphore
+    list_for_each_safe (i, n, &active_voices, list) {
+        if (SPU_VoiceIsFinished(i->voice_num)) {
+            list_remove(&i->list);
+            list_insert(&free_voices, &i->list);
+        }
+    }
+
+    SPU_Unlock();
 }
 
 void emlShimInit() {
@@ -232,7 +242,7 @@ static int gcVoices() {
     struct VWork *i, *n;
     int numFreed = 0;
 
-    SPU_Lock();
+    // NOTE: Caller must hold SPU_Lock. PSP semaphores are not recursive.
 
     list_for_each_safe (i, n, &active_voices, list) {
         if (SPU_VoiceIsFinished(i->voice_num)) {
@@ -241,8 +251,6 @@ static int gcVoices() {
             numFreed++;
         }
     }
-
-    SPU_Unlock();
 
     return numFreed;
 }
@@ -375,7 +383,7 @@ static void UpdateVolPanPitch(struct VWork* voice) {
     volume = clamp(volume + GetLfoVal(&voice->lfo_vol), 0, 0x3fff);
     pan = clamp((voice->ph_pan + voice->req_pan) - 64, 0, 127);
     note = clamp(voice->ph_pitch + voice->req_pitch + GetLfoVal(&voice->lfo_pitch), -6000, 6000);
-    pitch = (voice->freq * sceSdNote2Pitch(0x3c, 0, note / 100 + 60, note % 100)) / 44100;
+    pitch = (voice->freq * sceSdNote2Pitch(0x3c, 0, note / 100 + 60, note % 100)) / 48000;
 
     voll = 0x3fff * ((volume * (127 - pan)) / 127) / 0x3fff;
     volr = 0x3fff * ((volume * pan) / 127) / 0x3fff;
