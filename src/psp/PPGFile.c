@@ -49,6 +49,18 @@ u32 bg2_tex = -1;
 
 bool experimental_bg = false;
 
+/* ---- Sprite draw-call batcher ----
+ * Instead of issuing one sceGuDrawArray(GU_SPRITES) per quad,
+ * we accumulate vertex pairs into a batch and flush them in a
+ * single draw call whenever the texture/palette changes or the
+ * batch fills up.  This reduces GE command list overhead
+ * dramatically for sprite-heavy scenes (characters, HUD, BGs).
+ */
+#define SPRITE_BATCH_MAX 256
+static TextureVertex *sprite_batch_start = NULL;
+static u32  sprite_batch_count   = 0;
+static u32  sprite_batch_texCode = 0;
+
 s32 ppgCheckPaletteDataBe(Palette* pch);
 void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode);
 void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode);
@@ -146,13 +158,31 @@ s32 ppgWriteQuadWithST_A2(Vertex* pos, u32 col) {
     return 1;
 }
 
+/* Flush any pending batched sprites as a single draw call. */
+void ppgSpriteBatchFlush(void) {
+    if (sprite_batch_count == 0)
+        return;
+
+    flSetRenderState(FLRENDER_TEXSTAGE0, sprite_batch_texCode);
+    sceGuDrawArray(
+        GU_SPRITES,
+        GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D,
+        sprite_batch_count * 2, 0,
+        sprite_batch_start);
+    sprite_batch_count = 0;
+    sprite_batch_start = NULL;
+}
+
 void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode) {
 
     if(DEMMA_DEBUG || skip_frame)
         return;
 
+    /* Triangle-strip quads can't be batched with GU_SPRITES, so
+     * flush any pending sprite batch before issuing this draw. */
+    ppgSpriteBatchFlush();
+
     TextureVertex *vertices = (TextureVertex*)sceGuGetMemory(4 * sizeof(TextureVertex));
-    //static TextureVertex vertices[4];
     int texture_handle = LO_16_BITS(texCode) - 1;
     FLTexture *tex = &flTexture[texture_handle];
     s32 i;
@@ -175,10 +205,29 @@ void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
     if(DEMMA_DEBUG || skip_frame)
         return;
 
+    /* If texture/palette changed or batch is full, flush first. */
+    if (sprite_batch_count > 0 &&
+        (texCode != sprite_batch_texCode ||
+         sprite_batch_count >= SPRITE_BATCH_MAX)) {
+        ppgSpriteBatchFlush();
+    }
+
+    /* Start a new batch if needed. */
+    if (sprite_batch_count == 0) {
+        sprite_batch_texCode = texCode;
+    }
+
+    /* Allocate 2 vertices in GE memory — these are contiguous as long
+     * as no other sceGuGetMemory call interrupts the batch. */
     TextureVertex *vertices = sceGuGetMemory(2 * sizeof(TextureVertex));
     int texture_handle = LO_16_BITS(texCode) - 1;
     FLTexture *tex = &flTexture[texture_handle];
     s32 i;
+
+    /* Track the start of the first allocation in this batch. */
+    if (sprite_batch_count == 0) {
+        sprite_batch_start = vertices;
+    }
 
     for (i = 0; i < 2; i++) {
         vertices[i].x = pos[i*3].x;
@@ -189,8 +238,7 @@ void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
         vertices[i].colour = col;
     }
 
-    flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
-    sceGuDrawArray(GU_SPRITES, GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
+    sprite_batch_count++;
 }
 
 void quadOnly2DrawLast(u32 texCode){
@@ -442,12 +490,7 @@ ssize_t ppgDecompress(s32 koCmpr, void* srcAdrs, s32 srcSize, void* dstAdrs, s32
     switch (koCmpr) {
     default:
         if (srcAdrs != dstAdrs) {
-            src = srcAdrs;
-            dst = dstAdrs;
-
-            for (i = 0; i < dstSize; i++) {
-                *dst++ = *src++;
-            }
+            memcpy(dstAdrs, srcAdrs, dstSize);
         }
 
         rnum = srcSize;

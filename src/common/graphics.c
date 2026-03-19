@@ -85,7 +85,10 @@ void startFrame(){
     sceGuEnable(GU_TEXTURE_2D);
 }
 
+#include "psp/PPGFile.h"
+
 void endFrame(){
+    ppgSpriteBatchFlush();
     sceGuFinish();
     sceGuSync(GU_SYNC_FINISH, GU_SYNC_WHAT_DONE);
     sceDisplayWaitVblankStart();

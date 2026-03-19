@@ -103,6 +103,10 @@ s32 flPrintColor(u32 col){
 s32 flFlip(u32 flag) {
     flFrame++;
 
+    // Reset render state cache at frame boundaries to prevent stale bindings
+    currentTexture = NULL;
+    currentPalette = -1;
+
     //flLogOut("flFrame %d\n", flFrame);
 
     return 1;
