@@ -14,6 +14,12 @@
 #define SCREEN_WIDTH 480
 #define SCREEN_HEIGHT 272
 
+// PSP Fullscreen Letterbox scaling (272 / 224 aspect ratio preservation)
+#define PSP_SCALE    1.2142857f
+#define PSP_OFFSET_X 6.857143f
+#define SCALE_X(x) (((x) * PSP_SCALE) + PSP_OFFSET_X)
+#define SCALE_Y(y) ((y) * PSP_SCALE)
+
 // c++ guard
 #ifdef __cplusplus
 extern "C" {

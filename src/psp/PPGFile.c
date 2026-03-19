@@ -158,8 +158,8 @@ void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode) {
     s32 i;
 
     for (i = 0; i < 4; i++) {
-        vertices[i].x = pos[i].x;
-        vertices[i].y = pos[i].y;
+        vertices[i].x = SCALE_X(pos[i].x);
+        vertices[i].y = SCALE_Y(pos[i].y);
         vertices[i].z = pos[i].z * 0xFFFF;
         vertices[i].u = (short) (pos[i].u * tex->width);
         vertices[i].v = (short) (pos[i].v * tex->height);
@@ -181,8 +181,8 @@ void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
     s32 i;
 
     for (i = 0; i < 2; i++) {
-        vertices[i].x = pos[i*3].x;
-        vertices[i].y = pos[i*3].y;
+        vertices[i].x = SCALE_X(pos[i*3].x);
+        vertices[i].y = SCALE_Y(pos[i*3].y);
         vertices[i].z = pos[i*3].z  * 0xFFFF;
         vertices[i].u = (short) (pos[i*3].u * tex->width);
         vertices[i].v = (short) (pos[i*3].v * tex->height);

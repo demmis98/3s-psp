@@ -48,7 +48,7 @@ void initGu(){
     //sceGuViewport(2048, 2048, SCREEN_WIDTH, SCREEN_HEIGHT);
     sceGuViewport(2048, 2048, 384, 224);
     //sceGuScissor(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    sceGuScissor(0, 0, 384, 224);
+    sceGuScissor(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     sceGuEnable(GU_SCISSOR_TEST);
     //sceGuDisable(GU_SCISSOR_TEST);
 

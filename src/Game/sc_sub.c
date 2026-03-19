@@ -2288,8 +2288,8 @@ void dispButtonImage(s32 px, s32 py, s32 pz, s32 sx, s32 sy, s32 cl, s32 ix) {
     njCalcPoint(NULL, &vecs[0], &vecs[0]);
     njCalcPoint(NULL, &vecs[1], &vecs[1]);
     for(int i = 0; i < 2; i++){
-        vertices[i].x = vecs[i].x;
-        vertices[i].y = vecs[i].y;
+        vertices[i].x = SCALE_X(vecs[i].x);
+        vertices[i].y = SCALE_Y(vecs[i].y);
     }
     vertices[0].z = vertices[1].z = PrioBase[pz] * 0xFFFF;
     vertices[0].u = (short) ((scrnAddTex1UV[ix][0] / 256.0f) * tex->width);
@@ -2317,10 +2317,10 @@ void dispButtonImage2(s32 px, s32 py, s32 pz, s32 sx, s32 sy, s32 cl, s32 ix) {
     }
 
     setFilterMode(0);
-    vertices[0].x = px;
-    vertices[0].y = py;
-    vertices[1].x = (px + sx);
-    vertices[1].y = (py + sy);
+    vertices[0].x = SCALE_X(px);
+    vertices[0].y = SCALE_Y(py);
+    vertices[1].x = SCALE_X(px + sx);
+    vertices[1].y = SCALE_Y(py + sy);
     vertices[0].z = vertices[1].z = PrioBase[pz] * 0xFFFF;
     vertices[0].u = (short) ((scrnAddTex1UV[ix][0] / 256.0f) * tex->width);
     vertices[1].u = (short) (((scrnAddTex1UV[ix][0] + scrnAddTex1UV[ix][2]) / 256.0f) * tex->width);
@@ -2374,8 +2374,8 @@ void dispSaveLoadTitle(void* ewk) {
         njCalcPoint(NULL, &pos[1], &pos[3]);
 
         for(j = 0; j < 2; j++){
-            vertices[j * 3].x = pos[j + 2].x;
-            vertices[j * 3].y = pos[j + 2].y;
+            vertices[j * 3].x = SCALE_X(pos[j + 2].x);
+            vertices[j * 3].y = SCALE_Y(pos[j + 2].y);
             vertices[j * 3].z = pos[j + 2].z * 0xFFFF;
         }
 

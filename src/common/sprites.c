@@ -45,15 +45,15 @@ void drawTextureSet(float x1, float y1, float u1, float v1, float x2, float y2, 
     vertices[0].u = u1;
     vertices[0].v = v1;
     vertices[0].colour = colour;
-    vertices[0].x = x1;
-    vertices[0].y = y1;
+    vertices[0].x = SCALE_X(x1);
+    vertices[0].y = SCALE_Y(y1);
     vertices[0].z = 0.0f;
 
     vertices[1].u = u2;
     vertices[1].v = v2;
     vertices[1].colour = colour;
-    vertices[1].x = x2;
-    vertices[1].y = y2;
+    vertices[1].x = SCALE_X(x2);
+    vertices[1].y = SCALE_Y(y2);
     vertices[1].z = 0.0f;
 
     sceGuDrawArray(GU_SPRITES, GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
@@ -66,15 +66,15 @@ void drawTexture(TexturePSP * texture, float x1, float y1, float u1, float v1, f
     vertices[0].u = u1;
     vertices[0].v = v1;
     vertices[0].colour = colour;
-    vertices[0].x = x1;
-    vertices[0].y = y1;
+    vertices[0].x = SCALE_X(x1);
+    vertices[0].y = SCALE_Y(y1);
     vertices[0].z = 0.0f;
 
     vertices[1].u = u2;
     vertices[1].v = v2;
     vertices[1].colour = colour;
-    vertices[1].x = x2;
-    vertices[1].y = y2;
+    vertices[1].x = SCALE_X(x2);
+    vertices[1].y = SCALE_Y(y2);
     vertices[1].z = 0.0f;
 
     sceGuTexMode(texture->mode, 0, 0, GU_FALSE);
@@ -103,14 +103,14 @@ void drawTextureH(TexturePSP * texture, float x, float y, uint32_t colour) {
     vertices[0].v = 0.0f;
     vertices[0].colour = colour;
     vertices[0].x = 0.0f;
-    vertices[0].y = y;
+    vertices[0].y = SCALE_Y(y);
     vertices[0].z = 0.0f;
 
     vertices[1].u = SCREEN_WIDTH - x;
     vertices[1].v = texture->height;
     vertices[1].colour = colour;
     vertices[1].x = SCREEN_WIDTH;
-    vertices[1].y = y + texture->height;
+    vertices[1].y = SCALE_Y(y + texture->height);
     vertices[1].z = 0.0f;
 
     sceGuTexMode(texture->mode, 0, 0, GU_FALSE);
@@ -135,18 +135,18 @@ void drawTextureR(TexturePSP * texture, float x, float y, float angle, u32 colou
     vertices[1].z = 0.0f;
     vertices[2].z = 0.0f;
 
-    vertices[0].x = x;
-    vertices[0].y = y;
+    vertices[0].x = SCALE_X(x);
+    vertices[0].y = SCALE_Y(y);
     vertices[0].u = 0.0f;
     vertices[0].v = 0.0f;
 
-    vertices[1].x = x + texture->width;
-    vertices[1].y = y;
+    vertices[1].x = SCALE_X(x + texture->width);
+    vertices[1].y = SCALE_Y(y);
     vertices[1].u = texture->width;
     vertices[1].v = 0.0f;
 
-    vertices[2].x = x + texture->width;
-    vertices[2].y = y + texture->height;
+    vertices[2].x = SCALE_X(x + texture->width);
+    vertices[2].y = SCALE_Y(y + texture->height);
     vertices[2].u = texture->width;
     vertices[2].v = texture->height;
     
@@ -159,18 +159,18 @@ void drawTextureR(TexturePSP * texture, float x, float y, float angle, u32 colou
     //sceGumDrawArray(GU_SPRITES,GU_TEXTURE_32BITF|GU_COLOR_8888|GU_VERTEX_32BITF|GU_TRANSFORM_2D,32,0,vertices);
     //sceGuDisable(GU_TEXTURE_2D);
 
-    vertices[0].x = x;
-    vertices[0].y = y;
+    vertices[0].x = SCALE_X(x);
+    vertices[0].y = SCALE_Y(y);
     vertices[0].u = 0.0f;
     vertices[0].v = 0.0f;
 
-    vertices[1].x = x;
-    vertices[1].y = y + texture->height;
+    vertices[1].x = SCALE_X(x);
+    vertices[1].y = SCALE_Y(y + texture->height);
     vertices[1].u = 0.0f;
     vertices[1].v = texture->height;
 
-    vertices[2].x = x + texture->width;
-    vertices[2].y = y + texture->height;
+    vertices[2].x = SCALE_X(x + texture->width);
+    vertices[2].y = SCALE_Y(y + texture->height);
     vertices[2].u = texture->width;
     vertices[2].v = texture->height;
 
@@ -182,13 +182,13 @@ void drawRect(float x, float y, float w, float h, uint32_t color) {
     ColorVertex* vertices = (ColorVertex*) sceGuGetMemory(2 * sizeof(ColorVertex));
     //Vertex vertices[2];
 
-    vertices[0].x = x;
-    vertices[0].y = y;
+    vertices[0].x = SCALE_X(x);
+    vertices[0].y = SCALE_Y(y);
     vertices[0].z = 0.0f;
     vertices[0].colour = color;    
 
-    vertices[1].x = x + w;
-    vertices[1].y = y + h;
+    vertices[1].x = SCALE_X(x + w);
+    vertices[1].y = SCALE_Y(y + h);
     vertices[1].z = 0.0f;
     vertices[1].colour = color;
 

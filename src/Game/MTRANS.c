@@ -1624,8 +1624,8 @@ void seqsAfterProcess() {
                 for (j = 0; j < 2; j++) {
                     vert = &c->v[j];
                     tc = &c->t[j];
-                    vertices[j + k].x = vert->x;
-                    vertices[j + k].y = vert->y;
+                    vertices[j + k].x = SCALE_X(vert->x);
+                    vertices[j + k].y = SCALE_Y(vert->y);
                     vertices[j + k].z = vert->z * 0xFFFF;
                     vertices[j + k].u = (short) (tc->s * tex->width);
                     vertices[j + k].v = (short) (tc->t * tex->height);
