@@ -442,12 +442,7 @@ ssize_t ppgDecompress(s32 koCmpr, void* srcAdrs, s32 srcSize, void* dstAdrs, s32
     switch (koCmpr) {
     default:
         if (srcAdrs != dstAdrs) {
-            src = srcAdrs;
-            dst = dstAdrs;
-
-            for (i = 0; i < dstSize; i++) {
-                *dst++ = *src++;
-            }
+            memcpy(dstAdrs, srcAdrs, dstSize);
         }
 
         rnum = srcSize;
