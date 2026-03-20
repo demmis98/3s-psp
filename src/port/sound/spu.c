@@ -332,15 +332,6 @@ void SPU_VoiceStart(int vnum, u32 start_addr) {
     v->adsr_phase = ADSR_PHASE_ATTACK;
     SPU_VoiceCacheADSR(v);
 
-    // Reset decode state
-    v->decRPos = 0;
-    v->decWPos = 0;
-    v->decLeft = 0;
-    v->counter = 0;
-    v->decodeHist[0] = 0;
-    v->decodeHist[1] = 0;
-    memset(v->decodeBuf, 0, sizeof(v->decodeBuf));
-
     header = ram[v->nax & ~0x7];
     if ((header >> 10) & 1) {
         v->lsa = v->nax;
@@ -417,6 +408,10 @@ void SPU_Lock() {
     sceKernelWaitSema(soundLock, 1, NULL);
 }
 
+bool SPU_TryLock() {
+    return sceKernelPollSema(soundLock, 1) >= 0;
+}
+
 void SPU_Unlock() {
     sceKernelSignalSema(soundLock, 1);
 }
@@ -434,6 +429,9 @@ void SPU_Init(void (*cb)()) {
 }
 
 void SPU_Upload(u32 dst, void* src, u32 size) {
+    if (!src || size == 0) return;
+    if (dst + size > 2 * 1024 * 1024) return;
+
     sceKernelWaitSema(soundLock, 1, NULL);
     memcpy(&ram[dst >> 1], src, size);
     sceKernelSignalSema(soundLock, 1);

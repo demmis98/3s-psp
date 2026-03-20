@@ -376,7 +376,7 @@ void Setup_Select_Status() {
 
 u8 Setup_Aborigine() {
     if (Select_Status[0] == 3) {
-        return Aborigine = 153;
+        return Aborigine = 0;
     }
 
     if (Select_Status[0] == 1) {
@@ -463,7 +463,9 @@ s16 Setup_Face_Y() {
 
 void Face_Control() {
     void (*Face_Jmp_Tbl[4])() = { Face_1st, Face_2nd, Face_3rd, Face_4th };
-    Face_Jmp_Tbl[Face_No[0]]();
+    if (Face_No[0] >= 0 && Face_No[0] < 4) {
+        Face_Jmp_Tbl[Face_No[0]]();
+    }
     Move_Face_BG();
 }
 
@@ -558,7 +560,9 @@ void Move_Face_BG() {
 
 void OBJ_Control() {
     void (*OBJ_Jmp_Tbl[3])() = { OBJ_1st, OBJ_2nd, OBJ_3rd };
-    OBJ_Jmp_Tbl[SO_No[0]]();
+    if (SO_No[0] >= 0 && SO_No[0] < 3) {
+        OBJ_Jmp_Tbl[SO_No[0]]();
+    }
 }
 
 void OBJ_1st() {

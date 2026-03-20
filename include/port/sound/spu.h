@@ -15,6 +15,7 @@ struct SPUVConf {
 extern SceUID soundLock;
 
 void SPU_Lock();
+bool SPU_TryLock();
 void SPU_Unlock();
 
 void SPU_Init(void (*cb)());

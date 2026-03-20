@@ -752,6 +752,10 @@ s32 ppgSetupTexChunkSeqs(Texture* tch, PPGFileHeader* ppg, u8* adrs, s32 ixNum1s
         while (1) {}
     }
 
+    if (adrs == NULL) {
+        return 0;
+    }
+
     tch->be = 0;
     tch->textures = ixNums;
     tch->accnum = ixNums;

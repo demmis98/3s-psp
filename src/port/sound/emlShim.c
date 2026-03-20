@@ -188,7 +188,9 @@ static int GetLfoVal(struct LFO* lfo) {
 static void workTick() {
     struct VWork *i, *n;
 
-    SPU_Lock();
+    if (!SPU_TryLock()) {
+        return;
+    }
 
     list_for_each (i, &active_voices, list) {
         i->tick++;
@@ -202,7 +204,6 @@ static void workTick() {
         UpdateVolPanPitch(i);
     }
 
-    // Inline gcVoices to avoid double-acquire on non-recursive semaphore
     list_for_each_safe (i, n, &active_voices, list) {
         if (SPU_VoiceIsFinished(i->voice_num)) {
             list_remove(&i->list);
