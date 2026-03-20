@@ -132,6 +132,11 @@ void Game_Task(struct _TASK* task_ptr) {
         seqsBeforeProcess();
 
         if (nowSoftReset() == 0) {
+            static int gt_log_counter = 0;
+            if (gt_log_counter < 200) {
+                printf("[GT] G_No=%d/%d/%d/%d system_timer=%d\n", G_No[0], G_No[1], G_No[2], G_No[3], system_timer);
+                gt_log_counter++;
+            }
             Main_Jmp_Tbl[G_No[0]](task_ptr);
         }
 

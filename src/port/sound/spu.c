@@ -372,16 +372,24 @@ void SPU_Tick(s16* output) {
 #define PSP_AUDIO_RATE 44100
 
 static s16 spu_last_output[2] = {0, 0};
+static volatile int spu_locked = 0;
 static uint32_t spu_resample_frac = 0;
 
 void SPU_PSP_CB(void* buf, unsigned int reqn, void* pdata) {
     s16* out = (s16*)buf;
 
-    // Timer fires at ~250Hz: 48000/192 = 250
+    // DIAGNOSTIC: output silence, skip all SPU processing
+    // If crash persists, it's in main thread, not audio thread
     static int cb_timer = 192;
-
-    // step = SPU_TICK_RATE / PSP_AUDIO_RATE in 16.16 fixed-point
     uint32_t step = ((uint32_t)SPU_TICK_RATE << 16) / PSP_AUDIO_RATE;
+
+    if (spu_locked) {
+        for (unsigned int i = 0; i < reqn; i++) {
+            out[i * 2]     = 0;
+            out[i * 2 + 1] = 0;
+        }
+        return;
+    }
 
     for (unsigned int i = 0; i < reqn; i++) {
         spu_resample_frac += step;
@@ -405,6 +413,7 @@ void SPU_PSP_CB(void* buf, unsigned int reqn, void* pdata) {
 static void nullcb() {}
 
 void SPU_Lock() {
+    spu_locked = 1;
     sceKernelWaitSema(soundLock, 1, NULL);
 }
 
@@ -414,6 +423,7 @@ bool SPU_TryLock() {
 
 void SPU_Unlock() {
     sceKernelSignalSema(soundLock, 1);
+    spu_locked = 0;
 }
 
 void SPU_Init(void (*cb)()) {

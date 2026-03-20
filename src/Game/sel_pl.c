@@ -207,7 +207,11 @@ void Switch_Work() {
 void Sel_PL_Control() {
     void (*Sel_PL_Cont_Tbl[4])() = { Sel_PL_Cont_1st, Sel_PL_Cont_2nd, Sel_PL_Cont_3rd, Sel_PL_Cont_4th };
     Setup_Select_Status();
-    Sel_PL_Cont_Tbl[S_No[0]]();
+    if (S_No[0] >= 0 && S_No[0] < 4) {
+        Sel_PL_Cont_Tbl[S_No[0]]();
+    } else {
+        printf("CRASH GUARD: S_No[0]=%d out of bounds!\n", S_No[0]);
+    }
     Face_Control();
     OBJ_Control();
     ID2 = 0;
@@ -376,6 +380,8 @@ void Setup_Select_Status() {
 
 u8 Setup_Aborigine() {
     if (Select_Status[0] == 3) {
+        printf("WARN: Setup_Aborigine: both players active (Select_Status[0]=3), forcing Aborigine=0\n");
+        printf("  plw[0].wu.operator=%d, plw[1].wu.operator=%d\n", plw[0].wu.operator, plw[1].wu.operator);
         return Aborigine = 0;
     }
 
