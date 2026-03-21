@@ -180,11 +180,15 @@ void q_ldreq_color_data(REQ* curr) {
 }
 
 s32 cseTsbSetBankAddr(u32 bank, SoundEvent* addr) {
-    return mlTsbSetBankAddr(bank, addr);
+    // Stubbed: mlTsbSetBankAddr processes PS2 sound bank data with function pointers
+    // that are invalid on PSP, causing NULL function pointer crashes
+    return 0;
 }
 
 s32 cseMemMapSetPhdAddr(u32 bank, void* addr) {
-    return mlMemMapSetPhdAddr(bank, addr);
+    // Stubbed: mlMemMapSetPhdAddr processes PS2 PHD data with pointers
+    // that are invalid on PSP
+    return 0;
 }
 
 void load_any_color(u16 ix, u8 kokey) {

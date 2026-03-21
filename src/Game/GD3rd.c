@@ -534,7 +534,12 @@ void Check_LDREQ_Queue() {
 
     if (!ldreq_break) {
         if (q_ldreq->be != 0) {
-            ldreq_process[q_ldreq->type](q_ldreq);
+            void (*func)(REQ*) = ldreq_process[q_ldreq->type];
+            if (func != NULL) {
+                func(q_ldreq);
+            } else {
+                flLogOut("FATAL: ldreq_process[%d] is NULL\n", q_ldreq->type);
+            }
 
             if (q_ldreq->be == 0) {
                 for (i = 0; i < 15; i++) {

@@ -43,7 +43,7 @@ s32 flInitialize(s32 /* unused */, s32 /* unused */);
 // from modern port
 
 #define FL_PALETTE_MAX 1088
-#define FL_TEXTURE_MAX 256
+#define FL_TEXTURE_MAX 512
 
 extern u32 flDebugStrCtr;
 extern u32 flDebugStrCol;

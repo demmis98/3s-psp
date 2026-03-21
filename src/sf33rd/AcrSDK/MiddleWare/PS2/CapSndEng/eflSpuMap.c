@@ -13,6 +13,8 @@
 #include "sf33rd/AcrSDK/MiddleWare/PS2/CapSndEng/eflSpuMap.h"
 #include "common.h"
 
+extern s32 flLogOut(s8* format, ...);
+
 #include <stdio.h>
 #include <string.h>
 
@@ -74,7 +76,7 @@ s32 flSpuMapChgPage(u32 page) {
     u32 addr;
     PSPUMAP_PAGE* pPage;
 
-    if ((pSpuMap->Head.NumPages - 1) > page) {
+    if (page > (pSpuMap->Head.NumPages - 1)) {
         return -1;
     }
 
@@ -87,10 +89,8 @@ s32 flSpuMapChgPage(u32 page) {
         CurrMap.BankSize[i] = pPage->BankSize[i];
 
         if (CurrMap.BankSize[i] + CurrMap.BankAddr[i] > SPU_RAM_LIMIT) {
-            printf("[EE]");
-            printf("(ERR)");
-            // "Address has changed\n"
-            printf("アドレスが変\n");
+            flLogOut("[EE](ERR) SPU bank %d addr overflow: addr=%x size=%x limit=%x\n",
+                     i, CurrMap.BankAddr[i], CurrMap.BankSize[i], SPU_RAM_LIMIT);
             return -1;
         }
 

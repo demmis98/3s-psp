@@ -350,7 +350,7 @@ const u16 sdcode_conv[1024] = {
 
 typedef void (*se_request)(WORK_Other* ewk, u16 Code);
 
-const se_request sound_effect_request[1024] = {
+const se_request sound_effect_request[65536] = { [0 ... 65535] = Call_Se, [0] = 
     Call_Se,       Call_Se,       Call_Se,       Call_Se,       Call_Se,   Call_Se,       Call_Se,       Call_Se,
     Call_Se,       Call_Se,       Call_Se,       Call_Se,       Call_Se,   Call_Se,       Call_Se,       Call_Se,
     Call_Se,       Call_Se,       Call_Se,       Call_Se,       Call_Se,   Call_Se,       Call_Se,       Call_Se,

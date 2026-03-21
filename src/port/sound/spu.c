@@ -440,6 +440,7 @@ void SPU_Init(void (*cb)()) {
 
 void SPU_Upload(u32 dst, void* src, u32 size) {
     if (!src || size == 0) return;
+    if (dst > 2 * 1024 * 1024 || size > 2 * 1024 * 1024) return;
     if (dst + size > 2 * 1024 * 1024) return;
 
     sceKernelWaitSema(soundLock, 1, NULL);

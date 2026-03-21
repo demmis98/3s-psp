@@ -247,7 +247,12 @@ void texture_cash_update() {
     for (num = 0; num < 24; num++) {
         if (mts_ok[num].be != 0) {
             if (mts[num].ext) {
-                for (i = 0; i < mts[num].cpat->kazu; i++) {
+                // Validate cpat pointer is in PSP user memory range
+                if ((uintptr_t)mts[num].cpat < 0x08800000u || (uintptr_t)mts[num].cpat >= 0x0A000000u) continue;
+                s16 kazu = mts[num].cpat->kazu;
+                if (kazu < 0 || kazu > 256) continue;  // bounds check
+                for (i = 0; i < kazu; i++) {
+                    if ((uintptr_t)mts[num].cpat->adr[i] < 0x08800000u || (uintptr_t)mts[num].cpat->adr[i] >= 0x0A000000u) continue;
                     if ((--mts[num].cpat->adr[i]->time) == 0) {
                         makeup_tpu_free(mts[num].mltnum16 / 256, mts[num].mltnum32 / 64, &mts[num].cpat->adr[i]->map);
 
@@ -479,22 +484,22 @@ void purge_texcash_work(s16 ix) {
 const MTSBase mts_base[24] = {
     { .p16 = 0, .p32 = 0, .gix = 0, .life16 = 0, .life32 = 0, .type = 0, .mode = 0, .attribute = 0 },
     { .p16 = 1, .p32 = 1, .gix = 20, .life16 = 0, .life32 = 0, .type = 8, .mode = 4114, .attribute = 1 },
-    { .p16 = 2, .p32 = 4, .gix = 30, .life16 = 8, .life32 = 8, .type = 8, .mode = 4113, .attribute = 1 },
+    { .p16 = 2, .p32 = 4, .gix = 30, .life16 = 30, .life32 = 30, .type = 8, .mode = 4113, .attribute = 1 },
     { .p16 = 3, .p32 = 6, .gix = 40, .life16 = 20, .life32 = 20, .type = 9, .mode = 8209, .attribute = 1 },
     { .p16 = 3, .p32 = 6, .gix = 50, .life16 = 20, .life32 = 20, .type = 9, .mode = 8209, .attribute = 1 },
-    { .p16 = 1, .p32 = 4, .gix = 60, .life16 = 2, .life32 = 2, .type = 9, .mode = 8210, .attribute = 1 },
+    { .p16 = 1, .p32 = 4, .gix = 60, .life16 = 30, .life32 = 30, .type = 9, .mode = 8210, .attribute = 1 },
     { .p16 = 1, .p32 = 5, .gix = 70, .life16 = 0, .life32 = 0, .type = 8, .mode = 4113, .attribute = 1 },
-    { .p16 = 1, .p32 = 1, .gix = 80, .life16 = 12, .life32 = 12, .type = 9, .mode = 8210, .attribute = 1 },
+    { .p16 = 1, .p32 = 1, .gix = 80, .life16 = 60, .life32 = 60, .type = 9, .mode = 8210, .attribute = 1 },
     { .p16 = 2, .p32 = 8, .gix = 1200, .life16 = 16, .life32 = 16, .type = 9, .mode = 4114, .attribute = 1 },
     { .p16 = 4, .p32 = 34, .gix = 500, .life16 = 20, .life32 = 20, .type = 9, .mode = 4129, .attribute = 1 },
-    { .p16 = 4, .p32 = 8, .gix = 80, .life16 = 4, .life32 = 4, .type = 9, .mode = 4113, .attribute = 1 },
+    { .p16 = 4, .p32 = 8, .gix = 80, .life16 = 30, .life32 = 30, .type = 9, .mode = 4113, .attribute = 1 },
     { .p16 = 1, .p32 = 2, .gix = 1000, .life16 = 0, .life32 = 0, .type = 8, .mode = 4113, .attribute = 1 },
     { .p16 = 1, .p32 = 0, .gix = 1020, .life16 = 10, .life32 = 10, .type = 9, .mode = 4114, .attribute = 1 },
-    { .p16 = 1, .p32 = 6, .gix = 1030, .life16 = 2, .life32 = 2, .type = 8, .mode = 8210, .attribute = 1 },
-    { .p16 = 2, .p32 = 6, .gix = 1100, .life16 = 4, .life32 = 4, .type = 8, .mode = 8210, .attribute = 1 },
-    { .p16 = 1, .p32 = 2, .gix = 1120, .life16 = 2, .life32 = 2, .type = 8, .mode = 4113, .attribute = 1 },
-    { .p16 = 1, .p32 = 2, .gix = 960, .life16 = 2, .life32 = 2, .type = 8, .mode = 4113, .attribute = 1 },
-    { .p16 = 1, .p32 = 1, .gix = 1140, .life16 = 2, .life32 = 2, .type = 8, .mode = 4114, .attribute = 1 },
+    { .p16 = 1, .p32 = 6, .gix = 1030, .life16 = 30, .life32 = 30, .type = 8, .mode = 8210, .attribute = 1 },
+    { .p16 = 2, .p32 = 6, .gix = 1100, .life16 = 30, .life32 = 30, .type = 8, .mode = 8210, .attribute = 1 },
+    { .p16 = 1, .p32 = 2, .gix = 1120, .life16 = 30, .life32 = 30, .type = 8, .mode = 4113, .attribute = 1 },
+    { .p16 = 1, .p32 = 2, .gix = 960, .life16 = 30, .life32 = 30, .type = 8, .mode = 4113, .attribute = 1 },
+    { .p16 = 1, .p32 = 1, .gix = 1140, .life16 = 30, .life32 = 30, .type = 8, .mode = 4114, .attribute = 1 },
     { .p16 = 1, .p32 = 1, .gix = 1100, .life16 = 0, .life32 = 0, .type = 8, .mode = 4116, .attribute = 1 },
     { .p16 = 1, .p32 = 1, .gix = 1100, .life16 = 0, .life32 = 0, .type = 8, .mode = 4116, .attribute = 1 },
     { .p16 = 1, .p32 = 1, .gix = 1100, .life16 = 0, .life32 = 0, .type = 8, .mode = 4116, .attribute = 1 },

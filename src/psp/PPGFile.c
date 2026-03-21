@@ -818,8 +818,8 @@ error_handler:
 
     ppgFree(tch->handle);
     tch->handle = NULL;
-    flLogOut("Failed to acquire sprite texture handle.\n"); // Failed to acquire sprite texture handle.
-    while (1) {}
+    flLogOut("Failed to acquire sprite texture handle.\n");
+    return 0;
 }
 
 void ppgRenewDotDataSeqs(Texture* tch, u32 gix, u32* srcRam, u32 code, u32 size) {
@@ -1230,7 +1230,7 @@ s32 ppgSetupTexChunk_3rd(Texture* tch, s32 ixNum, u32 attribute) {
     if (hnof->b16[0] == 0) {
         // Failed to acquire texture handle.
         flLogOut("Failed to acquire texture handle.\n");
-        while (1) {}
+        return 0;
     }
 
     return 1;

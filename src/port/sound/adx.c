@@ -15,8 +15,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define ADX_POOL_BUF_SIZE (512 * 1024)
-#define ADX_POOL_COUNT 10
+#define ADX_POOL_BUF_SIZE (256 * 1024)
+#define ADX_POOL_COUNT 2
 static uint8_t adx_pool[ADX_POOL_COUNT][ADX_POOL_BUF_SIZE];
 static bool adx_pool_used[ADX_POOL_COUNT] = { false };
 static void* pool_alloc(size_t size) {

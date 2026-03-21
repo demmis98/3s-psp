@@ -334,6 +334,9 @@ static s32 PlaySe(CSE_REQP* pReqp, u16 bank, u16 prog) {
     s32 result;
 
     pHEAD = mlMemMapGetPhdAddr(bank);
+    if (pHEAD == NULL) {
+        return -1;
+    }
     NumSplit = GetNumSplit(pHEAD, prog);
 
 

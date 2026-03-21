@@ -51,5 +51,6 @@ void emlShimSeKeyOff(CSE_REQP* pReqp);
 void emlShimSeStop(CSE_REQP* pReqp);
 void emlShimSeSetLfo(CSE_SYS_PARAM_LFO* param);
 void emlShimSeStopAll();
+void emlShimWorkTick();
 
 #endif // EMLSHIM_H_

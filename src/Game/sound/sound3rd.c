@@ -387,6 +387,7 @@ void BGM_Server() {
     }
 
     ADX_ProcessTracks();
+    emlShimWorkTick();
 
     if (sys_w.bgm_type >= BGM_TYPE_COUNT) {
         return;
@@ -813,10 +814,7 @@ void SsRequestPan(u16 reqNum, s16 start, s16 /* unused */, s32 /* unused */, s32
             rmcode.port = lookup->port;
             rmcode.code = lookup->engine_code;
         } else {
-            while (1) {
-                flPrintL(3, 5, "MISSING SOUND MAPPING (PAN): %X", reqNum);
-                njWaitVSync_with_N();
-            }
+            return;
         }
     }
 
@@ -851,11 +849,7 @@ void SsRequest(u16 ReqNumber) {
             rmcode.port = lookup->port;
             rmcode.code = lookup->engine_code;
         } else {
-            // Hard Fail: ID not found in lookup table
-            while (1) {
-                flPrintL(3, 5, "MISSING SOUND MAPPING: %X", ReqNumber);
-                njWaitVSync_with_N();
-            }
+            return;
         }
     }
 
@@ -880,11 +874,7 @@ void SsRequest_CC(u16 num) {
             rmcode.port = lookup->port;
             rmcode.code = lookup->engine_code;
         } else {
-            // Hard Fail: ID not found in lookup table
-            while (1) {
-                flPrintL(3, 5, "MISSING SOUND MAPPING: %X", num);
-                njWaitVSync_with_N();
-            }
+            return;
         }
     }
 
@@ -910,11 +900,7 @@ void Standby_BGM(u16 num) {
             rmcode.port = lookup->port;
             rmcode.code = lookup->engine_code;
         } else {
-            // Hard Fail: ID not found in lookup table
-            while (1) {
-                flPrintL(3, 5, "MISSING SOUND MAPPING: %X", num);
-                njWaitVSync_with_N();
-            }
+            return;
         }
     }
 
@@ -966,11 +952,7 @@ void SsBgmFadeIn(u16 ReqNumber, u16 FadeSpeed) {
             rmcode.port = lookup->port;
             rmcode.code = lookup->engine_code;
         } else {
-            // Hard Fail: ID not found in lookup table
-            while (1) {
-                flPrintL(3, 5, "MISSING SOUND MAPPING: %X", ReqNumber);
-                njWaitVSync_with_N();
-            }
+            return;
         }
     }
 

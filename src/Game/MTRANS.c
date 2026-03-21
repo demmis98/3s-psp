@@ -1,4 +1,5 @@
 #include "Game/MTRANS.h"
+#include "Game/sprite_precache.h"
 #include "common.h"
 //#include "sf33rd/AcrSDK/ps2/flps2render.h"
 //#include "sf33rd/AcrSDK/ps2/foundaps2.h"
@@ -118,6 +119,54 @@ static void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len);
 static void lz_ext_p6_cx(u8* srcptr, u16* dstptr, u32 len, u16* palptr);
 static u16 x16_mapping_set(PatternMap* map, s32 code);
 static u16 x32_mapping_set(PatternMap* map, s32 code);
+
+// Deferred batch decompression ring buffer
+#define MAX_PENDING_DECODES 64
+typedef struct {
+    u8* src;       // LZ77 compressed source (texptr + 1)
+    u8* dst;       // mltbuf destination for decompression
+    u32 size;      // decompressed tile size
+    u32 gix;       // GPU atlas group index
+    s32 code;      // tile slot code within atlas
+    s32 is32;      // 1 = 32x32 tile, 0 = 16x16 tile
+} PendingDecode;
+
+static PendingDecode s_pending_decodes[MAX_PENDING_DECODES];
+static s32 s_pending_count = 0;
+
+static void queue_pending_decode(u8* src, u8* dst, u32 size, u32 gix, s32 code, s32 is32) {
+    if (s_pending_count >= MAX_PENDING_DECODES) {
+        // Flush immediately if buffer is full
+        lz_ext_p6_fx(src, dst, size);
+        if (is32) {
+            njReLoadTexturePartNumG(gix + (code >> 6), (s8*)dst, code & 0x3F, size);
+        } else {
+            njReLoadTexturePartNumG(gix + (code >> 8), (s8*)dst, code & 0xFF, size);
+        }
+        return;
+    }
+    PendingDecode* pd = &s_pending_decodes[s_pending_count++];
+    pd->src = src;
+    pd->dst = dst;
+    pd->size = size;
+    pd->gix = gix;
+    pd->code = code;
+    pd->is32 = is32;
+}
+
+void flush_pending_decodes(void) {
+    s32 i;
+    for (i = 0; i < s_pending_count; i++) {
+        PendingDecode* pd = &s_pending_decodes[i];
+        lz_ext_p6_fx(pd->src, pd->dst, pd->size);
+        if (pd->is32) {
+            njReLoadTexturePartNumG(pd->gix + (pd->code >> 6), (s8*)pd->dst, pd->code & 0x3F, pd->size);
+        } else {
+            njReLoadTexturePartNumG(pd->gix + (pd->code >> 8), (s8*)pd->dst, pd->code & 0xFF, pd->size);
+        }
+    }
+    s_pending_count = 0;
+}
 
 static void search_trsptr(uintptr_t trstbl, s32 i, s32 n, s32 cods, s32 atrs, s32 codd, s32 atrd) {
     s32 j;
@@ -707,8 +756,7 @@ void mlt_obj_trans(MultiTexture* mt, WORK* wk, s32 base_y) {
         case 1:
         case 2:
             if (get_mltbuf16(mt, cc.code, 0, &code) != 0) {
-                lz_ext_p6_fx(&((u8*)texptr)[1], mt->mltbuf, size);
-                njReLoadTexturePartNumG(mt->mltgidx16 + (code >> 8), (s8*)mt->mltbuf, code & 0xFF, size);
+                queue_pending_decode(&((u8*)texptr)[1], mt->mltbuf, size, mt->mltgidx16, code, 0);
             }
 
             if (Debug_w[0x10]) {
@@ -728,8 +776,7 @@ void mlt_obj_trans(MultiTexture* mt, WORK* wk, s32 base_y) {
 
         case 4:
             if (get_mltbuf32(mt, cc.code, 0, &code) != 0) {
-                lz_ext_p6_fx(&((u8*)texptr)[1], mt->mltbuf, size);
-                njReLoadTexturePartNumG(mt->mltgidx32 + (code >> 6), (s8*)mt->mltbuf, code & 0x3F, size);
+                queue_pending_decode(&((u8*)texptr)[1], mt->mltbuf, size, mt->mltgidx32, code, 1);
             }
 
             if (Debug_w[0x10]) {
@@ -1576,6 +1623,9 @@ void seqsAfterProcess() {
     s32 i;
     u32 keep = 0;
     u32 val = 0;
+
+    flush_pending_decodes();
+
     TextureVertex *vertices;
     FLTexture *tex = &flTexture[LO_16_BITS(val) - 1];
 
@@ -1972,8 +2022,18 @@ static s32 get_free_patcash_index(PatternCollection* padr) {
         }
     }
 
-    flLogOut("ＣＧキャッシュバッファが一杯になりました。\n");
-    while (1) {}
+    // CG cache buffer is full - evict the oldest entry (largest time value)
+    flLogOut("CG cache full, evicting oldest entry\n");
+    s16 oldest_i = 0;
+    s32 oldest_time = padr->patt[0].time;
+    for (i = 1; i < 0x40; i++) {
+        if (padr->patt[i].time > oldest_time) {
+            oldest_time = padr->patt[i].time;
+            oldest_i = i;
+        }
+    }
+    padr->patt[oldest_i].time = 0;
+    return oldest_i;
 }
 
 static void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len) {
@@ -2290,4 +2350,70 @@ void mlt_obj_melt2(MultiTexture* mt, u16 cg_number) {
     }
 
     ppgRenewTexChunkSeqs(NULL);
+}
+
+void sprite_precache_pattern(s32 mts_id, u16 cg_number) {
+    MultiTexture* mt = &mts[mts_id];
+    u32* textbl;
+    u16* trsbas;
+    TileMapEntry* trsptr;
+    TEX* texptr;
+    s32 count;
+    s32 n;
+    s32 i;
+    s32 code;
+    s32 wh;
+    s32 size;
+    PatternCode cc;
+
+    if (mts_ok[mts_id].be == 0) {
+        return;
+    }
+
+    ppgSetupCurrentDataList(&mt->texList);
+
+    n = cg_number;
+    i = obj_group_table[n];
+
+    if (i == 0) {
+        return;
+    }
+
+    if (texgrplds[i].ok == 0) {
+        return;
+    }
+
+    n -= texgrpdat[i].num_of_1st;
+    trsbas = (u16*)(texgrplds[i].trans_table + ((u32*)texgrplds[i].trans_table)[n]);
+    textbl = (u32*)texgrplds[i].texture_table;
+    count = *trsbas;
+    trsbas++;
+    trsptr = (TileMapEntry*)trsbas;
+    cc.parts.group = i;
+
+    while (count--) {
+        texptr = (TEX*)((uintptr_t)textbl + ((u32*)textbl)[trsptr->code]);
+        wh = (texptr->wh & 3) + 1;
+        size = (wh * wh) << 6;
+        cc.parts.offset = trsptr->code;
+
+        switch (wh) {
+        case 1:
+        case 2:
+            if (get_mltbuf16(mt, cc.code, 0, &code) != 0) {
+                lz_ext_p6_fx(&((u8*)texptr)[1], mt->mltbuf, size);
+                njReLoadTexturePartNumG(mt->mltgidx16 + (code >> 8), (s8*)mt->mltbuf, code & 0xFF, size);
+            }
+            break;
+
+        case 4:
+            if (get_mltbuf32(mt, cc.code, 0, &code) != 0) {
+                lz_ext_p6_fx(&((u8*)texptr)[1], mt->mltbuf, size);
+                njReLoadTexturePartNumG(mt->mltgidx32 + (code >> 6), (s8*)mt->mltbuf, code & 0x3F, size);
+            }
+            break;
+        }
+
+        trsptr++;
+    }
 }

@@ -2,6 +2,7 @@
 #include "common.h"
 #include "Game/CHARSET.h"
 #include "Game/EFFECT.h"
+#include "Game/MTRANS.h"
 #include "Game/SLOWF.h"
 #include "Game/aboutspr.h"
 #include "Game/ta_sub.h"
@@ -24,6 +25,9 @@ void effect_07_move(WORK_Other* ewk) {
         ewk->wu.routine_no[0]++;
         ewk->wu.disp_flag = 1;
         set_char_move_init(&ewk->wu, 0, ewk->wu.char_index);
+        if (ewk->wu.cg_number) {
+            sprite_precache_pattern(ewk->wu.my_mts, ewk->wu.cg_number);
+        }
         break;
 
     case 1:

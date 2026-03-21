@@ -185,8 +185,10 @@ static int GetLfoVal(struct LFO* lfo) {
     return ret >> 15;
 }
 
-static void workTick() {
+void emlShimWorkTick() {
     struct VWork *i, *n;
+
+    SPU_Lock();
 
     list_for_each (i, &active_voices, list) {
         i->tick++;
@@ -206,6 +208,8 @@ static void workTick() {
             list_insert(&free_voices, &i->list);
         }
     }
+
+    SPU_Unlock();
 }
 
 void emlShimInit() {
@@ -214,7 +218,7 @@ void emlShimInit() {
     list_init(&active_voices);
     list_init(&free_voices);
 
-    SPU_Init(workTick);
+    SPU_Init(NULL);
 
     SPU_Lock();
 
