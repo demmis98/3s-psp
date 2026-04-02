@@ -579,12 +579,14 @@ static volatile s32 adx_was_playing = 0;
 void adxSuspend(void) {
     adx_was_playing = (P.stat == ADX_STAT_PLAYING && !adx_paused);
     adx_paused = 1;  /* silence callback immediately */
+    pspAudioSetChannelCallback(1, NULL, NULL);
 }
 
 void adxResume(void) {
     if (adx_was_playing) {
         adx_paused = 0;  /* restore playback */
     }
+    pspAudioSetChannelCallback(1, adx_psp_callback, NULL);
 }
 
 s32 ADX_IsPaused(void) {
