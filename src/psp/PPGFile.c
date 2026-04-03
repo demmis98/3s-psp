@@ -166,11 +166,11 @@ void ppgWriteQuadOnly(Vertex* pos, u32 col, u32 texCode) {
     h_f = (float) tex->height;
 
     for (i = 0; i < 4; i++) {
-        vertices[i].x = SCALE_X(pos[i].x);
-        vertices[i].y = SCALE_Y(pos[i].y);
+        vertices[i].x = SCALE_X((s32)pos[i].x);
+        vertices[i].y = SCALE_Y((s32)pos[i].y);
         vertices[i].z = pos[i].z ;
-        vertices[i].u = pos[i].u * w_f;
-        vertices[i].v = pos[i].v * h_f;
+        vertices[i].u = pos[i].u * w_f + 0.5f;
+        vertices[i].v = pos[i].v * h_f + 0.5f;
         vertices[i].colour = fixARGB(col);
     }
 
@@ -196,11 +196,11 @@ void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
     f32 h_f = (float) tex->height;
 
     for (i = 0; i < 2; i++) {
-        vertices[i].x = SCALE_X(pos[i*3].x);
-        vertices[i].y = SCALE_Y(pos[i*3].y);
+        vertices[i].x = SCALE_X((s32)pos[i*3].x);
+        vertices[i].y = SCALE_Y((s32)pos[i*3].y);
         vertices[i].z = pos[i*3].z;
-        vertices[i].u = pos[i*3].u * w_f;
-        vertices[i].v = pos[i*3].v * h_f;
+        vertices[i].u = pos[i*3].u * w_f + 0.5f;
+        vertices[i].v = pos[i*3].v * h_f + 0.5f;
         vertices[i].colour = fixARGB(col);
     }
 
@@ -223,11 +223,11 @@ void ppgWriteQuadOnly2T(Vertex* pos, u32 col, u32 texCode, TextureVertex *vertic
     f32 h_f = (float) tex->height;
 
     for (i = 0; i < 2; i++) {
-        vertices[i].x = SCALE_X(pos[i*3].x);
-        vertices[i].y = SCALE_Y(pos[i*3].y);
+        vertices[i].x = SCALE_X((s32)pos[i*3].x);
+        vertices[i].y = SCALE_Y((s32)pos[i*3].y);
         vertices[i].z = pos[i*3].z;
-        vertices[i].u = pos[i*3].u * w_f;
-        vertices[i].v = pos[i*3].v * h_f;
+        vertices[i].u = (pos[i*3].u) * w_f + 0.5f;
+        vertices[i].v = (pos[i*3].v) * h_f + 0.5f;
         vertices[i].colour = fixARGB(col);
     }
 }

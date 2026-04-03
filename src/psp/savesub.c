@@ -134,16 +134,11 @@ s32 SaveMove() {
 
     if(save_params.mode == PSP_UTILITY_SAVEDATA_SAVE || save_params.mode == PSP_UTILITY_SAVEDATA_AUTOSAVE){
         save_data.Auto_Save = save_w[1].Auto_Save;
-        SSPutStr(10, 10, 9, "SAVING...");
-
         Save_Game_Data();
         
         saveScreenParms();
         saveSoundParms();
         saveGameProgress();
-    }
-    else{
-        SSPutStr(10, 10, 9, "LOADING...");
     }
 
     pspSaveLoad();
@@ -165,6 +160,15 @@ s32 SaveMove() {
     }
 
     return 0;
+}
+
+void SaveMsg(u16 x, u16 y){
+    if(save_params.mode == PSP_UTILITY_SAVEDATA_SAVE || save_params.mode == PSP_UTILITY_SAVEDATA_AUTOSAVE){
+        SSPutStr(x, y, 6, "SAVING...");
+    }
+    else if(save_params.mode == PSP_UTILITY_SAVEDATA_LOAD || save_params.mode == PSP_UTILITY_SAVEDATA_AUTOLOAD){
+        SSPutStr(x, y, 6, "LOADING...");
+    }
 }
 
 void pspSaveLoad(){

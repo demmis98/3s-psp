@@ -2,9 +2,10 @@
 #include "common.h"
 
 static s8* msgMenu_000[3] = {
-    "OK to quit without saving the system data?",
+    //"OK to quit without saving the system data?",
+      "Are you sure you want to exit?",
     "",
-    "               :OK     :CANCEL",
+    "         :YES    :NO",
 };
 
 static s8** msgMenuAdr[1] = { msgMenu_000 };

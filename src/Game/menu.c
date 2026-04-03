@@ -2559,6 +2559,7 @@ void Save_Load_Menu(struct _TASK* task_ptr) {
             task_ptr->r_no[3] += 1;
             task_ptr->free[3] = 0;
         }
+        SaveMsg(10, 10);
 
         break;
 
