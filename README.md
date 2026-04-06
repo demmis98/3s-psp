@@ -65,7 +65,7 @@ ms0:/PSP/GAME/3rd-strike/
 - Single AFS file handle design
 
 ### Performance
-- 333MHz CPU clock
+- 333MHz CPU clock on "Smooth" rendering, 266MHz on "Fast" rendering
 - SPU emulator: MAX_ACTIVE_VOICES=16 cap, linear interpolation, unrolled ADPCM decode
 - -O3 -ffast-math compiler optimization
 - Graceful error recovery (no freeze traps)
