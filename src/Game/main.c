@@ -32,6 +32,7 @@
 #include "Game/init3rd.h"
 #include "Game/texcash.h"
 #include "Game/workuser.h"
+#include "psp/pspPAD.h"
 /*
 #include "PS2/mc/knjsub.h"
 #include "PS2/mc/mcsub.h"
@@ -88,18 +89,11 @@ void AcrMain() {
     flPADGetALL();
     keyConvert();
 
-    if(p1sw_buff){
-        //DEMMA_DEBUG = 1;
-        DEMMA_DEBUG = 0;
-    }
-    else{
-        DEMMA_DEBUG = 0;
-    }
     if(p1sw_buff & 0x4000){
         Debug_w[DEBUG_BG_DRAW_OFF] = 1;
     }
     if(p1sw_buff & 0x8000){
-        //Debug_w[DEBUG_USE_GILL] = 1;
+        playAsP2 = 1;
     }
     setupScaling(render_mode);
 

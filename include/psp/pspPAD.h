@@ -1,5 +1,5 @@
-#ifndef PS2PAD_H
-#define PS2PAD_H
+#ifndef PSPPAD_H
+#define PSPPAD_H
 
 #include "AcrSDK/common/pad.h"
 #include "types.h"
@@ -32,6 +32,7 @@ extern TARPAD tarpad_root[2];
 extern PS2Slot ps2slot[2];
 extern const FLPAD_CONFIG fltpad_config_basic;
 extern const u32 flpad_io_map[25];
+extern u8 playAsP2;
 
 s32 tarPADInit();
 void tarPADDestroy();

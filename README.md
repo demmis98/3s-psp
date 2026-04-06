@@ -18,6 +18,7 @@ ms0:/PSP/GAME/3rd-strike/
 
 - Start+Select: Soft reset (returns to title screen)
 - Press Start at boot: Disable backgrounds (debug)
+- Press Select at boot: play as Player 2
 
 ## --Settings--
 

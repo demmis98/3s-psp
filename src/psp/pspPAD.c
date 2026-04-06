@@ -2,6 +2,8 @@
 #include <string.h>
 #include "psp/pspPAD.h"
 
+u8 playAsP2 = false;
+
 TARPAD tarpad_root[2];
 
 s32 tarPADInit() {
@@ -29,7 +31,19 @@ void tarPADRead() {
     SceCtrlData pad;
     sceCtrlReadBufferPositive(&pad, 1);
 
-    TARPAD* tp = &tarpad_root[0];
+    //TARPAD* tp = &tarpad_root[0];
+    TARPAD* tp;
+
+    if(playAsP2){
+        tp = &tarpad_root[1];
+        tarpad_root[0].kind = 0;
+        tarpad_root[1].kind = 1;
+    }
+    else {
+        tp = &tarpad_root[0];
+        tarpad_root[0].kind = 1;
+        tarpad_root[1].kind = 0;
+    }
 
     u32 sw = 0;
 
