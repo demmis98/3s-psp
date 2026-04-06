@@ -33,10 +33,3 @@ src/Game/menu.c:
 -gibletto
 -Kinu Nishimura (banner artwork)
 
-
-thanks to everyone following this proyect
-i honestly never thought it could run this well on real hardware, and even have sound
-thanks to everyone who downloaded it and tried it on their psp, it makes me so happy to see people enjoying this port
-this code has taken a new life beyond what i had envisioned, and i'm happy for that
-if you have any comment, suggestion or anything let us know
--demma (demmis98)

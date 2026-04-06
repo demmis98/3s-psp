@@ -2,7 +2,47 @@
 
 A PSP port of Street Fighter III: 3rd Strike, based on the PS2/PC decompilation.
 
-## Features
+## --How to use--
+
+You need `SF33RD.AFS` from the PS2 disc/iso. Place it in a `resources/` folder next to `EBOOT.PBP`:
+
+```
+ms0:/PSP/GAME/3rd-strike/
+    EBOOT.PBP
+    ICON0.PNG          (optional, 144x80 RGBA PNG)
+    resources/
+        SF33RD.AFS
+```
+
+
+## --Controls--
+
+- Start+Select: Soft reset (returns to title screen)
+- Press Start at boot: Disable backgrounds (debug)
+
+## --Settings--
+
+### Screen Settings
+#### Screen mode
+    -"Stretch" for full screen
+    -"Square" for pseudo 4:3
+    -"Native" for 384x224 resolution
+    -"Vertical" for native width, expanded height
+    -"Extended" for experimental rendering
+#### Filter
+    -"Nearest" for nearest scaling
+    -"Bilinear" for bilinear scaling
+#### Scaling mode
+    -"Fast" for scaling each vertex
+    -"Smooth" for scaling the whole canvas
+
+### Sound Settings
+-Choose between stereo or mono
+-Change the volume for the music and the sound effects
+-Choose either "Arranged" soundtrack or "Original"
+
+
+## --Tecnical Features--
 
 ### Rendering
 - Native CPS3 resolution (384x224) centered on PSP screen (480x272)
@@ -30,7 +70,10 @@ A PSP port of Street Fighter III: 3rd Strike, based on the PS2/PC decompilation.
 - -O3 -ffast-math compiler optimization
 - Graceful error recovery (no freeze traps)
 
-## Building
+### Save System
+- Screen settings and sound setting can be saved using the PSP's native api, and it also saves the arcade progress (rankings and arcade completion) which unlocks extra colors (holding start when selecting a character)
+
+## --Building--
 
 Requires [pspdev](https://github.com/pspdev/pspdev) toolchain (tested via WSL Debian).
 
@@ -42,33 +85,12 @@ psp-cmake ..
 make -j4
 ```
 
-## Resources
-
-You need `SF33RD.AFS` from the PS2 disc. Place it in a `resources/` folder next to `EBOOT.PBP`:
-
-```
-ms0:/PSP/GAME/3rd-strike/
-    EBOOT.PBP
-    ICON0.PNG          (optional, 144x80 RGBA PNG)
-    resources/
-        SF33RD.AFS
-```
-
-## Controls
-
-- Start+Select: Soft reset (returns to title screen)
-- Press Start at boot: Disable backgrounds (debug)
-
 ## Known Issues
 
 - Seamless BGM segment transitions have a minor audible click on some tracks
 - White noise burst possible on SPU voices with invalid start addresses (mitigated with address validation)
 
 ## TODO / Stubs
-
-### Save System
-- `SaveInit()` and `SaveMove()` are stubs — no save/load support yet
-- Would need PSP `sceUtilitySavedata*` API integration
 
 ### Audio Polish
 - ADX loading is fully synchronous — could benefit from async with double-buffered player state
@@ -82,3 +104,17 @@ ms0:/PSP/GAME/3rd-strike/
 - `fatal_error()`, `not_implemented()`, `debug_print()` — empty logging functions
 - `tarPADDestroy()` — PAD cleanup stub
 - `flMemset()` / `flMemcpy()` — manual loops, should use stdlib
+
+## --Credits--
+- demmis98
+- gibletto
+- Kinu Nishimura (banner artwork)
+
+
+## --Thanks--
+thanks to everyone following this proyect
+i honestly never thought it could run this well on real hardware, and even have sound
+thanks to everyone who downloaded it and tried it on their psp, it makes me so happy to see people enjoying this port
+this code has taken a new life beyond what i had envisioned, and i'm happy for that
+if you have any comment, suggestion or anything let us know
+-demma (demmis98)
