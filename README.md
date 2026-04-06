@@ -9,7 +9,6 @@ You need `SF33RD.AFS` from the PS2 disc/iso. Place it in a `resources/` folder n
 ```
 ms0:/PSP/GAME/3rd-strike/
     EBOOT.PBP
-    ICON0.PNG          (optional, 144x80 RGBA PNG)
     resources/
         SF33RD.AFS
 ```
