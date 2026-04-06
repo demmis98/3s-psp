@@ -37,9 +37,9 @@ ms0:/PSP/GAME/3rd-strike/
     -"Smooth" for scaling the whole canvas
 
 ### Sound Settings
--Choose between stereo or mono
--Change the volume for the music and the sound effects
--Choose either "Arranged" soundtrack or "Original"
+- Choose between stereo or mono
+- Change the volume for the music and the sound effects
+- Choose either "Arranged" soundtrack or "Original"
 
 
 ## --Tecnical Features--
