@@ -1926,9 +1926,11 @@ void Game_Manage_12th() {
     SC12_Jmp_Tbl[C_No[1]]();
 
     if (Bonus_Type == 20) {
-        // if in car bonus, clock is set to 300
-        if(!RTT_Enabled)
-            setClock(CLOCK_300);
+        // if in car bonus, clock is set higher
+        if(RTT_Enabled)
+            setClock(CLOCK_333);
+        else
+            setClock(CLOCK_266);
 
         bcounter_write();
     }

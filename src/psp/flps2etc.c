@@ -133,26 +133,7 @@ void flMemset(void* dst, u32 pat, s32 size) {
 
 // FIXME: use memcpy instead
 void flMemcpy(void* dst, void* src, s32 size) {
-    s32 i;
-    u8 *d8, *s8;
-    u32 *d32, *s32;
-
-    if(size % 4){
-        d8 = (u8*) dst;
-        s8 = (u8*) src;
-        for (i = 0; i < size; i++) {
-            *d8++ = *s8++;
-        }
-    }
-    else{
-        d32 = (u32*) dst;
-        s32 = (u32*) src;
-        size /= 4;
-
-        for (i = 0; i < size; i++) {
-            *d32++ = *s32++;
-        }
-    }
+    memcpy(dst, src, size);
 }
 
 void* flAllocMemory(s32 size) {

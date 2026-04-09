@@ -30,7 +30,7 @@ void updateClock(){
     if(clock_mode_temp != clock_mode){
         clock_mode_temp = clock_mode;
         
-        return;
+        //return;
 
         switch (clock_mode) {
         case CLOCK_222:
@@ -77,9 +77,9 @@ int power_callback(int unknown, int powerInfo, void *common) {
         afsReopen();
         /* Restore Clock Frequency — OS may reset clock after sleep */
         if(RTT_Enabled)
-            forceClock(CLOCK_333);
+            forceClock(CLOCK_300);
         else
-            forceClock(CLOCK_266);
+            forceClock(CLOCK_222);
         /* Resume audio playback */
         adxResume();
     }

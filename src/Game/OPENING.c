@@ -27,6 +27,7 @@
 #include "Game/sc_sub.h"
 #include "Game/texcash.h"
 #include "Game/workuser.h"
+#include "Game/main.h"
 
 typedef const f32* ro_f32_ptr;
 
@@ -138,7 +139,9 @@ void TITLE_Init() {
 s16 TITLE_Move(u16 type) {
     ppgSetupCurrentDataList(&ppgTitleList);
 
-    if(!RTT_Enabled)
+    if(RTT_Enabled)
+        setClock(CLOCK_333);
+    else
         setClock(CLOCK_300);
 
     switch (type) {
