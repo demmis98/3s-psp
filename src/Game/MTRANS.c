@@ -1615,12 +1615,16 @@ void seqsAfterProcess() {
         Vec3 *vert;
         TexCoord *tc;
 
+        u32 color_temp;
+
         for (i = 0; i < seqs_w.sprTotal; i++) {
             c = &seqs_w.chip[i];
             if (seqs_w.up[c->id]) {
                 val = seqs_w.chip[i].tex_code;
 
                 tex = &flTexture[LO_16_BITS(val) - 1];
+
+                color_temp = fixARGB(c->vertex_color);
 
                 for (j = 0; j < 2; j++) {
                     vert = &c->v[j];
@@ -1630,7 +1634,7 @@ void seqsAfterProcess() {
                     vertices[j + k].z = vert->z;
                     vertices[j + k].u = tc->s;
                     vertices[j + k].v = tc->t;
-                    vertices[j + k].colour = fixARGB(c->vertex_color);
+                    vertices[j + k].colour = color_temp;
                 }
 
                 if(val != val_temp){

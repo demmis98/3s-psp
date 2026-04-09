@@ -30,7 +30,7 @@ void updateClock(){
     if(clock_mode_temp != clock_mode){
         clock_mode_temp = clock_mode;
         
-        //return;
+        return;
 
         switch (clock_mode) {
         case CLOCK_222:

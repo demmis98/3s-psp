@@ -19,13 +19,15 @@ extern s32 flFrame;
 
 extern bool skip_frame;
 
+void swizzle_fast(u8* out, const u8* in, unsigned int width, unsigned int height);
+void swizzle_inplace(void *data, uint32_t width_bytes, uint32_t height);
+
 s32 flLogOut(s8* format, ...);
 s32 flPrintL(s32 posi_x, s32 posi_y, const s8* format, ...);
 s32 flPrintColor(u32 col);
 
 s32 flFlip(u32 flag);
 
-// unimplemented
 s32 flLockTexture(Rect* lprect, u32 th, plContext* lpcontext, u32 flag);
 s32 flUnlockTexture(u32 th);
 u32 flCreateTextureHandle(plContext* bits, u32 flag);

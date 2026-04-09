@@ -139,11 +139,6 @@ void TITLE_Init() {
 s16 TITLE_Move(u16 type) {
     ppgSetupCurrentDataList(&ppgTitleList);
 
-    if(RTT_Enabled)
-        setClock(CLOCK_333);
-    else
-        setClock(CLOCK_300);
-
     switch (type) {
     case 0:
         switch (op_w.r_no_0) {

@@ -110,6 +110,38 @@ s32 flPS2LockTexture(Rect* /* unused */, FLTexture* lpflTexture, plContext* lpco
 s32 flPS2UnlockTexture(FLTexture*);
 static s32 system_work_init();
 
+void swizzle_fast(u8* out, const u8* in, unsigned int width, unsigned int height) {
+   unsigned int blockx, blocky;
+   unsigned int j;
+ 
+   unsigned int width_blocks = (width / 16);
+   unsigned int height_blocks = (height / 8);
+ 
+   unsigned int src_pitch = (width-16)/4;
+   unsigned int src_row = width * 8;
+ 
+   const u8* ysrc = in;
+   u32* dst = (u32*)out;
+ 
+   for (blocky = 0; blocky < height_blocks; ++blocky)
+   {
+      const u8* xsrc = ysrc;
+      for (blockx = 0; blockx < width_blocks; ++blockx)
+      {
+         const u32* src = (u32*)xsrc;
+         for (j = 0; j < 8; ++j)
+         {
+            *(dst++) = *(src++);
+            *(dst++) = *(src++);
+            *(dst++) = *(src++);
+            *(dst++) = *(src++);
+            src += src_pitch;
+         }
+         xsrc += 16;
+     }
+     ysrc += src_row;
+   }
+}
 
 void swizzle_inplace(void *data, uint32_t width_bytes, uint32_t height) {
     uint32_t rowblocks = width_bytes / 16;
@@ -128,6 +160,47 @@ void swizzle_inplace(void *data, uint32_t width_bytes, uint32_t height) {
             for (j = 0; j < 16; j++) {
                 dst[block_ofs + j] = *src++;
             }
+        }
+    }
+
+    memcpy(data, tmp, sz);
+    free(tmp);
+}
+
+void swizzle_inplace_correct_5551(void *data, uint32_t width_bytes, uint32_t height) {
+    uint32_t rowblocks = width_bytes / 16;
+    uint32_t sz = width_bytes * height;
+
+    u8 *tmp = (u8 *)malloc(sz);
+    if (!tmp) return;
+
+    u8 *src = (u8 *)data;
+    u8 *dst = tmp;
+
+    for (uint32_t blocky = 0; blocky < height; blocky++) {
+        for (uint32_t blockx = 0; blockx < rowblocks; blockx++) {
+
+            uint32_t block_idx = blockx + (blocky / 8) * rowblocks;
+            uint32_t block_ofs = block_idx * 16 * 8 + (blocky & 7) * 16;
+
+            // process 16 bytes = 8 pixels (16-bit each)
+            u16 *dst16 = (u16 *)(dst + block_ofs);
+            u16 *src16 = (u16 *)src;
+
+            for (uint32_t j = 0; j < 8; j++) {
+                u16 v = *src16++;
+
+                // swap R (bits 10–14) and B (bits 0–4)
+                u16 r = (v >> 10) & 0x1F;
+                u16 b = v & 0x1F;
+
+                v &= ~0x7C1F;
+                v |= (b << 10) | r;
+
+                dst16[j] = v;
+            }
+
+            src += 16; // advance 16 bytes
         }
     }
 
@@ -1268,16 +1341,8 @@ s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture,
 
         case GU_PSM_5551:
             tex_size = dw * dh * 2;
-            {
-                // Swap R and B channels: process 2 pixels at a time via u32
-                u32 *p32 = (u32*) dst_ptr;
-                int count = (dw * dh) >> 1;
-                for(int i = 0; i < count; i++){
-                    u32 v = p32[i];
-                    u32 rb = v & 0x7C1F7C1F;  // R and B bits
-                    p32[i] = (v & 0x83E083E0) | ((rb >> 10) & 0x001F001F) | ((rb << 10) & 0x7C007C00);
-                }
-            }
+            swizzle_inplace_correct_5551(dst_ptr, dw*2, dh);
+            lpflTexture->swizzeled = true;
             break;
 
         case GU_PSM_4444:
