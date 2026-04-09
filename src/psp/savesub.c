@@ -12,6 +12,7 @@
 //for saving
 #include "Game/WORK_SYS.h"
 #include "Game/RANKING.h"
+#include "Game/color3rd.h"
 
 typedef struct {
     u32 version;
@@ -30,6 +31,9 @@ typedef struct {
     u8 Extra_Option;
     u8 PL_Color[2][20];
     _EXTRA_OPTION extra_option;
+
+    u8 CRT_COLOR;
+    _PAD_INFOR Pad_Infor[2];
 } SaveData;
 
 enum {
@@ -57,10 +61,14 @@ void pspSaveLoad();
 void saveScreenParms();
 void saveSoundParms();
 void saveGameProgress();
+void saveColorCorrect();
+void saveButtonMap();
 
 void loadSoundParms();
 void loadScreenParms();
 void loadGameProgress();
+void loadColorCorrect();
+void loadButtonMap();
 
 void SaveInit(s32 file_type, s32 save_mode) {
     s16 mode;
@@ -139,6 +147,8 @@ s32 SaveMove() {
         saveScreenParms();
         saveSoundParms();
         saveGameProgress();
+        saveColorCorrect();
+        saveButtonMap();
     }
 
     pspSaveLoad();
@@ -147,6 +157,10 @@ s32 SaveMove() {
         && save_params.base.result == 0){
 
         switch(save_data.version){
+        case 5:
+            loadButtonMap();
+        case 4:
+            loadColorCorrect();
         case 3:
             loadGameProgress();
         case 2:
@@ -175,7 +189,7 @@ void pspSaveLoad(){
     int mode;
 
     // DEMMA change this to avoid incompatibilities
-    save_data.version = 3;
+    save_data.version = 5;
 
     if (sceUtilitySavedataInitStart(&save_params) < 0)
         return;
@@ -235,6 +249,15 @@ void saveGameProgress() {
     save_data.extra_option = save_w[1].extra_option;
 }
 
+void saveColorCorrect() {
+    save_data.CRT_COLOR = CRT_COLOR;
+}
+
+void saveButtonMap() {
+    save_data.Pad_Infor[0] = save_w[1].Pad_Infor[0];
+    save_data.Pad_Infor[1] = save_w[1].Pad_Infor[1];
+}
+
 void loadScreenParms() {
     RTT_Enabled = save_data.RTT_Enabled;
     blit_filter = save_data.blit_filter;
@@ -267,4 +290,15 @@ void loadGameProgress() {
 
     save_w[1].Extra_Option = save_data.Extra_Option;
     save_w[1].extra_option = save_data.extra_option;
+}
+
+void loadColorCorrect() {
+    CRT_COLOR = save_data.CRT_COLOR;
+}
+
+void loadButtonMap() {
+    for(int i = 0; i < 6; i++){
+        save_w[i].Pad_Infor[0] = save_data.Pad_Infor[0];
+        save_w[i].Pad_Infor[1] = save_data.Pad_Infor[1];
+    }
 }

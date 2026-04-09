@@ -9,6 +9,9 @@
 extern u16 ColorRAM[MAX_PALETTES][64];
 extern Col3rd_W col3rd_w;
 
+#define CRT_COLOR_DEFAULT 1
+extern u8 CRT_COLOR;
+
 void q_ldreq_color_data(REQ* curr);
 void load_any_color(u16 ix, u8 kokey);
 void set_hitmark_color();

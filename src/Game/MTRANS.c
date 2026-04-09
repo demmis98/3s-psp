@@ -1628,8 +1628,8 @@ void seqsAfterProcess() {
                     vertices[j + k].x = (s32)SCALE_X(vert->x);
                     vertices[j + k].y = (s32)SCALE_Y(vert->y);
                     vertices[j + k].z = vert->z;
-                    vertices[j + k].u = tc->s * tex->width;
-                    vertices[j + k].v = tc->t * tex->height;
+                    vertices[j + k].u = tc->s;
+                    vertices[j + k].v = tc->t;
                     vertices[j + k].colour = fixARGB(c->vertex_color);
                 }
 
@@ -1651,8 +1651,8 @@ s32 seqsStoreChip(f32 x, f32 y, s32 w, s32 h, s32 gix, s32 code, s32 attr, s32 a
     s32 u;
     s32 v;
 
-    const f32 dx = 0;
-    const f32 dy = 0;
+    const f32 dx = 0.0f;
+    const f32 dy = 0.0f;
 
     chip = &seqs_w.chip[seqs_w.sprTotal];
     chip->v[0].x = x;
@@ -1681,19 +1681,19 @@ s32 seqsStoreChip(f32 x, f32 y, s32 w, s32 h, s32 gix, s32 code, s32 attr, s32 a
     appRenewTempPriority_1_Chip();
 
     if (attr & 0x8000) {
-        chip->t[1].s = (u - dx) / 256.0f;
-        chip->t[0].s = (u + w - dx) / 256.0f;
+        chip->t[1].s = (u + dx);
+        chip->t[0].s = (u + w);
     } else {
-        chip->t[0].s = (u + dx) / 256.0f;
-        chip->t[1].s = (u + w + dx) / 256.0f;
+        chip->t[0].s = (u + dx);
+        chip->t[1].s = (u + w);
     }
 
     if (attr & 0x4000) {
-        chip->t[1].t = (v - dy) / 256.0f;
-        chip->t[0].t = (v + h - dy) / 256.0f;
+        chip->t[1].t = (v + dy);
+        chip->t[0].t = (v + h);
     } else {
-        chip->t[0].t = (v + dy) / 256.0f;
-        chip->t[1].t = (v + h + dy) / 256.0f;
+        chip->t[0].t = (v + dy);
+        chip->t[1].t = (v + h);
     }
 
     chip->tex_code |= ppgGetUsingPaletteHandle(NULL, attr & 0x1FF) << 16;

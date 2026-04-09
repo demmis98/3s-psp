@@ -19,6 +19,8 @@
 
 #include "common.h"
 
+#include "Game/main.h"
+
 #include "sdk/libgraph.h"
 
 FLTexture flPalette[FL_PALETTE_MAX];
@@ -1230,7 +1232,12 @@ static s32 system_work_init() {
     void* temp;
 
     flMemset(&flPs2State, 0, sizeof(FLPS2State));
+    //int temp_size = 0x01800000;
+    #ifdef PSP_FAT
+    int temp_size = 0x00F00000;
+    #else
     int temp_size = 0x01800000;
+    #endif
     //int temp_size = 0x01C00000;
 
     temp = memalign(16, temp_size);
@@ -1242,7 +1249,12 @@ static s32 system_work_init() {
     }
 
     fmsInitialize(&flFMS, temp, temp_size, 0x16);
+    //const int system_memory_size = 0xA00000;
+    #ifdef PSP_FAT
+    const int system_memory_size = 0x700000;
+    #else
     const int system_memory_size = 0xA00000;
+    #endif
     //const int system_memory_size = 0x1000000;
     temp = flAllocMemoryS(system_memory_size);
     mflInit(temp, system_memory_size, 0x16);

@@ -507,7 +507,7 @@ ssize_t ppgDecompress(s32 koCmpr, void* srcAdrs, s32 srcSize, void* dstAdrs, s32
     switch (koCmpr) {
     default:
         if (srcAdrs != dstAdrs) {
-            memcpy(dstAdrs, srcAdrs, dstSize);
+            flMemcpy(dstAdrs, srcAdrs, dstSize);
         }
 
         rnum = srcSize;
@@ -856,7 +856,7 @@ s32 ppgSetupTexChunkSeqs(Texture* tch, PPGFileHeader* ppg, u8* adrs, s32 ixNum1s
     for (i = 0; i < ixNums; i++) {
         bits.ptr = (void*) flPS2GetSystemMemoryHandle(tch->srcSize, 2);
         u8* p = flPS2GetSystemBuffAdrs((u32)bits.ptr);
-        memcpy(p, adrs, tch->srcSize);
+        flMemcpy(p, adrs, tch->srcSize);
         tch->handle[i].b16[1] = ci_flag;
         tch->handle[i].b16[0] = flCreateTextureHandle(&bits, attribute);
 

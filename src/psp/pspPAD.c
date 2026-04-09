@@ -3,6 +3,7 @@
 #include "psp/pspPAD.h"
 
 u8 playAsP2 = false;
+extern volatile int g_request_pause;
 
 TARPAD tarpad_root[2];
 
@@ -51,6 +52,9 @@ void tarPADRead() {
         tp->sw = 0;
         return;
     }
+
+    if(pad.Buttons & PSP_CTRL_HOME)
+        g_request_pause = 1;
 
     if (pad.Buttons & PSP_CTRL_UP || pad.Ly < 0x40) sw |= 0x0001;
     if (pad.Buttons & PSP_CTRL_RIGHT || pad.Lx > 0xC0) sw |= 0x0008;

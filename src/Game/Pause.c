@@ -158,7 +158,6 @@ s32 Check_Pause_Term(u16 sw, u8 PL_id) {
     }
 
     if (sw & SWK_START || g_request_pause) {
-        g_request_pause = 0;
         Pause_Type = 1;
         return PAUSE_X = 1;
     }

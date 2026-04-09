@@ -62,6 +62,8 @@ PixelFormat palFormRam;
 PixelFormat palFormSrc;
 s32 palFormConv;
 
+u8 CRT_COLOR = CRT_COLOR_DEFAULT;
+
 //functions
 s32 cseTsbSetBankAddr(u32 bank, SoundEvent* addr) ;
 s32 cseMemMapSetPhdAddr(u32 bank, void* addr);
@@ -450,6 +452,27 @@ void palCopyGhostDC(s32 ofs, s32 cnt, void* data) {
     col3rd_w.upBits = col3rd_w.upBits | (1 << (ofs / 64));
 }
 
+u8 gammaCRT(u8 x) {
+    if (x <= 2) return 0;
+
+    u16 v = (x << 3) | (x >> 2);
+    u16 y = (v + ((v * v) >> 8)) >> 1;
+
+    y = y + ((y - 128) >> 4);
+
+    if (4 <= y && y <= 251)
+        y += 4;
+
+    y = y >> 3;
+
+    if(y > 0x1F)
+        y = 0x1F;
+    else if((s16) y < 0)
+        y = 0;
+
+    return (u8)y;
+}
+
 u16 palConvSrcToRam(u16 col) {
     u8 cA;
     u8 cR;
@@ -464,6 +487,14 @@ u16 palConvSrcToRam(u16 col) {
     cR = palFormSrc.rm & (col >> palFormSrc.rs);
     cG = palFormSrc.gm & (col >> palFormSrc.gs);
     cB = palFormSrc.bm & (col >> palFormSrc.bs);
+
+    /*DEMMA COLOR TEST*/
+    if(CRT_COLOR){
+        cR = gammaCRT(cR);
+        cG = gammaCRT(cG);
+        cB = gammaCRT(cB);
+    }
+
     return (cA << palFormRam.as) | (cR << palFormRam.rs) | (cG << palFormRam.gs) | (cB << palFormRam.bs);
 }
 

@@ -134,13 +134,24 @@ void flMemset(void* dst, u32 pat, s32 size) {
 // FIXME: use memcpy instead
 void flMemcpy(void* dst, void* src, s32 size) {
     s32 i;
-    s8* now[2];
+    u8 *d8, *s8;
+    u32 *d32, *s32;
 
-    now[0] = dst;
-    now[1] = src;
+    if(size % 4){
+        d8 = (u8*) dst;
+        s8 = (u8*) src;
+        for (i = 0; i < size; i++) {
+            *d8++ = *s8++;
+        }
+    }
+    else{
+        d32 = (u32*) dst;
+        s32 = (u32*) src;
+        size /= 4;
 
-    for (i = 0; i < size; i++) {
-        *now[0]++ = *now[1]++;
+        for (i = 0; i < size; i++) {
+            *d32++ = *s32++;
+        }
     }
 }
 

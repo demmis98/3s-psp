@@ -248,6 +248,8 @@ void endGu(){
 typedef struct { float u, v; float x, y, z; } BlitVertex;
 
 void startFrame(){
+    sceGuSync(GU_SYNC_LIST, GU_SYNC_WHAT_DONE);
+
     setupScaling(render_mode);
 
     sceGuStart(GU_DIRECT, list);
@@ -304,7 +306,6 @@ void endFrame(){
     if (!RTT_Enabled) {
         /* Direct path — just finish and swap */
         sceGuFinish();
-        sceGuSync(GU_SYNC_FINISH, GU_SYNC_WHAT_DONE);
         sceDisplayWaitVblankStart();
         sceGuSwapBuffers();
         backBuf ^= 1;
@@ -314,7 +315,7 @@ void endFrame(){
     /* RTT path — switch to screen, blit */
     void *curBack = backBuf ? fbp1 : fbp0;
     sceGuDrawBufferList(GU_PSM_8888, curBack, BUFFER_WIDTH);
-    ppgResetTextureCache();
+    //ppgResetTextureCache();
 
     sceGuOffset(2048 - (SCREEN_WIDTH / 2) + 10, 2048 - (SCREEN_HEIGHT / 2) + 10);
     sceGuViewport(2048, 2048, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -328,8 +329,9 @@ void endFrame(){
     sceGuDisable(GU_DEPTH_TEST);
     sceGuDisable(GU_ALPHA_TEST);
     /* Force opaque blit — use fixed blend factors to ignore any alpha */
-    sceGuEnable(GU_BLEND);
-    sceGuBlendFunc(GU_ADD, GU_FIX, GU_FIX, 0xFFFFFFFF, 0x00000000);
+    //sceGuEnable(GU_BLEND);
+    //sceGuBlendFunc(GU_ADD, GU_FIX, GU_FIX, 0xFFFFFFFF, 0x00000000);
+    sceGuDisable(GU_BLEND);
     sceGuTexMode(GU_PSM_8888, 0, 0, 0);
     void *rttAbs = (void*)((u32)sceGeEdramGetAddr() + (u32)rttBuf);
     sceGuTexImage(0, RTT_BUF_WIDTH, 256, RTT_BUF_WIDTH, rttAbs);
@@ -356,7 +358,6 @@ void endFrame(){
     sceGuEnable(GU_BLEND);
 
     sceGuFinish();
-    sceGuSync(GU_SYNC_FINISH, GU_SYNC_WHAT_DONE);
     sceDisplayWaitVblankStart();
     sceGuSwapBuffers();
     backBuf ^= 1;

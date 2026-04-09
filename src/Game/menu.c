@@ -2069,10 +2069,13 @@ void Screen_Adjust(struct _TASK* task_ptr) {
             effect_63_init(0x68, 0, 2, 7, 2);  /* Row 2 value: scaling mode */
             Order[0x68] = 1; Order_Dir[0x68] = 4; Order_Timer[0x68] = 0x16;
 
+            effect_63_init(0x69, 0, 2, 8, 3);  /* Row 3 value: color mode */
+            Order[0x69] = 1; Order_Dir[0x69] = 4; Order_Timer[0x69] = 0x16;
+
             /* Labels */
             {
-                s16 screen_chars[5] = { 0xE, 0xF, 0x10, 0x11, 0x12}; /* RENDER MODE, FILTER MODE, SCALING MODE, DEFAULT, EXIT */
-                for (ix = 0; ix < 5; ix++) {
+                s16 screen_chars[6] = { 0xE, 0xF, 0x10, 0x11, 0x12, 0x13}; /* RENDER MODE, FILTER MODE, SCALING MODE, COLOR MODE, DEFAULT, EXIT */
+                for (ix = 0; ix < 6; ix++) {
                     effect_61_init(0, ix + 0x50, 0, 2, screen_chars[ix], ix, 0x7047);
                     Order[ix + 0x50] = 1;
                     Order_Dir[ix + 0x50] = 4;
@@ -2157,6 +2160,7 @@ void Screen_Exit_Check(struct _TASK* task_ptr, s16 PL_id) {
         render_mode = SCREEN_DEFAULT_MODE;
         blit_filter = SCREEN_DEFAULT_FILTER;
         RTT_Enabled = SCREEN_DEFAULT_RTT;
+        CRT_COLOR = CRT_COLOR_DEFAULT;
     }
 }
 
@@ -2176,6 +2180,7 @@ void Screen_Move_Sub_LR(u16 sw) {
         Render Mode = cursor 0
         Filtering Mode = cursor 1
         Scaling Mode = cursor 2
+        Color Mode = cursor 3
     */
     if (Menu_Cursor_Y[0] == 0 && (sw == 4 || sw == 8)) {
         if (sw == 8) {
@@ -2193,6 +2198,11 @@ void Screen_Move_Sub_LR(u16 sw) {
 
     if (Menu_Cursor_Y[0] == 2 && (sw == 4 || sw == 8)) {
         RTT_Enabled ^= 1;
+        flag = 1;
+    }
+
+    if (Menu_Cursor_Y[0] == 3 && (sw == 4 || sw == 8)) {
+        CRT_COLOR ^= 1;
         flag = 1;
     }
 

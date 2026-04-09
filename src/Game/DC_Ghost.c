@@ -96,14 +96,12 @@ void njTranslate(MTX* mtx, f32 x, f32 y, f32 z) {
         mtx = &cmtx;
     }
 
-    MTX translation_matrix;
-
-    njUnitMatrix(&translation_matrix);
-    translation_matrix.a[3][0] = x;
-    translation_matrix.a[3][1] = y;
-    translation_matrix.a[3][2] = z;
-
-    matmul(mtx, &translation_matrix, mtx);
+    for (int i = 0; i < 4; i++) {
+        mtx->a[3][i] +=
+        mtx->a[0][i] * x +
+        mtx->a[1][i] * y +
+        mtx->a[2][i] * z;
+    }
 }
 
 void njSetBackColor(u32 c0, u32 c1, u32 c2) {

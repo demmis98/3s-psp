@@ -10,7 +10,7 @@
 #include "Game/main.h"
 
 // PSP_MODULE_INFO is required
-PSP_MODULE_INFO("3rd-strike", 0, 9, 9);
+PSP_MODULE_INFO("3rd-strike", PSP_MODULE_USER, 1, 0);
 //PSP_MAIN_THREAD_ATTR(PSP_THREAD_ATTR_VFPU | PSP_THREAD_ATTR_USER);
 PSP_MAIN_THREAD_ATTR(PSP_THREAD_ATTR_VFPU | PSP_THREAD_ATTR_USER);
 PSP_HEAP_SIZE_KB(-1024);
@@ -28,6 +28,10 @@ int clock_mode_temp = -1;
 
 void updateClock(){
     if(clock_mode_temp != clock_mode){
+        clock_mode_temp = clock_mode;
+        
+        return;
+
         switch (clock_mode) {
         case CLOCK_222:
             scePowerSetClockFrequency(222, 222, 111);
@@ -44,8 +48,6 @@ void updateClock(){
         default:
             break;
         }
-        
-        clock_mode_temp = clock_mode;
     }
 }
 
@@ -66,6 +68,8 @@ int power_callback(int unknown, int powerInfo, void *common) {
         afsSuspend();
         /* Trigger in-game pause on resume */
         g_request_pause = 1;
+
+        sceDisplayWaitVblankStart();
     }
     if (powerInfo & PSP_POWER_CB_RESUME_COMPLETE) {
         /* Proactively reopen AFS fds — sceIoRead on stale fd may hang
@@ -105,6 +109,8 @@ int setup_callbacks(void) {
     return thid;
 }
 
+extern int DEMMA_DEBUG;
+
 int main(void)  {
     // Use above functions to make exiting possible
     setup_callbacks();
@@ -114,7 +120,6 @@ int main(void)  {
     pspAudioInit();  // Init pspaudiolib with NULL callbacks (silence)
     // SPU_Init sets channel 0 callback for SFX
     // ADX uses sceAudioChReserve for BGM on a separate channel
-
     AcrMain();
 
     return 0;

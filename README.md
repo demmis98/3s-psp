@@ -31,7 +31,7 @@ ms0:/PSP/GAME/3rd-strike/
     -"Extended" for experimental rendering
 #### Filter
     -"Nearest" for nearest scaling
-    -"Bilinear" for bilinear scaling
+    -"Bilinear" for #define PSP_FATar scaling
 #### Scaling mode
     -"Fast" for scaling each vertex
     -"Smooth" for scaling the whole canvas
@@ -78,8 +78,6 @@ ms0:/PSP/GAME/3rd-strike/
 Requires [pspdev](https://github.com/pspdev/pspdev) toolchain (tested via WSL Debian).
 
 ```bash
-export PSPDEV=/usr/local/pspdev
-export PATH="$PSPDEV/bin:$PATH"
 mkdir build_wsl && cd build_wsl
 psp-cmake ..
 make -j4

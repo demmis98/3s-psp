@@ -8,6 +8,7 @@
 #include "Game/bg.h"
 #include "Game/texcash.h"
 #include "Game/workuser.h"
+#include "Game/color3rd.h"
 
 void EFF63_WAIT(WORK_Other_CONN* ewk);
 void EFF63_SLIDE_IN(WORK_Other_CONN* ewk);
@@ -16,7 +17,7 @@ void EFF63_SUDDENLY(WORK_Other_CONN* /* unused */);
 void Disp_63_Sub(WORK_Other_CONN* ewk);
 void Setup_Letter_63(WORK_Other_CONN* ewk, s16 disp_index);
 
-const s8* Letter_Data_63[6][21] = { { "-10", "-9", "-8", "-7", "-6", "-5", "-4", "-3", "-2", "-1", "0",
+const s8* Letter_Data_63[7][21] = { { "-10", "-9", "-8", "-7", "-6", "-5", "-4", "-3", "-2", "-1", "0",
                                       "1",   "2",  "3",  "4",  "5",  "6",  "7",  "8",  "9",  "10" },
                                     { "94%", "96%", "98%", "100%", NULL, NULL, NULL, NULL, NULL, NULL, NULL,
                                       NULL,  NULL,  NULL,  NULL,   NULL, NULL, NULL, NULL, NULL, NULL },
@@ -27,7 +28,9 @@ const s8* Letter_Data_63[6][21] = { { "-10", "-9", "-8", "-7", "-6", "-5", "-4",
                                     { "BILINEAR", "NEAREST", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
                                       NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL },
                                     { "FAST", "SMOOTH", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-                                      NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL } };
+                                      NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+                                    { "^OFF", "^ON", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+                                      NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL }};
 
 void (*const EFF63_Jmp_Tbl[4])() = { EFF63_WAIT, EFF63_SLIDE_IN, EFF63_CHAR_CHANGE, EFF63_SUDDENLY };
 
@@ -163,6 +166,10 @@ s32 effect_63_init(u8 dir_old, s16 sync_bg, s16 master_player, s16 letter_type, 
         ewk->wu.dir_step = 5;  /* scaling mode names */
         break;
 
+    case 8:
+        ewk->wu.dir_step = 6;  /* color mode names */
+        break;
+
     default:
         ewk->wu.dir_step = 2;
         break;
@@ -195,8 +202,13 @@ void Disp_63_Sub(WORK_Other_CONN* ewk) {
         break;
 
     case 2:
-        /* PSP: filter mode (dir_step=4) */
+        /* PSP: scale mode (dir_step=5) */
         disp_index = (int)RTT_Enabled;
+        break;
+
+    case 3:
+        /* PSP: color mode (dir_step=6) */
+        disp_index = (int)CRT_COLOR;
         break;
 
     default:

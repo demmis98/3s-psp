@@ -13,6 +13,8 @@
 #include <malloc.h>
 #include <math.h>
 
+#include "Game/main.h"
+
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
@@ -288,6 +290,9 @@ void adxShutdown(void) {
 }
 
 static void adxPlayInternal(u16 fnum, s32 sync) {
+    #ifdef PSP_FAT
+        return;
+    #endif
     u32 file_size = afsGetFileSize(fnum);
     if (file_size == 0) return;
 
@@ -468,6 +473,9 @@ static s32 parse_header_into_next(const u8 *h, s32 size) {
 
 /* Preload next queued segment so the callback can swap with zero gap */
 static void adx_preload_next_segment(void) {
+    #ifdef PSP_FAT
+    return;
+    #endif
     if (adx_next_ready || adx_entry_count <= 0) return;
 
     u16 fnum = (u16)adx_entry_queue[0];
@@ -579,7 +587,7 @@ static volatile s32 adx_was_playing = 0;
 void adxSuspend(void) {
     adx_was_playing = (P.stat == ADX_STAT_PLAYING && !adx_paused);
     adx_paused = 1;  /* silence callback immediately */
-    pspAudioSetChannelCallback(1, NULL, NULL);
+    //pspAudioSetChannelCallback(1, NULL, NULL);
 }
 
 void adxResume(void) {

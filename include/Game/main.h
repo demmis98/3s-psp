@@ -32,6 +32,8 @@ enum {
 #define SAVER_TASK_NUM 6
 #define DEBUG_TASK_NUM 9
 
+//#define PSP_FAT
+
 extern MPP mpp_w;             // size: 0x4C, address: 0x57A9F0
 extern s32 system_init_level; // size: 0x4, address: 0x57AA3C
 

@@ -92,13 +92,18 @@ void AcrMain() {
     if(p1sw_buff & 0x4000){
         Debug_w[DEBUG_BG_DRAW_OFF] = 1;
     }
+    
     if(p1sw_buff & 0x8000){
         playAsP2 = 1;
     }
     setupScaling(render_mode);
 
     while (RUNNING) {
-        g_request_pause = 0;
+        if(g_request_pause){
+            g_request_pause++;
+            if(g_request_pause > 30)
+                g_request_pause = 0;
+        }
         initRenderState(0);
 
         mpp_w.ds_h[0] = mpp_w.ds_h[1];
