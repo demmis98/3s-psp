@@ -83,12 +83,47 @@ void njTranslate(MTX* mtx, f32 x, f32 y, f32 z) {
         mtx = &cmtx;
     }
 
+    /*
     for (int i = 0; i < 4; i++) {
         mtx->a[3][i] +=
         mtx->a[0][i] * x +
         mtx->a[1][i] * y +
         mtx->a[2][i] * z;
     }
+    */
+    __asm__ volatile (
+        // load rows
+        "lv.q   R100, 0(%0)\n"     // row0
+        "lv.q   R101, 16(%0)\n"    // row1
+        "lv.q   R102, 32(%0)\n"    // row2
+        "lv.q   R103, 48(%0)\n"    // row3
+
+        // load scalars
+        "mtv    %1, S000\n"
+        "mtv    %2, S001\n"
+        "mtv    %3, S002\n"
+
+        // temp = x * row0
+        "vscl.q R200, R100, S000\n"
+
+        // temp += y * row1
+        "vscl.q R201, R101, S001\n"
+        "vadd.q R200, R200, R201\n"
+
+        // temp += z * row2
+        "vscl.q R201, R102, S002\n"
+        "vadd.q R200, R200, R201\n"
+
+        // row3 += temp
+        "vadd.q R103, R103, R200\n"
+
+        // store row3
+        "sv.q   R103, 48(%0)\n"
+
+        :
+        : "r"(mtx->a), "r"(x), "r"(y), "r"(z)
+        : "memory"
+    );
 }
 
 void njSetBackColor(u32 c0, u32 c1, u32 c2) {
@@ -183,19 +218,56 @@ void njdp2d_draw_0() {
 
     sceGuDisable(GU_TEXTURE_2D);
 
+    __asm__ volatile (
+        // Load constants once
+        "mtv %0, S010\n"  // load Scale_Factor_X to matrix
+        "mtv %1, S011\n"  // load Scale_Factor_Y to matrix
+        "mtv %2, S020\n"  // load Scale_Off_X to matrix
+        "mtv %3, S021\n"  // load Scale_Off_Y to matrix
+        :
+        : "r"(Scale_Factor_X), "r"(Scale_Factor_Y), // %0 = Scale_Factor_X, %1 = Scale_Factor_Y
+        "r"(Scale_Off_X), "r"(Scale_Off_Y)  // %2 = Scale_Off_X, %3 = Scale_Off_Y
+    );
+
     for (i = njdp2d_w.ix1st; i != -1; i = njdp2d_w.prim[i].next) {
         if (njdp2d_w.prim[i].type == 0) {
             vertices = &vertices_total[w];
 
             for(j = 0; j < 3; j++){
                 k = -j + 5;
-                vertices[k].x = vertices[j].x = SCALE_X(njdp2d_w.prim[i].v[j].x);
-                vertices[k].y = vertices[j].y = SCALE_Y(njdp2d_w.prim[i].v[j].y);
+                //vertices[k].x = vertices[j].x = SCALE_X(njdp2d_w.prim[i].v[j].x);
+                //vertices[k].y = vertices[j].y = SCALE_Y(njdp2d_w.prim[i].v[j].y);
+                __asm__ volatile (
+                    "mtv %2, S000\n"    // load njdp2d_w.prim[i].v[j].x to matrix
+                    "mtv %3, S001\n"    // load njdp2d_w.prim[i].v[j].y to matrix
+
+                    "vmul.p C000, C000, C010\n" // multiply matrix (scale)
+                    "vadd.p C000, C000, C020\n" // add matrix (offset)
+
+                    "mfv %0, S000\n"    // store in vertices[j].x
+                    "mfv %1, S001\n"    // store in vertices[j].y
+                    : "=r"(vertices[j].x), "=r"(vertices[j].y)  // %0 = vertices[j].x, %1 = vertices[j].y;
+                    : "r"(njdp2d_w.prim[i].v[j].x), "r"(njdp2d_w.prim[i].v[j].y)    // %2 = njdp2d_w.prim[i].v[j].x, %3 = njdp2d_w.prim[i].v[j].y;
+                );
+                vertices[k].x = vertices[j].x;
+                vertices[k].y = vertices[j].y;
                 vertices[k].z = vertices[j].z = njdp2d_w.prim[i].v[j].z;
                 vertices[k].colour = vertices[j].colour = fixARGB(njdp2d_w.prim[i].col);
             }
-            vertices[5].x = SCALE_X(njdp2d_w.prim[i].v[j].x);
-            vertices[5].y = SCALE_Y(njdp2d_w.prim[i].v[j].y);
+            //vertices[5].x = SCALE_X(njdp2d_w.prim[i].v[j].x);
+            //vertices[5].y = SCALE_Y(njdp2d_w.prim[i].v[j].y);
+            __asm__ volatile (
+                "mtv %2, S000\n"    // load njdp2d_w.prim[i].v[j].x to matrix
+                "mtv %3, S001\n"    // load njdp2d_w.prim[i].v[j].y to matrix
+
+                "vmul.p C000, C000, C010\n" // multiply matrix (scale)
+                "vadd.p C000, C000, C020\n" // add matrix (offset)
+
+                "mfv %0, S000\n"    // store in vertices[j].x
+                "mfv %1, S001\n"    // store in vertices[j].y
+                : "=r"(vertices[5].x), "=r"(vertices[5].y)  // %0 = vertices[5].x, %1 = vertices[5].y;
+                : "r"(njdp2d_w.prim[i].v[j].x), "r"(njdp2d_w.prim[i].v[j].y)    // %2 = njdp2d_w.prim[i].v[j].x, %3 = njdp2d_w.prim[i].v[j].y;
+            );
             vertices[5].z = njdp2d_w.prim[i].v[j].z;
             vertices[5].colour = vertices[j].colour;
             w += 6;

@@ -35,7 +35,7 @@ int debug_mode = 0;
 
 bool skip_frame = 0;
 
-#define MAX_BG_BUFFER 4
+#define MAX_BG_BUFFER 5
 #define BG_BUFF_SIZE_X 256
 #define BG_BUFF_SIZE_Y 256
 static void *bg_buffer[MAX_BG_BUFFER];

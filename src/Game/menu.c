@@ -2514,6 +2514,8 @@ void Memory_Card(struct _TASK* task_ptr) {
         break;
 
     case 3:
+        displayGameProgress();
+        
         Memory_Card_Sub(0);
         Button_Exit_Check(task_ptr, 0);
 

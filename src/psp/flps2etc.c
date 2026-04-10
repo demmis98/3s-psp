@@ -131,9 +131,25 @@ void flMemset(void* dst, u32 pat, s32 size) {
     }
 }
 
+void __attribute__((noinline))  memcpy_vfpu_simple(void *dst, void *src, size_t size)  {
+    __asm__ volatile (
+    "loop:\n"
+        "beqz %2, loop_end\n"
+        "lv.q C200, 0(%1)\n"
+        "sv.q C200, 0(%0)\n"
+        "addiu %0, %0, 16\n"
+        "addiu %1, %1, 16\n"
+        "addiu %2, %2, -16\n"
+        "b loop\n"
+    "loop_end:\n" ::
+    "r"(dst), "r"( src), "r"(size));
+}
 // FIXME: use memcpy instead
 void flMemcpy(void* dst, void* src, s32 size) {
-    memcpy(dst, src, size);
+    if(size % 4)
+        memcpy(dst, src, size);
+    else
+        memcpy_vfpu_simple(dst, src, size);
 }
 
 void* flAllocMemory(s32 size) {

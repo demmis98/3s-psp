@@ -229,17 +229,26 @@ void ppgWriteQuadOnly2T(Vertex* pos, u32 col, u32 texCode, TextureVertex *vertic
     u32 color_temp = fixARGB(col);
 
     for (i = 0; i < 2; i++) {
-        vertices[i].x = SCALE_X((s32)pos[i*3].x);
-        vertices[i].y = SCALE_Y((s32)pos[i*3].y);
+        __asm__ volatile (
+            "mtv %2, S000\n"    // load pos[i*3].x to matrix
+            "mtv %3, S001\n"    // load pos[i*3].y to matrix
+
+            "vmul.p C000, C000, C010\n" // multiply matrix (scale)
+            "vadd.p C000, C000, C020\n" // add matrix (offset)
+
+            "mfv %0, S000\n"    // store in vertices[i].x
+            "mfv %1, S001\n"    // store in vertices[i].y
+            : "=r"(vertices[i].x), "=r"(vertices[i].y)  // %0 = vertices[i].x, %1 = vertices[i].y;
+            : "r"(pos[i*3].x), "r"(pos[i*3].y)    // %2 = pos[i*3].x, %3 = pos[i*3].y;
+            : "memory"
+        );
+        //vertices[i].x = SCALE_X((s32)pos[i*3].x);
+        //vertices[i].y = SCALE_Y((s32)pos[i*3].y);
         vertices[i].z = pos[i*3].z;
         vertices[i].u = (pos[i*3].u) * w_f + 0.5f;
         vertices[i].v = (pos[i*3].v) * h_f + 0.5f;
         vertices[i].colour = color_temp;
     }
-}
-
-
-void quadOnly2DrawLast(u32 texCode){
 }
 
 s32 ppgWriteQuadWithST_B(Vertex* pos, u32 col, PPGDataList* tb, s32 tix, s32 cix) {
@@ -398,6 +407,17 @@ s32 ppgWriteQuadUseTrans(Vertex* pos, u32 col, PPGDataList* tb, s32 tix, s32 cix
             u32 v_i = 0, v_s = 0;
             u32 tex_temp = -1;
             u32 texCode;
+
+            __asm__ volatile (
+                // Load constants once
+                "mtv %0, S010\n"  // load Scale_Factor_X to matrix
+                "mtv %1, S011\n"  // load Scale_Factor_Y to matrix
+                "mtv %2, S020\n"  // load Scale_Off_X to matrix
+                "mtv %3, S021\n"  // load Scale_Off_Y to matrix
+                :
+                : "r"(Scale_Factor_X), "r"(Scale_Factor_Y), // %0 = Scale_Factor_X, %1 = Scale_Factor_Y
+                "r"(Scale_Off_X), "r"(Scale_Off_Y)  // %2 = Scale_Off_X, %3 = Scale_Off_Y
+            );
 
             for (i = 0; i < transTotal; i++) {
                 if (ix_ofs & 0x4000) {

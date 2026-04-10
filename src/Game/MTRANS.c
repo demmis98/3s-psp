@@ -1575,7 +1575,7 @@ void seqsAfterProcess() {
     s32 i;
     u32 keep = 0;
     u32 val = 0;
-    TextureVertex *vertices;
+    TextureVertex *vertices, *vertices_temp;
     FLTexture *tex = &flTexture[LO_16_BITS(val) - 1];
 
     if ((Debug_w[0x27] != 3) && (seqs_w.sprTotal != 0)) {
@@ -1605,7 +1605,7 @@ void seqsAfterProcess() {
         if(DEMMA_DEBUG || skip_frame)
                 return;
 
-        vertices = (TextureVertex*)sceGuGetMemory(2 * seqs_w.sprTotal * sizeof(TextureVertex));
+        vertices = vertices_temp = (TextureVertex*)sceGuGetMemory(2 * seqs_w.sprTotal * sizeof(TextureVertex));
         if(vertices == NULL)
             return;
         int k = 0, j, w = 0;
@@ -1616,6 +1616,17 @@ void seqsAfterProcess() {
         TexCoord *tc;
 
         u32 color_temp;
+
+        __asm__ volatile (
+            // Load constants once
+            "mtv %0, S010\n"  // load Scale_Factor_X to matrix
+            "mtv %1, S011\n"  // load Scale_Factor_Y to matrix
+            "mtv %2, S020\n"  // load Scale_Off_X to matrix
+            "mtv %3, S021\n"  // load Scale_Off_Y to matrix
+            :
+            : "r"(Scale_Factor_X), "r"(Scale_Factor_Y), // %0 = Scale_Factor_X, %1 = Scale_Factor_Y
+            "r"(Scale_Off_X), "r"(Scale_Off_Y)  // %2 = Scale_Off_X, %3 = Scale_Off_Y
+        );
 
         for (i = 0; i < seqs_w.sprTotal; i++) {
             c = &seqs_w.chip[i];
@@ -1629,24 +1640,40 @@ void seqsAfterProcess() {
                 for (j = 0; j < 2; j++) {
                     vert = &c->v[j];
                     tc = &c->t[j];
-                    vertices[j + k].x = (s32)SCALE_X(vert->x);
-                    vertices[j + k].y = (s32)SCALE_Y(vert->y);
-                    vertices[j + k].z = vert->z;
-                    vertices[j + k].u = tc->s;
-                    vertices[j + k].v = tc->t;
-                    vertices[j + k].colour = color_temp;
+                    //vertices->x = (s32)SCALE_X(vert->x);
+                    //vertices->y = (s32)SCALE_Y(vert->y);
+                    __asm__ volatile (
+                        "mtv %2, S000\n"    // load vert->x to matrix
+                        "mtv %3, S001\n"    // load vert->y to matrix
+
+                        "vmul.p C000, C000, C010\n" // multiply matrix (scale)
+                        "vadd.p C000, C000, C020\n" // add matrix (offset)
+
+                        "mfv %0, S000\n"    // store in verticex->x
+                        "mfv %1, S001\n"    // store in verticex->y
+                        : "=r"(vertices->x), "=r"(vertices->y)  // %0 = vertices->x, %1 = vertices->y;
+                        : "r"(vert->x), "r"(vert->y)    // %2 = vert->x, %3 = vert->y;
+                    );
+                    vertices->x = vertices->x;
+                    vertices->y = vertices->y;
+                    vertices->z = vert->z;
+                    vertices->u = tc->s + 0.5f;
+                    vertices->v = tc->t + 0.5f;
+                    vertices->colour = color_temp;
+                    vertices++;
                 }
 
                 if(val != val_temp){
-                    sceGuDrawArray(GU_SPRITES, GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, k - w, 0, &vertices[w]);
+                    sceGuDrawArray(GU_SPRITES, GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, k - w, 0, &vertices_temp[w]);
                     w = k;
                     val_temp = val;
                     flSetRenderState(FLRENDER_TEXSTAGE0, val);
                 }
+                
                 k += 2;
             }
         }
-        sceGuDrawArray(GU_SPRITES, GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, k - w, 0, &vertices[w]);
+        sceGuDrawArray(GU_SPRITES, GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, k - w, 0, &vertices_temp[w]);
     }
 }
 
@@ -1655,15 +1682,13 @@ s32 seqsStoreChip(f32 x, f32 y, s32 w, s32 h, s32 gix, s32 code, s32 attr, s32 a
     s32 u;
     s32 v;
 
-    const f32 dx = 0.0f;
-    const f32 dy = 0.0f;
-
     chip = &seqs_w.chip[seqs_w.sprTotal];
     chip->v[0].x = x;
     chip->v[0].y = y;
     chip->v[1].x = x + w;
     chip->v[1].y = y - h;
     chip->v[0].z = chip->v[1].z = 0.0f;
+
     njCalcPoint(NULL, &chip->v[0], &chip->v[0]);
     njCalcPoint(NULL, &chip->v[1], &chip->v[1]);
 
@@ -1685,19 +1710,19 @@ s32 seqsStoreChip(f32 x, f32 y, s32 w, s32 h, s32 gix, s32 code, s32 attr, s32 a
     appRenewTempPriority_1_Chip();
 
     if (attr & 0x8000) {
-        chip->t[1].s = (u + dx);
-        chip->t[0].s = (u + w);
+        chip->t[1].s = u;
+        chip->t[0].s = u + w;
     } else {
-        chip->t[0].s = (u + dx);
-        chip->t[1].s = (u + w);
+        chip->t[0].s = u;
+        chip->t[1].s = u + w;
     }
 
     if (attr & 0x4000) {
-        chip->t[1].t = (v + dy);
-        chip->t[0].t = (v + h);
+        chip->t[1].t = v;
+        chip->t[0].t = v + h;
     } else {
-        chip->t[0].t = (v + dy);
-        chip->t[1].t = (v + h);
+        chip->t[0].t = v;
+        chip->t[1].t = v + h;
     }
 
     chip->tex_code |= ppgGetUsingPaletteHandle(NULL, attr & 0x1FF) << 16;

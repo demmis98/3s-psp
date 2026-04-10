@@ -2369,7 +2369,7 @@ void dispSaveLoadTitle(void* ewk) {
     pos[0].y = -12.0f;
     pos[1].x = -64.0f;
     pos[1].y = -48.0f;
-    pos[0].z = pos[1].z = 0.0f;
+    pos[0].z = pos[1].z = PrioBase[8];
 
     int j;
     for (i = 0; i < 3; i++) {

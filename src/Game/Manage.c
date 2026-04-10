@@ -1930,7 +1930,7 @@ void Game_Manage_12th() {
         if(RTT_Enabled)
             setClock(CLOCK_333);
         else
-            setClock(CLOCK_266);
+            setClock(CLOCK_300);
 
         bcounter_write();
     }

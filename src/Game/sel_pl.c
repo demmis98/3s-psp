@@ -288,7 +288,7 @@ void Check_Use_Gill() {
 
     for (ix = 1; ix < 20; ix++) {
         if (save_w[1].PL_Color[0][ix] == 0) {
-            //return;
+            return;
         }
     }
 

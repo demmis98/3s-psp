@@ -1,6 +1,8 @@
 # Street Fighter III: 3rd Strike - PSP Port
 
-A PSP port of Street Fighter III: 3rd Strike, based on the PS2/PC decompilation.
+A PSP port of Street Fighter III: 3rd Strike.
+Based on the PS2 decompilation  https://github.com/crowded-street/3s-decomp
+And the PC port https://github.com/crowded-street/3sx
 
 ## --How to use--
 

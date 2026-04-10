@@ -248,7 +248,10 @@ void endGu(){
 typedef struct { float u, v; float x, y, z; } BlitVertex;
 
 void startFrame(){
-    sceGuSync(GU_SYNC_LIST, GU_SYNC_WHAT_DONE);
+    //sceGuSync(GU_SYNC_LIST, GU_SYNC_WHAT_DONE);
+    sceDisplayWaitVblankStart();
+    sceGuSwapBuffers();
+    backBuf ^= 1;
 
     setupScaling(render_mode);
 
@@ -306,9 +309,6 @@ void endFrame(){
     if (!RTT_Enabled) {
         /* Direct path — just finish and swap */
         sceGuFinish();
-        sceDisplayWaitVblankStart();
-        sceGuSwapBuffers();
-        backBuf ^= 1;
         return;
     }
 
@@ -353,14 +353,12 @@ void endFrame(){
     sceGuBlendFunc(GU_ADD, GU_SRC_ALPHA, GU_ONE_MINUS_SRC_ALPHA, 0, 0);
     sceGuTexFunc(GU_TFX_MODULATE, GU_TCC_RGBA);
     sceGuTexFilter(GU_NEAREST, GU_NEAREST);
+
     sceGuEnable(GU_DEPTH_TEST);
     sceGuEnable(GU_ALPHA_TEST);
     sceGuEnable(GU_BLEND);
 
     sceGuFinish();
-    sceDisplayWaitVblankStart();
-    sceGuSwapBuffers();
-    backBuf ^= 1;
 }
 
 void endFrameDebug(){

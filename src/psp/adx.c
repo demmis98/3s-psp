@@ -144,6 +144,8 @@ static s32 adx_next_loop_enabled = 0;
 static s32 adx_next_loop_start = 0, adx_next_loop_end = 0;
 static volatile s32 adx_next_ready = 0;  /* 1 = callback can swap to this */
 static volatile s32 adx_next_consumed = 0; /* 1 = callback took the preload */
+static volatile s32 audio_size = 0;
+static volatile s32 vol_32 = 0;
 
 static void decode_next_sample(void) {
     if (P.stat != ADX_STAT_PLAYING || P.buf == NULL) {
@@ -152,7 +154,7 @@ static void decode_next_sample(void) {
     }
 
     if (blk_pos >= blk_avail) {
-        s32 audio_size = P.buf_size - P.data_offset;
+        audio_size = P.buf_size - P.data_offset;
         if (P.pos + P.frame_size > audio_size) {
             if (P.loop_enabled && P.loop_start_byte >= 0) {
                 P.pos = P.loop_start_byte;
@@ -198,9 +200,9 @@ static void decode_next_sample(void) {
         blk_avail = P.spb;
     }
 
-    s32 vol = (P.volume * 3) >> 2;  /* ~75% — BGM sits behind SFX */
-    last_l = (s16)((blk_buf[0][blk_pos] * vol) >> 7);
-    last_r = (P.channels == 2) ? (s16)((blk_buf[1][blk_pos] * vol) >> 7) : last_l;
+    vol_32 = (P.volume + (P.volume << 1)) >> 2;  /* ~75% — BGM sits behind SFX */
+    last_l = (s16)((blk_buf[0][blk_pos] * vol_32) >> 7);
+    last_r = (P.channels == 2) ? (s16)((blk_buf[1][blk_pos] * vol_32) >> 7) : last_l;
     blk_pos++;
 }
 

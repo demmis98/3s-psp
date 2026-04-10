@@ -30,7 +30,7 @@ void updateClock(){
     if(clock_mode_temp != clock_mode){
         clock_mode_temp = clock_mode;
         
-        return;
+        //return;
 
         switch (clock_mode) {
         case CLOCK_222:
@@ -62,12 +62,12 @@ void forceClock(int clockMode){
 
 int power_callback(int unknown, int powerInfo, void *common) {
     if (powerInfo & PSP_POWER_CB_SUSPENDING) {
+        g_request_pause = 1;
         /* Silence audio callback during sleep */
         adxSuspend();
         /* Close AFS fds — prevents stale fd reads */
         afsSuspend();
         /* Trigger in-game pause on resume */
-        g_request_pause = 1;
 
         sceDisplayWaitVblankStart();
     }
@@ -77,7 +77,7 @@ int power_callback(int unknown, int powerInfo, void *common) {
         afsReopen();
         /* Restore Clock Frequency — OS may reset clock after sleep */
         if(RTT_Enabled)
-            forceClock(CLOCK_300);
+            forceClock(CLOCK_266);
         else
             forceClock(CLOCK_222);
         /* Resume audio playback */

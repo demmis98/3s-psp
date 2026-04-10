@@ -206,7 +206,7 @@ void AcrMain() {
         if(RTT_Enabled)
             setClock(CLOCK_300);
         else
-            setClock(CLOCK_222);
+            setClock(CLOCK_266);
 
         render_start();
 
@@ -228,7 +228,6 @@ void AcrMain() {
         if (Debug_w[6] == 0) {
             //CP3toPS2Draw();
         }
-        quadOnly2DrawLast(-1);
         
         //if(!DEMMA_DEBUG)
             //drawRect(c_x, c_y, 10, 10, 0xFFFFFFFF);

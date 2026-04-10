@@ -181,7 +181,7 @@ void SaveMsg(u16 x, u16 y){
         SSPutStr(x, y, 6, "SAVING...");
     }
     else if(save_params.mode == PSP_UTILITY_SAVEDATA_LOAD || save_params.mode == PSP_UTILITY_SAVEDATA_AUTOLOAD){
-        SSPutStr(x, y, 6, "LOADING...");
+        SSPutStr(x, y, 0, "LOADING...");
     }
 }
 
@@ -300,5 +300,17 @@ void loadButtonMap() {
     for(int i = 0; i < 6; i++){
         save_w[i].Pad_Infor[0] = save_data.Pad_Infor[0];
         save_w[i].Pad_Infor[1] = save_data.Pad_Infor[1];
+    }
+}
+
+extern const u8 Player_Name_Pos_TBL[21][2];
+void displayGameProgress(){
+    int k;
+    u8 *col = save_data.PL_Color[0];
+
+    SSPutStr(1, 5, 0, "PROGRESS");
+    for(k = 0; k < 20; k++){
+        scfont_sqput(2, k + 7, *col ? 1 : 26, 1, Player_Name_Pos_TBL[k][0], Player_Name_Pos_TBL[k][1], 5, 1, 2);
+        col++;
     }
 }
