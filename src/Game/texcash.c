@@ -66,6 +66,25 @@ extern const s16 mts_OB_page[22][2];
 extern const MTSBase mts_base[24];
 void clear_texcash_work(s16 ix);
 
+#define MAX_MTS 24
+
+s16 active_mts_list[MAX_MTS];
+s16 active_mts_count = 0;
+
+static inline void add_active_mts(s16 ix) {
+    active_mts_list[active_mts_count++] = ix;
+}
+
+static inline void remove_active_mts(s16 ix) {
+    for (int i = 0; i < active_mts_count; i++) {
+        if (active_mts_list[i] == ix) {
+            active_mts_list[i] = active_mts_list[active_mts_count - 1];
+            active_mts_count--;
+            return;
+        }
+    }
+}
+
 void disp_texcash_free_area() {
     s16 i;
 
@@ -135,7 +154,10 @@ void search_texcash_free_area(s16 ix) {
     s16 i;
     s16 num = 0;
 
-    for (mc = mts[ix].mltcsh16, i = 0; i < mts[ix].mltnum16; i++) {
+    s32 s_16 = mts[ix].mltnum16;
+    s32 s_32 = mts[ix].mltnum32;
+
+    for (mc = s_16, i = 0; i < s_16; i++) {
         if (mc[i].cs.code == -1) {
             num++;
         }
@@ -146,7 +168,7 @@ void search_texcash_free_area(s16 ix) {
     }
 
     num = 0;
-    for (mc = mts[ix].mltcsh32, i = 0; i < mts[ix].mltnum32; i++) {
+    for (mc = s_32, i = 0; i < s_32; i++) {
         if (mc[i].cs.code == -1) {
             num++;
         }
@@ -244,15 +266,20 @@ void texture_cash_update() {
     s16 i;
     s16 num;
 
-    for (num = 0; num < 24; num++) {
-        if (mts_ok[num].be != 0) {
-            if (mts[num].ext) {
-                for (i = 0; i < mts[num].cpat->kazu; i++) {
-                    if ((--mts[num].cpat->adr[i]->time) == 0) {
-                        makeup_tpu_free(mts[num].mltnum16 / 256, mts[num].mltnum32 / 64, &mts[num].cpat->adr[i]->map);
+    s16 ix;
+    MultiTexture* mts_num;
 
-                        if ((tpu_free->x16 != mts[num].cpat->adr[i]->x16) ||
-                            (tpu_free->x32 != mts[num].cpat->adr[i]->x32)) {
+    for (num = 0; num < active_mts_count; num++) {
+        ix = active_mts_list[num];
+        mts_num = &mts[ix];
+        if (mts_ok[ix].be != 0) {
+            if (mts_num->ext) {
+                for (i = 0; i < mts_num->cpat->kazu; i++) {
+                    if ((--mts_num->cpat->adr[i]->time) == 0) {
+                        makeup_tpu_free(mts_num->mltnum16 >> 8, mts_num->mltnum32 >> 6, &mts_num->cpat->adr[i]->map);
+
+                        if ((tpu_free->x16 != mts_num->cpat->adr[i]->x16) ||
+                            (tpu_free->x32 != mts_num->cpat->adr[i]->x32)) {
                             Debug_w[11] = 1;
                             do {
                                 disp_texcash_free_area();
@@ -261,12 +288,12 @@ void texture_cash_update() {
                             } while (1);
                         }
 
-                        update_with_tpu_free(mts[num].mltcsh16, mts[num].mltcsh32);
+                        update_with_tpu_free(mts_num->mltcsh16, mts_num->mltcsh32);
                     }
                 }
             } else {
-                if ((mts[num].mltcshtime16 + mts[num].mltcshtime32) != 0) {
-                    mlt_obj_trans_update(&mts[num]);
+                if ((mts_num->mltcshtime16 + mts_num->mltcshtime32) != 0) {
+                    mlt_obj_trans_update(mts_num);
                 }
             }
 
@@ -414,6 +441,7 @@ void make_texcash_work(s16 ix) {
         mts_ix->id = ix;
         mts_ix->mode = mts_base_ix->mode & 0xFF;
         mts_ok[ix].be = 1;
+        add_active_mts(ix);
         mts_ok[ix].mincg = 0;
         mts_ok[ix].min16 = 0x7FFF;
         mts_ok[ix].min32 = 0x7FFF;
@@ -483,6 +511,7 @@ void purge_texcash_work(s16 ix) {
     mts_ok[ix].be = 0;
     mts_ok[ix].key0 = 0;
     mts_ok[ix].key1 = 0;
+    remove_active_mts(ix);
 }
 
 const MTSBase mts_base[24] = {
