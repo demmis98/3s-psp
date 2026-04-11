@@ -143,6 +143,7 @@ void afsSuspend(void) {
        Close fds to unblock any hung sceIoRead in the I/O thread.
        Reads will fail with EBADF instead of hanging forever. */
     afs_suspending = 1;
+
     if (afs.fd >= 0) { sceIoClose(afs.fd); afs.fd = -1; }
     if (afs.async_fd >= 0) { sceIoClose(afs.async_fd); afs.async_fd = -1; }
 }

@@ -55,21 +55,35 @@ volatile u16 Sound_Muffled;
 static u16 rb16(const u8 *p) { return (p[0]<<8)|p[1]; }
 static u32 rb32(const u8 *p) { return (p[0]<<24)|(p[1]<<16)|(p[2]<<8)|p[3]; }
 
+static inline s32 clamp16(s32 x) {
+    if ((u32)(x + 32768) > 65535)
+        x = (x < 0) ? -32768 : 32767;
+    return x;
+}
+
+static const s8 nibble_lut[16] = {
+     0, 1, 2, 3, 4, 5, 6, 7,
+    -8,-7,-6,-5,-4,-3,-2,-1
+};
+
 static void dec_block(const u8 *blk, ChSt *ch, s16 *out, s32 stride, s32 spb, s32 c1, s32 c2) {
     s32 scale = rb16(blk);
     const u8 *d = blk + 2;
     s32 p1 = ch->p1, p2 = ch->p2;
     s32 i;
-    for (i = 0; i < spb/2; i++) {
+    s32 spb_2 = spb >> 1;
+    for (i = 0; i < spb_2; i++) {
         s32 b = d[i];
-        s32 n1 = (b >> 4) & 0xF; if (n1 & 8) n1 -= 16;
+        s32 n1 = (b >> 4);
+        n1 = (n1 ^ 8) - 8;
         s32 s1 = n1 * scale + ((c1 * p1 + c2 * p2) >> 12);
-        if (s1 > 32767) s1 = 32767; if (s1 < -32768) s1 = -32768;
+        s1 = clamp16(s1);
         *out = (s16)s1; out += stride; p2 = p1; p1 = s1;
 
-        s32 n2 = b & 0xF; if (n2 & 8) n2 -= 16;
+        s32 n2 = b & 0xF;
+        n2 = (n2 ^ 8) - 8;
         s32 s2 = n2 * scale + ((c1 * p1 + c2 * p2) >> 12);
-        if (s2 > 32767) s2 = 32767; if (s2 < -32768) s2 = -32768;
+        s2 = clamp16(s2);
         *out = (s16)s2; out += stride; p2 = p1; p1 = s2;
     }
     ch->p1 = p1; ch->p2 = p2;
@@ -474,32 +488,39 @@ static s32 parse_header_into_next(const u8 *h, s32 size) {
 }
 
 /* Preload next queued segment so the callback can swap with zero gap */
+#define ADX_PRELOAD_SIZE (256 * 1024)
+
 static void adx_preload_next_segment(void) {
-    #ifdef PSP_FAT
-    return;
-    #endif
     if (adx_next_ready || adx_entry_count <= 0) return;
 
     u16 fnum = (u16)adx_entry_queue[0];
     u32 file_size = afsGetFileSize(fnum);
     if (file_size == 0) return;
 
+    u32 preload_size = file_size;
+    if (preload_size > ADX_PRELOAD_SIZE)
+        preload_size = ADX_PRELOAD_SIZE;
+
+    /* IMPORTANT: allocate full file size */
     u8 *buf = (u8 *)memalign(16, file_size);
     if (!buf) return;
 
-    if (!afsReadSync(fnum, buf, file_size)) {
+    /* only read first chunk */
+    if (!afsReadSync(fnum, buf, preload_size)) {
         free(buf);
         return;
     }
 
-    if (parse_header_into_next(buf, file_size) < 0) {
+    if (parse_header_into_next(buf, preload_size) < 0) {
         free(buf);
         return;
     }
 
     adx_next_buf = buf;
+
+    /* IMPORTANT: total file size */
     adx_next_size = file_size;
-    __sync_synchronize();
+
     adx_next_ready = 1;
 }
 

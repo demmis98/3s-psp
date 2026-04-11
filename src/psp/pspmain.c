@@ -25,32 +25,38 @@ extern int RTT_Enabled;
 extern void adxSuspend(void);
 extern void adxResume(void);
 
-int clock_mode = CLOCK_300;
-int clock_mode_temp = -1;
+volatile int clock_mode = CLOCK_300;
+volatile int clock_mode_temp = -1;
+volatile int clock_count_c = 0;
 
 void updateClock(){
-    if(clock_mode_temp != clock_mode){
-        clock_mode_temp = clock_mode;
-        
-        #ifdef IGNORE_CLOCK
-        return;
-        #endif
+    if(clock_count_c)
+        clock_count_c--;
+    else{
+        if(clock_mode_temp != clock_mode){
+            clock_mode_temp = clock_mode;
+            
+            #ifdef IGNORE_CLOCK
+            return;
+            #endif
 
-        switch (clock_mode) {
-        case CLOCK_222:
-            scePowerSetClockFrequency(222, 222, 111);
-            break;
-        case CLOCK_266:
-            scePowerSetClockFrequency(266, 266, 133);
-            break;
-        case CLOCK_300:
-            scePowerSetClockFrequency(300, 300, 150);
-            break;
-        case CLOCK_333:
-            scePowerSetClockFrequency(333, 333, 166);
-            break;
-        default:
-            break;
+            switch (clock_mode) {
+            case CLOCK_222:
+                scePowerSetClockFrequency(222, 222, 111);
+                break;
+            case CLOCK_266:
+                scePowerSetClockFrequency(266, 266, 133);
+                break;
+            case CLOCK_300:
+                scePowerSetClockFrequency(300, 300, 150);
+                break;
+            case CLOCK_333:
+                scePowerSetClockFrequency(333, 333, 166);
+                break;
+            default:
+                break;
+            }
+            clock_count_c = 16;
         }
     }
 }
@@ -72,8 +78,7 @@ int power_callback(int unknown, int powerInfo, void *common) {
         /* Close AFS fds — prevents stale fd reads */
         afsSuspend();
         /* Trigger in-game pause on resume */
-
-        sceDisplayWaitVblankStart();
+        sceKernelDelayThread(2000);
     }
     if (powerInfo & PSP_POWER_CB_RESUME_COMPLETE) {
         /* Proactively reopen AFS fds — sceIoRead on stale fd may hang
@@ -81,10 +86,11 @@ int power_callback(int unknown, int powerInfo, void *common) {
         afsReopen();
         /* Restore Clock Frequency — OS may reset clock after sleep */
         if(RTT_Enabled)
-            forceClock(CLOCK_266);
+            forceClock(CLOCK_300);
         else
             forceClock(CLOCK_266);
         /* Resume audio playback */
+        g_request_pause = 1;
         adxResume();
     }
     return 0;

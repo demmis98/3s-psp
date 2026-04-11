@@ -202,6 +202,7 @@ void Exit_Pause(struct _TASK* task_ptr) {
     cpExitTask(TASK_SAVER);
     cpExitTask(TASK_MENU);
     SsBgmHalfVolume(0);
+    ADX_SetMuffle(0);
 }
 
 void Setup_Pause(struct _TASK* task_ptr) {

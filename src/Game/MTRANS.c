@@ -1506,12 +1506,14 @@ void mlt_obj_trans_rgb(MultiTexture* mt, WORK* wk, s32 base_y) {
     appRenewTempPriority(wk->position_z);
 }
 
+#define one_by_64 1.0f/64.0f
+
 void mlt_obj_matrix(WORK* wk, s32 base_y) {
     njSetMatrix(NULL, &BgMATRIX[wk->my_family]);
     njTranslate(NULL, wk->position_x, wk->position_y + base_y, PrioBase[wk->position_z]);
 
     if (wk->my_mr_flag) {
-        njScale(NULL, (1.0f / 64.0f) * (wk->my_mr.size.x + 1), (1.0f / 64.0f) * (wk->my_mr.size.y + 1), 1.0f);
+        njScale(NULL, (one_by_64) * (wk->my_mr.size.x + 1), (one_by_64) * (wk->my_mr.size.y + 1), 1.0f);
     }
 }
 
@@ -1519,7 +1521,7 @@ void appSetupBasePriority() {
     s32 i;
 
     for (i = 0; i < PRIO_BASE_SIZE; i++) {
-        PrioBaseOriginal[i] = ((i * 512) + 1) >> 1;
+        PrioBaseOriginal[i] = ((i << 9) + 1) >> 1;
     }
 }
 
@@ -1654,8 +1656,6 @@ void seqsAfterProcess() {
                         : "=r"(vertices->x), "=r"(vertices->y)  // %0 = vertices->x, %1 = vertices->y;
                         : "r"(vert->x), "r"(vert->y)    // %2 = vert->x, %3 = vert->y;
                     );
-                    vertices->x = vertices->x;
-                    vertices->y = vertices->y;
                     vertices->z = vert->z;
                     vertices->u = tc->s;
                     vertices->v = tc->t;
@@ -1698,12 +1698,12 @@ s32 seqsStoreChip(f32 x, f32 y, s32 w, s32 h, s32 gix, s32 code, s32 attr, s32 a
     }
 
     if (!(attr & 0x2000)) {
-        u = (code & 0xF) * 16;
+        u = (code & 0xF) << 4;
         v = code & 0xF0;
         chip->tex_code = ppgGetUsingTextureHandle(NULL, gix + (code >> 8));
     } else {
-        u = (code & 7) * 32;
-        v = (code & 0x38) * 4;
+        u = (code & 7) << 5;
+        v = (code & 0x38) << 2;
         chip->tex_code = ppgGetUsingTextureHandle(NULL, gix + (code >> 6));
     }
 

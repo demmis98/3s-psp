@@ -61,7 +61,6 @@ void cpExitTask(u16 num);
 
 // clock declarations
 extern void updateClock();
-extern void setClock(int clockMode);
 extern volatile int g_request_pause;
 
 bool RUNNING = 1;
@@ -204,7 +203,7 @@ void AcrMain() {
         updateClock();
 
         if(RTT_Enabled)
-            setClock(CLOCK_266);
+            setClock(CLOCK_300);
         else
             setClock(CLOCK_266);
 

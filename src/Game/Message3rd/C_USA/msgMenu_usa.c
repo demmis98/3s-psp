@@ -3,8 +3,8 @@
 
 static s8* msgMenu_000[3] = {
     //"OK to quit without saving the system data?",
-      "Are you sure you want to exit?",
-    "",
+    "Are you sure you want to exit?",
+    "(Unsaved progress will be lost)",
     "         :YES    :NO",
 };
 

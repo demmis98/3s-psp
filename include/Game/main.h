@@ -44,5 +44,6 @@ void cpInitTask();
 void cpReadyTask(u16 num, void* func_adrs);
 void cpExitTask(u16 num);
 s32 mppGetFavoritePlayerNumber();
+extern void setClock(int clockMode);
 
 #endif
