@@ -146,6 +146,9 @@ void __attribute__((noinline))  memcpy_vfpu_simple(void *dst, void *src, size_t 
 }
 // FIXME: use memcpy instead
 void flMemcpy(void* dst, void* src, s32 size) {
+    if(dst == src)
+        return;
+
     if(size % 4)
         memcpy(dst, src, size);
     else

@@ -525,16 +525,11 @@ s32 ppgWriteQuadUseTrans(Vertex* pos, u32 col, PPGDataList* tb, s32 tix, s32 cix
 }
 
 ssize_t ppgDecompress(s32 koCmpr, void* srcAdrs, s32 srcSize, void* dstAdrs, s32 dstSize) {
-    u8* src;
-    u8* dst;
-    s32 i;
     ssize_t rnum = 0;
 
     switch (koCmpr) {
     default:
-        if (srcAdrs != dstAdrs) {
-            flMemcpy(dstAdrs, srcAdrs, dstSize);
-        }
+        flMemcpy(dstAdrs, srcAdrs, dstSize);
 
         rnum = srcSize;
         break;
@@ -873,18 +868,16 @@ s32 ppgSetupTexChunkSeqs(Texture* tch, PPGFileHeader* ppg, u8* adrs, s32 ixNum1s
     tch->srcAdrs = adrs;
     tch->srcSize = bits.pitch * bits.height;
 
-    memset(adrs, 0, tch->srcSize * ixNums);
+    //memset(adrs, 0, tch->srcSize * ixNums);
 
     if (bits.bitdepth < 2) {
         ci_flag = 0x4000;
     }
 
     for (i = 0; i < ixNums; i++) {
-        bits.ptr = (void*) flPS2GetSystemMemoryHandle(tch->srcSize, 2);
-        u8* p = flPS2GetSystemBuffAdrs((u32)bits.ptr);
-        flMemcpy(p, adrs, tch->srcSize);
+        bits.ptr = adrs;
         tch->handle[i].b16[1] = ci_flag;
-        tch->handle[i].b16[0] = flCreateTextureHandle(&bits, attribute);
+        tch->handle[i].b16[0] = flCreateTextureHandle(&bits, attribute, 1);
 
         if (tch->handle[i].b16[0] == -1) {
             goto error_handler;
@@ -1300,10 +1293,12 @@ s32 ppgSetupTexChunk_3rd(Texture* tch, s32 ixNum, u32 attribute) {
         while (1) {}
     }
 
+    swizzle_inplace(mltAdrs, mltSize / bits.height, bits.height);
+
     unused_s5 = 0;
     ppgChangeDataEndian(mltAdrs, mltSize, ppg->pixel & 4, ppg->formARGB == 0x8888, bits.bitdepth, unused_s5);
     //bits.ptr = mltAdrs;
-    hnof->b16[0] = flCreateTextureHandle(&bits, attribute);
+    hnof->b16[0] = flCreateTextureHandle(&bits, attribute, 0);
     //ppgPushDecBuff(mltAdrs);
 
     if (hnof->b16[0] == 0) {

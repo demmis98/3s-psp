@@ -16,6 +16,8 @@ PSP_MAIN_THREAD_ATTR(PSP_THREAD_ATTR_VFPU | PSP_THREAD_ATTR_USER);
 PSP_HEAP_SIZE_KB(-1024);
 PSP_HEAP_THRESHOLD_SIZE_KB(1024);
 
+//#define IGNORE_CLOCK
+
 // global variables
 volatile int g_request_pause = 0;
 extern int RTT_Enabled;
@@ -30,7 +32,9 @@ void updateClock(){
     if(clock_mode_temp != clock_mode){
         clock_mode_temp = clock_mode;
         
-        //return;
+        #ifdef IGNORE_CLOCK
+        return;
+        #endif
 
         switch (clock_mode) {
         case CLOCK_222:
@@ -79,7 +83,7 @@ int power_callback(int unknown, int powerInfo, void *common) {
         if(RTT_Enabled)
             forceClock(CLOCK_266);
         else
-            forceClock(CLOCK_222);
+            forceClock(CLOCK_266);
         /* Resume audio playback */
         adxResume();
     }

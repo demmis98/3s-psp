@@ -30,7 +30,7 @@ s32 flFlip(u32 flag);
 
 s32 flLockTexture(Rect* lprect, u32 th, plContext* lpcontext, u32 flag);
 s32 flUnlockTexture(u32 th);
-u32 flCreateTextureHandle(plContext* bits, u32 flag);
+u32 flCreateTextureHandle(plContext* bits, u32 flag, u8 mode);
 u32 flSetTextureHandle(plContext* bits, s32 id, u32 flag);
 s32 flReleaseTextureHandle(u32 texture_handle);
 u32 flCreatePaletteHandle(plContext* lpcontext, u32 flag);
@@ -65,6 +65,6 @@ s32 flPS2GetPaletteInfoFromContext(plContext* bits, u32 ph, u32 flag);
 u32 flPS2GetTextureHandle();
 s32 flPS2CreateTextureHandle(u32 th, u32 flag);
 s32 flPS2GetTextureInfoFromContext(plContext* bits, s32 bnum, u32 th, u32 flag);
-s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture, u32 type);
+s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture, u32 type, u8 mode);
 
 #endif  // FL_H_

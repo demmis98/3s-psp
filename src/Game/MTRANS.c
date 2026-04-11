@@ -1657,8 +1657,8 @@ void seqsAfterProcess() {
                     vertices->x = vertices->x;
                     vertices->y = vertices->y;
                     vertices->z = vert->z;
-                    vertices->u = tc->s + 0.5f;
-                    vertices->v = tc->t + 0.5f;
+                    vertices->u = tc->s;
+                    vertices->v = tc->t;
                     vertices->colour = color_temp;
                     vertices++;
                 }
