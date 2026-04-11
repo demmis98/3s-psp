@@ -322,6 +322,16 @@ s16 get_my_trans_mode(s16 curr) {
     return mts[curr].mode;
 }
 
+static inline u8* alloc_pattern_blocks(MultiTexture* mts_ix, u8* adrs) {
+    mts_ix->mltcsh16 = (PatternState*)adrs;
+    adrs += mts_ix->mltnum16 * sizeof(PatternState);
+
+    mts_ix->mltcsh32 = (PatternState*)adrs;
+    adrs += mts_ix->mltnum32 * sizeof(PatternState);
+
+    return adrs;
+}
+
 void make_texcash_work(s16 ix) {
 #if defined(TARGET_PS2)
     void init_texcash_2nd(s32 ix);
@@ -373,26 +383,20 @@ void make_texcash_work(s16 ix) {
                      sizeof(TexturePoolFree) + sizeof(TexturePoolUsed);
             mts_ok[ix].key0 = Pull_ramcnt_key(memreq, mts_base_ix->type, 0, 0);
             adrs = (u8*)Get_ramcnt_address(mts_ok[ix].key0);
-            mts_ix->mltcsh16 = (PatternState*)adrs;
-            adrs += mts_ix->mltnum16 * 8;
-            mts_ix->mltcsh32 = (PatternState*)adrs;
-            adrs += mts_ix->mltnum32 * 8;
+            adrs = alloc_pattern_blocks(mts_ix, adrs);
             mts_ix->cpat = (PatternCollection*)adrs;
             adrs += sizeof(PatternCollection);
             mts_ix->tpf = (TexturePoolFree*)adrs;
             adrs += sizeof(TexturePoolFree);
             mts_ix->tpu = (TexturePoolUsed*)adrs;
             work_init_zero((s32*)mts_ix->cpat, sizeof(PatternCollection));
-            work_init_zero((s32*)mts_ix->tpf, sizeof(TexturePoolFree));
-            work_init_zero((s32*)mts_ix->tpu, sizeof(TexturePoolUsed));
-            init_texcash_2nd(ix);
+            //work_init_zero((s32*)mts_ix->tpf, sizeof(TexturePoolFree));
+            //work_init_zero((s32*)mts_ix->tpu, sizeof(TexturePoolUsed));
         } else {
             memreq = mts_ix->mltnum16 * 8 + mts_ix->mltnum32 * 8;
             mts_ok[ix].key0 = Pull_ramcnt_key(memreq, mts_base_ix->type, 0, 0);
             adrs = (u8*)Get_ramcnt_address(mts_ok[ix].key0);
-            mts_ix->mltcsh16 = (PatternState*)adrs;
-            adrs += mts_ix->mltnum16 * 8;
-            mts_ix->mltcsh32 = (PatternState*)adrs;
+            adrs = alloc_pattern_blocks(mts_ix, adrs);
         }
 
         mts_ix->mltbuf = texcash_melt_buffer;

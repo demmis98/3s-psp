@@ -901,118 +901,100 @@ error_handler:
     flLogOut("Failed to acquire sprite texture handle.\n"); // Failed to acquire sprite texture handle.
     while (1) {}
 }
+static inline u32 get_swizzle_8bpp(int x, int y) {
+    return (((y >> 3) << 4) + (x >> 4)) << 7 |
+           ((y & 7) << 4) |
+           (x & 15);
+}
+
+static inline u32 get_swizzle_16bpp(int x, int y) {
+    return (((y >> 3) << 5) + (x >> 3)) << 7 |
+           ((y & 7) << 4) |
+           ((x & 7) << 1);
+}
 
 void ppgRenewDotDataSeqs(Texture* tch, u32 gix, u32* srcRam, u32 code, u32 size) {
     s32 ix;
-    s32 i;
-    s32 j;
-    u16* dstRam16;
-    u16* srcRam16;
-    u16* tix;
-    u8* dstRam8;
-    u8* srcRam8;
+    s32 i, j;
+    
+    if (tch == NULL) tch = ppg_w.cur->tex;
+    if (tch->be == 0) return;
 
-    if (tch == NULL) {
-        tch = ppg_w.cur->tex;
-    }
+    ix = gix - tch->ixNum1st;
+    if ((ix < 0) || (ix >= tch->total)) return;
 
-    if (tch->be != 0) {
-        ix = gix - tch->ixNum1st;
+    if (tch->handle[ix].b16[0] != 0) {
+        tch->handle[ix].b16[1] |= 0x2000;
+        
+        // Use the base address of the texture page
+        u8* textureBase = (u8*)(tch->srcAdrs + tch->srcSize * ix);
+        int startX, startY;
 
-        if ((ix < 0) || (ix >= tch->total)) {
-            return;
-        }
+        switch (size) {
+            case 0x40:  // 8x8 Tile (8bpp)
+            case 0x100: // 16x16 Tile (8bpp)
+                // Mapping for CODE_0: (code & 0x0F) is X index, (code & 0xF0) is Y pixel
+                startX = (code & 0x0F) << 4;
+                startY = (code & 0xF0); 
+                
+                u8* src8 = (u8*)srcRam;
+                int side = (size == 0x40) ? 8 : 16;
 
-        if (tch->handle[ix].b16[0] != 0) {
-            tch->handle[ix].b16[1] |= 0x2000;
-
-            switch (size) {
-            case 0x40:
-                srcRam8 = (u8*)srcRam;
-                dstRam8 = (u8*)(tch->srcAdrs + tch->srcSize * ix + CODE_0(code));
-
-                for (i = 0; i < 8; i++) {
-                    for (j = 0; j < 8; j++) {
-                        *dstRam8++ = srcRam8[dctex_linear[j + (i << 5)]];
+                for (i = 0; i < side; i++) {
+                    for (j = 0; j < side; j++) {
+                        u8 pixel = src8[dctex_linear[j + (i << 5)]];
+                        // 256 is the standard width for SF3 texture pages
+                        u32 swzAddr = get_swizzle_8bpp(startX + j, startY + i);
+                        textureBase[swzAddr] = pixel;
                     }
-
-                    dstRam8 += 0xF8;
                 }
-
                 break;
 
-            case 0x100:
-                srcRam8 = (u8*)srcRam;
-                dstRam8 = (u8*)(tch->srcAdrs + tch->srcSize * ix + CODE_0(code));
-
-                for (i = 0; i < 0x10; i++) {
-                    for (j = 0; j < 0x10; j++) {
-                        *dstRam8++ = srcRam8[dctex_linear[j + (i << 5)]];
+            case 0x400: // 32x32 Tile (8bpp)
+                // Mapping for CODE_1: (code & 0x07) is X index, (code & 0x38) is Y index (?)
+                startX = (code & 0x07) << 5;
+                startY = (code & 0x38) << 2; // (code & 0x38) is index*8, we want index*32
+                
+                u8* src8_32 = (u8*)srcRam;
+                for (i = 0; i < 32; i++) {
+                    for (j = 0; j < 32; j++) {
+                        u8 pixel = src8_32[dctex_linear[j + (i << 5)]];
+                        u32 swzAddr = get_swizzle_8bpp(startX + j, startY + i);
+                        textureBase[swzAddr] = pixel;
                     }
-
-                    dstRam8 += 0xF0;
                 }
-
                 break;
 
-            case 0x400:
-                srcRam8 = (u8*)srcRam;
-                dstRam8 = (u8*)(tch->srcAdrs + tch->srcSize * ix + CODE_1(code));
-                tix = (u16*)dctex_linear;
+            case 0x80:  // 8x8 Tile (16bpp)
+            case 0x200: // 16x16 Tile (16bpp)
+                startX = (code & 0x0F) << 4;
+                startY = (code & 0xF0);
+                
+                u16* src16 = (u16*)srcRam;
+                int side16 = (size == 0x80) ? 8 : 16;
 
-                for (i = 0; i < 0x20; i++) {
-                    for (j = 0; j < 0x20; j++) {
-                        *dstRam8++ = srcRam8[*tix++];
+                for (i = 0; i < side16; i++) {
+                    for (j = 0; j < side16; j++) {
+                        u16 pixel = src16[dctex_linear[j + (i << 5)]];
+                        u32 swzAddr = get_swizzle_16bpp(startX + j, startY + i);
+                        *(u16*)(&textureBase[swzAddr]) = pixel;
                     }
-
-                    dstRam8 += 0xE0;
                 }
-
                 break;
 
-            case 0x80:
-                srcRam16 = (u16*)srcRam;
-                dstRam16 = (u16*)(tch->srcAdrs + tch->srcSize * ix + (CODE_0(code)) * 2);
-
-                for (i = 0; i < 8; i++) {
-                    for (j = 0; j < 8; j++) {
-                        *dstRam16++ = srcRam16[dctex_linear[j + (i << 5)]];
+            case 0x800: // 32x32 Tile (16bpp)
+                startX = (code & 0x07) << 5;
+                startY = (code & 0x38) << 2;
+                
+                u16* src16_32 = (u16*)srcRam;
+                for (i = 0; i < 32; i++) {
+                    for (j = 0; j < 32; j++) {
+                        u16 pixel = src16_32[dctex_linear[j + (i << 5)]];
+                        u32 swzAddr = get_swizzle_16bpp(startX + j, startY + i);
+                        *(u16*)(&textureBase[swzAddr]) = pixel;
                     }
-
-                    dstRam16 += 0xF8;
                 }
-
                 break;
-
-            case 0x200:
-                srcRam16 = (u16*)srcRam;
-                dstRam16 = (u16*)(tch->srcAdrs + tch->srcSize * ix + (CODE_0(code)) * 2);
-
-                for (i = 0; i < 0x10; i++) {
-                    for (j = 0; j < 0x10; j++) {
-                        *dstRam16++ = srcRam16[dctex_linear[j + (i << 5)]];
-                    }
-
-                    dstRam16 += 0xF0;
-                }
-
-                break;
-
-            case 0x800:
-                srcRam16 = (u16*)srcRam;
-                dstRam16 = (u16*)(tch->srcAdrs + tch->srcSize * ix + (CODE_1(code)) * 2);
-                tix = (u16*)dctex_linear;
-
-                for (i = 0; i < 0x20; i++) {
-                    for (j = 0; j < 0x20; j++) {
-                        *dstRam16++ = srcRam16[*tix++];
-                    }
-
-                    dstRam16 += 0xE0;
-                }
-
-                break;
-            }
         }
     }
 }
@@ -1078,14 +1060,6 @@ s32 ppgRenewTexChunkSeqs(Texture* tch) {
 
     for (i = 0; i < tch->total; i++) {
         if (tch->handle[i].b16[1] & 0x2000) {
-            /*
-            tch->handle[i].b16[1] &= 0xDFFF;
-            flLockTexture(NULL, tch->handle[i].b16[0], &bits, 3);
-            dstRam = bits.ptr;
-            srcRam = (s32*)(tch->srcAdrs + tch->srcSize * i);
-            memmove(dstRam, srcRam, tch->srcSize);
-            flUnlockTexture(tch->handle[i].b16[0]);
-            */
             tch->handle[i].b16[1] &= ~0x2000;
             srcRam = (s32*)(tch->srcAdrs + tch->srcSize * i);
 

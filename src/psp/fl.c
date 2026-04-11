@@ -163,7 +163,7 @@ void swizzle_inplace(void *data, uint32_t width_bytes, uint32_t height) {
         }
     }
 
-    memcpy(data, tmp, sz);
+    flMemcpy(data, tmp, sz);
     free(tmp);
 }
 
@@ -1379,7 +1379,8 @@ s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture,
         dh >>= 1;
         lpcontext++;
     }
-    lpflTexture->swizzeled = !mode;
+    //lpflTexture->swizzeled = !mode;
+    lpflTexture->swizzeled = true;
 
     if(lpflTexture->tex_num > 1){
         // Flush cache once at load time for main-RAM textures

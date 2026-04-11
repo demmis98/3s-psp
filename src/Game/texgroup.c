@@ -274,37 +274,21 @@ void q_ldreq_texture_group(REQ* curr) {
                 // Because 25 is the number of members in CharInitData struct, `i` goes
                 // to 25 too.
 
-#if defined(TARGET_PS2)
                 for (i = 0; i < 25; i++) {
                     ((u32*)ldchd)[i] += ldchd;
                 }
 
                 cit = (CharInitData*)ldchd;
-#else
-                cit = (CharInitData*)malloc(sizeof(CharInitData));
-
-                for (i = 0; i < 25; i++) {
-                    ((uintptr_t*)cit)[i] = ldchd + ((u32*)ldchd)[i];
-                }
-#endif
 
                 cit2 = &char_init_data[plid_data[plt_req[curr->id]]];
                 *cit2 = *cit;
-
-#if !defined(TARGET_PS2)
-                free(cit);
-#endif
 
                 parabora_own_table[plt_req[curr->id]] = cit2->prot;
 
                 // Q specific code
                 if (curr->ix == 18) {
-#if defined(TARGET_PS2)
                     patchAdrs = ((u32**)ldchd)[8];
                     patchAdrs[37] = patchAdrs[3];
-#else
-                    cit2->cbca[37] = cit2->cbca[3];
-#endif
                 }
 
                 // Akuma specific code

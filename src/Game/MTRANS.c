@@ -2141,8 +2141,8 @@ void mlt_obj_trans_init(MultiTexture* mt, s32 mode, u8* adrs) {
     if (!(mode & 0x20)) {
         mc = mt->mltcsh16;
 
+        //memset(mt->mltcsh16, 0, mt->mltnum16 * sizeof(PatternState));
         for (i = 0; i < mt->mltnum16; i++) {
-            mc->time = 0;
             mc->cs.code = -1;
             mc++;
         }
