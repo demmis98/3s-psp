@@ -24,6 +24,6 @@ void njdp2d_sort(f32* pos, f32 pri, uintptr_t col, s32 flag);
 void njDrawPolygon2D(PAL_CURSOR* p, s32 /* unused */, f32 pri, u32 attr);
 void njSetPaletteBankNumG(u32 globalIndex, s32 bank);
 void njSetPaletteData(s32 offset, s32 count, void* data);
-s32 njReLoadTexturePartNumG(u32 gix, s8* srcAdrs, u32 ofs, u32 size);
+s32 njReLoadTexturePartNumG(u32 gix, u8* srcAdrs, u32 ofs, u32 size);
 
 #endif // DC_GHOST_H

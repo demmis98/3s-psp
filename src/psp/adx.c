@@ -488,7 +488,7 @@ static s32 parse_header_into_next(const u8 *h, s32 size) {
 }
 
 /* Preload next queued segment so the callback can swap with zero gap */
-#define ADX_PRELOAD_SIZE (256 * 1024)
+#define ADX_PRELOAD_SIZE (512 * 1024)
 
 static void adx_preload_next_segment(void) {
     if (adx_next_ready || adx_entry_count <= 0) return;

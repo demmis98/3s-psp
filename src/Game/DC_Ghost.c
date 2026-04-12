@@ -448,7 +448,7 @@ void njSetPaletteData(s32 offset, s32 count, void* data) {
     palUpdateGhostDC();
 }
 
-s32 njReLoadTexturePartNumG(u32 gix, s8* srcAdrs, u32 ofs, u32 size) {
-    ppgRenewDotDataSeqs(0, gix, (u32*)srcAdrs, ofs, size);
+s32 njReLoadTexturePartNumG(u32 gix, u8* srcAdrs, u32 ofs, u32 size) {
+    ppgRenewDotDataSeqs(0, gix, srcAdrs, ofs, size);
     return 1;
 }

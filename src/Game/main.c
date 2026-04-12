@@ -67,6 +67,7 @@ bool RUNNING = 1;
 
 int c_x, c_y, c_v_x = 1, c_v_y = 1;
 
+
 void AcrMain() {
     u16 sw_buff;
     u32 sysinfodisp;
@@ -232,6 +233,7 @@ void AcrMain() {
             //drawRect(c_x, c_y, 10, 10, 0xFFFFFFFF);
 
         njdp2d_draw_0();
+
         render_end();
     
         sysinfodisp = 0;

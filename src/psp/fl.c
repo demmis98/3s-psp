@@ -1379,8 +1379,8 @@ s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture,
         dh >>= 1;
         lpcontext++;
     }
-    //lpflTexture->swizzeled = !mode;
-    lpflTexture->swizzeled = true;
+    lpflTexture->swizzeled = !mode;
+    //lpflTexture->swizzeled = true;
 
     if(lpflTexture->tex_num > 1){
         // Flush cache once at load time for main-RAM textures
