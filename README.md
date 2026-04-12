@@ -105,6 +105,9 @@ make -j4
 - `tarPADDestroy()` — PAD cleanup stub
 - `flMemset()` / `flMemcpy()` — manual loops, should use stdlib
 
+### Optimize
+- MTRANS.c mlt_obj functions
+
 ## --Credits--
 - demmis98
 - gibletto
