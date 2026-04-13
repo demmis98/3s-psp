@@ -262,7 +262,10 @@ void endGu(){
 /* Vertex for the final blit quad */
 typedef struct { float u, v; float x, y, z; } BlitVertex;
 
+extern u8 texconv_c;
+
 void startFrame(){
+    texconv_c = 0;
 
     sceGuSync(GU_SYNC_LIST, GU_SYNC_WHAT_DONE);
     sceDisplayWaitVblankStart();

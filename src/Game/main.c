@@ -230,7 +230,7 @@ void AcrMain() {
 
         //if(!DEMMA_DEBUG)
             //drawRect(c_x, c_y, 10, 10, 0xFFFFFFFF);
-
+        
         njdp2d_draw_0();
 
         render_end();

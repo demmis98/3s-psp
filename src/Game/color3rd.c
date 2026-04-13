@@ -196,7 +196,6 @@ void load_any_color(u16 ix, u8 kokey) {
     key = load_it_use_any_key(cfn->apfn, kokey, 0);
 
     if (key) {
-        flLogOut("load_any_color 2\n");
         init_trans_color_ram(0, key, cfn->type, cfn->data);
     }
 }

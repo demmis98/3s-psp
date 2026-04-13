@@ -66,25 +66,6 @@ extern const s16 mts_OB_page[22][2];
 extern const MTSBase mts_base[24];
 void clear_texcash_work(s16 ix);
 
-#define MAX_MTS 24
-
-s16 active_mts_list[MAX_MTS];
-s16 active_mts_count = 0;
-
-static inline void add_active_mts(s16 ix) {
-    active_mts_list[active_mts_count++] = ix;
-}
-
-static inline void remove_active_mts(s16 ix) {
-    for (int i = 0; i < active_mts_count; i++) {
-        if (active_mts_list[i] == ix) {
-            active_mts_list[i] = active_mts_list[active_mts_count - 1];
-            active_mts_count--;
-            return;
-        }
-    }
-}
-
 void disp_texcash_free_area() {
     s16 i;
 
@@ -154,10 +135,7 @@ void search_texcash_free_area(s16 ix) {
     s16 i;
     s16 num = 0;
 
-    s32 s_16 = mts[ix].mltnum16;
-    s32 s_32 = mts[ix].mltnum32;
-
-    for (mc = s_16, i = 0; i < s_16; i++) {
+    for (mc = mts[ix].mltcsh16, i = 0; i < mts[ix].mltnum16; i++) {
         if (mc[i].cs.code == -1) {
             num++;
         }
@@ -168,7 +146,7 @@ void search_texcash_free_area(s16 ix) {
     }
 
     num = 0;
-    for (mc = s_32, i = 0; i < s_32; i++) {
+    for (mc = mts[ix].mltcsh32, i = 0; i < mts[ix].mltnum32; i++) {
         if (mc[i].cs.code == -1) {
             num++;
         }
@@ -266,22 +244,15 @@ void texture_cash_update() {
     s16 i;
     s16 num;
 
-    s16 ix;
-    MultiTexture* mts_num;
-    PatternInstance **adr_i;
+    for (num = 0; num < 24; num++) {
+        if (mts_ok[num].be != 0) {
+            if (mts[num].ext) {
+                for (i = 0; i < mts[num].cpat->kazu; i++) {
+                    if ((--mts[num].cpat->adr[i]->time) == 0) {
+                        makeup_tpu_free(mts[num].mltnum16 / 256, mts[num].mltnum32 / 64, &mts[num].cpat->adr[i]->map);
 
-    for (num = 0; num < active_mts_count; num++) {
-        ix = active_mts_list[num];
-        mts_num = &mts[ix];
-        if (mts_ok[ix].be) {
-            if (mts_num->ext) {
-                adr_i = mts_num->cpat->adr;
-                for (i = 0; i < mts_num->cpat->kazu; i++) {
-                    if ((--(*adr_i)->time) == 0) {
-                        makeup_tpu_free(mts_num->mltnum16 >> 8, mts_num->mltnum32 >> 6, &(*adr_i)->map);
-
-                        if ((tpu_free->x16 != (*adr_i)->x16) ||
-                            (tpu_free->x32 != (*adr_i)->x32)) {
+                        if ((tpu_free->x16 != mts[num].cpat->adr[i]->x16) ||
+                            (tpu_free->x32 != mts[num].cpat->adr[i]->x32)) {
                             Debug_w[11] = 1;
                             do {
                                 disp_texcash_free_area();
@@ -290,19 +261,16 @@ void texture_cash_update() {
                             } while (1);
                         }
 
-                        update_with_tpu_free(mts_num->mltcsh16, mts_num->mltcsh32);
+                        update_with_tpu_free(mts[num].mltcsh16, mts[num].mltcsh32);
                     }
-                    adr_i++;
                 }
             } else {
-                if ((mts_num->mltcshtime16 + mts_num->mltcshtime32)) {
-                    mlt_obj_trans_update(mts_num);
+                if ((mts[num].mltcshtime16 + mts[num].mltcshtime32) != 0) {
+                    mlt_obj_trans_update(&mts[num]);
                 }
             }
 
-            if(Debug_w[11]){
-                search_texcash_free_area(num);
-            }
+            search_texcash_free_area(num);
         }
     }
     disp_texcash_free_area();
@@ -352,16 +320,6 @@ s16 get_my_trans_mode(s16 curr) {
     return mts[curr].mode;
 }
 
-static inline u8* alloc_pattern_blocks(MultiTexture* mts_ix, u8* adrs) {
-    mts_ix->mltcsh16 = (PatternState*)adrs;
-    adrs += mts_ix->mltnum16 * sizeof(PatternState);
-
-    mts_ix->mltcsh32 = (PatternState*)adrs;
-    adrs += mts_ix->mltnum32 * sizeof(PatternState);
-
-    return adrs;
-}
-
 void make_texcash_work(s16 ix) {
 #if defined(TARGET_PS2)
     void init_texcash_2nd(s32 ix);
@@ -397,54 +355,56 @@ void make_texcash_work(s16 ix) {
             page32 = mts_base[ix].p32;
         }
 
-        MultiTexture *mts_ix = &mts[ix];
-        MTSBase *mts_base_ix = &mts_base[ix];
+        mts[ix].mltnum16 = (u32)page16 << 8;
+        mts[ix].mltnum32 = page32 << 6;
+        mts[ix].mltnum = (u32)page16 + page32;
+        mts[ix].mltgidx16 = mts_base[ix].gix;
+        mts[ix].mltgidx32 = (u32)page16 + mts_base[ix].gix;
+        mts[ix].mltcshtime16 = mts_base[ix].life16;
+        mts[ix].mltcshtime32 = mts_base[ix].life32;
 
-        mts_ix->mltnum16 = (u32)page16 << 8;
-        mts_ix->mltnum32 = page32 << 6;
-        mts_ix->mltnum = (u32)page16 + page32;
-        mts_ix->mltgidx16 = mts_base_ix->gix;
-        mts_ix->mltgidx32 = (u32)page16 + mts_base_ix->gix;
-        mts_ix->mltcshtime16 = mts_base_ix->life16;
-        mts_ix->mltcshtime32 = mts_base_ix->life32;
-
-        if ((mts_ix->ext = ((mts_base_ix->mode & 0x2000) != 0))) {
-            memreq = (mts_ix->mltnum16 * 8) + (mts_ix->mltnum32 * 8) + sizeof(PatternCollection) +
+        if ((mts[ix].ext = ((mts_base[ix].mode & 0x2000) != 0))) {
+            memreq = (mts[ix].mltnum16 * 8) + (mts[ix].mltnum32 * 8) + sizeof(PatternCollection) +
                      sizeof(TexturePoolFree) + sizeof(TexturePoolUsed);
-            mts_ok[ix].key0 = Pull_ramcnt_key(memreq, mts_base_ix->type, 0, 0);
+            mts_ok[ix].key0 = Pull_ramcnt_key(memreq, mts_base[ix].type, 0, 0);
             adrs = (u8*)Get_ramcnt_address(mts_ok[ix].key0);
-            adrs = alloc_pattern_blocks(mts_ix, adrs);
-            mts_ix->cpat = (PatternCollection*)adrs;
+            mts[ix].mltcsh16 = (PatternState*)adrs;
+            adrs += mts[ix].mltnum16 * 8;
+            mts[ix].mltcsh32 = (PatternState*)adrs;
+            adrs += mts[ix].mltnum32 * 8;
+            mts[ix].cpat = (PatternCollection*)adrs;
             adrs += sizeof(PatternCollection);
-            mts_ix->tpf = (TexturePoolFree*)adrs;
+            mts[ix].tpf = (TexturePoolFree*)adrs;
             adrs += sizeof(TexturePoolFree);
-            mts_ix->tpu = (TexturePoolUsed*)adrs;
-            work_init_zero((s32*)mts_ix->cpat, sizeof(PatternCollection));
-            //work_init_zero((s32*)mts_ix->tpf, sizeof(TexturePoolFree));
-            //work_init_zero((s32*)mts_ix->tpu, sizeof(TexturePoolUsed));
+            mts[ix].tpu = (TexturePoolUsed*)adrs;
+            work_init_zero((s32*)mts[ix].cpat, sizeof(PatternCollection));
+            work_init_zero((s32*)mts[ix].tpf, sizeof(TexturePoolFree));
+            work_init_zero((s32*)mts[ix].tpu, sizeof(TexturePoolUsed));
+            init_texcash_2nd(ix);
         } else {
-            memreq = mts_ix->mltnum16 * 8 + mts_ix->mltnum32 * 8;
-            mts_ok[ix].key0 = Pull_ramcnt_key(memreq, mts_base_ix->type, 0, 0);
+            memreq = mts[ix].mltnum16 * 8 + mts[ix].mltnum32 * 8;
+            mts_ok[ix].key0 = Pull_ramcnt_key(memreq, mts_base[ix].type, 0, 0);
             adrs = (u8*)Get_ramcnt_address(mts_ok[ix].key0);
-            adrs = alloc_pattern_blocks(mts_ix, adrs);
+            mts[ix].mltcsh16 = (PatternState*)adrs;
+            adrs += mts[ix].mltnum16 * 8;
+            mts[ix].mltcsh32 = (PatternState*)adrs;
         }
 
-        mts_ix->mltbuf = texcash_melt_buffer;
-        memreq = ((mts_base_ix->mode & 4) != 0) + 1;
-        memreq *= (mts_ix->mltnum << 0x10);
-        mts_ok[ix].key1 = Pull_ramcnt_key(memreq, mts_base_ix->type, 0, 0);
-        mts_ix->attribute = mts_base_ix->attribute;
+        mts[ix].mltbuf = texcash_melt_buffer;
+        memreq = ((mts_base[ix].mode & 4) != 0) + 1;
+        memreq *= (mts[ix].mltnum << 0x10);
+        mts_ok[ix].key1 = Pull_ramcnt_key(memreq, mts_base[ix].type, 0, 0);
+        mts[ix].attribute = mts_base[ix].attribute;
         page16 = Get_ramcnt_address(mts_ok[ix].key1);
-        mlt_obj_trans_init(mts_ix, mts_base_ix->mode, (u8*)page16);
+        mlt_obj_trans_init(&mts[ix], mts_base[ix].mode, (u8*)page16);
 
-        if (mts_ix->ext) {
+        if (mts[ix].ext) {
             init_texcash_2nd(ix);
         }
 
-        mts_ix->id = ix;
-        mts_ix->mode = mts_base_ix->mode & 0xFF;
+        mts[ix].id = ix;
+        mts[ix].mode = mts_base[ix].mode & 0xFF;
         mts_ok[ix].be = 1;
-        add_active_mts(ix);
         mts_ok[ix].mincg = 0;
         mts_ok[ix].min16 = 0x7FFF;
         mts_ok[ix].min32 = 0x7FFF;
@@ -514,7 +474,6 @@ void purge_texcash_work(s16 ix) {
     mts_ok[ix].be = 0;
     mts_ok[ix].key0 = 0;
     mts_ok[ix].key1 = 0;
-    remove_active_mts(ix);
 }
 
 const MTSBase mts_base[24] = {
