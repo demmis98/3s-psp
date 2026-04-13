@@ -16,7 +16,7 @@ PSP_MAIN_THREAD_ATTR(PSP_THREAD_ATTR_VFPU | PSP_THREAD_ATTR_USER);
 PSP_HEAP_SIZE_KB(-1024);
 PSP_HEAP_THRESHOLD_SIZE_KB(1024);
 
-#define IGNORE_CLOCK
+//#define IGNORE_CLOCK
 
 // global variables
 volatile int g_request_pause = 0;
@@ -27,36 +27,30 @@ extern void adxResume(void);
 
 volatile int clock_mode = CLOCK_300;
 volatile int clock_mode_temp = -1;
-volatile int clock_count_c = 0;
 
 void updateClock(){
-    if(clock_count_c)
-        clock_count_c--;
-    else{
-        if(clock_mode_temp != clock_mode){
-            clock_mode_temp = clock_mode;
-            
-            #ifdef IGNORE_CLOCK
-            return;
-            #endif
+    if(clock_mode_temp != clock_mode){
+        clock_mode_temp = clock_mode;
+        
+        #ifdef IGNORE_CLOCK
+        return;
+        #endif
 
-            switch (clock_mode) {
-            case CLOCK_222:
-                scePowerSetClockFrequency(222, 222, 111);
-                break;
-            case CLOCK_266:
-                scePowerSetClockFrequency(266, 266, 133);
-                break;
-            case CLOCK_300:
-                scePowerSetClockFrequency(300, 300, 150);
-                break;
-            case CLOCK_333:
-                scePowerSetClockFrequency(333, 333, 166);
-                break;
-            default:
-                break;
-            }
-            clock_count_c = 16;
+        switch (clock_mode) {
+        case CLOCK_222:
+            scePowerSetClockFrequency(222, 222, 111);
+            break;
+        case CLOCK_266:
+            scePowerSetClockFrequency(266, 266, 133);
+            break;
+        case CLOCK_300:
+            scePowerSetClockFrequency(300, 300, 150);
+            break;
+        case CLOCK_333:
+            scePowerSetClockFrequency(333, 333, 166);
+            break;
+        default:
+            break;
         }
     }
 }

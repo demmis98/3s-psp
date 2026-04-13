@@ -268,18 +268,20 @@ void texture_cash_update() {
 
     s16 ix;
     MultiTexture* mts_num;
+    PatternInstance **adr_i;
 
     for (num = 0; num < active_mts_count; num++) {
         ix = active_mts_list[num];
         mts_num = &mts[ix];
-        if (mts_ok[ix].be != 0) {
+        if (mts_ok[ix].be) {
             if (mts_num->ext) {
+                adr_i = mts_num->cpat->adr;
                 for (i = 0; i < mts_num->cpat->kazu; i++) {
-                    if ((--mts_num->cpat->adr[i]->time) == 0) {
-                        makeup_tpu_free(mts_num->mltnum16 >> 8, mts_num->mltnum32 >> 6, &mts_num->cpat->adr[i]->map);
+                    if ((--(*adr_i)->time) == 0) {
+                        makeup_tpu_free(mts_num->mltnum16 >> 8, mts_num->mltnum32 >> 6, &(*adr_i)->map);
 
-                        if ((tpu_free->x16 != mts_num->cpat->adr[i]->x16) ||
-                            (tpu_free->x32 != mts_num->cpat->adr[i]->x32)) {
+                        if ((tpu_free->x16 != (*adr_i)->x16) ||
+                            (tpu_free->x32 != (*adr_i)->x32)) {
                             Debug_w[11] = 1;
                             do {
                                 disp_texcash_free_area();
@@ -290,9 +292,10 @@ void texture_cash_update() {
 
                         update_with_tpu_free(mts_num->mltcsh16, mts_num->mltcsh32);
                     }
+                    adr_i++;
                 }
             } else {
-                if ((mts_num->mltcshtime16 + mts_num->mltcshtime32) != 0) {
+                if ((mts_num->mltcshtime16 + mts_num->mltcshtime32)) {
                     mlt_obj_trans_update(mts_num);
                 }
             }

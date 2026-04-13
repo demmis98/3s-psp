@@ -214,9 +214,6 @@ void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
 
 void ppgWriteQuadOnly2T(Vertex* pos, u32 col, u32 texCode, TextureVertex *vertices) {
 
-    if(DEMMA_DEBUG || skip_frame)
-        return;
-
     //quadOnly2DrawLast(texCode);
 
     int texture_handle = LO_16_BITS(texCode) - 1;
@@ -228,27 +225,34 @@ void ppgWriteQuadOnly2T(Vertex* pos, u32 col, u32 texCode, TextureVertex *vertic
 
     u32 color_temp = fixARGB(col);
 
-    for (i = 0; i < 2; i++) {
-        __asm__ volatile (
-            "mtv %2, S000\n"    // load pos[i*3].x to matrix
-            "mtv %3, S001\n"    // load pos[i*3].y to matrix
+    __asm__ volatile (
+        "mtv %4, S000\n"    // load pos[i*3].x to matrix
+        "mtv %5, S001\n"    // load pos[i*3].y to matrix
+        "mtv %6, S002\n"
+        "mtv %7, S003\n"
 
-            "vmul.p C000, C000, C010\n" // multiply matrix (scale)
-            "vadd.p C000, C000, C020\n" // add matrix (offset)
+        "vmul.q C000, C000, C410\n" // multiply matrix (scale)
+        "vadd.q C000, C000, C420\n" // add matrix (offset)
 
-            "mfv %0, S000\n"    // store in vertices[i].x
-            "mfv %1, S001\n"    // store in vertices[i].y
-            : "=r"(vertices[i].x), "=r"(vertices[i].y)  // %0 = vertices[i].x, %1 = vertices[i].y;
-            : "r"(pos[i*3].x), "r"(pos[i*3].y)    // %2 = pos[i*3].x, %3 = pos[i*3].y;
-            : "memory"
-        );
-        //vertices[i].x = SCALE_X((s32)pos[i*3].x);
-        //vertices[i].y = SCALE_Y((s32)pos[i*3].y);
-        vertices[i].z = pos[i*3].z;
-        vertices[i].u = (pos[i*3].u) * w_f + 0.5f;
-        vertices[i].v = (pos[i*3].v) * h_f + 0.5f;
-        vertices[i].colour = color_temp;
-    }
+        "mfv    %0, S000\n"    // store in vertices[i].x
+        "mfv    %1, S001\n"
+        "mfv    %2, S002\n"    // store in vertices[i].y
+        "mfv    %3, S003\n"
+        : "+r"(vertices[0].x), "+r"(vertices[0].y), "+r"(vertices[1].x), "+r"(vertices[1].y)   // %0 = vertices[0].x, %1 = vertices[1].0;
+        : "r"(pos[0].x), "r"(pos[0].y), "r"(pos[3].x), "r"(pos[3].y)    // %2 = pos[i*3].x, %3 = pos[i*3].y;
+        : "memory"
+    );
+
+    vertices[0].z = pos[0].z;
+    vertices[1].z = pos[3].z;
+
+    vertices[0].u = (pos[0].u) * w_f + 0.5f;
+    vertices[1].u = (pos[3].u) * w_f + 0.5f;
+    vertices[0].v = (pos[0].v) * h_f + 0.5f;
+    vertices[1].v = (pos[3].v) * h_f + 0.5f;
+
+    vertices[0].colour = color_temp;
+    vertices[1].colour = color_temp;
 }
 
 s32 ppgWriteQuadWithST_B(Vertex* pos, u32 col, PPGDataList* tb, s32 tix, s32 cix) {
@@ -373,11 +377,11 @@ s32 ppgWriteQuadUseTrans(Vertex* pos, u32 col, PPGDataList* tb, s32 tix, s32 cix
         }
     }
 
-    if (tb->tex->srcAdrs != NULL) {
+    if (tb->tex->srcAdrs) {
         ppg = (PPGFileHeader*)(tb->tex->srcAdrs + tb->tex->offset[ix_ofs & 0xFFF]);
         transTotal = ((ppg->transNums >> 8) & 0xFF) | ((ppg->transNums & 0xFF) << 8);
 
-        if (transTotal != 0) {
+        if (transTotal) {
             tran = (u8*)&ppg[1];
             ppgwf = ppg->width;
             ppgw = ppg->width;
@@ -401,23 +405,22 @@ s32 ppgWriteQuadUseTrans(Vertex* pos, u32 col, PPGDataList* tb, s32 tix, s32 cix
             qvtx[0].z = pos[0].z;
             qvtx[3].z = pos[3].z;
 
-            TextureVertex *vertices = sceGuGetMemory(2 * transTotal * sizeof(TextureVertex));
-            if(vertices == NULL)
+            TextureVertex *vertices = sceGuGetMemory((transTotal * sizeof(TextureVertex)) << 1);
+            if(!vertices)
                 return 1;
+
             u32 v_i = 0, v_s = 0;
             u32 tex_temp = -1;
             u32 texCode;
 
-            __asm__ volatile (
-                // Load constants once
-                "mtv %0, S010\n"  // load Scale_Factor_X to matrix
-                "mtv %1, S011\n"  // load Scale_Factor_Y to matrix
-                "mtv %2, S020\n"  // load Scale_Off_X to matrix
-                "mtv %3, S021\n"  // load Scale_Off_Y to matrix
-                :
-                : "r"(Scale_Factor_X), "r"(Scale_Factor_Y), // %0 = Scale_Factor_X, %1 = Scale_Factor_Y
-                "r"(Scale_Off_X), "r"(Scale_Off_Y)  // %2 = Scale_Off_X, %3 = Scale_Off_Y
-            );
+            float invW = 1.0f / ppgwf;
+            float invH = 1.0f / ppghf;
+
+            float baseX = pos->x;
+            float baseY = pos->y;
+
+            float scaleX = pxs * invW;
+            float scaleY = pys * invH;
 
             for (i = 0; i < transTotal; i++) {
                 if (ix_ofs & 0x4000) {
@@ -430,23 +433,31 @@ s32 ppgWriteQuadUseTrans(Vertex* pos, u32 col, PPGDataList* tb, s32 tix, s32 cix
                 xs = (cofsXY >> 4) + 1;
                 ys = (cofsXY & 0xF) + 1;
                 sx = iPoint % ppgw;
-                sy = iPoint / ppgw;
+                sy = iPoint * invW;
 
-                if (flip & 1) {
-                    qvtx[3].x = pos->x + (pxs * (ppgw - sx) / ppgwf);
-                    qvtx[0].x = pos->x + (pxs * (ppgw - (sx + xs)) / ppgwf);
-                } else {
-                    qvtx[0].x = pos->x + (sx * pxs / ppgwf);
-                    qvtx[3].x = pos->x + (pxs * (sx + xs) / ppgwf);
-                }
+                // X
+                float x0 = (flip & 1)
+                    ? (ppgw - (sx + xs))
+                    : sx;
 
-                if (flip & 2) {
-                    qvtx[3].y = pos->y + (pys * (ppgw - sy) / ppghf);
-                    qvtx[0].y = pos->y + (pys * (ppgw - (sy + ys)) / ppghf);
-                } else {
-                    qvtx[0].y = pos->y + (sy * pys / ppghf);
-                    qvtx[3].y = pos->y + (pys * (sy + ys) / ppghf);
-                }
+                float x3 = (flip & 1)
+                    ? (ppgw - sx)
+                    : (sx + xs);
+
+                qvtx[0].x = baseX + scaleX * x0;
+                qvtx[3].x = baseX + scaleX * x3;
+
+                // Y
+                float y0 = (flip & 2)
+                    ? (ppgw - (sy + ys))
+                    : sy;
+
+                float y3 = (flip & 2)
+                    ? (ppgw - sy)
+                    : (sy + ys);
+
+                qvtx[0].y = baseY + scaleY * y0;
+                qvtx[3].y = baseY + scaleY * y3;
 
                 texCode = texhan | (palhan << 0x10);
 
@@ -462,19 +473,19 @@ s32 ppgWriteQuadUseTrans(Vertex* pos, u32 col, PPGDataList* tb, s32 tix, s32 cix
                 //if ((qvtx[0].x < 384.0f) && (qvtx[3].x >= 0.0f) && (qvtx[0].y < 224.0f) && (qvtx[3].y >= 0.0f)) {
                 if ((qvtx[0].x < Max_X) && (qvtx[3].x >= Min_X) && (qvtx[0].y < Max_Y) && (qvtx[3].y >= Min_Y)) {
                     if (flip & 1) {
-                        qvtx[3].u = (sx / ppgwf) - sadd;
-                        qvtx[0].u = ((sx + xs) / ppgwf) - sadd;
+                        qvtx[3].u = (sx * invW) - sadd;
+                        qvtx[0].u = ((sx + xs) * invW) - sadd;
                     } else {
-                        qvtx[0].u = sadd + (sx / ppgwf);
-                        qvtx[3].u = sadd + ((sx + xs) / ppgwf);
+                        qvtx[0].u = sadd + (sx * invW);
+                        qvtx[3].u = sadd + ((sx + xs) * invW);
                     }
 
                     if (flip & 2) {
-                        qvtx[3].v = (sy / ppghf) - tadd;
-                        qvtx[0].v = ((sy + ys) / ppghf) - tadd;
+                        qvtx[3].v = (sy * invH) - tadd;
+                        qvtx[0].v = ((sy + ys) * invH) - tadd;
                     } else {
-                        qvtx[0].v = tadd + (sy / ppghf);
-                        qvtx[3].v = tadd + ((sy + ys) / ppghf);
+                        qvtx[0].v = tadd + (sy * invH);
+                        qvtx[3].v = tadd + ((sy + ys) * invH);
                     }
 
                     ppgWriteQuadOnly2T(qvtx, col, texhan | (palhan << 0x10), &vertices[v_i]);
@@ -746,9 +757,9 @@ s32 ppgSetupPalChunkDir(Palette* pch, PPLFileHeader* ppl, u8* adrs, s32 ixNum1st
     ppgSetupContextFromPPL(ppl, &bits);
     pch->srcSize = bits.pitch * bits.height;
     pch->total = REVERT_U16(ppl->palettes);
-    pch->handle = ppgMallocF(pch->total * 2);
+    pch->handle = ppgMallocF(pch->total << 1);
 
-    if (pch->handle != NULL) {
+    if (pch->handle) {
         for (i = 0; i < pch->total; i++) {
             pch->handle[i] = 0;
         }
@@ -760,7 +771,6 @@ s32 ppgSetupPalChunkDir(Palette* pch, PPLFileHeader* ppl, u8* adrs, s32 ixNum1st
         for (i = 0; i < pch->total; i++) {
             bits.ptr = adrs;
             pch->handle[i] = flCreatePaletteHandle(&bits, 0);
-            //pch->handle[i] = ixNum1st + i;
             
             if (pch->handle[i] == -1) {
                 goto error_handler;
@@ -797,7 +807,7 @@ void ppgChangeDataEndian(u8* adrs, s32 size, s32 dendL, s32 col4, s32 depth, s32
         return;
     }
 
-    if (depth != 0) {
+    if (depth) {
         if (dendL == 0) {
             c4 = (u32*)adrs;
             if (col4 != 0) {
@@ -868,7 +878,7 @@ s32 ppgSetupTexChunkSeqs(Texture* tch, PPGFileHeader* ppg, u8* adrs, s32 ixNum1s
     tch->srcAdrs = adrs;
     tch->srcSize = bits.pitch * bits.height;
 
-    //memset(adrs, 0, tch->srcSize * ixNums);
+    memset(adrs, 0, tch->srcSize * ixNums);
 
     if (bits.bitdepth < 2) {
         ci_flag = 0x4000;
@@ -902,117 +912,100 @@ error_handler:
     while (1) {}
 }
 
-void ppgRenewDotDataSeqs(Texture* tch, u32 gix, u32* srcRam, u32 code, u32 size) {
+static inline u32 get_swizzle_8bpp(int x, int y) {
+    return (((y >> 3) << 4) + (x >> 4)) << 7 |
+           ((y & 7) << 4) |
+           (x & 15);
+}
+
+static inline u32 get_swizzle_16bpp(int x, int y) {
+    return (((y >> 3) << 5) + (x >> 3)) << 7 |
+           ((y & 7) << 4) |
+           ((x & 7) << 1);
+}
+
+void ppgRenewDotDataSeqs(u32 gix, u32* srcRam, u32 code, u32 size) {
     s32 ix;
-    s32 i;
-    s32 j;
-    u16* dstRam16;
-    u16* srcRam16;
-    u16* tix;
-    u8* dstRam8;
-    u8* srcRam8;
+    s32 i, j;
+    
+    Texture *tch = ppg_w.cur->tex;
+    if (tch->be == 0) return;
 
-    if (tch == NULL) {
-        tch = ppg_w.cur->tex;
-    }
+    ix = gix - tch->ixNum1st;
+    if ((ix < 0) || (ix >= tch->total)) return;
 
-    if (tch->be) {
-        ix = gix - tch->ixNum1st;
+    if (tch->handle[ix].b16[0] != 0) {
+        tch->handle[ix].b16[1] |= 0x2000;
+        
+        // Use the base address of the texture page
+        u8* textureBase = (u8*)(tch->srcAdrs + tch->srcSize * ix);
+        int startX, startY;
 
-        if ((ix < 0) || (ix >= tch->total)) {
-            return;
-        }
+        switch (size) {
+            case 0x40:  // 8x8 Tile (8bpp)
+            case 0x100: // 16x16 Tile (8bpp)
+                // Mapping for CODE_0: (code & 0x0F) is X index, (code & 0xF0) is Y pixel
+                startX = (code & 0x0F) << 4;
+                startY = (code & 0xF0); 
+                
+                u8* src8 = (u8*)srcRam;
+                int side = (size == 0x40) ? 8 : 16;
 
-        if (tch->handle[ix].b16[0]) {
-            tch->handle[ix].b16[1] |= 0x2000;
-
-            switch (size) {
-            case 0x40:
-                srcRam8 = (u8*)srcRam;
-                dstRam8 = (u8*)(tch->srcAdrs + tch->srcSize * ix + CODE_0(code));
-
-                for (i = 0; i < 8; i++) {
-                    for (j = 0; j < 8; j++) {
-                        *dstRam8++ = srcRam8[dctex_linear[j + (i << 5)]];
+                for (i = 0; i < side; i++) {
+                    for (j = 0; j < side; j++) {
+                        u8 pixel = src8[dctex_linear[j + (i << 5)]];
+                        // 256 is the standard width for SF3 texture pages
+                        u32 swzAddr = get_swizzle_8bpp(startX + j, startY + i);
+                        textureBase[swzAddr] = pixel;
                     }
-
-                    dstRam8 += 0xF8;
                 }
-
                 break;
 
-            case 0x100:
-                srcRam8 = (u8*)srcRam;
-                dstRam8 = (u8*)(tch->srcAdrs + tch->srcSize * ix + CODE_0(code));
-
-                for (i = 0; i < 0x10; i++) {
-                    for (j = 0; j < 0x10; j++) {
-                        *dstRam8++ = srcRam8[dctex_linear[j + (i << 5)]];
+            case 0x400: // 32x32 Tile (8bpp)
+                // Mapping for CODE_1: (code & 0x07) is X index, (code & 0x38) is Y index (?)
+                startX = (code & 0x07) << 5;
+                startY = (code & 0x38) << 2; // (code & 0x38) is index*8, we want index*32
+                
+                u8* src8_32 = (u8*)srcRam;
+                for (i = 0; i < 32; i++) {
+                    for (j = 0; j < 32; j++) {
+                        u8 pixel = src8_32[dctex_linear[j + (i << 5)]];
+                        u32 swzAddr = get_swizzle_8bpp(startX + j, startY + i);
+                        textureBase[swzAddr] = pixel;
                     }
-
-                    dstRam8 += 0xF0;
                 }
-
                 break;
 
-            case 0x400:
-                srcRam8 = (u8*)srcRam;
-                dstRam8 = (u8*)(tch->srcAdrs + tch->srcSize * ix + CODE_1(code));
-                tix = (u16*)dctex_linear;
+            case 0x80:  // 8x8 Tile (16bpp)
+            case 0x200: // 16x16 Tile (16bpp)
+                startX = (code & 0x0F) << 4;
+                startY = (code & 0xF0);
+                
+                u16* src16 = (u16*)srcRam;
+                int side16 = (size == 0x80) ? 8 : 16;
 
-                for (i = 0; i < 0x20; i++) {
-                    for (j = 0; j < 0x20; j++) {
-                        *dstRam8++ = srcRam8[*tix++];
+                for (i = 0; i < side16; i++) {
+                    for (j = 0; j < side16; j++) {
+                        u16 pixel = src16[dctex_linear[j + (i << 5)]];
+                        u32 swzAddr = get_swizzle_16bpp(startX + j, startY + i);
+                        *(u16*)(&textureBase[swzAddr]) = pixel;
                     }
-
-                    dstRam8 += 0xE0;
                 }
-
                 break;
 
-            case 0x80:
-                srcRam16 = (u16*)srcRam;
-                dstRam16 = (u16*)(tch->srcAdrs + tch->srcSize * ix + (CODE_0(code)) * 2);
-
-                for (i = 0; i < 8; i++) {
-                    for (j = 0; j < 8; j++) {
-                        *dstRam16++ = srcRam16[dctex_linear[j + (i << 5)]];
+            case 0x800: // 32x32 Tile (16bpp)
+                startX = (code & 0x07) << 5;
+                startY = (code & 0x38) << 2;
+                
+                u16* src16_32 = (u16*)srcRam;
+                for (i = 0; i < 32; i++) {
+                    for (j = 0; j < 32; j++) {
+                        u16 pixel = src16_32[dctex_linear[j + (i << 5)]];
+                        u32 swzAddr = get_swizzle_16bpp(startX + j, startY + i);
+                        *(u16*)(&textureBase[swzAddr]) = pixel;
                     }
-
-                    dstRam16 += 0xF8;
                 }
-
                 break;
-
-            case 0x200:
-                srcRam16 = (u16*)srcRam;
-                dstRam16 = (u16*)(tch->srcAdrs + tch->srcSize * ix + (CODE_0(code)) * 2);
-
-                for (i = 0; i < 0x10; i++) {
-                    for (j = 0; j < 0x10; j++) {
-                        *dstRam16++ = srcRam16[dctex_linear[j + (i << 5)]];
-                    }
-
-                    dstRam16 += 0xF0;
-                }
-
-                break;
-
-            case 0x800:
-                srcRam16 = (u16*)srcRam;
-                dstRam16 = (u16*)(tch->srcAdrs + tch->srcSize * ix + (CODE_1(code)) * 2);
-                tix = (u16*)dctex_linear;
-
-                for (i = 0; i < 0x20; i++) {
-                    for (j = 0; j < 0x20; j++) {
-                        *dstRam16++ = srcRam16[*tix++];
-                    }
-
-                    dstRam16 += 0xE0;
-                }
-
-                break;
-            }
         }
     }
 }
@@ -1285,9 +1278,6 @@ s32 ppgSetupTexChunk_3rd(Texture* tch, s32 ixNum, u32 attribute) {
         while (1) {}
     }
 
-    swizzle_inplace(mltAdrs, mltSize / bits.height, bits.height);
-
-    unused_s5 = 0;
     ppgChangeDataEndian(mltAdrs, mltSize, ppg->pixel & 4, ppg->formARGB == 0x8888, bits.bitdepth, unused_s5);
     //bits.ptr = mltAdrs;
     hnof->b16[0] = flCreateTextureHandle(&bits, attribute, 0);

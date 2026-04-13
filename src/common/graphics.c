@@ -187,6 +187,21 @@ void setupScaling(int mode) {
     blit_x1 = 1.0f;
     blit_y1 = 1.0f;
     }
+
+    __asm__ volatile (
+        // Load constants once
+        "mtv %0, S410\n"  // load Scale_Factor_X to matrix
+        "mtv %1, S411\n"  // load Scale_Factor_Y to matrix
+        "mtv %0, S412\n"  // load Scale_Factor_X to matrix
+        "mtv %1, S413\n"  // load Scale_Factor_Y to matrix        
+        "mtv %2, S420\n"  // load Scale_Off_X to matrix
+        "mtv %3, S421\n"  // load Scale_Off_Y to matrix
+        "mtv %2, S422\n"  // load Scale_Off_X to matrix
+        "mtv %3, S423\n"  // load Scale_Off_Y to matrix
+        :
+        : "r"(Scale_Factor_X), "r"(Scale_Factor_Y), // %0 = Scale_Factor_X, %1 = Scale_Factor_Y
+        "r"(Scale_Off_X), "r"(Scale_Off_Y)  // %2 = Scale_Off_X, %3 = Scale_Off_Y
+    );
 }
 
 void enableOffscreenMode() { }
@@ -248,6 +263,12 @@ void endGu(){
 typedef struct { float u, v; float x, y, z; } BlitVertex;
 
 void startFrame(){
+
+    sceGuSync(GU_SYNC_LIST, GU_SYNC_WHAT_DONE);
+    sceDisplayWaitVblankStart();
+    sceGuSwapBuffers();
+    backBuf ^= 1;
+
     setupScaling(render_mode);
 
     sceGuStart(GU_DIRECT, list);
@@ -304,11 +325,6 @@ void endFrame(){
     if (!RTT_Enabled) {
         /* Direct path — just finish and swap */
         sceGuFinish();
-
-        sceGuSync(GU_SYNC_FINISH, GU_SYNC_WHAT_DONE);
-        sceDisplayWaitVblankStart();
-        sceGuSwapBuffers();
-        backBuf ^= 1;
         return;
     }
 
@@ -359,11 +375,6 @@ void endFrame(){
     sceGuEnable(GU_BLEND);
 
     sceGuFinish();
-
-    sceGuSync(GU_SYNC_FINISH, GU_SYNC_WHAT_DONE);
-    sceDisplayWaitVblankStart();
-    sceGuSwapBuffers();
-    backBuf ^= 1;
 }
 
 void endFrameDebug(){

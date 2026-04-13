@@ -296,17 +296,6 @@ void njdp2d_draw_0() {
 
     sceGuDisable(GU_TEXTURE_2D);
 
-    __asm__ volatile (
-        // Load constants once
-        "mtv %0, S010\n"  // load Scale_Factor_X to matrix
-        "mtv %1, S011\n"  // load Scale_Factor_Y to matrix
-        "mtv %2, S020\n"  // load Scale_Off_X to matrix
-        "mtv %3, S021\n"  // load Scale_Off_Y to matrix
-        :
-        : "r"(Scale_Factor_X), "r"(Scale_Factor_Y), // %0 = Scale_Factor_X, %1 = Scale_Factor_Y
-        "r"(Scale_Off_X), "r"(Scale_Off_Y)  // %2 = Scale_Off_X, %3 = Scale_Off_Y
-    );
-
     for (i = njdp2d_w.ix1st; i != -1; i = njdp2d_w.prim[i].next) {
         if (njdp2d_w.prim[i].type == 0) {
             vertices = &vertices_total[w];
@@ -319,8 +308,8 @@ void njdp2d_draw_0() {
                     "mtv %2, S000\n"    // load njdp2d_w.prim[i].v[j].x to matrix
                     "mtv %3, S001\n"    // load njdp2d_w.prim[i].v[j].y to matrix
 
-                    "vmul.p C000, C000, C010\n" // multiply matrix (scale)
-                    "vadd.p C000, C000, C020\n" // add matrix (offset)
+                    "vmul.p C000, C000, C410\n" // multiply matrix (scale)
+                    "vadd.p C000, C000, C420\n" // add matrix (offset)
 
                     "mfv %0, S000\n"    // store in vertices[j].x
                     "mfv %1, S001\n"    // store in vertices[j].y
@@ -338,14 +327,15 @@ void njdp2d_draw_0() {
                 "mtv %2, S000\n"    // load njdp2d_w.prim[i].v[j].x to matrix
                 "mtv %3, S001\n"    // load njdp2d_w.prim[i].v[j].y to matrix
 
-                "vmul.p C000, C000, C010\n" // multiply matrix (scale)
-                "vadd.p C000, C000, C020\n" // add matrix (offset)
+                "vmul.p C000, C000, C410\n" // multiply matrix (scale)
+                "vadd.p C000, C000, C420\n" // add matrix (offset)
 
                 "mfv %0, S000\n"    // store in vertices[j].x
                 "mfv %1, S001\n"    // store in vertices[j].y
                 : "=r"(vertices[5].x), "=r"(vertices[5].y)  // %0 = vertices[5].x, %1 = vertices[5].y;
                 : "r"(njdp2d_w.prim[i].v[j].x), "r"(njdp2d_w.prim[i].v[j].y)    // %2 = njdp2d_w.prim[i].v[j].x, %3 = njdp2d_w.prim[i].v[j].y;
             );
+            
             vertices[5].z = njdp2d_w.prim[i].v[j].z;
             vertices[5].colour = vertices[j].colour;
             w += 6;
@@ -449,6 +439,6 @@ void njSetPaletteData(s32 offset, s32 count, void* data) {
 }
 
 s32 njReLoadTexturePartNumG(u32 gix, u8* srcAdrs, u32 ofs, u32 size) {
-    ppgRenewDotDataSeqs(0, gix, srcAdrs, ofs, size);
+    ppgRenewDotDataSeqs(gix, srcAdrs, ofs, size);
     return 1;
 }

@@ -67,7 +67,6 @@ bool RUNNING = 1;
 
 int c_x, c_y, c_v_x = 1, c_v_y = 1;
 
-
 void AcrMain() {
     u16 sw_buff;
     u32 sysinfodisp;
@@ -228,7 +227,7 @@ void AcrMain() {
         if (Debug_w[6] == 0) {
             //CP3toPS2Draw();
         }
-        
+
         //if(!DEMMA_DEBUG)
             //drawRect(c_x, c_y, 10, 10, 0xFFFFFFFF);
 

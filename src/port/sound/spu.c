@@ -419,15 +419,15 @@ void SPU_PSP_CB(void* buf, unsigned int reqn, void* pdata) {
 
     if (spu_locked) {
         for (unsigned int i = 0; i < reqn; i++) {
-            out[i * 2]     = 0;
-            out[i * 2 + 1] = 0;
+            out[i << 1]     = 0;
+            out[(i << 1) + 1] = 0;
         }
         return;
     }
 
     if (active_voices == 0) {
         // Fast path: no voices active, output silence
-        memset(out, 0, reqn * 4);
+        memset(out, 0, reqn << 2);
         // Still advance timer for emlShimWorkTick
         u32 ticks = (reqn * SPU_TICK_RATE + PSP_AUDIO_RATE/2) / PSP_AUDIO_RATE;
         if (cb_timer > (s32)ticks) {
@@ -454,8 +454,8 @@ void SPU_PSP_CB(void* buf, unsigned int reqn, void* pdata) {
             }
 
             last_m = (spu_last_output[0] + spu_last_output[1]) >> 1;
-            out[i * 2]     = last_m;
-            out[i * 2 + 1] = last_m;
+            out[i << 1]     = last_m;
+            out[(i << 1) + 1] = last_m;
         }
     }
     else{
@@ -472,8 +472,8 @@ void SPU_PSP_CB(void* buf, unsigned int reqn, void* pdata) {
                 }
             }
 
-            out[i * 2]     = spu_last_output[0];
-            out[i * 2 + 1] = spu_last_output[1];
+            out[i << 1]     = spu_last_output[0];
+            out[(i << 1) + 1] = spu_last_output[1];
         }
     }
 }

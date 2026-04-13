@@ -110,14 +110,14 @@ static u16 sceSdNote2Pitch(u16 center_note, u16 center_fine, u16 note, short fin
     if (_fine < 0)
         _fine2 = _fine + 127;
 
-    _fine2 = _fine2 / 128;
+    _fine2 = (_fine2 >= 0) ? (_fine2 >> 7) : -((-_fine2) >> 7);
     _note = note + _fine2 - center_note;
     val3 = _note / 6;
 
     if (_note < 0)
         val3--;
 
-    offset2 = _fine - _fine2 * 128;
+    offset2 = _fine - (_fine2 << 7);
 
     if (_note < 0)
         val2 = -1;
@@ -128,7 +128,7 @@ static u16 sceSdNote2Pitch(u16 center_note, u16 center_fine, u16 note, short fin
 
     val2 = (val3 / 2) - val2;
     val = val2 - 2;
-    offset1 = _note - (val2 * 12);
+    offset1 = _note - ((val2 << 3) + (val2 << 2));
 
     if ((offset1 < 0) || ((offset1 == 0) && (offset2 < 0))) {
         offset1 = offset1 + 12;
@@ -137,10 +137,10 @@ static u16 sceSdNote2Pitch(u16 center_note, u16 center_fine, u16 note, short fin
 
     if (offset2 < 0) {
         offset1 = (offset1 - 1) + _fine2;
-        offset2 += (_fine2 + 1) * 128;
+        offset2 += (_fine2 + 1) << 7;
     }
 
-    ret = (NotePitchTable[offset1] * NotePitchTable[offset2 + 12]) / 0x10000;
+    ret = (NotePitchTable[offset1] * NotePitchTable[offset2 + 12]) >> 16;
 
     if (val < 0)
         ret = (ret + (1 << (-val - 1))) >> -val;

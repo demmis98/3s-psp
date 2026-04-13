@@ -304,13 +304,13 @@ void Bg_Texture_Load_EX() {
         tgbix = bgtex_stage_gbix[bg_w.stage][j];
         mask = 0x80000000;
         ppgSetupCurrentDataList(&ppgBgList[stg]);
-        ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, (stg * 64) + 0x84, 32, 0, 0);
+        ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, (stg << 6) + 0x84, 32, 0, 0);
         ppgSetupTexChunk_1st_Accnum(0, accnum);
 
         for (i = 0; i < 32; i++, assign2 = mask >>= 1) {
             if (tgbix & mask) {
-                accnum = ppgSetupTexChunk_2nd(NULL, i + ((stg * 64) + 0x84));
-                ppgSetupTexChunk_3rd(NULL, i + ((stg * 64) + 0x84), 1);
+                accnum = ppgSetupTexChunk_2nd(NULL, i + ((stg << 6) + 0x84));
+                ppgSetupTexChunk_3rd(NULL, i + ((stg << 6) + 0x84), 1);
             }
         }
     }
@@ -319,12 +319,12 @@ void Bg_Texture_Load_EX() {
 
     if (x) {
         ppgSetupCurrentDataList(&ppgRwBgList);
-        ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, (stg * 64) + 0x64, x, 0, 0);
+        ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, (stg << 6) + 0x64, x, 0, 0);
         ppgSetupTexChunk_1st_Accnum(0, accnum);
 
         for (i = 0; i < x; i++) {
-            accnum = ppgSetupTexChunk_2nd(NULL, i + ((stg * 64) + 0x64));
-            ppgSetupTexChunk_3rd(NULL, i + ((stg * 64) + 0x64), 1);
+            accnum = ppgSetupTexChunk_2nd(NULL, i + ((stg << 6) + 0x64));
+            ppgSetupTexChunk_3rd(NULL, i + ((stg << 6) + 0x64), 1);
         }
     }
 
@@ -465,14 +465,14 @@ void Bg_Texture_Load_Ending(s16 type) {
         tgbix[1] = bgtex_ending_gbix[type][(j * 2) + 1];
         mask = 0x80000000;
         ppgSetupCurrentDataList(&ppgBgList[j]);
-        ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, (j * 64) + 100, 64, 0, 0);
+        ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, (j << 6) + 100, 64, 0, 0);
         ppgSetupTexChunk_1st_Accnum(0, accnum);
 
         for (k = 0; k < 2; k++) {
             for (i = 0; i < 32; i++, assign2 = mask >>= 1) {
                 if (mask & tgbix[k]) {
-                    accnum = ppgSetupTexChunk_2nd(NULL, i + ((j * 64) + 100 + (k * 32)));
-                    ppgSetupTexChunk_3rd(NULL, i + ((j * 64) + 100 + (k * 32)), 1);
+                    accnum = ppgSetupTexChunk_2nd(NULL, i + ((j << 6) + 100 + (k << 5)));
+                    ppgSetupTexChunk_3rd(NULL, i + ((j << 6) + 100 + (k << 5)), 1);
                 }
             }
 
@@ -484,12 +484,12 @@ void Bg_Texture_Load_Ending(s16 type) {
 
     if (x) {
         ppgSetupCurrentDataList(&ppgRwBgList);
-        ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, (j * 64) + 100, x, 0, 0);
+        ppgSetupTexChunk_1st(NULL, loadAdrs, loadSize, (j << 6) + 100, x, 0, 0);
         ppgSetupTexChunk_1st_Accnum(0, accnum);
 
         for (i = 0; i < x; i++) {
-            accnum = ppgSetupTexChunk_2nd(NULL, i + ((j * 64) + 100));
-            ppgSetupTexChunk_3rd(NULL, i + ((j * 64) + 100), 1);
+            accnum = ppgSetupTexChunk_2nd(NULL, i + ((j << 6) + 100));
+            ppgSetupTexChunk_3rd(NULL, i + ((j << 6) + 100), 1);
         }
     }
 
@@ -499,7 +499,7 @@ void Bg_Texture_Load_Ending(s16 type) {
 
         for (i = 0; i < 4; i++) {
             for (j = 0; j < 4; j++) {
-                gouki_end_gbix[j + (i * 4)] = (j + ((i * 8) + 100));
+                gouki_end_gbix[j + (i * 4)] = (j + ((i << 3) + 100));
             }
         }
 
@@ -1067,6 +1067,9 @@ void bgRWWorkUpdate() {
 void bgDrawOneScreen(s32 bgnum, s32 gixbase, s32* xx, s32* yy, s32 /* unused */, s32 ofsPal, PPGDataList* curDataList) {
     s32 i, x, y, gbix;
 
+    if(DEMMA_DEBUG || skip_frame)
+        return;
+
     for (y = yy[0]; y < yy[1]; y += 128) {
         for (x = xx[0]; x < xx[1]; x += 128) {
             gbix = ((y >> 7) << 3) + (x >> 7) + gixbase;
@@ -1136,10 +1139,10 @@ void ppgCalScrPosition(s32 x, s32 y, s32 xs, s32 ys) {
     scrDrawPos[2].y = scrDrawPos[3].y = point[1].y;
     scrDrawPos[0].z = scrDrawPos[1].z = scrDrawPos[2].z = scrDrawPos[3].z = point[0].z;
 
-    scrDrawPos[0].u = (f32)(x & 0x7F) / 128.0f;
-    scrDrawPos[0].v = (f32)(y & 0x7F) / 128.0f;
-    scrDrawPos[3].u = (f32)((x & 0x7F) + xs) / 128.0f;
-    scrDrawPos[3].v = (f32)((y & 0x7F) + ys) / 128.0f;
+    scrDrawPos[0].u = (f32)((x & 0x7F) >> 7);
+    scrDrawPos[0].v = (f32)((y & 0x7F) >> 7);
+    scrDrawPos[3].u = (f32)(((x & 0x7F) + xs) >> 7);
+    scrDrawPos[3].v = (f32)(((y & 0x7F) + ys) >> 7);
     scrDrawPos[1].u = scrDrawPos[3].u;
     scrDrawPos[2].u = scrDrawPos[0].u;
     scrDrawPos[1].v = scrDrawPos[0].v;
