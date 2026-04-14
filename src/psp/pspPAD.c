@@ -27,6 +27,35 @@ s32 tarPADInit() {
 
 void tarPADDestroy() {}
 
+/*
+
+#include <pspiofilemgr.h>
+#include <stdio.h>
+#define FL_TEXTURE_MAX 256
+extern u32 fltex_c[FL_TEXTURE_MAX];
+extern FLTexture flTexture[FL_TEXTURE_MAX];
+void dump_fltex_to_file() {
+    SceUID file = sceIoOpen("ms0:/fltex_dump.txt",
+                           PSP_O_WRONLY | PSP_O_CREAT | PSP_O_TRUNC,
+                           0777);
+
+    if (file < 0) {
+        return; // failed to open file
+    }
+
+    char buffer[64];
+
+    for (int i = 0; i < FL_TEXTURE_MAX; i++) {
+        int len = snprintf(buffer, sizeof(buffer),
+                           "ID %d: %lu %d %d %d\n", i, fltex_c[i], flTexture[i].width, flTexture[i].height, flTexture[i].format);
+
+        sceIoWrite(file, buffer, len);
+    }
+
+    sceIoClose(file);
+}
+*/
+
 void tarPADRead() {
 
     SceCtrlData pad;
@@ -72,7 +101,10 @@ void tarPADRead() {
     //if (pad.Buttons & PSP_CTRL_L2) sw |= 0x0080;
 
     if (pad.Buttons & PSP_CTRL_START) sw |= 0x8000;
-    if (pad.Buttons & PSP_CTRL_SELECT) sw |= 0x4000;
+    if (pad.Buttons & PSP_CTRL_SELECT){
+        sw |= 0x4000;
+        //dump_fltex_to_file();
+    }
 
     tp->sw = sw;
 

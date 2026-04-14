@@ -23,6 +23,7 @@
 
 FLTexture flPalette[FL_PALETTE_MAX];
 FLTexture flTexture[FL_TEXTURE_MAX];
+//u32 fltex_c[FL_TEXTURE_MAX];
 FLPS2State flPs2State;
 
 FL_FMS flFMS;
@@ -34,12 +35,11 @@ int debug_mode = 0;
 bool skip_frame = 0;
 
 
-#define MAX_BG_BUFFER 8
+#define MAX_BG_BUFFER 6
 #define BG_BUFF_SIZE_X 256
-#define BG_BUFF_SIZE_Y 128
+#define BG_BUFF_SIZE_Y 256
 static void *bg_buffer[MAX_BG_BUFFER];
 static bool bg_used[MAX_BG_BUFFER];
-u8 texconv_c = 0;
 
 void enableDebug(){
     if(debug_mode == 0){
@@ -143,73 +143,28 @@ void swizzle_fast(u8* out, u8* in, unsigned int width, unsigned int height) {
    }
 }
 
-#include <stdint.h>
-#include <string.h>
+void swizzle_inplace(void *data, uint32_t width_bytes, uint32_t height) {
+    uint32_t rowblocks = width_bytes / 16;
+    uint32_t sz = width_bytes * height;
+    u8 *tmp = (u8 *)malloc(sz);
+    if (!tmp) return;
 
-#define CHUNK 16
-#define TMP_SIZE 128  // fixed buffer
+    u8 *src = (u8 *)data;
+    u8 *dst = tmp;
+    uint32_t blockx, blocky, j;
 
-static inline uint32_t swizzle_index(uint32_t x, uint32_t y, uint32_t width)
-{
-    // Example PSP-style swizzle (16x8 tiles)
-    uint32_t blockx = x >> 4;
-    uint32_t blocky = y >> 3;
-
-    uint32_t block_index = blockx + blocky * (width >> 4);
-
-    uint32_t inblock =
-        (x & 0xF) +
-        ((y & 0x7) << 4);
-
-    return block_index * (16 * 8) + inblock;
-}
-
-void swizzle_inplace(uint8_t *data, uint32_t width, uint32_t height)
-{
-    uint32_t total = width * height;
-    uint8_t temp[TMP_SIZE];
-    uint8_t visited[CHUNK]; // bitset preferred
-
-    memset(visited, 0, sizeof(visited));
-
-    for (uint32_t i = 0; i < total; i += CHUNK)
-    {
-        if (visited[i / CHUNK])
-            continue;
-
-        uint32_t current = i;
-        uint32_t next = swizzle_index(
-            (current % width),
-            (current / width),
-            width
-        );
-
-        if (next == current)
-        {
-            visited[i / CHUNK] = 1;
-            continue;
+    for (blocky = 0; blocky < height; blocky++) {
+        for (blockx = 0; blockx < rowblocks; blockx++) {
+            uint32_t block_idx = blockx + (blocky / 8) * rowblocks;
+            uint32_t block_ofs = block_idx * 16 * 8 + (blocky & 7) * 16;
+            for (j = 0; j < 16; j++) {
+                dst[block_ofs + j] = *src++;
+            }
         }
-
-        // Save first chunk
-        memcpy(temp, data + current, CHUNK);
-
-        while (next != i)
-        {
-            memcpy(data + current, data + next, CHUNK);
-            visited[current / CHUNK] = 1;
-
-            current = next;
-
-            next = swizzle_index(
-                (current % width),
-                (current / width),
-                width
-            );
-        }
-
-        memcpy(data + current, temp, CHUNK);
-        visited[current / CHUNK] = 1;
     }
+
+    memcpy(data, tmp, sz);
+    free(tmp);
 }
 
 void swizzle_inplace_correct_5551(void *data, uint32_t width_bytes, uint32_t height) {
@@ -260,6 +215,8 @@ u32 flCreateTextureHandle(plContext* bits, u32 flag, u8 mode) {
     if (th == 0) {
         return 0;
     }
+
+    //fltex_c[th - 1]++;
 
     lpflTexture = &flTexture[LO_16_BITS(th) - 1];
     flPS2GetTextureInfoFromContext(bits, 1, th, flag);
@@ -532,15 +489,11 @@ s32 flReleaseTextureHandle(u32 texture_handle) {
 
     else if (lpflTexture->wkVram != NULL) {
         int i;
-        int k = 0;
         for(i = 0; i < MAX_BG_BUFFER; i++){
             if(bg_buffer[i] == lpflTexture->wkVram)
                 break;
         }
-        if(i == MAX_BG_BUFFER){
-            k++;
-        }
-        else{
+        if(i != MAX_BG_BUFFER){
             bg_used[i] = false;
         }
 
@@ -1249,6 +1202,12 @@ s32 flInitialize(s32 /* unused */, s32 /* unused */){
         bg_used[i] = (bg_buffer[i] == NULL);
     }
 
+    /*
+    for(int i = 0; i < FL_TEXTURE_MAX; i++){
+        fltex_c[i] = 0;
+    }
+    */
+
     flPS2SystemTmpBuffInit();
     flPADInitialize();
 
@@ -1370,13 +1329,21 @@ s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture,
             break;
 
         case GU_PSM_5551:
-            tex_size = dw * dh * 2;
-            swizzle_inplace_correct_5551(dst_ptr, dw << 1, dh);
-            lpflTexture->swizzeled = true;
+            tex_size = (dw * dh) << 1;
+            {
+            // Swap R and B channels: process 2 pixels at a time via u32
+            u32 *p32 = (u32*) dst_ptr;
+            int count = (dw * dh) >> 1;
+            for(int i = 0; i < count; i++){
+                u32 v = p32[i];
+                u32 rb = v & 0x7C1F7C1F;  // R and B bits
+                p32[i] = (v & 0x83E083E0) | ((rb >> 10) & 0x001F001F) | ((rb << 10) & 0x7C007C00);
+            }
+            }
             break;
 
         case GU_PSM_4444:
-            tex_size = dw * dh * 2;
+            tex_size = (dw * dh) << 1;
             {
                 u32 *p32 = (u32*) dst_ptr;
                 int count = (dw * dh) >> 1;
@@ -1389,7 +1356,7 @@ s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture,
             break;
 
         case GU_PSM_8888:
-            tex_size = dw * dh * 4;
+            tex_size = (dw * dh) << 2;
             break;
         }
 
@@ -1399,27 +1366,58 @@ s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture,
         lpcontext++;
     }
 
-    if(lpflTexture->tex_num > 1 || !mode){
-        sceKernelDcacheWritebackRange(base_ptr, dst_ptr - base_ptr);
+    tex_size = dst_ptr - base_ptr;
+    dw = lpflTexture->width;
+    dh = lpflTexture->height;
+
+
+    if(lpflTexture->mem_handle){
+        sceKernelDcacheWritebackRange(base_ptr, tex_size);
         return 1;
     }
 
-    //if(lpflTexture->width == BG_BUFF_SIZE_X && lpflTexture->height == BG_BUFF_SIZE_Y && lpflTexture->format == GU_PSM_T8){
-    //if(dst_ptr - base_ptr == BG_BUFF_SIZE_X * BG_BUFF_SIZE_Y){
-    if(dst_ptr - base_ptr == BG_BUFF_SIZE_X * BG_BUFF_SIZE_Y || dst_ptr - base_ptr == BG_BUFF_SIZE_X * BG_BUFF_SIZE_Y / 2 || dst_ptr - base_ptr == BG_BUFF_SIZE_X * BG_BUFF_SIZE_Y / 4){
+    if(lpflTexture - flTexture == 6){   // upload the texture for the hud to vram
+        void *vram = guGetStaticVramTexture(dw, dh, GU_PSM_T8);
+        if(vram){
+            swizzle_fast(vram, base_ptr, dw, dh);
+            lpflTexture->swizzeled = true;
+            lpflTexture->wkVram = vram;
+            lpflTexture->vram_on_flag = true;
+        }
+        return 1;
+    }
+
+    if(lpflTexture - flTexture == 2){   // upload the texture for the "hit" "combo" texts
+        void *vram = guGetStaticVramTexture(dw, dh, GU_PSM_T4);
+        if(vram){
+            swizzle_fast(vram, base_ptr, dw >> 1, dh);
+            lpflTexture->swizzeled = true;
+            lpflTexture->wkVram = vram;
+            lpflTexture->vram_on_flag = true;
+        }
+        return 1;
+    }
+
+    if(lpflTexture - flTexture < 15 || lpflTexture - flTexture > 22){
+        sceKernelDcacheWritebackRange(base_ptr, tex_size);
+        return 1;
+    }
+
+    if(lpflTexture->swizzeled){
+        sceKernelDcacheWritebackRange(base_ptr, tex_size);
+        return 1;
+    }
+
+    if(dw == BG_BUFF_SIZE_X && dh == BG_BUFF_SIZE_Y && lpflTexture->format == GU_PSM_T8){
         int i;
         for(i = 0; i < MAX_BG_BUFFER; i++){
             if(!bg_used[i])
                 break;
         }
-        if(i != MAX_BG_BUFFER && dst_ptr - base_ptr != 6){
-            memcpy(bg_buffer[i], base_ptr, dst_ptr - base_ptr);
+        if(i != MAX_BG_BUFFER){
             lpflTexture->wkVram = bg_buffer[i];
-            flPS2ReleaseSystemMemory(lpflTexture->mem_handle);
-            lpflTexture->mem_handle = 0;
             lpflTexture->vram_on_flag = true;
             bg_used[i] = true;
-            texconv_c++;
         }
     }
 

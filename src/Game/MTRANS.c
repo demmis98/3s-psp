@@ -2125,7 +2125,6 @@ static inline void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len) {
         if(type == 0){
             *dstptr++ = tmp;
         }
-
         else if(type == 1){
             tmp &= 0x3F;
             tmpptr = (dstptr - (tmp >> 2)) - 1;
