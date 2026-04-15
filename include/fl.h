@@ -65,4 +65,6 @@ s32 flPS2CreateTextureHandle(u32 th, u32 flag);
 s32 flPS2GetTextureInfoFromContext(plContext* bits, s32 bnum, u32 th, u32 flag);
 s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture, u32 type, u8 mode);
 
+void bg_used_clear();
+
 #endif  // FL_H_

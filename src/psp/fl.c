@@ -21,6 +21,10 @@
 
 #include "sdk/libgraph.h"
 
+#define MAX_BG_BUFFER 6
+#define BG_BUFF_SIZE_X 256
+#define BG_BUFF_SIZE_Y 256
+
 FLTexture flPalette[FL_PALETTE_MAX];
 FLTexture flTexture[FL_TEXTURE_MAX];
 //u32 fltex_c[FL_TEXTURE_MAX];
@@ -34,12 +38,8 @@ int debug_mode = 0;
 
 bool skip_frame = 0;
 
-
-#define MAX_BG_BUFFER 6
-#define BG_BUFF_SIZE_X 256
-#define BG_BUFF_SIZE_Y 256
-static void *bg_buffer[MAX_BG_BUFFER];
-static bool bg_used[MAX_BG_BUFFER];
+void *bg_buffer[MAX_BG_BUFFER];
+bool bg_used[MAX_BG_BUFFER];
 
 void enableDebug(){
     if(debug_mode == 0){
@@ -167,12 +167,12 @@ void swizzle_inplace(void *data, uint32_t width_bytes, uint32_t height) {
     free(tmp);
 }
 
-void swizzle_inplace_correct_5551(void *data, uint32_t width_bytes, uint32_t height) {
+bool swizzle_inplace_correct_5551(void *data, uint32_t width_bytes, uint32_t height) {
     uint32_t rowblocks = width_bytes / 16;
     uint32_t sz = width_bytes * height;
 
     u8 *tmp = (u8 *)malloc(sz);
-    if (!tmp) return;
+    if (!tmp) return false;
 
     u8 *src = (u8 *)data;
     u8 *dst = tmp;
@@ -206,6 +206,7 @@ void swizzle_inplace_correct_5551(void *data, uint32_t width_bytes, uint32_t hei
 
     memcpy(data, tmp, sz);
     free(tmp);
+    return true;
 }
 
 u32 flCreateTextureHandle(plContext* bits, u32 flag, u8 mode) {
@@ -1330,16 +1331,17 @@ s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture,
 
         case GU_PSM_5551:
             tex_size = (dw * dh) << 1;
-            {
-            // Swap R and B channels: process 2 pixels at a time via u32
-            u32 *p32 = (u32*) dst_ptr;
-            int count = (dw * dh) >> 1;
-            for(int i = 0; i < count; i++){
-                u32 v = p32[i];
-                u32 rb = v & 0x7C1F7C1F;  // R and B bits
-                p32[i] = (v & 0x83E083E0) | ((rb >> 10) & 0x001F001F) | ((rb << 10) & 0x7C007C00);
-            }
-            }
+            /*{
+                // Swap R and B channels: process 2 pixels at a time via u32
+                u32 *p32 = (u32*) dst_ptr;
+                int count = (dw * dh) >> 1;
+                for(int i = 0; i < count; i++){
+                    u32 v = p32[i];
+                    u32 rb = v & 0x7C1F7C1F;  // R and B bits
+                    p32[i] = (v & 0x83E083E0) | ((rb >> 10) & 0x001F001F) | ((rb << 10) & 0x7C007C00);
+                }
+            }*/
+            lpflTexture->swizzeled = swizzle_inplace_correct_5551(dst_ptr, dw << 1, dh);
             break;
 
         case GU_PSM_4444:
@@ -1369,57 +1371,60 @@ s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture,
     tex_size = dst_ptr - base_ptr;
     dw = lpflTexture->width;
     dh = lpflTexture->height;
+    lp0 = lpflTexture - flTexture;
 
-
-    if(lpflTexture->mem_handle){
-        sceKernelDcacheWritebackRange(base_ptr, tex_size);
-        return 1;
-    }
-
-    if(lpflTexture - flTexture == 6){   // upload the texture for the hud to vram
+    if(lp0 == 6){   // upload the texture for the hud to vram
         void *vram = guGetStaticVramTexture(dw, dh, GU_PSM_T8);
         if(vram){
-            swizzle_fast(vram, base_ptr, dw, dh);
-            lpflTexture->swizzeled = true;
+            //memcpy(vram, base_ptr, tex_size);
+            //lpflTexture->swizzeled = true;
             lpflTexture->wkVram = vram;
             lpflTexture->vram_on_flag = true;
+
         }
         return 1;
     }
 
-    if(lpflTexture - flTexture == 2){   // upload the texture for the "hit" "combo" texts
-        void *vram = guGetStaticVramTexture(dw, dh, GU_PSM_T4);
-        if(vram){
-            swizzle_fast(vram, base_ptr, dw >> 1, dh);
-            lpflTexture->swizzeled = true;
-            lpflTexture->wkVram = vram;
-            lpflTexture->vram_on_flag = true;
-        }
-        return 1;
-    }
 
-    if(lpflTexture - flTexture < 15 || lpflTexture - flTexture > 22){
-        sceKernelDcacheWritebackRange(base_ptr, tex_size);
+    if(lpflTexture->mem_handle)
         return 1;
-    }
 
-    if(lpflTexture->swizzeled){
-        sceKernelDcacheWritebackRange(base_ptr, tex_size);
-        return 1;
-    }
-
-    if(dw == BG_BUFF_SIZE_X && dh == BG_BUFF_SIZE_Y && lpflTexture->format == GU_PSM_T8){
+    /*
+    if(tex_size == BG_BUFF_SIZE_X * BG_BUFF_SIZE_Y || tex_size == BG_BUFF_SIZE_X * BG_BUFF_SIZE_Y / 2 || tex_size == BG_BUFF_SIZE_X * BG_BUFF_SIZE_Y / 4){
         int i;
         for(i = 0; i < MAX_BG_BUFFER; i++){
             if(!bg_used[i])
                 break;
         }
         if(i != MAX_BG_BUFFER){
+            //memcpy(bg_buffer[i], base_ptr, BG_BUFF_SIZE_X*BG_BUFF_SIZE_Y);
             lpflTexture->wkVram = bg_buffer[i];
             lpflTexture->vram_on_flag = true;
             bg_used[i] = true;
         }
     }
+    */
+
+    /*
+    if(dw == BG_BUFF_SIZE_X && dh == BG_BUFF_SIZE_Y && lpflTexture->format == GU_PSM_T8){
+        int i;
+        for(i = 0; i < MAX_BG_BUFFER; i++){
+            if(!bg_used[i])
+                break;
+        }
+
+        if(i != MAX_BG_BUFFER){
+            lpflTexture->wkVram = bg_buffer[i];
+            lpflTexture->vram_on_flag = true;
+            bg_used[i] = true;
+            if(lpflTexture->mem_handle){
+                flPS2ReleaseSystemMemory(lpflTexture->mem_handle);
+                lpflTexture->mem_handle = 0;
+            }
+            lpflTexture->swizzeled = true;
+        }
+    }
+    */
 
     // Flush cache once at load time — textures in main RAM need this
     // VRAM textures (wkVram != NULL) don't need it since VRAM is uncached

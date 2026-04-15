@@ -499,9 +499,8 @@ s32 Check_LDREQ_Queue_Player(s16 id) {
     kara = ldreq_ix[plt_req[id]][0];
     made = kara + ldreq_ix[plt_req[id]][1];
 
-    flLogOut("player %d %d\n", kara, made);
     for (i = kara; i < made; i++) {
-        flLogOut("player %d %x %x\n", i, ldreq_result[i], lpr_wrdata[id]);
+
         if (!(ldreq_result[i] & lpr_wrdata[id])) {
             break;
         }

@@ -30,9 +30,6 @@ void adxPlayLoop(u16 fnum, u32 loop_start, u32 loop_end);
 // Stop playback
 void adxStop(void);
 
-// Set volume (0-127)
-void adxSetVolume(s32 vol);
-
 // Get current state
 AdxStat adxGetStat(void);
 
