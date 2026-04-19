@@ -264,9 +264,10 @@ static void __attribute__((hot)) SPU_VoiceTick(SPU_Voice* v, s32* output, s32 la
     // Linear interpolation (2 multiplies instead of 4-tap gaussian)
     {
         u32 frac = (v->counter & 0xfff);
-        s32 s0 = v->decodeBuf[v->decRPos + 1];
-        s32 s1 = v->decodeBuf[v->decRPos + 2];
-        sample = s0 + (((s1 - s0) * (s32)frac) >> 12);
+        s16 *buff = &v->decodeBuf[v->decRPos];
+        s32 s0 = buff[1];
+        s32 s1 = buff[2];
+        sample = s0 + ((s1-s0)*(s32)frac >> 12);
     }
 
     pitchStep = v->pitch;

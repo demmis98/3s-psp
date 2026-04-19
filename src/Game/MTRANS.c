@@ -113,7 +113,7 @@ static s32 get_mltbuf16_ext_2(MultiTexture* mt, u32 code, u32 palt, s32* ret, Pa
 static s32 get_mltbuf32(MultiTexture* mt, u32 code, u32 palt, s32* ret);
 static s32 get_mltbuf32_ext(MultiTexture* mt, u32 code, u32 palt);
 static s32 get_mltbuf32_ext_2(MultiTexture* mt, u32 code, u32 palt, s32* ret, PatternInstance* cp);
-static void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len);
+static inline void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len);
 static void lz_ext_p6_cx(u8* srcptr, u16* dstptr, u32 len, u16* palptr);
 static inline u16 x16_mapping_set(PatternMap* map, s32 code);
 static inline u16 x32_mapping_set(PatternMap* map, s32 code);
@@ -1721,7 +1721,7 @@ void seqsAfterProcess() {
                 color_temp = fixARGB(c->vertex_color);
 
                 vert = &c->v[0];
-                __asm__ volatile (
+                /*__asm__ volatile (
                     "mtv %4, S000\n"    // load vert->x to matrix
                     "mtv %5, S001\n"    // load vert->y to matrix
                     "mtv %6, S002\n"    // load vert->x to matrix
@@ -1738,12 +1738,12 @@ void seqsAfterProcess() {
                     // %0 = vertices->x, %1 = vertices->y;
                     : "r"(vert[0].x), "r"(vert[0].y), "r"(vert[1].x), "r"(vert[1].y)
                     // %2 = vert->x, %3 = vert->y;
-                );
+                );*/
                 for (j = 0; j < 2; j++) {
                     vert = &c->v[j];
                     tc = &c->t[j];
-                    //vertices->x = (s32)SCALE_X(vert->x);
-                    //vertices->y = (s32)SCALE_Y(vert->y);
+                    vertices->x = (s32)SCALE_X(vert->x);
+                    vertices->y = (s32)SCALE_Y(vert->y);
                     /*__asm__ volatile (
                         "mtv %2, S000\n"    // load vert->x to matrix
                         "mtv %3, S001\n"    // load vert->y to matrix
@@ -2129,7 +2129,7 @@ static s32 get_free_patcash_index(PatternCollection* padr) {
     return -1;
 }
 
-static void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len) {
+static inline void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len) {
     u8* endptr = dstptr + len;
     u8* tmpptr;
     u32 tmp;

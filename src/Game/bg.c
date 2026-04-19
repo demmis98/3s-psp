@@ -1101,10 +1101,8 @@ void bgDrawOneChip(s32 x, s32 y, s32 xs, s32 ys, s32 gbix, u32 vtxCol, s32 ofsPa
             return;
         }
 
-        /*
         if(ppg_w.cur->tex->srcAdrs == NULL)
             return;
-        */
 
         ppgWriteQuadUseTrans(scrDrawPos, vtxCol, 0, gbix, 0, 0, ofsPal);
     }

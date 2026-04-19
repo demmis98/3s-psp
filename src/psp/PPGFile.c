@@ -195,6 +195,25 @@ void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
     f32 w_f = (float) tex->width;
     f32 h_f = (float) tex->height;
 
+    /*__asm__ volatile (
+        "mtv %4, S000\n"    // load vert->x to matrix
+        "mtv %5, S001\n"    // load vert->y to matrix
+        "mtv %6, S002\n"    // load vert->x to matrix
+        "mtv %7, S003\n"    // load vert->y to matrix
+
+        "vmul.q C000, C000, C410\n" // multiply matrix (scale)
+        "vadd.q C000, C000, C420\n" // add matrix (offset)
+
+        "mfv %0, S000\n"    // store in verticex->x
+        "mfv %1, S001\n"    // store in verticex->y
+        "mfv %2, S002\n"    // store in verticex->x
+        "mfv %3, S003\n"    // store in verticex->y
+        : "=r"(vertices[0].x), "=r"(vertices[0].y), "=r"(vertices[1].x), "=r"(vertices[1].y)
+        // %0 = vertices->x, %1 = vertices->y;
+        : "r"(pos[0].x), "r"(pos[0].y), "r"(pos[3].x), "r"(pos[3].y)
+        // %2 = vert->x, %3 = vert->y;
+    );*/
+
     vertices[0].x = SCALE_X(pos[0].x);
     vertices[0].y = SCALE_Y(pos[0].y);
     vertices[0].z = pos[0].z;
@@ -227,7 +246,7 @@ void ppgWriteQuadOnly2T(Vertex* pos, u32 col, u32 texCode, TextureVertex *vertic
     f32 w_f = (float) tex->width;
     f32 h_f = (float) tex->height;
 
-    __asm__ volatile (
+    /*__asm__ volatile (
         "mtv %4, S000\n"    // load vert->x to matrix
         "mtv %5, S001\n"    // load vert->y to matrix
         "mtv %6, S002\n"    // load vert->x to matrix
@@ -244,16 +263,16 @@ void ppgWriteQuadOnly2T(Vertex* pos, u32 col, u32 texCode, TextureVertex *vertic
         // %0 = vertices->x, %1 = vertices->y;
         : "r"(pos[0].x), "r"(pos[0].y), "r"(pos[3].x), "r"(pos[3].y)
         // %2 = vert->x, %3 = vert->y;
-    );
-    //vertices[0].x = SCALE_X(pos[0].x);
-    //vertices[0].y = SCALE_Y(pos[0].y);
+    );*/
+    vertices[0].x = SCALE_X(pos[0].x);
+    vertices[0].y = SCALE_Y(pos[0].y);
     vertices[0].z = pos[0].z;
     vertices[0].u = pos[0].u * w_f;
     vertices[0].v = pos[0].v * h_f;
     vertices[0].colour = fixARGB(col);
 
-    //vertices[1].x = SCALE_X(pos[3].x);
-    //vertices[1].y = SCALE_Y(pos[3].y);
+    vertices[1].x = SCALE_X(pos[3].x);
+    vertices[1].y = SCALE_Y(pos[3].y);
     vertices[1].z = pos[3].z;
     vertices[1].u = pos[3].u * w_f;
     vertices[1].v = pos[3].v * h_f;
@@ -352,8 +371,8 @@ s32 ppgWriteQuadUseTrans(Vertex* pos, u32 col, PPGDataList* tb, s32 tix, s32 cix
     f32 pys;
     f32 sadd;
     f32 tadd;
-    f32 ppgwf;
-    f32 ppghf;
+    f32 ppgwf, inv_ppgwf;
+    f32 ppghf, inv_ppghf;
     PPGFileHeader* ppg;
 
     //if ((pos[0].x >= 384.0f) || (pos[3].x < 0.0f) || (pos[0].y >= 224.0f) || (pos[3].y < 0.0f)) {
@@ -395,18 +414,12 @@ s32 ppgWriteQuadUseTrans(Vertex* pos, u32 col, PPGDataList* tb, s32 tix, s32 cix
             ppgwf = ppg->width;
             ppgw = ppg->width;
             ppghf = ppg->height;
+            inv_ppgwf = 1 / ppgwf;
+            inv_ppghf = 1 / ppghf;
             pxs = pos[3].x - pos[0].x;
             pys = pos[3].y - pos[0].y;
             sadd = 0.5f / pxs;
             tadd = 0.5f / pys;
-
-            if (sadd >= (1.0f / (16.0f * ppgwf))) {
-                sadd = 1.0f / (16.0f * ppgwf);
-            }
-
-            if (tadd >= (1.0f / (16.0f * ppghf))) {
-                tadd = 1.0f / (16.0f * ppghf);
-            }
 
             sadd = 0;
             tadd = 0;
@@ -435,19 +448,19 @@ s32 ppgWriteQuadUseTrans(Vertex* pos, u32 col, PPGDataList* tb, s32 tix, s32 cix
                 sy = iPoint / ppgw;
 
                 if (flip & 1) {
-                    qvtx[3].x = pos->x + (pxs * (ppgw - sx) / ppgwf);
-                    qvtx[0].x = pos->x + (pxs * (ppgw - (sx + xs)) / ppgwf);
+                    qvtx[3].x = pos->x + (pxs * (ppgw - sx) * inv_ppgwf);
+                    qvtx[0].x = pos->x + (pxs * (ppgw - (sx + xs)) * inv_ppgwf);
                 } else {
-                    qvtx[0].x = pos->x + (sx * pxs / ppgwf);
-                    qvtx[3].x = pos->x + (pxs * (sx + xs) / ppgwf);
+                    qvtx[0].x = pos->x + (sx * pxs * inv_ppgwf);
+                    qvtx[3].x = pos->x + (pxs * (sx + xs) * inv_ppgwf);
                 }
 
                 if (flip & 2) {
-                    qvtx[3].y = pos->y + (pys * (ppgw - sy) / ppghf);
-                    qvtx[0].y = pos->y + (pys * (ppgw - (sy + ys)) / ppghf);
+                    qvtx[3].y = pos->y + (pys * (ppgw - sy) * inv_ppghf);
+                    qvtx[0].y = pos->y + (pys * (ppgw - (sy + ys)) * inv_ppghf);
                 } else {
-                    qvtx[0].y = pos->y + (sy * pys / ppghf);
-                    qvtx[3].y = pos->y + (pys * (sy + ys) / ppghf);
+                    qvtx[0].y = pos->y + (sy * pys * inv_ppghf);
+                    qvtx[3].y = pos->y + (pys * (sy + ys) * inv_ppghf);
                 }
 
                 texCode = texhan | (palhan << 0x10);
@@ -464,19 +477,19 @@ s32 ppgWriteQuadUseTrans(Vertex* pos, u32 col, PPGDataList* tb, s32 tix, s32 cix
                 //if ((qvtx[0].x < 384.0f) && (qvtx[3].x >= 0.0f) && (qvtx[0].y < 224.0f) && (qvtx[3].y >= 0.0f)) {
                 if ((qvtx[0].x < Max_X) && (qvtx[3].x >= Min_X) && (qvtx[0].y < Max_Y) && (qvtx[3].y >= Min_Y)) {
                     if (flip & 1) {
-                        qvtx[3].u = (sx / ppgwf) - sadd;
-                        qvtx[0].u = ((sx + xs) / ppgwf) - sadd;
+                        qvtx[3].u = (sx * inv_ppgwf);
+                        qvtx[0].u = ((sx + xs) * inv_ppgwf);
                     } else {
-                        qvtx[0].u = sadd + (sx / ppgwf);
-                        qvtx[3].u = sadd + ((sx + xs) / ppgwf);
+                        qvtx[0].u = (sx * inv_ppgwf);
+                        qvtx[3].u = ((sx + xs) * inv_ppgwf);
                     }
 
                     if (flip & 2) {
-                        qvtx[3].v = (sy / ppghf) - tadd;
-                        qvtx[0].v = ((sy + ys) / ppghf) - tadd;
+                        qvtx[3].v = (sy * inv_ppghf);
+                        qvtx[0].v = ((sy + ys) * inv_ppghf);
                     } else {
-                        qvtx[0].v = tadd + (sy / ppghf);
-                        qvtx[3].v = tadd + ((sy + ys) / ppghf);
+                        qvtx[0].v = (sy * inv_ppghf);
+                        qvtx[3].v = ((sy + ys) * inv_ppghf);
                     }
 
                     ppgWriteQuadOnly2T(qvtx, col, texhan | (palhan << 0x10), &vertices[v_i]);
@@ -522,7 +535,7 @@ s32 ppgWriteQuadUseTrans(Vertex* pos, u32 col, PPGDataList* tb, s32 tix, s32 cix
         break;
     }
 
-    //ppgWriteQuadOnly2(pos, col, texhan | (palhan << 0x10));
+    ppgWriteQuadOnly2(pos, col, texhan | (palhan << 0x10));
     return 1;
 }
 

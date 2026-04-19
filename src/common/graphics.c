@@ -263,7 +263,7 @@ void endGu(){
 typedef struct { float u, v; float x, y, z; } BlitVertex;
 
 void startFrame(){
-    sceGuSync(GU_SYNC_LIST, GU_SYNC_WHAT_DONE);
+    //sceGuSync(GU_SYNC_LIST, GU_SYNC_WHAT_DONE);
     sceDisplayWaitVblankStart();
     sceGuSwapBuffers();
     backBuf ^= 1;

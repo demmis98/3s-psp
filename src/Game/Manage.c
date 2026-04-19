@@ -1927,9 +1927,7 @@ void Game_Manage_12th() {
 
     if (Bonus_Type == 20) {
         // if in car bonus, clock is set higher
-        if(RTT_Enabled)
-            setClock(CLOCK_333);
-        else
+        if(!RTT_Enabled)
             setClock(CLOCK_266);
 
         bcounter_write();

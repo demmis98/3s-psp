@@ -17,19 +17,20 @@ s16 Title() {
     switch (D_No[1]) {
     case 0:
         if (Check_LDREQ_Clear() != 0) {
-            Standby_BGM(0x34);
             D_No[1] += 1;
-            D_Timer = 20;
+            D_Timer = 0;
         }
 
         break;
 
     case 1:
-        if (D_Timer != 0) {
-            D_Timer -= 1;
-        } else if (opening_demo()) {
+        if (opening_demo()) {
             D_No[1] += 1;
             D_Timer = 40;
+        }
+        if (D_Timer == 0) {
+            Standby_BGM(0x34);
+            D_Timer = 1;
         }
 
         break;
