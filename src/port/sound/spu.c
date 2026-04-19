@@ -21,7 +21,7 @@
 #define clamp(val, lo, hi) (((val) > (hi)) ? (hi) : (((val) < (lo)) ? (lo) : (val)))
 
 #define VOICE_COUNT 48
-#define MAX_ACTIVE_VOICES 12  // Cap concurrent voices for PSP CPU budget
+#define MAX_ACTIVE_VOICES 10  // Cap concurrent voices for PSP CPU budget
 
 #include "interp_table.inc"
 

@@ -195,14 +195,19 @@ void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
     f32 w_f = (float) tex->width;
     f32 h_f = (float) tex->height;
 
-    for (i = 0; i < 2; i++) {
-        vertices[i].x = SCALE_X(pos[i*3].x);
-        vertices[i].y = SCALE_Y(pos[i*3].y);
-        vertices[i].z = pos[i*3].z;
-        vertices[i].u = pos[i*3].u * w_f;
-        vertices[i].v = pos[i*3].v * h_f;
-        vertices[i].colour = fixARGB(col);
-    }
+    vertices[0].x = SCALE_X(pos[0].x);
+    vertices[0].y = SCALE_Y(pos[0].y);
+    vertices[0].z = pos[0].z;
+    vertices[0].u = pos[0].u * w_f;
+    vertices[0].v = pos[0].v * h_f;
+    vertices[0].colour = fixARGB(col);
+
+    vertices[1].x = SCALE_X(pos[3].x);
+    vertices[1].y = SCALE_Y(pos[3].y);
+    vertices[1].z = pos[3].z;
+    vertices[1].u = pos[3].u * w_f;
+    vertices[1].v = pos[3].v * h_f;
+    vertices[1].colour = fixARGB(col);
 
     flSetRenderState(FLRENDER_TEXSTAGE0, texCode);
     sceGuDrawArray(GU_SPRITES, GU_TEXTURE_16BIT | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
@@ -222,14 +227,37 @@ void ppgWriteQuadOnly2T(Vertex* pos, u32 col, u32 texCode, TextureVertex *vertic
     f32 w_f = (float) tex->width;
     f32 h_f = (float) tex->height;
 
-    for (i = 0; i < 2; i++) {
-        vertices[i].x = SCALE_X(pos[i*3].x);
-        vertices[i].y = SCALE_Y(pos[i*3].y);
-        vertices[i].z = pos[i*3].z;
-        vertices[i].u = pos[i*3].u * w_f;
-        vertices[i].v = pos[i*3].v * h_f;
-        vertices[i].colour = fixARGB(col);
-    }
+    __asm__ volatile (
+        "mtv %4, S000\n"    // load vert->x to matrix
+        "mtv %5, S001\n"    // load vert->y to matrix
+        "mtv %6, S002\n"    // load vert->x to matrix
+        "mtv %7, S003\n"    // load vert->y to matrix
+
+        "vmul.q C000, C000, C410\n" // multiply matrix (scale)
+        "vadd.q C000, C000, C420\n" // add matrix (offset)
+
+        "mfv %0, S000\n"    // store in verticex->x
+        "mfv %1, S001\n"    // store in verticex->y
+        "mfv %2, S002\n"    // store in verticex->x
+        "mfv %3, S003\n"    // store in verticex->y
+        : "=r"(vertices[0].x), "=r"(vertices[0].y), "=r"(vertices[1].x), "=r"(vertices[1].y)
+        // %0 = vertices->x, %1 = vertices->y;
+        : "r"(pos[0].x), "r"(pos[0].y), "r"(pos[3].x), "r"(pos[3].y)
+        // %2 = vert->x, %3 = vert->y;
+    );
+    //vertices[0].x = SCALE_X(pos[0].x);
+    //vertices[0].y = SCALE_Y(pos[0].y);
+    vertices[0].z = pos[0].z;
+    vertices[0].u = pos[0].u * w_f;
+    vertices[0].v = pos[0].v * h_f;
+    vertices[0].colour = fixARGB(col);
+
+    //vertices[1].x = SCALE_X(pos[3].x);
+    //vertices[1].y = SCALE_Y(pos[3].y);
+    vertices[1].z = pos[3].z;
+    vertices[1].u = pos[3].u * w_f;
+    vertices[1].v = pos[3].v * h_f;
+    vertices[1].colour = fixARGB(col);
 }
 
 
@@ -493,7 +521,7 @@ s32 ppgWriteQuadUseTrans(Vertex* pos, u32 col, PPGDataList* tb, s32 tix, s32 cix
         pos[3].u = pos[3].v = 0.0f;
         break;
     }
-    
+
     //ppgWriteQuadOnly2(pos, col, texhan | (palhan << 0x10));
     return 1;
 }

@@ -21,9 +21,6 @@
 
 #include "sdk/libgraph.h"
 
-#define MAX_BG_BUFFER 8
-#define BG_BUFF_SIZE_X 256
-#define BG_BUFF_SIZE_Y 256
 
 FLTexture flPalette[FL_PALETTE_MAX];
 FLTexture flTexture[FL_TEXTURE_MAX];
@@ -38,8 +35,8 @@ int debug_mode = 0;
 
 bool skip_frame = 0;
 
-void *bg_buffer[MAX_BG_BUFFER];
-bool bg_used[MAX_BG_BUFFER];
+void *vram_particles;
+
 
 void enableDebug(){
     if(debug_mode == 0){
@@ -488,20 +485,6 @@ s32 flReleaseTextureHandle(u32 texture_handle) {
         lpflTexture->mem_handle = 0;
     }
 
-    /*
-    else if (lpflTexture->wkVram != NULL) {
-        int i;
-        for(i = 0; i < MAX_BG_BUFFER; i++){
-            if(bg_buffer[i] == lpflTexture->wkVram)
-                break;
-        }
-        if(i != MAX_BG_BUFFER){
-            bg_used[i] = false;
-        }
-
-        lpflTexture->wkVram = NULL;
-    }
-    */
 
     flMemset(lpflTexture, 0, sizeof(FLTexture));
     return 1;
@@ -1200,18 +1183,7 @@ s32 flInitialize(s32 /* unused */, s32 /* unused */){
         return 0;
     }
 
-    /*
-    for(int i = 0; i < MAX_BG_BUFFER; i++){
-        bg_buffer[i] = guGetStaticVramTexture(BG_BUFF_SIZE_X, BG_BUFF_SIZE_Y, GU_PSM_T8);
-        bg_used[i] = (bg_buffer[i] == NULL);
-    }
-    */
-
-    /*
-    for(int i = 0; i < FL_TEXTURE_MAX; i++){
-        fltex_c[i] = 0;
-    }
-    */
+    vram_particles = guGetStaticVramTexture(256, 256, GU_PSM_T8);
 
     flPS2SystemTmpBuffInit();
     flPADInitialize();
@@ -1377,7 +1349,7 @@ s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture,
     dh = lpflTexture->height;
     lp0 = lpflTexture - flTexture;
 
-    if(lp0 <= 6){
+    if(lp0 <= 9){
         if(lp0 == 6 || lp0 == 2 || lp0 == 0 ){   // upload ttextures to vram
         void *vram = guGetStaticVramTexture(dw, dh, lpflTexture->format);
             if(vram){
@@ -1389,27 +1361,22 @@ s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture,
             }
             return 1;
         }
+        else if(lp0 == 9 && dw == 256 && dh == 256
+            && lpflTexture->format == GU_PSM_T8){
+            if(vram_particles){
+                //memcpy(vram, base_ptr, tex_size);
+                //swizzle_fast(vram_particles, base_ptr, tex_size/dh, dh);
+                //lpflTexture->swizzeled = true;
+                lpflTexture->wkVram = vram_particles;
+                lpflTexture->vram_on_flag = true;
+            }
+            return 1;
+        }
     }
 
 
     if(lpflTexture->mem_handle)
         return 1;
-
-    /*
-    if(tex_size == BG_BUFF_SIZE_X * BG_BUFF_SIZE_Y || tex_size == BG_BUFF_SIZE_X * BG_BUFF_SIZE_Y / 2 || tex_size == BG_BUFF_SIZE_X * BG_BUFF_SIZE_Y / 4){
-        int i;
-        for(i = 0; i < MAX_BG_BUFFER; i++){
-            if(!bg_used[i])
-                break;
-        }
-        if(i != MAX_BG_BUFFER){
-            //memcpy(bg_buffer[i], base_ptr, BG_BUFF_SIZE_X*BG_BUFF_SIZE_Y);
-            lpflTexture->wkVram = bg_buffer[i];
-            lpflTexture->vram_on_flag = true;
-            bg_used[i] = true;
-        }
-    }
-    */
 
     // Flush cache once at load time — textures in main RAM need this
     // VRAM textures (wkVram != NULL) don't need it since VRAM is uncached

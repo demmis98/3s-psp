@@ -1720,12 +1720,31 @@ void seqsAfterProcess() {
 
                 color_temp = fixARGB(c->vertex_color);
 
+                vert = &c->v[0];
+                __asm__ volatile (
+                    "mtv %4, S000\n"    // load vert->x to matrix
+                    "mtv %5, S001\n"    // load vert->y to matrix
+                    "mtv %6, S002\n"    // load vert->x to matrix
+                    "mtv %7, S003\n"    // load vert->y to matrix
+
+                    "vmul.q C000, C000, C410\n" // multiply matrix (scale)
+                    "vadd.q C000, C000, C420\n" // add matrix (offset)
+
+                    "mfv %0, S000\n"    // store in verticex->x
+                    "mfv %1, S001\n"    // store in verticex->y
+                    "mfv %2, S002\n"    // store in verticex->x
+                    "mfv %3, S003\n"    // store in verticex->y
+                    : "=r"(vertices[0].x), "=r"(vertices[0].y), "=r"(vertices[1].x), "=r"(vertices[1].y)
+                    // %0 = vertices->x, %1 = vertices->y;
+                    : "r"(vert[0].x), "r"(vert[0].y), "r"(vert[1].x), "r"(vert[1].y)
+                    // %2 = vert->x, %3 = vert->y;
+                );
                 for (j = 0; j < 2; j++) {
                     vert = &c->v[j];
                     tc = &c->t[j];
                     //vertices->x = (s32)SCALE_X(vert->x);
                     //vertices->y = (s32)SCALE_Y(vert->y);
-                    __asm__ volatile (
+                    /*__asm__ volatile (
                         "mtv %2, S000\n"    // load vert->x to matrix
                         "mtv %3, S001\n"    // load vert->y to matrix
 
@@ -1736,7 +1755,7 @@ void seqsAfterProcess() {
                         "mfv %1, S001\n"    // store in verticex->y
                         : "=r"(vertices->x), "=r"(vertices->y)  // %0 = vertices->x, %1 = vertices->y;
                         : "r"(vert->x), "r"(vert->y)    // %2 = vert->x, %3 = vert->y;
-                    );
+                    );*/
                     vertices->z = vert->z;
                     vertices->u = tc->s;
                     vertices->v = tc->t;
@@ -2115,27 +2134,24 @@ static void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len) {
     u8* tmpptr;
     u32 tmp;
     u32 flg;
+    u8 type;
 
     while (dstptr < endptr) {
         tmp = *srcptr++;
+        type = (tmp & 0xC0) >> 6;
 
-        switch (tmp & 0xC0) {
-        case 0x0:
+        if(type == 0)
             *dstptr++ = tmp;
-            break;
-
-        case 0x40:
+        else if(type == 1){
             tmp &= 0x3F;
             tmpptr = (dstptr - (tmp >> 2)) - 1;
             tmp = (tmp & 3) + 2;
 
             while (tmp--) {
                 *dstptr++ = *tmpptr++;
-            }
-
-            break;
-
-        case 0x80:
+            }   
+        }
+        else if(type == 2){
             tmp = ((tmp & 0x3F) << 8) | *srcptr++;
             tmpptr = (dstptr - (tmp >> 6)) - 1;
             tmp = (tmp & 0x3F) + 2;
@@ -2143,10 +2159,8 @@ static void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len) {
             while (tmp--) {
                 *dstptr++ = *tmpptr++;
             }
-
-            break;
-
-        case 0xC0:
+        }
+        else {
             flg = tmp & 0x30;
             tmp = (tmp & 0xF) + 2;
 
@@ -2154,8 +2168,6 @@ static void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len) {
                 *dstptr++ = flg | (*srcptr >> 4);
                 *dstptr++ = flg | (*srcptr++ & 0xF);
             }
-
-            break;
         }
     }
 }
