@@ -488,6 +488,7 @@ s32 flReleaseTextureHandle(u32 texture_handle) {
         lpflTexture->mem_handle = 0;
     }
 
+    /*
     else if (lpflTexture->wkVram != NULL) {
         int i;
         for(i = 0; i < MAX_BG_BUFFER; i++){
@@ -500,6 +501,7 @@ s32 flReleaseTextureHandle(u32 texture_handle) {
 
         lpflTexture->wkVram = NULL;
     }
+    */
 
     flMemset(lpflTexture, 0, sizeof(FLTexture));
     return 1;
@@ -1198,10 +1200,12 @@ s32 flInitialize(s32 /* unused */, s32 /* unused */){
         return 0;
     }
 
+    /*
     for(int i = 0; i < MAX_BG_BUFFER; i++){
         bg_buffer[i] = guGetStaticVramTexture(BG_BUFF_SIZE_X, BG_BUFF_SIZE_Y, GU_PSM_T8);
         bg_used[i] = (bg_buffer[i] == NULL);
     }
+    */
 
     /*
     for(int i = 0; i < FL_TEXTURE_MAX; i++){
@@ -1373,24 +1377,25 @@ s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture,
     dh = lpflTexture->height;
     lp0 = lpflTexture - flTexture;
 
-    /*
-    if(lp0 == 6){   // upload the texture for the hud to vram
-        void *vram = guGetStaticVramTexture(dw, dh, GU_PSM_T8);
-        if(vram){
-            //memcpy(vram, base_ptr, tex_size);
-            //lpflTexture->swizzeled = true;
-            lpflTexture->wkVram = vram;
-            lpflTexture->vram_on_flag = true;
-
+    if(lp0 <= 6){
+        if(lp0 == 6 || lp0 == 2 || lp0 == 0 ){   // upload ttextures to vram
+        void *vram = guGetStaticVramTexture(dw, dh, lpflTexture->format);
+            if(vram){
+                //memcpy(vram, base_ptr, tex_size);
+                swizzle_fast(vram, base_ptr, tex_size/dh, dh);
+                lpflTexture->swizzeled = true;
+                lpflTexture->wkVram = vram;
+                lpflTexture->vram_on_flag = true;
+            }
+            return 1;
         }
-        return 1;
     }
-    */
 
 
     if(lpflTexture->mem_handle)
         return 1;
 
+    /*
     if(tex_size == BG_BUFF_SIZE_X * BG_BUFF_SIZE_Y || tex_size == BG_BUFF_SIZE_X * BG_BUFF_SIZE_Y / 2 || tex_size == BG_BUFF_SIZE_X * BG_BUFF_SIZE_Y / 4){
         int i;
         for(i = 0; i < MAX_BG_BUFFER; i++){
@@ -1402,26 +1407,6 @@ s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture,
             lpflTexture->wkVram = bg_buffer[i];
             lpflTexture->vram_on_flag = true;
             bg_used[i] = true;
-        }
-    }
-
-    /*
-    if(dw == BG_BUFF_SIZE_X && dh == BG_BUFF_SIZE_Y && lpflTexture->format == GU_PSM_T8){
-        int i;
-        for(i = 0; i < MAX_BG_BUFFER; i++){
-            if(!bg_used[i])
-                break;
-        }
-
-        if(i != MAX_BG_BUFFER){
-            lpflTexture->wkVram = bg_buffer[i];
-            lpflTexture->vram_on_flag = true;
-            bg_used[i] = true;
-            if(lpflTexture->mem_handle){
-                flPS2ReleaseSystemMemory(lpflTexture->mem_handle);
-                lpflTexture->mem_handle = 0;
-            }
-            lpflTexture->swizzeled = true;
         }
     }
     */
