@@ -493,8 +493,8 @@ s32 ppgWriteQuadUseTrans(Vertex* pos, u32 col, PPGDataList* tb, s32 tix, s32 cix
         pos[3].u = pos[3].v = 0.0f;
         break;
     }
-
-    ppgWriteQuadOnly2(pos, col, texhan | (palhan << 0x10));
+    
+    //ppgWriteQuadOnly2(pos, col, texhan | (palhan << 0x10));
     return 1;
 }
 

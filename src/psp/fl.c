@@ -21,7 +21,7 @@
 
 #include "sdk/libgraph.h"
 
-#define MAX_BG_BUFFER 6
+#define MAX_BG_BUFFER 8
 #define BG_BUFF_SIZE_X 256
 #define BG_BUFF_SIZE_Y 256
 
@@ -1373,6 +1373,7 @@ s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture,
     dh = lpflTexture->height;
     lp0 = lpflTexture - flTexture;
 
+    /*
     if(lp0 == 6){   // upload the texture for the hud to vram
         void *vram = guGetStaticVramTexture(dw, dh, GU_PSM_T8);
         if(vram){
@@ -1384,12 +1385,12 @@ s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture,
         }
         return 1;
     }
+    */
 
 
     if(lpflTexture->mem_handle)
         return 1;
 
-    /*
     if(tex_size == BG_BUFF_SIZE_X * BG_BUFF_SIZE_Y || tex_size == BG_BUFF_SIZE_X * BG_BUFF_SIZE_Y / 2 || tex_size == BG_BUFF_SIZE_X * BG_BUFF_SIZE_Y / 4){
         int i;
         for(i = 0; i < MAX_BG_BUFFER; i++){
@@ -1403,7 +1404,6 @@ s32 flPS2ConvertTextureFromContext(plContext* lpcontext, FLTexture* lpflTexture,
             bg_used[i] = true;
         }
     }
-    */
 
     /*
     if(dw == BG_BUFF_SIZE_X && dh == BG_BUFF_SIZE_Y && lpflTexture->format == GU_PSM_T8){

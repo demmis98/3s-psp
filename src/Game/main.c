@@ -203,7 +203,7 @@ void AcrMain() {
         updateClock();
 
         if(RTT_Enabled)
-            setClock(CLOCK_300);
+            setClock(CLOCK_333);
         else
             setClock(CLOCK_266);
 

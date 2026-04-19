@@ -113,7 +113,7 @@ static s32 get_mltbuf16_ext_2(MultiTexture* mt, u32 code, u32 palt, s32* ret, Pa
 static s32 get_mltbuf32(MultiTexture* mt, u32 code, u32 palt, s32* ret);
 static s32 get_mltbuf32_ext(MultiTexture* mt, u32 code, u32 palt);
 static s32 get_mltbuf32_ext_2(MultiTexture* mt, u32 code, u32 palt, s32* ret, PatternInstance* cp);
-static inline void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len);
+static void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len);
 static void lz_ext_p6_cx(u8* srcptr, u16* dstptr, u32 len, u16* palptr);
 static inline u16 x16_mapping_set(PatternMap* map, s32 code);
 static inline u16 x32_mapping_set(PatternMap* map, s32 code);
@@ -2110,22 +2110,21 @@ static s32 get_free_patcash_index(PatternCollection* padr) {
     return -1;
 }
 
-static inline void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len) {
+static void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len) {
     u8* endptr = dstptr + len;
     u8* tmpptr;
     u32 tmp;
     u32 flg;
 
-    u32 type;
-
     while (dstptr < endptr) {
         tmp = *srcptr++;
-        type = tmp >> 6;
 
-        if(type == 0){
+        switch (tmp & 0xC0) {
+        case 0x0:
             *dstptr++ = tmp;
-        }
-        else if(type == 1){
+            break;
+
+        case 0x40:
             tmp &= 0x3F;
             tmpptr = (dstptr - (tmp >> 2)) - 1;
             tmp = (tmp & 3) + 2;
@@ -2133,9 +2132,10 @@ static inline void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len) {
             while (tmp--) {
                 *dstptr++ = *tmpptr++;
             }
-        }
 
-        else if(type == 2){
+            break;
+
+        case 0x80:
             tmp = ((tmp & 0x3F) << 8) | *srcptr++;
             tmpptr = (dstptr - (tmp >> 6)) - 1;
             tmp = (tmp & 0x3F) + 2;
@@ -2143,9 +2143,10 @@ static inline void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len) {
             while (tmp--) {
                 *dstptr++ = *tmpptr++;
             }
-        }
 
-        else if(type == 3){
+            break;
+
+        case 0xC0:
             flg = tmp & 0x30;
             tmp = (tmp & 0xF) + 2;
 
@@ -2153,6 +2154,8 @@ static inline void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len) {
                 *dstptr++ = flg | (*srcptr >> 4);
                 *dstptr++ = flg | (*srcptr++ & 0xF);
             }
+
+            break;
         }
     }
 }

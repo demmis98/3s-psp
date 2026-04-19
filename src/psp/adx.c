@@ -214,8 +214,9 @@ static void decode_next_sample(void) {
         blk_avail = P.spb;
     }
 
-    last_l = (s16)blk_buf[0][blk_pos];
-    last_r = (P.channels == 2) ? (s16) blk_buf[1][blk_pos] : last_l;
+    vol_32 = (P.volume + (P.volume << 1)) >> 2;  /* ~75% — BGM sits behind SFX */
+    last_l = (s16)((blk_buf[0][blk_pos] * vol_32) >> 7);
+    last_r = (P.channels == 2) ? (s16)((blk_buf[1][blk_pos] * vol_32) >> 7) : last_l;
     blk_pos++;
 }
 
@@ -377,6 +378,12 @@ void adxStop(void) {
     adx_next_ready = 0;
     adx_next_consumed = 0;
     P.pos = 0;
+}
+
+void adxSetVolume(s32 vol) {
+    if (vol < 0) vol = 0;
+    if (vol > 127) vol = 127;
+    P.volume = vol;
 }
 
 AdxStat adxGetStat(void) { return P.stat; }
@@ -564,16 +571,17 @@ s32 ADX_GetState(void) {
 }
 
 void ADX_SetOutVol(s32 vol) {
-    /* The volume table returns values in a -999..0 range. */
-
-    /* Convert -999..0 → 0..1 */
-    float normalized = (float)(vol + 999) / 999.0f;
-
-    /* ~75% — BGM sits behind SFX */
-    int scaled = (int)(normalized * 0x8000 * 0.75f);
-
-    /* Set volume (left, right) */
-    pspAudioSetVolume(1, scaled, scaled);
+    /* The volume table returns values in a -999..0 range.
+       Map to our 0..127 range: treat 0 as max, -999 as silent. */
+    s32 mapped;
+    if (vol <= -999) {
+        mapped = 0;
+    } else if (vol >= 0) {
+        mapped = 127;
+    } else {
+        mapped = (999 + vol) * 127 / 999;
+    }
+    adxSetVolume(mapped);
 }
 
 void ADX_SetMuffle(s32 muffle) {
