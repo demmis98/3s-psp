@@ -20,7 +20,7 @@ ms0:/PSP/GAME/3rd-strike/
 
 - Start+Select: Soft reset (returns to title screen)
 - Press Start at boot: Disable backgrounds (debug)
-- (in the future) Press Select at boot: play as Player 2
+- Press Select at boot: play as Player 2
 
 ## --Settings--
 
@@ -37,6 +37,9 @@ ms0:/PSP/GAME/3rd-strike/
 #### Scaling mode
     -"Fast" for scaling each vertex
     -"Smooth" for scaling the whole canvas
+#### Color correction
+    -"On" to emulate a CRT's colors
+    -"OFF" for original colors
 
 ### Sound Settings
 - Choose between stereo or mono
@@ -68,7 +71,7 @@ ms0:/PSP/GAME/3rd-strike/
 
 ### Performance
 - 333MHz CPU clock on "Smooth" rendering, 266MHz on "Fast" rendering
-- SPU emulator: MAX_ACTIVE_VOICES=16 cap, linear interpolation, unrolled ADPCM decode
+- SPU emulator: MAX_ACTIVE_VOICES=10 cap, linear interpolation, unrolled ADPCM decode
 - -O3 -ffast-math compiler optimization
 - Graceful error recovery (no freeze traps)
 
