@@ -39,7 +39,7 @@ static int backBuf = 0;
 
 /* Blit quad coordinates */
 static float blit_x0, blit_y0, blit_x1, blit_y1;
-static s32 scissor_trim_right = 5;
+static s32 scissor_trim_right = 0;
 s32 blit_filter = SCREEN_DEFAULT_FILTER;  /* 0=bilinear, 1=nearest */
 
 /* SCALE_X/SCALE_Y — identity during RTT rendering */
