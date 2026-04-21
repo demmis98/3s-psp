@@ -1720,8 +1720,9 @@ void seqsAfterProcess() {
 
                 color_temp = fixARGB(c->vertex_color);
 
+                #ifdef SCALE_WITH_VFPU
                 vert = &c->v[0];
-                /*__asm__ volatile (
+                __asm__ volatile (
                     "mtv %4, S000\n"    // load vert->x to matrix
                     "mtv %5, S001\n"    // load vert->y to matrix
                     "mtv %6, S002\n"    // load vert->x to matrix
@@ -1738,24 +1739,15 @@ void seqsAfterProcess() {
                     // %0 = vertices->x, %1 = vertices->y;
                     : "r"(vert[0].x), "r"(vert[0].y), "r"(vert[1].x), "r"(vert[1].y)
                     // %2 = vert->x, %3 = vert->y;
-                );*/
+                );
+                #endif
                 for (j = 0; j < 2; j++) {
                     vert = &c->v[j];
                     tc = &c->t[j];
+                    #ifndef SCALE_WITH_VFPU
                     vertices->x = (s32)SCALE_X(vert->x);
                     vertices->y = (s32)SCALE_Y(vert->y);
-                    /*__asm__ volatile (
-                        "mtv %2, S000\n"    // load vert->x to matrix
-                        "mtv %3, S001\n"    // load vert->y to matrix
-
-                        "vmul.p C000, C000, C410\n" // multiply matrix (scale)
-                        "vadd.p C000, C000, C420\n" // add matrix (offset)
-
-                        "mfv %0, S000\n"    // store in verticex->x
-                        "mfv %1, S001\n"    // store in verticex->y
-                        : "=r"(vertices->x), "=r"(vertices->y)  // %0 = vertices->x, %1 = vertices->y;
-                        : "r"(vert->x), "r"(vert->y)    // %2 = vert->x, %3 = vert->y;
-                    );*/
+                    #endif
                     vertices->z = vert->z;
                     vertices->u = tc->s;
                     vertices->v = tc->t;

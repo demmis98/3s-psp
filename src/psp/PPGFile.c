@@ -195,7 +195,8 @@ void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
     f32 w_f = (float) tex->width;
     f32 h_f = (float) tex->height;
 
-    /*__asm__ volatile (
+    #ifdef SCALE_WITH_VFPU
+    __asm__ volatile (
         "mtv %4, S000\n"    // load vert->x to matrix
         "mtv %5, S001\n"    // load vert->y to matrix
         "mtv %6, S002\n"    // load vert->x to matrix
@@ -212,17 +213,20 @@ void ppgWriteQuadOnly2(Vertex* pos, u32 col, u32 texCode) {
         // %0 = vertices->x, %1 = vertices->y;
         : "r"(pos[0].x), "r"(pos[0].y), "r"(pos[3].x), "r"(pos[3].y)
         // %2 = vert->x, %3 = vert->y;
-    );*/
-
+    );
+    #else
     vertices[0].x = SCALE_X(pos[0].x);
     vertices[0].y = SCALE_Y(pos[0].y);
+
+    vertices[1].x = SCALE_X(pos[3].x);
+    vertices[1].y = SCALE_Y(pos[3].y);
+    #endif
+
     vertices[0].z = pos[0].z;
     vertices[0].u = pos[0].u * w_f;
     vertices[0].v = pos[0].v * h_f;
     vertices[0].colour = fixARGB(col);
 
-    vertices[1].x = SCALE_X(pos[3].x);
-    vertices[1].y = SCALE_Y(pos[3].y);
     vertices[1].z = pos[3].z;
     vertices[1].u = pos[3].u * w_f;
     vertices[1].v = pos[3].v * h_f;
@@ -246,7 +250,8 @@ void ppgWriteQuadOnly2T(Vertex* pos, u32 col, u32 texCode, TextureVertex *vertic
     f32 w_f = (float) tex->width;
     f32 h_f = (float) tex->height;
 
-    /*__asm__ volatile (
+    #ifdef SCALE_WITH_VFPU
+    __asm__ volatile (
         "mtv %4, S000\n"    // load vert->x to matrix
         "mtv %5, S001\n"    // load vert->y to matrix
         "mtv %6, S002\n"    // load vert->x to matrix
@@ -263,16 +268,20 @@ void ppgWriteQuadOnly2T(Vertex* pos, u32 col, u32 texCode, TextureVertex *vertic
         // %0 = vertices->x, %1 = vertices->y;
         : "r"(pos[0].x), "r"(pos[0].y), "r"(pos[3].x), "r"(pos[3].y)
         // %2 = vert->x, %3 = vert->y;
-    );*/
+    );
+    #else
     vertices[0].x = SCALE_X(pos[0].x);
     vertices[0].y = SCALE_Y(pos[0].y);
+
+    vertices[1].x = SCALE_X(pos[3].x);
+    vertices[1].y = SCALE_Y(pos[3].y);
+    #endif
+
     vertices[0].z = pos[0].z;
     vertices[0].u = pos[0].u * w_f;
     vertices[0].v = pos[0].v * h_f;
     vertices[0].colour = fixARGB(col);
 
-    vertices[1].x = SCALE_X(pos[3].x);
-    vertices[1].y = SCALE_Y(pos[3].y);
     vertices[1].z = pos[3].z;
     vertices[1].u = pos[3].u * w_f;
     vertices[1].v = pos[3].v * h_f;

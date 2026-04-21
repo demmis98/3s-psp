@@ -15,6 +15,8 @@ extern int DEMMA_DEBUG;
 #include "Game/color3rd.h"
 #include "psp/PPGFile.h"
 
+#define SCALE_WITH_VFPU
+
 extern s32 flFrame;
 
 extern bool skip_frame;

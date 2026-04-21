@@ -2117,7 +2117,7 @@ void Screen_Adjust_Sub(s16 PL_id) {
     u16 sw;
     sw = ~plsw_01[PL_id] & plsw_00[PL_id];
     sw = Check_Menu_Lever(PL_id, 0);
-    MC_Move_Sub(sw, 0, 4, 0xFF);
+    MC_Move_Sub(sw, 0, 5, 0xFF);
     Screen_Move_Sub_LR(sw);
 }
 
@@ -2135,7 +2135,7 @@ void Screen_Exit_Check(struct _TASK* task_ptr, s16 PL_id) {
         Exit = cursor 4
         Default = cursor 3
     */
-    if (Menu_Cursor_Y[0] == 4 || IO_Result == 0x200) {
+    if (Menu_Cursor_Y[0] == 5 || IO_Result == 0x200) {
         SE_selected();
         Menu_Suicide[1] = 0;
         Menu_Suicide[2] = 1;
@@ -2155,7 +2155,7 @@ void Screen_Exit_Check(struct _TASK* task_ptr, s16 PL_id) {
         return;
     }
 
-    if (Menu_Cursor_Y[PL_id] == 3) {
+    if (Menu_Cursor_Y[PL_id] == 4) {
         SE_selected();
         render_mode = SCREEN_DEFAULT_MODE;
         blit_filter = SCREEN_DEFAULT_FILTER;
