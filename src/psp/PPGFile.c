@@ -940,6 +940,7 @@ void ppgRenewDotDataSeqs(u32 gix, u32* srcRam, u32 code, u32 size) {
     u16* tix;
     u8* dstRam8;
     u8* srcRam8;
+    u16* idx;
 
     Texture *tch = ppg_w.cur->tex;
 
@@ -959,8 +960,9 @@ void ppgRenewDotDataSeqs(u32 gix, u32* srcRam, u32 code, u32 size) {
                 dstRam8 = (u8*)(tch->srcAdrs + tch->srcSize * ix + CODE_0(code));
 
                 for (i = 0; i < 8; i++) {
+                    idx = &dctex_linear[i << 5];
                     for (j = 0; j < 8; j++) {
-                        *dstRam8++ = srcRam8[dctex_linear[j + (i << 5)]];
+                        *dstRam8++ = srcRam8[*idx++];
                     }
 
                     dstRam8 += 0xF8;
@@ -973,8 +975,9 @@ void ppgRenewDotDataSeqs(u32 gix, u32* srcRam, u32 code, u32 size) {
                 dstRam8 = (u8*)(tch->srcAdrs + tch->srcSize * ix + CODE_0(code));
 
                 for (i = 0; i < 0x10; i++) {
+                    idx = &dctex_linear[i << 5];
                     for (j = 0; j < 0x10; j++) {
-                        *dstRam8++ = srcRam8[dctex_linear[j + (i << 5)]];
+                        *dstRam8++ = srcRam8[*idx++];
                     }
 
                     dstRam8 += 0xF0;
@@ -1002,8 +1005,9 @@ void ppgRenewDotDataSeqs(u32 gix, u32* srcRam, u32 code, u32 size) {
                 dstRam16 = (u16*)(tch->srcAdrs + tch->srcSize * ix + (CODE_0(code)) * 2);
 
                 for (i = 0; i < 8; i++) {
+                    idx = &dctex_linear[i << 5];
                     for (j = 0; j < 8; j++) {
-                        *dstRam16++ = srcRam16[dctex_linear[j + (i << 5)]];
+                        *dstRam16++ = srcRam16[*idx++];
                     }
 
                     dstRam16 += 0xF8;
@@ -1016,8 +1020,9 @@ void ppgRenewDotDataSeqs(u32 gix, u32* srcRam, u32 code, u32 size) {
                 dstRam16 = (u16*)(tch->srcAdrs + tch->srcSize * ix + (CODE_0(code)) * 2);
 
                 for (i = 0; i < 0x10; i++) {
+                    idx = &dctex_linear[i << 5];
                     for (j = 0; j < 0x10; j++) {
-                        *dstRam16++ = srcRam16[dctex_linear[j + (i << 5)]];
+                        *dstRam16++ = srcRam16[*idx++];
                     }
 
                     dstRam16 += 0xF0;

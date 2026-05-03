@@ -63,7 +63,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     pspaudio
     pspaudiolib
     pspatrac3
-    m
 )
 
 # from 3sx CMakeLists

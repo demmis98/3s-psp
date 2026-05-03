@@ -2130,11 +2130,11 @@ static inline void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len) {
 
     while (dstptr < endptr) {
         tmp = *srcptr++;
-        type = (tmp & 0xC0) >> 6;
+        type = tmp & 0xC0;
 
         if(type == 0)
             *dstptr++ = tmp;
-        else if(type == 1){
+        else if(type == 0x40){
             tmp &= 0x3F;
             tmpptr = (dstptr - (tmp >> 2)) - 1;
             tmp = (tmp & 3) + 2;
@@ -2143,7 +2143,7 @@ static inline void lz_ext_p6_fx(u8* srcptr, u8* dstptr, u32 len) {
                 *dstptr++ = *tmpptr++;
             }   
         }
-        else if(type == 2){
+        else if(type == 0x80){
             tmp = ((tmp & 0x3F) << 8) | *srcptr++;
             tmpptr = (dstptr - (tmp >> 6)) - 1;
             tmp = (tmp & 0x3F) + 2;
